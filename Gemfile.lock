@@ -35,6 +35,13 @@ GEM
     debugger-linecache (1.2.0)
     erubis (2.7.0)
     execjs (2.0.1)
+    haml (4.0.3)
+      tilt
+    haml-rails (0.4)
+      actionpack (>= 3.1, < 4.1)
+      activesupport (>= 3.1, < 4.1)
+      haml (>= 3.1, < 4.1)
+      railties (>= 3.1, < 4.1)
     hike (1.2.3)
     i18n (0.6.5)
     jquery-rails (3.0.4)
@@ -106,6 +113,7 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
+  haml-rails
   jquery-rails
   rails (= 4.0.0)
   sass-rails (~> 4.0.0)
