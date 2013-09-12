@@ -1,0 +1,36 @@
+%h1 Your details
+
+%p Enter your details below. Use 'Add another visitor' to enter details of other vistors coming with you.
+
+= form_for visit.visitors[0] || Visitor.new, url: update_step2_path, as: :visitor do |f|
+
+  .group
+    = f.label :given_name
+    = f.text_field :given_name
+
+  .group
+    = f.label :surname
+    = f.text_field :surname
+
+  .group
+    = f.label :date_of_birth
+    = f.date_field :date_of_birth
+
+  = render 'restrictions'
+
+  .well
+    %fieldset
+      %legend Contact details
+
+      %p You can receive confirmation of your visit by email or test message. Enter your address or mobile phone number below.
+
+      .group
+        = f.label :email
+        = f.email_field :email
+
+      .group
+        = f.label :phone
+        = f.telephone_field :phone
+
+  = f.button :Continue, :name => 'next', :value => 'continue'
+  = f.button 'Add another visitor',  :name => 'next',:value => 'add'

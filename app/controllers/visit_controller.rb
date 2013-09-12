@@ -11,20 +11,17 @@ class VisitController < ApplicationController
   end
 
   def update_step2
-    params = params.require(:visitor).permit(:given_name, :surname, :date_of_birth, :email, :phone)
-    visit.visitors[0] = Visitor.new(params)
-    redirect_to step3_path
+    visit.visitors[params[:index].to_i] = Visitor.new(visitor_params)
+    redirect_to params[:next] == 'add' ? step3_path : step4_path
   end
 
   def step3
+    @index = visit.visitors.size
   end
 
   def update_step3
-    params = params.require(:visitor).permit(:given_name, :surname, :date_of_birth, :email, :phone)
-    unless visit.visitors.size == 6
-      visit.visitors << Visitor.new(params)
-    end
-    redirect_to step3_path
+    visit.visitors[params[:index].to_i] = Visitor.new(visitor_params)
+    redirect_to params[:next] == 'add' ? step3_path : step4_path
   end
 
   def step4
@@ -51,5 +48,9 @@ private
 
   def prisoner_params
     params.required(:prisoner).permit(:given_name, :surname, :date_of_birth, :number, :prison_name)
+  end
+
+  def visitor_params
+    params.required(:visitor).permit(:given_name, :surname, :date_of_birth, :email, :phone)
   end
 end

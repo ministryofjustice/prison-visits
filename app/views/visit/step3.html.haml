@@ -1,0 +1,22 @@
+%h1 Add another visitor
+
+= form_for visit.visitors[@index] || Visitor.new, url: update_step3_path, as: :visitor do |f|
+  = text_field_tag :index, @index
+
+  .group
+    = f.label :given_name
+    = f.text_field :given_name
+
+  .group
+    = f.label :surname
+    = f.text_field :surname
+
+  .group
+    = f.label :date_of_birth
+    = f.date_field :date_of_birth
+
+  = render 'restrictions'
+
+  = f.button :Continue, :name => 'next', :value => 'continue'
+  = f.button 'Add another visitor',  :name => 'next',:value => 'add'
+  = link_to 'Cancel', step4_path, :class => 'button'
