@@ -1,0 +1,24 @@
+%h1 Summary of your visit
+
+%h2 You are visiting
+.well
+  %p
+    %strong #{visit.prisoner.given_name} #{visit.prisoner.surname}
+  %p
+    Date of birth:
+    %strong #{visit.prisoner.date_of_birth}
+  %p
+    Prisoner number:
+    %strong #{visit.prisoner.number}
+  %p
+    Prison:
+    %strong #{visit.prisoner.prison_name}
+  %div= link_to 'Change this time', step4_path
+
+%h2 Date and time of visit
+.well [confirmed date]
+
+%h2 Visitor details
+= render 'visitors'
+
+%div= link_to 'Confirm and book', step6_path, :class => 'button'

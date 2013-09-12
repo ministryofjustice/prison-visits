@@ -1,0 +1,45 @@
+%h1 Your visit request has been sent
+
+%p We will email you soon to confirm your visit and issue you with a visit reference nunber. You should expect to here from us by Tuesday at the latest.
+
+.well.pull-left
+  %p
+    Date:
+    %br
+    %strong [date]
+
+  %p
+    Time:
+    %br
+    %strong [time]
+
+  %p
+    Location:
+    %br
+    %strong
+      #{visit.prisoner.prison_name}
+      %br
+      [prison address]
+
+  %p
+    Tel:
+    %br
+    %strong [prison tel]
+
+%p A confirmation email will be sent to: #{visit.visitors[0].email}
+
+%p When you visit please make sure you bring the following ID documents with you:
+
+%p
+  %img(alt="Passport")
+  Passport of driving licence with you address on
+
+%p
+  %img(alt="Utility bills")
+  Two utility bills addressed to you
+
+%p
+  %small If you do not bring these documents with you, you will not be able to visit the prison.
+
+%p
+  %small If you have any questions before your visit please see the HMP Durham website or you can call the prison directly on: 0191 332 3400.
