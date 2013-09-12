@@ -2,6 +2,7 @@
 %html
   %head
     = render "shared/head", :title => Rails.configuration.app_title
+    = csrf_meta_tag
 
   %body{:class => (Rails.configuration.phase + " " + Rails.configuration.product_type)}
 

@@ -1,1 +1,27 @@
-%p Step 1
+%h1 Who are you visiting
+
+%p Use this service to book a visit to a prisoner. Get started by entering the details of the prisoner you wish to visit.
+
+= form_for visit.prisoner, url: update_step1_path, as: :prisoner do |f|
+
+  .group
+    = f.label :given_name
+    = f.text_field :given_name
+
+  .group
+    = f.label :surname
+    = f.text_field :surname
+
+  .group
+    = f.label :date_of_birth
+    = f.text_field :date_of_birth
+
+  .group
+    = f.label :number
+    = f.text_field :number
+
+  .group
+    = f.label :prison_name
+    = f.text_field :prison_name
+
+    = f.submit :Continue

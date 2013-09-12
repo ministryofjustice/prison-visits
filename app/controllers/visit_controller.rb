@@ -3,8 +3,7 @@ class VisitController < ApplicationController
   end
 
   def update_step1
-    params = params.require(:prisoner).permit(:given_name, :surname, :date_of_birth, :number, :prison_name)
-    visit.prisoner = Prisoner.new(params)
+    visit.prisoner = Prisoner.new(prisoner_params)
     redirect_to step2_path
   end
 
@@ -46,5 +45,11 @@ class VisitController < ApplicationController
   end
 
   def step6
+  end
+
+private
+
+  def prisoner_params
+    params.required(:prisoner).permit(:given_name, :surname, :date_of_birth, :number, :prison_name)
   end
 end
