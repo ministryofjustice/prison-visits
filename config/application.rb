@@ -25,5 +25,31 @@ module PrisonVisits2
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
+    # app title appears in the header bar
+    config.app_title = 'Prison visit bookings'
+    # phase governs text indicators and highlight colours
+    # presumed values: alpha, beta, live
+    config.phase = 'alpha'
+    # product type may also govern highlight colours
+    # known values: information, service
+    config.product_type = 'service'
+    # govbranding switches on or off the crown logo, full footer and NTA font
+    config.govbranding = true
+    # feedback_email is the address linked in the alpha/beta bar asking for feedback
+    config.feedback_email = 'test@example.com'
+
+    config.assets.enabled = true
+    config.assets.precompile += %w(
+      gov-static/gov-goodbrowsers.css
+      gov-static/gov-ie6.css
+      gov-static/gov-ie7.css
+      gov-static/gov-ie8.css
+      gov-static/gov-fonts.css
+      gov-static/gov-fonts-ie8.css
+      gov-static/gov-print.css
+      moj-base.css
+      gov-static/gov-ie.js
+    )
   end
 end
