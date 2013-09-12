@@ -5,6 +5,6 @@ class ApplicationController < ActionController::Base
   helper_method :visit
 
   def visit
-    session[:visit] ||= Visit.new
+    session[:visit] ||= Visit.new(visitors: [])
   end
 end
