@@ -1,5 +1,7 @@
 %h1 Add another visitor
 
+= render 'visitors'
+
 = form_for visit.visitors[@index] || Visitor.new, url: update_step3_path, as: :visitor do |f|
   = text_field_tag :index, @index
 
