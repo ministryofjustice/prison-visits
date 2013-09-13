@@ -28,9 +28,10 @@ class VisitController < ApplicationController
   end
 
   def update_step4
-    params = params.require(:visit).permit(:visit_date, :visit_slot)
-    visit.visit_date = params[:visit_date]
-    visit.visit_slot = params[:visit_slot]
+    visit.slots = []
+    params.require(:visit).permit(:"slots[]").each do |date, slot|
+      visit.slots << Slot.new(date, slot)
+    end
     redirect_to :step5_path
   end
 
