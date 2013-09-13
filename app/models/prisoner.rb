@@ -10,9 +10,14 @@ class Prisoner
 
   attr_accessor :given_name
   attr_accessor :surname
-  attr_accessor :date_of_birth
   attr_accessor :number
   attr_accessor :prison_name
+
+  attr_reader :date_of_birth
+  def date_of_birth=(dob_string)
+    @date_of_birth = Date.parse(dob_string)
+  rescue errors.add(:date_of_birth, 'invalid date')
+  end
 
   validates_length_of :given_name, minimum: 1
   validates_length_of :surname, minimum: 1
