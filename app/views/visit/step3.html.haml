@@ -1,4 +1,5 @@
-%h1 Add another visitor
+- content_for :header do
+  %h1 Add another visitor
 
 = render 'visitors'
 
@@ -26,6 +27,9 @@
 
   = render 'restrictions'
 
-  = f.button :Continue, :name => 'next', :value => 'continue'
-  = f.button 'Add another visitor',  :name => 'next',:value => 'add'
-  = link_to 'Cancel', step4_path, :class => 'button'
+  %br
+  = f.button 'Add another visitor',  :name => 'next', :value => 'add'
+  = link_to 'Cancel', step4_path, :class => 'button button-warning'
+  %br
+  %br
+  = f.button :Continue, :name => 'next', :value => 'continue', :class => 'button button-primary'

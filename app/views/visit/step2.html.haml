@@ -1,4 +1,5 @@
-%h1 Your details
+- content_for :header do
+  %h1 Your details
 
 %p Enter your details below. Use 'Add another visitor' to enter details of other vistors coming with you.
 
@@ -39,5 +40,8 @@
         = f.label :phone
         = f.telephone_field :phone
 
-  = f.button :Continue, :name => 'next', :value => 'continue'
+  %br
   = f.button 'Add another visitor',  :name => 'next',:value => 'add'
+  %br
+  %br
+  = f.button :Continue, :name => 'next', :value => 'continue', :class => 'button button-primary'

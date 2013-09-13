@@ -1,7 +1,8 @@
-%h1 Your visit date and time
+- content_for :header do
+  %h1 Your visit date and time
 
 %p Choose the date and time you would like to visit #{visit.prisoner.given_name} #{visit.prisoner.surname}
 
 [date picker]
 
-%div= link_to 'Continue', step5_path, :class => 'button'
+%div= link_to 'Continue', step5_path, :class => 'button button-primary'

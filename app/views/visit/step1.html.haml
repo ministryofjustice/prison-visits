@@ -1,4 +1,5 @@
-%h1 Who are you visiting
+- content_for :header do
+  %h1 Who are you visiting
 
 %p Use this service to book a visit to a prisoner. Get started by entering the details of the prisoner you wish to visit.
 
@@ -33,4 +34,4 @@
     = f.select :prison_name, Prisoner::PRISONS
     = f.object.errors[:prison_name] if f.object.errors.include?(:prison_name)
 
-  = f.submit :Continue
+  = f.submit :Continue, :class => 'button button-primary'
