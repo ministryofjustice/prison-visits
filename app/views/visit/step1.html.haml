@@ -10,18 +10,18 @@
       Your form could not be submitted. Please fix the errors below.
 
   .group
-    = f.label :given_name
-    = f.text_field :given_name
-    = f.object.errors[:given_name] if f.object.errors.include?(:given_name)
+    = f.label :first_name
+    = f.text_field :first_name
+    = f.object.errors[:first_name] if f.object.errors.include?(:first_name)
 
   .group
-    = f.label :surname
-    = f.text_field :surname
-    = f.object.errors[:surname] if f.object.errors.include?(:surname)
+    = f.label :last_name
+    = f.text_field :last_name
+    = f.object.errors[:last_name] if f.object.errors.include?(:last_name)
 
   .group
     = f.label :date_of_birth
-    = f.text_field :date_of_birth
+    = f.date_field :date_of_birth
     = f.object.errors[:date_of_birth] if f.object.errors.include?(:date_of_birth)
 
   .group
