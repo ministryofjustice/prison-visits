@@ -2,35 +2,35 @@
 
 %p Use this service to book a visit to a prisoner. Get started by entering the details of the prisoner you wish to visit.
 
-- if visit.prisoner.errors.any?
-  %div
-    Your form could not be submitted. Please fix the errors below.
-
 = form_for visit.prisoner, url: update_step1_path, as: :prisoner do |f|
+
+  - if f.object.errors.any?
+    %div
+      Your form could not be submitted. Please fix the errors below.
 
   .group
     = f.label :given_name
     = f.text_field :given_name
-    = visit.prisoner.errors[:given_name] if visit.prisoner.errors.include?(:given_name)
+    = f.object.errors[:given_name] if f.object.errors.include?(:given_name)
 
   .group
     = f.label :surname
     = f.text_field :surname
-    = visit.prisoner.errors[:surname] if visit.prisoner.errors.include?(:surname)
+    = f.object.errors[:surname] if f.object.errors.include?(:surname)
 
   .group
     = f.label :date_of_birth
     = f.text_field :date_of_birth
-    = visit.prisoner.errors[:date_of_birth] if visit.prisoner.errors.include?(:date_of_birth)
+    = f.object.errors[:date_of_birth] if f.object.errors.include?(:date_of_birth)
 
   .group
     = f.label :number
     = f.text_field :number
-    = visit.prisoner.errors[:number] if visit.prisoner.errors.include?(:number)
+    = f.object.errors[:number] if f.object.errors.include?(:number)
 
   .group
     = f.label :prison_name
     = f.select :prison_name, Prisoner::PRISONS
-    = visit.prisoner.errors[:prison_name] if visit.prisoner.errors.include?(:prison_name)
+    = f.object.errors[:prison_name] if f.object.errors.include?(:prison_name)
 
   = f.submit :Continue

@@ -3,8 +3,7 @@ class VisitController < ApplicationController
   end
 
   def update_step1
-    visit.prisoner = Prisoner.new(prisoner_params)
-    if visit.prisoner.valid?
+    if (visit.prisoner = Prisoner.new(prisoner_params)).valid?
       redirect_to step2_path
     else
       redirect_to step1_path
