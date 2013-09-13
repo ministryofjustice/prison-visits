@@ -1,0 +1,16 @@
+$button-border-radius: 4px
+$button-primary-color: $green
+$button-secondary-color: $grey-3
+$button-warning-color: $red
+
+.button
+  @include button($grey-3)
+  @include border-radius($button-border-radius)
+
+.button-primary
+  @include button($button-primary-color)
+  @include border-radius($button-border-radius)
+
+.button-warning
+  @include button($button-warning-color)
+  @include border-radius($button-border-radius)

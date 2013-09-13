@@ -7,11 +7,14 @@
   %body{:class => (Rails.configuration.phase + " " + Rails.configuration.product_type)}
 
     = render "shared/header"
+    = render "shared/phase_indicator"
 
-    #wrapper.group
-      = render "shared/phase_indicator"
-      %section#content.group{:role => "main"}
-        .full-width-group
+    %main#wrapper(role="main")
+      .container
+        %section.content.inner
+          %header
+            = yield :header
+        %section.inner
           = yield
 
     = render "shared/footer"
