@@ -3,19 +3,26 @@
 = render 'visitors'
 
 = form_for visit.visitors[@index] || Visitor.new, url: update_step3_path, as: :visitor do |f|
-  = text_field_tag :index, @index
+  = hidden_field_tag :index, @index
+
+  - if f.object.errors.any?
+    %div
+      Your form could not be submitted. Please fix the errors below.
 
   .group
     = f.label :given_name
     = f.text_field :given_name
+    = f.object.errors[:given_name] if f.object.errors.include?(:given_name)
 
   .group
     = f.label :surname
     = f.text_field :surname
+    = f.object.errors[:surname] if f.object.errors.include?(:surname)
 
   .group
     = f.label :date_of_birth
     = f.date_field :date_of_birth
+    = f.object.errors[:date_of_birth] if f.object.errors.include?(:date_of_birth)
 
   = render 'restrictions'
 

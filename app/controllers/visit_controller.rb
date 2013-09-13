@@ -14,8 +14,11 @@ class VisitController < ApplicationController
   end
 
   def update_step2
-    visit.visitors[params[:index].to_i] = Visitor.new(visitor_params)
-    redirect_to params[:next] == 'add' ? step3_path : step4_path
+    if (visit.visitors[params[:index].to_i] = Visitor.new(visitor_params)).valid?
+      redirect_to params[:next] == 'add' ? step3_path : step4_path
+    else
+      redirect_to step2_path
+    end
   end
 
   def step3
