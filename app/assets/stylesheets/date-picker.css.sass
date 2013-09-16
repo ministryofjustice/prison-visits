@@ -1,0 +1,53 @@
+.date-picker-nav
+  float: left
+  width: 300px
+  margin: 0
+  padding: 0
+  list-style-type: none
+
+  a
+    position: relative
+    display: block
+    width: 200px
+    margin-bottom: 3px
+    padding: 7px 15px
+    color: $black
+    list-style-type: none
+    text-decoration: none
+    background: $grey-3
+
+    &.is-active
+      color: $white
+      background: $grey-2
+
+      &:before
+        border-left-color: $grey-2
+
+.date-picker-nav .is-active:before
+  content: ' '
+  position: absolute
+  z-index: 2
+  top: 0
+  right: -38px
+  height: 0
+  width: 0
+  border: 19px solid transparent // arrow size */
+  border-left-color: $grey-3
+
+.arrow-right
+  width: 0
+  height: 0
+
+.date-picker-content
+  float: left
+  width: 300px
+  padding: 1em
+  background: $grey-3
+
+  .slot
+    padding: 4px 7px
+    background: $white
+    cursor: pointer
+
+    [type=checkbox]
+      float: right

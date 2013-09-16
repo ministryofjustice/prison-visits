@@ -15,3 +15,18 @@
 //= require moj
 //= require modules/moj.tabs
 //= require_tree .
+
+$(function(){
+  $('.js-tabs ul li').first().find('a').click();
+
+  var slots = $('[name=slot]');
+
+  slots.click(function(){
+    var chosenSlots = [];
+    slots.filter(':checked').each(function(i){
+      chosenSlots.push($(this).val());
+    });
+  });
+});
+
+moj.init();
