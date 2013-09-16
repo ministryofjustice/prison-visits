@@ -12,4 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require moj
+//= require modules/moj.tabs
 //= require_tree .
