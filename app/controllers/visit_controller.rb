@@ -31,14 +31,15 @@ class VisitController < ApplicationController
   end
 
   def step4
+    @slots = visit.slots.empty? ? [Slot.new, Slot.new, Slot.new] : visit.slots
   end
 
   def update_step4
     visit.slots = []
-    params.require(:visit).permit(:"slots[]").each do |date, slot|
-      visit.slots << Slot.new(date, slot)
+    slot_params.each do |p|
+      visit.slots << Slot.new(p)
     end
-    redirect_to :step5_path
+    redirect_to step5_path
   end
 
   def step5
@@ -59,5 +60,9 @@ private
 
   def visitor_params
     params.required(:visitor).permit(:first_name, :last_name, :date_of_birth, :email, :phone)
+  end
+
+  def slot_params
+    params.required(:visit).required(:slots)
   end
 end

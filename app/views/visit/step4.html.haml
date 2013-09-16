@@ -3,6 +3,32 @@
 
 %p Choose the date and time you would like to visit #{visit.prisoner.first_name} #{visit.prisoner.last_name}
 
-[date picker]
 
-%div= link_to 'Continue', step5_path, :class => 'button button-primary'
+= form_for visit, url: update_step4_path do |f|
+
+  - if f.object.errors.any?
+    %div
+      Your form could not be submitted. Please fix the errors below.
+
+  - @slots.each_with_index do |slot, index|
+    = f.fields_for :slots, slot do |builder|
+
+      %fieldset
+        %legend Choice #{index+1}
+
+        .group
+          = label_tag "visit[slots][][date]", 'Date'
+          = date_field_tag "visit[slots][][date]", slot.date
+
+        .group
+          = label_tag "visit[slots][][slot]", 'Slot'
+          = text_field_tag "visit[slots][][slot]", slot.slot
+
+  -#  .group{ :class => ('validation-error' if f.object.errors.include?(:date)) }
+  -#    = f.label :date do
+  -#      Date
+  -#      %span.validation-message= f.object.errors[:date].first if f.object.errors.include?(:date)
+  -#    = f.text_field :date
+
+  %br
+  = f.button :Continue, :name => 'next', :value => 'continue', :class => 'button button-primary'
