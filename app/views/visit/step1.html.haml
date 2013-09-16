@@ -9,32 +9,34 @@
     #error-summary.validation-summary.group(role="alert" tabindex="-1" aria-labelledby="error-heading")
       %h2#error-heading Your form could not be submitted. Please fix the errors below.
 
-  .group
+  .group{ :class => ('validation-error' if f.object.errors.include?(:first_name)) }
     = f.label :first_name do
       First name
       %span.validation-message= f.object.errors[:first_name].first if f.object.errors.include?(:first_name)
     = f.text_field :first_name
 
-  .group
+  .group{ :class => ('validation-error' if f.object.errors.include?(:last_name)) }
     = f.label :last_name do
       Last name
       %span.validation-message= f.object.errors[:last_name].first if f.object.errors.include?(:last_name)
     = f.text_field :last_name
 
-  .group
+  .group{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
     = f.label :date_of_birth do
       Date of birth
       %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
     = f.date_field :date_of_birth
 
-  .group
-    = f.label :number
+  .group{ :class => ('validation-error' if f.object.errors.include?(:number)) }
+    = f.label :number do
+      Number
+      %span.validation-message= f.object.errors[:number].first if f.object.errors.include?(:number)
     = f.text_field :number
-    = f.object.errors[:number] if f.object.errors.include?(:number)
 
-  .group
-    = f.label :prison_name
+  .group{ :class => ('validation-error' if f.object.errors.include?(:prison_name)) }
+    = f.label :prison_name do
+      Prison name
+      %span.validation-message= f.object.errors[:prison_name] if f.object.errors.include?(:prison_name)
     = f.select :prison_name, Prisoner::PRISONS
-    = f.object.errors[:prison_name] if f.object.errors.include?(:prison_name)
 
   = f.submit :Continue, :class => 'button button-primary'

@@ -9,20 +9,23 @@
     %div
       Your form could not be submitted. Please fix the errors below.
 
-  .group
-    = f.label :first_name
+  .group{ :class => ('validation-error' if f.object.errors.include?(:first_name)) }
+    = f.label :first_name do
+      First name
+      %span.validation-message= f.object.errors[:first_name].first if f.object.errors.include?(:first_name)
     = f.text_field :first_name
-    = f.object.errors[:first_name] if f.object.errors.include?(:first_name)
 
-  .group
-    = f.label :last_name
+  .group{ :class => ('validation-error' if f.object.errors.include?(:last_name)) }
+    = f.label :last_name do
+      Last name
+      %span.validation-message= f.object.errors[:last_name].first if f.object.errors.include?(:last_name)
     = f.text_field :last_name
-    = f.object.errors[:last_name] if f.object.errors.include?(:last_name)
 
-  .group
-    = f.label :date_of_birth
+  .group{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
+    = f.label :date_of_birth do
+      Date of birth
+      %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
     = f.date_field :date_of_birth
-    = f.object.errors[:date_of_birth] if f.object.errors.include?(:date_of_birth)
 
   = render 'restrictions'
 
