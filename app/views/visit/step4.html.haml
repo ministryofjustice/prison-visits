@@ -3,16 +3,20 @@
 
 %p Choose the date and time you would like to visit
 
+%p.todays-date Today's date: #{Date.today.strftime('%d %b %Y')}
+
 %h2 #{visit.prisoner.prison_name}
 
-%p Today's date: #{Date.today.strftime('%d %b %Y')}
-
 - start_day = Date.today+2
-- date_range = start_day..start_day+1.month
-
+- date_range = start_day..start_day+28.days
 - months_in_range = date_range.map {|d| Date.new(d.year, d.month, 1) }.uniq
--#- months_in_range.each do |d|
--#  %h3= d.strftime("%B")
+- selected_month = (Date.parse(params[:month]) if params[:month].present?) || months_in_range.first
+
+.month-selector
+  %h3= selected_month.strftime('%B')
+
+  - months_in_range.reject { |m| selected_month == m }.each do |d|
+    = link_to d.strftime("%B"), step4_path(:month => d.strftime('%Y-%m-%d'))
 
 = form_for visit, url: update_step4_path, :html => { :class => 'slot-form' } do |f|
 
@@ -45,7 +49,7 @@
               5:15pm to 7:15pm
               %input.js-slotpicker-option{ :value => "#{date.strftime('%Y-%m-%d')}-3" }(type="checkbox" name="slot")
 
-  .hidden
+  .hidden.slot-picker-chosen
     - @slots.each_with_index do |slot, index|
       = f.fields_for :slots, slot do |builder|
 
