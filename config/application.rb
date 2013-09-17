@@ -30,7 +30,7 @@ module PrisonVisits2
     config.app_title = 'Prison visit bookings'
     # phase governs text indicators and highlight colours
     # presumed values: alpha, beta, live
-    config.phase = 'alpha'
+    config.phase = 'live'
     # product type may also govern highlight colours
     # known values: information, service
     config.product_type = 'service'
