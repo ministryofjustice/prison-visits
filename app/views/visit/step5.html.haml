@@ -16,8 +16,15 @@
     %strong #{visit.prisoner.prison_name}
   %div= link_to 'Change this time', step4_path
 
-%h2 Date and time of visit
-.well [confirmed date]
+%h2 Chosen visit slots
+.well
+  %ul
+    - visit.slots.each do |slot|
+      %li
+        %strong #{slot.date}
+        \ - #{slot.slot}
+  = link_to 'Amend these visit slots', step4_path
+
 
 %h2 Visitor details
 = render 'visitors'

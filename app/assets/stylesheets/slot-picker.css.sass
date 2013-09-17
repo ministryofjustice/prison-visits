@@ -1,4 +1,4 @@
-.date-picker-nav
+.slot-picker-nav
   float: left
   width: 300px
   margin: 0
@@ -22,8 +22,14 @@
 
       &:before
         border-left-color: $grey-2
+    
+    &.unavailable
+      text-decoration: line-through
 
-.date-picker-nav .is-active:before
+    &.has-selections
+      font-weight: bold
+
+.slot-picker-nav .is-active:before
   content: ' '
   position: absolute
   z-index: 2
@@ -38,7 +44,7 @@
   width: 0
   height: 0
 
-.date-picker-content
+.slot-picker-content
   float: left
   width: 300px
   padding: 1em

@@ -14,19 +14,12 @@
 //= require jquery_ujs
 //= require moj
 //= require modules/moj.tabs
+//= require moj.slot-picker
 //= require_tree .
 
 $(function(){
+  // Make this an option for tabs
   $('.js-tabs ul li').first().find('a').click();
-
-  var slots = $('[name=slot]');
-
-  slots.click(function(){
-    var chosenSlots = [];
-    slots.filter(':checked').each(function(i){
-      chosenSlots.push($(this).val());
-    });
-  });
 });
 
 moj.init();

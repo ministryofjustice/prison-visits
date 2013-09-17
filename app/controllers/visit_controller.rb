@@ -31,6 +31,7 @@ class VisitController < ApplicationController
   end
 
   def step4
+    visit.slots = []
     @slots = visit.slots.empty? ? [Slot.new, Slot.new, Slot.new] : visit.slots
   end
 
