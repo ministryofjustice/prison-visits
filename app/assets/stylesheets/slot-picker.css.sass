@@ -1,16 +1,36 @@
 .todays-date
-  float: right
+  text-align: right
 
 .month-selector
+  position: relative
+  padding: 10px 20px
   color: $white
+  line-height: 1.875em
   background: $black
 
-.slot-picker-nav
+  a
+    color: $white
+  
+    &.is-active
+      cursor: default
+      display: block
+      position: absolute
+      width: 50%
+      left: 50%
+      margin-left: -25%
+      @include core-27
+      text-align: center
+      text-decoration: none
+      // background: $grey-3
+
+.slotpicker-nav
   float: left
   width: 300px
-  margin: 0
-  padding: 0
-  list-style-type: none
+
+  ul
+    margin: 0
+    padding: 0
+    list-style-type: none
 
   a
     position: relative
@@ -36,7 +56,7 @@
     &.has-selections
       font-weight: bold
 
-.slot-picker-nav .is-active:before
+.slotpicker-nav .is-active:before
   content: ' '
   position: absolute
   z-index: 2
@@ -51,7 +71,7 @@
   width: 0
   height: 0
 
-.slot-picker-content
+.slotpicker-content
   float: left
   width: 300px
   padding: 1em
