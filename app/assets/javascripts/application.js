@@ -13,13 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require moj
-//= require modules/moj.tabs
+//= require moj.tabs
 //= require moj.slot-picker
-//= require_tree .
-
-$(function(){
-  // Make this an option for tabs
-  $('.js-tabs ul li').first().find('a').click();
-});
 
 moj.init();
