@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require moj
-//= require moj.tabs
+//= require modules/moj.tabs
 //= require moj.slot-picker
 
 moj.init();
