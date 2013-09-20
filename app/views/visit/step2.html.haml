@@ -21,7 +21,7 @@
       %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
     = f.date_field :date_of_birth
 
-  = render 'restrictions'
+  %p Children under 16 can only visit with an adult.
 
   .well
     %fieldset
