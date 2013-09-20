@@ -1,10 +1,11 @@
 - content_for :header do
-  %h1 Summary of your visit
+  %h1 Summary of your request
 
-%h2 You are visiting
 .well
+  %h2 You are visiting
   %p
-    %strong #{visit.prisoner.full_name}
+    %big
+      %strong #{visit.prisoner.full_name}
   %p
     Date of birth:
     %strong #{visit.prisoner.date_of_birth}
@@ -14,20 +15,27 @@
   %p
     Prison:
     %strong #{visit.prisoner.prison_name}
-  %div= link_to 'Change this time', step4_path
+  %div= link_to 'View/edit details', step1_path
 
-%h2 Chosen visit slots
 .well
+  %h2 Chosen visit times
   %ul
     - visit.slots.each do |slot|
       %li
-        %strong #{slot.date}
+        - slot_date = Date.parse(slot.date)
+        %strong
+          = slot_date.strftime("%A #{slot_date.day.ordinalize} %B")
         \ - #{slot.slot}
-  = link_to 'Amend these visit slots', step4_path
+  = link_to 'Edit these visit times', step4_path
 
-
-%h2 Visitor details
-= render 'visitors'
+.well
+  %h2 Visitor details
+  - visit.visitors.each_with_index do |visitor, i|
+    %p
+      Visitor #{i+1}
+      %br
+      %strong= visitor.full_name
+  = link_to 'View/edit details', step2_path
 
 %br
 %div= link_to 'Confirm and book', step6_path, :class => 'button button-primary'
