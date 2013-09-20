@@ -33,11 +33,6 @@
       %span.validation-message= f.object.errors[:prison_name] if f.object.errors.include?(:prison_name)
     = f.select :prison_name, Prisoner::PRISONS
 
-  .group{ :class => ('validation-error' if f.object.errors.include?(:visiting_order)) }
-    = f.label :visiting_order do
-      Visiting Order (VO) number
-      %span.validation-message= f.object.errors[:visiting_order].first if f.object.errors.include?(:visiting_order)
-    = f.text_field :visiting_order
 
   %details
     %summary How do I find out the VO number for the visit?
