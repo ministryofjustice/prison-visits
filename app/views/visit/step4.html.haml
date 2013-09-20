@@ -16,20 +16,20 @@
       - range_by_month.keys.each do |month|
         %li= link_to month.strftime('%B'), month.strftime('#month-%Y-%m-%d')
 
-  = form_for visit, url: update_step4_path, :html => { :class => 'slot-form' } do |f|
+  = form_for visit, url: update_step4_path, :html => { :class => 'slot-form cf' } do |f|
 
     - if f.object.errors.any?
       %div
         Your form could not be submitted. Please fix the errors below.
 
-    .js-slotpicker.js-tabs-content{ :'data-optionlimits' => number_of_slots }
+    .slotpicker-wrapper.js-slotpicker.js-tabs-content{ :'data-optionlimits' => number_of_slots }
       - range_by_month.keys.each do |month|
         .slotpicker.js-tabs.cf{ :id => month.strftime('month-%Y-%m-%d') }(data-focusfirst="true")
           .slotpicker-nav
             %h3 First, select a date below
             %ul.js-tabs-nav
               - range_by_month[month].each do |date|
-                %li= link_to date.strftime("%A #{date.day.ordinalize}"), date.strftime('#date-%Y-%m-%d'), :class => 'js-slotpicker-day'
+                %li= link_to date.strftime("%A #{date.day.ordinalize} <span>%B</span>").html_safe, date.strftime('#date-%Y-%m-%d'), :class => 'js-slotpicker-day'
 
           .slots
             %h3 Then select a time slot
@@ -49,6 +49,16 @@
                     5:15pm to 7:15pm
                     %input.js-slotpicker-option{ :value => "#{date.strftime('%Y-%m-%d')}-3" }(type="checkbox" name="slot")
 
+    .selected-slots(style="display:block")
+      %h3 Selected visit times
+      %p You can remove a time using the 'x' button
+      %ul
+        - (1..number_of_slots).each do
+          %li
+            %a.js-remove-slot(href="#") &times;
+            %p.date
+            %p.time
+
     .hidden.slotpicker-chosen
       - @slots.each_with_index do |slot, index|
         = f.fields_for :slots, slot do |builder|
@@ -65,14 +75,5 @@
               = text_field_tag "visit[slots][][slot]", slot.slot
 
     %br
-    = f.button :Continue, :name => 'next', :value => 'continue', :class => 'button button-primary'
-
-%div
-  %h3 Selected visit times
-  %p You can remove a time using the 'x' button
-  %ul.selected-slots
-    - (1..number_of_slots).each do
-      %li
-        %a.js-remove-slot(href="#") &times;
-        %p.date
-        %p.time
+    .actions
+      = f.button :Continue, :name => 'next', :value => 'continue', :class => 'button button-primary'

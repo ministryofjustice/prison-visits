@@ -29,9 +29,17 @@
       text-decoration: none
       // background: $grey-3
 
+.actions
+  clear: left
+  padding-top: 2em
+
+.slotpicker-wrapper
+  float: left
+  width: 600px
+
 .slotpicker-nav
   float: left
-  width: 300px
+  width: 250px
 
   ul
     margin: 0
@@ -49,6 +57,9 @@
     text-decoration: none
     background: $grey-3
 
+    span
+      display: none
+
     &.is-active
       color: $white
       background: $grey-2
@@ -62,16 +73,16 @@
     &.has-selections
       font-weight: bold
 
-.slotpicker-nav .is-active:before
-  content: ' '
-  position: absolute
-  z-index: 2
-  top: 0
-  right: -38px
-  height: 0
-  width: 0
-  border: 19px solid transparent // arrow size */
-  border-left-color: $grey-3
+  & .is-active:before
+    content: ' '
+    position: absolute
+    z-index: 2
+    top: 0
+    right: -38px
+    height: 0
+    width: 0
+    border: 19px solid transparent // arrow size */
+    border-left-color: $grey-3
 
 .arrow-right
   width: 0
@@ -79,7 +90,7 @@
 
 .slotpicker-content
   float: left
-  width: 300px
+  width: 250px
   padding: 1em
   background: $grey-3
 
@@ -90,3 +101,43 @@
 
     [type=checkbox]
       float: right
+
+.selected-slots
+  float: left
+
+  ul
+    width: 250px
+    padding: 10px
+    list-style-type: none
+    background: $grey-3
+
+    li
+      min-height: 2em
+      margin-top: 10px
+      border: 2px dashed $grey-2
+
+      &:first-child
+        margin: 0
+
+      &.is-active
+        padding: 10px
+        background: $white
+        border-style: solid
+        border-color: $white
+
+        a
+          display: block
+
+      a
+        display: none
+        float: right
+        width: 1.5em
+        height: 1.5em
+        color: $black
+        text-align: center
+        text-decoration: none
+        background: $grey-3
+        border-radius: 50%
+      
+      p
+        margin: 0

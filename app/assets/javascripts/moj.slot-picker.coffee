@@ -18,28 +18,51 @@ SlotPicker:: =
     optionlimit: 3
     selections: 'has-selections'
 
-  cacheEls: (wrap) ->
+  cacheEls: ->
+    @$wrapper = $ '#wrapper'
     @$slots = $ '.js-slotpicker-slot [type=text]'
     @$dates = $ '.js-slotpicker-slot [type=date]'
     @$slotOptions = $ '.js-slotpicker-option'
     @$slotDays = $ '.js-slotpicker-day'
     @$selectedSlots = $ '.selected-slots li'
+    @removeSlots = '.js-remove-slot'
 
   bindEvents: ->
     # store a reference to obj before 'this' becomes jQuery obj
     _this = this
     
-    @$slotOptions.on "click", (e) ->
+    @$slotOptions.on 'click', (e) ->
       _this._emptySlots()
+      _this._emptySlotInputs()
       _this._unHighlightDays()
       _this._processSlots()
       _this._disableCheckboxes _this._limitReached()
 
+    @$wrapper.on 'click', @removeSlots, (e) ->
+      e.preventDefault()
+      console.log $(this).data('slot-option')
+      $( $(this).data('slot-option') ).click()
+
   _emptySlots: ->
+    slots = @$selectedSlots
+    slots.removeClass 'is-active'
+    slots.find('a').removeData()
+    slots.find('p').text ''
+
+  _emptySlotInputs: ->
     @$slots.val ''
 
-  _populateSelectedSlots: (index, el) ->
-    @$selectedSlots.eq(index).find('.date').text el.val()
+  _populateSelectedSlots: (index, checkbox) ->
+    id = checkbox.closest('.js-slotpicker-options').attr 'id'
+    day = $("[href=##{id}]").text()
+    time = checkbox.closest('label').text()
+    $slot = @$selectedSlots.eq(index)
+
+    $slot.addClass 'is-active'
+    $slot.find('.date').text day
+    $slot.find('.time').text time
+    # store reference to checkbox
+    $slot.find('.js-remove-slot').data 'slot-option', checkbox
 
   _populateSlotInputs: (index, chosen) ->
     slot = @_splitDateAndSlot chosen
