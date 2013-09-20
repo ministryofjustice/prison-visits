@@ -47,7 +47,7 @@ SlotPicker:: =
     slots = @$selectedSlots
     slots.removeClass 'is-active'
     slots.find('a').removeData()
-    slots.find('p').text ''
+    slots.find('.date, .time').text ''
 
   _emptySlotInputs: ->
     @$slots.val ''

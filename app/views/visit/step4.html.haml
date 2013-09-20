@@ -1,17 +1,37 @@
 - content_for :header do
   %h1 Your visit date and time
 
-%p Choose the date and time you would like to visit #{visit.prisoner.prison_name}
-
-%p.todays-date Today's date: #{Date.today.strftime('%d %b %Y')}
+%p
+  Now choose 
+  %strong up to three 
+  visit times that will be sent to the prison’s booking team to confirm availablity.
 
 - start_day = Date.today+2
 - date_range = start_day..start_day+28.days
 - range_by_month = date_range.group_by { |d| d.beginning_of_month }
 - number_of_slots = 3
 
-.js-tabs
-  .month-selector.cf
+.selected-slots
+  %h3 Selected visit times
+  %p You can remove a time using the 'x' button
+  %ul
+    - (1..number_of_slots).each_with_index do |i|
+      %li
+        %a.js-remove-slot(href="#") &times;
+        %p.date
+        %p.time
+        %p.placeholder
+          = [:first, :second, :third][i-1].capitalize
+          visit time
+
+.slot-chooser.js-tabs
+  %h2
+    %small.todays-date
+      Today:
+      %strong #{Date.today.day.ordinalize} #{Date.today.strftime('%b %Y')}
+    #{visit.prisoner.prison_name} visitors centre
+
+  .month-selector
     %ul.js-tabs-nav
       - range_by_month.keys.each do |month|
         %li= link_to month.strftime('%B'), month.strftime('#month-%Y-%m-%d')
@@ -48,16 +68,6 @@
                   %label.slot
                     5:15pm to 7:15pm
                     %input.js-slotpicker-option{ :value => "#{date.strftime('%Y-%m-%d')}-3" }(type="checkbox" name="slot")
-
-    .selected-slots(style="display:block")
-      %h3 Selected visit times
-      %p You can remove a time using the 'x' button
-      %ul
-        - (1..number_of_slots).each do
-          %li
-            %a.js-remove-slot(href="#") &times;
-            %p.date
-            %p.time
 
     .hidden.slotpicker-chosen
       - @slots.each_with_index do |slot, index|

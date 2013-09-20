@@ -1,4 +1,11 @@
+.slot-chooser
+  width: 60%
+  padding: 10px
+  background: $grey-4
+
 .todays-date
+  float: right
+  font-weight: normal
   text-align: right
 
 .month-selector
@@ -10,6 +17,7 @@
 
   ul
     list-style-type: none
+    overflow: hidden
 
   li
     float: left
@@ -103,10 +111,16 @@
       float: right
 
 .selected-slots
-  float: left
+  float: right
+  margin-top: 100px
+
+  h3,
+  p
+    margin: 0
 
   ul
-    width: 250px
+    width: 300px
+    margin: 0
     padding: 10px
     list-style-type: none
     background: $grey-3
@@ -119,6 +133,11 @@
       &:first-child
         margin: 0
 
+      .placeholder
+        padding: .75em
+        text-align: center
+        color: $grey-1
+
       &.is-active
         padding: 10px
         background: $white
@@ -128,12 +147,21 @@
         a
           display: block
 
+        .date
+          font-weight: bold
+
+        .placeholder
+          display: none
+
       a
         display: none
         float: right
-        width: 1.5em
-        height: 1.5em
-        color: $black
+        width: 1em
+        height: 1em
+        color: $grey-1
+        font-size: 25px
+        font-weight: bold
+        line-height: 1.2
         text-align: center
         text-decoration: none
         background: $grey-3
