@@ -4,7 +4,7 @@
   .well
     %h3 #{labels[index].capitalize} visitor
     %p
-      %strong #{visitor.first_name} #{visitor.last_name}
+      %strong #{visitor.full_name}
       - if visitor.date_of_birth.present?
         \- #{visitor.date_of_birth}
     %div Edit details

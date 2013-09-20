@@ -4,7 +4,7 @@
     = render "shared/head", :title => Rails.configuration.app_title
     = csrf_meta_tag
 
-  %body{:class => (Rails.configuration.phase + " " + Rails.configuration.product_type)}
+  %body{:class => [Rails.configuration.phase, Rails.configuration.product_type, controller.action_name].join(' ') }
 
     = render "shared/header"
     = render "shared/phase_indicator"

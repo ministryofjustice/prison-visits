@@ -1,7 +1,7 @@
 - content_for :header do
   %h1 Your details
 
-%p Enter your details below. Use 'Add another visitor' to enter details of other vistors coming with you.
+%p Enter your details below. Use ‘Add another visitor’ to enter details of other visitors coming with you.
 
 = form_for visit.visitors[0] || Visitor.new, url: update_step2_path, as: :visitor do |f|
 
@@ -9,17 +9,11 @@
     %div
       Your form could not be submitted. Please fix the errors below.
 
-  .group{ :class => ('validation-error' if f.object.errors.include?(:first_name)) }
-    = f.label :first_name do
-      First name
-      %span.validation-message= f.object.errors[:first_name].first if f.object.errors.include?(:first_name)
-    = f.text_field :first_name
-
-  .group{ :class => ('validation-error' if f.object.errors.include?(:last_name)) }
-    = f.label :last_name do
-      Last name
-      %span.validation-message= f.object.errors[:last_name].first if f.object.errors.include?(:last_name)
-    = f.text_field :last_name
+  .group{ :class => ('validation-error' if f.object.errors.include?(:full_name)) }
+    = f.label :full_name do
+      Full name
+      %span.validation-message= f.object.errors[:full_name].first if f.object.errors.include?(:full_name)
+    = f.text_field :full_name
 
   .group{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
     = f.label :date_of_birth do
@@ -31,20 +25,22 @@
 
   .well
     %fieldset
-      %legend Contact details
+      %legend Contact details (optional)
 
       %p You can receive confirmation of your visit by email or test message. Enter your address or mobile phone number below.
 
       .group
-        = f.label :email
+        = f.label :email, 'Email address'
         = f.email_field :email
 
       .group
-        = f.label :phone
+        = f.label :phone, 'Contact phone number'
         = f.telephone_field :phone
 
   %br
   = f.button 'Add another visitor',  :name => 'next',:value => 'add'
-  %br
+
+  = render 'additional_visitors'
+
   %br
   = f.button :Continue, :name => 'next', :value => 'continue', :class => 'button button-primary'

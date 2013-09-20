@@ -60,7 +60,7 @@ private
   end
 
   def visitor_params
-    params.required(:visitor).permit(:first_name, :last_name, :date_of_birth, :email, :phone)
+    params.required(:visitor).permit(:full_name, :date_of_birth, :email, :phone)
   end
 
   def slot_params
