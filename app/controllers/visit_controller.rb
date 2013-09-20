@@ -56,7 +56,7 @@ class VisitController < ApplicationController
 private
 
   def prisoner_params
-    params.required(:prisoner).permit(:first_name, :last_name, :date_of_birth, :number, :prison_name)
+    params.required(:prisoner).permit(:full_name, :date_of_birth, :number, :prison_name, :visiting_order)
   end
 
   def visitor_params
