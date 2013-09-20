@@ -1,18 +1,18 @@
 - content_for :header do
   %h1 Your visit request has been sent
 
-%p We will email you soon to confirm your visit and issue you with a visit reference nunber. You should expect to here from us by Tuesday at the latest.
+%p We will email you within 48 hours to confirm your visit and give you a visit reference number
 
-.well.summary-pane.pull-left
+.well.summary-pane.pull-left.cf
   %p
     Date:
     %br
-    %strong [date]
+    %strong #{visit.slots[0].date}
 
   %p
     Time:
     %br
-    %strong [time]
+    %strong #{visit.slots[0].slot}
 
   %p
     Location:
@@ -20,14 +20,20 @@
     %strong
       #{visit.prisoner.prison_name}
       %br
-      [prison address]
+      Old Elvet
+      %br
+      Durham
+      %br
+      DH1 3HU
 
   %p
     Tel:
     %br
-    %strong [prison tel]
+    %strong 0191 332 3400
 
-%p A confirmation email will be sent to: #{visit.visitors[0].email}
+%p
+  A confirmation email will be sent to: 
+  %strong #{visit.visitors[0].email}
 
 %p When you visit please make sure you bring the following ID documents with you:
 
@@ -43,4 +49,7 @@
   %small If you do not bring these documents with you, you will not be able to visit the prison.
 
 %p
-  %small If you have any questions before your visit please see the HMP Durham website or you can call the prison directly on: 0191 332 3400.
+  %small
+    If you have any questions before your visit please see the 
+    %a(href="#") HMP Durham website
+    or you can call the prison directly on: 0191 332 3400.
