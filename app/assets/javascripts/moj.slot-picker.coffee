@@ -12,6 +12,7 @@ SlotPicker = (el, options) ->
   @settings = $.extend {}, @defaults, options
   @cacheEls el
   @bindEvents()
+  @checkSlots window.slots
 
 SlotPicker:: =
   defaults:
@@ -42,6 +43,10 @@ SlotPicker:: =
       e.preventDefault()
       console.log $(this).data('slot-option')
       $( $(this).data('slot-option') ).click()
+
+  checkSlots: (slots) ->
+    for slot in slots
+      $("[value='#{slot.date}-#{slot.slot}']").click()
 
   _emptySlots: ->
     slots = @$selectedSlots

@@ -1,6 +1,9 @@
 - content_for :header do
   %h1 Your visit date and time
 
+:javascript
+  var slots = #{visit.slots.to_json};
+
 %p
   Now choose 
   %strong up to three 
