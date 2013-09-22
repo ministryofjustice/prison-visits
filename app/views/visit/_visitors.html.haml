@@ -1,10 +1,11 @@
 - labels = [:first, :second, :third, :forth, :fifth, :sixth]
 
 - visit.visitors.each_with_index do |visitor, index|
-  .well
-    %h3 #{labels[index].capitalize} visitor
-    %p
-      %strong #{visitor.full_name}
-      - if visitor.date_of_birth.present?
-        = visitor.date_of_birth.strftime(" - %e %B %Y")
-    %div Edit details
+  - if visitor.full_name.present?
+    .well
+      %h3 #{labels[index].capitalize} visitor
+      %p
+        %strong #{visitor.full_name}
+        - if visitor.date_of_birth.present?
+          = visitor.date_of_birth.strftime(" - %e %B %Y")
+      %div Edit details

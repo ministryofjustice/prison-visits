@@ -21,7 +21,8 @@
       %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
     = f.date_field :date_of_birth
 
-  %p Children under 16 can only visit with an adult.
+  %p
+    %small Children under 16 can only visit with an adult.
 
   .well
     %fieldset
@@ -38,9 +39,9 @@
         = f.telephone_field :phone
 
   %br
-  = f.button 'Add another visitor',  :name => 'next',:value => 'add'
-
   = render 'additional_visitors'
+  = f.button 'Add another visitor', :name => 'next', :value => 'add'
 
+  %br
   %br
   = f.button :Continue, :name => 'next', :value => 'continue', :class => 'button button-primary'
