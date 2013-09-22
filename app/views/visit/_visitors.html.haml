@@ -6,5 +6,5 @@
     %p
       %strong #{visitor.full_name}
       - if visitor.date_of_birth.present?
-        \- #{visitor.date_of_birth}
+        = visitor.date_of_birth.strftime(" - %e %B %Y")
     %div Edit details

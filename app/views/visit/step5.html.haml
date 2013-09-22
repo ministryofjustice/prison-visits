@@ -8,10 +8,11 @@
       %strong #{visit.prisoner.full_name}
   %p
     Date of birth:
-    %strong #{visit.prisoner.date_of_birth}
-  %p
-    Prisoner number:
-    %strong #{visit.prisoner.number}
+    %strong= visit.prisoner.date_of_birth.strftime("%e %B %Y")
+  - if visit.prisoner.number.present?
+    %p
+      Prisoner number:
+      %strong #{visit.prisoner.number}
   %p
     Prison:
     %strong #{visit.prisoner.prison_name}
@@ -21,11 +22,12 @@
   %h2 Chosen visit times
   %ul
     - visit.slots.each do |slot|
-      %li
-        - slot_date = Date.parse(slot.date)
-        %strong
-          = slot_date.strftime("%A #{slot_date.day.ordinalize} %B")
-        \ - #{slot.slot}
+      - if slot.date.present?
+        %li
+          - slot_date = Date.parse(slot.date)
+          %strong
+            = slot_date.strftime("%A #{slot_date.day.ordinalize} %B")
+          \ - #{slot.slot}
   = link_to 'Edit these visit times', step4_path
 
 .well

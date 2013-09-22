@@ -7,7 +7,7 @@
   %p
     Date:
     %br
-    %strong #{visit.slots[0].date}
+    %strong= Date.parse(visit.slots[0].date).strftime("%e %B %Y")
 
   %p
     Time:
