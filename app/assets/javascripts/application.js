@@ -15,5 +15,6 @@
 //= require moj
 //= require modules/moj.tabs
 //= require moj.slot-picker
+//= require visitors
 
 moj.init();

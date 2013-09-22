@@ -1,0 +1,78 @@
+additionalVisitors = $('#visitor-1, #visitor-2, #visitor-3, #visitor-4, #visitor-5')
+addVisitor = $('#add-visitor')
+visitors = $('.visitor')
+
+summarise = (visitor) ->
+  visitor.addClass 'compact'
+  visitor.removeClass 'js-editing'
+  
+  name = visitor.find('[name$="[full_name]"]').val()
+  dob = visitor.find('[name$="[date_of_birth]"]').val()
+
+  visitor.find('.summary .name').text name
+  visitor.find('.summary .dob').text dob
+
+  visitor.addClass 'added'
+
+edit = (visitor) ->
+  visitor.show().removeClass 'compact hidden'
+  visitor.addClass 'js-editing'
+  visitor.find('input').first().focus()
+
+highlightContinue = (highlight) ->
+  $('#continue')[if highlight then 'addClass' else 'removeClass'] 'button-primary'
+
+toggleAdd = ->
+  slotsLeft = visitors.filter('.added').length < 6
+  noEdits = additionalVisitors.filter('.js-editing').length is 0
+  addVisitor[if noEdits and slotsLeft then 'show' else 'hide']()
+  #if noEdits and slotsLeft
+  #  addVisitor.show().focus()
+  #else
+  #  addVisitor.hide()
+  #  $('#continue').focus() if noEdits and not slotsLeft
+
+# 'Add' a visitor
+addVisitor.on 'click', (e) ->
+  e.preventDefault()
+
+  summarise $('#visitor-0')
+  
+  edit $('.visitor').not('.added').first()
+  
+  highlightContinue false
+  toggleAdd()
+
+# 'Save' a visitor
+$('.js-save-visitor').click (e) ->
+  e.preventDefault()
+  
+  summarise $(this).closest('.visitor')
+  
+  toggleAdd()
+  highlightContinue true
+
+# Prevent form submit when entering additional visitors
+additionalVisitors.on 'keypress', 'input', (e) ->
+  if e.keyCode is 13
+    e.preventDefault()
+    $(e.target).closest('.visitor').find('.js-save-visitor').click()
+
+# Edit a visitor
+$('.js-edit-visitor').on 'click', (e) ->
+  e.preventDefault()
+  edit $(this).closest('.visitor')
+
+  toggleAdd()
+
+# 'Cancel' a visitor
+additionalVisitors.on 'click', '.js-delete-visitor', (e) ->
+  e.preventDefault()
+  
+  visitor = $(this).closest('.visitor')
+  
+  visitor.find('input').val ''
+  visitor.hide().removeClass 'added js-editing'
+  
+  toggleAdd()
+  highlightContinue true
