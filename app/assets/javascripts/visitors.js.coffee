@@ -12,6 +12,8 @@ summarise = (visitor) ->
   visitor.find('.summary .name').text name
   visitor.find('.summary .dob').text dob
 
+  visitor.find('.js-save-visitor').addClass('button-secondary').removeClass('button-primary').text('Save this visitor')
+
   visitor.addClass 'added'
 
 edit = (visitor) ->

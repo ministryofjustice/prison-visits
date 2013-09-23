@@ -46,8 +46,8 @@
 
         - if index > 0
           .quick-actions
-            = link_to 'Add this visitor', "#save", :class => 'button button-primary js-save-visitor'
-            = link_to 'Cancel', "#delete", :class => 'pull-right js-delete-visitor'
+            = link_to [(visitor.full_name.blank? ? 'Add' : 'Save'), ' this visitor'].join(''), "#save", :class => ['button',(visitor.full_name.blank? ? 'button-primary' : 'button-secondary'),'js-save-visitor'].join(' ')
+            = link_to 'Remove', "#delete", :class => 'pull-right js-delete-visitor'
 
         - if index == 0
           .well
