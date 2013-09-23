@@ -20,11 +20,15 @@
     %strong
       #{visit.prisoner.prison_name}
       %br
-      Old Elvet
-      %br
-      Durham
-      %br
-      DH1 3HU
+      - case visit.prisoner.prison_name
+        - when 'HMP Gartree'
+          = ['Gallow Field Rd', 'Market Harborough', 'Leicestershire', 'LE16 7RP'].join('<br>').html_safe
+        - when 'HMP Rochester'
+          = ['1 Fort Road', 'Rochester', 'Kent', 'ME1 3QS'].join('<br>').html_safe
+        - when 'HMP Cardiff'
+          = ['Knox Rd', 'Cardiff', 'South Glamorgan', 'CF24 0UG'].join('<br>').html_safe
+        - when 'HMP Durham'
+          = ['Old Elvet','Durham','DH1 3HU'].join('<br>').html_safe
 
   %p
     Tel:
