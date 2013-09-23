@@ -35,25 +35,26 @@
     %br
     %strong 0191 332 3400
 
-%p
-  A confirmation email will be sent to: 
-  %strong #{visit.visitors[0].email}
+.info
+  %p
+    A confirmation email will be sent to: 
+    %strong #{visit.visitors[0].email}
 
-%p When you visit please make sure you bring the following ID documents with you:
+  %p When you visit please make sure you bring the following ID documents with you:
 
-%p
-  %img(alt="Passport")
-  Passport of driving licence with you address on
+  %p.with-image
+    = image_tag 'passport_icon.png', :alt => 'Passport'
+    Passport of driving licence with you address on
 
-%p
-  %img(alt="Utility bills")
-  Two utility bills addressed to you
+  %p.with-image
+    = image_tag 'bills_icon.png', :alt => 'Utility bills'
+    Two utility bills addressed to you
 
-%p
-  %small If you do not bring these documents with you, you will not be able to visit the prison.
+  %p
+    %small If you do not bring these documents with you, you will not be able to visit the prison.
 
-%p
-  %small
-    If you have any questions before your visit please see the 
-    %a(href="#") HMP Durham website
-    or you can call the prison directly on: 0191 332 3400.
+  %p
+    %small
+      If you have any questions before your visit please see the 
+      %a(href="#") HMP Durham website
+      or you can call the prison directly on: 0191 332 3400.
