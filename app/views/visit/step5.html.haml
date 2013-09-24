@@ -33,11 +33,12 @@
 .well
   %h2 Visitor details
   - visit.visitors.each_with_index do |visitor, i|
-    %p
-      Visitor #{i+1}
-      %br
-      %strong= visitor.full_name
+    - if visitor.full_name.present?
+      %p
+        Visitor #{i+1}
+        %br
+        %strong= visitor.full_name
   = link_to 'View/edit details', step2_path
 
 %br
-%div= link_to 'Confirm and book', step6_path, :class => 'button button-primary'
+%div= link_to 'Send request', step6_path, :class => 'button button-primary'

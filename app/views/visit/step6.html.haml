@@ -20,36 +20,41 @@
     %strong
       #{visit.prisoner.prison_name}
       %br
-      Old Elvet
-      %br
-      Durham
-      %br
-      DH1 3HU
+      - case visit.prisoner.prison_name
+        - when 'HMP Gartree'
+          = ['Gallow Field Rd', 'Market Harborough', 'Leicestershire', 'LE16 7RP'].join('<br>').html_safe
+        - when 'HMP Rochester'
+          = ['1 Fort Road', 'Rochester', 'Kent', 'ME1 3QS'].join('<br>').html_safe
+        - when 'HMP Cardiff'
+          = ['Knox Rd', 'Cardiff', 'South Glamorgan', 'CF24 0UG'].join('<br>').html_safe
+        - when 'HMP Durham'
+          = ['Old Elvet','Durham','DH1 3HU'].join('<br>').html_safe
 
   %p
     Tel:
     %br
     %strong 0191 332 3400
 
-%p
-  A confirmation email will be sent to: 
-  %strong #{visit.visitors[0].email}
+.info
+  %p
+    A confirmation email will be sent to: 
+    %strong #{visit.visitors[0].email}
 
-%p When you visit please make sure you bring the following ID documents with you:
+  %p When you visit please make sure you bring the following ID documents with you:
 
-%p
-  %img(alt="Passport image")
-  Passport of driving licence with you address on
+  %p.with-image
+    = image_tag 'passport_icon.png', :alt => 'Passport'
+    Passport of driving licence with you address on
 
-%p
-  %img(alt="Utility bills image")
-  Two utility bills addressed to you
+  %p.with-image
+    = image_tag 'bills_icon.png', :alt => 'Utility bills'
+    Two utility bills addressed to you
 
-%p
-  %small If you do not bring these documents with you, you will not be able to visit the prison.
+  %p
+    %small If you do not bring these documents with you, you will not be able to visit the prison.
 
-%p
-  %small
-    If you have any questions before your visit please see the 
-    %a(href="#") HMP Durham website
-    or you can call the prison directly on: 0191 332 3400.
+  %p
+    %small
+      If you have any questions before your visit please see the 
+      %a(href="#") HMP Durham website
+      or you can call the prison directly on: 0191 332 3400.

@@ -10,6 +10,7 @@
 
 .month-selector
   position: relative
+  min-height: 3em
   padding: 10px 20px
   color: $white
   line-height: 1.875em
@@ -21,6 +22,20 @@
 
   li
     float: left
+
+    &.is-earlier
+      position: absolute
+      top: 1em
+      left: 1em
+    &.is-earlier:before
+      content: '< '
+
+    &.is-later
+      position: absolute
+      top: 1em
+      right: 1em
+    &.is-later:after
+      content: ' >'
 
   a
     color: $white

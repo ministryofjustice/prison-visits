@@ -12,6 +12,7 @@ SlotPicker = (el, options) ->
   @settings = $.extend {}, @defaults, options
   @cacheEls el
   @bindEvents()
+  @checkSlots window.slots
 
 SlotPicker:: =
   defaults:
@@ -42,6 +43,10 @@ SlotPicker:: =
       e.preventDefault()
       console.log $(this).data('slot-option')
       $( $(this).data('slot-option') ).click()
+
+  checkSlots: (slots) ->
+    for slot in slots
+      $("[value='#{slot.date}-#{slot.slot}']").click()
 
   _emptySlots: ->
     slots = @$selectedSlots
@@ -100,3 +105,17 @@ SlotPicker:: =
 moj.Modules.slotPicker = init: ->
   $('.js-slotpicker').each ->
     $(this).data 'moj.slotpicker', new SlotPicker($(this), $(this).data())
+
+
+$('.month-selector li a').click (e) ->
+  e.preventDefault()
+  
+  $('.month-selector li').removeClass 'is-active is-earlier is-later'
+  
+  $(this).closest('.month-selector li').addClass 'is-active'
+  
+  $('.month-selector li').each ->
+    if $(this).nextAll('li').filter('.is-active').length
+      $(this).addClass('is-earlier')
+    if $(this).prevAll('li').filter('.is-active').length
+      $(this).addClass('is-later')
