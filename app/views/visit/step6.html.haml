@@ -40,21 +40,13 @@
     A confirmation email will be sent to: 
     %strong #{visit.visitors[0].email}
 
-  %p When you visit please make sure you bring the following ID documents with you:
+  %p Please make sure you bring two forms of ID with you. One of them must have your address on. Acceptable forms of ID include:
 
-  %p.with-image
-    = image_tag 'passport_icon.png', :alt => 'Passport'
-    Passport of driving licence with you address on
+  %p Passport or driving licence (with your address on), utility bills addressed to you, council tax bills.
 
-  %p.with-image
-    = image_tag 'bills_icon.png', :alt => 'Utility bills'
-    Two utility bills addressed to you
+  %p You won’t be able to visit without these two forms of ID.
 
   %p
-    %small If you do not bring these documents with you, you will not be able to visit the prison.
-
-  %p
-    %small
-      If you have any questions before your visit please see the 
-      %a(href="#") HMP Durham website
-      or you can call the prison directly on: 0191 332 3400.
+    If you have any questions, visit the 
+    %a(href="#") #{visit.prisoner.prison_name} website
+    or call the prison on 010 2345 5678.

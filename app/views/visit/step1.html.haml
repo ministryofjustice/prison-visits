@@ -1,7 +1,7 @@
 - content_for :header do
   %h1 Who are you visiting?
 
-%p Use this service to book a visit to a prisoner. Get started by entering the details of the prisoner you wish to visit.
+%p Please make sure you've spoken to the prisoner you're visiting before you book a visit.
 
 = form_for visit.prisoner, url: update_step1_path, as: :prisoner, :html => { :class => 'form validation' } do |f|
 
