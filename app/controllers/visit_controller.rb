@@ -11,23 +11,16 @@ class VisitController < ApplicationController
   end
 
   def step2
-    @visitors = visit.visitors.empty? ? [Visitor.new, Visitor.new, Visitor.new, Visitor.new, Visitor.new, Visitor.new] : visit.visitors
+    @visitors = visit.visitors
   end
 
   def update_step2
-    visit.visitors = []
-    visit_params.each do |visitor|
-      visit.visitors << Visitor.new(visitor)
+    visit.visitors = visit_params.map do |visitor_hash|
+      Visitor.new(visitor_hash)
     end
-    # visitor_params.each do |visitor|
-    #   visit.visitors << Visitor.new(visitor)
-    # end
-    
-    # if (visit.visitor[0] = Visitor.new(visitor_params)).valid?
-    #   redirect_to params[:next] == 'add' ? step3_path : step4_path
-    # else
-    #   redirect_to step2_path
-    # end
+    visit.visitors.find do |v|
+      !v.valid?
+    end && (redirect_to step2_path) && return
 
     redirect_to params[:next] == 'add' ? step3_path : step4_path
   end
