@@ -18,9 +18,9 @@ class VisitController < ApplicationController
     visit.visitors = visit_params.map do |visitor_hash|
       Visitor.new(visitor_hash)
     end
-    visit.visitors.find do |v|
+    visit.visitors.select do |v|
       !v.valid?
-    end && (redirect_to step2_path) && return
+    end.first && (redirect_to step2_path) && return
 
     redirect_to params[:next] == 'add' ? step3_path : step4_path
   end
