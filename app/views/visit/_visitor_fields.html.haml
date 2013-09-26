@@ -1,11 +1,11 @@
 
-.visitor{ :id => "visitor-#{index}", :class => ('added' if index == 0 or visitor.full_name.present?) }
+.visitor{ :id => "visitor-#{index}", :class => [('added' if index == 0 or visitor.valid?), ('compact' if visitor.valid?)] }
   .summary
     %p Visitor #{index+1}
     %h4
-      %span.name
+      %span.name= visitor.full_name
       \ -
-      %span.dob
+      %span.dob= visitor.date_of_birth
     = link_to 'Edit details', "#visitor-#{index}", :class => 'js-edit-visitor'
 
   - if index > 0
@@ -28,7 +28,6 @@
 
   - if index > 0
     .quick-actions
-      = link_to [(visitor.full_name.blank? ? 'Add' : 'Save'), ' this visitor'].join(''), "#save", :class => ['button',(visitor.full_name.blank? ? 'button-primary' : 'button-secondary'),'js-save-visitor'].join(' ')
       = link_to 'Remove', "#delete", :class => 'pull-right js-delete-visitor'
 
   - if index == 0

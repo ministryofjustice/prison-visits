@@ -9,11 +9,11 @@
     %div
       Your form could not be submitted. Please fix the errors below.
 
-  - @visitors.each_with_index do |visitor, index|
+  - visit.visitors.each_with_index do |visitor, index|
     = f.fields_for visitor, index: '' do |visitor_form|
       = render 'visitor_fields', f: visitor_form, index: index, visitor: visitor
 
-  = link_to 'Add another visitor', '#', :class => 'button', :id => 'add-visitor'
+  = f.button 'Add another visitor',  :name => 'next', :value => 'add'
   %br
   %br
   = f.button :Continue, :name => 'next', :value => 'continue', :class => 'button button-primary', :id => 'continue'

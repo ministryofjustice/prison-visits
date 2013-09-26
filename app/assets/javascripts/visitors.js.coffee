@@ -28,11 +28,6 @@ toggleAdd = ->
   slotsLeft = visitors.filter('.added').length < 6
   noEdits = additionalVisitors.filter('.js-editing').length is 0
   addVisitor[if noEdits and slotsLeft then 'show' else 'hide']()
-  #if noEdits and slotsLeft
-  #  addVisitor.show().focus()
-  #else
-  #  addVisitor.hide()
-  #  $('#continue').focus() if noEdits and not slotsLeft
 
 # 'Add' a visitor
 addVisitor.on 'click', (e) ->
@@ -53,12 +48,6 @@ $('.js-save-visitor').click (e) ->
   
   toggleAdd()
   highlightContinue true
-
-# Prevent form submit when entering additional visitors
-additionalVisitors.on 'keypress', 'input', (e) ->
-  if e.keyCode is 13
-    e.preventDefault()
-    $(e.target).closest('.visitor').find('.js-save-visitor').click()
 
 # Edit a visitor
 $('.js-edit-visitor').on 'click', (e) ->

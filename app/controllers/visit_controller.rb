@@ -22,7 +22,12 @@ class VisitController < ApplicationController
       !v.valid?
     end.first && (redirect_to step2_path) && return
 
-    redirect_to params[:next] == 'add' ? step3_path : step4_path
+    if params[:next] == 'add'
+      visit.visitors << Visitor.new
+      redirect_to step2_path
+    else
+      redirect_to step4_path
+    end
   end
 
   def step3
