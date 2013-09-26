@@ -1,12 +1,52 @@
 
-.group{ :class => ('validation-error') }
-  = f.label :full_name do
-    Full name
-    -#%span.validation-message= f.object.errors[:full_name].first if f.object.errors.include?(:full_name)
-  = f.text_field :full_name
+.visitor{ :id => "visitor-#{index}", :class => ('added' if index == 0 or visitor.full_name.present?) }
+  .summary
+    %p Visitor #{index+1}
+    %h4
+      %span.name
+      \ -
+      %span.dob
+    = link_to 'Edit details', "#visitor-#{index}", :class => 'js-edit-visitor'
 
-.group{ :class => ('validation-error') }
-  = f.label :date_of_birth do
-    Date of birth
-    -#%span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
-  = f.date_field :date_of_birth
+  - if index > 0
+    %h3 Enter the additional visitor’s details below
+  
+  .group{ :class => ('validation-error' if f.object.errors.include?(:full_name)) }
+    = f.label :full_name do
+      Full name
+      %span.validation-message= f.object.errors[:full_name].first if f.object.errors.include?(:full_name)
+    = f.text_field :full_name
+
+  .group{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
+    = f.label :date_of_birth do
+      Date of birth
+      %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
+    = f.date_field :date_of_birth
+
+    %p
+      %small Children under 16 can only visit with an adult.
+
+  - if index > 0
+    .quick-actions
+      = link_to [(visitor.full_name.blank? ? 'Add' : 'Save'), ' this visitor'].join(''), "#save", :class => ['button',(visitor.full_name.blank? ? 'button-primary' : 'button-secondary'),'js-save-visitor'].join(' ')
+      = link_to 'Remove', "#delete", :class => 'pull-right js-delete-visitor'
+
+  - if index == 0
+    .well
+      %fieldset
+        %legend Contact details (optional)
+  
+        %p You can receive confirmation of your visit by email or test message. Enter your address or mobile phone number below.
+  
+        .group{ :class => ('validation-error' if f.object.errors.include?(:email)) }
+          = f.label :email do
+            Email address
+            %span.validation-message= f.object.errors[:email].first if f.object.errors.include?(:email)
+          = f.email_field :email
+  
+        .group
+          = f.label :phone, 'Contact phone number'
+          = f.telephone_field :phone
+  
+- if index == 0
+  = render 'additional_visitors'

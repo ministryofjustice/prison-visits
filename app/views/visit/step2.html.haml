@@ -9,70 +9,11 @@
     %div
       Your form could not be submitted. Please fix the errors below.
 
-  -# Manual method
-  -#- (0..5).each do |i|
-  -#  %input{ :name => "visit[visitor][][full_name]", :placeholder => 'Full name', :value => visit.visitors[i].full_name }
-
-  -# Array method
   - @visitors.each_with_index do |visitor, index|
     = f.fields_for visitor, index: '' do |visitor_form|
+      = render 'visitor_fields', f: visitor_form, index: index, visitor: visitor
 
-      .visitor{ :id => "visitor-#{index}", :class => [('hidden' if index > 0 and visitor.full_name.blank?), ('added' if index == 0 or visitor.full_name.present?)] }
-        .summary
-          %p Visitor #{index+1}
-          %h4
-            %span.name
-            \ -
-            %span.dob
-          = link_to 'Edit details', "#visitor-#{index}", :class => 'js-edit-visitor'
-
-        - if index > 0
-          %h3 Enter the additional visitor’s details below
-
-        .group{ :class => ('validation-error' if f.object.errors.include?(:full_name)) }
-          = visitor_form.label :full_name do
-            Full name
-            %span.validation-message= visitor_form.object.errors[:full_name].first if visitor_form.object.errors.include?(:full_name)
-          = visitor_form.text_field :full_name
-
-        .group{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
-          = visitor_form.label :date_of_birth do
-            Date of birth
-            %span.validation-message= visitor_form.object.errors[:date_of_birth].first if visitor_form.object.errors.include?(:date_of_birth)
-          = visitor_form.date_field :date_of_birth
-
-          %p
-            %small Children under 16 can only visit with an adult.
-
-        - if index > 0
-          .quick-actions
-            = link_to [(visitor.full_name.blank? ? 'Add' : 'Save'), ' this visitor'].join(''), "#save", :class => ['button',(visitor.full_name.blank? ? 'button-primary' : 'button-secondary'),'js-save-visitor'].join(' ')
-            = link_to 'Remove', "#delete", :class => 'pull-right js-delete-visitor'
-
-        - if index == 0
-          .well
-            %fieldset
-              %legend Contact details (optional)
-        
-              %p You can receive confirmation of your visit by email or test message. Enter your address or mobile phone number below.
-        
-              .group
-                = visitor_form.label :email, 'Email address'
-                = visitor_form.email_field :email
-        
-              .group
-                = visitor_form.label :phone, 'Contact phone number'
-                = visitor_form.telephone_field :phone
-        
-      - if index == 0
-        = render 'additional_visitors'
-  
   = link_to 'Add another visitor', '#', :class => 'button', :id => 'add-visitor'
   %br
-
-  -# Partial method
-  -#= f.fields_for :visitor, index: '' do |visitor_form|
-  -#  = render 'visitor_fields', f: visitor_form
-
   %br
   = f.button :Continue, :name => 'next', :value => 'continue', :class => 'button button-primary', :id => 'continue'

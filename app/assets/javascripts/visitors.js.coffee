@@ -17,7 +17,7 @@ summarise = (visitor) ->
   visitor.addClass 'added'
 
 edit = (visitor) ->
-  visitor.show().removeClass 'compact hidden'
+  visitor.show().removeClass 'compact'
   visitor.addClass 'js-editing'
   visitor.find('input').first().focus()
 
