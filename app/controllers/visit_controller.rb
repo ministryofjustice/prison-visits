@@ -54,6 +54,8 @@ class VisitController < ApplicationController
     redirect_to step6_path
   end
 
+  after_filter :reset_session, only: :step6
+
   def step6
   end
 
