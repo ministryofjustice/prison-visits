@@ -50,7 +50,8 @@ class VisitController < ApplicationController
   end
 
   def update_step5
-    redirect_to :step6_path
+    BookingRequest.request_email(visit).deliver
+    redirect_to step6_path
   end
 
   def step6

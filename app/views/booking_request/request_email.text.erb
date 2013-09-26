@@ -1,15 +1,15 @@
 Prisoner information
 ====================
 
-Name:   <%= visit.prisoner.full_name %>
-Number: <%= visit.prisoner.number %>
-Prison: <%= visit.prisoner.prison_name %>
-DOB:    <%= visit.prisoner.date_of_birth %>
+Name:   <%= @visit.prisoner.full_name %>
+Number: <%= @visit.prisoner.number %>
+Prison: <%= @visit.prisoner.prison_name %>
+DOB:    <%= @visit.prisoner.date_of_birth %>
 
 Visitor information
 ===================
 
-<% visit.visitors.each_with_index do |visitor, index| %>
+<% @visit.visitors.each_with_index do |visitor, index| %>
 Visitor <%= index + 1 %>
 ----------
 
@@ -26,6 +26,6 @@ Phone:  <%= visitor.phone %>
 Visiting slot information
 =========================
 
-<% visit.slots.each_with_index do |slot, index| %>
+<% @visit.slots.each_with_index do |slot, index| %>
 <%= index + 1%>. <%= slot.date %>, <%= slot.slot %>
 <% end %>
