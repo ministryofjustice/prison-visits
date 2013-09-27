@@ -66,7 +66,7 @@ class VisitController < ApplicationController
 private
 
   def visit_params
-    params.permit(:visit).permit(:visitor)
+    params.require(:visit).require(:visitor)
   end
 
   def prisoner_params
