@@ -1,5 +1,5 @@
 
-.visitor{ :id => "visitor-#{index}", :class => [('added' if index == 0 or visitor.valid?), ('compact' if visitor.valid?)] }
+.visitor{ :id => "visitor-#{index}", :class => ('compact' if f.object.errors.any?) }
   .summary
     %p Visitor #{index+1}
     %h4

@@ -14,8 +14,6 @@ summarise = (visitor) ->
 
   visitor.find('.js-save-visitor').addClass('button-secondary').removeClass('button-primary').text('Save this visitor')
 
-  visitor.addClass 'added'
-
 edit = (visitor) ->
   visitor.show().removeClass 'compact'
   visitor.addClass 'js-editing'
@@ -25,7 +23,7 @@ highlightContinue = (highlight) ->
   $('#continue')[if highlight then 'addClass' else 'removeClass'] 'button-primary'
 
 toggleAdd = ->
-  slotsLeft = visitors.filter('.added').length < 6
+  slotsLeft = visitors.length < 6
   noEdits = additionalVisitors.filter('.js-editing').length is 0
   addVisitor[if noEdits and slotsLeft then 'show' else 'hide']()
 
@@ -35,7 +33,7 @@ addVisitor.on 'click', (e) ->
 
   summarise $('#visitor-0')
   
-  edit $('.visitor').not('.added').first()
+  edit $('.visitor').first()
   
   highlightContinue false
   toggleAdd()
@@ -63,7 +61,7 @@ additionalVisitors.on 'click', '.js-delete-visitor', (e) ->
   visitor = $(this).closest('.visitor')
   
   visitor.find('input').val ''
-  visitor.hide().removeClass 'added js-editing'
+  visitor.hide().removeClass 'js-editing'
   
   toggleAdd()
   highlightContinue true
