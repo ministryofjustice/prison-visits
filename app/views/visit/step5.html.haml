@@ -25,9 +25,11 @@
       - if slot.date.present?
         %li
           - slot_date = Date.parse(slot.date)
-          %strong
-            = slot_date.strftime("%A #{slot_date.day.ordinalize} %B")
-          \ - #{slot.slot}
+          - slot_start = Time.strptime(slot.times.split('-')[0], '%H%M')
+          - slot_end = Time.strptime(slot.times.split('-')[1], '%H%M')
+          %strong= slot_date.strftime("%A #{slot_date.day.ordinalize} %B")
+          = slot_start.strftime(" - %l:%M%p to ").downcase
+          = slot_end.strftime("%l:%M%p").downcase
   = link_to 'Edit these visit times', step4_path
 
 .well

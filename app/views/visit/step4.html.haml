@@ -62,17 +62,17 @@
                   %h4 First session
                   %label.slot
                     9:30am to 11:30am
-                    %input.js-slotpicker-option{ :value => "#{date.strftime('%Y-%m-%d')}-1" }(type="checkbox" name="slot")
+                    %input.js-slotpicker-option{ :value => "#{date.strftime('%Y-%m-%d-0930-1130')}" }(type="checkbox" name="slot")
                   %h4 Second session
                   %label.slot
                     1:45pm to 3:45pm
-                    %input.js-slotpicker-option{ :value => "#{date.strftime('%Y-%m-%d')}-2" }(type="checkbox" name="slot")
+                    %input.js-slotpicker-option{ :value => "#{date.strftime('%Y-%m-%d-1345-1545')}" }(type="checkbox" name="slot")
                   %h4 Third session
                   %label.slot
                     5:15pm to 7:15pm
-                    %input.js-slotpicker-option{ :value => "#{date.strftime('%Y-%m-%d')}-3" }(type="checkbox" name="slot")
+                    %input.js-slotpicker-option{ :value => "#{date.strftime('%Y-%m-%d-1715-1915')}" }(type="checkbox" name="slot")
 
-    .hidden.slotpicker-chosen
+    .hidden.js-slotpicker-chosen
       - @slots.each_with_index do |slot, index|
         = f.fields_for :slots, slot do |builder|
 
@@ -84,8 +84,8 @@
               = date_field_tag "visit[slots][][date]", slot.date
 
             .group
-              = label_tag "visit[slots][][slot]", 'Slot'
-              = text_field_tag "visit[slots][][slot]", slot.slot
+              = label_tag "visit[slots][][time]", 'Time range'
+              = text_field_tag "visit[slots][][times]", slot.times
 
   .actions
     = f.button :Continue, :name => 'next', :value => 'continue', :class => 'button button-primary'

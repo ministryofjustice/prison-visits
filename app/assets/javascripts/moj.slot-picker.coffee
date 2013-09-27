@@ -21,8 +21,7 @@ SlotPicker:: =
 
   cacheEls: ->
     @$wrapper = $ '#wrapper'
-    @$slots = $ '.js-slotpicker-slot [type=text]'
-    @$dates = $ '.js-slotpicker-slot [type=date]'
+    @$slotInputs = $ '.js-slotpicker-chosen fieldset'
     @$slotOptions = $ '.js-slotpicker-option'
     @$slotDays = $ '.js-slotpicker-day'
     @$selectedSlots = $ '.selected-slots li'
@@ -33,7 +32,7 @@ SlotPicker:: =
     _this = this
     
     @$slotOptions.on 'click', (e) ->
-      _this._emptySlots()
+      _this._emptyUiSlots()
       _this._emptySlotInputs()
       _this._unHighlightDays()
       _this._processSlots()
@@ -41,23 +40,22 @@ SlotPicker:: =
 
     @$wrapper.on 'click', @removeSlots, (e) ->
       e.preventDefault()
-      console.log $(this).data('slot-option')
       $( $(this).data('slot-option') ).click()
 
   checkSlots: (slots) ->
     for slot in slots
-      $("[value='#{slot.date}-#{slot.slot}']").click()
+      $("[value='#{slot.date}-#{slot.times}']").click()
 
-  _emptySlots: ->
+  _emptyUiSlots: ->
     slots = @$selectedSlots
     slots.removeClass 'is-active'
     slots.find('a').removeData()
     slots.find('.date, .time').text ''
 
   _emptySlotInputs: ->
-    @$slots.val ''
+    @$slotInputs.find('input').val ''
 
-  _populateSelectedSlots: (index, checkbox) ->
+  _populateUiSlots: (index, checkbox) ->
     id = checkbox.closest('.js-slotpicker-options').attr 'id'
     day = $("[href=##{id}]").text()
     time = checkbox.closest('label').text()
@@ -71,8 +69,8 @@ SlotPicker:: =
 
   _populateSlotInputs: (index, chosen) ->
     slot = @_splitDateAndSlot chosen
-    @$dates.eq(index).val slot[0]
-    @$slots.eq(index).val slot[1]
+    @$slotInputs.eq(index).find('[name$="date]"]').val slot[0]
+    @$slotInputs.eq(index).find('[name$="times]"]').val slot[1]
 
   _processSlots: ->
     _this = this
@@ -80,7 +78,7 @@ SlotPicker:: =
     @$slotOptions.filter(':checked').each (i) ->
       _this._highlightDay $(this).closest '.js-slotpicker-options'
       _this._populateSlotInputs i, $(this).val()
-      _this._populateSelectedSlots i, $(this)
+      _this._populateUiSlots i, $(this)
 
   _unHighlightDays: ->
     @$slotDays.removeClass @settings.selections
@@ -97,8 +95,8 @@ SlotPicker:: =
 
   _splitDateAndSlot: (str) ->
     bits = str.split '-'
-    slot = bits.pop()
-    [bits.join('-'),slot]
+    time = bits.splice(-2).join '-'
+    [bits.join('-'),time]
 
 
 # Add module to MOJ namespace
