@@ -15,18 +15,17 @@ class VisitController < ApplicationController
   end
 
   def update_step2
-    visit.visitors = visit_params.map do |visitor_hash|
-      Visitor.new(visitor_hash)
-    end
-    visit.visitors.select do |v|
-      !v.valid?
-    end.first && (redirect_to step2_path) && return
-
     if params[:next] == 'add'
       visit.visitors << Visitor.new
       redirect_to step2_path
     else
-      redirect_to step4_path
+      visit.visitors = visit_params.map do |visitor_hash|
+        Visitor.new(visitor_hash)
+      end
+      go_back = visit.visitors.select do |v|
+        !v.valid?
+      end.any?
+      redirect_to go_back ? step2_path : step4_path
     end
   end
 
@@ -67,7 +66,7 @@ class VisitController < ApplicationController
 private
 
   def visit_params
-    params.require(:visit).require(:visitor)# [:full_name, :date_of_birth, :email, :phone])
+    params.permit(:visit).permit(:visitor)
   end
 
   def prisoner_params
