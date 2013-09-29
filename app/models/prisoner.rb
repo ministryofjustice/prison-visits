@@ -2,10 +2,10 @@ class Prisoner
   include ActiveModel::Model
 
   PRISONS = [
-    'HMP Gartree',
-    'HMP Rochester',
-    'HMP Cardiff',
-    'HMP Durham'
+    'Gartree',
+    'Rochester',
+    'Cardiff',
+    'Durham'
   ]
 
   attr_accessor :full_name
