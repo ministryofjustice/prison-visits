@@ -1,5 +1,5 @@
 
-.visitor{ :id => "visitor-#{index}", :class => ('compact' if f.object.full_name.present?) }
+.visitor{ :id => "visitor-#{index}", :class => ('compact' if f.object.full_name.present? && f.object.date_of_birth.present?) }
   .summary
     %p Visitor #{index+1}
     %h4
@@ -28,7 +28,7 @@
 
   - if index > 0
     .quick-actions
-      = link_to 'Remove', "#delete", :class => 'pull-right js-delete-visitor'
+      = f.button 'Remove', :class => 'pull-right', :name => 'next', :value => "remove-#{index}"
 
   - if index == 0
     .well

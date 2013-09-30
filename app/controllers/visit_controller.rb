@@ -15,6 +15,13 @@ class VisitController < ApplicationController
   end
 
   def update_step2
+    if m = params[:next].match(/remove-(\d)/)
+      index = m[1].to_i
+      visit.visitors.delete_at(index)
+      redirect_to step2_path
+      return
+    end
+
     visit.visitors = visit_params.map do |visitor_hash|
       Visitor.new(visitor_hash)
     end
