@@ -1,5 +1,5 @@
 
-.visitor{ :id => "visitor-#{index}", :class => ('compact' unless f.object.errors.any?) }
+.visitor{ :id => "visitor-#{index}", :class => ('compact' if f.object.full_name.present?) }
   .summary
     %p Visitor #{index+1}
     %h4

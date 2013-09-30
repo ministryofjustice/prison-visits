@@ -15,16 +15,17 @@ class VisitController < ApplicationController
   end
 
   def update_step2
+    visit.visitors = visit_params.map do |visitor_hash|
+      Visitor.new(visitor_hash)
+    end
+    go_back = visit.visitors.select do |v|
+      !v.valid?
+    end.any?
+
     if params[:next] == 'add'
       visit.visitors << Visitor.new
       redirect_to step2_path
     else
-      visit.visitors = visit_params.map do |visitor_hash|
-        Visitor.new(visitor_hash)
-      end
-      go_back = visit.visitors.select do |v|
-        !v.valid?
-      end.any?
       redirect_to go_back ? step2_path : step4_path
     end
   end
