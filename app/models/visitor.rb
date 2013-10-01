@@ -15,4 +15,10 @@ class Visitor
   validates_length_of :email, minimum: 5, allow_blank: true
   validates_length_of :phone, minimum: 10, allow_blank: true
   validates_inclusion_of :date_of_birth, in: ->(_) { Date.new(1850, 1, 1)..Date.today }
+
+  def compactable?
+    self.valid?.tap do
+      self.errors.clear
+    end
+  end
 end
