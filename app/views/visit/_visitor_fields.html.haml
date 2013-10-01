@@ -28,7 +28,7 @@
 
   - if index > 0
     .quick-actions
-      = f.button 'Remove', :class => 'pull-right', :name => 'next', :value => "remove-#{index}"
+      = link_to 'Remove', '#', :class => 'pull-right js-delete-visitor'
 
   - if index == 0
     .well

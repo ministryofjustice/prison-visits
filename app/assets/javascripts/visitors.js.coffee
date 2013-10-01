@@ -58,10 +58,7 @@ $('.js-edit-visitor').on 'click', (e) ->
 additionalVisitors.on 'click', '.js-delete-visitor', (e) ->
   e.preventDefault()
   
-  visitor = $(this).closest('.visitor')
-  
-  visitor.find('input').val ''
-  visitor.hide().removeClass 'js-editing'
+  $(this).closest('.visitor').remove()
   
   toggleAdd()
   highlightContinue true
