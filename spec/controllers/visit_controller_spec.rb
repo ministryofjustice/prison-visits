@@ -109,4 +109,56 @@ describe VisitController do
       end
     end
   end
+
+  describe "step 4 - select a timeslot" do
+    before :each do
+      get :step1
+    end
+
+    context "correct slot information" do
+      let(:slots_hash) do
+        {
+          visit: {
+            slots: [
+                    {
+                      date: '2013-01-01',
+                      times: '13:45 - 20:00'
+                    }
+                   ]
+          }
+        }
+      end
+
+      it "permits us to select a time slot" do
+        post :update_step4, slots_hash
+        response.should redirect_to(step5_path)
+      end
+    end
+
+    context "no slots" do
+      let(:slots_hash) do
+        {
+          visit: { slots: [{}] }
+        }
+      end
+
+      it "prompts us to retry" do
+        post :update_step4, slots_hash
+        response.should redirect_to(step4_path)
+      end
+    end
+
+    context "too many slots" do
+      let(:slots_hash) do
+        {
+          visit: { slots: [{ date: '2013-01-01', times: '12:00 - 13:00' }] * 4 }
+        }
+      end
+
+      it "prompts us to retry" do
+        post :update_step4, slots_hash
+        response.should redirect_to(step4_path)
+      end
+    end
+  end
 end

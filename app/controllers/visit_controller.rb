@@ -51,11 +51,17 @@ class VisitController < ApplicationController
   end
 
   def update_step4
-    visit.slots = []
-    slot_params.each do |p|
-      visit.slots << Slot.new(p)
+    visit.slots = slot_params.map do |p|
+      Slot.new(p)
     end
-    redirect_to step5_path
+    go_back = visit.slots.select do |slot|
+      !slot.valid?
+    end.any? || visit.slots.size > 3 
+    if go_back
+      redirect_to step4_path
+    else
+      redirect_to step5_path
+    end
   end
 
   def step5

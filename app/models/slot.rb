@@ -38,4 +38,7 @@ class Slot
 
   attr_accessor :date
   attr_accessor :times
+
+  validates_presence_of :date
+  validates_presence_of :times
 end
