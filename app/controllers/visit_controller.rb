@@ -2,7 +2,10 @@ class VisitController < ApplicationController
   before_filter :check_if_session_exists, except: [:step1]
 
   def check_if_session_exists
-    session.present? || redirect_to(step1_path)
+    unless session.present?
+      redirect_to(step1_path)
+      return
+    end
   end
 
   def step1
@@ -72,9 +75,9 @@ class VisitController < ApplicationController
     redirect_to step6_path
   end
 
-  after_filter :reset_session, only: :step6
-
   def step6
+    render
+    reset_session
   end
 
 private
