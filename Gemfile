@@ -12,3 +12,4 @@ gem 'byebug', group: [:development, :test]
 gem 'govuk_frontend_toolkit'
 gem 'moj_frontend_toolkit_gem', git: 'https://github.com/ministryofjustice/moj_frontend_toolkit_gem.git', tag: 'v0.0.39'
 gem 'coffee-rails'
+gem 'rspec-rails'
