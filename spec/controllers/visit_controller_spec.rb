@@ -55,4 +55,58 @@ describe VisitController do
       end
     end
   end
+
+  describe "step 2" do
+    context "given valid visitor information" do
+      let(:visitor_hash) do
+        {
+          visit: {
+            visitor: [
+              full_name: 'Sue Demin',
+              date_of_birth: '1988-03-14',
+              email: 'sue.denim@gmail.com',
+              phone: '07783 123 456'
+            ]
+          },
+          next: ''
+        }
+      end
+
+      before :each do
+        get :step1
+      end
+
+      it "updates visitor information" do
+        expect {
+          post :update_step2, visitor_hash
+        }.to change { session[:visit].visitors[0].full_name }
+      end
+    end
+
+    context "given invalid visitor information" do
+      let(:visitor_hash) do
+        {
+          visit: {
+            visitor: [
+              full_name: '',
+              date_of_birth: '1988-03-14',
+              email: 'sue.denim@gmail.com',
+              phone: '07783 123 456'
+            ]
+          },
+          next: ''
+        }
+      end
+
+      before :each do
+        get :step1
+      end
+
+      it "rejects visitor information" do
+        post :update_step2, visitor_hash
+        response.should redirect_to(step2_path)
+        session[:visit].visitors[0].should_not be_valid
+      end
+    end
+  end
 end
