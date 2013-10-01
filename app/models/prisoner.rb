@@ -16,6 +16,7 @@ class Prisoner
   def date_of_birth=(dob_string)
     @date_of_birth = Date.parse(dob_string)
   rescue
+    @date_of_birth = nil
     errors.add(:date_of_birth, 'invalid date')
   end
 
