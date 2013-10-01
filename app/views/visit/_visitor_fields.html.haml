@@ -1,5 +1,5 @@
 
-.visitor.cf{ :id => "visitor-#{index}", :class => ('compact' if f.object.full_name.present? && f.object.date_of_birth.present?) }
+.visitor.cf{ :id => "visitor-#{index}", :class => ('compact' if f.object.compactable?) }
   .summary
     %p Visitor #{index+1}
     %h4

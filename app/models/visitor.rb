@@ -5,7 +5,6 @@ class Visitor
   attr_accessor :email
   attr_accessor :phone
   attr_accessor :index
-
   attr_reader :date_of_birth
   def date_of_birth=(dob_string)
     @date_of_birth = Date.parse(dob_string)
@@ -22,6 +21,14 @@ class Visitor
       errors.add(:email, 'Must be given') unless email.present? && email.size > 5
     else
       errors.add(:email, 'Must not be given') if email.present?
+    end
+  end
+
+  def compactable?
+    if index == 0
+      full_name.present? && date_of_birth.present? && email.present?
+    else
+      full_name.present? && date_of_birth.present?
     end
   end
 end
