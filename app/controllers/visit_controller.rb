@@ -46,15 +46,6 @@ class VisitController < ApplicationController
     end
   end
 
-  def step3
-    @index = visit.visitors.size
-  end
-
-  def update_step3
-    visit.visitors[params[:index].to_i] = Visitor.new(visitor_params[0])
-    redirect_to params[:next] == 'add' ? step3_path : step4_path
-  end
-
   def step4
     @slots = visit.slots.empty? ? [Slot.new, Slot.new, Slot.new] : visit.slots
   end
