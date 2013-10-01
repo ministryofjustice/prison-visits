@@ -31,8 +31,8 @@ class VisitController < ApplicationController
       return
     end
 
-    visit.visitors = visit_params.map do |visitor_hash|
-      Visitor.new(visitor_hash)
+    visit.visitors = visit_params.each_with_index.map do |visitor_hash, i|
+      Visitor.new(visitor_hash.merge(index: i))
     end
     go_back = visit.visitors.select do |v|
       !v.valid?
