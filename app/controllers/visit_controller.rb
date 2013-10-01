@@ -1,4 +1,10 @@
 class VisitController < ApplicationController
+  before_filter :check_if_session_exists, except: [:step1]
+
+  def check_if_session_exists
+    session.present? || redirect_to(step1_path)
+  end
+
   def step1
   end
 
