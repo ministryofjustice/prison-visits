@@ -5,7 +5,8 @@
     %h4
       %span.name #{visitor.first_name} #{visitor.last_name}
       \ -
-      %span.dob= visitor.date_of_birth
+      %span.dob
+        = visitor.date_of_birth.strftime("%e %B %Y") if visitor.date_of_birth.present?
     = link_to 'Edit details', "#visitor-#{index}", :class => 'js-edit-visitor'
 
   - if index > 0

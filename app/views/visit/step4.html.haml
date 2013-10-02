@@ -38,7 +38,7 @@
     %h2
       %small.todays-date
         Today:
-        %strong #{Date.today.day.ordinalize} #{Date.today.strftime('%b %Y')}
+        %strong #{Date.today.strftime('%e %b %Y')}
       #{visit.prisoner.prison_name} visitors centre
 
     .month-selector
@@ -53,7 +53,7 @@
             %h3 First, select a date below
             %ul.js-tabs-nav
               - range_by_month[month].each do |date|
-                %li= link_to date.strftime("%A #{date.day.ordinalize} <span>%B</span>").html_safe, date.strftime('#date-%Y-%m-%d'), :class => ['js-slotpicker-day', ('unavailable' unless visiting_slots.keys.include?(date.strftime('%a').downcase.to_sym))]
+                %li= link_to date.strftime("%A %e <span>%B</span>").html_safe, date.strftime('#date-%Y-%m-%d'), :class => ['js-slotpicker-day', ('unavailable' unless visiting_slots.keys.include?(date.strftime('%a').downcase.to_sym))]
 
           .slots
             %h3 Then select a time slot

@@ -5,18 +5,17 @@ First name: <%= @visit.prisoner.first_name %>
 Last name: <%= @visit.prisoner.last_name %>
 Number: <%= @visit.prisoner.number %>
 Prison: <%= @visit.prisoner.prison_name %>
-DOB: <%= @visit.prisoner.date_of_birth %>
+DOB: <%= @visit.prisoner.date_of_birth.strftime("%e %B %Y") %>
 
 Visitor information
 ===================
-
 <% @visit.visitors.each_with_index do |visitor, index| %>
-Visitor <%= index + 1 %>
-----------
 
+Visitor <%= index + 1 %>
+---------
 First name: <%= visitor.first_name %>
 Last name: <%= visitor.last_name %>
-DOB: <%= visitor.date_of_birth %>
+DOB: <%= visitor.date_of_birth.strftime("%e %B %Y") %>
 <% if visitor.email %>
 Email: <%= visitor.email %>
 <% end %>
@@ -29,5 +28,5 @@ Visiting slot information
 =========================
 
 <% @visit.slots.each_with_index do |slot, index| %>
-<%= index + 1%>. <%= slot.date %>, <%= slot.times %>
+<%= index + 1%>. <%= Date.parse(slot.date).strftime("%A %e %B") %>, <%= [Time.strptime(slot.date.split('-')[0], '%H%M').strftime("%l:%M%P"), Time.strptime(slot.date.split('-')[0], '%H%M').strftime("%l:%M%P")].join(' to ') %>
 <% end %>
