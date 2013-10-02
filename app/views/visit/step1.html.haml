@@ -9,11 +9,17 @@
     #error-summary.validation-summary.group(role="alert" tabindex="-1" aria-labelledby="error-heading")
       %h2#error-heading Your form could not be submitted. Please fix the errors below.
 
-  .group{ :class => ('validation-error' if f.object.errors.include?(:full_name)) }
-    = f.label :full_name do
-      Full name of prisoner
-      %span.validation-message= f.object.errors[:full_name].first if f.object.errors.include?(:full_name)
-    = f.text_field :full_name
+  .group{ :class => ('validation-error' if f.object.errors.include?(:first_name)) }
+    = f.label :first_name do
+      First name of prisoner
+      %span.validation-message= f.object.errors[:first_name].first if f.object.errors.include?(:first_name)
+    = f.text_field :first_name
+
+  .group{ :class => ('validation-error' if f.object.errors.include?(:last_name)) }
+    = f.label :last_name do
+      Last name of prisoner
+      %span.validation-message= f.object.errors[:last_name].first if f.object.errors.include?(:last_name)
+    = f.text_field :last_name
 
   .group{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
     = f.label :date_of_birth do

@@ -15,7 +15,8 @@ describe VisitController do
       let(:prisoner_hash) do
         {
           prisoner: {
-            full_name: 'Jimmy Fingers',
+            first_name: 'Jimmy',
+            last_name: 'Fingers',
             date_of_birth: '1986-04-20',
             number: '31337',
             prison_name: 'Gartree'
@@ -37,7 +38,8 @@ describe VisitController do
       let(:prisoner_hash) do
         {
           prisoner: {
-            full_name: '',
+            first_name: '',
+            last_name: '',
             date_of_birth: '1986-04-20',
             number: '31337',
             prison_name: 'Gartree'
@@ -62,7 +64,8 @@ describe VisitController do
         {
           visit: {
             visitor: [
-              full_name: 'Sue Demin',
+              first_name: 'Sue',
+              last_name: 'Demin',
               date_of_birth: '1988-03-14',
               email: 'sue.denim@gmail.com',
               phone: '07783 123 456'
@@ -79,7 +82,7 @@ describe VisitController do
       it "updates visitor information" do
         expect {
           post :update_step2, visitor_hash
-        }.to change { session[:visit].visitors[0].full_name }
+        }.to change { session[:visit].visitors[0].first_name }
       end
     end
 
@@ -88,7 +91,8 @@ describe VisitController do
         {
           visit: {
             visitor: [
-              full_name: '',
+              first_name: '',
+              last_name: '',
               date_of_birth: '1988-03-14',
               email: 'sue.denim@gmail.com',
               phone: '07783 123 456'

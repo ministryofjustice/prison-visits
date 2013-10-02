@@ -6,7 +6,7 @@ summarise = (visitor) ->
   visitor.addClass 'compact'
   visitor.removeClass 'js-editing'
   
-  name = visitor.find('[name$="[full_name]"]').val()
+  name = visitor.find('[name$="[first_name]"]').val() + ' ' + visitor.find('[name$="[last_name]"]').val()
   dob = visitor.find('[name$="[date_of_birth]"]').val()
 
   visitor.find('.summary .name').text name

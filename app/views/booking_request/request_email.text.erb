@@ -1,10 +1,11 @@
 Prisoner information
 ====================
 
-Name:   <%= @visit.prisoner.full_name %>
+First name: <%= @visit.prisoner.first_name %>
+Last name: <%= @visit.prisoner.last_name %>
 Number: <%= @visit.prisoner.number %>
 Prison: <%= @visit.prisoner.prison_name %>
-DOB:    <%= @visit.prisoner.date_of_birth %>
+DOB: <%= @visit.prisoner.date_of_birth %>
 
 Visitor information
 ===================
@@ -13,13 +14,14 @@ Visitor information
 Visitor <%= index + 1 %>
 ----------
 
-Name:   <%= visitor.full_name %>
-DOB:    <%= visitor.date_of_birth %>
+First name: <%= visitor.first_name %>
+Last name: <%= visitor.last_name %>
+DOB: <%= visitor.date_of_birth %>
 <% if visitor.email %>
-Email:  <%= visitor.email %>
+Email: <%= visitor.email %>
 <% end %>
 <% if visitor.phone %>
-Phone:  <%= visitor.phone %>
+Phone: <%= visitor.phone %>
 <% end %>
 <% end %>
 

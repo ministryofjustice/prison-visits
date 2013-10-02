@@ -5,7 +5,7 @@
   %h2 You are visiting
   %p
     %big
-      %strong #{visit.prisoner.full_name}
+      %strong #{visit.prisoner.first_name} #{visit.prisoner.last_name}
   %p
     Date of birth:
     %strong= visit.prisoner.date_of_birth.strftime("%e %B %Y")
@@ -35,11 +35,11 @@
 .well
   %h2 Visitor details
   - visit.visitors.each_with_index do |visitor, i|
-    - if visitor.full_name.present?
+    - if visitor.first_name.present? || visitor.last_name.present?
       %p
         Visitor #{i+1}
         %br
-        %strong= visitor.full_name
+        %strong #{visitor.first_name} #{visitor.last_name}
   = link_to 'View/edit details', step2_path
 
 %br

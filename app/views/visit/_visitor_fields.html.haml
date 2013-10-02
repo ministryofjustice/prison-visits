@@ -3,7 +3,7 @@
   .summary
     %p Visitor #{index+1}
     %h4
-      %span.name= visitor.full_name
+      %span.name #{visitor.first_name} #{visitor.last_name}
       \ -
       %span.dob= visitor.date_of_birth
     = link_to 'Edit details', "#visitor-#{index}", :class => 'js-edit-visitor'
@@ -11,11 +11,17 @@
   - if index > 0
     %h3 Enter the additional visitor’s details below
   
-  .group{ :class => ('validation-error' if f.object.errors.include?(:full_name)) }
-    = f.label :full_name do
-      Full name
-      %span.validation-message= f.object.errors[:full_name].first if f.object.errors.include?(:full_name)
-    = f.text_field :full_name
+  .group{ :class => ('validation-error' if f.object.errors.include?(:first_name)) }
+    = f.label :first_name do
+      First name
+      %span.validation-message= f.object.errors[:first_name].first if f.object.errors.include?(:first_name)
+    = f.text_field :first_name
+
+  .group{ :class => ('validation-error' if f.object.errors.include?(:last_name)) }
+    = f.label :last_name do
+      Last name
+      %span.validation-message= f.object.errors[:last_name].first if f.object.errors.include?(:last_name)
+    = f.text_field :last_name
 
   .group{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
     = f.label :date_of_birth do
