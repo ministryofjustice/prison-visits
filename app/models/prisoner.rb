@@ -6,7 +6,7 @@ class Prisoner
     'Rochester',
     'Cardiff',
     'Durham'
-  ]
+  ].sort
 
   attr_accessor :first_name
   attr_accessor :last_name
