@@ -23,7 +23,7 @@
 
   .group{ :class => ('validation-error' if f.object.errors.include?(:number)) }
     = f.label :number do
-      Prisoner number (leave blank if on remand)
+      Prisoner number
       %span.validation-message= f.object.errors[:number].first if f.object.errors.include?(:number)
     = f.text_field :number
 

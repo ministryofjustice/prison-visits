@@ -9,7 +9,7 @@ describe Prisoner do
     prisoner.should be_valid
   end
 
-  [:full_name, :date_of_birth, :prison_name].each do |field| 
+  [:full_name, :date_of_birth, :prison_name, :number].each do |field| 
     it "must fail if #{field} is not valid" do
       prisoner.send("#{field}=", '')
       prisoner.should_not be_valid

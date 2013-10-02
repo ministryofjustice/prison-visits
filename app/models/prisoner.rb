@@ -22,6 +22,6 @@ class Prisoner
 
   validates_presence_of :full_name
   validates_inclusion_of :date_of_birth, in: ->(_) { Date.new(1850, 1, 1)..Date.today }
-  # validates_format_of :number, with: /\d+/
+  validates_format_of :number, with: /\w+/
   validates_inclusion_of :prison_name, in: PRISONS
 end
