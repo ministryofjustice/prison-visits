@@ -9,7 +9,7 @@
         = visitor.date_of_birth.strftime("%e %B %Y") if visitor.date_of_birth.present?
     = link_to 'Edit details', "#visitor-#{index}", :class => 'js-edit-visitor'
 
-  - if index > 0
+  - if index.zero?
     %h3 Enter the additional visitor’s details below
   
   .group{ :class => ('validation-error' if f.object.errors.include?(:first_name)) }
@@ -33,26 +33,22 @@
     %p
       %small Children under 16 can only visit with an adult.
 
-  - if index > 0
+  - unless index.zero?
     .quick-actions
       = link_to 'Remove', '#', :class => 'pull-right js-delete-visitor'
 
-  - if index == 0
-    .well
-      %fieldset
-        %legend Contact details (optional)
+  - if index.zero?
   
-        %p You can receive confirmation of your visit by email or test message. Enter your address or mobile phone number below.
+    .group{ :class => ('validation-error' if f.object.errors.include?(:email)) }
+      = f.label :email do
+        Email address
+        %span.validation-message= f.object.errors[:email].first if f.object.errors.include?(:email)
+      = f.email_field :email
+      %p
+        %small You will receive confirmation of your visit by email.
+
+    .group
+      = f.label :phone, 'Contact phone number (optional)'
+      = f.telephone_field :phone
   
-        .group{ :class => ('validation-error' if f.object.errors.include?(:email)) }
-          = f.label :email do
-            Email address
-            %span.validation-message= f.object.errors[:email].first if f.object.errors.include?(:email)
-          = f.email_field :email
-  
-        .group
-          = f.label :phone, 'Contact phone number'
-          = f.telephone_field :phone
-  
-- if index == 0
-  = render 'additional_visitors'
+= render 'additional_visitors' if index.zero?
