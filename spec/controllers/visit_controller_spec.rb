@@ -112,6 +112,33 @@ describe VisitController do
         session[:visit].visitors[0].should_not be_valid
       end
     end
+
+    context "given too many visitors" do
+      let(:visitor_hash) do
+        {
+          visit: {
+            visitor: [
+              first_name: 'Sue',
+              last_name: 'Demin',
+              date_of_birth: '1988-03-14',
+              email: 'sue.denim@gmail.com',
+              phone: '07783 123 456'
+            ] * 7
+          },
+          next: ''
+        }
+      end
+
+      before :each do
+        get :step1
+      end
+
+      it "rejects the submission if there are too many visitors" do
+        post :update_step2, visitor_hash
+        response.should redirect_to(step2_path)
+        session[:visit].should_not be_valid
+      end
+    end
   end
 
   describe "step 4 - select a timeslot" do

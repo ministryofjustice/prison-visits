@@ -9,6 +9,10 @@
     %div
       Your form could not be submitted. Please fix the errors below.
 
+    - if f.object.errors[:visitors]
+      %div
+        You can book a visit with at least one and at most six visitors.
+
   - visit.visitors.each_with_index do |visitor, index|
     = f.fields_for visitor, index: '' do |visitor_form|
       = render 'visitor_fields', f: visitor_form, index: index, visitor: visitor
