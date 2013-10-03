@@ -9,7 +9,7 @@
         = visitor.date_of_birth.strftime("%e %B %Y") if visitor.date_of_birth.present?
     = link_to 'Edit details', "#visitor-#{index}", :class => 'js-edit-visitor'
 
-  - if index.zero?
+  - unless index.zero?
     %h3 Enter the additional visitor’s details below
   
   .group{ :class => ('validation-error' if f.object.errors.include?(:first_name)) }
