@@ -1,7 +1,7 @@
 class Visit
   include ActiveModel::Model
 
-  MAX_VISITORS = 3
+  MAX_VISITORS = 6
 
   attr_accessor :prisoner
   attr_accessor :visitors
