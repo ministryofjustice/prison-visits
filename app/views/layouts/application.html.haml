@@ -15,6 +15,8 @@
           %header
             = yield :header
         %section.inner.cf
+          - if notice.present?
+            %p.validation-summary= notice
           = yield
 
     = render "shared/footer"

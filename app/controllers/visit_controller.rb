@@ -39,8 +39,12 @@ class VisitController < ApplicationController
     end.any?
 
     if params[:next] == 'add'
-      visit.visitors << Visitor.new
-      redirect_to step2_path
+      if visit.visitors.size < Visit::MAX_VISITORS
+        visit.visitors << Visitor.new
+        redirect_to step2_path
+      else
+        redirect_to step2_path, notice: "You may only have a maximum of #{Visit::MAX_VISITORS} visitors"
+      end
     else
       redirect_to go_back ? step2_path : step4_path
     end
