@@ -75,7 +75,7 @@
                         %input.js-slotpicker-option{ :value => "#{date.strftime('%Y-%m-%d')}-#{slot[0]}-#{slot[1]}" }(type="checkbox" name="slot")
 
                   - else
-                    %p There are no sessions available on #{date.strftime('%A')}'s.
+                    %p There are no sessions available on #{date.strftime('%A')}s.
 
     .hidden.js-slotpicker-chosen
       - @slots.each_with_index do |slot, index|
