@@ -34,6 +34,10 @@
     %div
       Your form could not be submitted. Please fix the errors below.
 
+    - if f.object.errors[:slots]
+      %div
+        You need to select at least one slot and at most three slots.
+
   .slot-chooser.js-tabs.cf
     %h2
       %small.todays-date

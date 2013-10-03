@@ -179,6 +179,19 @@ describe VisitController do
       end
     end
 
+    context "exactly three slots" do
+      let(:slots_hash) do
+        {
+          visit: { slots: [{date: '2013-01-01', times: '12:00 - 13:00'}] * 3 }
+        }
+      end
+
+      it "accepts the submission" do
+        post :update_step4, slots_hash
+        response.should redirect_to(step5_path)
+      end
+    end
+
     context "too many slots" do
       let(:slots_hash) do
         {
@@ -189,6 +202,7 @@ describe VisitController do
       it "prompts us to retry" do
         post :update_step4, slots_hash
         response.should redirect_to(step4_path)
+        session[:visit].errors[:slots].should_not be_nil
       end
     end
   end
