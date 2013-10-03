@@ -165,4 +165,15 @@ describe VisitController do
       end
     end
   end
+
+  describe "abandon ship!" do
+    before :each do
+      get :step1
+    end
+
+    it "should clear out the session" do
+      post :abandon
+      session[:visit].should be_nil
+    end
+  end
 end

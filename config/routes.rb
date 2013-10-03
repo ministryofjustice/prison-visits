@@ -5,6 +5,7 @@ PrisonVisits2::Application.routes.draw do
       get "/#{n}", action: label, as: label
       post "/#{n}", action: "update_#{label}", as: "update_#{label}"
     end
+    post "/abandon", action: :abandon
     get "/", to: redirect("/1")
   end
 end

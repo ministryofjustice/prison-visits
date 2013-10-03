@@ -77,6 +77,10 @@ class VisitController < ApplicationController
     reset_session
   end
 
+  def abandon
+    reset_session
+  end
+
 private
 
   def visit_params
