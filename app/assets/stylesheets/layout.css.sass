@@ -5,13 +5,18 @@
   .inner
     padding: 0 30px
 
+    @include media-down(tablet)
+      padding-right: 15px
+      padding-left: 15px
+
   .step1 &,
   .step2 &,
   .step3 &,
   .step5 &,
   .step6 &
     .inner
-      margin-right: 30%
+      max-width: 708px
+      margin: 0
 
 .well
   padding: 1em
