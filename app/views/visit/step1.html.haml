@@ -25,7 +25,9 @@
     = f.label :date_of_birth do
       Date of birth
       %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
-    = f.date_field :date_of_birth
+    = f.text_field :date_of_birth, :placeholder => 'eg 28/05/1990'
+    %p.group__help
+      %small Please use the format dd/mm/yyyy
 
   .group{ :class => ('validation-error' if f.object.errors.include?(:number)) }
     = f.label :number do
