@@ -58,9 +58,11 @@ class VisitController < ApplicationController
     visit.slots = slot_params.map do |p|
       Slot.new(p)
     end
+    
     go_back = visit.slots.select do |slot|
       !slot.valid?
-    end.any? || visit.slots.size > 3 
+    end.any? || visit.slots.size > Visit::MAX_SLOTS
+
     if go_back
       redirect_to step4_path
     else

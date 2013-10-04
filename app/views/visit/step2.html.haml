@@ -5,13 +5,10 @@
 
 = form_for visit, url: update_step2_path do |f|
 
-  - if f.object.errors.any?
-    %div
-      Your form could not be submitted. Please fix the errors below.
-
-    - if f.object.errors[:visitors]
-      %div
-        You can book a visit with at least one and at most six visitors.
+  - if f.object.errors[:visitors]
+    #error-summary.validation-summary.group(role="alert" tabindex="-1" aria-labelledby="error-heading")
+      %h2#error-heading Your form could not be submitted. Please fix the errors below.
+      %p You can book a visit with at least one and at most six visitors.
 
   - visit.visitors.each_with_index do |visitor, index|
     = f.fields_for visitor, index: '' do |visitor_form|
