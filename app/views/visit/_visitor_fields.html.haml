@@ -31,11 +31,14 @@
     = f.date_field :date_of_birth
 
     %p
-      %small Children under 16 can only visit with an adult.
+      %small You must be over 18 to book a visit
 
   - unless index.zero?
     .quick-actions
-      = link_to 'Remove', '#', :class => 'pull-right js-delete-visitor'
+      =# link_to 'Remove', '#', :class => 'pull-right js-delete-visitor' # we're gonna use this for JS users
+      %label
+        = check_box_tag 'visit[visitor][][_destroy]', 1, false, { id: "_destroy-#{index}" }
+        remove
 
   - if index.zero?
   
