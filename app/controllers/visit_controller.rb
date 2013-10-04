@@ -20,7 +20,6 @@ class VisitController < ApplicationController
   end
 
   def step2
-    @visitors = visit.visitors
   end
 
   def update_step2
@@ -31,8 +30,9 @@ class VisitController < ApplicationController
       return
     end
 
-    visit.visitors = visit_params.each_with_index.map do |visitor_hash, i|
-      Visitor.new(visitor_hash.merge(index: i))
+    visit.visitors = []
+    visit_params.each_with_index do |visitor_hash, i|
+      visit.visitors << Visitor.new(visitor_hash.merge(index: i)) unless visitor_hash[:_destroy].present?
     end
     go_back = visit.visitors.select do |v|
       !v.valid?
