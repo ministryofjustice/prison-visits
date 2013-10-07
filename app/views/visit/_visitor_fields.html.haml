@@ -53,7 +53,12 @@
       %select.js-dob__select.js-dob__year
         %option year
         - dob_year_range(index).each do |year|
-          %option{ value: year, selected: ('selected' if visit.visitors[index].date_of_birth.present? && visit.visitors[index].date_of_birth.strftime('%Y') == year.to_s ) }= year
+          %option{ value: year, selected: select_year(visit.visitors[index].date_of_birth, year, Visitor::USER_MIN_AGE) }= year
+
+      %p.group__help
+        %small Please use the format dd/mm/yyyy.
+        - if index.zero?
+          %small You must be over 18 to book a visit.
 
   - unless index.zero?
     .quick-actions

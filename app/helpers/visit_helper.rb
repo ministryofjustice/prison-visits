@@ -16,4 +16,14 @@ module VisitHelper
     dec = Date.parse('2013-12-01')
     dec.beginning_of_month..dec.end_of_month
   end
+
+  def select_year(dob, year, default=0)
+    if dob.present?
+      if dob.strftime('%Y').to_i == year
+        return 'selected'
+      end
+    elsif default.years.ago.strftime('%Y').to_i == year
+      return 'selected'
+    end
+  end
 end

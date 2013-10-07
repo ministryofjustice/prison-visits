@@ -36,16 +36,19 @@
         %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
       
       %select#prisoner_dob_day.js-dob__select.js-dob__day
+        %option day
         - dob_day_range.each do |day|
           %option{ value: day.strftime('%d'), selected: ('selected' if visit.prisoner.date_of_birth.present? && visit.prisoner.date_of_birth.strftime('%d') == day.strftime('%d') ) }= day.strftime('%e')
       
       %select.js-dob__select.js-dob__month
+        %option month
         - dob_month_range.keys.each do |month|
           %option{ value: month.strftime('%m'), selected: ('selected' if visit.prisoner.date_of_birth.present? && visit.prisoner.date_of_birth.strftime('%m') == month.strftime('%m') ) }= month.strftime('%B')
       
       %select.js-dob__select.js-dob__year
+        %option year
         - (1890..1995).each do |year|
-          %option{ value: year, selected: ('selected' if visit.prisoner.date_of_birth.present? && visit.prisoner.date_of_birth.strftime('%Y') == year.to_s ) }= year
+          %option{ value: year, selected: select_year(visit.prisoner.date_of_birth, year, 32) }= year
 
   .group{ :class => ('validation-error' if f.object.errors.include?(:number)) }
     = f.label :number do
