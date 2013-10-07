@@ -5,9 +5,9 @@
   var slots = #{visit.slots.to_json};
 
 %p
-  Now choose 
+  Choose 
   %strong up to three 
-  visit times that will be sent to the prison’s booking team to confirm availablity.
+  visit times that will be sent to the prison’s booking team to check availability.
 
 - visiting_slots = Slot::TIMES[visit.prisoner.prison_name.downcase.to_sym]
 - start_day = Date.today+2
