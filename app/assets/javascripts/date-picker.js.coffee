@@ -1,11 +1,3 @@
-$('.js-date-picker').change ->
-  day = $ '#prisoner_dob_day'
-  month = $ '#prisoner_dob_month'
-  year = $ '#prisoner_dob_year'
-
-  dob = "#{year.val()}-#{month.val()}-#{day.val()}"
-  $('#prisoner_date_of_birth').val dob
-
 $('.js-dob').on 'change', '.js-dob__select', ->
   dob = $(this).closest '.js-dob'
 

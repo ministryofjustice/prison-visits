@@ -21,28 +21,29 @@
       %span.validation-message= f.object.errors[:last_name].first if f.object.errors.include?(:last_name)
     = f.text_field :last_name
 
-  .group{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
+  .group.js-dob{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
     .hidden--desktop
       = f.label :date_of_birth do
         Date of birth
         %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
-      %input#prisoner_date_of_birth{ value: (visit.prisoner.date_of_birth.present? ? visit.prisoner.date_of_birth : 18.years.ago.strftime('%Y-%m-%d') )}(type="date" name="prisoner[date_of_birth]")
+      %input#prisoner_date_of_birth.js-dob__input{ value: (visit.prisoner.date_of_birth.present? ? visit.prisoner.date_of_birth : 32.years.ago.beginning_of_year.strftime('%Y-%m-%d') )}(type="date" name="prisoner[date_of_birth]")
       %p.group__help
         %small Please use the format dd/mm/yyyy
     
     .hidden--mobile
-      %label(for="prisoner_dob_day") Date of birth
-      %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
+      %label(for="prisoner_dob_day")
+        Date of birth
+        %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
       
-      %select.js-date-picker(name="prisoner_dob_day" id="prisoner_dob_day")
+      %select#prisoner_dob_day.js-dob__select.js-dob__day
         - dob_day_range.each do |day|
           %option{ value: day.strftime('%d'), selected: ('selected' if visit.prisoner.date_of_birth.present? && visit.prisoner.date_of_birth.strftime('%d') == day.strftime('%d') ) }= day.strftime('%e')
       
-      %select.js-date-picker(name="prisoner_dob_month" id="prisoner_dob_month")
+      %select.js-dob__select.js-dob__month
         - dob_month_range.keys.each do |month|
           %option{ value: month.strftime('%m'), selected: ('selected' if visit.prisoner.date_of_birth.present? && visit.prisoner.date_of_birth.strftime('%m') == month.strftime('%m') ) }= month.strftime('%B')
       
-      %select.js-date-picker(name="prisoner_dob_year" id="prisoner_dob_year")
+      %select.js-dob__select.js-dob__year
         - (1890..1995).each do |year|
           %option{ value: year, selected: ('selected' if visit.prisoner.date_of_birth.present? && visit.prisoner.date_of_birth.strftime('%Y') == year.to_s ) }= year
 

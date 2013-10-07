@@ -29,15 +29,16 @@
       = f.label :date_of_birth do
         Date of birth
         %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
-      %input.js-dob__input{ id: "visitor_date_of_birth_#{index}", value: (visit.visitors[index].date_of_birth.present? ? visit.visitors[index].date_of_birth : year_limit(index).years.ago.strftime('%Y-%m-%d') )}(type="date" name="visit[visitor][][date_of_birth]")
+      %input.js-dob__input{ id: "visitor_date_of_birth_#{index}", value: (visit.visitors[index].date_of_birth.present? ? visit.visitors[index].date_of_birth : year_limit(index).years.ago.beginning_of_year.strftime('%Y-%m-%d') )}(type="date" name="visit[visitor][][date_of_birth]")
       %p.group__help
         %small Please use the format dd/mm/yyyy.
         - if index.zero?
           %small You must be over 18 to book a visit.
     
     .hidden--mobile
-      %label Date of birth
-      %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
+      %label
+        Date of birth
+        %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
       
       %select.js-dob__select.js-dob__day
         %option day
