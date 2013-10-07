@@ -16,6 +16,7 @@
 //= require modules/moj.tabs
 //= require moj.slot-picker
 //= require visitors
+//= require date-picker
 
 moj.init();
 

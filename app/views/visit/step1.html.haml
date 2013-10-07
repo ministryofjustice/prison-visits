@@ -22,12 +22,33 @@
     = f.text_field :last_name
 
   .group{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
-    = f.label :date_of_birth do
-      Date of birth
+    .hidden--desktop
+      = f.label :date_of_birth do
+        Date of birth
+        %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
+      %input#prisoner_date_of_birth{ value: (visit.prisoner.date_of_birth.present? ? visit.prisoner.date_of_birth : 18.years.ago.strftime('%Y-%m-%d') )}(type="date" name="prisoner[date_of_birth]")
+      %p.group__help
+        %small Please use the format dd/mm/yyyy
+    
+    .hidden--mobile
+      %label(for="prisoner_dob_day") Date of birth
       %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
-    = f.text_field :date_of_birth, :placeholder => 'eg 28/05/1990'
-    %p.group__help
-      %small Please use the format dd/mm/yyyy
+      
+      %select.js-date-picker(name="prisoner_dob_day" id="prisoner_dob_day")
+        - dec = Date.parse('2013-12-01')
+        - (dec.beginning_of_month..dec.end_of_month).each do |day|
+          %option{ value: day.strftime('%d'), selected: ('selected' if visit.prisoner.date_of_birth.present? && visit.prisoner.date_of_birth.strftime('%d') == day.strftime('%d') ) }= day.strftime('%e')
+      - date_range = (Date.today.beginning_of_year..Date.today.end_of_year)
+      - months = date_range.group_by { |d| d.beginning_of_month }
+      
+      %select.js-date-picker(name="prisoner_dob_month" id="prisoner_dob_month")
+        - months.keys.each do |month|
+          %option{ value: month.strftime('%m'), selected: ('selected' if visit.prisoner.date_of_birth.present? && visit.prisoner.date_of_birth.strftime('%m') == month.strftime('%m') ) }= month.strftime('%B')
+      - years = 1890..1995
+      
+      %select.js-date-picker(name="prisoner_dob_year" id="prisoner_dob_year")
+        - years.each do |year|
+          %option{ value: year, selected: ('selected' if visit.prisoner.date_of_birth.present? && visit.prisoner.date_of_birth.strftime('%Y') == year.to_s ) }= year
 
   .group{ :class => ('validation-error' if f.object.errors.include?(:number)) }
     = f.label :number do
