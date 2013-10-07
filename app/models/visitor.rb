@@ -1,6 +1,8 @@
 class Visitor
   include ActiveModel::Model
 
+  USER_MIN_AGE = 18
+
   attr_accessor :first_name
   attr_accessor :last_name
   attr_accessor :email

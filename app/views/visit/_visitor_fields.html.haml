@@ -24,13 +24,35 @@
       %span.validation-message= f.object.errors[:last_name].first if f.object.errors.include?(:last_name)
     = f.text_field :last_name
 
-  .group{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
-    = f.label :date_of_birth do
-      Date of birth
+  .group.js-dob{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
+    .hidden--desktop
+      = f.label :date_of_birth do
+        Date of birth
+        %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
+      %input.js-dob__input{ id: "visitor_date_of_birth_#{index}", value: (visit.visitors[index].date_of_birth.present? ? visit.visitors[index].date_of_birth : year_limit(index).years.ago.strftime('%Y-%m-%d') )}(type="date" name="visit[visitor][][date_of_birth]")
+      %p.group__help
+        %small Please use the format dd/mm/yyyy.
+        - if index.zero?
+          %small You must be over 18 to book a visit.
+    
+    .hidden--mobile
+      %label Date of birth
       %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
-    = f.date_field :date_of_birth
-    %p.group__help
-      %small You must be over 18 to book a visit
+      
+      %select.js-dob__select.js-dob__day
+        %option day
+        - dob_day_range.each do |day|
+          %option{ value: day.strftime('%d'), selected: ('selected' if visit.visitors[index].date_of_birth.present? && visit.visitors[index].date_of_birth.strftime('%d') == day.strftime('%d') ) }= day.strftime('%e')
+      
+      %select.js-dob__select.js-dob__month
+        %option month
+        - dob_month_range.keys.each do |month|
+          %option{ value: month.strftime('%m'), selected: ('selected' if visit.visitors[index].date_of_birth.present? && visit.visitors[index].date_of_birth.strftime('%m') == month.strftime('%m') ) }= month.strftime('%B')
+
+      %select.js-dob__select.js-dob__year
+        %option year
+        - dob_year_range(index).each do |year|
+          %option{ value: year, selected: ('selected' if visit.visitors[index].date_of_birth.present? && visit.visitors[index].date_of_birth.strftime('%Y') == year.to_s ) }= year
 
   - unless index.zero?
     .quick-actions
