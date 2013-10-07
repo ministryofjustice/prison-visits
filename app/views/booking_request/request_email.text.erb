@@ -28,5 +28,5 @@ Visiting slot information
 =========================
 
 <% @visit.slots.each_with_index do |slot, index| %>
-<%= index + 1%>. <%= Date.parse(slot.date).strftime("%A %e %B") %>, <%= [Time.strptime(slot.date.split('-')[0], '%H%M').strftime("%l:%M%P"), Time.strptime(slot.date.split('-')[0], '%H%M').strftime("%l:%M%P")].join(' to ') %>
+<%= index + 1%>. <%= Date.parse(slot.date).strftime("%A %e %B") %>, <%= [Time.strptime(slot.times.split('-')[0], '%H%M').strftime("%l:%M%P"), Time.strptime(slot.times.split('-')[1], '%H%M').strftime("%l:%M%P")].join(' to ') %>
 <% end %>
