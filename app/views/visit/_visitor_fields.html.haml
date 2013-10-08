@@ -62,8 +62,8 @@
 
   - unless index.zero?
     .quick-actions
-      =# link_to 'Remove', '#', :class => 'pull-right js-delete-visitor' # we're gonna use this for JS users
-      %label
+      .js-remove__button= link_to 'Remove', '#', :class => 'pull-right js-delete-visitor'
+      %label.js-remove__checkbox
         = check_box_tag 'visit[visitor][][_destroy]', 1, false, { id: "_destroy-#{index}" }
         remove
 
