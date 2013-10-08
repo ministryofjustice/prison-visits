@@ -120,6 +120,9 @@ $('#calendar').fullCalendar
     $('.js-slotpicker-options').removeClass 'is-active'
     $("#date-#{year}-#{month}-#{day}").addClass 'is-active'
 
+    # To show selected day - .fc-cell-overlay
+    $('#calendar').fullCalendar('select', date, date, allDay)
+
 
 # Month selector
 $('.month-selector li a').click (e) ->
