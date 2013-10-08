@@ -123,6 +123,10 @@ $('#calendar').fullCalendar
     # To show selected day - .fc-cell-overlay
     $('#calendar').fullCalendar('select', date, date, allDay)
 
+  dayRender: (date, cell) ->
+    if (!!~unavailable_days.indexOf(date.getDay()))
+      cell.addClass('unavailable')
+
 
 # Month selector
 $('.month-selector li a').click (e) ->

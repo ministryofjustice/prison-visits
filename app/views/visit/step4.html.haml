@@ -1,19 +1,17 @@
 - content_for :header do
   %h1 Your visit date and time
 
-:javascript
-  var slots = #{visit.slots.to_json};
-
-%p
-  Choose 
-  %strong up to three 
-  visit times that will be sent to the prison’s booking team to check availability.
-
 - visiting_slots = Slot::TIMES[visit.prisoner.prison_name.downcase.to_sym]
 - start_day = Date.today+2
 - date_range = start_day..start_day+28.days
 - range_by_month = date_range.group_by { |d| d.beginning_of_month }
 - number_of_slots = 3
+- unavailable_days = { sun: 0, mon: 1, tue: 2, wed: 3, thu: 4, fri: 5, sat: 6 }.delete_if { |k, v| visiting_slots.keys.include?(k) }.values
+
+%p
+  Choose 
+  %strong up to three 
+  visit times that will be sent to the prison’s booking team to check availability.
 
 - if visit.slots.any? {|s| s.errors.any?}
   #error-summary.validation-summary.group(role="alert" tabindex="-1" aria-labelledby="error-heading")
@@ -22,7 +20,7 @@
 
 #calendar
 
-.js-slotpicker.Xjs-tabs-content{ :'data-optionlimits' => number_of_slots }
+.js-slotpicker{ :'data-optionlimits' => number_of_slots }
   - range_by_month.keys.each do |month|
     .slotpicker.cf{ :id => month.strftime('month-%Y-%m-%d') }(data-focusfirst="true")
 
@@ -75,3 +73,7 @@
 
   .actions
     = f.button :Continue, :name => 'next', :value => 'continue', :class => 'button button-primary'
+
+:javascript
+  var slots = #{visit.slots.to_json},
+    unavailable_days = #{unavailable_days.to_json};
