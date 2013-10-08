@@ -47,7 +47,7 @@
       
       %select.js-dob__select.js-dob__year
         %option year
-        - (1890..1995).each do |year|
+        - (100.years.ago.strftime('%Y').to_i..1995).each do |year|
           %option{ value: year, selected: select_year(visit.prisoner.date_of_birth, year, 32) }= year
 
   .group{ :class => ('validation-error' if f.object.errors.include?(:number)) }

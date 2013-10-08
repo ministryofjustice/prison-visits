@@ -4,7 +4,7 @@ module VisitHelper
   end
 
   def dob_year_range(index)
-    110.years.ago.strftime('%Y').to_i..year_limit(index).years.ago.strftime('%Y').to_i
+    100.years.ago.strftime('%Y').to_i..year_limit(index).years.ago.strftime('%Y').to_i
   end
 
   def dob_month_range

@@ -23,7 +23,7 @@ class Prisoner
 
   validates_presence_of :first_name
   validates_presence_of :last_name
-  validates_inclusion_of :date_of_birth, in: ->(_) { Date.new(1850, 1, 1)..Date.today }
+  validates_inclusion_of :date_of_birth, in: ->(_) { 100.years.ago.to_date..Date.today }, message: "must be within last 100 years"
   validates_format_of :number, with: /\w+/
   validates_inclusion_of :prison_name, in: PRISONS
 end

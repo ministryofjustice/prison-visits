@@ -18,7 +18,7 @@ class Visitor
   validates_presence_of :first_name
   validates_presence_of :last_name
   validates_length_of :phone, minimum: 10, allow_blank: true
-  validates_inclusion_of :date_of_birth, in: ->(_) { Date.new(1850, 1, 1)..Date.today }
+  validates_inclusion_of :date_of_birth, in: ->(_) { 100.years.ago.to_date..Date.today }, message: "must be within last 100 years"
 
   validate do
     if index == 0
