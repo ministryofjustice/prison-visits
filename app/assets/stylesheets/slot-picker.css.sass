@@ -43,7 +43,13 @@
       // background: $grey-3
 
 #calendar
-  margin-bottom: .5em
+  margin: 0 -15px .5em
+
+  @include media(desktop)
+    float: left
+    max-width: 49%
+    margin-right: 0
+    margin-left: 0
 
 .unavailable
   @extend .fc-past
@@ -54,14 +60,15 @@
 
 .day-slots
   display: none
-
-  &.is-active
-    display: block
-
-.day-slots
   padding: .5em
   background: $grey-3
   border: 1px solid $grey-2
+
+  @include media(mobile)
+    border-width: 1px 0
+
+  &.is-active
+    display: block
 
   .slot
     float: left
@@ -77,12 +84,30 @@
     small
       display: block
 
+    input
+      @include media(mobile)
+        display: block
+
+.slots
+  @include media(mobile)
+    margin: 0 -15px
+
+  @include media(desktop)
+    float: right
+    width: 49%
 
 .selected-slots
+  @include media(mobile)
+    margin: 0 -15px
+
+  @include media(desktop)
+    float: right
+    width: 49%
 
   h3,
   p
-    margin: 0
+    @include media(mobile)
+      margin-bottom: 0
 
   ul
     margin: 0
@@ -135,6 +160,9 @@
         text-decoration: none
         background: $grey-2
         border-radius: 50%
+
+        @include media(desktop)
+          font-size: 20px
       
       p
         margin: 0

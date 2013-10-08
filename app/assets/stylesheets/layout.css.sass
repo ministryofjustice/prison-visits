@@ -3,11 +3,11 @@
   margin: 0 auto
 
   .inner
-    padding: 0 30px
+    padding: 0 15px
 
-    @include media-down(tablet)
-      padding-right: 15px
-      padding-left: 15px
+    @include media(tablet)
+      padding-right: 30px
+      padding-left: 30px
 
   .step1 &,
   .step2 &,
@@ -28,14 +28,10 @@
     margin: 0
 
 .summary-pane
-  float: left
-  width: 40%
-  margin-right: 1em
-
-  @include media-down(mobile)
-    float: none
-    width: auto
-    margin-right: auto
+  @include media(tablet)
+    float: left
+    width: 40%
+    margin-right: 1em
 
 .step6 #wrapper img
   float: left
