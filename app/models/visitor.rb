@@ -26,6 +26,10 @@ class Visitor
     else
       errors.add(:email, 'Must not be given') if email.present?
     end
+
+    if index == 0
+      errors.add(:date_of_birth, 'You must be over 18 years old to book a visit') unless date_of_birth.present? && date_of_birth < 18.years.ago
+    end
   end
 
   def compactable?
