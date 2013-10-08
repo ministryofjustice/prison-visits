@@ -56,9 +56,12 @@ SlotPicker:: =
     @$slotInputs.find('input').val ''
 
   _populateUiSlots: (index, checkbox) ->
-    id = checkbox.closest('.js-slotpicker-options').attr 'id'
-    day = $("[href=##{id}]").text()
-    time = checkbox.closest('label').text()
+    date = @._splitDateAndSlot(checkbox.val())[0]
+    day = new Date date
+
+    label = checkbox.closest('label')
+    day = label.find('small').text()
+    time = label.find('span').text()
     $slot = @$selectedSlots.eq(index)
 
     $slot.addClass 'is-active'
@@ -105,6 +108,20 @@ moj.Modules.slotPicker = init: ->
     $(this).data 'moj.slotpicker', new SlotPicker($(this), $(this).data())
 
 
+zero_padding = (n) ->
+  ('0' + n).slice -2
+
+# Fullcalendar
+$('#calendar').fullCalendar
+  dayClick: (date, allDay, jsEvent, view) ->
+    day = zero_padding date.getDate()
+    month = zero_padding date.getMonth()+1
+    year = date.getFullYear()
+    $('.js-slotpicker-options').removeClass 'is-active'
+    $("#date-#{year}-#{month}-#{day}").addClass 'is-active'
+
+
+# Month selector
 $('.month-selector li a').click (e) ->
   e.preventDefault()
   
