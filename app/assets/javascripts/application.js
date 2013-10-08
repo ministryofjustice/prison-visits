@@ -12,6 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+
+//= require jquery-ui.custom.min
+//= require fullcalendar.min
+
 //= require moj
 //= require modules/moj.tabs
 //= require moj.slot-picker
