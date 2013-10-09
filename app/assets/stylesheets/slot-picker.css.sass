@@ -70,17 +70,27 @@
 
   .slot
     float: left
+    min-width: 120px
     margin-right: .5em
     padding: 4px 7px
-    background: $white
     border: 1px solid $grey-2
     cursor: pointer
+    background: $white url(/assets/radio_buttons.png) no-repeat right -112px
+
+    &.is-active
+      background-position: right 8px
+
+    &.is-disabled
+      background-position: right -232px
 
     &:last-child
       margin-right: 0
 
-    strong
+    strong,
       display: block
+
+    input
+      display: none
 
 .slots
   @include media(mobile)
@@ -97,11 +107,13 @@
   @include media(desktop)
     float: right
     width: 49%
+  
+  h3
+    margin-top: 1em
 
   h3,
   p
-    @include media(mobile)
-      margin-bottom: 0
+    margin-bottom: 0
 
   ul
     margin: 0

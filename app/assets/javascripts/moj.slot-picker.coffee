@@ -34,7 +34,7 @@ SlotPicker:: =
     @$slotOptions.on 'click', (e) ->
       _this._emptyUiSlots()
       _this._emptySlotInputs()
-      # _this._unHighlightDays()
+      _this.unHighlightSlots()
       _this._processSlots()
       _this._disableCheckboxes _this._limitReached()
 
@@ -45,6 +45,12 @@ SlotPicker:: =
   checkSlots: (slots) ->
     for slot in slots
       $("[value='#{slot.date}-#{slot.times}']").click()
+
+  highlightSlot: (slot) ->
+    slot.addClass 'is-active'
+  
+  unHighlightSlots: ->
+    $('.js-slotpicker-options label').removeClass 'is-active'
 
   _emptyUiSlots: ->
     slots = @$selectedSlots
@@ -79,6 +85,7 @@ SlotPicker:: =
     _this = this
 
     @$slotOptions.filter(':checked').each (i) ->
+      _this.highlightSlot $(this).closest('label')
       # _this._highlightDay $(this).closest '.js-slotpicker-options'
       _this._populateSlotInputs i, $(this).val()
       _this._populateUiSlots i, $(this)
@@ -95,6 +102,7 @@ SlotPicker:: =
 
   _disableCheckboxes: (disable) ->
     @$slotOptions.not(':checked').prop 'disabled', disable
+    @$slotOptions.not(':checked').closest('label')[if disable then 'addClass' else 'removeClass'] 'is-disabled'
 
   _splitDateAndSlot: (str) ->
     bits = str.split '-'
