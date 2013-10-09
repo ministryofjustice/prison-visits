@@ -138,6 +138,9 @@ $('#calendar').fullCalendar
     center: 'title'
     right: 'next'
 
+  viewRender: (view, element) ->
+    $('#calendar').find('.fc-day').not('.fc-unavailable').first().click()
+
   dayClick: (date, allDay, jsEvent, view) ->
     $day = $( jsEvent.target ).closest( '.fc-day' )
 
