@@ -77,8 +77,10 @@
       %p.group__help
         %small You will receive confirmation of your visit by email.
 
-    .group
-      = f.label :phone, 'Contact phone number (optional)'
+    .group{ :class => ('validation-error' if f.object.errors.include?(:phone)) }
+      = f.label :phone do
+        Contact phone number (optional)
+        %span.validation-message= f.object.errors[:phone].first if f.object.errors.include?(:phone)
       = f.telephone_field :phone
   
 = render 'additional_visitors' if index.zero?
