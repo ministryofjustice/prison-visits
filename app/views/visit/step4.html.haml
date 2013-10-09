@@ -43,7 +43,9 @@
 
 .selected-slots
   %h3 Your visit times
-  %p.hidden--mobile Chose your visiting preference using the arrows
+  %p.hidden--mobile
+    Chosen times can be remove using the '&times;' button
+    -# Chose your visiting preference using the arrows
   %ul
     - (1..number_of_slots).each_with_index do |i|
       %li
