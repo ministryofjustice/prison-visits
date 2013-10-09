@@ -77,4 +77,5 @@
 
 :javascript
   var slots = #{visit.slots.to_json},
-    unavailable_days = #{unavailable_days.to_json};
+    unavailable_days = #{unavailable_days.to_json},
+    date_range = #{date_range.map{|d|d.strftime('%Y-%m-%d')}.to_json};

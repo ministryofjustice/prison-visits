@@ -119,6 +119,18 @@ moj.Modules.slotPicker = init: ->
 zero_padding = (n) ->
   ('0' + n).slice -2
 
+shortDate = (d) ->
+  [
+    d.getFullYear()
+    d.getMonth()
+    d.getDate()
+  ].join('-')
+
+bookableDates = []
+for bookable_date of window.date_range
+  bd = new Date(window.date_range[bookable_date])
+  bookableDates.push shortDate(bd)
+
 # Fullcalendar
 $('#calendar').fullCalendar
   header:
@@ -139,5 +151,9 @@ $('#calendar').fullCalendar
     $day.addClass('fc-state-highlight')
 
   dayRender: (date, cell) ->
+    cellDate = shortDate date
+    unless ~bookableDates.indexOf(cellDate)
+      cell.addClass('fc-unavailable')
+
     if (!!~unavailable_days.indexOf(date.getDay()))
       cell.addClass('fc-unavailable')
