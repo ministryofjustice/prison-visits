@@ -20,7 +20,7 @@
 
 .well
   %h2 Chosen visit times
-  %ul
+  %ul.unstyled-list
     - visit.slots.each do |slot|
       - if slot.date.present?
         %li

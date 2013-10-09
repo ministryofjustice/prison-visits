@@ -4,15 +4,16 @@
 %p We will email you within 48 hours to confirm your visit.
 
 .well.summary-pane.pull-left.cf
-  %p
-    Date:
-    %br
-    %strong= Date.parse(visit.slots[0].date).strftime("%e %B %Y")
-
-  %p
-    Time:
-    %br
-    %strong #{visit.slots[0].times}
+  %p.flat
+    Requested visiting times:
+  %ul.unstyled-list
+    - visit.slots.each do |slot|
+      - if slot.date.present?
+        %li
+          - slot_date = Date.parse(slot.date)
+          %strong= slot_date.strftime("%A %e %B")
+          \ -
+          = display_time_slot slot.times
 
   %p
     Location:
