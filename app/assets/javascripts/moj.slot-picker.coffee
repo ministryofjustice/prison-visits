@@ -34,7 +34,7 @@ SlotPicker:: =
     @$slotOptions.on 'click', (e) ->
       _this._emptyUiSlots()
       _this._emptySlotInputs()
-      _this._unHighlightDays()
+      # _this._unHighlightDays()
       _this._processSlots()
       _this._disableCheckboxes _this._limitReached()
 
@@ -57,11 +57,11 @@ SlotPicker:: =
 
   _populateUiSlots: (index, checkbox) ->
     date = @._splitDateAndSlot(checkbox.val())[0]
-    day = new Date date
 
     label = checkbox.closest('label')
-    day = label.find('small').text()
-    time = label.find('span').text()
+    day = label.siblings('h4').text()
+    time = label.find('strong').text()
+    
     $slot = @$selectedSlots.eq(index)
 
     $slot.addClass 'is-active'
@@ -79,16 +79,16 @@ SlotPicker:: =
     _this = this
 
     @$slotOptions.filter(':checked').each (i) ->
-      _this._highlightDay $(this).closest '.js-slotpicker-options'
+      # _this._highlightDay $(this).closest '.js-slotpicker-options'
       _this._populateSlotInputs i, $(this).val()
       _this._populateUiSlots i, $(this)
 
-  _unHighlightDays: ->
-    @$slotDays.removeClass @settings.selections
+  # _unHighlightDays: ->
+  #   @$slotDays.removeClass @settings.selections
 
-  _highlightDay: (el) ->
-    day = $ "[href=##{el.attr('id')}]"
-    day.addClass @settings.selections
+  # _highlightDay: (el) ->
+  #   day = $ "[href=##{el.attr('id')}]"
+  #   day.addClass @settings.selections
 
   _limitReached: ->
     @$slotOptions.filter(':checked').length >= @settings.optionlimit
@@ -113,31 +113,23 @@ zero_padding = (n) ->
 
 # Fullcalendar
 $('#calendar').fullCalendar
+  header:
+    left: 'prev'
+    center: 'title'
+    right: 'next'
+
   dayClick: (date, allDay, jsEvent, view) ->
+    $day = $( jsEvent.target ).closest( '.fc-day' )
+
     day = zero_padding date.getDate()
     month = zero_padding date.getMonth()+1
     year = date.getFullYear()
     $('.js-slotpicker-options').removeClass 'is-active'
     $("#date-#{year}-#{month}-#{day}").addClass 'is-active'
 
-    # To show selected day - .fc-cell-overlay
-    $('#calendar').fullCalendar('select', date, date, allDay)
+    $('.fc-day').removeClass('fc-state-highlight')
+    $day.addClass('fc-state-highlight')
 
   dayRender: (date, cell) ->
     if (!!~unavailable_days.indexOf(date.getDay()))
-      cell.addClass('unavailable')
-
-
-# Month selector
-$('.month-selector li a').click (e) ->
-  e.preventDefault()
-  
-  $('.month-selector li').removeClass 'is-active is-earlier is-later'
-  
-  $(this).closest('.month-selector li').addClass 'is-active'
-  
-  $('.month-selector li').each ->
-    if $(this).nextAll('li').filter('.is-active').length
-      $(this).addClass('is-earlier')
-    if $(this).prevAll('li').filter('.is-active').length
-      $(this).addClass('is-later')
+      cell.addClass('fc-unavailable')

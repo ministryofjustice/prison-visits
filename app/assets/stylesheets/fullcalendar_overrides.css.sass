@@ -6,15 +6,40 @@
   &:hover
     background: $grey-3
 
-.fc-past
+.fc-past,
+.fc-unavailable
   background: $grey-4
 
 .fc-state-highlight
-  background: none
-
-.fc-cell-overlay
-  opacity: .7
   background: #acdaed
 
 .fc-grid .fc-day-number
   float: none
+
+.fc-header
+  td
+    background: $grey-1
+
+  h2
+    color: #fff
+    margin: 8px 0 5px
+    font-size: 24px
+    font-weight: bold
+    vertical-align: middle
+  
+  .fc-button
+    color: $white
+    margin-bottom: 0
+
+h2
+  font-size: 32px
+  font-weight: normal
+
+.fc-button
+  box-shadow: none
+  border: none
+  background: none
+  padding-top: 2px
+
+.fc-text-arrow
+  font-size: 50px

@@ -43,16 +43,14 @@
       // background: $grey-3
 
 #calendar
-  margin: 0 -15px .5em
+  margin: 0 -15px
 
   @include media(desktop)
+    width: 100%
     float: left
     max-width: 49%
     margin-right: 0
     margin-left: 0
-
-.unavailable
-  @extend .fc-past
 
 .arrow-right
   width: 0
@@ -72,21 +70,17 @@
 
   .slot
     float: left
-    margin-left: .5em
+    margin-right: .5em
     padding: 4px 7px
     background: $white
     border: 1px solid $grey-2
     cursor: pointer
 
-    &:first-child
-      margin-left: 0
+    &:last-child
+      margin-right: 0
 
-    small
+    strong
       display: block
-
-    input
-      @include media(mobile)
-        display: block
 
 .slots
   @include media(mobile)
