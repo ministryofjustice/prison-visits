@@ -144,3 +144,6 @@ $('#calendar').fullCalendar
     unless ~window.bookable_days.indexOf date.getDay()
       cell.addClass 'fc-unbookable'
 
+    # mark days which contain currently selected slots
+    for slot in window.current_slots
+      cell.addClass 'fc-chosen' if slot.date is date.formatIso()

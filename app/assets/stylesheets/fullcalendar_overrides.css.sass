@@ -11,6 +11,20 @@
 .fc-unbookable
   background: image-url("unavailable_tile.png")
 
+.fc-chosen
+  position: relative
+  overflow: hidden
+  &:after
+    position: absolute
+    content: ''
+    top: 0
+    right: 0
+    width: 0
+    height: 0
+    border-style: solid
+    border-width: 0 20px 20px 0
+    border-color: transparent #158bc8 transparent transparent
+
 .fc-state-highlight
   background: #acdaed
 
