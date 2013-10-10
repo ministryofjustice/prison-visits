@@ -3,10 +3,10 @@
 
 - visiting_slots = Slot::TIMES[visit.prisoner.prison_name.downcase.to_sym]
 - start_day = Date.today+2
-- date_range = start_day..start_day+28.days
-- range_by_month = date_range.group_by { |d| d.beginning_of_month }
+- bookable_dates = start_day..start_day+28.days
+- range_by_month = bookable_dates.group_by { |d| d.beginning_of_month }
 - number_of_slots = 3
-- unavailable_days = { sun: 0, mon: 1, tue: 2, wed: 3, thu: 4, fri: 5, sat: 6 }.delete_if { |k, v| visiting_slots.keys.include?(k) }.values
+- bookable_days = { sun: 0, mon: 1, tue: 2, wed: 3, thu: 4, fri: 5, sat: 6 }.keep_if { |k, v| visiting_slots.keys.include?(k) }.values
 
 %p
   Choose 
@@ -76,6 +76,6 @@
     = f.button :Continue, :name => 'next', :value => 'continue', :class => 'button button-primary'
 
 :javascript
-  var slots = #{visit.slots.to_json},
-    unavailable_days = #{unavailable_days.to_json},
-    date_range = #{date_range.map{|d|d.strftime('%Y-%m-%d')}.to_json};
+  var current_slots = #{visit.slots.to_json},
+    bookable_days = #{bookable_days.to_json},
+    bookable_dates = #{bookable_dates.map{|d|d.strftime('%Y-%m-%d')}.to_json};

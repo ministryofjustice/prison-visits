@@ -12,7 +12,7 @@ SlotPicker = (el, options) ->
   @settings = $.extend {}, @defaults, options
   @cacheEls el
   @bindEvents()
-  @checkSlots window.slots
+  @markChosenSlots window.current_slots
 
 SlotPicker:: =
   defaults:
@@ -42,7 +42,7 @@ SlotPicker:: =
       e.preventDefault()
       $( $(this).data('slot-option') ).click()
 
-  checkSlots: (slots) ->
+  markChosenSlots: (slots) ->
     for slot in slots
       $("[value='#{slot.date}-#{slot.times}']").click()
 
@@ -116,11 +116,6 @@ moj.Modules.slotPicker = init: ->
     $(this).data 'moj.slotpicker', new SlotPicker($(this), $(this).data())
 
 
-bookableDates = []
-for bookable_date of window.date_range
-  bd = new Date(window.date_range[bookable_date])
-  bookableDates.push bd.formatIso()
-
 # Fullcalendar
 $('#calendar').fullCalendar
   header:
@@ -141,8 +136,11 @@ $('#calendar').fullCalendar
     $day.addClass('fc-state-highlight')
 
   dayRender: (date, cell) ->
-    unless ~bookableDates.indexOf(date.formatIso())
-      cell.addClass('fc-unavailable')
+    # mark days which cannot be booked
+    unless ~window.bookable_dates.indexOf date.formatIso()
+      cell.addClass 'fc-unavailable'
 
-    if (!!~unavailable_days.indexOf(date.getDay()))
-      cell.addClass('fc-unavailable')
+    # mark days where there a no visit slots
+    unless ~window.bookable_days.indexOf date.getDay()
+      cell.addClass 'fc-unbookable'
+
