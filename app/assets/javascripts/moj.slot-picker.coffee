@@ -116,20 +116,10 @@ moj.Modules.slotPicker = init: ->
     $(this).data 'moj.slotpicker', new SlotPicker($(this), $(this).data())
 
 
-zero_padding = (n) ->
-  ('0' + n).slice -2
-
-shortDate = (d) ->
-  [
-    d.getFullYear()
-    d.getMonth()
-    d.getDate()
-  ].join('-')
-
 bookableDates = []
 for bookable_date of window.date_range
   bd = new Date(window.date_range[bookable_date])
-  bookableDates.push shortDate(bd)
+  bookableDates.push bd.formatIso()
 
 # Fullcalendar
 $('#calendar').fullCalendar
@@ -144,18 +134,14 @@ $('#calendar').fullCalendar
   dayClick: (date, allDay, jsEvent, view) ->
     $day = $( jsEvent.target ).closest( '.fc-day' )
 
-    day = zero_padding date.getDate()
-    month = zero_padding date.getMonth()+1
-    year = date.getFullYear()
     $('.js-slotpicker-options').removeClass 'is-active'
-    $("#date-#{year}-#{month}-#{day}").addClass 'is-active'
+    $("#date-#{date.formatIso()}").addClass 'is-active'
 
     $('.fc-day').removeClass('fc-state-highlight')
     $day.addClass('fc-state-highlight')
 
   dayRender: (date, cell) ->
-    cellDate = shortDate date
-    unless ~bookableDates.indexOf(cellDate)
+    unless ~bookableDates.indexOf(date.formatIso())
       cell.addClass('fc-unavailable')
 
     if (!!~unavailable_days.indexOf(date.getDay()))
