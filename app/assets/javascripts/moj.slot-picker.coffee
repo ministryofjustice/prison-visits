@@ -12,12 +12,14 @@ SlotPicker = (el, options) ->
   @settings = $.extend {}, @defaults, options
   @cacheEls el
   @bindEvents()
-  @markChosenSlots window.current_slots
+  @initCalendar()
+  @markChosenSlots @settings.currentSlots
 
 SlotPicker:: =
   defaults:
     optionlimit: 3
     selections: 'has-selections'
+    currentSlots: window.current_slots
 
   cacheEls: ->
     @$wrapper = $ '#wrapper'
@@ -44,7 +46,7 @@ SlotPicker:: =
 
   markChosenSlots: (slots) ->
     for slot in slots
-      $("[value='#{slot.date}-#{slot.times}']").click()
+      $("[value='#{slot}']").click()
 
   highlightSlot: (slot) ->
     slot.addClass 'is-active'
@@ -109,41 +111,42 @@ SlotPicker:: =
     time = bits.splice(-2).join '-'
     [bits.join('-'),time]
 
+  initCalendar: ->
+    _this = @
+    
+    # Fullcalendar
+    $('#calendar').fullCalendar
+      header:
+        left: 'prev'
+        center: 'title'
+        right: 'next'
+
+      viewRender: (view, element) ->
+        $('#calendar').find('.fc-day').not('.fc-unavailable').first().click()
+
+      dayClick: (date, allDay, jsEvent, view) ->
+        $day = $( jsEvent.target ).closest( '.fc-day' )
+
+        $('.js-slotpicker-options').removeClass 'is-active'
+        $("#date-#{date.formatIso()}").addClass 'is-active'
+
+        $('.fc-day').removeClass('fc-state-highlight')
+        $day.addClass('fc-state-highlight')
+
+      dayRender: (date, cell) ->
+        # mark days which cannot be booked
+        unless ~window.bookable_dates.indexOf date.formatIso()
+          cell.addClass 'fc-unavailable'
+
+        # mark days where there a no visit slots
+        unless ~window.bookable_days.indexOf date.getDay()
+          cell.addClass 'fc-unbookable'
+
+        # mark days which contain currently selected slots
+        for slot in _this.settings.currentSlots
+          cell.addClass 'fc-chosen' if _this._splitDateAndSlot(slot)[0] is date.formatIso()
 
 # Add module to MOJ namespace
 moj.Modules.slotPicker = init: ->
   $('.js-slotpicker').each ->
     $(this).data 'moj.slotpicker', new SlotPicker($(this), $(this).data())
-
-
-# Fullcalendar
-$('#calendar').fullCalendar
-  header:
-    left: 'prev'
-    center: 'title'
-    right: 'next'
-
-  viewRender: (view, element) ->
-    $('#calendar').find('.fc-day').not('.fc-unavailable').first().click()
-
-  dayClick: (date, allDay, jsEvent, view) ->
-    $day = $( jsEvent.target ).closest( '.fc-day' )
-
-    $('.js-slotpicker-options').removeClass 'is-active'
-    $("#date-#{date.formatIso()}").addClass 'is-active'
-
-    $('.fc-day').removeClass('fc-state-highlight')
-    $day.addClass('fc-state-highlight')
-
-  dayRender: (date, cell) ->
-    # mark days which cannot be booked
-    unless ~window.bookable_dates.indexOf date.formatIso()
-      cell.addClass 'fc-unavailable'
-
-    # mark days where there a no visit slots
-    unless ~window.bookable_days.indexOf date.getDay()
-      cell.addClass 'fc-unbookable'
-
-    # mark days which contain currently selected slots
-    for slot in window.current_slots
-      cell.addClass 'fc-chosen' if slot.date is date.formatIso()
