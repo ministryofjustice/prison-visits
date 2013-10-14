@@ -12,35 +12,36 @@ SlotPicker = (el, options) ->
   @settings = $.extend {}, @defaults, options
   @cacheEls el
   @bindEvents()
+  @markChosenSlots window.current_slots
   @initCalendar()
-  @markChosenSlots @settings.currentSlots
 
 SlotPicker:: =
   defaults:
     optionlimit: 3
     selections: 'has-selections'
-    currentSlots: window.current_slots
+    currentSlots: []
 
   cacheEls: ->
     @$wrapper = $ '#wrapper'
     @$slotInputs = $ '.js-slotpicker-chosen fieldset'
     @$slotOptions = $ '.js-slotpicker-option'
-    @$slotDays = $ '.js-slotpicker-day'
     @$selectedSlots = $ '.selected-slots li'
-    @removeSlots = '.js-remove-slot'
+    @$removeSlots = '.js-remove-slot'
+    @$calendar = $ '#calendar'
 
   bindEvents: ->
     # store a reference to obj before 'this' becomes jQuery obj
     _this = this
     
     @$slotOptions.on 'click', (e) ->
-      _this._emptyUiSlots()
-      _this._emptySlotInputs()
+      _this.emptyUiSlots()
+      _this.emptySlotInputs()
       _this.unHighlightSlots()
-      _this._processSlots()
-      _this._disableCheckboxes _this._limitReached()
+      _this.checkSlot $(this)
+      _this.processSlots()
+      _this.disableCheckboxes _this.limitReached()
 
-    @$wrapper.on 'click', @removeSlots, (e) ->
+    @$wrapper.on 'click', @$removeSlots, (e) ->
       e.preventDefault()
       $( $(this).data('slot-option') ).click()
 
@@ -54,17 +55,17 @@ SlotPicker:: =
   unHighlightSlots: ->
     $('.js-slotpicker-options label').removeClass 'is-active'
 
-  _emptyUiSlots: ->
+  emptyUiSlots: ->
     slots = @$selectedSlots
     slots.removeClass 'is-active'
     slots.find('a').removeData()
     slots.find('.date, .time').text ''
 
-  _emptySlotInputs: ->
+  emptySlotInputs: ->
     @$slotInputs.find('input').val ''
 
-  _populateUiSlots: (index, checkbox) ->
-    date = @._splitDateAndSlot(checkbox.val())[0]
+  populateUiSlots: (index, checkbox) ->
+    date = @splitDateAndSlot(checkbox.val())[0]
 
     label = checkbox.closest('label')
     day = label.siblings('h4').text()
@@ -78,51 +79,70 @@ SlotPicker:: =
     # store reference to checkbox
     $slot.find('.js-remove-slot').data 'slot-option', checkbox
 
-  _populateSlotInputs: (index, chosen) ->
-    slot = @_splitDateAndSlot chosen
+  populateSlotInputs: (index, chosen) ->
+    slot = @splitDateAndSlot chosen
     @$slotInputs.eq(index).find('[name$="date]"]').val slot[0]
     @$slotInputs.eq(index).find('[name$="times]"]').val slot[1]
 
-  _processSlots: ->
+  processSlots: ->
     _this = this
+    i = 0
 
-    @$slotOptions.filter(':checked').each (i) ->
-      _this.highlightSlot $(this).closest('label')
-      # _this._highlightDay $(this).closest '.js-slotpicker-options'
-      _this._populateSlotInputs i, $(this).val()
-      _this._populateUiSlots i, $(this)
+    for slot in @settings.currentSlots
+      $slotEl = $ "[value=#{slot}]"
 
-  # _unHighlightDays: ->
-  #   @$slotDays.removeClass @settings.selections
+      _this.highlightSlot $slotEl.closest('label')
+      _this.populateSlotInputs i, $slotEl.val()
+      _this.populateUiSlots i, $slotEl
+      
+      i++
 
-  # _highlightDay: (el) ->
-  #   day = $ "[href=##{el.attr('id')}]"
-  #   day.addClass @settings.selections
-
-  _limitReached: ->
+  limitReached: ->
     @$slotOptions.filter(':checked').length >= @settings.optionlimit
 
-  _disableCheckboxes: (disable) ->
+  disableCheckboxes: (disable) ->
     @$slotOptions.not(':checked').prop 'disabled', disable
     @$slotOptions.not(':checked').closest('label')[if disable then 'addClass' else 'removeClass'] 'is-disabled'
 
-  _splitDateAndSlot: (str) ->
+  splitDateAndSlot: (str) ->
     bits = str.split '-'
     time = bits.splice(-2).join '-'
     [bits.join('-'),time]
 
+  checkSlot: (el) ->
+    if el.is(':checked')
+      @addSlot el.val()
+    else
+      @removeSlot el.val()
+
+  addSlot: (slot) ->
+    @settings.currentSlots.push slot
+    @highlightDay slot
+
+  removeSlot: (slot) ->
+    pos = @settings.currentSlots.indexOf slot
+    @settings.currentSlots.splice pos, 1
+    @highlightDay slot
+
+  highlightDay: (slot) ->
+    day = @splitDateAndSlot(slot)[0]
+    $("[data-date=#{day}]")[if ~@settings.currentSlots.join('-').indexOf(day) then 'addClass' else 'removeClass'] 'fc-chosen'
+
+  refreshCal: ->
+    @$calendar.fullCalendar 'render'
+
   initCalendar: ->
     _this = @
-    
+
     # Fullcalendar
-    $('#calendar').fullCalendar
+    @$calendar.fullCalendar
       header:
         left: 'prev'
         center: 'title'
         right: 'next'
 
       viewRender: (view, element) ->
-        $('#calendar').find('.fc-day').not('.fc-unavailable').first().click()
+        $('#calendar').find('.fc-day').not('.fc-unbookable').first().click()
 
       dayClick: (date, allDay, jsEvent, view) ->
         $day = $( jsEvent.target ).closest( '.fc-day' )
@@ -136,7 +156,7 @@ SlotPicker:: =
       dayRender: (date, cell) ->
         # mark days which cannot be booked
         unless ~window.bookable_dates.indexOf date.formatIso()
-          cell.addClass 'fc-unavailable'
+          cell.addClass 'fc-unbookable'
 
         # mark days where there a no visit slots
         unless ~window.bookable_days.indexOf date.getDay()
@@ -144,7 +164,7 @@ SlotPicker:: =
 
         # mark days which contain currently selected slots
         for slot in _this.settings.currentSlots
-          cell.addClass 'fc-chosen' if _this._splitDateAndSlot(slot)[0] is date.formatIso()
+          cell.addClass 'fc-chosen' if _this.splitDateAndSlot(slot)[0] is date.formatIso()
 
 # Add module to MOJ namespace
 moj.Modules.slotPicker = init: ->
