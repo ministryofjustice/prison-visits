@@ -80,7 +80,7 @@ class VisitController < ApplicationController
 
   def step6
     render
-    reset_session
+    # reset_session
   end
 
   def abandon

@@ -1,4 +1,5 @@
 class BookingRequest < ActionMailer::Base
+  add_template_helper(ApplicationHelper)
   def request_email(visit)
     @visit = visit
     user = visit.visitors.find { |v| v.email }.email

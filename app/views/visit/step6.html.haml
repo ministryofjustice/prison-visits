@@ -13,7 +13,7 @@
           - slot_date = Date.parse(slot.date)
           %strong= slot_date.strftime("%A %e %B")
           \ -
-          = display_time_slot slot.times
+          = display_slot_and_duration slot.times
 
   %p
     Location:

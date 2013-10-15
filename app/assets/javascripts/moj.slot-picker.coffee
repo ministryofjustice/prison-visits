@@ -77,12 +77,13 @@ SlotPicker:: =
     label = checkbox.closest('label')
     day = label.siblings('h4').text()
     time = label.find('strong').text()
+    duration = label.find('.duration').text()
     
     $slot = @$selectedSlots.eq(index)
 
     $slot.addClass 'is-active'
     $slot.find('.date').text day
-    $slot.find('.time').text time
+    $slot.find('.time').text [time, duration].join(', ')
     # store reference to checkbox
     $slot.find('.js-remove-slot').data 'slot-option', checkbox
 
