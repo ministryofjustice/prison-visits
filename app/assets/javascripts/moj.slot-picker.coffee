@@ -14,6 +14,7 @@ SlotPicker = (el, options) ->
   @bindEvents()
   @markChosenSlots window.current_slots
   @initCalendar()
+  return @
 
 SlotPicker:: =
   defaults:
@@ -169,4 +170,4 @@ SlotPicker:: =
 # Add module to MOJ namespace
 moj.Modules.slotPicker = init: ->
   $('.js-slotpicker').each ->
-    $(this).data 'moj.slotpicker', new SlotPicker($(this), $(this).data())
+    $(this).data 'slotpicker', new SlotPicker($(this), $(this).data())
