@@ -124,10 +124,14 @@
     li
       min-height: 2em
       margin-top: 10px
+      margin-left: 60px
       border: 1px dashed $grey-2
 
+      @include media(desktop)
+        margin-left: 40px
+
       &:first-child
-        margin: 0
+        margin-top: 0
 
       .placeholder
         padding: .75em
@@ -140,11 +144,8 @@
         border-style: solid
         border-color: $white
 
-        a
+        .slot-remove
           display: block
-        
-        .time
-          display: inline-block
 
         .date
           @extend .time
@@ -153,7 +154,7 @@
         .placeholder
           display: none
 
-      a
+      .slot-remove
         display: none
         float: right
         width: 1em
@@ -169,6 +170,17 @@
 
         @include media(desktop)
           font-size: 20px
+
+      .slot-promote
+        float: left
+        width: 40px
+        height: 40px
+        margin-left: -65px
+        background: image-url("promote_icon.png") no-repeat
+
+        @include media(desktop)
+          margin-left: -45px
+          background-size: 50%
       
       p
         margin: 0

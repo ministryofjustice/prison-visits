@@ -28,6 +28,7 @@ SlotPicker:: =
     @$slotOptions = $ '.js-slotpicker-option'
     @$selectedSlots = $ '.selected-slots li'
     @$removeSlots = '.js-remove-slot'
+    @$promoteSlots = '.js-promote-slot'
     @$calendar = $ '#calendar'
 
   bindEvents: ->
@@ -45,6 +46,11 @@ SlotPicker:: =
     @$wrapper.on 'click', @$removeSlots, (e) ->
       e.preventDefault()
       $( $(this).data('slot-option') ).click()
+
+    @$wrapper.on 'click', @$promoteSlots, (e) ->
+      e.preventDefault()
+      _this.promoteSlot $(this).attr('href').split('#')[1] - 1
+      _this.processSlots()
 
   markChosenSlots: (slots) ->
     for slot in slots
@@ -124,6 +130,9 @@ SlotPicker:: =
     pos = @settings.currentSlots.indexOf slot
     @settings.currentSlots.splice pos, 1
     @highlightDay slot
+
+  promoteSlot: (pos) ->
+    @settings.currentSlots = @settings.currentSlots.move pos, pos-1
 
   highlightDay: (slot) ->
     day = @splitDateAndSlot(slot)[0]

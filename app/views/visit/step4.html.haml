@@ -49,7 +49,9 @@
   %ul
     - (1..number_of_slots).each_with_index do |i|
       %li
-        %a.js-remove-slot(href="#") &times;
+        - unless i == 1
+          %a.slot-promote.js-promote-slot{ :href => "##{i}" }
+        %a.slot-remove.js-remove-slot(href="#") &times;
         %p.date
         %p.time
         %p.placeholder Option #{[:one, :two, :three][i-1]}

@@ -1,4 +1,5 @@
 //= require Date.format
+//= require Array.move
 
 //= require jquery
 //= require jquery_ujs
