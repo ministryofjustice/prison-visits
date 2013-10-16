@@ -122,13 +122,11 @@
     background: $grey-3
 
     li
+      position: relative
       min-height: 2em
       margin-top: 10px
-      margin-left: 60px
+      margin-left: 41px
       border: 1px dashed $grey-2
-
-      @include media(desktop)
-        margin-left: 40px
 
       &:first-child
         margin-top: 0
@@ -157,9 +155,12 @@
 
       .slot-remove
         display: none
-        float: right
+        position: absolute
+        top: 50%
+        right: 10px
         width: 1em
         height: 1em
+        margin-top: -15px
         color: $white
         font-size: 30px
         font-weight: bold
@@ -169,20 +170,19 @@
         background: $grey-2
         border-radius: 50%
 
-        @include media(desktop)
-          font-size: 20px
-
       .slot-promote
         display: none
-        float: left
-        width: 40px
-        height: 40px
-        margin-left: -65px
-        background: image-url("promote_icon.png") no-repeat
+        position: absolute
+        top: 50%
+        left: -41px
+        width: 30px
+        height: 30px
+        margin-top: -15px
+        background: image-url("promote_icon.png") no-repeat 0 -90px
 
-        @include media(desktop)
-          margin-left: -45px
-          background-size: 50%
+        @include retina
+          background-position: 0 0
+          background-size: 100%
       
       p
         margin: 0

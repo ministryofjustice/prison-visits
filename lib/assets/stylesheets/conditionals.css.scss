@@ -69,6 +69,12 @@ $mobile-ie6: true !default;
   }
 }
 
+@mixin retina {
+  @media print, (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    @content;
+  }
+}
+
 @mixin ie-lte($version) {
   @if $is-ie {
     @if $ie-version <= $version {
