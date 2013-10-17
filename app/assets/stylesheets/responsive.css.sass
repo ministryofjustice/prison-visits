@@ -1,9 +1,7 @@
-@media (min-width: 769px)
-
-  .hidden--desktop
+.hidden--desktop
+  @include media(desktop)
     display: none
 
-@media (max-width: 768px)
-
-  .hidden--mobile
+.hidden--mobile
+  @include media(mobile)
     display: none
