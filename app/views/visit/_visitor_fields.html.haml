@@ -25,7 +25,7 @@
     = f.text_field :last_name
 
   .group.js-dob{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
-    .hidden--desktop
+    .visible--mobile
       = f.label :date_of_birth do
         Date of birth
         %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
