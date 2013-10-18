@@ -9,13 +9,12 @@
 
 //= require moj
 //= require modules/moj.tabs
+//= require modules/moj.cookie-message
 //= require moj.slot-picker
 //= require visitors
 //= require date-picker
 
 moj.init();
-
-$('html').removeClass('no-js').addClass('js');
 
 // Hacks to show GOV.UK images when offline
 // $('#logo img').attr('src', '/assets/gov.uk_logotype-2x.png');
