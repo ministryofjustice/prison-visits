@@ -18,7 +18,7 @@ describe VisitController do
             first_name: 'Jimmy',
             last_name: 'Fingers',
             date_of_birth: '1986-04-20',
-            number: '31337',
+            number: 'g3133ff',
             prison_name: 'Gartree'
           }
         }
