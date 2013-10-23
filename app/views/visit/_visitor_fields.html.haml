@@ -79,7 +79,7 @@
 
     .group{ :class => ('validation-error' if f.object.errors.include?(:phone)) }
       = f.label :phone do
-        Contact phone number (optional)
+        Contact phone number
         %span.validation-message= f.object.errors[:phone].first if f.object.errors.include?(:phone)
       = f.telephone_field :phone
   

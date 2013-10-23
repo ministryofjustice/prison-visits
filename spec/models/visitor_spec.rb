@@ -13,6 +13,9 @@ describe Visitor do
       v.should_not be_valid
 
       v.email = 'jimmy@fingers.com'
+      v.should_not be_valid
+      
+      v.phone = '01344 123456'
       v.should be_valid
     end
   end
