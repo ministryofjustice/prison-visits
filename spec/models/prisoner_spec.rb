@@ -15,4 +15,16 @@ describe Prisoner do
       prisoner.should_not be_valid
     end
   end
+
+  ['123', 'abc', 'a123bc', 'aaa1234bc', 'w5678xyz'].each do |number|
+    it "must fail if prisoner number is #{number}" do
+      prisoner.send('number=', number)
+      prisoner.should_not be_valid
+    end
+  end
+
+  it "must pass if prisoner number is valid" do
+    prisoner.number.should have(7).characters
+    prisoner.should be_valid
+  end
 end
