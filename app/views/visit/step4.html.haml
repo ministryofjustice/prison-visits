@@ -73,6 +73,7 @@
             = text_field_tag "visit[slots][][times]", slot.times
 
   .actions
+    = f.button 'Add another visitor',  :name => 'next', :value => 'add'
     = f.button :Continue, :name => 'next', :value => 'continue', :class => 'button button-primary'
 
 :javascript

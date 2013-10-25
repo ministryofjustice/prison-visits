@@ -55,8 +55,9 @@ class VisitController < ApplicationController
   end
 
   def update_step4
-    visit.slots = slot_params.map do |p|
-      Slot.new(p)
+    visit.slots = []
+    slot_params.each_with_index do |slot_hash, i|
+      visit.slots << Slot.new(slot_hash.merge(index: i))
     end
     
     go_back = visit.slots.select do |slot|

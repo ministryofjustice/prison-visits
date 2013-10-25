@@ -153,7 +153,7 @@ describe VisitController do
             slots: [
                     {
                       date: '2013-01-01',
-                      times: '13:45 - 20:00'
+                      times: '1345-2000'
                     }
                    ]
           }
@@ -169,7 +169,7 @@ describe VisitController do
     context "no slots" do
       let(:slots_hash) do
         {
-          visit: { slots: [{}] }
+          visit: { slots: [{date: '', times: ''}] }
         }
       end
 
@@ -182,7 +182,20 @@ describe VisitController do
     context "exactly three slots" do
       let(:slots_hash) do
         {
-          visit: { slots: [{date: '2013-01-01', times: '12:00 - 13:00'}] * 3 }
+          visit: { slots: [{date: '2013-01-01', times: '1200-1300'}] * 3 }
+        }
+      end
+
+      it "accepts the submission" do
+        post :update_step4, slots_hash
+        response.should redirect_to(step5_path)
+      end
+    end
+
+    context "exactly two slots" do
+      let(:slots_hash) do
+        {
+          visit: { slots: [{date: '2013-01-01', times: '1200-1300'}] * 2 }
         }
       end
 
@@ -195,7 +208,7 @@ describe VisitController do
     context "too many slots" do
       let(:slots_hash) do
         {
-          visit: { slots: [{ date: '2013-01-01', times: '12:00 - 13:00' }] * 4 }
+          visit: { slots: [{ date: '2013-01-01', times: '1200-1300' }] * 4 }
         }
       end
 

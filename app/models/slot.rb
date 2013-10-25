@@ -38,7 +38,13 @@ class Slot
 
   attr_accessor :date
   attr_accessor :times
+  attr_accessor :index
 
-  validates_presence_of :date
-  validates_presence_of :times
+  validate do
+    if index == 0
+      errors.add(:date, 'must be given') unless date.present? && date.size == 10
+      errors.add(:times, 'must be given') unless times.present? && times.size == 9
+    end
+  end
+
 end
