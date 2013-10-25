@@ -19,9 +19,10 @@ class Visitor
   validates_presence_of :first_name
   validates_presence_of :last_name
   validates_inclusion_of :date_of_birth, in: ->(_) { 100.years.ago.to_date..Date.today }, message: "must be within last 100 years"
+  validate :validate_user_or_additional
 
-  validate do
-    if index == 0
+  def validate_user_or_additional
+    if index.zero?
       errors.add(:email, 'must be given') unless email.present? && email.size > 5
       errors.add(:phone, 'must be given and include area code') unless phone.present? && phone.size > 10
       errors.add(:date_of_birth, 'You must be over 18 years old to book a visit') unless date_of_birth.present? && date_of_birth < 18.years.ago
@@ -31,11 +32,4 @@ class Visitor
     end
   end
 
-  def compactable?
-    if index == 0
-      first_name.present? && last_name.present? && date_of_birth.present? && email.present?
-    else
-      first_name.present? && last_name.present? && date_of_birth.present?
-    end
-  end
 end
