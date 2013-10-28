@@ -18,6 +18,7 @@
 data/ait.csv
 .DS_Store
 
+/tests/*.png
 
 # YARD artifacts
 **.orig

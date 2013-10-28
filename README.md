@@ -19,3 +19,26 @@ Run the server by running:
     rails server
 
 Then point your favourite browser to [http://localhost:3000/](http://localhost:3000/).
+
+## Automated tests
+
+This app uses [RSpec](http://rspec.info/) for Rails (server-side) tests and [CasperJS](casperjs.org) for (client-side) tests.
+
+### Server-side
+
+    rake
+
+### Client-side
+
+For browser tests you will need PhantonJS and CasperJS installed.
+
+    brew update && brew install phantomjs
+    brew install casperjs --devel
+
+To run the tests:
+
+    make
+
+If tests fail, a screenshot of the failure can be saved to `/tests/failure.png` by running:
+
+    make test-i
