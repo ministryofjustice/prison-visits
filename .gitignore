@@ -17,7 +17,7 @@
 /public/uploads
 data/ait.csv
 .DS_Store
-
+/node_modules
 /tests/*.png
 
 # YARD artifacts
