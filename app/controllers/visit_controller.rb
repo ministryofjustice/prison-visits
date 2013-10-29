@@ -57,7 +57,7 @@ class VisitController < ApplicationController
   def update_step4
     visit.slots = []
     slot_params.each_with_index do |slot_hash, i|
-      visit.slots << Slot.new(slot_hash.merge(index: i))
+      visit.slots << Slot.new(slot_hash_from_string(slot_hash[:slot]).merge(index: i))
     end
     
     go_back = visit.slots.select do |slot|
@@ -104,5 +104,19 @@ private
 
   def slot_params
     params.require(:visit).require(:slots)
+  end
+
+  def slot_hash_from_string(str)
+    # From 2013-11-02-0945-1115
+    # To { date: '2013-11-02', times: '0945-1115' }
+    segments = str.split('-')
+    if segments.length.zero?
+      { date: '', times: '' }
+    else
+      {
+        date: segments[0..2].join('-'),
+        times: segments[3..4].join('-')
+      }
+    end
   end
 end

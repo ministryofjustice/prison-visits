@@ -38,6 +38,7 @@ class Slot
 
   attr_accessor :date
   attr_accessor :times
+  attr_accessor :slot
   attr_accessor :index
 
   validate do

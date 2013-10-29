@@ -151,11 +151,10 @@ describe VisitController do
         {
           visit: {
             slots: [
-                    {
-                      date: '2013-01-01',
-                      times: '1345-2000'
-                    }
-                   ]
+              {
+                slot: '2013-01-01-1345-2000'
+              }
+            ]
           }
         }
       end
@@ -169,7 +168,7 @@ describe VisitController do
     context "no slots" do
       let(:slots_hash) do
         {
-          visit: { slots: [{date: '', times: ''}] }
+          visit: { slots: [{slot: ''}] }
         }
       end
 
@@ -182,7 +181,7 @@ describe VisitController do
     context "exactly three slots" do
       let(:slots_hash) do
         {
-          visit: { slots: [{date: '2013-01-01', times: '1200-1300'}] * 3 }
+          visit: { slots: [{slot: '2013-01-01-1200-1300'}] * 3 }
         }
       end
 
@@ -195,7 +194,7 @@ describe VisitController do
     context "exactly two slots" do
       let(:slots_hash) do
         {
-          visit: { slots: [{date: '2013-01-01', times: '1200-1300'}] * 2 }
+          visit: { slots: [{slot: '2013-01-01-1200-1300'}] * 2 }
         }
       end
 
@@ -208,7 +207,7 @@ describe VisitController do
     context "too many slots" do
       let(:slots_hash) do
         {
-          visit: { slots: [{ date: '2013-01-01', times: '1200-1300' }] * 4 }
+          visit: { slots: [{ slot: '2013-01-01-1200-1300' }] * 4 }
         }
       end
 

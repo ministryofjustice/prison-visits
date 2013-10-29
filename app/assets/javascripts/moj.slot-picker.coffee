@@ -24,7 +24,7 @@ SlotPicker:: =
 
   cacheEls: ->
     @$wrapper = $ '#wrapper'
-    @$slotInputs = $ '.js-slotpicker-chosen fieldset'
+    @$slotInputs = $ '.js-slotpicker-slot'
     @$slotOptions = $ '.js-slotpicker-option'
     @$selectedSlots = $ '.selected-slots li'
     @$removeSlots = '.js-remove-slot'
@@ -69,7 +69,7 @@ SlotPicker:: =
     slots.find('.date, .time').text ''
 
   emptySlotInputs: ->
-    @$slotInputs.find('input').val ''
+    @$slotInputs.find('select').val ''
 
   populateUiSlots: (index, checkbox) ->
     date = @splitDateAndSlot(checkbox.val())[0]
@@ -88,9 +88,7 @@ SlotPicker:: =
     $slot.find('.js-remove-slot').data 'slot-option', checkbox
 
   populateSlotInputs: (index, chosen) ->
-    slot = @splitDateAndSlot chosen
-    @$slotInputs.eq(index).find('[name$="date]"]').val slot[0]
-    @$slotInputs.eq(index).find('[name$="times]"]').val slot[1]
+    @$slotInputs.eq(index).find('[name="visit[slots][][slot]"]').val chosen
 
   processSlots: ->
     _this = this
