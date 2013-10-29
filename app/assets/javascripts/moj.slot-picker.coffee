@@ -156,9 +156,25 @@ SlotPicker:: =
       dayClick: (date, allDay, jsEvent, view) ->
         $day = $( jsEvent.target ).closest( '.fc-day' )
 
+        # Show the slots for the selected day
         $('.js-slotpicker-options').removeClass 'is-active'
         $("#date-#{date.formatIso()}").addClass 'is-active'
 
+        # Show unbookable day message
+        unless ~window.bookable_dates.indexOf date.formatIso()
+          today = new Date((new Date()).formatIso())
+          gap = new Date()
+          gap.setDate(today.getDate()+1)
+          bookingGap = new Date(gap.formatIso())
+          if date < today
+            $('#in-the-past').addClass 'is-active'
+          if date >= today
+            if date > bookingGap
+              $('#too-far-ahead').addClass 'is-active'
+            else
+              $('#booking-gap').addClass 'is-active'
+
+        # Highlight the currently selected day on the calendar
         $('.fc-day').removeClass('fc-state-highlight')
         $day.addClass('fc-state-highlight')
 
