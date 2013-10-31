@@ -6,8 +6,8 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate
   
   def authenticate
-    unless Rails.env.development?
-      authenticate_or_request_with_http_basic do |username, password|
+    if Rails.env.production?
+      request_http_basic_authentication do |username, password|
         username == ENV['HTTP_USER'] && password == ENV['HTTP_PASSWORD']
       end
     end
