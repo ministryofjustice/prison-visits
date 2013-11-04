@@ -1,6 +1,8 @@
 class Slot
   include ActiveModel::Model
 
+  LEAD_DAYS = 3
+  BOOKABLE_DAYS = 28
   TIMES = {
     rochester: {
       mon: [['1400','1600']],

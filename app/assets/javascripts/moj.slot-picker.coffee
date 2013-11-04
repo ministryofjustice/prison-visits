@@ -163,13 +163,11 @@ SlotPicker:: =
         # Show unbookable day message
         unless ~window.bookable_dates.indexOf date.formatIso()
           today = new Date((new Date()).formatIso())
-          gap = new Date()
-          gap.setDate(today.getDate()+1)
-          bookingGap = new Date(gap.formatIso())
+          bookingFrom = new Date(window.bookable_from)
           if date < today
             $('#in-the-past').addClass 'is-active'
           if date >= today
-            if date > bookingGap
+            if date > bookingFrom
               $('#too-far-ahead').addClass 'is-active'
             else
               $('#booking-gap').addClass 'is-active'
