@@ -177,7 +177,11 @@ SlotPicker:: =
         $day.addClass('fc-state-highlight')
 
       dayRender: (date, cell) ->
-        # mark days which cannot be booked
+        # mark days which can be booked
+        if ~window.bookable_dates.indexOf date.formatIso()
+          cell.addClass 'fc-bookable'
+        
+        # mark days which can NOT be booked
         unless ~window.bookable_dates.indexOf date.formatIso()
           cell.addClass 'fc-unbookable'
 
