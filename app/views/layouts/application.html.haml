@@ -3,6 +3,8 @@
   %head
     = render "shared/head", :title => Rails.configuration.app_title
     = csrf_meta_tag
+    :javascript
+      var pvbe = pvbe || {};
 
   %body{:class => [Rails.configuration.phase, Rails.configuration.product_type, controller.action_name].join(' ') }
 

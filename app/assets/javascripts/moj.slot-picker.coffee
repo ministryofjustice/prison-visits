@@ -12,7 +12,7 @@ SlotPicker = (el, options) ->
   @settings = $.extend {}, @defaults, options
   @cacheEls el
   @bindEvents()
-  @markChosenSlots window.current_slots
+  @markChosenSlots pvbe.current_slots
   @initCalendar()
   return @
 
@@ -161,9 +161,9 @@ SlotPicker:: =
         $("#date-#{date.formatIso()}").addClass 'is-active'
 
         # Show unbookable day message
-        unless ~window.bookable_dates.indexOf date.formatIso()
+        unless ~pvbe.bookable_dates.indexOf date.formatIso()
           today = new Date((new Date()).formatIso())
-          bookingFrom = new Date(window.bookable_from)
+          bookingFrom = new Date(pvbe.bookable_from)
           if date < today
             $('#in-the-past').addClass 'is-active'
           if date >= today
@@ -178,15 +178,15 @@ SlotPicker:: =
 
       dayRender: (date, cell) ->
         # mark days which can be booked
-        if ~window.bookable_dates.indexOf date.formatIso()
+        if ~pvbe.bookable_dates.indexOf date.formatIso()
           cell.addClass 'fc-bookable'
         
         # mark days which can NOT be booked
-        unless ~window.bookable_dates.indexOf date.formatIso()
+        unless ~pvbe.bookable_dates.indexOf date.formatIso()
           cell.addClass 'fc-unbookable'
 
         # mark days where there a no visit slots
-        unless ~window.bookable_days.indexOf date.getDay()
+        unless ~pvbe.bookable_week_days.indexOf date.getDay()
           cell.addClass 'fc-unbookable'
 
         # mark days which contain currently selected slots
