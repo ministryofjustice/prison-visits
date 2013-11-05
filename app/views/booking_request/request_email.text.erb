@@ -28,5 +28,7 @@ Visiting slot information
 =========================
 
 <% @visit.slots.each_with_index do |slot, index| %>
+<% if slot.date.present? %>
 <%= index + 1%>. <%= Date.parse(slot.date).strftime("%A %e %B") %>, <%= display_time_slot(slot.times) %>
+<% end %>
 <% end %>
