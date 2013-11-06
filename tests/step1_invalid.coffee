@@ -1,6 +1,8 @@
 casper.test.on 'fail', ->
   casper.capture 'tests/failure.png'
 
+outputImages = if casper.cli.get('images') is 'on' then true else false
+
 casper.test.begin 'Prison Visit Booking: Step 1 invalid', (test) ->
 
   casper.start 'http://localhost:3000'
@@ -22,7 +24,7 @@ casper.test.begin 'Prison Visit Booking: Step 1 invalid', (test) ->
     test.assertTextExists 'must be a valid prisoner number', 'page contains prisoner number error'
 
   casper.then ->
-    casper.capture 'tests/step1_invalid.png'
+    casper.capture 'tests/step1_invalid.png' if outputImages
 
   casper.run ->
     test.done()
