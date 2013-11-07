@@ -183,10 +183,12 @@ SlotPicker:: =
         
         # mark days which can NOT be booked
         unless ~pvbe.bookable_dates.indexOf date.formatIso()
+          cell.removeClass 'fc-bookable'
           cell.addClass 'fc-unbookable'
 
         # mark days where there a no visit slots
         unless ~pvbe.bookable_week_days.indexOf date.getDay()
+          cell.removeClass 'fc-bookable'
           cell.addClass 'fc-unbookable'
 
         # mark days which contain currently selected slots
