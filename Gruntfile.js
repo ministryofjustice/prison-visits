@@ -11,7 +11,7 @@ module.exports = function(grunt) {
     // Test the coffee script against JSlint
     coffee_jshint: {
       options: {
-        globals: ['console','casper']
+        globals: ['console','casper','__utils__']
       },
       source: {
         src: 'tests/**/*.coffee'
@@ -38,11 +38,23 @@ module.exports = function(grunt) {
     // Run casperjs tests via the command line
     shell: {
       tests: {
-        options: {},
+        options: {
+          stdout: true
+        },
         // removes failure image
         // runs casperjs tests
         // opens a new failure image if tests fail
-        command: 'rm -f tests/failure.png; casperjs test tests || open tests/failure.png'
+        // command: 'rm -f tests/failure.png; casperjs test tests || open tests/failure.png'
+        command: 'rm -f tests/failure.png; casperjs test tests'
+      }
+    },
+
+    notify: {
+      casperjs: {
+        options: {
+          title: 'CasperJS tests failed',  // optional
+          message: 'See tests/failure.png for details', //required
+        }
       }
     },
 
@@ -50,8 +62,12 @@ module.exports = function(grunt) {
     watch: {
       scripts: {
         files: ['tests/**/*.coffee','app/**/*'],
-        tasks: ['coffeelint','coffee_jshint']
+        tasks: ['default']
       },
+      failure: {
+        files: ['tests/*.png'],
+        tasks: ['notify:casperjs']
+      }
     }
   });
 
@@ -60,6 +76,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-coffeelint');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-notify');
 
   // Default task(s)
   grunt.registerTask('default', ['coffeelint','coffee_jshint','shell']);

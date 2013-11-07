@@ -39,6 +39,14 @@ To run the tests:
 
     make
 
-If tests fail, a screenshot of the failure can be saved to `/tests/failure.png` by running:
+To see a screen shot of each completed step run:
 
     make test-i
+
+If tests fail, a screenshot of the failure is saved to `/tests/failure.png`.
+
+#### GruntJS
+
+For convenience, GruntJS has been added to 'lint' the test scripts. Also Grunt can watch the `app/` and `tests/` folders for changes and automatically run the client-side tests (assuming you have alread installed NodeJS and run `npm install`).
+
+    grunt watch
