@@ -1,4 +1,10 @@
-$('.js-dob').on 'change', '.js-dob__select', ->
+field = $('.js-dob')
+
+field.find('.js-dob__input').addClass 'visible--mobile'
+
+field.find('.js-dob__dropdowns').removeClass('hidden').addClass 'hidden--mobile'
+
+field.on 'change', '.js-dob__select', ->
   dob = $(this).closest '.js-dob'
 
   day = dob.find '.js-dob__day'

@@ -22,15 +22,15 @@
     = f.text_field :last_name
 
   .group.js-dob{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
-    .visible--mobile
+    .js-dob__input
       = f.label :date_of_birth do
         Date of birth
         %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
-      %input#prisoner_date_of_birth.js-dob__input{ value: (visit.prisoner.date_of_birth.present? ? visit.prisoner.date_of_birth : 32.years.ago.beginning_of_year.strftime('%Y-%m-%d') )}(type="date" name="prisoner[date_of_birth]")
+      %input#prisoner_date_of_birth.js-dob__input{ value: (visit.prisoner.date_of_birth.present? ? visit.prisoner.date_of_birth : 32.years.ago.beginning_of_year ).strftime('%Y-%m-%d') }(type="date" name="prisoner[date_of_birth]")
       %p.group__help
         %small Please use the format dd/mm/yyyy
     
-    .hidden--mobile
+    .js-dob__dropdowns.hidden
       %label(for="prisoner_dob_day")
         Date of birth
         %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
