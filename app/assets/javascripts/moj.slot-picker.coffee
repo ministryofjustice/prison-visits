@@ -1,6 +1,6 @@
-# jslint browser: true, evil: false, plusplus: true, white: true, indent: 2, nomen: true 
+# jslint browser: true, evil: false, plusplus: true, white: true, indent: 2, nomen: true
 
-# global moj, $ 
+# global moj, $
 
 # SlotPicker modules for MOJ
 # Dependencies: moj, jQuery

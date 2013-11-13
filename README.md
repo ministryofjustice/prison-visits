@@ -47,6 +47,10 @@ If tests fail, a screenshot of the failure is saved to `/tests/failure.png`.
 
 #### GruntJS
 
-For convenience, GruntJS has been added to 'lint' the test scripts. Also Grunt can watch the `app/` and `tests/` folders for changes and automatically run the client-side tests (assuming you have alread installed NodeJS and run `npm install`).
+For convenience, GruntJS has been added to watch the `app/` and `tests/` folders for changes and automatically run the lint and integration tests. Assuming you have [NodeJS](http://nodejs.org/) installed, run `npm install` and then one of the following commands:
 
-    grunt watch
+    grunt             # JS lint application code
+    grunt tests       # run integration tests
+    grunt watch       # monitor all
+    grunt watch:app   # monitor /app JS and run lint automatically
+    grunt watch:tests # monitor test scripts and run automatically

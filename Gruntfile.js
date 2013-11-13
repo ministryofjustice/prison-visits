@@ -10,27 +10,39 @@ module.exports = function(grunt) {
 
     // Test the coffee script against JSlint
     coffee_jshint: {
-      options: {
-        globals: ['console','casper','__utils__']
+      app: {
+        source: {
+          src: 'app/assets/javascripts/**/*'
+        }
       },
-      source: {
-        src: 'tests/**/*.coffee'
+      tests: {
+        options: {
+          globals: ['console','casper','__utils__']
+        },
+        source: {
+          src: 'tests/**/*.coffee'
+        }
       }
     },
 
     // Test the coffee script quality
     coffeelint: {
+      options: {
+        'no_trailing_whitespace': {
+          'level': 'error'
+        },
+        'max_line_length': {
+          'level': 'ignore'
+        }
+      },
+      app: {
+        files: {
+          src: ['app/assets/**/*.coffee']
+        }
+      },
       tests: {
         files: {
           src: ['tests/**/*.coffee']
-        },
-        options: {
-          'no_trailing_whitespace': {
-            'level': 'error'
-          },
-          'max_line_length': {
-            'level': 'ignore'
-          }
         }
       }
     },
@@ -60,14 +72,22 @@ module.exports = function(grunt) {
 
     // Monitor file changes
     watch: {
-      scripts: {
-        files: ['tests/**/*.coffee','app/**/*'],
+      app: {
+        files: ['app/assets/javascripts/**/*'],
         tasks: ['default']
+      },
+      tests: {
+        files: ['tests/**/*.coffee'],
+        tasks: ['tests']
       },
       failure: {
         files: ['tests/*.png'],
         tasks: ['notify:casperjs']
       }
+    },
+
+    jshint: {
+      all: ['Gruntfile.js', 'app/assets/javascripts/**/*.js']
     }
   });
 
@@ -77,8 +97,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-notify');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 
   // Default task(s)
-  grunt.registerTask('default', ['coffeelint','coffee_jshint','shell']);
+  grunt.registerTask('default', ['jshint','coffeelint:app','coffee_jshint:app']);
+  grunt.registerTask('tests', ['coffeelint:tests','coffee_jshint:tests','shell']);
 
 };
