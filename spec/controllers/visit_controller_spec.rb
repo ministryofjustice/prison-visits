@@ -225,8 +225,8 @@ describe VisitController do
     end
 
     it "should clear out the session" do
-      post :abandon
-      session.should be_empty
+      get :abandon
+      session[:visit].should be_nil
     end
   end
 end

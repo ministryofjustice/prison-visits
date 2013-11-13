@@ -41,5 +41,5 @@
   = link_to 'View/edit details', step2_path
 
 .actions
-  = link_to 'Cancel and delete all details', abandon_path, :class => 'pull-right', :confirm => "Are you sure you wish to cancel this visit request?\r\rThis will delete all the information you have entered"
+  = link_to 'Cancel and delete all details', abandon_path, :class => 'pull-right', :'data-confirm' => "Are you sure you wish to cancel this visit request?\r\rThis will delete all the information you have entered"
   = button_to 'Send request', update_step5_path, :class => 'button button-primary'
