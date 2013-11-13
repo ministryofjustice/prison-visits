@@ -10,6 +10,7 @@
 //= require moj
 //= require modules/moj.tabs
 //= require modules/moj.cookie-message
+//= require modules/moj.hijacks
 //= require moj.slot-picker
 //= require visitors
 //= require date-picker
