@@ -86,6 +86,7 @@ class VisitController < ApplicationController
 
   def abandon
     reset_session
+    redirect_to step1_path, notice: "Your request has been cancelled."
   end
 
 private

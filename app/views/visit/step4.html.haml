@@ -59,7 +59,7 @@
 
   .js-slotpicker-chosen
     - @slots.each_with_index do |slot, index|
-      = f.fields_for :slots, slot do |builder|
+      = f.fields_for :slots, slot do
 
         .group.js-slotpicker-slot
           %label Option #{index+1}
@@ -77,6 +77,7 @@
                     %option{ value: value, selected: selected }= date.strftime('%A, %e %B - ') + Time.strptime(slot[0].to_s, '%H%M').strftime('%l:%M%P')
 
   .actions
+    = link_to 'Cancel and delete all details', abandon_path, :class => 'pull-right', :confirm => "Are you sure you wish to cancel this visit request?\r\rThis will delete all the information you have entered"
     = f.button :Continue, :name => 'next', :value => 'continue', :class => 'button button-primary'
 
 :javascript
