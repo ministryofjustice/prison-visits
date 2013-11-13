@@ -29,7 +29,7 @@
       = f.label :date_of_birth do
         Date of birth
         %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
-      %input.js-dob__input{ id: "visitor_date_of_birth_#{index}", value: (visit.visitors[index].date_of_birth.present? ? visit.visitors[index].date_of_birth : year_limit(index).years.ago.beginning_of_year.strftime('%Y-%m-%d') )}(type="date" name="visit[visitor][][date_of_birth]")
+      %input.js-dob__input{ id: "visitor_date_of_birth_#{index}", value: (visitor.date_of_birth.present? ? visitor.date_of_birth : year_limit(index).years.ago.beginning_of_year.strftime('%Y-%m-%d') )}(type="date" name="visit[visitor][][date_of_birth]")
       %p.group__help
         %small Please use the format dd/mm/yyyy.
         - if index.zero?
@@ -43,17 +43,17 @@
       %select.js-dob__select.js-dob__day
         %option day
         - dob_day_range.each do |day|
-          %option{ value: day.strftime('%d'), selected: ('selected' if visit.visitors[index].date_of_birth.present? && visit.visitors[index].date_of_birth.strftime('%d') == day.strftime('%d') ) }= day.strftime('%e')
+          %option{ value: day.strftime('%d'), selected: ('selected' if visitor.date_of_birth.present? && visitor.date_of_birth.strftime('%d') == day.strftime('%d') ) }= day.strftime('%e')
       
       %select.js-dob__select.js-dob__month
         %option month
         - dob_month_range.keys.each do |month|
-          %option{ value: month.strftime('%m'), selected: ('selected' if visit.visitors[index].date_of_birth.present? && visit.visitors[index].date_of_birth.strftime('%m') == month.strftime('%m') ) }= month.strftime('%B')
+          %option{ value: month.strftime('%m'), selected: ('selected' if visitor.date_of_birth.present? && visitor.date_of_birth.strftime('%m') == month.strftime('%m') ) }= month.strftime('%B')
 
       %select.js-dob__select.js-dob__year
         %option year
         - dob_year_range(index).each do |year|
-          %option{ value: year, selected: select_year(visit.visitors[index].date_of_birth, year, Visitor::USER_MIN_AGE) }= year
+          %option{ value: year, selected: select_year(visitor.date_of_birth, year, Visitor::USER_MIN_AGE) }= year
 
       %p.group__help
         %small Please use the format dd/mm/yyyy.

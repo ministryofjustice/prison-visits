@@ -62,3 +62,20 @@ additionalVisitors.on 'click', '.js-delete-visitor', (e) ->
   
   toggleAdd()
   highlightContinue true
+
+$('#number_of_visitors').on 'change', ->
+  console.log $(this).val()
+  compiled = _.template($('#additional-visitor').html())
+  $('button[value=add]').before compiled
+  # num = $(this).val()
+  # visitors = $('.visitor')
+  # clone = $('.visitor').first().clone().removeAttr('id')
+  # clone.find('input, select').val('')
+  # clone.find('[type=email],[type=tel]').closest('.group').remove()
+  # console.log num
+  # console.log typeof num
+  # i = 0
+  # while i < (num+1)
+  #   console.log i
+  #   $('button[value=add]').before clone
+  #   i++

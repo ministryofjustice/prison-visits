@@ -13,9 +13,17 @@
     = f.fields_for visitor, index: '' do |visitor_form|
       = render 'visitor_fields', f: visitor_form, index: index, visitor: visitor
 
+  .group
+    %label(for="number_of_visitors") Additional visitors
+    = select_tag 'number_of_visitors', '<option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>'.html_safe
+  
   = f.button 'Add another visitor',  :name => 'next', :value => 'add'
   %br
   %br
-  .actions
-    = link_to 'Cancel and delete all details', abandon_path, :class => 'pull-right', :'data-confirm' => "Are you sure you wish to cancel this visit request?\r\rThis will delete all the information you have entered"
-    = f.button :Continue, :name => 'next', :value => 'continue', :class => 'button button-primary', :id => 'continue'
+  = f.button :Continue, :name => 'next', :value => 'continue', :class => 'button button-primary', :id => 'continue'
+
+-# Repeat an empty instance of the visitor fields to append additional visitors on the client-side
+= form_for(Visit.new(prisoner: Prisoner.new, visitors: [Visitor.new, Visitor.new], slots: []), url: '', html: { id: 'template' }) do |f|
+  = f.fields_for Visitor.new, index: '' do |visitor_form|
+    %script#additional-visitor(type="text/html")
+      = render 'visitor_fields', f: visitor_form, index: 1, visitor: Visitor.new
