@@ -15,3 +15,12 @@
   display: none
   .js-enabled &
     display: block
+
+@media print
+  .hidden--print
+    display: none
+
+.visible--print
+  display: none
+  @media print
+    display: inherit
