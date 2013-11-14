@@ -37,7 +37,7 @@ module VisitHelper
   end
 
   def bookable_to
-    bookable_from + Slot::BOOKABLE_DAYS.days
+    Date.today + Slot::BOOKABLE_DAYS.days
   end
 
   def bookable_range
