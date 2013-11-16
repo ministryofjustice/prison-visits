@@ -1,81 +1,31 @@
-additionalVisitors = $('#visitor-1, #visitor-2, #visitor-3, #visitor-4, #visitor-5')
-addVisitor = $('#add-visitor')
-visitors = $('.visitor')
+# Disable the add visitor button
+$('button[value=add]').prop 'disabled', true
 
-summarise = (visitor) ->
-  visitor.addClass 'compact'
-  visitor.removeClass 'js-editing'
-  
-  name = visitor.find('[name$="[first_name]"]').val() + ' ' + visitor.find('[name$="[last_name]"]').val()
-  dob = visitor.find('[name$="[date_of_birth]"]').val()
 
-  visitor.find('.summary .name').text name
-  visitor.find('.summary .dob').text dob
+addVisitorBlocks = (amount) ->
+  i = 0
+  while i < amount
+    compiled = _.template($('#additional-visitor').html())
+    $('.actions').before compiled
+    i++
 
-  visitor.find('.js-save-visitor').addClass('button-secondary').removeClass('button-primary').text('Save this visitor')
 
-edit = (visitor) ->
-  visitor.show().removeClass 'compact'
-  visitor.addClass 'js-editing'
-  visitor.find('input').first().focus()
+removeVisitorBlocks = (amount) ->
+  v = $('.visitor')
+  r = v.length - amount
 
-highlightContinue = (highlight) ->
-  $('#continue')[if highlight then 'addClass' else 'removeClass'] 'button-primary'
+  v.filter( (i) ->
+    true if i >= r
+  ).remove()
 
-toggleAdd = ->
-  slotsLeft = visitors.length < 6
-  noEdits = additionalVisitors.filter('.js-editing').length is 0
-  addVisitor[if noEdits and slotsLeft then 'show' else 'hide']()
-
-# 'Add' a visitor
-addVisitor.on 'click', (e) ->
-  e.preventDefault()
-
-  summarise $('#visitor-0')
-  
-  edit $('.visitor').first()
-  
-  highlightContinue false
-  toggleAdd()
-
-# 'Save' a visitor
-$('.js-save-visitor').click (e) ->
-  e.preventDefault()
-  
-  summarise $(this).closest('.visitor')
-  
-  toggleAdd()
-  highlightContinue true
-
-# Edit a visitor
-$('.js-edit-visitor').on 'click', (e) ->
-  e.preventDefault()
-  edit $(this).closest('.visitor')
-
-  toggleAdd()
-
-# 'Cancel' a visitor
-additionalVisitors.on 'click', '.js-delete-visitor', (e) ->
-  e.preventDefault()
-  
-  $(this).closest('.visitor').remove()
-  
-  toggleAdd()
-  highlightContinue true
 
 $('#number_of_visitors').on 'change', ->
-  console.log $(this).val()
-  compiled = _.template($('#additional-visitor').html())
-  $('button[value=add]').before compiled
-  # num = $(this).val()
-  # visitors = $('.visitor')
-  # clone = $('.visitor').first().clone().removeAttr('id')
-  # clone.find('input, select').val('')
-  # clone.find('[type=email],[type=tel]').closest('.group').remove()
-  # console.log num
-  # console.log typeof num
-  # i = 0
-  # while i < (num+1)
-  #   console.log i
-  #   $('button[value=add]').before clone
-  #   i++
+  desired = $(this).val()
+  current = $('.visitor').length - 1
+
+  # add visitors blocks if the desired amount is more than is currently in the form
+  if desired > current
+    addVisitorBlocks desired-current
+  # leave as is if the desired amount is the same as currently available
+  # remove visitor blocks if the form currently contains more that desired
+  else removeVisitorBlocks(current-desired) if desired < current

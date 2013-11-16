@@ -1,2 +1,7 @@
 %h2 Additional visitors
-%p You can have up to 2 adults (over 18) and 3 children visiting at the same time. Seats are provided only for adults, so children may have to sit on your lap. 
+%p.hidden--js-enabled You can have up to 2 adults (over 18) and 3 children visiting at the same time. Seats are provided only for adults, so children may have to sit on your lap. 
+%p.visible--js-enabled How many visitors do you wish to take with you?
+
+.group.visible--js-enabled
+  %label(for="number_of_visitors") Adults
+  = select_tag 'number_of_visitors', (1..5).map{|n|"<option>#{n}</option>"}.unshift('<option value="0">none</option>').join.html_safe

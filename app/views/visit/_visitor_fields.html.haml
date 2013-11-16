@@ -1,13 +1,5 @@
 
 .visitor.cf{ :id => "visitor-#{index}" }
-  .summary
-    %p Visitor #{index+1}
-    %h4
-      %span.name #{visitor.first_name} #{visitor.last_name}
-      \ -
-      %span.dob
-        = visitor.date_of_birth.strftime("%e %B %Y") if visitor.date_of_birth.present?
-    = link_to 'Edit details', "#visitor-#{index}", :class => 'js-edit-visitor'
 
   - unless index.zero?
     %h3 Enter the additional visitor’s details below
@@ -55,17 +47,14 @@
         - dob_year_range(index).each do |year|
           %option{ value: year, selected: select_year(visitor.date_of_birth, year, Visitor::USER_MIN_AGE) }= year
 
-      %p.group__help
-        %small Please use the format dd/mm/yyyy.
-        - if index.zero?
+      - if index.zero?
+        %p.group__help
           %small You must be over 18 to book a visit.
 
   - unless index.zero?
-    .quick-actions
-      .js-remove__button= link_to 'Remove', '#', :class => 'pull-right js-delete-visitor'
-      %label.js-remove__checkbox
-        = check_box_tag 'visit[visitor][][_destroy]', 1, false, { id: "_destroy-#{index}" }
-        remove
+    %label.remove-visitor
+      = check_box_tag 'visit[visitor][][_destroy]', 1, false, { id: "_destroy-#{index}" }
+      remove
 
   - if index.zero?
   
