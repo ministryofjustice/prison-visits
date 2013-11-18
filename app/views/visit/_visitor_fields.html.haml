@@ -2,7 +2,12 @@
 .visitor.cf{ :id => "visitor-#{index}", :class => (visitor.type if visitor.type.present?) }
 
   - unless index.zero?
-    %h3 Enter the additional visitor’s details below
+    %h3
+      Enter the details of the
+      %strong.js-visitor-position
+      additional
+      %strong.js-visitor-type
+      visitor
   
   .group{ :class => ('validation-error' if f.object.errors.include?(:first_name)) }
     = f.label :first_name do
@@ -68,7 +73,10 @@
       = f.telephone_field :phone
 
   - unless index.zero?
-    = f.select :type, options_for_select([['Adult','adult'],['Child','child']],visitor.type), {}, :class => 'visitor-type'
+    .group.hidden--js-enabled
+      = f.label :type do
+        Is this visitor an adult or a child?
+      = f.select :type, options_for_select([['Adult','adult'],['Child','child']],visitor.type), {}, :class => 'visitor-type'
 
     %label.remove-visitor
       = check_box_tag 'visit[visitor][][_destroy]', 1, false, { id: "_destroy-#{index}" }

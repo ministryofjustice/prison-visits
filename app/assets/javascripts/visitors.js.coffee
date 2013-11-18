@@ -7,7 +7,7 @@ addVisitorBlocks = (amount, type) ->
   while i < amount
     compiled = _.template($('#additional-visitor').html())
     $compiled = $(compiled()).addClass type
-    $('.actions').before setType($compiled, type)
+    $(".additional-#{type}").append setType($compiled, type, i)
     i++
 
 
@@ -20,8 +20,12 @@ removeVisitorBlocks = (amount, type) ->
   ).remove()
 
 
-setType = ($el, type) ->
-  $el.find('.visitor-type').val(type).end()
+setType = ($el, type, i) ->
+  positions = ['first','second','third','forth','fifth']
+  $el.find('.js-visitor-position').text positions[i]
+  $el.find('.js-visitor-type').text type
+  $el.find('.visitor-type').val type
+  $el
 
 
 $('.number_of_visitors').on 'change', ->

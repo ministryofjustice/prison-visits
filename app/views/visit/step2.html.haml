@@ -13,6 +13,9 @@
     = f.fields_for visitor, index: '' do |visitor_form|
       = render 'visitor_fields', f: visitor_form, index: index, visitor: visitor
   
+  .additional-adult
+  .additional-child
+
   .actions
     = f.button 'Add another visitor',  :name => 'next', :value => 'add', :class => 'hidden--js-enabled'
     = f.button :Continue, :name => 'next', :value => 'continue', :class => 'button button-primary', :id => 'continue'
