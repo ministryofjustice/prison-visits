@@ -7,7 +7,8 @@ addVisitorBlocks = (amount, type) ->
   while i < amount
     compiled = _.template($('#additional-visitor').html())
     $compiled = $(compiled()).addClass type
-    $(".additional-#{type}").append setType($compiled, type, i)
+    $compiled = setPosition $compiled, type
+    $(".additional-#{type}").append setType($compiled, type)
     i++
 
 
@@ -20,9 +21,18 @@ removeVisitorBlocks = (amount, type) ->
   ).remove()
 
 
-setType = ($el, type, i) ->
-  positions = ['first','second','third','forth','fifth']
-  $el.find('.js-visitor-position').text positions[i]
+countType = (type) ->
+  $('.visitor').filter(".#{type}").length
+
+
+setPosition = ($el, type) ->
+  count = countType type
+  positions = ['first','second','third']
+  $el.find('.js-visitor-position').text positions[count]
+  $el
+
+
+setType = ($el, type) ->
   $el.find('.js-visitor-type').text type
   $el.find('.visitor-type').val type
   $el
@@ -31,7 +41,7 @@ setType = ($el, type, i) ->
 $('.number_of_visitors').on 'change', ->
   type = if $(this).hasClass('adults') then 'adult' else 'child'
   desired = $(this).val()
-  current = $('.visitor').filter(".#{type}").length
+  current = countType type
 
   # add visitors blocks if the desired amount is more than is currently in the form
   if desired > current
