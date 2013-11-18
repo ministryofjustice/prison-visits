@@ -1,7 +1,10 @@
 - content_for :header do
   %h1 Who are you visiting?
 
-%p Please make sure you've spoken to the prisoner you're visiting before you book a visit.
+%p
+  Before you get started, see a list of the
+  %a(href='#') information you will need
+  to make a booking.
 
 = form_for visit.prisoner, url: update_step1_path, as: :prisoner, :html => { :class => 'form validation' } do |f|
 
@@ -54,6 +57,9 @@
       Prisoner number
       %span.validation-message= f.object.errors[:number].first if f.object.errors.include?(:number)
     = f.text_field :number
+    %details.group__help
+      %summary How to get this?
+      %p The prisoner you’re visiting will be able to give you their prisoner number.
 
   .group{ :class => ('validation-error' if f.object.errors.include?(:prison_name)) }
     = f.label :prison_name do

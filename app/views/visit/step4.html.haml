@@ -2,9 +2,9 @@
   %h1 Your visit date and time
 
 %p
-  Choose 
-  %strong up to three 
-  visit times that will be sent to the prison’s booking team to check availability.
+  Choose the date first, then choose the time you’d like to visit. You can choose
+  %strong up to three
+  possible dates and times. Use the arrows to put your visit choices in the order that suits you best.
 
 - if visit.slots.any? {|s| s.errors.any?}
   #error-summary.validation-summary.group(role="alert" tabindex="-1" aria-labelledby="error-heading")
@@ -41,9 +41,6 @@
 
 .selected-slots
   %h3 Your visit times
-  %p.hidden--mobile
-    Use the arrows to order your chosen visit times.
-    Chosen times can be removed using the '&times;' button.
   %ul
     - (1..number_of_slots).each_with_index do |i|
       %li

@@ -3,11 +3,9 @@
 
   - unless index.zero?
     %h3
-      Enter the details of the
-      %strong.js-visitor-position
-      additional
-      %strong.js-visitor-type= visitor.type if visitor.type.present?
+      %span.js-visitor-type= visitor.type if visitor.type.present?
       visitor
+      %span.js-visitor-position
   
   .group{ :class => ('validation-error' if f.object.errors.include?(:first_name)) }
     = f.label :first_name do

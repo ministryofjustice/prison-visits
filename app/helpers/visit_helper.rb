@@ -71,4 +71,16 @@ module VisitHelper
       date.strftime('%Y-%m-%d')
     end
   end
+
+  def prison_phone(visit)
+    Prisoner::PRISON_DETAILS[visit.prisoner.prison_name.downcase.to_sym][:phone]
+  end
+
+  def prison_email(visit)
+    Prisoner::PRISON_DETAILS[visit.prisoner.prison_name.downcase.to_sym][:email]
+  end
+
+  def prison_link(visit)
+    link_to "#{visit.prisoner.prison_name.capitalize} prison", "http://www.justice.gov.uk/contacts/prison-finder/#{visit.prisoner.prison_name.downcase}", :rel => 'external'
+  end
 end

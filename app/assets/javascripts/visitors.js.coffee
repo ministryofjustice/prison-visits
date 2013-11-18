@@ -27,8 +27,7 @@ countType = (type) ->
 
 setPosition = ($el, type) ->
   count = countType type
-  positions = ['first','second','third']
-  $el.find('.js-visitor-position').text positions[count]
+  $el.find('.js-visitor-position').text count+1
   $el
 
 

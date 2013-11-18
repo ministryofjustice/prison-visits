@@ -8,6 +8,25 @@ class Prisoner
     'Durham'
   ].sort
 
+  PRISON_DETAILS = {
+    cardiff: {
+      phone: '-phone missing-',
+      email: '-email missing-'
+    },
+    durham: {
+      phone: '-phone missing-',
+      email: '-email missing-'
+    },
+    :gartree => {
+      phone: '01858 426 600',
+      email: 'socialvisits.gartree@hmps.gsi.gov.uk'
+    },
+    rochester: {
+      phone: '-phone missing-',
+      email: '-email missing-'
+    }
+  }
+
   attr_accessor :first_name
   attr_accessor :last_name
   attr_accessor :number

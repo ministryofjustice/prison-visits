@@ -1,7 +1,10 @@
 - content_for :header do
   %h1 Your visit request has been sent
 
-%p We will email you within 72 hours to confirm your visit.
+%p
+  We'll email you at
+  %strong= visit.visitors[0].email
+  within 72 hours to confirm your visit.
 
 .well.summary-pane.pull-left.cf
   %p.flat
@@ -34,34 +37,57 @@
   %p
     Tel:
     %br
-    %strong 0191 332 3400
+    %strong= prison_phone visit
 
   .visible--js-enabled
     = link_to 'Print this page', '#', :class => 'print-link'
 
 .info
+  %h2 What you need on the day
+
   %p
-    A confirmation email will be sent to: 
-    %strong #{visit.visitors[0].email}
+    Please make sure you bring two forms of
+    %acronym(title='Identification') ID
+    with you. One of them must have your address on. The kinds of ID you can use include:
 
-  %p Please make sure you bring two forms of ID with you. One of them must have your address on. Acceptable forms of ID include:
+  %ul
+    %li Passport or identity or residence card (UK or from another country) 
+    %li Rail or bus pass with photo
+    %li Birth or marriage certificate 
+    %li Driving licence with photo 
+    %li Trade Union or Student Union card
+    %li Utility bills addressed to you 
+    %li Council tax bills addressed to you.
 
-  %p Passport or driving licence (with your address on), utility bills addressed to you, council tax bills.
+  %p.help-notice You won't be able to visit without these two forms of ID
 
-  %p You won’t be able to visit without these two forms of ID.
+  %h2 Changing or cancelling your visit
 
-  %h2 First time visitors 
+  %p
+    If you need to change or cancel your visit, please contact us as soon as you can.
+    %br telephone: #{prison_phone(visit)}
+    %br email: #{prison_email(visit)}
+
+  %h2 What to expect when visiting prison
 
   %p You will be searched before entering the prison visiting room. Prison staff may check your pockets, pat you down and ask you to go through a metal detector. Dogs may also be used to detect illegal substances.
 
-  %p Please do not bring anything restricted or illegal to the prison. For more information about what you are allowed to bring, please contact the prison.
+  %h2 What to bring
 
-  %p
-    If you have any questions, see the 
-    %a(href="#") #{visit.prisoner.prison_name} prison
-    page or call the prison on 010 2345 5678.
+  %ul
+    %li Two forms of ID, one with your address. 
+    %li A small amount of money for tea and coffee during the visit – you won’t be able to give the prisoner any money 
+    %li For more information about what to bring, for example clothes, please see the #{prison_link(visit)} page. 
 
-  / %p
-  /   If you have any questions, visit the 
-  /   %a(href="#") #{visit.prisoner.prison_name} website
-  /   or call the prison on 010 2345 5678.
+  %h2 What not to bring
+
+  %p Please do not bring anything restricted or illegal to the prison. For more information about what you are allowed to bring, please see the #{prison_link(visit)} page.
+
+  %h2 Your data
+
+  %p The Ministry of Justice (HM Prison Service) uses and retains the personal data of visitors for the purposes of the safe and secure provision of Prison Services, including those related to the management and rehabilitation of offenders. 
+
+  %p Access to the establishment can only be granted by supplying the prescribed information in order to ensure and maintain a safe and secure environment for all. 
+
+  %p You have the right to request details as to the personal information we hold for you; and subsequently request that we correct any personal information if it is found to be inaccurate or out of date. We will not share your information with other organisations unless it is required for the purposes of prevention, detection of crime, apprehension, prosecution, and management of offenders; prevention of terrorism; National Security; or required to do by law. 
+
