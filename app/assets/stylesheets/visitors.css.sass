@@ -7,30 +7,29 @@
   h3
     margin: 0
 
+  &.image
+    padding-left: 150px
+    background-image: image-url("type_icons.png")
+    background-position: 30px -1140px
+    background-repeat: no-repeat
+
+  &.adult
+    @extend .image
+    @include device-pixel-ratio
+      background-position: 30px 50px
+      background-size: 83px 1000px
+
+  &.child
+    @extend .image
+    background-position: 30px -1740px
+    @include device-pixel-ratio
+      background-position: 30px -250px
+      background-size: 83px 1000px
+
 #visitor-0
   padding: 0
   background: none
 
-.summary
-  display: none
-  padding: 10px
-  background: $grey-3
 
-.compact
-  .summary
-    display: block
-
-  .group,
-  .well,
-  h3,
-  .quick-actions
-    display: none
-
-.js-remove__button
-  display: none
-
-.js-enabled .js-remove__button
-  display: block
-
-.js-enabled .js-remove__checkbox
+.js-enabled .remove-visitor
   display: none

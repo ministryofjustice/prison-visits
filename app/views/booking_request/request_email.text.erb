@@ -15,12 +15,17 @@ Visitor <%= index + 1 %>
 ---------
 First name: <%= visitor.first_name %>
 Last name: <%= visitor.last_name %>
+<% if visitor.date_of_birth %>
 DOB: <%= visitor.date_of_birth.strftime("%e %B %Y") %>
+<% end %>
 <% if visitor.email %>
 Email: <%= visitor.email %>
 <% end %>
 <% if visitor.phone %>
 Phone: <%= visitor.phone %>
+<% end %>
+<% if visitor.type %>
+Adult/child: <%= visitor.type %>
 <% end %>
 <% end %>
 

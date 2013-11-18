@@ -1,6 +1,7 @@
 //= require Date.format
 //= require Array.move
 
+//= require lodash
 //= require jquery
 //= require jquery_ujs
 
