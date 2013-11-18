@@ -3,5 +3,9 @@
 %p.visible--js-enabled How many visitors do you wish to take with you?
 
 .group.visible--js-enabled
-  %label(for="number_of_visitors") Adults
-  = select_tag 'number_of_visitors', (1..5).map{|n|"<option>#{n}</option>"}.unshift('<option value="0">none</option>').join.html_safe
+  %label(for="number_of_adults") Adults
+  = select_tag 'visit[visitor][][number_of_adults]', options_for_select([['none',0],1,2], v.number_of_adults.to_s), :class => 'number_of_visitors adults'
+
+.group.visible--js-enabled
+  %label(for="number_of_children") Children
+  = select_tag 'visit[visitor][][number_of_children]', options_for_select([['none',0],1,2,3,4,5], v.number_of_children), :class => 'number_of_visitors children'

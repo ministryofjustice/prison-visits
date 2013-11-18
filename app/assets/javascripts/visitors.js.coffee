@@ -2,16 +2,17 @@
 $('button[value=add]').prop 'disabled', true
 
 
-addVisitorBlocks = (amount) ->
+addVisitorBlocks = (amount, type) ->
   i = 0
   while i < amount
     compiled = _.template($('#additional-visitor').html())
-    $('.actions').before compiled
+    $compiled = $(compiled()).addClass type
+    $('.actions').before setType($compiled, type)
     i++
 
 
-removeVisitorBlocks = (amount) ->
-  v = $('.visitor')
+removeVisitorBlocks = (amount, type) ->
+  v = $(".#{type}")
   r = v.length - amount
 
   v.filter( (i) ->
@@ -19,13 +20,18 @@ removeVisitorBlocks = (amount) ->
   ).remove()
 
 
-$('#number_of_visitors').on 'change', ->
+setType = ($el, type) ->
+  $el.find('.visitor-type').val(type).end()
+
+
+$('.number_of_visitors').on 'change', ->
+  type = if $(this).hasClass('adults') then 'adult' else 'child'
   desired = $(this).val()
-  current = $('.visitor').length - 1
+  current = $('.visitor').filter(".#{type}").length
 
   # add visitors blocks if the desired amount is more than is currently in the form
   if desired > current
-    addVisitorBlocks desired-current
+    addVisitorBlocks desired-current, type
   # leave as is if the desired amount is the same as currently available
   # remove visitor blocks if the form currently contains more that desired
-  else removeVisitorBlocks(current-desired) if desired < current
+  else removeVisitorBlocks(current-desired, type) if desired < current

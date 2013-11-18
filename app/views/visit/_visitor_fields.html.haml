@@ -1,5 +1,5 @@
 
-.visitor.cf{ :id => "visitor-#{index}" }
+.visitor.cf{ :id => "visitor-#{index}", :class => (visitor.type if visitor.type.present?) }
 
   - unless index.zero?
     %h3 Enter the additional visitor’s details below
@@ -16,47 +16,42 @@
       %span.validation-message= f.object.errors[:last_name].first if f.object.errors.include?(:last_name)
     = f.text_field :last_name
 
-  .group.js-dob{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
-    .visible--mobile
-      = f.label :date_of_birth do
-        Date of birth
-        %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
-      %input.js-dob__input{ id: "visitor_date_of_birth_#{index}", value: (visitor.date_of_birth.present? ? visitor.date_of_birth : year_limit(index).years.ago.beginning_of_year.strftime('%Y-%m-%d') )}(type="date" name="visit[visitor][][date_of_birth]")
-      %p.group__help
-        %small Please use the format dd/mm/yyyy.
-        - if index.zero?
-          %small You must be over 18 to book a visit.
-    
-    .hidden--mobile
-      %label
-        Date of birth
-        %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
-      
-      %select.js-dob__select.js-dob__day
-        %option day
-        - dob_day_range.each do |day|
-          %option{ value: day.strftime('%d'), selected: ('selected' if visitor.date_of_birth.present? && visitor.date_of_birth.strftime('%d') == day.strftime('%d') ) }= day.strftime('%e')
-      
-      %select.js-dob__select.js-dob__month
-        %option month
-        - dob_month_range.keys.each do |month|
-          %option{ value: month.strftime('%m'), selected: ('selected' if visitor.date_of_birth.present? && visitor.date_of_birth.strftime('%m') == month.strftime('%m') ) }= month.strftime('%B')
-
-      %select.js-dob__select.js-dob__year
-        %option year
-        - dob_year_range(index).each do |year|
-          %option{ value: year, selected: select_year(visitor.date_of_birth, year, Visitor::USER_MIN_AGE) }= year
-
-      - if index.zero?
-        %p.group__help
-          %small You must be over 18 to book a visit.
-
-  - unless index.zero?
-    %label.remove-visitor
-      = check_box_tag 'visit[visitor][][_destroy]', 1, false, { id: "_destroy-#{index}" }
-      remove
-
   - if index.zero?
+
+    .group.js-dob{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
+      .visible--mobile
+        = f.label :date_of_birth do
+          Date of birth
+          %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
+        %input.js-dob__input{ id: "visitor_date_of_birth_#{index}", value: (visitor.date_of_birth.present? ? visitor.date_of_birth : year_limit(index).years.ago.beginning_of_year.strftime('%Y-%m-%d') )}(type="date" name="visit[visitor][][date_of_birth]")
+        %p.group__help
+          %small Please use the format dd/mm/yyyy.
+          - if index.zero?
+            %small You must be over 18 to book a visit.
+      
+      .hidden--mobile
+        %label
+          Date of birth
+          %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
+        
+        %select.js-dob__select.js-dob__day
+          %option day
+          - dob_day_range.each do |day|
+            %option{ value: day.strftime('%d'), selected: ('selected' if visitor.date_of_birth.present? && visitor.date_of_birth.strftime('%d') == day.strftime('%d') ) }= day.strftime('%e')
+        
+        %select.js-dob__select.js-dob__month
+          %option month
+          - dob_month_range.keys.each do |month|
+            %option{ value: month.strftime('%m'), selected: ('selected' if visitor.date_of_birth.present? && visitor.date_of_birth.strftime('%m') == month.strftime('%m') ) }= month.strftime('%B')
+
+        %select.js-dob__select.js-dob__year
+          %option year
+          - dob_year_range(index).each do |year|
+            %option{ value: year, selected: select_year(visitor.date_of_birth, year, Visitor::USER_MIN_AGE) }= year
+
+        - if index.zero?
+          %p.group__help
+            %small You must be over 18 to book a visit.
   
     .group{ :class => ('validation-error' if f.object.errors.include?(:email)) }
       = f.label :email do
@@ -71,5 +66,12 @@
         Contact phone number
         %span.validation-message= f.object.errors[:phone].first if f.object.errors.include?(:phone)
       = f.telephone_field :phone
+
+  - unless index.zero?
+    = f.select :type, options_for_select([['Adult','adult'],['Child','child']],visitor.type), {}, :class => 'visitor-type'
+
+    %label.remove-visitor
+      = check_box_tag 'visit[visitor][][_destroy]', 1, false, { id: "_destroy-#{index}" }
+      remove
   
-= render 'additional_visitors' if index.zero?
+= render 'additional_visitors', :v => visitor, :f => f if index.zero?

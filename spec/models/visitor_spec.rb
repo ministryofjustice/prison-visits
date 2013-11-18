@@ -20,7 +20,7 @@ describe Visitor do
     end
   end
 
-  it "validates every other visitor as a non-lead visitor" do
+  it "validates every other visitor as an additional visitor" do
     (1..5).each do |i|
       Visitor.new(index: i).tap do |v|
         v.first_name = 'Jimmy'
@@ -29,7 +29,7 @@ describe Visitor do
         v.last_name = 'Fingers'
         v.should_not be_valid
         
-        v.date_of_birth = "1986-04-20"
+        v.type = 'adult'
         v.should be_valid
         
         v.email = 'anything'
