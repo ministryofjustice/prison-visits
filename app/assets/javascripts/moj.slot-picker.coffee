@@ -195,6 +195,10 @@ SlotPicker:: =
         for slot in _this.settings.currentSlots
           cell.addClass 'fc-chosen' if _this.splitDateAndSlot(slot)[0] is date.formatIso()
 
+        # mark today
+        if date.formatIso() is (new Date()).formatIso()
+          cell.addClass 'fc-today'
+
 # Add module to MOJ namespace
 moj.Modules.slotPicker = init: ->
   $('.js-slotpicker').each ->
