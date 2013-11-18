@@ -1,5 +1,15 @@
-Prisoner information
-====================
+You received the following booking to visit HMP Rochester on one of the following dates:
+
+<% @visit.slots.each_with_index do |slot, index| %>
+<% if slot.date.present? %>
+<%= index + 1%>. <%= Date.parse(slot.date).strftime("%A %e %B") %>, <%= display_time_slot(slot.times) %>
+<% end %>
+<% end %>
+
+Please check the chosen dates on Prison NOMIS, topmost is the first preference.
+
+Prisoner's details
+==================
 
 First name: <%= @visit.prisoner.first_name %>
 Last name: <%= @visit.prisoner.last_name %>
@@ -7,12 +17,10 @@ Number: <%= @visit.prisoner.number %>
 Prison: <%= @visit.prisoner.prison_name %>
 DOB: <%= @visit.prisoner.date_of_birth.strftime("%e %B %Y") %>
 
-Visitor information
-===================
 <% @visit.visitors.each_with_index do |visitor, index| %>
 
 Visitor <%= index + 1 %>
----------
+=========
 First name: <%= visitor.first_name %>
 Last name: <%= visitor.last_name %>
 <% if visitor.date_of_birth %>
@@ -26,14 +34,5 @@ Phone: <%= visitor.phone %>
 <% end %>
 <% if visitor.type %>
 Adult/child: <%= visitor.type %>
-<% end %>
-<% end %>
-
-Visiting slot information
-=========================
-
-<% @visit.slots.each_with_index do |slot, index| %>
-<% if slot.date.present? %>
-<%= index + 1%>. <%= Date.parse(slot.date).strftime("%A %e %B") %>, <%= display_time_slot(slot.times) %>
 <% end %>
 <% end %>
