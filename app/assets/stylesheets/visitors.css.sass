@@ -7,6 +7,25 @@
   h3
     margin: 0
 
+  &.image
+    padding-left: 150px
+    background-image: image-url("type_icons.png")
+    background-position: 30px -1140px
+    background-repeat: no-repeat
+
+  &.adult
+    @extend .image
+    @include device-pixel-ratio
+      background-position: 30px 50px
+      background-size: 83px 1000px
+
+  &.child
+    @extend .image
+    background-position: 30px -1740px
+    @include device-pixel-ratio
+      background-position: 30px -250px
+      background-size: 83px 1000px
+
 #visitor-0
   padding: 0
   background: none
