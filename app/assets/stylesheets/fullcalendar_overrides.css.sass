@@ -3,9 +3,6 @@
 .fc-day
   cursor: pointer
 
-  &:hover
-    background: $grey-3
-
 .fc-content table
   background: image-url("unavailable_tile.png")
 
@@ -25,9 +22,13 @@
 .fc-bookable
   background: $white
 
-.fc-past,
-.fc-unavailable,
-.fc-unbookable
+  &:hover
+    background: $grey-3
+
+.fc-past
+  background: $grey-4
+
+.fc-future.fc-unbookable
   background: transparent
 
 .fc-chosen
@@ -47,7 +48,7 @@
     @include media(desktop)
       border-width: 0 15px 15px 0
 
-.fc-state-highlight
+.fc-day.fc-state-highlight
   background: #acdaed
 
 .fc-grid .fc-day-number
