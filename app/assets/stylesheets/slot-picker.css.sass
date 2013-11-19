@@ -56,6 +56,7 @@
 
 #calendar
   margin: 0 -15px
+  border-bottom: 5px solid $grey-3
 
   @include media(desktop)
     width: 100%
@@ -72,7 +73,6 @@
   display: none
   padding: .5em
   background: $grey-3
-  border: 1px solid $grey-2
 
   @include media(mobile)
     border-width: 1px 0
@@ -109,7 +109,8 @@
     margin: 0 -15px
 
   @include media(desktop)
-    float: right
+    float: left
+    clear: left
     width: 49%
 
 .selected-slots
@@ -117,11 +118,12 @@
     margin: 0 -15px
 
   @include media(desktop)
-    float: right
-    width: 49%
+    margin-left: 51%
   
-  h3
+  h2
+    @include core-24
     margin-top: 1em
+    font-weight: bold
 
   h3,
   p

@@ -151,7 +151,7 @@ SlotPicker:: =
         right: 'next'
 
       viewRender: (view, element) ->
-        $('#calendar').find('.fc-day').not('.fc-unbookable').first().click()
+        $('#calendar').find('.fc-day').not('.fc-unbookable').first()
 
       dayClick: (date, allDay, jsEvent, view) ->
         $day = $( jsEvent.target ).closest( '.fc-day' )
@@ -186,7 +186,7 @@ SlotPicker:: =
           cell.removeClass 'fc-bookable'
           cell.addClass 'fc-unbookable'
 
-        # mark days where there a no visit slots
+        # mark days where there are no visit slots
         unless ~pvbe.bookable_week_days.indexOf date.getDay()
           cell.removeClass 'fc-bookable'
           cell.addClass 'fc-unbookable'

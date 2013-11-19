@@ -40,7 +40,7 @@
             %p There are no sessions available on #{date.strftime('%A')}s.
 
 .selected-slots
-  %h3 Your visit times
+  %h2 Your visit times
   %ul
     - (1..number_of_slots).each_with_index do |i|
       %li
@@ -50,7 +50,7 @@
         .slot-position= i
         %p.date
         %p.time
-        %p.placeholder Option #{[:one, :two, :three][i-1]}
+        %p.placeholder #{[:First, :Second, :Third][i-1]} choice
 
 
 = form_for visit, url: update_step4_path, :html => { :class => 'slot-form' } do |f|
