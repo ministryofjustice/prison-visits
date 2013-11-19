@@ -17,9 +17,9 @@
   .js-slotpicker-options.day-slots#in-the-past
     %p It is not possible to book a visit in the past
   .js-slotpicker-options.day-slots#too-far-ahead
-    %p It is not possible to book a visit this far away
+    %p You can only book a visit in the next 28 days
   .js-slotpicker-options.day-slots#booking-gap
-    %p It is not possible to book a visit this soon
+    %p You can only book a visit 3 days in advance
 
   - range_by_month.keys.each do |month|
     .slot__month{ :id => month.strftime('month-%Y-%m-%d') }(data-focusfirst="true")
