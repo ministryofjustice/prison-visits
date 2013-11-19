@@ -137,8 +137,8 @@
       position: relative
       min-height: 2em
       margin-top: 10px
-      margin-left: 41px
       border: 1px dashed $grey-2
+      background: #ebebeb
 
       &:first-child
         margin-top: 0
@@ -149,10 +149,10 @@
         color: #333
 
       &.is-active
-        padding: 10px
+        padding: 10px 10px 10px 65px
         background: $white
         border-style: solid
-        border-color: $white
+        border-color: #c2c2c2
 
         .slot-remove,
         .slot-promote
@@ -163,6 +163,22 @@
 
         .placeholder
           display: none
+
+        .slot-position
+          display: block
+
+      .slot-position
+        display: none
+        position: absolute
+        left: 10px
+        height: 100%
+        background: #afb3b5
+        color: white
+        width: 55px
+        font-size: 50px
+        font-weight: bold
+        text-align: center
+        margin: -10px 0 0 -10px
 
       .slot-remove
         display: none

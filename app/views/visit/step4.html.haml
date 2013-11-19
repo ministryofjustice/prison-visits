@@ -47,6 +47,7 @@
         - unless i == 1
           %a.slot-promote.js-promote-slot{ :href => "##{i}" }
         %a.slot-remove.js-remove-slot(href="#") &times;
+        .slot-position= i
         %p.date
         %p.time
         %p.placeholder Option #{[:one, :two, :three][i-1]}
