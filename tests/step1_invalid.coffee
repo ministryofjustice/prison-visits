@@ -20,7 +20,7 @@ casper.test.begin 'Prison Visit Booking: Step 1 invalid', (test) ->
 
   casper.then ->
     test.assertTextExists "can't be blank", 'page contains name error'
-    test.assertTextExists 'must be within last 100 years', 'page contains age range error'
+    test.assertTextExists 'must be a valid date of birth', 'page contains age range error'
     test.assertTextExists 'must be a valid prisoner number', 'page contains prisoner number error'
 
   casper.then ->
