@@ -6,7 +6,7 @@
   information you will need
   to make a booking.
 
-= form_for visit.prisoner, url: update_step1_path, as: :prisoner, :html => { :class => 'form validation' } do |f|
+= form_for visit.prisoner, url: update_prisoner_details_path, as: :prisoner, :html => { :class => 'form validation' } do |f|
 
   - if f.object.errors.any?
     = render 'shared/validation'

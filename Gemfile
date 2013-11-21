@@ -13,3 +13,4 @@ gem 'govuk_frontend_toolkit'
 gem 'moj_frontend_toolkit_gem', git: 'https://github.com/ministryofjustice/moj_frontend_toolkit_gem.git', tag: 'v0.2.1'
 gem 'coffee-rails'
 gem 'rspec-rails'
+gem 'guard-rspec', group: :development

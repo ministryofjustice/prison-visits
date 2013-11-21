@@ -25,13 +25,13 @@ casper.test.begin 'Prison Visit Booking: Step 1 - prisoner details', (test) ->
       'prisoner[prison_name]': 'Gartree'
     , false
 
-    @capture 'tests/step1_valid.png' if outputImages
+    @capture 'tests/prisoner_details_valid.png' if outputImages
 
   casper.then ->
     @click '.button-primary'
 
   casper.then ->
-    test.assertUrlMatch /localhost:3000\/2/, 'we should have progressed to visitors'
+    test.assertUrlMatch /localhost:3000\/visitor-details/, 'we should have progressed to visitors'
 
     test.comment 'Prison Visit Booking: Step 2 - visitors'
 
@@ -54,41 +54,41 @@ casper.test.begin 'Prison Visit Booking: Step 1 - prisoner details', (test) ->
       'visit[visitor][][phone]': '0123 456 789'
     , false
 
-    @capture 'tests/step2_valid.png' if outputImages
+    @capture 'tests/visitor_details_valid.png' if outputImages
 
   casper.then ->
     @clickLabel 'Continue'
 
   casper.then ->
-    test.assertUrlMatch /localhost:3000\/4/, 'we should have progressed to session chooser'
+    test.assertUrlMatch /localhost:3000\/visit-details/, 'we should have progressed to session chooser'
 
     test.comment 'Prison Visit Booking: Step 3 - choose a session'
 
     @click '.fc-bookable'
     @click '.day-slots.is-active label'
 
-    @capture 'tests/step3_valid.png' if outputImages
+    @capture 'tests/visit_details_valid.png' if outputImages
 
   casper.then ->
     @clickLabel 'Continue'
 
   casper.then ->
-    test.assertUrlMatch /localhost:3000\/5/, 'we should have progressed to summary'
+    test.assertUrlMatch /localhost:3000\/summary/, 'we should have progressed to summary'
 
   casper.then ->
     test.comment 'Prison Visit Booking: Step 4 - summary'
     test.assertTextExists 'Jimmy Fingers', 'prisoner name is present'
     test.assertTextExists 'Sue Denim', 'user name is present'
 
-    @capture 'tests/step4.png' if outputImages
+    @capture 'tests/summary.png' if outputImages
 
   casper.then ->
     @click '.button-primary'
 
   casper.then ->
-    test.assertUrlMatch /localhost:3000\/6/, 'we should have progressed to request confirmation'
+    test.assertUrlMatch /localhost:3000\/request-sent/, 'we should have progressed to request confirmation'
 
-    @capture 'tests/step5.png' if outputImages
+    @capture 'tests/request_sent.png' if outputImages
 
   casper.run ->
     test.done()

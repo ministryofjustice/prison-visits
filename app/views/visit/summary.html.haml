@@ -18,7 +18,7 @@
   %p
     Prison:
     %strong #{visit.prisoner.prison_name}
-  %div= link_to 'Edit these prisoner details', step1_path
+  %div= link_to 'Edit these prisoner details', prisoner_details_path
 
 .well
   %h2 Chosen visit times
@@ -30,7 +30,7 @@
           %strong= slot_date.strftime("%A %e %B")
           \ -
           = display_slot_and_duration slot.times
-  = link_to 'Edit these visit times', step4_path
+  = link_to 'Edit these visit times', visit_details_path
 
 .well
   %h2 Visitor details
@@ -40,8 +40,8 @@
         Visitor #{i+1}
         %br
         %strong #{visitor.first_name} #{visitor.last_name}
-  = link_to 'Edit these visitor details', step2_path
+  = link_to 'Edit these visitor details', visitor_details_path
 
 .actions
   = link_to 'Cancel and delete all details', abandon_path, :class => 'pull-right', :'data-confirm' => "Are you sure you wish to cancel this visit request?\r\rThis will delete all the information you have entered"
-  = button_to 'Finish', update_step5_path, :class => 'button button-primary'
+  = button_to 'Finish', update_summary_path, :class => 'button button-primary'

@@ -3,7 +3,7 @@
 
 %p Enter your details below. Use ‘Add another visitor’ to enter details of other visitors coming with you.
 
-= form_for visit, url: update_step2_path do |f|
+= form_for visit, url: update_visitor_details_path do |f|
 
   - if visit.visitors.any? {|v| v.errors.any?}
     = render 'shared/validation'

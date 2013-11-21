@@ -1,32 +1,32 @@
 class VisitController < ApplicationController
-  before_filter :check_if_session_exists, except: [:step1]
+  before_filter :check_if_session_exists, except: [:prisoner_details]
 
   def check_if_session_exists
     unless session[:visit]
-      redirect_to(step1_path)
+      redirect_to(prisoner_details_path)
       return
     end
   end
 
-  def step1
+  def prisoner_details
   end
 
-  def update_step1
+  def update_prisoner_details
     if (visit.prisoner = Prisoner.new(prisoner_params)).valid?
-      redirect_to step2_path
+      redirect_to visitor_details_path
     else
-      redirect_to step1_path
+      redirect_to prisoner_details_path
     end
   end
 
-  def step2
+  def visitor_details
   end
 
-  def update_step2
+  def update_visitor_details
     if m = params[:next].match(/remove-(\d)/)
       index = m[1].to_i
       visit.visitors.delete_at(index)
-      redirect_to step2_path
+      redirect_to visitor_details_path
       return
     end
 
@@ -41,20 +41,20 @@ class VisitController < ApplicationController
     if params[:next] == 'add'
       if visit.visitors.size < Visit::MAX_VISITORS
         visit.visitors << Visitor.new
-        redirect_to step2_path
+        redirect_to visitor_details_path
       else
-        redirect_to step2_path, notice: "You may only have a maximum of #{Visit::MAX_VISITORS} visitors"
+        redirect_to visitor_details_path, notice: "You may only have a maximum of #{Visit::MAX_VISITORS} visitors"
       end
     else
-      redirect_to go_back ? step2_path : step4_path
+      redirect_to go_back ? visitor_details_path : visit_details_path
     end
   end
 
-  def step4
+  def visit_details
     @slots = visit.slots.empty? ? [Slot.new, Slot.new, Slot.new] : visit.slots
   end
 
-  def update_step4
+  def update_visit_details
     visit.slots = []
     slot_params.each_with_index do |slot_hash, i|
       visit.slots << Slot.new(slot_hash_from_string(slot_hash[:slot]).merge(index: i))
@@ -65,28 +65,28 @@ class VisitController < ApplicationController
     end.any? || visit.slots.size > Visit::MAX_SLOTS
 
     if go_back
-      redirect_to step4_path
+      redirect_to visit_details_path
     else
-      redirect_to step5_path
+      redirect_to summary_path
     end
   end
 
-  def step5
+  def summary
   end
 
-  def update_step5
+  def update_summary
     BookingRequest.request_email(visit).deliver
-    redirect_to step6_path
+    redirect_to request_sent_path
   end
 
-  def step6
+  def request_sent
     render
     reset_session
   end
 
   def abandon
     reset_session
-    redirect_to step1_path, notice: "Your request has been cancelled."
+    redirect_to prisoner_details_path, notice: "Your request has been cancelled."
   end
 
 private

@@ -24,7 +24,7 @@ casper.test.begin 'Prison Visit Booking: Step 1 invalid', (test) ->
     test.assertTextExists 'must be a valid prisoner number', 'page contains prisoner number error'
 
   casper.then ->
-    casper.capture 'tests/step1_invalid.png' if outputImages
+    casper.capture 'tests/prisoner_details_invalid.png' if outputImages
 
   casper.run ->
     test.done()

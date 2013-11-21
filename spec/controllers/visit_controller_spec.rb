@@ -6,7 +6,7 @@ describe VisitController do
   describe "step 1 - enter prisoner's details" do
     it "renders the form for entering prisoner details, and assigns the session" do
       expect {
-        get :step1
+        get :prisoner_details
         response.should be_success
       }.to change { session[:visit] }
     end
@@ -25,12 +25,12 @@ describe VisitController do
       end
 
       before :each do
-        get :step1
+        get :prisoner_details
       end
 
       it "updates prisoner details" do
-        post :update_step1, prisoner_hash
-        response.should redirect_to(step2_path)
+        post :update_prisoner_details, prisoner_hash
+        response.should redirect_to(visitor_details_path)
       end
     end
 
@@ -48,12 +48,12 @@ describe VisitController do
       end
 
       before :each do
-        get :step1
+        get :prisoner_details
       end
 
       it "doesn't update prisoner details" do
-        post :update_step1, prisoner_hash
-        response.should redirect_to(step1_path)
+        post :update_prisoner_details, prisoner_hash
+        response.should redirect_to(prisoner_details_path)
       end
     end
   end
@@ -76,12 +76,12 @@ describe VisitController do
       end
 
       before :each do
-        get :step1
+        get :prisoner_details
       end
 
       it "updates visitor information" do
         expect {
-          post :update_step2, visitor_hash
+          post :update_visitor_details, visitor_hash
         }.to change { session[:visit].visitors[0].first_name }
       end
     end
@@ -103,12 +103,12 @@ describe VisitController do
       end
 
       before :each do
-        get :step1
+        get :prisoner_details
       end
 
       it "rejects visitor information" do
-        post :update_step2, visitor_hash
-        response.should redirect_to(step2_path)
+        post :update_visitor_details, visitor_hash
+        response.should redirect_to(visitor_details_path)
         session[:visit].visitors[0].should_not be_valid
       end
     end
@@ -130,12 +130,12 @@ describe VisitController do
       end
 
       before :each do
-        get :step1
+        get :prisoner_details
       end
 
       it "rejects the submission if there are too many visitors" do
-        post :update_step2, visitor_hash
-        response.should redirect_to(step2_path)
+        post :update_visitor_details, visitor_hash
+        response.should redirect_to(visitor_details_path)
         session[:visit].should_not be_valid
       end
     end
@@ -143,7 +143,7 @@ describe VisitController do
 
   describe "step 4 - select a timeslot" do
     before :each do
-      get :step1
+      get :prisoner_details
     end
 
     context "correct slot information" do
@@ -160,8 +160,8 @@ describe VisitController do
       end
 
       it "permits us to select a time slot" do
-        post :update_step4, slots_hash
-        response.should redirect_to(step5_path)
+        post :update_visit_details, slots_hash
+        response.should redirect_to(summary_path)
       end
     end
 
@@ -173,8 +173,8 @@ describe VisitController do
       end
 
       it "prompts us to retry" do
-        post :update_step4, slots_hash
-        response.should redirect_to(step4_path)
+        post :update_visit_details, slots_hash
+        response.should redirect_to(visit_details_path)
       end
     end
 
@@ -186,8 +186,8 @@ describe VisitController do
       end
 
       it "accepts the submission" do
-        post :update_step4, slots_hash
-        response.should redirect_to(step5_path)
+        post :update_visit_details, slots_hash
+        response.should redirect_to(summary_path)
       end
     end
 
@@ -199,8 +199,8 @@ describe VisitController do
       end
 
       it "accepts the submission" do
-        post :update_step4, slots_hash
-        response.should redirect_to(step5_path)
+        post :update_visit_details, slots_hash
+        response.should redirect_to(summary_path)
       end
     end
 
@@ -212,8 +212,8 @@ describe VisitController do
       end
 
       it "prompts us to retry" do
-        post :update_step4, slots_hash
-        response.should redirect_to(step4_path)
+        post :update_visit_details, slots_hash
+        response.should redirect_to(visit_details_path)
         session[:visit].errors[:slots].should_not be_nil
       end
     end
@@ -221,7 +221,7 @@ describe VisitController do
 
   describe "abandon ship!" do
     before :each do
-      get :step1
+      get :prisoner_details
     end
 
     it "should clear out the session" do

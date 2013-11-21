@@ -53,7 +53,7 @@
         %p.placeholder #{[:First, :Second, :Third][i-1]} choice
 
 
-= form_for visit, url: update_step4_path, :html => { :class => 'slot-form' } do |f|
+= form_for visit, url: update_visit_details_path, :html => { :class => 'slot-form' } do |f|
 
   .js-slotpicker-chosen
     - @slots.each_with_index do |slot, index|
