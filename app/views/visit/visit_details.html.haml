@@ -13,6 +13,20 @@
 
 #calendar
 
+#matsCalendar.fc-content
+  %table.fc-border-separate(style='width:100%')
+    %thead
+      %tr
+        - [:Mon,:Tue,:Wed,:Thu,:Fri,:Sat,:Sun].each do |d|
+          %th.fc-day-header= d
+
+      - weeks.each do |week|
+        %tr
+          - week[1].each do |day|
+            %td.fc-day.fc-widget-content{ :'data-date' => day, :class => day_classes(day) }(style='width:14.285714286%')
+              .fc-day-number= day.strftime('%e')
+              .fc-day-content
+
 .slots.js-slotpicker{ :'data-optionlimits' => number_of_slots }
   .js-slotpicker-options.day-slots#in-the-past
     %p It is not possible to book a visit in the past
