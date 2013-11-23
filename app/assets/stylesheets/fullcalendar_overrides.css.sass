@@ -2,6 +2,9 @@
 
 .fc-day
   cursor: pointer
+  position: relative
+  width: 14.285714286%
+  padding: 0
 
 .fc-content table
   background: image-url("unavailable_tile.png")
@@ -18,6 +21,9 @@
     line-height: normal
     text-align: center
     background: $light-blue
+    position: absolute
+    bottom: 0
+    width: 100%
 
 .fc-day-header,
 .fc-bookable
@@ -54,11 +60,15 @@
 .fc-day.fc-state-highlight
   background: #acdaed
 
+.fc-day-number
+  position: absolute
+  left: 3px
+
 .fc-grid .fc-day-number
   float: none
 
 #matsCalendar .fc-day-content
-  min-height: 40px
+  min-height: 55px
 
 .fc-header
   td

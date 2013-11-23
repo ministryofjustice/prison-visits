@@ -52,6 +52,33 @@ SlotPicker:: =
       _this.promoteSlot $(this).attr('href').split('#')[1] - 1
       _this.processSlots()
 
+    $('.fc-day').on 'click', ->
+      _this.selectDay $(this)
+  
+  selectDay: (day) ->
+    dateStr = day.data 'date'
+    date = new Date(dateStr)
+
+    # Show the slots for the selected day
+    $('.js-slotpicker-options').removeClass 'is-active'
+    $("#date-#{dateStr}").addClass 'is-active'
+
+    # Show unbookable day message
+    unless ~pvbe.bookable_dates.indexOf dateStr
+      today = new Date((new Date()).formatIso())
+      bookingFrom = new Date(pvbe.bookable_from)
+      if date < today
+        $('#in-the-past').addClass 'is-active'
+      if date >= today
+        if date > bookingFrom
+          $('#too-far-ahead').addClass 'is-active'
+        else
+          $('#booking-gap').addClass 'is-active'
+
+    # Highlight the currently selected day on the calendar
+    $('.fc-day').removeClass('fc-state-highlight')
+    day.addClass('fc-state-highlight')
+
   markChosenSlots: (slots) ->
     for slot in slots
       $("[value='#{slot}']").click()

@@ -11,8 +11,6 @@
     %h2#error-heading You need to fix the errors on this page before continuing.
     %p You need to choose date(s) and time(s) for your visit to continue.
 
-#calendar
-
 #matsCalendar.fc-content
   %table.fc-border-separate(style='width:100%')
     %thead
@@ -23,7 +21,7 @@
       - weeks.each do |week|
         %tr
           - week[1].each do |day|
-            %td.fc-day.fc-widget-content{ :'data-date' => day, :class => day_classes(day) }(style='width:14.285714286%')
+            %td.fc-day.fc-widget-content{ :'data-date' => day, :class => day_classes(day) }
               .fc-day-number= day.strftime('%e')
               .fc-day-content
 

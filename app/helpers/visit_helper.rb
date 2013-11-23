@@ -110,6 +110,7 @@ module VisitHelper
     # classes << 'fc-unbookable' if day < bookable_from
     # classes << 'fc-unbookable' unless bookable_week_days.include?(day)
     classes << (bookable?(day) ? 'fc-bookable' : 'fc-unbookable')
+    classes << 'fc-chosen' if current_slots.include?(day)
     classes
   end
 end
