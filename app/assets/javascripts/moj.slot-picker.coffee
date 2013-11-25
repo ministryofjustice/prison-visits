@@ -37,12 +37,12 @@ SlotPicker:: =
     _this = this
     
     @$slotOptions.on 'click', (e) ->
+      _this.$selectedSlotWrapper.addClass 'is-active'
       _this.emptyUiSlots()
       _this.emptySlotInputs()
       _this.unHighlightSlots()
       _this.checkSlot $(this)
       _this.processSlots()
-      _this.toggleSelectedSlots()
       _this.toggleSubmit()
       _this.disableCheckboxes _this.limitReached()
 
@@ -82,9 +82,6 @@ SlotPicker:: =
     # Highlight the currently selected day on the calendar
     $('.fc-day').removeClass('fc-state-highlight')
     day.addClass('fc-state-highlight')
-
-  toggleSelectedSlots: ->
-    @$selectedSlotWrapper[if @settings.currentSlots.length then 'addClass' else 'removeClass'] 'is-active'
 
   toggleSubmit: ->
     @$submitButton.prop 'disabled', !@settings.currentSlots.length
