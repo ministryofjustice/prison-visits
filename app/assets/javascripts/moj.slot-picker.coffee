@@ -14,6 +14,7 @@ SlotPicker = (el, options) ->
   @bindEvents()
   @markChosenSlots pvbe.current_slots
   @$submitButton.prop 'disabled', true
+  @toggleSubmit()
   return @
 
 SlotPicker:: =
@@ -52,8 +53,10 @@ SlotPicker:: =
 
     @$wrapper.on 'click', @$promoteSlots, (e) ->
       e.preventDefault()
-      _this.promoteSlot $(this).attr('href').split('#')[1] - 1
+      promoted = $(this).attr('href').split('#')[1] - 1
+      _this.promoteSlot promoted
       _this.processSlots()
+      moj.Modules.effects.highlight $(this).closest('ul').find('li').eq(promoted-1)
 
     $('.fc-day').on 'click', ->
       _this.selectDay $(this)
