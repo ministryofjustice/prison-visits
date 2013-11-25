@@ -83,4 +83,38 @@ module VisitHelper
   def prison_link(visit)
     link_to "#{visit.prisoner.prison_name.capitalize} prison", "http://www.justice.gov.uk/contacts/prison-finder/#{visit.prisoner.prison_name.downcase}", :rel => 'external'
   end
+
+  def weeks_start
+    Date.today.beginning_of_week
+  end
+
+  def weeks_end
+    (Date.today + Slot::BOOKABLE_DAYS.days).end_of_week
+  end
+
+  def weeks
+    (weeks_start..weeks_end).group_by do |day|
+      day.beginning_of_week
+    end
+  end
+
+  def bookable?(day)
+    bookable_range.include?(day) && bookable_week_days.include?(day.wday)
+  end
+
+  def day_classes(day)
+    classes = []
+    classes << 'fc-last' if day.wday == 0
+    classes << 'fc-past' if day < Date.today
+    classes << 'fc-today' if day == Date.today
+    # classes << 'fc-unbookable' if day < bookable_from
+    # classes << 'fc-unbookable' unless bookable_week_days.include?(day)
+    classes << (bookable?(day) ? 'fc-bookable' : 'fc-unbookable')
+    classes << 'fc-chosen' if current_slots.include?(day)
+    classes
+  end
+
+  def tag_with_month?(day)
+    weeks_start == day || day.beginning_of_month == day
+  end
 end

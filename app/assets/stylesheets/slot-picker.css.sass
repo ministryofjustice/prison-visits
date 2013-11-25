@@ -6,57 +6,12 @@
   .js-slotpicker-chosen
     display: none
 
-  .slots,
-  .selected-slots
+  .slots.is-active,
+  .selected-slots.is-active
     display: block
-
-.month-selector
-  position: relative
-  min-height: 3em
-  padding: 10px 20px
-  color: $white
-  line-height: 1.875em
-  background: $black
-
-  ul
-    list-style-type: none
-    overflow: hidden
-
-  li
-    float: left
-
-    &.is-earlier
-      position: absolute
-      top: 1em
-      left: 1em
-    &.is-earlier:before
-      content: '< '
-
-    &.is-later
-      position: absolute
-      top: 1em
-      right: 1em
-    &.is-later:after
-      content: ' >'
-
-  a
-    color: $white
-  
-    &.is-active
-      cursor: default
-      display: block
-      position: absolute
-      width: 50%
-      left: 50%
-      margin-left: -25%
-      @include core-27
-      text-align: center
-      text-decoration: none
-      // background: $grey-3
 
 #calendar
   margin: 0 -15px
-  border-bottom: 5px solid $grey-3
 
   @include media(desktop)
     width: 100%
@@ -81,13 +36,14 @@
     display: block
 
   .slot
+    position: relative
     float: left
     min-width: 120px
     margin-right: .5em
     padding: 4px 7px
     border: 1px solid $grey-2
     cursor: pointer
-    background: $white image-url("radio_buttons.png") no-repeat right -112px
+    background: $white //image-url("radio_buttons.png") no-repeat right -112px
 
     &.is-active
       background-position: right 8px
@@ -98,11 +54,14 @@
     &:last-child
       margin-right: 0
 
-    strong,
+    strong
       display: block
 
     input
-      display: none
+      position: absolute
+      top: 50%
+      right: 14px
+      margin-top: -7px
 
 .slots
   @include media(mobile)
@@ -119,17 +78,13 @@
 
   @include media(desktop)
     margin-left: 51%
-  
-  h2
-    @include core-24
-    margin-top: 1em
-    font-weight: bold
 
   h3,
   p
     margin-bottom: 0
 
   ul
+    min-height: 236px
     margin: 0
     padding: 10px
     list-style-type: none
@@ -139,8 +94,8 @@
       position: relative
       min-height: 2em
       margin-top: 10px
-      border: 1px dashed $grey-2
-      background: #ebebeb
+      // border: 1px dashed $grey-2
+      // background: #ebebeb
 
       &:first-child
         margin-top: 0
@@ -153,7 +108,7 @@
       &.is-active
         padding: 10px 10px 10px 65px
         background: $white
-        border-style: solid
+        border: 1px solid $grey-2
         border-color: #c2c2c2
 
         .slot-remove,
@@ -163,8 +118,8 @@
         .date
           font-weight: bold
 
-        .placeholder
-          display: none
+        // .placeholder
+        //   display: none
 
         .slot-position
           display: block

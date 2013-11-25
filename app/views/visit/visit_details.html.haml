@@ -11,9 +11,25 @@
     %h2#error-heading You need to fix the errors on this page before continuing.
     %p You need to choose date(s) and time(s) for your visit to continue.
 
-#calendar
+#calendar.fc-content
+  %table.fc-border-separate(style='width:100%')
+    %caption.step_prompt First select a date
+    %thead
+      %tr
+        - [:Mon,:Tue,:Wed,:Thu,:Fri,:Sat,:Sun].each do |d|
+          %th.fc-day-header= d
+
+      - weeks.each do |week|
+        %tr
+          - week[1].each do |day|
+            %td.fc-day.fc-widget-content{ :'data-date' => day, :class => day_classes(day) }
+              .fc-day-number= day.strftime('%e')
+              .fc-day-content
+                - if tag_with_month? day
+                  .fc-tag= day.strftime('%b')
 
 .slots.js-slotpicker{ :'data-optionlimits' => number_of_slots }
+  %h2.step_prompt Now select a time
   .js-slotpicker-options.day-slots#in-the-past
     %p It is not possible to book a visit in the past
   .js-slotpicker-options.day-slots#too-far-ahead
@@ -39,8 +55,8 @@
           - else
             %p There are no sessions available on #{date.strftime('%A')}s.
 
-.selected-slots
-  %h2 Your visit times
+.selected-slots.js-selected-slots
+  %h2.step_prompt Your visit times
   %ul
     - (1..number_of_slots).each_with_index do |i|
       %li
@@ -50,7 +66,7 @@
         .slot-position= i
         %p.date
         %p.time
-        %p.placeholder #{[:First, :Second, :Third][i-1]} choice
+        -# %p.placeholder #{[:First, :Second, :Third][i-1]} choice
 
 
 = form_for visit, url: update_visit_details_path, :html => { :class => 'slot-form' } do |f|
@@ -76,7 +92,7 @@
 
   .actions
     = link_to 'Cancel and delete all details', abandon_path, :class => 'pull-right', :'data-confirm' => "Are you sure you wish to cancel this visit request?\r\rThis will delete all the information you have entered"
-    = f.button :Continue, :name => 'next', :value => 'continue', :class => 'button button-primary'
+    = f.button :Continue, :name => 'next', :value => 'continue', :class => 'button button-primary js-submit'
 
 :javascript
   pvbe = {

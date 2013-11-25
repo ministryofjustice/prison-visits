@@ -1,10 +1,30 @@
 // Full calendar
 
+.step_prompt
+  @include core-27
+  color: $white
+  margin-bottom: 0
+  padding: 10px 0 6px 10px
+  font-weight: normal
+  text-align: left
+  background: $grey-1
+
+th.fc-day-header
+  font-weight: normal
+  text-align: left
+  padding-top: 4px
+  padding-left: 3px
+  background: #fbfbfb
+
 .fc-day
   cursor: pointer
+  position: relative
+  width: 14.285714286%
+  padding: 0
 
 .fc-content table
   background: image-url("unavailable_tile.png")
+  border-bottom: 1px solid $grey-3
 
 .fc-today .fc-day-content
   padding: 0
@@ -17,8 +37,21 @@
     line-height: normal
     text-align: center
     background: $light-blue
+    position: absolute
+    bottom: 0
+    width: 100%
 
-.fc-day-header,
+.fc-day-content .fc-tag 
+  padding: 0
+  width: 100%
+  height: auto !important
+  color: $white
+  line-height: normal
+  text-align: center
+  background: $grey-2
+  position: absolute
+  bottom: 0
+
 .fc-bookable
   background: $white
 
@@ -26,9 +59,11 @@
     background: $grey-3
 
 .fc-past
+  color: $grey-1
   background: $grey-4
 
 .fc-future.fc-unbookable
+  color: $grey-2
   background: transparent
 
 .fc-chosen
@@ -51,8 +86,15 @@
 .fc-day.fc-state-highlight
   background: #acdaed
 
+.fc-day-number
+  position: absolute
+  left: 3px
+
 .fc-grid .fc-day-number
   float: none
+
+#calendar .fc-day-content
+  min-height: 55px
 
 .fc-header
   td
