@@ -13,7 +13,7 @@ SlotPicker = (el, options) ->
   @cacheEls el
   @bindEvents()
   @markChosenSlots pvbe.current_slots
-  @initCalendar()
+  @$submitButton.prop 'disabled', true
   return @
 
 SlotPicker:: =
@@ -26,10 +26,11 @@ SlotPicker:: =
     @$wrapper = $ '#wrapper'
     @$slotInputs = $ '.js-slotpicker-slot'
     @$slotOptions = $ '.js-slotpicker-option'
+    @$selectedSlotWrapper = $ '.js-selected-slots'
     @$selectedSlots = $ '.selected-slots li'
     @$removeSlots = '.js-remove-slot'
     @$promoteSlots = '.js-promote-slot'
-    @$calendar = $ '#calendar'
+    @$submitButton = $ '.js-submit'
 
   bindEvents: ->
     # store a reference to obj before 'this' becomes jQuery obj
@@ -41,6 +42,8 @@ SlotPicker:: =
       _this.unHighlightSlots()
       _this.checkSlot $(this)
       _this.processSlots()
+      _this.toggleSelectedSlots()
+      _this.toggleSubmit()
       _this.disableCheckboxes _this.limitReached()
 
     @$wrapper.on 'click', @$removeSlots, (e) ->
@@ -54,6 +57,7 @@ SlotPicker:: =
 
     $('.fc-day').on 'click', ->
       _this.selectDay $(this)
+      $('.js-slotpicker').addClass 'is-active'
   
   selectDay: (day) ->
     dateStr = day.data 'date'
@@ -78,6 +82,12 @@ SlotPicker:: =
     # Highlight the currently selected day on the calendar
     $('.fc-day').removeClass('fc-state-highlight')
     day.addClass('fc-state-highlight')
+
+  toggleSelectedSlots: ->
+    @$selectedSlotWrapper[if @settings.currentSlots.length then 'addClass' else 'removeClass'] 'is-active'
+
+  toggleSubmit: ->
+    @$submitButton.prop 'disabled', !@settings.currentSlots.length
 
   markChosenSlots: (slots) ->
     for slot in slots
@@ -164,67 +174,6 @@ SlotPicker:: =
     day = @splitDateAndSlot(slot)[0]
     $("[data-date=#{day}]")[if ~@settings.currentSlots.join('-').indexOf(day) then 'addClass' else 'removeClass'] 'fc-chosen'
 
-  refreshCal: ->
-    @$calendar.fullCalendar 'render'
-
-  initCalendar: ->
-    _this = @
-
-    # Fullcalendar
-    @$calendar.fullCalendar
-      header:
-        left: 'prev'
-        center: 'title'
-        right: 'next'
-
-      viewRender: (view, element) ->
-        $('#calendar').find('.fc-day').not('.fc-unbookable').first()
-
-      dayClick: (date, allDay, jsEvent, view) ->
-        $day = $( jsEvent.target ).closest( '.fc-day' )
-
-        # Show the slots for the selected day
-        $('.js-slotpicker-options').removeClass 'is-active'
-        $("#date-#{date.formatIso()}").addClass 'is-active'
-
-        # Show unbookable day message
-        unless ~pvbe.bookable_dates.indexOf date.formatIso()
-          today = new Date((new Date()).formatIso())
-          bookingFrom = new Date(pvbe.bookable_from)
-          if date < today
-            $('#in-the-past').addClass 'is-active'
-          if date >= today
-            if date > bookingFrom
-              $('#too-far-ahead').addClass 'is-active'
-            else
-              $('#booking-gap').addClass 'is-active'
-
-        # Highlight the currently selected day on the calendar
-        $('.fc-day').removeClass('fc-state-highlight')
-        $day.addClass('fc-state-highlight')
-
-      dayRender: (date, cell) ->
-        # mark days which can be booked
-        if ~pvbe.bookable_dates.indexOf date.formatIso()
-          cell.addClass 'fc-bookable'
-        
-        # mark days which can NOT be booked
-        unless ~pvbe.bookable_dates.indexOf date.formatIso()
-          cell.removeClass 'fc-bookable'
-          cell.addClass 'fc-unbookable'
-
-        # mark days where there are no visit slots
-        unless ~pvbe.bookable_week_days.indexOf date.getDay()
-          cell.removeClass 'fc-bookable'
-          cell.addClass 'fc-unbookable'
-
-        # mark days which contain currently selected slots
-        for slot in _this.settings.currentSlots
-          cell.addClass 'fc-chosen' if _this.splitDateAndSlot(slot)[0] is date.formatIso()
-
-        # mark today
-        if date.formatIso() is (new Date()).formatIso()
-          cell.addClass 'fc-today'
 
 # Add module to MOJ namespace
 moj.Modules.slotPicker = init: ->

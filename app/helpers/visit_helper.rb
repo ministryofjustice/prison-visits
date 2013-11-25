@@ -113,4 +113,8 @@ module VisitHelper
     classes << 'fc-chosen' if current_slots.include?(day)
     classes
   end
+
+  def tag_with_month?(day)
+    weeks_start == day || day.beginning_of_month == day
+  end
 end

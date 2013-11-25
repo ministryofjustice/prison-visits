@@ -1,5 +1,21 @@
 // Full calendar
 
+.step_prompt
+  @include core-27
+  color: $white
+  margin-bottom: 0
+  padding: 10px 0 6px 10px
+  font-weight: normal
+  text-align: left
+  background: $grey-1
+
+th.fc-day-header
+  font-weight: normal
+  text-align: left
+  padding-top: 4px
+  padding-left: 3px
+  background: #fbfbfb
+
 .fc-day
   cursor: pointer
   position: relative
@@ -25,7 +41,17 @@
     bottom: 0
     width: 100%
 
-.fc-day-header,
+.fc-day-content .fc-tag 
+  padding: 0
+  width: 100%
+  height: auto !important
+  color: $white
+  line-height: normal
+  text-align: center
+  background: $grey-2
+  position: absolute
+  bottom: 0
+
 .fc-bookable
   background: $white
 
@@ -67,7 +93,7 @@
 .fc-grid .fc-day-number
   float: none
 
-#matsCalendar .fc-day-content
+#calendar .fc-day-content
   min-height: 55px
 
 .fc-header

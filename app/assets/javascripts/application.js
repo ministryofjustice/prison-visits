@@ -5,9 +5,6 @@
 //= require jquery
 //= require jquery_ujs
 
-//= require jquery-ui.custom.min
-//= require fullcalendar.min
-
 //= require moj
 //= require modules/moj.tabs
 //= require modules/moj.cookie-message

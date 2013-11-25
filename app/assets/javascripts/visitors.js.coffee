@@ -48,7 +48,3 @@ $('.number_of_visitors').on 'change', ->
   # leave as is if the desired amount is the same as currently available
   # remove visitor blocks if the form currently contains more that desired
   else removeVisitorBlocks(current-desired, type) if desired < current
-
-
-$('body').on 'click', '.selected-slots li:not(".is-active")', ->
-  alert 'Please select a day on the calendar'
