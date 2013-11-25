@@ -1,10 +1,11 @@
 - content_for :header do
   %h1 Check your request
 
-%p Check all the details on this page carefully before clicking 'Finish' to send your visit request.
+%p Check all the details on this page carefully before clicking 'Send request'
 
-.well
-  %h2 You are visiting
+.divider
+  .edit-link= link_to 'Edit these prisoner details', prisoner_details_path
+  %h2 Prisoner details
   %p
     %big
       %strong #{visit.prisoner.first_name} #{visit.prisoner.last_name}
@@ -18,9 +19,27 @@
   %p
     Prison:
     %strong #{visit.prisoner.prison_name}
-  %div= link_to 'Edit these prisoner details', prisoner_details_path
 
-.well
+.divider
+  .edit-link= link_to 'Edit these visitor details', visitor_details_path
+  %h2 Visitor details
+  - adults = 0
+  - children = 0
+  - visit.visitors.each_with_index do |visitor, i|
+    - if visitor.first_name.present? || visitor.last_name.present?
+      - type = visitor.type || 'Adult'
+      - if visitor.type == 'child'
+        - children = children + 1
+        - count = children
+      - else
+        - adults = adults + 1
+        - count = adults
+      %p
+        #{type.capitalize} visitor #{count}:
+        %strong #{visitor.first_name} #{visitor.last_name}
+
+.divider
+  .edit-link= link_to 'Edit these visit times', visit_details_path
   %h2 Chosen visit times
   %ul.unstyled-list
     - visit.slots.each do |slot|
@@ -30,18 +49,7 @@
           %strong= slot_date.strftime("%A %e %B")
           \ -
           = display_slot_and_duration slot.times
-  = link_to 'Edit these visit times', visit_details_path
 
-.well
-  %h2 Visitor details
-  - visit.visitors.each_with_index do |visitor, i|
-    - if visitor.first_name.present? || visitor.last_name.present?
-      %p
-        Visitor #{i+1}
-        %br
-        %strong #{visitor.first_name} #{visitor.last_name}
-  = link_to 'Edit these visitor details', visitor_details_path
-
-.actions
+.actions.divider
   = link_to 'Cancel and delete all details', abandon_path, :class => 'pull-right', :'data-confirm' => "Are you sure you wish to cancel this visit request?\r\rThis will delete all the information you have entered"
-  = button_to 'Finish', update_summary_path, :class => 'button button-primary'
+  = button_to 'Send request', update_summary_path, :class => 'button button-primary'

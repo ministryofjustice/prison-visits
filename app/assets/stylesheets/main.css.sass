@@ -20,6 +20,22 @@ summary
   border-style: solid
   border-color: $grey-2
 
+.divider
+  margin: 1em 0
+  padding-top: 1em
+  border-top: 1px dashed $grey-2
+
+  h2,
+  ul,
+  p
+    margin: 0
+
+  li
+    @include core-19
+
+.edit-link
+  float: right
+
 .request_sent .well p
   margin: 1em 0
 
