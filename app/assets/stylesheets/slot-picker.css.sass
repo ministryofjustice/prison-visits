@@ -35,6 +35,9 @@
   &.is-active
     display: block
 
+  h4
+    font-weight: bold
+
   .slot
     position: relative
     float: left
@@ -48,8 +51,8 @@
     &.is-active
       background-position: right 8px
 
-    &.is-disabled
-      background-position: right -232px
+    // &.is-disabled
+    //   background-position: right -232px
 
     &:last-child
       margin-right: 0
@@ -84,11 +87,13 @@
     margin-bottom: 0
 
   ul
-    min-height: 236px
     margin: 0
     padding: 10px
     list-style-type: none
     background: $grey-3
+
+    @include media(desktop)
+      min-height: 236px
 
     li
       position: relative
