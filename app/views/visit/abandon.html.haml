@@ -1,1 +1,5 @@
-Your request has been abandoned.
+- content_for :header do
+ %h1 Your request has been cancelled.
+
+
+= link_to 'Start a new request', prisoner_details_path, :class => 'button button-primary'

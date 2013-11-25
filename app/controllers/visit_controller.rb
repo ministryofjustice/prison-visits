@@ -86,7 +86,6 @@ class VisitController < ApplicationController
 
   def abandon
     reset_session
-    redirect_to prisoner_details_path, notice: "Your request has been cancelled."
   end
 
 private
