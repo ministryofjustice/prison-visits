@@ -1,8 +1,8 @@
 - content_for :header do
-  %h1 Your visit date and time
+  %h1 Choose your visit date and time
 
-%p
-  Choose the date first, then choose the time you’d like to visit. You can choose up to three possible dates and times. Use the arrows to put your visit choices in the order that suits you best.
+
+%p Choose the date first, then choose the time you’d like to visit. You can choose up to three possible dates and times.
 
 - if visit.slots.any? {|s| s.errors.any?}
   #error-summary.validation-summary.group(role="alert" tabindex="-1" aria-labelledby="error-heading")
@@ -65,6 +65,8 @@
         %p.date
         %p.time
         -# %p.placeholder #{[:First, :Second, :Third][i-1]} choice
+
+  %p.js-promote-help Use the arrows to put your visit choices in the order that suits you best.
 
 
 = form_for visit, url: update_visit_details_path, :html => { :class => 'slot-form' } do |f|

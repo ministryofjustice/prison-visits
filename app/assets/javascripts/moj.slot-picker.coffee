@@ -32,6 +32,7 @@ SlotPicker:: =
     @$removeSlots = '.js-remove-slot'
     @$promoteSlots = '.js-promote-slot'
     @$submitButton = $ '.js-submit'
+    @$promoteHelp = $ '.js-promote-help'
 
   bindEvents: ->
     # store a reference to obj before 'this' becomes jQuery obj
@@ -46,6 +47,7 @@ SlotPicker:: =
       _this.processSlots()
       _this.toggleSubmit()
       _this.disableCheckboxes _this.limitReached()
+      _this.togglePromoteHelp()
 
     @$wrapper.on 'click', @$removeSlots, (e) ->
       e.preventDefault()
@@ -88,6 +90,9 @@ SlotPicker:: =
 
   toggleSubmit: ->
     @$submitButton.prop 'disabled', !@settings.currentSlots.length
+
+  togglePromoteHelp: ->
+    @$promoteHelp[if @settings.currentSlots.length > 1 then 'addClass' else 'removeClass'] 'is-active'
 
   markChosenSlots: (slots) ->
     for slot in slots

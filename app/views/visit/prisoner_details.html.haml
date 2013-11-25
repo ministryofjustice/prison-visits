@@ -1,10 +1,6 @@
 - content_for :header do
   %h1 Who are you visiting?
 
-%p
-  Before you get started, see a list of the
-  information you will need
-  to make a booking.
 
 = form_for visit.prisoner, url: update_prisoner_details_path, as: :prisoner, :html => { :class => 'form validation' } do |f|
 
