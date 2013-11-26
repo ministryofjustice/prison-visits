@@ -22,8 +22,8 @@ class Prisoner
       email: 'socialvisits.gartree@hmps.gsi.gov.uk'
     },
     rochester: {
-      phone: '-phone missing-',
-      email: '-email missing-'
+      phone: '01634 803100',
+      email: ''
     }
   }
 

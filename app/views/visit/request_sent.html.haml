@@ -5,6 +5,10 @@
   We'll email you at
   %strong= visit.visitors[0].email
   within 72 hours to confirm your visit.
+  If you need to get in touch with the prison visit booking team, please
+  - if prison_phone(visit).present?
+    call #{prison_phone(visit)} or
+  see the #{prison_link(visit)} page.
 
 .well.summary-pane.pull-left.cf
   %p.flat
@@ -34,10 +38,11 @@
         - when 'HMP Durham'
           = ['Old Elvet','Durham','DH1 3HU'].join('<br>').html_safe
 
-  %p
-    Tel:
-    %br
-    %strong= prison_phone visit
+  - if prison_phone(visit).present?
+    %p
+      Tel:
+      %br
+      %strong= prison_phone visit
 
   .visible--js-enabled
     = link_to 'Print this page', '#', :class => 'print-link'
@@ -63,10 +68,12 @@
 
   %h2 Changing or cancelling your visit
 
-  %p
-    If you need to change or cancel your visit, please contact us as soon as you can.
-    %br telephone: #{prison_phone(visit)}
-    %br email: #{prison_email(visit)}
+  %p If you need to change or cancel your visit, please contact us as soon as you can.
+  %ul
+    - if prison_phone(visit).present?
+      %li Telephone: #{prison_phone(visit)}
+    - if prison_email(visit).present?
+      %li Email: #{prison_email(visit)}
 
   %h2 What to expect when visiting prison
 
