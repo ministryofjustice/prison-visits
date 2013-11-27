@@ -19,7 +19,7 @@ describe VisitController do
             last_name: 'Fingers',
             date_of_birth: '1986-04-20',
             number: 'g3133ff',
-            prison_name: 'Gartree'
+            prison_name: 'Durham'
           }
         }
       end
@@ -42,7 +42,7 @@ describe VisitController do
             last_name: '',
             date_of_birth: '1986-04-20',
             number: '31337',
-            prison_name: 'Gartree'
+            prison_name: 'Durham'
           }
         }
       end

@@ -2,9 +2,7 @@ class Prisoner
   include ActiveModel::Model
 
   PRISONS = [
-    'Gartree',
     'Rochester',
-    'Cardiff',
     'Durham'
   ].sort
 
