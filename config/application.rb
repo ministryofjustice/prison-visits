@@ -27,7 +27,7 @@ module PrisonVisits2
     # config.i18n.default_locale = :de
 
     # app title appears in the header bar
-    config.app_title = 'Prison visit bookings'
+    config.app_title = 'Prison visits booking'
     # phase governs text indicators and highlight colours
     # presumed values: alpha, beta, live
     config.phase = 'alpha'
