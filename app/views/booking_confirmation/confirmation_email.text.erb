@@ -13,7 +13,6 @@ Your visit is not yet confirmed. You will receive a confirmation email from the 
 <% @visit.visitors.each_with_index do |visitor, index| %>
 Visitor <%= index + 1 %>
 Name: <%= visitor.full_name %>
-DOB: <%= visitor.date_of_birth.strftime("%e %B %Y") %>
 <% if visitor.email %>
 Email: <%= visitor.email %>
 <% end %>
