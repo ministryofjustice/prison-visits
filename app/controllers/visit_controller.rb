@@ -76,6 +76,7 @@ class VisitController < ApplicationController
 
   def update_summary
     BookingRequest.request_email(visit).deliver
+    BookingConfirmation.confirmation_email(visit).deliver
     redirect_to request_sent_path
   end
 
