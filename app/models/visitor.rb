@@ -19,6 +19,10 @@ class Visitor
     errors.add(:date_of_birth, 'is invalid')
   end
 
+  def full_name
+    [first_name, last_name].join(' ')
+  end
+
   validates_presence_of :first_name
   validates_presence_of :last_name
   validate :validate_user_or_additional
