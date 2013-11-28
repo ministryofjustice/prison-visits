@@ -98,10 +98,6 @@ private
     params.require(:prisoner).permit(:first_name, :last_name, :date_of_birth, :number, :prison_name)
   end
 
-  # def visitor_params
-  #   params.require(:visitors).permit(:first_name, :last_name, :date_of_birth, :email, :phone)
-  # end
-
   def slot_params
     params.require(:visit).require(:slots)
   end
