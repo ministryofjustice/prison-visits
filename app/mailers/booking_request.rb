@@ -6,6 +6,13 @@ class BookingRequest < ActionMailer::Base
     'Durham' => 'socialvisits.durham@hmps.gsi.gov.uk'
   }
 
+  self.smtp_settings = {
+    address: ENV['GSI_SMTP_HOSTNAME'],
+    port: ENV['GSI_SMTP_PORT'],
+    domain: ENV['GSI_SMTP_DOMAIN'],
+    enable_starttls_auto: true
+  }
+
   def request_email(visit)
     @visit = visit
     user = visit.visitors.find { |v| v.email }.email

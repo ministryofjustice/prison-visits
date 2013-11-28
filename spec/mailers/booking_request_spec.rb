@@ -15,6 +15,10 @@ describe BookingRequest do
     end
   end
 
+  it "has its own SMTP configuration" do
+    subject.smtp_settings.should_not == ActionMailer::Base.smtp_settings
+  end
+
   context "in production" do
     before :each do
       BookingRequest.any_instance.should_receive(:production?).and_return(true)
