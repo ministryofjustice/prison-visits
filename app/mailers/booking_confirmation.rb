@@ -11,7 +11,7 @@ class BookingConfirmation < ActionMailer::Base
       'pvb-email-test@googlegroups.com'
     end
 
-    mail(from: 'prisonvisitsbooking@digital.justice.gov.uk', to: recipient, subject: 'Visit confirmation')
+    mail(from: ENV['SMTP_SENDER'], to: recipient, subject: 'Visit confirmation')
   end
 
   def production?
