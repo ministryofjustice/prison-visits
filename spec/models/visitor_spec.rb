@@ -37,4 +37,8 @@ describe Visitor do
       end
     end
   end
+
+  it "displays a full_name" do
+    Visitor.new(first_name: 'Jimmy', last_name: 'Fingers').full_name.should == 'Jimmy Fingers'
+  end
 end

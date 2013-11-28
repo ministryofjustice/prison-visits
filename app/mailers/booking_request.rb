@@ -6,6 +6,13 @@ class BookingRequest < ActionMailer::Base
     'Durham' => 'socialvisits.durham@hmps.gsi.gov.uk'
   }
 
+  self.smtp_settings = {
+    address: ENV['GSI_SMTP_HOSTNAME'],
+    port: ENV['GSI_SMTP_PORT'],
+    domain: ENV['GSI_SMTP_DOMAIN'],
+    enable_starttls_auto: true
+  }
+
   def request_email(visit)
     @visit = visit
     user = visit.visitors.find { |v| v.email }.email
@@ -16,7 +23,7 @@ class BookingRequest < ActionMailer::Base
       'pvb-email-test@googlegroups.com'
     end
 
-    mail(from: 'prisonvisitsbooking@digital.justice.gov.uk', to: recipient, subject: 'Visit request', reply_to: user)
+    mail(from: ENV['SMTP_SENDER'], to: recipient, subject: 'Visit request', reply_to: user)
   end
 
   def production?
