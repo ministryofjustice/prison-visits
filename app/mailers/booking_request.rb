@@ -2,8 +2,10 @@ class BookingRequest < ActionMailer::Base
   add_template_helper(ApplicationHelper)
 
   EMAILS = {
-    'Rochester' => 'socialvisits.rochester@hmps.gsi.gov.uk',
-    'Durham' => 'socialvisits.durham@hmps.gsi.gov.uk'
+    # 'Rochester' => 'socialvisits.rochester@hmps.gsi.gov.uk',
+    # 'Durham' => 'socialvisits.durham@hmps.gsi.gov.uk'
+    'Rochester' => 'lisa.woo@justice.gsi.gov.uk',
+    'Durham' => 'max.froumentin@justice.gsi.gov.uk'
   }
 
   self.smtp_settings = {
