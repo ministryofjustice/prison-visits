@@ -2,14 +2,14 @@
   %h1 Choose your visit date and time
 
 
-%p Choose the date first, then choose the time you’d like to visit. You can choose up to three possible dates and times.
+%p.visible--js-enabled Choose the date first, then choose the time you’d like to visit. You can choose up to three possible dates and times.
 
 - if visit.slots.any? {|s| s.errors.any?}
   #error-summary.validation-summary.group(role="alert" tabindex="-1" aria-labelledby="error-heading")
     %h2#error-heading You need to fix the errors on this page before continuing.
     %p You need to choose date(s) and time(s) for your visit to continue.
 
-#calendar.fc-content
+#calendar.fc-content.visible--js-enabled
   %table.fc-border-separate(style='width:100%')
     %caption.step_prompt First select a date
     %thead
