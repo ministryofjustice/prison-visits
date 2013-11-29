@@ -219,6 +219,46 @@ describe VisitController do
     end
   end
 
+  describe "step 5" do
+    before :each do
+      session[:visit] = Visit.new.tap do |v|
+        v.prisoner = Prisoner.new.tap do |p|
+          p.first_name = 'Jimmy'
+          p.last_name = 'Fingers'
+          p.number = 'aa1111aa'
+          p.prison_name = 'Rochester'
+          p.date_of_birth = '1975-01-01'
+        end
+
+        v.visitors = [Visitor.new.tap do |vi|
+          vi.first_name = 'Morvern'
+          vi.last_name = 'Callar'
+          vi.email = 'email@system.lol'
+          vi.index = 0
+          vi.phone = '01234567890'
+          vi.date_of_birth = Date.today - 20.years
+        end]
+
+        v.slots = [Slot.new]
+      end
+    end
+
+    it "displays a summary" do
+      get :summary
+      response.should be_success
+    end
+
+    it "sends out emails" do
+      BookingRequest.any_instance.should_receive(:sender).and_return('test@example.com')
+      BookingConfirmation.any_instance.should_receive(:sender).and_return('test@example.com')
+
+      post :update_summary
+      response.should redirect_to(request_sent_path)
+
+      ActionMailer::Base.deliveries.map(&:subject).should == ['Visit request', 'Visit confirmation']
+    end
+  end
+
   describe "abandon ship!" do
     before :each do
       get :prisoner_details

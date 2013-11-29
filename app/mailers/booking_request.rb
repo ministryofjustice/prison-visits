@@ -25,10 +25,14 @@ class BookingRequest < ActionMailer::Base
       'pvb-email-test@googlegroups.com'
     end
 
-    mail(from: ENV['SMTP_SENDER'], to: recipient, subject: 'Visit request', reply_to: user)
+    mail(from: sender, to: recipient, subject: 'Visit request', reply_to: user)
   end
 
   def production?
     ENV['APP_PLATFORM'] == 'production'
+  end
+
+  def sender
+    ENV['SMTP_SENDER']
   end
 end
