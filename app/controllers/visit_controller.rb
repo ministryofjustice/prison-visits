@@ -38,7 +38,7 @@ class VisitController < ApplicationController
       !v.valid?
     end.any?
 
-    if params[:next] == 'add'
+    if params[:next] == 'Add another visitor'
       if visit.visitors.size < Visit::MAX_VISITORS
         visit.visitors << Visitor.new
         redirect_to visitor_details_path
