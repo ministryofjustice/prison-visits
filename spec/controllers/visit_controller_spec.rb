@@ -160,8 +160,8 @@ describe VisitController do
       end
 
       it "permits us to select a time slot" do
-        post :update_visit_details, slots_hash
-        response.should redirect_to(summary_path)
+        post :update_choose_date_and_time, slots_hash
+        response.should redirect_to(check_your_request_path)
       end
     end
 
@@ -173,8 +173,8 @@ describe VisitController do
       end
 
       it "prompts us to retry" do
-        post :update_visit_details, slots_hash
-        response.should redirect_to(visit_details_path)
+        post :update_choose_date_and_time, slots_hash
+        response.should redirect_to(choose_date_and_time_path)
       end
     end
 
@@ -186,8 +186,8 @@ describe VisitController do
       end
 
       it "accepts the submission" do
-        post :update_visit_details, slots_hash
-        response.should redirect_to(summary_path)
+        post :update_choose_date_and_time, slots_hash
+        response.should redirect_to(check_your_request_path)
       end
     end
 
@@ -199,8 +199,8 @@ describe VisitController do
       end
 
       it "accepts the submission" do
-        post :update_visit_details, slots_hash
-        response.should redirect_to(summary_path)
+        post :update_choose_date_and_time, slots_hash
+        response.should redirect_to(check_your_request_path)
       end
     end
 
@@ -212,8 +212,8 @@ describe VisitController do
       end
 
       it "prompts us to retry" do
-        post :update_visit_details, slots_hash
-        response.should redirect_to(visit_details_path)
+        post :update_choose_date_and_time, slots_hash
+        response.should redirect_to(choose_date_and_time_path)
         session[:visit].errors[:slots].should_not be_nil
       end
     end
