@@ -7,7 +7,7 @@ describe BookingConfirmation do
 
   let! :sample_visit do
     Visit.new.tap do |v|
-      v.slots = []
+      v.slots = [Slot.new(date: '2013-12-06', times: '0945-1115')]
       v.prisoner = Prisoner.new.tap do |p|
         p.date_of_birth = '2013-06-30'
       end
@@ -15,6 +15,12 @@ describe BookingConfirmation do
         v.email = 'sample@email.lol'
         v.date_of_birth = '1975-01-01'
       end]
+    end
+  end
+
+  context "always" do
+    it "sends out an e-mail with a date in the subject" do
+      subject.confirmation_email(sample_visit).subject.should == "Your visit request for 6 December 2013"
     end
   end
 

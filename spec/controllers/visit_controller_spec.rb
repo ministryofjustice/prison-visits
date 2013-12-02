@@ -239,7 +239,7 @@ describe VisitController do
           vi.date_of_birth = Date.today - 20.years
         end]
 
-        v.slots = [Slot.new]
+        v.slots = [Slot.new(date: '2013-12-06', times: '0945-1115')]
       end
     end
 
@@ -255,7 +255,7 @@ describe VisitController do
       post :update_summary
       response.should redirect_to(request_sent_path)
 
-      ActionMailer::Base.deliveries.map(&:subject).should == ['Visit request', 'Visit confirmation']
+      ActionMailer::Base.deliveries.map(&:subject).should == ['Visit request for Jimmy Fingers', 'Your visit request for 6 December 2013']
     end
   end
 

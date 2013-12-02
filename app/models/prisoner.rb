@@ -43,4 +43,8 @@ class Prisoner
   validates_inclusion_of :date_of_birth, in: ->(_) { 100.years.ago.to_date..Date.today }, message: "must be a valid date of birth"
   validates_format_of :number, with: /\A[a-z]\d{4}[a-z]{2}\z/i, message: "must be a valid prisoner number" # eg a1234aa
   validates_inclusion_of :prison_name, in: PRISONS
+
+  def full_name
+    [@first_name, @last_name].join(' ')
+  end
 end

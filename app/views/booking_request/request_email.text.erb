@@ -1,4 +1,4 @@
-You received the following booking to visit HMP XXX on one of the following dates:
+You received the following booking to visit HMP <%= @visit.prisoner.prison_name %> on one of the following dates:
 
 <% @visit.slots.each_with_index do |slot, index| %>
 <% if slot.date.present? %>

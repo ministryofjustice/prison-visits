@@ -27,4 +27,8 @@ describe Prisoner do
     prisoner.number.should have(7).characters
     prisoner.should be_valid
   end
+
+  it "displays a full name" do
+    prisoner.full_name.should == 'Jimmy Fingers'
+  end
 end

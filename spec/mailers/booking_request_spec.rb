@@ -10,6 +10,8 @@ describe BookingRequest do
       v.slots = []
       v.prisoner = Prisoner.new.tap do |p|
         p.date_of_birth = '2013-06-30'
+        p.first_name = 'Jimmy'
+        p.last_name = 'Fingers'
       end
       v.visitors = [Visitor.new(email: 'sample@email.lol', date_of_birth: Time.now)]
     end
@@ -17,6 +19,12 @@ describe BookingRequest do
 
   it "has its own SMTP configuration" do
     subject.smtp_settings.should_not == ActionMailer::Base.smtp_settings
+  end
+
+  context "always" do
+    it "sends an e-mail with the prisoner name in the subject" do
+      subject.request_email(sample_visit).subject.should == 'Visit request for Jimmy Fingers'
+    end
   end
 
   context "in production" do

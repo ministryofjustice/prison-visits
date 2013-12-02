@@ -11,7 +11,8 @@ class BookingConfirmation < ActionMailer::Base
       'pvb-email-test@googlegroups.com'
     end
 
-    mail(from: sender, to: recipient, subject: 'Visit confirmation')
+    first_date = Date.parse(@visit.slots.first.date)
+    mail(from: sender, to: recipient, subject: "Your visit request for#{first_date.strftime('%e %B %Y')}")
   end
 
   def production?
