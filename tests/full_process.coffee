@@ -57,7 +57,7 @@ casper.test.begin 'Prison Visit Booking: Step 1 - prisoner details', (test) ->
     @capture 'tests/visitor_details_valid.png' if outputImages
 
   casper.then ->
-    @clickLabel 'Continue'
+    @click '.button-primary'
 
   casper.then ->
     test.assertUrlMatch /localhost:3000\/visit-details/, 'we should have progressed to session chooser'
