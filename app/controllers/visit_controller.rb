@@ -46,15 +46,15 @@ class VisitController < ApplicationController
         redirect_to visitor_details_path, notice: "You may only have a maximum of #{Visit::MAX_VISITORS} visitors"
       end
     else
-      redirect_to go_back ? visitor_details_path : visit_details_path
+      redirect_to go_back ? visitor_details_path : choose_date_and_time_path
     end
   end
 
-  def visit_details
+  def choose_date_and_time
     @slots = visit.slots.empty? ? [Slot.new, Slot.new, Slot.new] : visit.slots
   end
 
-  def update_visit_details
+  def update_choose_date_and_time
     visit.slots = []
     slot_params.each_with_index do |slot_hash, i|
       visit.slots << Slot.new(slot_hash_from_string(slot_hash[:slot]).merge(index: i))
@@ -65,16 +65,16 @@ class VisitController < ApplicationController
     end.any? || visit.slots.size > Visit::MAX_SLOTS
 
     if go_back
-      redirect_to visit_details_path
+      redirect_to choose_date_and_time_path
     else
-      redirect_to summary_path
+      redirect_to check_your_request_path
     end
   end
 
-  def summary
+  def check_your_request
   end
 
-  def update_summary
+  def update_check_your_request
     BookingRequest.request_email(visit).deliver
     BookingConfirmation.confirmation_email(visit).deliver
     redirect_to request_sent_path

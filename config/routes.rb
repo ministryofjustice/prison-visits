@@ -1,6 +1,6 @@
 PrisonVisits2::Application.routes.draw do
   scope :controller => 'visit' do
-    ['prisoner-details','visitor-details','visit-details','summary','request-sent'].each do |n|
+    ['prisoner-details','visitor-details','choose-date-and-time','check-your-request','request-sent'].each do |n|
       label = n.gsub '-', '_'
       get "/#{n}", action: label, as: label
       post "/#{n}", action: "update_#{label}", as: "update_#{label}"

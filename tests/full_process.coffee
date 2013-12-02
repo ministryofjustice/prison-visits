@@ -60,27 +60,27 @@ casper.test.begin 'Prison Visit Booking: Step 1 - prisoner details', (test) ->
     @click '.button-primary'
 
   casper.then ->
-    test.assertUrlMatch /localhost:3000\/visit-details/, 'we should have progressed to session chooser'
+    test.assertUrlMatch /localhost:3000\/choose-date-and-time/, 'we should have progressed to choose date and time'
 
     test.comment 'Prison Visit Booking: Step 3 - choose a session'
 
     @click '.fc-bookable'
     @click '.day-slots.is-active label'
 
-    @capture 'tests/visit_details_valid.png' if outputImages
+    @capture 'tests/choose-date-and-time.png' if outputImages
 
   casper.then ->
     @clickLabel 'Continue'
 
   casper.then ->
-    test.assertUrlMatch /localhost:3000\/summary/, 'we should have progressed to summary'
+    test.assertUrlMatch /localhost:3000\/check-your-request/, 'we should have progressed to check your request'
 
   casper.then ->
-    test.comment 'Prison Visit Booking: Step 4 - summary'
+    test.comment 'Prison Visit Booking: Step 4 - check your request'
     test.assertTextExists 'Jimmy Fingers', 'prisoner name is present'
     test.assertTextExists 'Sue Denim', 'user name is present'
 
-    @capture 'tests/summary.png' if outputImages
+    @capture 'tests/check-your-request.png' if outputImages
 
   casper.then ->
     @click '.button-primary'
