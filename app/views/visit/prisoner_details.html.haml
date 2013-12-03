@@ -2,7 +2,7 @@
   %h1 Who are you visiting?
 
 
-= form_for visit.prisoner, url: update_prisoner_details_path, as: :prisoner, :html => { :class => 'form validation' } do |f|
+= form_for visit.prisoner, url: update_prisoner_details_path, as: :prisoner, :html => { :class => 'form validation', :autocomplete => 'off' } do |f|
 
   - if f.object.errors.any?
     = render 'shared/validation'

@@ -2,7 +2,7 @@
   %h1 Your details
 
 
-= form_for visit, url: update_visitor_details_path do |f|
+= form_for visit, url: update_visitor_details_path, :html => { :autocomplete => 'off' } do |f|
 
   - if visit.visitors.any? {|v| v.errors.any?}
     = render 'shared/validation'
