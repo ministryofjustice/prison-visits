@@ -46,9 +46,9 @@
               - slot_start = Time.strptime(slot[0].to_s, '%H%M')
               - slot_end = Time.strptime(slot[1].to_s, '%H%M')
               %label.slot
+                %input.js-slotpicker-option{ :value => "#{date.strftime('%Y-%m-%d')}-#{slot[0]}-#{slot[1]}" }(type="checkbox" name="slot")
                 %strong= slot_start.strftime("%l:%M%P")
                 %span.duration= (slot_end - slot_start).duration
-                %input.js-slotpicker-option{ :value => "#{date.strftime('%Y-%m-%d')}-#{slot[0]}-#{slot[1]}" }(type="checkbox" name="slot")
 
           - else
             %p There are no sessions available on #{date.strftime('%A')}s.
