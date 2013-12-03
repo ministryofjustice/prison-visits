@@ -244,7 +244,7 @@ describe VisitController do
     end
 
     it "displays a summary" do
-      get :summary
+      get :check_your_request
       response.should be_success
     end
 
@@ -252,7 +252,7 @@ describe VisitController do
       BookingRequest.any_instance.should_receive(:sender).and_return('test@example.com')
       BookingConfirmation.any_instance.should_receive(:sender).and_return('test@example.com')
 
-      post :update_summary
+      post :update_check_your_request
       response.should redirect_to(request_sent_path)
 
       ActionMailer::Base.deliveries.map(&:subject).should == ['Visit request for Jimmy Fingers', 'Your visit request for 6 December 2013']
