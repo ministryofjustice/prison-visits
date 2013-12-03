@@ -64,7 +64,6 @@
         .slot-position= i
         %p.date
         %p.time
-        -# %p.placeholder #{[:First, :Second, :Third][i-1]} choice
 
   %p.js-promote-help Use the arrows to put your visit choices in the order that suits you best.
 
@@ -87,8 +86,7 @@
                 - if visiting_slots.keys.include?(weekday)
                   - visiting_slots[weekday].each_with_index do |slot, i|
                     - value = [date.strftime('%Y-%m-%d'), slot.join('-')].join('-')
-                    - selected = value == current_slots[index-1] ? 'selected' : nil
-                    %option{ value: value, selected: selected }= date.strftime('%A, %e %B - ') + Time.strptime(slot[0].to_s, '%H%M').strftime('%l:%M%P')
+                    %option{ value: value, selected: ('selected' if value == current_slots[index]) }= date.strftime('%A, %e %B - ') + Time.strptime(slot[0].to_s, '%H%M').strftime('%l:%M%P')
 
   .actions
     = link_to 'Cancel and delete all details', abandon_path, :class => 'pull-right', :'data-confirm' => "Are you sure you wish to cancel this visit request?\r\rThis will delete all the information you have entered"
