@@ -1,0 +1,27 @@
+<%= form_for @feedback, :url => feedback_path, :html => {:novalidate => 'novalidate'} do |f| %>
+  <% if @feedback.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@feedback.errors.count, "error") %> prohibited your feedback from being sent:</h2>
+      <ul>
+      <% @feedback.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <fieldset>
+    <%= f.label :text, "Comments (Please don't leave sensitive personal details, like your phone number)" %>
+    <%= f.text_area :text, :cols => 50, :rows => 5 %>
+    <br/><span class="char-limit">2000 characters max</span>
+    </div>
+    <div>
+      <label for="feedback_email">Your email address (optional) - if you'd like us to contact you for more feedback</label>
+      <br/><%= f.email_field :email %>
+    </div>
+    <div>
+      <br/>
+      <input type ="hidden" name="feedback[referrer]" value="<%= params[:referrer] %>" />
+      <%= f.submit "Send", :class => "button", :id => "submit-button" %>
+    </div>
+  </fieldset>
+<% end %>
