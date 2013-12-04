@@ -3,19 +3,16 @@
   margin: 0 auto
 
   .inner
+    margin: 0
     padding: 0 15px
+    max-width: 708px
 
     @include media(tablet)
       padding-right: 30px
       padding-left: 30px
 
-  .prisoner_details &,
-  .visitor_details &,
-  .check-your-request &,
-  .request_sent &
-    .inner
-      max-width: 708px
-      margin: 0
+  .choose_date_and_time & .inner
+    max-width: none
 
 .well
   padding: 1em

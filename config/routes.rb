@@ -1,4 +1,6 @@
 PrisonVisits2::Application.routes.draw do
+  resource :feedback
+
   scope :controller => 'visit' do
     ['prisoner-details','visitor-details','choose-date-and-time','check-your-request','request-sent'].each do |n|
       label = n.gsub '-', '_'
