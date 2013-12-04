@@ -191,6 +191,7 @@ DEPENDENCIES
   guard-rspec
   haml-rails
   jquery-rails
+  mail
   moj_frontend_toolkit_gem!
   rails
   rspec-rails

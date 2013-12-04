@@ -14,3 +14,4 @@ gem 'coffee-rails'
 gem 'rspec-rails'
 gem 'guard-rspec', group: :development
 gem 'zendesk_api'
+gem 'mail'
