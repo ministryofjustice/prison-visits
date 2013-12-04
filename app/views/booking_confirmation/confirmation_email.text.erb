@@ -1,6 +1,6 @@
 Dear <%= @visit.visitors.first.first_name %>,
 
-This is to confirm that you have requested a visit at HMP <%= @visit.prisoner.prison_name %> on one of the following these dates: 
+You have requested the following visiting slots for <%= @visit.visitors.size %> people at HMP <%= @visit.prisoner.prison_name %>:
 
 <% @visit.slots.each_with_index do |slot, index| %>
 <% if slot.date.present? %>
@@ -8,16 +8,4 @@ This is to confirm that you have requested a visit at HMP <%= @visit.prisoner.pr
 <% end %>
 <% end %>
 
-Your visit is not yet confirmed. You will receive a confirmation email from the prison booking staff within 48 hours. Your booking request is summarised below. 
-
-<% @visit.visitors.each_with_index do |visitor, index| %>
-Visitor <%= index + 1 %>
-Name: <%= visitor.full_name %>
-<% if visitor.email %>
-Email: <%= visitor.email %>
-<% end %>
-<% if visitor.phone %>
-tel: <%= visitor.phone %>
-<% end %>
-
-<% end %>
+Your visit is not yet confirmed. You will receive a confirmation email from the prison booking staff within 3 working days.
