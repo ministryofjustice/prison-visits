@@ -15,7 +15,8 @@ class Visitor
 
   def date_of_birth=(dob_string)
     @date_of_birth = Date.parse(dob_string)
-  rescue
+  rescue ArgumentError, TypeError
+    @date_of_birth = dob_string
     errors.add(:date_of_birth, 'is invalid')
   end
 
@@ -39,4 +40,17 @@ class Visitor
     end
   end
 
+  def age
+    if date_of_birth
+      (Date.today - date_of_birth).to_i / 365
+    end
+  end
+
+  def adult?
+    date_of_birth && age >= 18 || type == 'adult'
+  end
+
+  def child?
+    date_of_birth && age < 18 || type == 'child'
+  end
 end

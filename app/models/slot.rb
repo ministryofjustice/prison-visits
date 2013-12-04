@@ -50,4 +50,7 @@ class Slot
     end
   end
 
+  def weekday
+    Date.parse(date).strftime('%A')
+  end
 end

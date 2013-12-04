@@ -1,6 +1,16 @@
 require 'spec_helper'
 
 describe Visitor do
+  let :visitor do
+    Visitor.new.tap do |v|
+      v.first_name = 'Otto'
+      v.last_name = 'Fibonacci'
+      v.email = 'fibonacci@example.com'
+      v.phone = '07776665555'
+      v.date_of_birth = 30.years.ago.to_s
+    end
+  end
+
   it "validates the first visitor as a lead visitor" do
     Visitor.new(index: 0).tap do |v|
       v.first_name = 'Jimmy'
@@ -39,6 +49,27 @@ describe Visitor do
   end
 
   it "displays a full_name" do
-    Visitor.new(first_name: 'Jimmy', last_name: 'Fingers').full_name.should == 'Jimmy Fingers'
+    visitor.full_name.should == 'Otto Fibonacci'
+  end
+
+  it "knows if the visitor is an adult" do
+    expect {
+      visitor.date_of_birth = nil
+      visitor.type = 'adult'
+    }.not_to change { visitor.adult? }
+  end
+
+  it "knows if the visitor is a child" do
+    visitor.date_of_birth = 8.years.ago.to_s
+    expect {
+      visitor.date_of_birth = nil
+      visitor.type = 'child'
+    }.not_to change { visitor.child? }
+  end
+
+  it "returns the age of the visitor" do
+    visitor.age.should == 30
+    visitor.date_of_birth = nil
+    visitor.age.should be_nil
   end
 end

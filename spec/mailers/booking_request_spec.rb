@@ -13,7 +13,7 @@ describe BookingRequest do
         p.first_name = 'Jimmy'
         p.last_name = 'Fingers'
       end
-      v.visitors = [Visitor.new(email: 'sample@email.lol', date_of_birth: Time.now)]
+      v.visitors = [Visitor.new(email: 'sample@email.lol', date_of_birth: '1918-11-11')]
     end
   end
 

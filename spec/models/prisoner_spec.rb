@@ -1,8 +1,14 @@
 require 'spec_helper'
 
 describe Prisoner do
-  let(:prisoner) do
-    Prisoner.new(first_name: 'Jimmy', last_name: 'Fingers', date_of_birth: '1980-01-01', number: 'c2341em', prison_name: 'Durham')
+  let :prisoner do
+    Prisoner.new.tap do |p|
+      p.first_name = 'Jimmy'
+      p.last_name = 'Fingers'
+      p.date_of_birth = 30.years.ago.to_s
+      p.number = 'c2341em'
+      p.prison_name = 'Durham'
+    end
   end 
 
   it "must be valid" do
@@ -30,5 +36,11 @@ describe Prisoner do
 
   it "displays a full name" do
     prisoner.full_name.should == 'Jimmy Fingers'
+  end
+
+  it "returns the age of the prisoner" do
+    prisoner.age.should == 30
+    prisoner.date_of_birth = nil
+    prisoner.age.should be_nil
   end
 end

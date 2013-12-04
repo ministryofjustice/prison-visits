@@ -22,3 +22,9 @@ moj.init();
 // $('#logo img').attr('src', '/assets/gov.uk_logotype-2x.png');
 // $('#footer .footer-meta .copyright a').css('backgroundImage', 'url(/assets/govuk-crest-2x.png)');
 // $('.footer-meta .footer-meta-inner .open-government-licence h2 img').attr('src', '/assets/open-government-licence_2x.png');
+
+Array.prototype.forEachWithIndex = function(f) {
+    for (var i = 0; i < this.length; i++) {
+        f(this[i], i);
+    }
+}

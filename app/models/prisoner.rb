@@ -33,8 +33,8 @@ class Prisoner
   attr_reader :date_of_birth
   def date_of_birth=(dob_string)
     @date_of_birth = Date.parse(dob_string)
-  rescue
-    @date_of_birth = nil
+  rescue ArgumentError, TypeError
+    @date_of_birth = dob_string
     errors.add(:date_of_birth, 'invalid date')
   end
 
@@ -46,5 +46,11 @@ class Prisoner
 
   def full_name
     [@first_name, @last_name].join(' ')
+  end
+
+  def age
+    if date_of_birth
+      (Date.today - date_of_birth).to_i / 365
+    end
   end
 end
