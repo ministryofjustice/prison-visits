@@ -6,6 +6,5 @@ class Feedback
   attr_accessor :referrer
 
   validates_presence_of :text
-  validates_presence_of :email
   validates_presence_of :referrer
 end

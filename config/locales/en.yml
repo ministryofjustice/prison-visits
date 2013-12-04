@@ -23,3 +23,7 @@ en:
   date:
     formats:
       default: "%d/%m/%Y"
+  activemodel:
+    attributes:
+      feedback:
+        text: Your comments
