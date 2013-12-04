@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 source 'https://BnrJb6FZyzspBboNJzYZ@gem.fury.io/govuk/'
 
-gem 'rails', '4.0.0'
+gem 'rails'
 gem 'haml-rails'
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
