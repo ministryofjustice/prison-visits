@@ -4,6 +4,7 @@
 //= require lodash
 //= require jquery
 //= require jquery_ujs
+//= require jquery.details
 
 //= require jquery-ui
 
@@ -17,6 +18,10 @@
 //= require date-picker
 
 moj.init();
+
+$(function () {
+  $('details').details();
+});
 
 // Hacks to show GOV.UK images when offline
 // $('#logo img').attr('src', '/assets/gov.uk_logotype-2x.png');
