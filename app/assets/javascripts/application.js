@@ -3,9 +3,6 @@
 //= require Array.foreachwithindex
 
 //= require lodash
-//= require jquery
-//= require jquery-ui
-//= require jquery_ujs
 //= require jquery.details
 
 //= require moj

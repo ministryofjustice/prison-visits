@@ -83,9 +83,6 @@ GEM
     hike (1.2.3)
     i18n (0.6.9)
     inflection (1.0.0)
-    jquery-rails (3.0.4)
-      railties (>= 3.0, < 5.0)
-      thor (>= 0.14, < 2.0)
     kgio (2.8.0)
     listen (2.2.0)
       celluloid (>= 0.15.2)
@@ -190,7 +187,6 @@ DEPENDENCIES
   govuk_frontend_toolkit
   guard-rspec
   haml-rails
-  jquery-rails
   mail
   moj_frontend_toolkit_gem!
   rails
