@@ -33,7 +33,7 @@ module VisitHelper
   end
 
   def bookable_from
-    Date.tomorrow + Slot::LEAD_DAYS
+    Date.today + Slot::LEAD_DAYS
   end
 
   def bookable_to
@@ -107,8 +107,6 @@ module VisitHelper
     classes << 'fc-last' if day.wday == 0
     classes << 'fc-past' if day < Date.today
     classes << 'fc-today' if day == Date.today
-    # classes << 'fc-unbookable' if day < bookable_from
-    # classes << 'fc-unbookable' unless bookable_week_days.include?(day)
     classes << (bookable?(day) ? 'fc-bookable' : 'fc-unbookable')
     classes << 'fc-chosen' if current_slots.include?(day)
     classes
