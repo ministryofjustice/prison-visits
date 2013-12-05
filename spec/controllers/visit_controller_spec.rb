@@ -17,7 +17,9 @@ describe VisitController do
           prisoner: {
             first_name: 'Jimmy',
             last_name: 'Fingers',
-            date_of_birth: '1986-04-20',
+            :'date_of_birth(3i)' => '20',
+            :'date_of_birth(2i)' => '04',
+            :'date_of_birth(1i)' => '1986',
             number: 'g3133ff',
             prison_name: 'Durham'
           }
@@ -40,7 +42,9 @@ describe VisitController do
           prisoner: {
             first_name: '',
             last_name: '',
-            date_of_birth: '1986-04-20',
+            :'date_of_birth(3i)' => '20',
+            :'date_of_birth(2i)' => '04',
+            :'date_of_birth(1i)' => '1986',
             number: '31337',
             prison_name: 'Durham'
           }
@@ -66,7 +70,9 @@ describe VisitController do
             visitor: [
               first_name: 'Sue',
               last_name: 'Demin',
-              date_of_birth: '1988-03-14',
+              :'date_of_birth(3i)' => '14',
+              :'date_of_birth(2i)' => '03',
+              :'date_of_birth(1i)' => '1986',
               email: 'sue.denim@gmail.com',
               phone: '07783 123 456'
             ]
@@ -93,7 +99,9 @@ describe VisitController do
             visitor: [
               first_name: '',
               last_name: '',
-              date_of_birth: '1988-03-14',
+              :'date_of_birth(3i)' => '14',
+              :'date_of_birth(2i)' => '03',
+              :'date_of_birth(1i)' => '1986',
               email: 'sue.denim@gmail.com',
               phone: '07783 123 456'
             ]
@@ -120,7 +128,9 @@ describe VisitController do
             visitor: [
               first_name: 'Sue',
               last_name: 'Demin',
-              date_of_birth: '1988-03-14',
+              :'date_of_birth(3i)' => '14',
+              :'date_of_birth(2i)' => '03',
+              :'date_of_birth(1i)' => '1986',
               email: 'sue.denim@gmail.com',
               phone: '07783 123 456'
             ] * 7

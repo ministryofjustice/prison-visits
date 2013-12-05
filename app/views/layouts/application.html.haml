@@ -5,6 +5,7 @@
     = csrf_meta_tag
     :javascript
       var pvbe = pvbe || {};
+    %script(src='/modernizr.custom.61347.js')
     = render "shared/analytics"
 
   %body{:class => [Rails.configuration.phase, Rails.configuration.product_type, controller.action_name].join(' ') }

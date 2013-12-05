@@ -13,7 +13,7 @@ casper.test.begin 'Prison Visit Booking: Step 1 invalid', (test) ->
     @fill '#new_prisoner',
       'prisoner[first_name]': ''
       'prisoner[last_name]': ''
-      'prisoner[date_of_birth]': ''
+      'prisoner[date_of_birth(3i)]': ''
       'prisoner[number]': ''
       'prisoner[prison_name]': ''
     , true

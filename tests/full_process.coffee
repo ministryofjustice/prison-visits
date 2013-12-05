@@ -11,12 +11,16 @@ casper.test.begin 'Prison Visit Booking: Step 1 - prisoner details', (test) ->
 
   casper.then ->
     @fillSelectors '#new_prisoner',
-      '.js-dob__day': '18'
-      '.js-dob__month': '02'
-      '.js-dob__year': '1977'
+      '.js-native-date__date-input': '1977-02-18'
     , false
 
-    test.assertField 'prisoner[date_of_birth]', '1977-02-18'
+    @evaluate ->
+      $('.js-native-date__date-input').trigger 'change'
+
+  casper.then ->
+    test.assertField 'prisoner[date_of_birth(3i)]', '18'
+    test.assertField 'prisoner[date_of_birth(2i)]', '2'
+    test.assertField 'prisoner[date_of_birth(1i)]', '1977'
 
     @fill '#new_prisoner',
       'prisoner[first_name]': 'Jimmy'

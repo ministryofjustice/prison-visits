@@ -19,34 +19,12 @@
       %span.validation-message= f.object.errors[:last_name].first if f.object.errors.include?(:last_name)
     = f.text_field :last_name
 
-  .group.js-dob{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
-    .js-dob__input
-      = f.label :date_of_birth do
-        Date of birth
-        %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
-      %input#prisoner_date_of_birth.js-dob__input{ value: (visit.prisoner.date_of_birth.present? ? visit.prisoner.date_of_birth : 32.years.ago.beginning_of_year ).strftime('%Y-%m-%d') }(type="date" name="prisoner[date_of_birth]")
-      %p.group__help
-        %small Please use the format dd/mm/yyyy
-    
-    .js-dob__dropdowns.hidden
-      %label(for="prisoner_dob_day")
-        Date of birth
-        %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
-      
-      %select#prisoner_dob_day.js-dob__select.js-dob__day
-        %option day
-        - dob_day_range.each do |day|
-          %option{ value: day.strftime('%d'), selected: ('selected' if visit.prisoner.date_of_birth.present? && visit.prisoner.date_of_birth.strftime('%d') == day.strftime('%d') ) }= day.strftime('%e')
-      
-      %select.js-dob__select.js-dob__month
-        %option month
-        - dob_month_range.keys.each do |month|
-          %option{ value: month.strftime('%m'), selected: ('selected' if visit.prisoner.date_of_birth.present? && visit.prisoner.date_of_birth.strftime('%m') == month.strftime('%m') ) }= month.strftime('%B')
-      
-      %select.js-dob__select.js-dob__year
-        %option year
-        - (100.years.ago.strftime('%Y').to_i..1995).each do |year|
-          %option{ value: year, selected: select_year(visit.prisoner.date_of_birth, year, 32) }= year
+  .group.js-native-date{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
+    %label(for="prisoner_date_of_birth_3i")
+      Date of birth
+      %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
+    = f.date_select :date_of_birth, order: [:day, :month, :year], start_year: Time.now.year - 100, end_year: Time.now.year - 18, prompt: { day: :day, month: :month, year: :year }, with_css_classes: true
+    %input.hidden.js-native-date__date-input(name='native' type='date')
 
   .group{ :class => ('validation-error' if f.object.errors.include?(:number)) }
     = f.label :number do
