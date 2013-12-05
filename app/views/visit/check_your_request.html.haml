@@ -40,19 +40,10 @@
 .divider
   .edit-link= link_to 'Edit these visitor details', visitor_details_path
   %h2 Visitor details
-  - adults = 0
-  - children = 0
   - visit.visitors.each_with_index do |visitor, i|
     - if visitor.first_name.present? || visitor.last_name.present?
-      - type = visitor.type || 'Adult'
-      - if visitor.type == 'child'
-        - children = children + 1
-        - count = children
-      - else
-        - adults = adults + 1
-        - count = adults
       %p
-        #{type.capitalize} visitor #{count}:
+        Visitor #{i+1}:
         %strong #{visitor.first_name} #{visitor.last_name}
 
 .divider

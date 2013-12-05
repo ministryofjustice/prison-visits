@@ -1,35 +1,34 @@
 
-.visitor.cf{ :id => "visitor-#{index}", :class => (visitor.type if visitor.type.present?) }
+.visitor.cf{ :id => "visitor-#{index}", :class => ('additional-visitor' unless index.zero?) }
 
   - unless index.zero?
     %h3
-      %span.js-visitor-type= visitor.type if visitor.type.present?
-      visitor
-      %span.js-visitor-position
+      Visitor
+      %span.js-visitor-position= index+1
   
   .group{ :class => ('validation-error' if f.object.errors.include?(:first_name)) }
-    = f.label :first_name do
+    %label{ for: "first_name_#{index}" }
       First name
       %span.validation-message= f.object.errors[:first_name].first if f.object.errors.include?(:first_name)
-    = f.text_field :first_name
+    = f.text_field :first_name, id: "first_name_#{index}"
 
   .group{ :class => ('validation-error' if f.object.errors.include?(:last_name)) }
-    = f.label :last_name do
+    %label{ for: "last_name_#{index}" }
       Last name
       %span.validation-message= f.object.errors[:last_name].first if f.object.errors.include?(:last_name)
-    = f.text_field :last_name
+    = f.text_field :last_name, id: "last_name_#{index}"
+
+  .group.js-native-date{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
+    %label(for="prisoner_date_of_birth_3i")
+      Date of birth
+      %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
+    = f.date_select :date_of_birth, order: [:day, :month, :year], start_year: Time.now.year - 100, end_year: Time.now.year, prompt: { day: :day, month: :month, year: :year }, with_css_classes: true
+    %input.hidden.js-native-date__date-input(name='native' type='date')
+    - if index.zero?
+      %p.group__help
+        %small You must be over 18 to book a visit.
 
   - if index.zero?
-
-    .group.js-native-date{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
-      %label(for="prisoner_date_of_birth_3i")
-        Date of birth
-        %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
-      = f.date_select :date_of_birth, order: [:day, :month, :year], start_year: Time.now.year - 100, end_year: Time.now.year - 18, prompt: { day: :day, month: :month, year: :year }, with_css_classes: true
-      %input.hidden.js-native-date__date-input(name='native' type='date')
-      - if index.zero?
-        %p.group__help
-          %small You must be over 18 to book a visit.
   
     .group{ :class => ('validation-error' if f.object.errors.include?(:email)) }
       = f.label :email do
@@ -46,11 +45,6 @@
       = f.telephone_field :phone
 
   - unless index.zero?
-    .group.hidden--js-enabled
-      = f.label :type do
-        Is this visitor an adult or a child?
-      = f.select :type, options_for_select([['Adult','adult'],['Child','child']],visitor.type), {}, :class => 'visitor-type'
-
     %label.remove-visitor
       = check_box_tag 'visit[visitor][][_destroy]', 1, false, { id: "_destroy-#{index}" }
       remove

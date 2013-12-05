@@ -2,18 +2,17 @@
 $('button[value=add]').prop 'disabled', true
 
 
-addVisitorBlocks = (amount, type) ->
+addVisitorBlocks = (amount) ->
   i = 0
   while i < amount
     compiled = _.template($('#additional-visitor').html())
-    $compiled = $(compiled()).addClass type
-    $compiled = setPosition $compiled, type
-    $(".additional-#{type}").append setType($compiled, type)
+    $compiled = $(compiled())
+    $('.additional-visitors').append setPosition($compiled)
     i++
 
 
-removeVisitorBlocks = (amount, type) ->
-  v = $(".#{type}")
+removeVisitorBlocks = (amount) ->
+  v = $('.visitor')
   r = v.length - amount
 
   v.filter( (i) ->
@@ -21,30 +20,23 @@ removeVisitorBlocks = (amount, type) ->
   ).remove()
 
 
-countType = (type) ->
-  $('.visitor').filter(".#{type}").length
+countVisitors = ->
+  $('.additional-visitor').length
 
 
-setPosition = ($el, type) ->
-  count = countType type
-  $el.find('.js-visitor-position').text count+1
-  $el
-
-
-setType = ($el, type) ->
-  $el.find('.js-visitor-type').text type
-  $el.find('.visitor-type').val type
+setPosition = ($el) ->
+  count = countVisitors()
+  $el.find('.js-visitor-position').text count+2
   $el
 
 
 $('.number_of_visitors').on 'change', ->
-  type = if $(this).hasClass('adults') then 'adult' else 'child'
   desired = $(this).val()
-  current = countType type
+  current = countVisitors()
 
   # add visitors blocks if the desired amount is more than is currently in the form
   if desired > current
-    addVisitorBlocks desired-current, type
+    addVisitorBlocks desired-current
   # leave as is if the desired amount is the same as currently available
   # remove visitor blocks if the form currently contains more that desired
-  else removeVisitorBlocks(current-desired, type) if desired < current
+  else removeVisitorBlocks(current-desired) if desired < current
