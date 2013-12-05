@@ -19,7 +19,7 @@ describe Visitor do
       v.last_name = 'Fingers'
       v.should_not be_valid
 
-      v.date_of_birth = "1986-04-20"
+      v.date_of_birth = Date.parse "1986-04-20"
       v.should_not be_valid
 
       v.email = 'jimmy@fingers.com'
@@ -39,7 +39,7 @@ describe Visitor do
         v.last_name = 'Fingers'
         v.should_not be_valid
         
-        v.type = 'adult'
+        v.date_of_birth = Date.parse "1986-04-20"
         v.should be_valid
         
         v.email = 'anything'
@@ -53,18 +53,12 @@ describe Visitor do
   end
 
   it "knows if the visitor is an adult" do
-    expect {
-      visitor.date_of_birth = nil
-      visitor.type = 'adult'
-    }.not_to change { visitor.adult? }
+    visitor.should be_adult
   end
 
   it "knows if the visitor is a child" do
     visitor.date_of_birth = 8.years.ago.to_s
-    expect {
-      visitor.date_of_birth = nil
-      visitor.type = 'child'
-    }.not_to change { visitor.child? }
+    visitor.should be_child
   end
 
   it "returns the age of the visitor" do
