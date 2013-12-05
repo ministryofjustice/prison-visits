@@ -9,11 +9,11 @@ describe BookingRequest do
     Visit.new.tap do |v|
       v.slots = []
       v.prisoner = Prisoner.new.tap do |p|
-        p.date_of_birth = '2013-06-30'
+        p.date_of_birth = Date.new(2013, 6, 30)
         p.first_name = 'Jimmy'
         p.last_name = 'Fingers'
       end
-      v.visitors = [Visitor.new(email: 'sample@email.lol', date_of_birth: '1918-11-11')]
+      v.visitors = [Visitor.new(email: 'sample@email.lol', date_of_birth: Date.new(1918, 11, 11))]
     end
   end
 

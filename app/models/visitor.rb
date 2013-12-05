@@ -11,14 +11,7 @@ class Visitor
   attr_accessor :type
   attr_accessor :number_of_adults
   attr_accessor :number_of_children
-  attr_reader :date_of_birth
-
-  def date_of_birth=(dob_string)
-    @date_of_birth = Date.parse(dob_string)
-  rescue ArgumentError, TypeError
-    @date_of_birth = dob_string
-    errors.add(:date_of_birth, 'is invalid')
-  end
+  attr_accessor :date_of_birth
 
   def full_name
     [first_name, last_name].join(' ')
@@ -42,7 +35,7 @@ class Visitor
 
   def age
     if date_of_birth
-      (Date.today - date_of_birth).to_i / 365
+      (Date.today - date_of_birth.to_date).to_i / 365
     end
   end
 

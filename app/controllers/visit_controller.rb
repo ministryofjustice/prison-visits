@@ -98,7 +98,7 @@ private
       date_of_birth = [:'date_of_birth(3i)', :'date_of_birth(2i)', :'date_of_birth(1i)'].map do |key|
         visitor.delete(key)
       end.join('-')
-      visitor[:date_of_birth] = date_of_birth
+      visitor[:date_of_birth] = Date.parse(date_of_birth)
     end
     
     params.require(:visit).require(:visitor)
@@ -108,7 +108,7 @@ private
     date_of_birth = [:'date_of_birth(3i)', :'date_of_birth(2i)', :'date_of_birth(1i)'].map do |key|
       params[:prisoner].delete(key)
     end.join('-')
-    params[:prisoner][:date_of_birth] = date_of_birth
+    params[:prisoner][:date_of_birth] = Date.parse(date_of_birth)
     params.require(:prisoner).permit(:first_name, :last_name, :date_of_birth, :number, :prison_name)
   end
 

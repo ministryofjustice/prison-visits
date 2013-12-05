@@ -28,18 +28,11 @@ class Prisoner
   attr_accessor :last_name
   attr_accessor :number
   attr_accessor :prison_name
-
-  attr_reader :date_of_birth
-  def date_of_birth=(dob_string)
-    @date_of_birth = Date.parse(dob_string)
-  rescue ArgumentError, TypeError
-    @date_of_birth = dob_string
-    errors.add(:date_of_birth, 'invalid date')
-  end
+  attr_accessor :date_of_birth
 
   validates_presence_of :first_name
   validates_presence_of :last_name
-  validates_inclusion_of :date_of_birth, in: ->(_) { 100.years.ago.to_date..Date.today }, message: "must be a valid date of birth"
+  validates_inclusion_of :date_of_birth, in: ->(_) { 100.years.ago..Time.now }, message: "must be a valid date of birth"
   validates_format_of :number, with: /\A[a-z]\d{4}[a-z]{2}\z/i, message: "must be a valid prisoner number" # eg a1234aa
   validates_inclusion_of :prison_name, in: PRISONS
 
@@ -49,7 +42,7 @@ class Prisoner
 
   def age
     if date_of_birth
-      (Date.today - date_of_birth).to_i / 365
+      (Date.today - date_of_birth.to_date).to_i / 365
     end
   end
 end

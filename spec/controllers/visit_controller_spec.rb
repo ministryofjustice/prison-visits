@@ -237,7 +237,7 @@ describe VisitController do
           p.last_name = 'Fingers'
           p.number = 'aa1111aa'
           p.prison_name = 'Rochester'
-          p.date_of_birth = '1975-01-01'
+          p.date_of_birth = Date.new(1975, 1, 1)
         end
 
         v.visitors = [Visitor.new.tap do |vi|
