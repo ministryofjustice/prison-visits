@@ -98,9 +98,12 @@ private
       date_of_birth = [:'date_of_birth(3i)', :'date_of_birth(2i)', :'date_of_birth(1i)'].map do |key|
         visitor.delete(key)
       end.join('-')
-      visitor[:date_of_birth] = Date.parse(date_of_birth)
+      begin
+        visitor[:date_of_birth] = Date.parse(date_of_birth)
+      rescue ArgumentError
+        # NOOP
+      end
     end
-    
     params.require(:visit).require(:visitor)
   end
 
@@ -110,6 +113,8 @@ private
     end.join('-')
     params[:prisoner][:date_of_birth] = Date.parse(date_of_birth)
     params.require(:prisoner).permit(:first_name, :last_name, :date_of_birth, :number, :prison_name)
+  rescue ArgumentError
+    params.require(:prisoner).permit(:first_name, :last_name, :number, :prison_name)
   end
 
   def slot_params

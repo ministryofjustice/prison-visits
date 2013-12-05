@@ -34,6 +34,13 @@ describe VisitController do
         post :update_prisoner_details, prisoner_hash
         response.should redirect_to(visitor_details_path)
       end
+
+      it "updates prisoner details with bad date and redirects back" do
+        bad_prisoner_hash = prisoner_hash.dup
+        bad_prisoner_hash[:prisoner].except!(:'date_of_birth(3i)', :'date_of_birth(2i)', :'date_of_birth(1i)')
+        post :update_prisoner_details, bad_prisoner_hash
+        response.should redirect_to(prisoner_details_path)
+      end
     end
 
     context "given invalid prisoner details" do
