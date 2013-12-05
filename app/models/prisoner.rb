@@ -3,7 +3,6 @@ class Prisoner
 
   PRISONS = [
     'Rochester',
-    'Durham'
   ].sort
 
   PRISON_DETAILS = {
@@ -21,7 +20,7 @@ class Prisoner
     },
     rochester: {
       phone: '01634 803100',
-      email: ''
+      email: 'socialvisits.rochester@hmps.gsi.gov.uk'
     }
   }
 

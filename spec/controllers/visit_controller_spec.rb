@@ -21,7 +21,7 @@ describe VisitController do
             :'date_of_birth(2i)' => '04',
             :'date_of_birth(1i)' => '1986',
             number: 'g3133ff',
-            prison_name: 'Durham'
+            prison_name: 'Rochester'
           }
         }
       end
@@ -46,7 +46,7 @@ describe VisitController do
             :'date_of_birth(2i)' => '04',
             :'date_of_birth(1i)' => '1986',
             number: '31337',
-            prison_name: 'Durham'
+            prison_name: 'Rochester'
           }
         }
       end

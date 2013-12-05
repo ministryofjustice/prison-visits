@@ -7,7 +7,7 @@ describe Prisoner do
       p.last_name = 'Fingers'
       p.date_of_birth = 30.years.ago.to_s
       p.number = 'c2341em'
-      p.prison_name = 'Durham'
+      p.prison_name = 'Rochester'
     end
   end 
 
