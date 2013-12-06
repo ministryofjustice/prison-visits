@@ -1,8 +1,8 @@
 - content_for :header do
-  %h1 Choose your visit date and time
+  %h1 When do you want to visit?
 
 
-%p.visible--js-enabled Choose the date first, then choose the time you’d like to visit. You can choose up to three possible dates and times.
+%p.visible--js-enabled Choose the date first, then the time you'd like to visit. You can pick up to 3 possible times for each booking request. We'll let you know which one is available when we confirm your booking by email.
 
 - if visit.slots.any? {|s| s.errors.any?}
   #error-summary.validation-summary.group(role="alert" tabindex="-1" aria-labelledby="error-heading")
@@ -11,7 +11,7 @@
 
 #calendar.fc-content.visible--js-enabled
   %table.fc-border-separate(style='width:100%')
-    %caption.step_prompt First select a date
+    %caption.step_prompt First choose a date
     %thead
       %tr
         - [:Mon,:Tue,:Wed,:Thu,:Fri,:Sat,:Sun].each do |d|
@@ -27,7 +27,7 @@
                   .fc-tag= day.strftime('%b')
 
 .slots.js-slotpicker{ :'data-optionlimits' => number_of_slots }
-  %h2.step_prompt Now select a time
+  %h2.step_prompt Now choose a time
   .js-slotpicker-options.day-slots#in-the-past
     %p It is not possible to book a visit in the past.
   .js-slotpicker-options.day-slots#too-far-ahead
@@ -57,7 +57,7 @@
             %p There are no sessions available on #{date.strftime('%A')}s.
 
 .selected-slots.js-selected-slots
-  %h2.step_prompt Your visit times
+  %h2.step_prompt Your visit choices
   %ul
     - (1..number_of_slots).each_with_index do |i|
       %li

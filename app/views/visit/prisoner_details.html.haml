@@ -2,7 +2,7 @@
   %h1 Who are you visiting?
 
 
-%p You need to speak to the prisoner before you book to check they're happy for you to visit and that you're on their visitor list. 
+%p You need to speak to the prisoner before you book to check they're happy for you to visit and that you're on their visitor list. You don't need a Visiting Order (VO) number to book. We'll email this to you when your visit is confirmed, within 1 - 3 working days of making your request.
 
 = form_for visit.prisoner, url: update_prisoner_details_path, as: :prisoner, :html => { :class => 'form validation', :autocomplete => 'off' } do |f|
 
@@ -49,3 +49,8 @@
   .actions
     = link_to 'Cancel and delete all details', abandon_path, :class => 'pull-right', :'data-confirm' => "Are you sure you wish to cancel this visit request?\r\rThis will delete all the information you have entered"
     = f.submit :Continue, :class => 'button button-primary'
+
+%p.note
+  %strong Please note
+  %br You can use this online form to request standard visits in the visiting hall only.
+  If you don't enter any information for more than 20 minutes, then your session will time out and you'll need to start again.
