@@ -9,5 +9,6 @@ PrisonVisits2::Application.routes.draw do
     end
     get "/abandon", action: :abandon
     get "/", to: redirect("/prisoner-details")
+    get "/unavailable", action: :unavailable
   end
 end

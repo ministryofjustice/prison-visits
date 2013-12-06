@@ -1,11 +1,19 @@
 require 'google_analytics_adapter'
 
 class VisitController < ApplicationController
-  before_filter :check_if_session_exists, except: [:prisoner_details]
+  before_filter :check_if_within_business_hours, except: [:unavailable]
+  before_filter :check_if_session_exists, except: [:prisoner_details, :unavailable]
 
   def check_if_session_exists
     unless session[:visit]
       redirect_to(prisoner_details_path)
+      return
+    end
+  end
+
+  def check_if_within_business_hours
+    if !(7..22).include?(Time.now.hour)
+      redirect_to(unavailable_path)
       return
     end
   end

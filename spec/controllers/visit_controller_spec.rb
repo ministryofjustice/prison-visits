@@ -4,6 +4,10 @@ describe VisitController do
   render_views
 
   describe "step 1 - enter prisoner's details" do
+    before :each do
+      Timecop.freeze(Time.local(2013, 12, 1, 12, 00))
+    end
+
     it "renders the form for entering prisoner details, and assigns the session" do
       expect {
         get :prisoner_details
@@ -70,6 +74,10 @@ describe VisitController do
   end
 
   describe "step 2" do
+    before :each do
+      Timecop.freeze(Time.local(2013, 12, 1, 12, 00))
+    end
+
     context "given valid visitor information" do
       let(:visitor_hash) do
         {
@@ -160,6 +168,7 @@ describe VisitController do
 
   describe "step 4 - select a timeslot" do
     before :each do
+      Timecop.freeze(Time.local(2013, 12, 1, 12, 0))
       get :prisoner_details
     end
 
@@ -238,6 +247,8 @@ describe VisitController do
 
   describe "step 5" do
     before :each do
+      Timecop.freeze(Time.local(2013, 12, 1, 12, 0))
+
       session[:visit] = Visit.new.tap do |v|
         v.prisoner = Prisoner.new.tap do |p|
           p.first_name = 'Jimmy'
@@ -278,12 +289,25 @@ describe VisitController do
 
   describe "abandon ship!" do
     before :each do
+      Timecop.freeze(Time.local(2013, 12, 1, 12, 0))
+
       get :prisoner_details
     end
 
     it "should clear out the session" do
       get :abandon
       session[:visit].should be_nil
+    end
+  end
+
+  context "when accessing the service out of business hours" do
+    before :each do
+      Timecop.freeze(Time.local(2013, 12, 1, 23, 30))
+    end
+
+    it "displays an appropriate message" do
+      get :prisoner_details
+      response.should redirect_to(unavailable_path)
     end
   end
 end
