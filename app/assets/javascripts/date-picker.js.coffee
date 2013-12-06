@@ -1,56 +1,46 @@
-field = $('.js-dob')
-
-field.find('.js-dob__input').addClass 'visible--mobile'
-
-field.find('.js-dob__dropdowns').removeClass('hidden').addClass 'hidden--mobile'
-
-field.on 'change', '.js-dob__select', ->
-  dob = $(this).closest '.js-dob'
-
-  day = dob.find '.js-dob__day'
-  month = dob.find '.js-dob__month'
-  year = dob.find '.js-dob__year'
-
-  $(this).closest('.js-dob').find('.js-dob__input').val "#{year.val()}-#{month.val()}-#{day.val()}"
-
-
-
 pad = (num) ->
   ("00#{num}").slice -2
 
 
+moj.useNativeDate = Modernizr.inputtypes.date and Modernizr.touch
 
-if Modernizr.inputtypes.date
+moj.showNativeDate = (form) ->
+  if moj.useNativeDate
+    nativeDate = form.find '.js-native-date'
 
-  nativeDate = $('.js-native-date')
+    nativeDate.find('.js-native-date__date-input').removeClass 'hidden'
+    nativeDate.find('select').addClass 'hidden'
 
-  nativeDate.each ->
 
-    del = '-'
-    input = $(this).find '.js-native-date__date-input'
-    # label = input.siblings 'label'
-    selects = nativeDate.find 'select'
+$ ->
 
-    input.removeClass('hidden').addClass 'visible--mobile'
-    selects.addClass 'hidden--mobile'
+  del = '-'
 
-    selects.on 'change', ->
+  $(document).on 'change', '.js-native-date select', ->
 
-      year = selects.closest('.year').val()
-      month = pad selects.closest('.month').val()
-      day = pad selects.closest('.day').val()
+    input = $(this).closest('.js-native-date').find '.js-native-date__date-input'
+    selects = $(this).siblings('select').add $(this)
 
-      input.val [year,month,day].join(del)
+    year = selects.closest('.year').val()
+    month = pad selects.closest('.month').val()
+    day = pad selects.closest('.day').val()
 
-    input.on 'change', ->
-      
-      dateParts = $(this).val().split del
-      
-      month = parseInt dateParts[1]
-      day = parseInt dateParts[2]
+    input.val [year,month,day].join(del)
 
-      selects.closest('.year').val dateParts[0]
-      selects.closest('.month').val (if isNaN(month) then '' else month)
-      selects.closest('.day').val (if isNaN(day) then '' else day)
+  $(document).on 'change', '.js-native-date__date-input', ->
 
-    selects.first().change() if selects.closest('.year').val() isnt ''
+    selects = $(this).closest('.js-native-date').find 'select'
+    
+    dateParts = $(this).val().split del
+    
+    month = parseInt dateParts[1]
+    day = parseInt dateParts[2]
+
+    selects.closest('.year').val dateParts[0]
+    selects.closest('.month').val (if isNaN(month) then '' else month)
+    selects.closest('.day').val (if isNaN(day) then '' else day)
+
+  moj.showNativeDate $('form')
+
+  selects = $ '.js-native-date select'
+  selects.first().change() if selects.closest('.year').val() isnt ''

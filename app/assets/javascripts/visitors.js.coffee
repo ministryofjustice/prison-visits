@@ -7,6 +7,7 @@ addVisitorBlocks = (amount) ->
   while i < amount
     compiled = _.template($('#additional-visitor').html())
     $compiled = $(compiled())
+    moj.showNativeDate $compiled
     $('.additional-visitors').append setPosition($compiled)
     i++
 
