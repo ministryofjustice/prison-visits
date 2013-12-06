@@ -32,6 +32,10 @@ module VisitHelper
     Slot::TIMES[visit.prisoner.prison_name.downcase.to_sym]
   end
 
+  def unbookable_dates
+    Slot::UNBOOKABLE_DATES[visit.prisoner.prison_name.downcase.to_sym]
+  end
+
   def bookable_from
     Date.today + Slot::LEAD_DAYS
   end
@@ -99,7 +103,7 @@ module VisitHelper
   end
 
   def bookable?(day)
-    bookable_range.include?(day) && bookable_week_days.include?(day.wday)
+    bookable_range.include?(day) && bookable_week_days.include?(day.wday) && !unbookable_dates.include?(day.strftime('%Y-%m-%d'))
   end
 
   def day_classes(day)

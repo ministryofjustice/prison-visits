@@ -3,6 +3,12 @@ class Slot
 
   LEAD_DAYS = 3
   BOOKABLE_DAYS = 28
+  UNBOOKABLE_DATES = {
+    rochester: ['2013-12-25','2013-12-26'],
+    cardiff: [],
+    durham: [],
+    gartree: []
+  }
   TIMES = {
     rochester: {
       mon: [['1400','1600']],

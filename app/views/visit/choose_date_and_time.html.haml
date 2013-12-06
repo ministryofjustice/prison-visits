@@ -29,19 +29,19 @@
 .slots.js-slotpicker{ :'data-optionlimits' => number_of_slots }
   %h2.step_prompt Now select a time
   .js-slotpicker-options.day-slots#in-the-past
-    %p It is not possible to book a visit in the past
+    %p It is not possible to book a visit in the past.
   .js-slotpicker-options.day-slots#too-far-ahead
-    %p You can only book a visit in the next 28 days
+    %p You can only book a visit in the next 28 days.
   .js-slotpicker-options.day-slots#booking-gap
-    %p You can only book a visit 3 days in advance
+    %p You can only book a visit 3 days in advance.
 
   - range_by_month.keys.each do |month|
     .slot__month{ :id => month.strftime('month-%Y-%m-%d') }(data-focusfirst="true")
 
       - range_by_month[month].each do |date|
         .js-slotpicker-options.day-slots.cf{ :id => "date-#{date.strftime('%Y-%m-%d')}" }
-          - if visiting_slots.keys.include?(date.strftime('%a').downcase.to_sym)
-            %h4= date.strftime("%A %e %B")
+          %h4= date.strftime("%A %e %B")
+          - if visiting_slots.keys.include?(date.strftime('%a').downcase.to_sym) && !unbookable_dates.include?(date.strftime('%Y-%m-%d'))
             - visiting_slots[date.strftime('%a').downcase.to_sym].each_with_index do |slot, index|
               - slot_start = Time.strptime(slot[0].to_s, '%H%M')
               - slot_end = Time.strptime(slot[1].to_s, '%H%M')
@@ -49,6 +49,9 @@
                 %input.js-slotpicker-option{ :value => "#{date.strftime('%Y-%m-%d')}-#{slot[0]}-#{slot[1]}" }(type="checkbox" name="slot")
                 %strong= slot_start.strftime("%l:%M%P")
                 %span.duration= (slot_end - slot_start).duration
+
+          - elsif unbookable_dates.include?(date.strftime('%Y-%m-%d'))
+            %p It is not possible to book a visit on this day.
 
           - else
             %p There are no sessions available on #{date.strftime('%A')}s.
