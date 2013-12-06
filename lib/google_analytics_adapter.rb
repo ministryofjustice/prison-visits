@@ -39,6 +39,18 @@ class GoogleAnalyticsAdapter
     @visit.slots.reject { |s| s.date.empty? }
   end
 
+  def days_to_first_slot
+    if slot = nonempty_slots.sort_by { |s| s.date }.first
+      (Date.parse(slot.date) - Date.today).to_i
+    end
+  end
+
+  def days_to_last_slot
+    if slot = nonempty_slots.sort_by { |s| s.date }.last
+      (Date.parse(slot.date) - Date.today).to_i
+    end
+  end
+
   def as_json
     {
       prison_name: prison_name,
@@ -48,7 +60,9 @@ class GoogleAnalyticsAdapter
       number_of_adult_visitors: number_of_adult_visitors,
       number_of_child_visitors: number_of_child_visitors,
       slot_times: slot_times,
-      slot_weekdays: slot_weekdays
+      slot_weekdays: slot_weekdays,
+      days_to_first_slot: days_to_first_slot,
+      days_to_last_slot: days_to_last_slot
     }
   end
 
