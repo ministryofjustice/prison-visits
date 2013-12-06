@@ -38,13 +38,6 @@ describe BookingRequest do
         subject.request_email(visit).to.should == ['socialvisits.rochester@hmps.gsi.gov.uk']
       end
     end
-    
-    it "sends an e-mail to durham functional mailbox" do
-      sample_visit.tap do |visit|
-        visit.prisoner.prison_name = 'Durham'
-        subject.request_email(visit).to.should == ['socialvisits.durham@hmps.gsi.gov.uk']
-      end
-    end
   end
 
   context "in staging or any other environment" do
