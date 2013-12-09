@@ -1,58 +1,231 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>The page you were looking for doesn't exist (404)</title>
-  <style>
-  body {
-    background-color: #EFEFEF;
-    color: #2E2F30;
-    text-align: center;
-    font-family: arial, sans-serif;
-  }
-
-  div.dialog {
-    width: 25em;
-    margin: 4em auto 0 auto;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    background-color: white;
-    padding: 7px 4em 0 4em;
-  }
-
-  h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
-  }
-
-  body > p {
-    width: 33em;
-    margin: 0 auto 1em;
-    padding: 1em 0;
-    background-color: #F7F7F7;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
-    color: #666;
-    box-shadow:0 3px 8px rgba(50, 50, 50, 0.17);
-  }
-  </style>
-</head>
-
-<body>
-  <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <h1>The page you were looking for doesn't exist.</h1>
-    <p>You may have mistyped the address or the page may have moved.</p>
-  </div>
-  <p>If you are the application owner check the logs for more information.</p>
-</body>
+  <head>
+    <title>Prison visits booking</title>
+    <meta content='width=device-width, initial-scale=1.0' name='viewport'>
+    <link href="/assets/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+    <!-- For third-generation iPad with high-resolution Retina display: -->
+    <link href='/assets/apple-touch-icon-144x144.png' rel='apple-touch-icon-precomposed' sizes='144x144'>
+    <!-- For iPhone with high-resolution Retina display: -->
+    <link href='/assets/apple-touch-icon-114x114.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+    <!-- For first- and second-generation iPad: -->
+    <link href='/assets/apple-touch-icon-72x72.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+    <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+    <link href='/assets/apple-touch-icon-57x57.png' rel='apple-touch-icon-precomposed'>
+    <script>
+      (function(){if(navigator.userAgent.match(/IEMobile\/10\.0/)){var d=document,c="appendChild",a=d.createElement("style");a[c](d.createTextNode("@-ms-viewport{width:auto!important}"));d.getElementsByTagName("head")[0][c](a);}})();
+    </script>
+    <!-- ERB block to avoid mangling the conditional comments -->
+    <!--[if gt IE 8]><!-->
+      <link href="/assets/gov-static/gov-application.css?body=1" media="screen" rel="stylesheet" />
+    <!--<![endif]-->
+    <!--[if IE 6]>
+      <link href="/assets/gov-static/gov-application-ie6.css?body=1" media="screen" rel="stylesheet" />
+    <link href="/assets/gov-static/gov-ie6.css?body=1" media="screen" rel="stylesheet" />
+    <![endif]-->
+    <!--[if IE 7]>
+      <link href="/assets/gov-static/gov-application-ie7.css?body=1" media="screen" rel="stylesheet" />
+    <link href="/assets/gov-static/gov-ie7.css?body=1" media="screen" rel="stylesheet" />
+    <![endif]-->
+    <!--[if IE 8]>
+      <link href="/assets/gov-static/gov-application-ie8.css?body=1" media="screen" rel="stylesheet" />
+    <link href="/assets/gov-static/gov-ie8.css?body=1" media="screen" rel="stylesheet" />
+    <![endif]-->
+    
+    <!--[if lt IE 9]>
+      <script src="/assets/gov-static/gov-ie.js?body=1"></script>
+    <![endif]-->
+    <!--[if IE 8]>
+      <script type="text/javascript">
+        (function(){if(window.opera){return;}
+        setTimeout(function(){var a=document,g,b={families:(g=
+        ["nta"]),urls:["https://assets.digital.cabinet-office.gov.uk/static/fonts-ie8-beb10cbc00c9b7dcdbdee824962bc5f6.css"]},
+        c="https://assets.digital.cabinet-office.gov.uk/static/libs/goog/webfont-debug-96870cf9f159ed811fd43c39bdf4656b.js",d="script",
+        e=a.createElement(d),f=a.getElementsByTagName(d)[0],h=g.length;WebFontConfig
+        ={custom:b},e.src=c,f.parentNode.insertBefore(e,f);for(;h=h-1;a.documentElement
+        .className+=' wf-'+g[h].replace(/\s/g,'').toLowerCase()+'-n4-loading');},0)
+        })()
+      </script>
+    <![endif]-->
+    <!--[if gte IE 9]><!-->
+      <link href="/assets/gov-static/gov-fonts.css?body=1" media="screen" rel="stylesheet" />
+    <!--<![endif]-->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-37377084-7', 'service.gov.uk');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body class='alpha service 404'>
+    <header class='with-proposition gov' id='global-header' role='banner'>
+      <div class='header-wrapper'>
+        <div class='header-global'>
+          <div class='header-logo'>
+            <a class='content' href='https://www.gov.uk/' id='logo' title='Go to the GOV.UK homepage'>
+              <img alt='GOV.UK' src='https://assets.digital.cabinet-office.gov.uk/static/gov.uk_logotype-2x-24145374d271079f08d96c618cc8d4a5.png'>
+            </a>
+          </div>
+        </div>
+        <div class='header-proposition'>
+          <div class='content'>
+            <nav id='proposition-menu'>
+              <a href='/' id='proposition-name'>
+                Prison visits booking
+                <!-- <small class='alpha'>
+                  ALPHA
+                </small> -->
+              </a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- <div id='global-cookie-message'>
+      <p>
+        GOV.UK uses cookies to make the site simpler.
+        <a href='https://www.gov.uk/support/cookies'>Find out more about cookies</a>
+      </p>
+    </div> -->
+    <!-- <div class='indicator cf'>
+      <p>
+        <strong>Alpha:</strong>
+        This is a new service -
+        <a href="/feedback/new?referrer=http%3A%2F%2Flocalhost%3A3000%2Funavailable">your feedback</a>
+        will help us to improve it
+      </p>
+    </div> -->
+    <main id='wrapper' role='main'>
+      <div class='container'>
+        <section class='content inner'>
+          <header>
+            <h1></h1>
+          </header>
+        </section>
+        <section class='inner cf' style='min-height:400px;font-weight:bold;margin:0 auto;max-width:960px'>
+          <div style="max-width:550px;">
+            <p>This page cannot be found</p>
+          </div>
+        </section>
+      </div>
+    </main>
+    <footer class='group gov' id='footer' role='contentinfo'>
+      <div class='footer-wrapper'>
+        <div class='footer-categories'>
+          <div class='footer-explore'>
+            <h2>Services and information</h2>
+            <ul>
+              <li>
+                <a href='https://www.gov.uk/browse/driving'>Driving and transport</a>
+              </li>
+              <li>
+                <a href='https://www.gov.uk/browse/benefits'>Benefits</a>
+              </li>
+              <li>
+                <a href='https://www.gov.uk/browse/business'>Businesses and self-employed</a>
+              </li>
+              <li>
+                <a href='https://www.gov.uk/browse/employing-people'>Employing people</a>
+              </li>
+              <li>
+                <a href='https://www.gov.uk/browse/abroad'>Passports, travel and living abroad</a>
+              </li>
+              <li>
+                <a href='https://www.gov.uk/browse/education'>Education and learning</a>
+              </li>
+              <li>
+                <a href='https://www.gov.uk/browse/working'>Working, jobs and pensions</a>
+              </li>
+              <li>
+                <a href='https://www.gov.uk/browse/housing'>Housing and local services</a>
+              </li>
+              <li>
+                <a href='https://www.gov.uk/browse/justice'>Crime, justice and the law</a>
+              </li>
+              <li>
+                <a href='https://www.gov.uk/browse/tax'>Money and tax</a>
+              </li>
+              <li>
+                <a href='https://www.gov.uk/browse/births-deaths-marriages'>Births, deaths, marriages and care</a>
+              </li>
+              <li>
+                <a href='https://www.gov.uk/browse/disabilities'>Disabled people</a>
+              </li>
+              <li>
+                <a href='https://www.gov.uk/browse/citizenship'>Citizenship and life in the UK</a>
+              </li>
+            </ul>
+          </div>
+          <div class='footer-inside-government'>
+            <h2>Departments and policy</h2>
+            <ul>
+              <li>
+                <a href='https://www.gov.uk/government/how-government-works'>How government works</a>
+              </li>
+              <li>
+                <a href='https://www.gov.uk/government/organisations'>Departments</a>
+              </li>
+              <li>
+                <a href='https://www.gov.uk/government/world'>Worldwide</a>
+              </li>
+              <li>
+                <a href='https://www.gov.uk/government/topics'>Topics</a>
+              </li>
+              <li>
+                <a href='https://www.gov.uk/government/policies'>Policies</a>
+              </li>
+              <li>
+                <a href='https://www.gov.uk/government/publications'>Publications</a>
+              </li>
+              <li>
+                <a href='https://www.gov.uk/government/announcements'>Announcements</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class='footer-meta'>
+          <div class='footer-meta-inner'>
+            <h2 class='visuallyhidden'>Support links</h2>
+            <ul>
+              <li>
+                <a href='https://www.gov.uk/support'>Support</a>
+              </li>
+              <li>
+                <a href='https://www.gov.uk/support/cookies'>Cookies</a>
+              </li>
+              <li>
+                <a href='https://www.gov.uk/feedback'>Feedback</a>
+              </li>
+              <li>
+                <a href='https://www.gov.uk/cymraeg'>Cymraeg</a>
+              </li>
+              <li>
+                Built by the
+                <a href='http://digital.cabinetoffice.gov.uk/'>Government Digital Service</a>
+              </li>
+            </ul>
+            <div class='open-government-licence'>
+              <h2>
+                <a href='http://www.nationalarchives.gov.uk/doc/open-government-licence/version/2'>
+                  <img alt='OGL' src='https://assets.digital.cabinet-office.gov.uk/static/open-government-licence_2x-d273d7eca3045d3b710a863d9bfc0b33.png'>
+                </a>
+              </h2>
+              <p>
+                All content is available under the
+                <a href='http://www.nationalarchives.gov.uk/doc/open-government-licence/version/2'>Open Government Licence v2.0</a>,
+                except where otherwise stated
+              </p>
+            </div>
+          </div>
+          <div class='copyright'>
+            <a href='http://www.nationalarchives.gov.uk/information-management/our-services/crown-copyright.htm'>&copy; Crown Copyright</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- end footer -->
+  </body>
 </html>
