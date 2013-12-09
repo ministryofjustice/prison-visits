@@ -2,6 +2,8 @@
 %html
   %head
     = render "shared/head", :title => Rails.configuration.app_title
+    :erb
+      <!--[if IE 8]><link href="<%= asset_path "ie8.css" %>" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
     = csrf_meta_tag
     :javascript
       var pvbe = pvbe || {};
