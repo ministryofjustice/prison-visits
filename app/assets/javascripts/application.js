@@ -8,7 +8,7 @@
 //= require moj
 //= require modules/moj.cookie-message
 //= require modules/moj.hijacks
-//= require modules/moj.effects
+// require modules/moj.effects
 //= require moj.slot-picker
 //= require visitors
 //= require date-picker
