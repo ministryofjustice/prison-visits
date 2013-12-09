@@ -1,6 +1,7 @@
 //= require Date.format
 //= require Array.move
 //= require Array.foreachwithindex
+//= require Array.indexof
 
 //= require lodash
 //= require jquery.details
