@@ -21,8 +21,8 @@
         %tr
           - week[1].each do |day|
             %td.fc-day.fc-widget-content{ :'data-date' => day, :class => day_classes(day) }
-              .fc-day-number= day.strftime('%e')
               .fc-day-content
+                .fc-day-number= day.strftime('%e')
                 - if tag_with_month? day
                   .fc-tag= day.strftime('%b')
 
