@@ -92,7 +92,7 @@ class VisitController < ApplicationController
 
   def request_sent
     render
-    reset_session
+    # reset_session
   end
 
   def abandon
