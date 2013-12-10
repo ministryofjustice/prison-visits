@@ -18,6 +18,14 @@ moj.init();
 
 $(function () {
   $('details').details();
+  
+  // Open browser print dialog
+  $(document).on('click', '[data-confirm]', function (e) {
+    e.preventDefault();
+    if (window.confirm($(this).data('confirm'))) {
+      window.location.href = $(this).attr('href');
+    }
+  })
 });
 
 // Hacks to show GOV.UK images when offline
