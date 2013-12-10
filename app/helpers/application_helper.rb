@@ -16,4 +16,10 @@ module ApplicationHelper
   def time_from_str(str)
     Time.strptime(str, '%H%M')
   end
+
+  def page_title(header, glue=' - ')
+    page_title = [Rails.configuration.app_title]
+    page_title.unshift(header) if header.present?
+    page_title.join glue
+  end
 end
