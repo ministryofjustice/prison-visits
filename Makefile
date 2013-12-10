@@ -7,4 +7,9 @@ test-i:
 		; casperjs test tests --images=on \
 		|| open tests/failure.png
 
+test-ci:
+	rm -f tests/failure.png \
+		; casperjs test tests --images=on --no-colors\
+		|| open tests/failure.png
+
 .PHONY: test test-i
