@@ -9,7 +9,6 @@ test-i:
 
 test-ci:
 	rm -f tests/failure.png \
-		; casperjs test tests --images=on --no-colors\
-		|| open tests/failure.png
+		; casperjs test tests --images=on --no-colors
 
 .PHONY: test test-i
