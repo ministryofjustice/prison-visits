@@ -21,9 +21,9 @@ casper.test.begin 'Prison Visit Booking: Step 1 invalid', (test) ->
     , true
 
   casper.then ->
-    test.assertSelectorHasText '[for="prisoner_first_name"]', "can't be blank", 'page contains name error'
-    test.assertSelectorHasText '[for="prisoner_date_of_birth_3i"]', "can't be blank", 'page contains age error'
-    test.assertSelectorHasText '[for="prisoner_number"]', 'must be a valid prisoner number', 'page contains prisoner number error'
+    test.assertSelectorHasText '[for="prisoner_first_name"] .validation-message', "can't be blank", 'page contains name error'
+    test.assertSelectorHasText '[for="prisoner_date_of_birth_3i"] .validation-message', "can't be blank", 'page contains age error'
+    test.assertSelectorHasText '[for="prisoner_number"] .validation-message', 'must be a valid prisoner number', 'page contains prisoner number error'
 
   casper.then ->
     casper.capture 'tests/prisoner_details_invalid.png' if outputImages
