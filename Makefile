@@ -9,6 +9,6 @@ test-i:
 
 test-ci:
 	rm -f tests/failure.png \
-		; casperjs test tests --images=on --no-colors
+		; casperjs test tests --images=on --no-colors --xunit=log.xml
 
 .PHONY: test test-i
