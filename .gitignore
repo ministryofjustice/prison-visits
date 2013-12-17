@@ -66,3 +66,4 @@ auto-save-list
 tramp
 .\#*
 db/password.hash
+.vagrant
