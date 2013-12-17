@@ -1,7 +1,9 @@
 !!!
 %html
   %head
-    = render "shared/head", :title => Rails.configuration.app_title
+    = render "shared/head", :title => page_title(yield(:header))
+    :erb
+      <!--[if IE 8]><link href="<%= asset_path "ie8.css" %>" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
     = csrf_meta_tag
     :javascript
       var pvbe = pvbe || {};
@@ -18,7 +20,7 @@
       .container
         %section.content.inner
           %header
-            = yield :header
+            %h1= yield :header
         %section.inner.cf
           - if notice.present?
             %p.validation-summary= notice

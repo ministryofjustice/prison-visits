@@ -14,9 +14,6 @@ casper.test.begin 'Prison Visit Booking: Step 1 - prisoner details', (test) ->
       '.js-native-date__date-input': '1977-02-18'
     , false
 
-    @evaluate ->
-      $('.js-native-date__date-input').trigger 'change'
-
   casper.then ->
     test.assertField 'prisoner[date_of_birth(3i)]', '18'
     test.assertField 'prisoner[date_of_birth(2i)]', '2'
@@ -39,17 +36,16 @@ casper.test.begin 'Prison Visit Booking: Step 1 - prisoner details', (test) ->
 
     test.comment 'Prison Visit Booking: Step 2 - visitors'
 
-    test.assertVisible '#visit_visitor__first_name'
+    test.assertVisible '#first_name_0'
 
     @fillSelectors '#new_visit',
-      '.js-dob__day': '24'
-      '.js-dob__month': '06'
-      '.js-dob__year': '1975'
+      '.js-native-date__date-input': '1975-06-24'
     , false
 
-    test.assertEvalEquals ->
-      __utils__.findOne('#visitor_date_of_birth_0').value
-    , '1975-06-24', 'JS form fields have changed the user DOB'
+  casper.then ->
+    test.assertField 'visit[visitor][][date_of_birth(3i)]', '24'
+    test.assertField 'visit[visitor][][date_of_birth(2i)]', '6'
+    test.assertField 'visit[visitor][][date_of_birth(1i)]', '1975'
 
     @fill '#new_visit',
       'visit[visitor][][first_name]': 'Sue'

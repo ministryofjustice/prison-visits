@@ -1,5 +1,4 @@
-- content_for :header do
-  %h1 Visitor 1: your details
+- content_for :header, 'Visitor 1: your details'
 
 
 = form_for visit, url: update_visitor_details_path, :html => { :autocomplete => 'off' } do |f|

@@ -52,13 +52,15 @@ SlotPicker:: =
     @$wrapper.on 'click', @$removeSlots, (e) ->
       e.preventDefault()
       $( $(this).data('slot-option') ).click()
+      ga('send', 'event', 'slot', 'remove')
 
     @$wrapper.on 'click', @$promoteSlots, (e) ->
       e.preventDefault()
       promoted = $(this).attr('href').split('#')[1] - 1
       _this.promoteSlot promoted
       _this.processSlots()
-      moj.Modules.effects.highlight $(this).closest('ul').find('li').eq(promoted-1)
+      ga('send', 'event', 'slot', 'promote')
+      # moj.Modules.effects.highlight $(this).closest('ul').find('li').eq(promoted-1)
 
     $('.fc-day').on 'click', ->
       _this.selectDay $(this)

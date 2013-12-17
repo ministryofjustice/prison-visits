@@ -13,15 +13,17 @@ casper.test.begin 'Prison Visit Booking: Step 1 invalid', (test) ->
     @fill '#new_prisoner',
       'prisoner[first_name]': ''
       'prisoner[last_name]': ''
+      'prisoner[date_of_birth(1i)]': ''
+      'prisoner[date_of_birth(2i)]': ''
       'prisoner[date_of_birth(3i)]': ''
       'prisoner[number]': ''
       'prisoner[prison_name]': ''
     , true
 
   casper.then ->
-    test.assertTextExists "can't be blank", 'page contains name error'
-    test.assertTextExists 'must be a valid date of birth', 'page contains age range error'
-    test.assertTextExists 'must be a valid prisoner number', 'page contains prisoner number error'
+    test.assertSelectorHasText '[for="prisoner_first_name"] .validation-message', "can't be blank", 'page contains name error'
+    test.assertSelectorHasText '[for="prisoner_date_of_birth_3i"] .validation-message', "can't be blank", 'page contains age error'
+    test.assertSelectorHasText '[for="prisoner_number"] .validation-message', 'must be a valid prisoner number', 'page contains prisoner number error'
 
   casper.then ->
     casper.capture 'tests/prisoner_details_invalid.png' if outputImages

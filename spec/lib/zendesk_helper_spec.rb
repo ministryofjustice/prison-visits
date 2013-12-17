@@ -19,7 +19,7 @@ describe ZendeskHelper do
   it "sends a piece of feedback to zendesk" do
     mock_ticket = mock('ticket')
     mock_ticket.should_receive('save').once
-    ZendeskAPI::Ticket.should_receive(:new).with(client, description: 'text', submitter: { email: 'email' }, custom_fields: [{id: '23730083', value: 'ref'}]).and_return(mock_ticket)
+    ZendeskAPI::Ticket.should_receive(:new).with(client, description: 'text', requester: { email: 'email' }, custom_fields: [{id: '23730083', value: 'ref'}]).and_return(mock_ticket)
 
     subject.send_to_zendesk(feedback, client)
   end

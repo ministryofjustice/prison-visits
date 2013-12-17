@@ -18,13 +18,16 @@ th.fc-day-header
 
 .fc-day
   cursor: pointer
-  position: relative
   width: 14.285714286%
   padding: 0
 
 .fc-content table
   background: image-url("unavailable_tile.png")
   border-bottom: 1px solid $grey-3
+
+#calendar .fc-day-content
+  position: relative
+  min-height: 55px
 
 .fc-today .fc-day-content
   padding: 0
@@ -92,9 +95,6 @@ th.fc-day-header
 
 .fc-grid .fc-day-number
   float: none
-
-#calendar .fc-day-content
-  min-height: 55px
 
 .fc-header
   td
