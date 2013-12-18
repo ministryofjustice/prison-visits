@@ -20,6 +20,6 @@ class FeedbacksController < ApplicationController
 
   private
   def feedback_params
-    params.require(:feedback).permit(:referrer, :text, :email)
+    params.require(:feedback).permit(:referrer, :text, :email, :user_agent)
   end
 end

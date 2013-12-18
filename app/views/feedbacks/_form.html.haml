@@ -2,6 +2,7 @@
 
 = form_for @feedback, :url => feedback_path, :html => {:novalidate => 'novalidate'} do |f|
   %input{name: 'feedback[referrer]', type: 'hidden', value: (params[:referrer] || params[:feedback][:referrer])}/
+  %input{name: 'feedback[user_agent]', type: 'hidden', value: request.headers['HTTP_USER_AGENT']}
 
   - if @feedback.errors.any?
     #error-summary.validation-summary.group(role="alert" tabindex="-1" aria-labelledby="error-heading")

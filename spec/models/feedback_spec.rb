@@ -7,6 +7,9 @@ describe Feedback do
     subject.text = "test"
     subject.should_not be_valid
 
+    subject.user_agent = 'Mozilla'
+    subject.should_not be_valid
+
     subject.email = "broken email"
     subject.should_not be_valid
 
