@@ -1,5 +1,24 @@
 - content_for :header, 'Your visit request has been sent'
 
+- content_for :progress_bar do
+  %nav
+    %ol.progress
+      %li.progress--completed
+        .progress__step
+          %span.progress__label Prisoner details
+      %li.progress--completed
+        .progress__step
+          %span.progress__label Visitor details
+      %li.progress--completed
+        .progress__step
+          %span.progress__label Choose time
+      %li.progress--completed.progress--previous
+        .progress__step
+          %span.progress__label Check request
+      %li.progress--active
+        .progress__step
+          %span.progress__label Send request
+
 %p
   We'll email you at
   %strong= visit.visitors[0].email

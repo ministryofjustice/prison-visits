@@ -9,14 +9,16 @@
   .inner
     margin: 0
     padding: 0 15px
-    max-width: 708px
 
     @include media(tablet)
       padding-right: 30px
       padding-left: 30px
 
-  .choose_date_and_time & .inner
-    max-width: none
+  .content-inner
+    max-width: 708px
+
+    .choose_date_and_time &
+      max-width: none
 
 .well
   padding: 1em

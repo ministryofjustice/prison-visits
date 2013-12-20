@@ -1,34 +1,56 @@
 !!!
-%html
-  %head
-    = render "shared/head", :title => page_title(yield(:header))
-    :erb
-      <!--[if IE 8]><link href="<%= asset_path "ie8.css" %>" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
-    = csrf_meta_tag
-    :javascript
-      var pvbe = pvbe || {};
-    %script(src='/modernizr.custom.44058.js')
-    = render "shared/analytics"
+:erb
+  <!--[if gt IE 8]>
+    <html class="ie">
+  <!--<![endif]-->
+  <!--[if IE 6]>
+    <html class="ie ie6">
+  <![endif]-->
+  <!--[if IE 7]>
+    <html class="ie ie7">
+  <![endif]-->
+  <!--[if IE 8]>
+    <html class="ie ie8">
+  <![endif]-->
+  <!--[if !IE]> -->
+    <html>
+  <!-- <![endif]-->
 
-  %body{:class => [Rails.configuration.phase, Rails.configuration.product_type, controller.action_name].join(' ') }
+%head
+  = render "shared/head", :title => page_title(yield(:header))
+  :erb
+    <!--[if IE 8]><link href="<%= asset_path "ie8.css" %>" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
+  = csrf_meta_tag
+  :javascript
+    var pvbe = pvbe || {};
+  %script(src='/modernizr.custom.44058.js')
+  = render "shared/analytics"
 
-    = render "shared/header"
-    = render "shared/cookie_message"
-    = render "shared/phase_indicator"
+%body{:class => [Rails.configuration.phase, Rails.configuration.product_type, controller.action_name].join(' ') }
 
-    %main#wrapper(role="main")
-      .container
-        %section.content.inner
-          %header
-            %h1= yield :header
-        %section.inner.cf
-          - if notice.present?
-            %p.validation-summary= notice
+  = render "shared/header"
+  = render "shared/cookie_message"
+  = render "shared/phase_indicator"
+
+  %main#wrapper(role="main")
+    .container
+      %section.content.inner.cf
+        %header
+          %h1= yield :header
+        
+        = yield :progress_bar
+        
+        - if notice.present?
+          %p.validation-summary= notice
+        
+        .content-inner
           = yield
 
-    = render "shared/footer"
-    
-    %script{src: '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'}
-    %script{src: '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js'}
-    = render "shared/script"
+  = render "shared/footer"
+  
+  %script{src: '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'}
+  %script{src: '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js'}
+  = render "shared/script"
 
+:erb
+  </html>

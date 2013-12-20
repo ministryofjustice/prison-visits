@@ -1,5 +1,24 @@
 - content_for :header, 'Who are you visiting?'
 
+- content_for :progress_bar do
+  %nav
+    %ol.progress
+      %li.progress--active
+        .progress__step
+          %span.progress__label Prisoner details
+      %li
+        .progress__step
+          %span.progress__label Visitor details
+      %li
+        .progress__step
+          %span.progress__label Choose time
+      %li
+        .progress__step
+          %span.progress__label Check request
+      %li
+        .progress__step
+          %span.progress__label Send request
+
 
 %p You need to speak to the prisoner before you book to check they're happy for you to visit and that you're on their visitor list. You don't need a Visiting Order (VO) number to book. We'll email this to you when your visit is confirmed, within 1 - 3 working days of making your request.
 
