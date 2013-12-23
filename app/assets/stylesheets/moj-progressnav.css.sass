@@ -1,15 +1,6 @@
 $spacing_for_chevron: 14px
 
 
-.progress-wrapper
-  margin: 0 2em 2em
-
-  @include media(mobile)
-    margin: 0
-
-  .ie7 &, .ie6 &
-    display: none
-  
 ol.progress
   display: table
   width: 100%
@@ -21,6 +12,9 @@ ol.progress
     top: 1px solid $grey-2
     bottom: 1px solid $grey-2
   background-color: $grey-4
+
+  .ie7 &, .ie6 &
+    display: none
 
   li
     display: table-cell
