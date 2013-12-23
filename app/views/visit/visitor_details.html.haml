@@ -1,23 +1,22 @@
 - content_for :header, 'Visitor 1: your details'
 
 - content_for :progress_bar do
-  %nav
-    %ol.progress
-      %li.progress--completed.progress--previous
-        .progress__step
-          %span.progress__label Prisoner details
-      %li.progress--active
-        .progress__step
-          %span.progress__label Visitor details
-      %li
-        .progress__step
-          %span.progress__label Choose time
-      %li
-        .progress__step
-          %span.progress__label Check request
-      %li
-        .progress__step
-          %span.progress__label Send request
+  %ol.progress
+    %li.progress--completed.progress--previous
+      .progress__step
+        %span.progress__label Prisoner details
+    %li.progress--active
+      .progress__step
+        %span.progress__label Visitor details
+    %li
+      .progress__step
+        %span.progress__label Choose time
+    %li
+      .progress__step
+        %span.progress__label Check request
+    %li
+      .progress__step
+        %span.progress__label Send request
 
 
 = form_for visit, url: update_visitor_details_path, :html => { :autocomplete => 'off' } do |f|

@@ -1,23 +1,22 @@
 - content_for :header, 'When do you want to visit?'
 
 - content_for :progress_bar do
-  %nav
-    %ol.progress
-      %li.progress--completed
-        .progress__step
-          %span.progress__label Prisoner details
-      %li.progress--completed.progress--previous
-        .progress__step
-          %span.progress__label Visitor details
-      %li.progress--active
-        .progress__step
-          %span.progress__label Choose time
-      %li
-        .progress__step
-          %span.progress__label Check request
-      %li
-        .progress__step
-          %span.progress__label Send request
+  %ol.progress
+    %li.progress--completed
+      .progress__step
+        %span.progress__label Prisoner details
+    %li.progress--completed.progress--previous
+      .progress__step
+        %span.progress__label Visitor details
+    %li.progress--active
+      .progress__step
+        %span.progress__label Choose time
+    %li
+      .progress__step
+        %span.progress__label Check request
+    %li
+      .progress__step
+        %span.progress__label Send request
 
 
 %p.visible--js-enabled Choose the date first, then the time you'd like to visit. You can pick up to 3 possible times for each booking request. We'll let you know which one is available when we confirm your booking by email.

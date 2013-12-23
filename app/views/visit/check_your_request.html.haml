@@ -1,23 +1,22 @@
 - content_for :header, 'Check your request'
 
 - content_for :progress_bar do
-  %nav
-    %ol.progress
-      %li.progress--completed
-        .progress__step
-          %span.progress__label Prisoner details
-      %li.progress--completed
-        .progress__step
-          %span.progress__label Visitor details
-      %li.progress--completed.progress--previous
-        .progress__step
-          %span.progress__label Choose time
-      %li.progress--active
-        .progress__step
-          %span.progress__label Check request
-      %li
-        .progress__step
-          %span.progress__label Send request
+  %ol.progress
+    %li.progress--completed
+      .progress__step
+        %span.progress__label Prisoner details
+    %li.progress--completed
+      .progress__step
+        %span.progress__label Visitor details
+    %li.progress--completed.progress--previous
+      .progress__step
+        %span.progress__label Choose time
+    %li.progress--active
+      .progress__step
+        %span.progress__label Check request
+    %li
+      .progress__step
+        %span.progress__label Send request
 
 - content_for :javascript do
   :javascript
