@@ -12,12 +12,12 @@ describe ZendeskHelper do
 
   let :client do
     ZendeskAPI::Client.new do |c|
-      c.url = 'https://lol.biz.info'
+      c.url = 'https://lol.biz.info/api/v2'
     end
   end
 
   it "sends a piece of feedback to zendesk" do
-    mock_ticket = mock('ticket')
+    mock_ticket = double('ticket')
     mock_ticket.should_receive('save').once
     ZendeskAPI::Ticket.should_receive(:new).with(client, description: 'text', requester: { email: 'email' }, custom_fields: [
                                                                                                                              {id: '23730083', value: 'ref'},
