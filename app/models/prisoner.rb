@@ -12,8 +12,8 @@ class Prisoner
       email: '-email missing-'
     },
     durham: {
-      phone: '-phone missing-',
-      email: '-email missing-'
+      phone: '0191 3323417',
+      email: 'socialvisits.durham@hmps.gsi.gov.uk'
     },
     :gartree => {
       phone: '01858 426 600',
