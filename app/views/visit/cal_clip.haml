@@ -1,0 +1,123 @@
+- content_for :javascript do
+  :javascript
+
+    $('.scroll').on('scroll', function () {
+      $($(this).siblings('.scroll')).scrollLeft($(this).scrollLeft());
+    });
+
+:css
+  .relative {
+    position: relative;
+  }
+  .scroll {
+    user-select: none;
+    width: 500px;
+    height: 100px;
+    overflow: scroll;
+    border: 2px solid #999;
+  }
+  /*.scroll::-webkit-scrollbar {
+    display: none;
+  }*/
+  #port {
+    top: -25px;
+    left: 200px;
+    width: 100px;
+    height: 150px;
+    position: absolute;
+  }
+  .days {
+    display: table;
+    width: 1000px;
+    height: 100%;
+  }
+  .day {
+    display: table-cell;
+    width: 100px;
+    font-size: 40px;
+    text-align: center;
+    vertical-align: middle;
+    background: #eee;
+  }
+  #port .days {
+    width: 600px;
+  }
+  #port .day {
+    position: relative;
+    font-size: 50px;
+    font-weight: bold;
+    background: #fff;
+  }
+  #port .day small {
+    position: absolute;
+    top: 0;
+    display: block;
+    width: 100%;
+    font-size: 24px;
+    text-transform: uppercase;
+  }
+
+  .clip {
+    position: relative;
+    height: 100px;
+    background: green;
+  }
+  .Xscroll {
+    position: absolute;
+    top: 0;
+    left: 200px;
+    clip: rect(0, 100px, 100px, 0);
+    background: yellow;
+  }
+
+  .relative .scroll {
+    position: relative;
+  }
+  .dates {
+    width: 1000px;
+    background: #ccc;
+  }
+  #two {
+    position: absolute;
+    left: 100px;
+    clip: rect(0, 10px, 10px, 0)
+  }
+
+.relative
+  .scroll
+    .dates#one This is one
+    .dates#two This is two
+
+.relative(style='display:none;')
+  #window.scroll
+    .days
+      .day 
+      .day 
+      .day 24
+      .day 25
+      .day 26
+      .day 27
+      .day 28
+      .day 29
+      .day 
+      .day 
+  #port.scroll
+    .days
+      .day
+        %small Tue
+        24
+      .day
+        %small Wed
+        25
+      .day
+        %small Thu
+        26
+      .day
+        %small Fri
+        27
+      .day
+        %small Sat
+        28
+      .day
+        %small Sun
+        29

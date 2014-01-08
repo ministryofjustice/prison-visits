@@ -4,6 +4,10 @@ class VisitController < ApplicationController
   before_filter :check_if_within_business_hours, except: [:unavailable]
   before_filter :check_if_session_exists, except: [:prisoner_details, :unavailable]
 
+  def cal
+    
+  end
+
   def check_if_session_exists
     unless session[:visit]
       redirect_to(prisoner_details_path)

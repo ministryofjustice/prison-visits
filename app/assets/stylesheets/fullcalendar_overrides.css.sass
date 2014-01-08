@@ -9,6 +9,9 @@
   text-align: left
   background: $grey-1
 
+  @include media(mobile)
+    margin-top: 0
+
 th.fc-day-header
   font-weight: normal
   text-align: left
@@ -24,6 +27,15 @@ th.fc-day-header
 .fc-content table
   background: image-url("unavailable_tile.png")
   border-bottom: 1px solid $grey-3
+
+  td
+    border:
+      color: $grey-3
+      style: solid
+      width: 1px 0 0 1px
+  
+  td:last-child > div
+    border-right: 1px solid $grey-3
 
 #calendar .fc-day-content
   position: relative

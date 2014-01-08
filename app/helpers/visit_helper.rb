@@ -52,6 +52,10 @@ module VisitHelper
     bookable_from..bookable_to
   end
 
+  def bookable_range_with_buffer(buffer)
+    (bookable_from - buffer.days)..(bookable_to + buffer.days)
+  end
+
   def range_by_month
     bookable_range.group_by do |date|
       date.beginning_of_month

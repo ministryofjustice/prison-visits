@@ -1,0 +1,38 @@
+#picker
+  #touch.scroll
+    .days
+  #small-dates.scroll
+    .days
+      .day.unavailable 24
+      .day.unavailable 25
+      .day.unavailable 26
+      .day 27
+      .day 28
+      .day.unavailable 29
+      .day 30
+      .day 31
+      .day 1
+      .day.unavailable 2
+      .day.unavailable 3
+      .day.unavailable 4
+  #portal-frame
+  #large-dates.scroll
+    .days
+      .day(data-date="2013-12-27")
+        %small Fri
+        27
+      .day(data-date="2013-12-28")
+        %small Sat
+        28
+      .day.unavailable(data-date="2013-12-29")
+        %small Sun
+        29
+      .day(data-date="2013-12-30")
+        %small Sun
+        30
+      .day(data-date="2013-12-31")
+        %small Mon
+        31
+      .day(data-date="2014-01-01")
+        %small Tue
+        1

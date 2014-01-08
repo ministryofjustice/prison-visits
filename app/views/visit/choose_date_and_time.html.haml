@@ -26,29 +26,53 @@
     %h2#error-heading You need to fix the errors on this page before continuing.
     %p You need to choose date(s) and time(s) for your visit to continue.
 
-#calendar.fc-content.visible--js-enabled
-  %table.fc-border-separate(style='width:100%')
-    %caption.step_prompt First choose a date
-    %thead
-      %tr
-        - [:Mon,:Tue,:Wed,:Thu,:Fri,:Sat,:Sun].each do |d|
-          %th.fc-day-header= d
 
-      - weeks.each do |week|
+#calendar.visible--js-enabled
+  %h2.step_prompt First choose a date
+  
+  .DateSlider.visible--mobile(data-selectonload='true')
+    %h3.DateSlider-month
+      - range_by_month.each do |month, dates|
+        %span{ :'data-date' => month.strftime('%Y-%m') }= month.strftime '%B'
+    .DateSlider-sliders
+      .DateSlider-touch.scroll
+        %ul.DateSlider-days
+      .DateSlider-smallDates.scroll
+        %ul.DateSlider-days
+          - bookable_range_with_buffer(3).each do |day|
+            %li{ :'data-date' => day, :class => ('unavailable' unless bookable?(day)) }= day.strftime '%e'
+      .DateSlider-portalFrame
+      .DateSlider-largeDates.scroll
+        %ul.DateSlider-days
+          - bookable_range.each do |day|
+            %li{ :'data-date' => day, :class => ('unavailable' unless bookable?(day)) }
+              %small= day.strftime '%a'
+              = day.strftime '%e'
+
+
+  .fc-content.hidden--mobile
+    %table.fc-border-separate(style='width:100%')
+      %thead
         %tr
-          - week[1].each do |day|
-            %td.fc-day.fc-widget-content{ :'data-date' => day, :class => day_classes(day) }
-              .fc-day-content
-                .fc-day-number= day.strftime('%e')
-                - if tag_with_month? day
-                  .fc-tag= day.strftime('%b')
+          - [:Mon,:Tue,:Wed,:Thu,:Fri,:Sat,:Sun].each do |d|
+            %th.fc-day-header= d
+
+      %tbody
+        - weeks.each do |week|
+          %tr
+            - week[1].each do |day|
+              %td.fc-day.fc-widget-content{ :'data-date' => day, :class => day_classes(day) }
+                .fc-day-content
+                  .fc-day-number= day.strftime('%e')
+                  - if tag_with_month? day
+                    .fc-tag= day.strftime('%b')
 
 .slots.js-slotpicker{ :'data-optionlimits' => number_of_slots }
   %h2.step_prompt Now choose a time
   .js-slotpicker-options.day-slots#in-the-past
     %p It is not possible to book a visit in the past.
   .js-slotpicker-options.day-slots#too-far-ahead
-    %p You can only book a visit in the next 28 days.
+    %p You can only book a visit in the next #{Slot::BOOKABLE_DAYS} days.
   .js-slotpicker-options.day-slots#booking-gap
     %p You can only book a visit 3 days in advance.
 

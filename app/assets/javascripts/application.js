@@ -13,19 +13,20 @@
 //= require moj.slot-picker
 //= require visitors
 //= require date-picker
+//= require modules/moj.date-slider
 
 moj.init();
 
 $(function () {
   $('details').details();
   
-  // Open browser print dialog
+  // Browser confirm dialog
   $(document).on('click', '[data-confirm]', function (e) {
     e.preventDefault();
     if (window.confirm($(this).data('confirm'))) {
       window.location.href = $(this).attr('href');
     }
-  })
+  });
 });
 
 // Hacks to show GOV.UK images when offline
