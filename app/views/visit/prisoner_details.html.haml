@@ -58,7 +58,7 @@
     = f.label :prison_name do
       Name of the prison
       %span.validation-message= f.object.errors[:prison_name] if f.object.errors.include?(:prison_name)
-    = f.select :prison_name, Prisoner::PRISONS
+    = f.select :prison_name, prison_names
     %details.group__help
       %summary Why is only HMP Rochester on this list?
       %p HMP Rochester is the first prison to allow online visit requests. In future you'll be able to make online visit requests at more UK prisons.

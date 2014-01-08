@@ -23,11 +23,11 @@
   %strong= visit.visitors[0].email
   within 1 - 3 working days to confirm your visit.
   If you don't receive a confirmation email, please
-  - if prison_phone(visit).present?
-    call #{prison_phone(visit)} or
+  - if prison_phone.present?
+    call #{prison_phone} or
   email us at
   = succeed '.' do
-    = mail_to prison_email(visit)
+    = mail_to prison_email
 
 .well.summary-pane.pull-left.cf
   %p.flat
@@ -45,23 +45,15 @@
     Location:
     %br
     %strong
-      #{visit.prisoner.prison_name}
+      = visit.prisoner.prison_name
       %br
-      - case visit.prisoner.prison_name
-        - when 'HMP Gartree'
-          = ['Gallow Field Rd', 'Market Harborough', 'Leicestershire', 'LE16 7RP'].join('<br>').html_safe
-        - when 'HMP Rochester'
-          = ['1 Fort Road', 'Rochester', 'Kent', 'ME1 3QS'].join('<br>').html_safe
-        - when 'HMP Cardiff'
-          = ['Knox Rd', 'Cardiff', 'South Glamorgan', 'CF24 0UG'].join('<br>').html_safe
-        - when 'HMP Durham'
-          = ['Old Elvet','Durham','DH1 3HU'].join('<br>').html_safe
+      = prison_address
 
-  - if prison_phone(visit).present?
+  - if prison_phone.present?
     %p
       Tel:
       %br
-      %strong= prison_phone visit
+      %strong= prison_phone
 
   .visible--js-enabled
     = link_to 'Print this page', '#', :class => 'print-link'
@@ -99,12 +91,12 @@
 
   %p If you need to change or cancel your visit, please contact us as soon as you can.
   %ul
-    - if prison_phone(visit).present?
-      %li Telephone: #{prison_phone(visit)}
-    - if prison_email(visit).present?
+    - if prison_phone.present?
+      %li Telephone: #{prison_phone}
+    - if prison_email.present?
       %li
         Email:
-        = mail_to prison_email(visit)
+        = mail_to prison_email
 
   %h2 What to expect when visiting prison
 
@@ -115,11 +107,11 @@
   %ul
     %li Two forms of ID, one with your address. 
     %li A small amount of money for tea and coffee during the visit – you won’t be able to give the prisoner any money 
-    %li For more information about what to bring, for example clothes, please see the #{prison_link(visit)} page. 
+    %li For more information about what to bring, for example clothes, please see the #{prison_link} page. 
 
   %h2 What not to bring
 
-  %p Please do not bring anything restricted or illegal to the prison. For more information about what you are allowed to bring, please see the #{prison_link(visit)} page.
+  %p Please do not bring anything restricted or illegal to the prison. For more information about what you are allowed to bring, please see the #{prison_link} page.
 
   %h2 Your data
 

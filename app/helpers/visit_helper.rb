@@ -29,11 +29,15 @@ module VisitHelper
   end
 
   def visiting_slots
-    Slot::TIMES[visit.prisoner.prison_name.downcase.to_sym]
+    prison_data['slots'].inject({}) do |hash, (day, slots)|
+      hash.merge({
+        day.to_sym => slots.map { |s| s.split('-') }
+      })
+    end
   end
 
   def unbookable_dates
-    Slot::UNBOOKABLE_DATES[visit.prisoner.prison_name.downcase.to_sym]
+    prison_data['unbookable'] || []
   end
 
   def bookable_from
@@ -76,15 +80,27 @@ module VisitHelper
     end
   end
 
-  def prison_phone(visit)
-    Prisoner::PRISON_DETAILS[visit.prisoner.prison_name.downcase.to_sym][:phone]
+  def prison_names
+    Rails.configuration.prison_data.map{|k,v|k}.sort
   end
 
-  def prison_email(visit)
-    Prisoner::PRISON_DETAILS[visit.prisoner.prison_name.downcase.to_sym][:email]
+  def prison_data
+    Rails.configuration.prison_data[visit.prisoner.prison_name.to_s]
   end
 
-  def prison_link(visit)
+  def prison_phone
+    prison_data['phone']
+  end
+
+  def prison_email
+    prison_data['email']
+  end
+
+  def prison_address(glue='<br>')
+    prison_data['address'].join(glue).html_safe
+  end
+
+  def prison_link
     link_to "#{visit.prisoner.prison_name.capitalize} prison", "http://www.justice.gov.uk/contacts/prison-finder/#{visit.prisoner.prison_name.downcase}", :rel => 'external'
   end
 
@@ -103,7 +119,7 @@ module VisitHelper
   end
 
   def bookable?(day)
-    bookable_range.include?(day) && bookable_week_days.include?(day.wday) && !unbookable_dates.include?(day.strftime('%Y-%m-%d'))
+    bookable_range.include?(day) && bookable_week_days.include?(day.wday) && !unbookable_dates.include?(day)
   end
 
   def day_classes(day)

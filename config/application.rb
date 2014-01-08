@@ -51,5 +51,7 @@ module PrisonVisits2
       moj-base.css
       gov-static/gov-ie.js
     )
+
+    config.prison_data = YAML.load_file(File.join(Rails.root, 'config', 'prison_data.yml'))
   end
 end
