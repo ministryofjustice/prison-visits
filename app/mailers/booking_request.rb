@@ -1,11 +1,6 @@
 class BookingRequest < ActionMailer::Base
   add_template_helper(ApplicationHelper)
 
-  EMAILS = {
-    'Rochester' => 'socialvisits.rochester@hmps.gsi.gov.uk',
-    # 'Durham' => 'socialvisits.durham@hmps.gsi.gov.uk'
-  }
-
   self.smtp_settings = {
     address: ENV['GSI_SMTP_HOSTNAME'],
     port: ENV['GSI_SMTP_PORT'],
@@ -18,7 +13,7 @@ class BookingRequest < ActionMailer::Base
     user = visit.visitors.find { |v| v.email }.email
 
     recipient = if production?
-      EMAILS[visit.prisoner.prison_name]
+      Rails.configuration.prison_data[visit.prisoner.prison_name.to_s]['email']
     else
       'pvb-email-test@googlegroups.com'
     end
