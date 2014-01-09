@@ -1,7 +1,7 @@
-%p You can use the form below to ask a question, report a problem or suggest an improvement we can make to the #{Rails.configuration.app_title} tool.
+%p Use this form to report a problem or suggest improvements to the service. If you want to make or change a visit request please call the prison’s visit booking line.
 
 = form_for @feedback, :url => feedback_path, :html => {:novalidate => 'novalidate'} do |f|
-  %input{name: 'feedback[referrer]', type: 'hidden', value: (params[:referrer] || params[:feedback][:referrer])}/
+  %input{name: 'feedback[referrer]', type: 'hidden', value: (params[:referrer] || (params[:feedback][:referrer] if params[:feedback]))}/
   %input{name: 'feedback[user_agent]', type: 'hidden', value: request.headers['HTTP_USER_AGENT']}
 
   - if @feedback.errors.any?
@@ -13,7 +13,7 @@
           %li= msg
 
   %p
-    %strong Please don't leave sensitive personal details, like your phone number
+    %strong Please don't include any sensitive personal information (eg. bank details, address etc.)
   
   %fieldset
     .group{ :class => ('validation-error' if f.object.errors.include?(:text)) }
