@@ -6,6 +6,21 @@ It is a Ruby on Rails cookie based (no database) service which enables a user to
 
 The request is sent via secure email and prison staff will then manually enter the visit request into NOMIS and respond to the user.
 
+## Editing prison details
+
+Prison details are store in a single Yaml file which can be edited directly on this website by anyone with access to this repository. [Yaml files](http://en.wikipedia.org/wiki/YAML) use a two-space indentation syntax, so be careful.
+
+[prison_detail.yaml](https://github.com/ministryofjustice/prison-visits2/blob/master/config/prison_data.yml)
+
+By updating this file you can:
+
+* Add/remove a prison
+* Edit visiting slots
+* Edit un-bookable dates
+* Edit booking email address
+* Edit booking phone number
+* Edit prison address
+
 ## Set-up
 
 Clone the project into a directory on to your environment using [instructions on GitHub](https://help.github.com/categories/54/articles). 
@@ -29,6 +44,8 @@ This app uses [RSpec](http://rspec.info/) for Rails (server-side) tests and [Cas
     rake
 
 ### Client-side
+
+**Note:** the server must be running for these tests to run.
 
 For browser tests you will need PhantonJS and CasperJS installed.
 
