@@ -2,7 +2,7 @@
 
 # global moj, $
 
-# SlotPicker modules for MOJ
+# SlotPicker module for MOJ
 # Dependencies: moj, jQuery
 
 "use strict"
@@ -33,6 +33,7 @@ SlotPicker:: =
     @$promoteSlots = '.js-promote-slot'
     @$submitButton = $ '.js-submit'
     @$promoteHelp = $ '.js-promote-help'
+    @$months = $ '.js-slotpicker__months'
 
   bindEvents: ->
     # store a reference to obj before 'this' becomes jQuery obj
@@ -62,9 +63,10 @@ SlotPicker:: =
       ga('send', 'event', 'slot', 'promote')
       # moj.Modules.effects.highlight $(this).closest('ul').find('li').eq(promoted-1)
 
-    $('.fc-day, .DateSlider-days li').on 'click chosen', ->
+    $('.fc-day, .DateSlider-days li').on 'click chosen', (e) ->
       _this.selectDay $(this)
       $('.js-slotpicker').addClass 'is-active'
+      _this.confirmVisibility(_this.$months) unless e.type is 'chosen'
   
   selectDay: (day) ->
     dateStr = day.data 'date'
@@ -180,6 +182,15 @@ SlotPicker:: =
   highlightDay: (slot) ->
     day = @splitDateAndSlot(slot)[0]
     $("[data-date=#{day}]")[if ~@settings.currentSlots.join('-').indexOf(day) then 'addClass' else 'removeClass'] 'fc-chosen'
+
+  confirmVisibility: ($el) -> @moveIntoViewport $el unless isElementInViewport $el.get(0)
+
+  moveIntoViewport: ($el) ->
+    bottom = $el.offset().top + $el.height()
+    $('html,body').animate
+      scrollTop: bottom - $(window).height()
+    , 350
+    
 
 
 # Add module to MOJ namespace

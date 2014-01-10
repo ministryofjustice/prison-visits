@@ -14,6 +14,7 @@
 //= require visitors
 //= require date-picker
 //= require modules/moj.date-slider
+//= require shame
 
 moj.init();
 
