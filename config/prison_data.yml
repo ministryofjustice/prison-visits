@@ -1,4 +1,5 @@
 Rochester:
+  enabled: true
   phone: 01634 803100
   email: socialvisits.rochester@hmps.gsi.gov.uk
   address:
@@ -26,6 +27,7 @@ Rochester:
     sun:
       - 1400-1600
 Durham:
+  enabled: false
   phone: 0191 3323417
   email: socialvisits.durham@hmps.gsi.gov.uk
   address:
@@ -58,6 +60,7 @@ Durham:
       - 0900-1145
       - 1345-1645
 Cardiff:
+  enabled: false
   phone: 029 20923327
   email: socialvisits.cardiff@hmps.gsi.gov.uk
   address:

@@ -52,6 +52,8 @@ module PrisonVisits2
       gov-static/gov-ie.js
     )
 
-    config.prison_data = YAML.load_file(File.join(Rails.root, 'config', 'prison_data.yml'))
+    config.prison_data = YAML.load_file(File.join(Rails.root, 'config', 'prison_data.yml')).inject({}) do |h, (name, config)|
+      config['enabled'] ? h.merge(name => config) : h
+    end
   end
 end
