@@ -21,22 +21,18 @@
 - content_for :javascript do
   :javascript
     $("#send-request-form").submit(function() {
-      ga('send', 'event', 'visit', 'prison_name', visitMetadata.prison_name);
-      ga('send', 'event', 'visit', 'slot', 'size', visitMetadata.number_of_slots);
-      ga('send', 'event', 'visit', 'prisoner', 'age', visitMetadata.prisoner_age);
-      ga('send', 'event', 'visit', 'visitor', 'age', visitMetadata.visitor_age);
-      ga('send', 'event', 'visit', 'adult_visitors', 'number', visitMetadata.number_of_adult_visitors);
-      ga('send', 'event', 'visit', 'child_visitors', 'number', visitMetadata.number_of_child_visitors);
+      ga('set', 'dimension1', visitMetadata.prison_name);
+      ga('set', 'dimension2', visitMetadata.slot_weekdays[0]);
+      ga('set', 'dimension3', visitMetadata.slot_times[0]);
+
+      ga('set', 'metric1', visitMetadata.prisoner_age);
+      ga('set', 'metric2', visitMetadata.visitor_age);
+      ga('set', 'metric3', visitMetadata.number_of_slots);
+      ga('set', 'metric4', visitMetadata.number_of_adult_visitors);
+      ga('set', 'metric5', visitMetadata.number_of_child_visitors);
       if (visitMetadata.days_to_first_slot) {
-        ga('send', 'event', 'visit', 'days_to_first_slot', 'number', visitMetadata.days_to_first_slot);
-        ga('send', 'event', 'visit', 'days_to_last_slot', 'number', visitMetadata.days_to_last_slot);
+        ga('set', 'metric6', visitMetadata.days_to_first_slot);
       }
-      visitMetadata.slot_times.forEachWithIndex(function(t, i) {
-        ga('send', 'event', 'visit', 'slot_times_' + i, t);
-      });
-      visitMetadata.slot_weekdays.forEachWithIndex(function(w, i) {
-        ga('send', 'event', 'visit', 'slot_weekdays_' + i, w)
-      });
     });
 
 %p Check all the details on this page carefully before clicking 'Send request'
