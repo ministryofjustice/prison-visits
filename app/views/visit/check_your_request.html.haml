@@ -21,15 +21,17 @@
 - content_for :javascript do
   :javascript
     $("#send-request-form").submit(function() {
-      ga('set', 'dimension1', visitMetadata.prison_name);
-      ga('set', 'dimension2', visitMetadata.slot_weekdays[0]);
-      ga('set', 'dimension3', visitMetadata.slot_times[0]);
+      ga('set', {
+        'dimension1': visitMetadata.prison_name,
+        'dimension2': visitMetadata.slot_weekdays[0],
+        'dimension3': visitMetadata.slot_times[0],
+        'metric1': visitMetadata.prisoner_age,
+        'metric2': visitMetadata.visitor_age,
+        'metric3': visitMetadata.number_of_slots,
+        'metric4': visitMetadata.number_of_adult_visitors,
+        'metric5': visitMetadata.number_of_child_visitors
+      });
 
-      ga('set', 'metric1', visitMetadata.prisoner_age);
-      ga('set', 'metric2', visitMetadata.visitor_age);
-      ga('set', 'metric3', visitMetadata.number_of_slots);
-      ga('set', 'metric4', visitMetadata.number_of_adult_visitors);
-      ga('set', 'metric5', visitMetadata.number_of_child_visitors);
       if (visitMetadata.days_to_first_slot) {
         ga('set', 'metric6', visitMetadata.days_to_first_slot);
       }
