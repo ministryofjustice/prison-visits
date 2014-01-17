@@ -121,25 +121,26 @@
 
   %p You have the right to request details as to the personal information we hold for you; and subsequently request that we correct any personal information if it is found to be inaccurate or out of date. We will not share your information with other organisations unless it is required for the purposes of prevention, detection of crime, apprehension, prosecution, and management of offenders; prevention of terrorism; National Security; or required to do by law. 
 
-- content_for :analytics
-:ruby
-  haml_io << "<script>\n"
-  haml_io << "visitMetadata = "
-  haml_io << GoogleAnalyticsAdapter.new(visit).to_json
-  haml_io << ";"
-  haml_io << "</script>\n"
-:javascript
-  ga('set', {
-    'dimension1': visitMetadata.prison_name,
-    'dimension2': visitMetadata.slot_weekdays[0],
-    'dimension3': visitMetadata.slot_times[0],
-    'metric1': visitMetadata.prisoner_age,
-    'metric2': visitMetadata.visitor_age,
-    'metric3': visitMetadata.number_of_slots,
-    'metric4': visitMetadata.number_of_adult_visitors,
-    'metric5': visitMetadata.number_of_child_visitors
-  });
-  
-  if (visitMetadata.days_to_first_slot) {
-    ga('set', 'metric6', visitMetadata.days_to_first_slot);
-  }
+- content_for :analytics do
+  :ruby
+    haml_io << "<script>\n"
+    haml_io << "visitMetadata = "
+    haml_io << GoogleAnalyticsAdapter.new(visit).to_json
+    haml_io << ";"
+    haml_io << "</script>\n"
+  :javascript
+    ga('set', {
+      'dimension1': visitMetadata.prison_name,
+      'dimension2': visitMetadata.slot_weekdays[0],
+      'dimension3': visitMetadata.slot_times[0],
+      'metric1': visitMetadata.prisoner_age,
+      'metric2': visitMetadata.visitor_age,
+      'metric3': visitMetadata.number_of_slots,
+      'metric4': visitMetadata.number_of_adult_visitors,
+      'metric5': visitMetadata.number_of_child_visitors
+    });
+
+    if (visitMetadata.days_to_first_slot) {
+      ga('set', 'metric6', visitMetadata.days_to_first_slot);
+    }
+
