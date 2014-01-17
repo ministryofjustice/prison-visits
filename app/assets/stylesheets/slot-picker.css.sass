@@ -80,27 +80,28 @@
   p
     margin-bottom: 0
 
-  .js-promote-help
+  .js-promote-help,
+  .js-alternative-help
     display: none
 
     &.is-active
       display: block
 
-  ul
-    margin: 0
+  .selected-slots-group
     padding: 10px
-    list-style-type: none
     background: $grey-3
 
     @include media(desktop)
       min-height: 236px
 
+  ul
+    margin: 0
+    padding: 0
+    list-style-type: none
+
     li
       position: relative
-      min-height: 2em
       margin-top: 10px
-      // border: 1px dashed $grey-2
-      // background: #ebebeb
 
       &:first-child
         margin-top: 0
@@ -122,9 +123,6 @@
 
         .date
           font-weight: bold
-
-        // .placeholder
-        //   display: none
 
         .slot-position
           display: block
