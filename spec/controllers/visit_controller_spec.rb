@@ -161,7 +161,45 @@ describe VisitController do
       it "rejects the submission if there are too many visitors" do
         post :update_visitor_details, visitor_hash
         response.should redirect_to(visitor_details_path)
-        session[:visit].should_not be_valid
+        session[:visit].valid?(:visitors_set).should be_false
+      end
+    end
+
+    context "given too many adult visitors" do
+      let(:visitor_hash) do
+        {
+          visit: {
+            visitor: [
+              [
+                first_name: 'Sue',
+                last_name: 'Demin',
+                :'date_of_birth(3i)' => '14',
+                :'date_of_birth(2i)' => '03',
+                :'date_of_birth(1i)' => '1986',
+                email: 'sue.denim@gmail.com',
+                phone: '07783 123 456'
+              ],
+              [
+                first_name: 'John',
+                last_name: 'Denver',
+                :'date_of_birth(3i)' => '31',
+                :'date_of_birth(2i)' => '12',
+                :'date_of_birth(1i)' => '1943'
+              ] * 3
+            ].flatten
+          },
+          next: ''
+        }
+      end
+
+      before :each do
+        get :prisoner_details
+      end
+
+      it "rejects the submission if there are too many adult visitors" do
+        post :update_visitor_details, visitor_hash
+        response.should redirect_to(visitor_details_path)
+        session[:visit].valid?(:visitors_set).should be_false
       end
     end
   end

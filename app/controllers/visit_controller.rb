@@ -52,6 +52,8 @@ class VisitController < ApplicationController
       !v.valid?
     end.any?
 
+    go_back = !visit.valid?(:visitors_set) || go_back
+
     if params[:next] == 'Add another visitor'
       if visit.visitors.size < Visit::MAX_VISITORS
         visit.visitors << Visitor.new
@@ -77,6 +79,8 @@ class VisitController < ApplicationController
     go_back = visit.slots.select do |slot|
       !slot.valid?
     end.any? || visit.slots.size > Visit::MAX_SLOTS
+
+    go_back = !visit.valid?(:date_and_time) || go_back
 
     if go_back
       redirect_to choose_date_and_time_path

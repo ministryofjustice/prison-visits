@@ -3,13 +3,12 @@ require 'spec_helper'
 describe Visit do
   it "restricts the number of visitors" do
     v = Visit.new
-    v.slots = [Slot.new] * 3
 
     v.visitors = []
-    v.should_not be_valid
+    v.valid?(:date_and_time).should be_false
     
     v.visitors = [Visitor.new] * 7
-    v.should_not be_valid
+    v.valid?(:date_and_time).should be_false
     
     v.visitors = [Visitor.new] * 6
     v.should be_valid
@@ -17,10 +16,9 @@ describe Visit do
 
   it "restricts the number of slots" do
     v = Visit.new
-    v.visitors = [Visitor.new]
 
     v.slots = []
-    v.should_not be_valid
+    v.valid?(:date_and_time).should be_false
 
     (1..3).each do |t|
       v.slots = [Slot.new] * t
@@ -28,6 +26,6 @@ describe Visit do
     end
 
     v.slots = [Slot.new] * 4
-    v.should_not be_valid
+    v.valid?(:date_and_time).should be_false
   end
 end
