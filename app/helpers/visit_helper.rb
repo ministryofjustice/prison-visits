@@ -128,12 +128,14 @@ module VisitHelper
 
   def day_classes(day)
     classes = []
-    classes << 'fc-last' if day.wday == 0
     classes << 'fc-past' if day < Date.today
-    classes << 'fc-today' if day == Date.today
     classes << (bookable?(day) ? 'fc-bookable' : 'fc-unbookable')
     classes << 'fc-chosen' if current_slots.include?(day)
     classes
+  end
+
+  def tag_with_today?(day)
+    day == Date.today
   end
 
   def tag_with_month?(day)

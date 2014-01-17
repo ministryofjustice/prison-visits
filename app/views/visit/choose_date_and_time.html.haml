@@ -64,8 +64,10 @@
               %td.fc-day.fc-widget-content{ :'data-date' => day, :class => day_classes(day) }
                 .fc-day-content
                   .fc-day-number= day.strftime('%e')
+                  - if tag_with_today? day
+                    %span.fc-tag.fc-today Today
                   - if tag_with_month? day
-                    .fc-tag= day.strftime('%b')
+                    %span.fc-tag= day.strftime('%b')
 
 .slots.js-slotpicker{ :'data-optionlimits' => number_of_slots }
   %h2.step_prompt Now choose a time
