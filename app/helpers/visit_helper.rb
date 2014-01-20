@@ -85,7 +85,7 @@ module VisitHelper
   end
 
   def prison_names
-    Rails.configuration.prison_data.map{|k,v|k}.sort
+    Rails.configuration.prison_data.map{|k,v|k}.sort.reverse
   end
 
   def prison_data
