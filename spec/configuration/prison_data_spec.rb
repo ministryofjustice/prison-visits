@@ -13,8 +13,8 @@ describe "Prison data" do
 
   it "should contain an entry for Durham" do
     subject.should have_key('Durham')
-    subject['Durham']['enabled'].should be_false
-    Rails.configuration.prison_data.should_not have_key('Durham')
+    subject['Durham']['enabled'].should be_true
+    Rails.configuration.prison_data.should have_key('Durham')
   end
 
   it "should contain an entry for Cardiff" do

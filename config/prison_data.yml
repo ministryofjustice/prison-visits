@@ -27,7 +27,7 @@ Rochester:
     sun:
       - 1400-1600
 Durham:
-  enabled: false
+  enabled: true
   phone: 0191 3323417
   email: socialvisits.durham@hmps.gsi.gov.uk
   address:
