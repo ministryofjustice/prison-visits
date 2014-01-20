@@ -15,6 +15,7 @@ casper.test.begin 'Prison Visit Booking: Step 1 - prisoner details', (test) ->
     , false
 
   casper.then ->
+    test.assertField 'prisoner[prison_name]', ''
     test.assertField 'prisoner[date_of_birth(3i)]', '18'
     test.assertField 'prisoner[date_of_birth(2i)]', '2'
     test.assertField 'prisoner[date_of_birth(1i)]', '1977'
@@ -23,7 +24,7 @@ casper.test.begin 'Prison Visit Booking: Step 1 - prisoner details', (test) ->
       'prisoner[first_name]': 'Jimmy'
       'prisoner[last_name]': 'Fingers'
       'prisoner[number]': 'a1234bc'
-      'prisoner[prison_name]': 'Gartree'
+      'prisoner[prison_name]': 'Rochester'
     , false
 
     @capture 'tests/prisoner_details_valid.png' if outputImages

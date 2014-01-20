@@ -12,7 +12,7 @@ class Prisoner
   validates_presence_of :date_of_birth
   validates_inclusion_of :date_of_birth, in: ->(_) { 100.years.ago..Time.now }, if: ->(p) { p.date_of_birth }, message: "must be a valid date of birth"
   validates_format_of :number, with: /\A[a-z]\d{4}[a-z]{2}\z/i, message: "must be a valid prisoner number" # eg a1234aa
-  validates_inclusion_of :prison_name, in: Rails.configuration.prison_data.map{|k,v|k}.sort
+  validates_inclusion_of :prison_name, in: Rails.configuration.prison_data.map{|k,v|k}.sort, message: "must be chosen"
 
   def full_name
     [@first_name, @last_name].join(' ')

@@ -57,8 +57,8 @@
   .group{ :class => ('validation-error' if f.object.errors.include?(:prison_name)) }
     = f.label :prison_name do
       Name of the prison
-      %span.validation-message= f.object.errors[:prison_name] if f.object.errors.include?(:prison_name)
-    = f.select :prison_name, prison_names
+      %span.validation-message= f.object.errors[:prison_name].first if f.object.errors.include?(:prison_name)
+    = f.select :prison_name, prison_names, prompt: 'select a prison'
 
   .actions
     = link_to 'Cancel and delete all details', abandon_path, :class => 'pull-right', :'data-confirm' => "Are you sure you wish to cancel this visit request?\r\rThis will delete all the information you have entered"
