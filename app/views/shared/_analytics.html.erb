@@ -8,10 +8,11 @@
 <% else %>
 <script src="/mock_ga.js"></script>
 <% end %>
-
-<%= yield :analytics %>
 <script>
   ga('create', 'UA-37377084-7', 'service.gov.uk');
+</script>
+<%= yield :analytics %>
+<script>
   ga('send', 'pageview');
 </script>
 
