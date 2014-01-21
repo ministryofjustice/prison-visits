@@ -5,6 +5,7 @@ describe VisitController do
 
   describe "step 1 - enter prisoner's details" do
     before :each do
+      ActionMailer::Base.deliveries.clear
       Timecop.freeze(Time.local(2013, 12, 1, 12, 00))
     end
 

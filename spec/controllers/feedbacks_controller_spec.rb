@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe FeedbacksController do
+  before :each do
+    ActionMailer::Base.deliveries.clear
+  end
+
   it "displays feedback form" do
     get :new
     response.should render_template('feedbacks/new')
