@@ -8,9 +8,12 @@ describe FeedbacksController do
   end
 
   it "redirects to show page on successful feedback submission" do
+    FeedbackNotification.should_receive(:new_message).once.and_call_original
     ZendeskHelper.should_receive(:send_to_zendesk).once
-    post :create, feedback: { email: 'test@lol.biz.info', text: 'feedback', referrer: 'ref' }
-    response.should redirect_to feedback_path
+    expect {
+      post :create, feedback: { email: 'test@lol.biz.info', text: 'feedback', referrer: 'ref' }
+      response.should redirect_to feedback_path
+    }.to change { ActionMailer::Base.deliveries.size }.by(1)
   end
 
   it "displays the form again if a submission was unsuccessful" do
