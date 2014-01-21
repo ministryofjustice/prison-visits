@@ -17,14 +17,12 @@ describe ZendeskHelper do
   end
 
   it "sends a piece of feedback to zendesk" do
-    mock_ticket = double('ticket')
-    mock_ticket.should_receive('save!').once
-    ZendeskAPI::Ticket.should_receive(:new).with(client, description: 'text', requester: { email: 'email' }, custom_fields: [
+    ZendeskAPI::Ticket.should_receive(:new).with(client, description: 'text', requester: { email: 'email', name: 'Unknown' }, custom_fields: [
                                                                                                                              {id: '23730083', value: 'ref'},
                                                                                                                              {id: '23757677', value: 'prison_visits'},
                                                                                                                              {id: '23791776', value: 'Mozilla'}
-                                                                                                                            ]).and_return(mock_ticket)
-
+                                                                                                                            ]).and_call_original
+    ZendeskAPI::Ticket.any_instance.should_receive(:save!).once
     subject.send_to_zendesk(feedback, client)
   end
 end
