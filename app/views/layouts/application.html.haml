@@ -27,6 +27,8 @@
       %section.content.inner.cf
         %header
           %h1= yield :header
+
+        = render "shared/bookmarklets" if Rails.env.development? || (Rails.env.production? && ENV['APP_PLATFORM'] != 'production')
         
         = yield :progress_bar
         
