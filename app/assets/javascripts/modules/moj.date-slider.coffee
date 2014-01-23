@@ -13,6 +13,7 @@ DateSlider = ($el, options) ->
   @bindEvents()
   @gather()
   @sizeUp()
+  @inputDevice()
   @selectDateFromIndex 0 if @settings.selectonload
   return @
 
@@ -37,6 +38,8 @@ DateSlider:: =
     @$large = $ '.DateSlider-largeDates', $el
     @$touch = $ '.DateSlider-touch', $el
     @$months = $ '.DateSlider-month span', $el
+    @$buttonL = $ '.DateSlider-buttonLeft', $el
+    @$buttonR = $ '.DateSlider-buttonRight', $el
 
     # needed for CSS changes
     @$sliders = $ '.DateSlider-sliders', $el
@@ -68,6 +71,14 @@ DateSlider:: =
       @sizeUp()
       @centreDateWhenInactive @
 
+    @$buttonL.on 'click', (e) =>
+      e.preventDefault()
+      @slide @settings.currentPos - @settings.dayWidth
+
+    @$buttonR.on 'click', (e) =>
+      e.preventDefault()
+      @slide @settings.currentPos + @settings.dayWidth
+
 
   gather: ->
     @settings.visibleDays = @$small.find('li').length
@@ -96,6 +107,10 @@ DateSlider:: =
     fontSmall = dayHeight * fontSizeScale
     fontLarge = fontSmall * magnifyFont
     fontSmaller = fontLarge * shrinkWeekday
+
+    @$buttonL.add(@$buttonR).css
+      width: "#{@settings.dayWidth}px"
+      height: "#{dayHeight}px"
 
     @$sliders.css height: "#{dayHeight}px"
 
@@ -133,6 +148,9 @@ DateSlider:: =
     @$_el.css visibility: 'visible'
 
 
+  inputDevice: -> (if Modernizr.touch then @$buttonL.add(@$buttonR) else @$touch).remove()
+
+
   differentPos: (pos) ->
     if @settings.currentPos isnt pos
       @settings.currentPos = pos
@@ -162,7 +180,10 @@ DateSlider:: =
   yearMonthFromDate: (date) -> date.split('-').splice(0,2).join '-'
 
 
-  posOfDateAt: (x) -> (Math.floor(x / @settings.dayWidth) * @settings.dayWidth) - @settings.middle
+  posOfDateAt: (x) ->
+    v= (Math.floor(x / @settings.dayWidth) * @settings.dayWidth) - @settings.middle
+    console.log v
+    v
 
 
   posOfNearestDateTo: (x) ->

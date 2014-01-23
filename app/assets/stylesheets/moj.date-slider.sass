@@ -11,6 +11,7 @@ $selectableDays: 26
 $bufferDays: 3
 $visibleDays: 7
 $borderColor: #999
+$buttonColor: #98a6b5
 
 
 .DateSlider
@@ -41,6 +42,26 @@ $borderColor: #999
   z-index: 15
   overflow: scroll
   border-color: transparent
+
+a.DateSlider-button
+  position: absolute
+  top: 0
+  left: 0
+  z-index: 15
+  display: table-cell // could be block
+  width: 100px
+  height: 100px
+  color: $white
+  font-size: 40px
+  text-align: center
+  text-decoration: none
+  vertical-align: middle
+  background: $buttonColor
+  border: 2px solid $borderColor
+
+a.DateSlider-buttonRight
+  right: 0
+  left: auto
 
 .DateSlider-smallDates
   border:
