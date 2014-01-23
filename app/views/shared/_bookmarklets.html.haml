@@ -27,12 +27,12 @@
     },
 
     prisoner_details: function() {
-      [['#prisoner_first_name','John'],['#prisoner_last_name','Smith'],['#prisoner_date_of_birth_3i','25'],['#prisoner_date_of_birth_2i','10'],['#prisoner_date_of_birth_1i','1987'],['#prisoner_number','a1234bc'],['#prisoner_prison_name','Rochester']].forEach(function(i){$(i[0]).val(i[1])});
+      for(i in a=[['#prisoner_first_name','John'],['#prisoner_last_name','Smith'],['#prisoner_date_of_birth_3i','25'],['#prisoner_date_of_birth_2i','10'],['#prisoner_date_of_birth_1i','1987'],['#prisoner_number','a1234bc'],['#prisoner_prison_name','Rochester']]){$(a[i][0]).val(a[i][1])};
       return false;
     },
 
     visitor_details: function() {
-      [['#first_name_0','Sally'],['#last_name_0','Jones'],['#visit_visitor__date_of_birth_3i','19'],['#visit_visitor__date_of_birth_2i','8'],['#visit_visitor__date_of_birth_1i','1992'],['#visit_visitor__email','sally@jonesville.com'],['#visit_visitor__phone','020 7788 9966']].forEach(function(i){$(i[0]).val(i[1])});
+      for(i in a=[['#first_name_0','Sally'],['#last_name_0','Jones'],['#visit_visitor__date_of_birth_3i','19'],['#visit_visitor__date_of_birth_2i','8'],['#visit_visitor__date_of_birth_1i','1992'],['#visit_visitor__email','sally@jonesville.com'],['#visit_visitor__phone','020 7788 9966']]){$(a[i][0]).val(a[i][1])};
       return false;
     }
   };
