@@ -100,7 +100,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
 
   // Default task(s)
-  grunt.registerTask('default', ['jshint','coffeelint:app','coffee_jshint:app']);
-  grunt.registerTask('tests', ['coffeelint:tests','coffee_jshint:tests','shell']);
+  grunt.registerTask('default', 'JS lint application code', ['jshint','coffeelint:app','coffee_jshint:app']);
+  grunt.registerTask('tests', 'run integration tests', ['coffeelint:tests','coffee_jshint:tests','shell']);
 
 };

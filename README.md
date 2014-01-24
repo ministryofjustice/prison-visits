@@ -35,6 +35,12 @@ Run the server by running:
 
 Then point your favourite browser to [http://localhost:3000/](http://localhost:3000/).
 
+## Dependencies
+
+### Modernizr
+
+Used to detect touch enabled devices and whether the device has a native date input. To keep download small, a custom build of Modernizr with only these requirements is in use.
+
 ## Automated tests
 
 This app uses [RSpec](http://rspec.info/) for Rails (server-side) tests and [CasperJS](casperjs.org) for (client-side) tests.
