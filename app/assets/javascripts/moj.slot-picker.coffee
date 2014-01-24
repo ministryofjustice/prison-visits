@@ -65,7 +65,7 @@ SlotPicker:: =
       ga('send', 'event', 'slot', 'promote')
       # moj.Modules.effects.highlight $(this).closest('ul').find('li').eq(promoted-1)
 
-    $('.fc-day, .DateSlider-days li').on 'click chosen', (e) ->
+    $('.fc-day, .DateSlider-largeDates li').on 'click chosen', (e) ->
       _this.selectDay $(this)
       $('.js-slotpicker').addClass 'is-active'
       _this.confirmVisibility(_this.$months) unless e.type is 'chosen'

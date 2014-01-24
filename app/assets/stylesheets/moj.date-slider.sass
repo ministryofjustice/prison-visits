@@ -1,3 +1,10 @@
+$selectableDays: 26
+$bufferDays: 3
+$visibleDays: 7
+$borderColor: #999
+$buttonColor: #98a6b5
+
+
 @mixin no_select
   -webkit-touch-callout: none
   -webkit-user-select: none
@@ -7,10 +14,8 @@
   user-select: none
 
 
-$selectableDays: 26
-$bufferDays: 3
-$visibleDays: 7
-$borderColor: #999
+@mixin border
+  border: 2px solid $borderColor
 
 
 .DateSlider
@@ -31,7 +36,7 @@ $borderColor: #999
   width: $visibleDays * 100px
   height: 100%
   overflow: hidden
-  border: 2px solid $borderColor
+  @include border
 
   &::-webkit-scrollbar
     display: none
@@ -41,6 +46,25 @@ $borderColor: #999
   z-index: 15
   overflow: scroll
   border-color: transparent
+
+a.DateSlider-button
+  position: absolute
+  top: 0
+  left: 0
+  z-index: 15
+  width: 100px
+  height: 100px
+  color: $white
+  font-size: 40px
+  line-height: 100px
+  text-align: center
+  text-decoration: none
+  background: $buttonColor
+  @include border
+
+a.DateSlider-buttonRight
+  right: 0
+  left: auto
 
 .DateSlider-smallDates
   border:
@@ -63,7 +87,7 @@ $borderColor: #999
   z-index: 10
   width: 98px
   height: 150px
-  border: 2px solid $borderColor
+  @include border
 
 .DateSlider-days
   display: table
