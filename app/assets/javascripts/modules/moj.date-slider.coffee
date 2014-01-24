@@ -182,10 +182,7 @@ DateSlider:: =
   yearMonthFromDate: (date) -> date.split('-').splice(0,2).join '-'
 
 
-  posOfDateAt: (x) ->
-    v= (Math.floor(x / @settings.dayWidth) * @settings.dayWidth) - @settings.middle
-    console.log v
-    v
+  posOfDateAt: (x) -> (Math.floor(x / @settings.dayWidth) * @settings.dayWidth) - @settings.middle
 
 
   posOfNearestDateTo: (x) ->
