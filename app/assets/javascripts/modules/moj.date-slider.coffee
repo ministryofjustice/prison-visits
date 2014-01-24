@@ -111,6 +111,8 @@ DateSlider:: =
     @$buttonL.add(@$buttonR).css
       width: "#{@settings.dayWidth}px"
       height: "#{dayHeight}px"
+      fontSize: "#{fontLarge}px"
+      lineHeight: "#{dayHeight}px"
 
     @$sliders.css height: "#{dayHeight}px"
 
