@@ -60,7 +60,7 @@ Durham:
       - 0900-1145
       - 1345-1645
 Cardiff:
-  enabled: false
+  enabled: true
   phone: 029 20923327
   email: socialvisits.cardiff@hmps.gsi.gov.uk
   address:

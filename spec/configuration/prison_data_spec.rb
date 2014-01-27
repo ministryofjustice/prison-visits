@@ -19,8 +19,8 @@ describe "Prison data" do
 
   it "should contain an entry for Cardiff" do
     subject.should have_key('Cardiff')
-    subject['Cardiff']['enabled'].should be_false
-    Rails.configuration.prison_data.should_not have_key('Cardiff')
+    subject['Cardiff']['enabled'].should be_true
+    Rails.configuration.prison_data.should have_key('Cardiff')
   end
 
   it "each unbookable date for each prison should be a valid date" do
