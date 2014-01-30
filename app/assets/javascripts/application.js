@@ -3,7 +3,6 @@
 //= require Array.foreachwithindex
 //= require Array.indexof
 
-//= require lodash
 //= require jquery.details
 
 //= require moj
