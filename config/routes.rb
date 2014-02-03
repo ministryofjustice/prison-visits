@@ -8,7 +8,6 @@ PrisonVisits2::Application.routes.draw do
       post "/#{n}", action: "update_#{label}", as: "update_#{label}"
     end
     get "/abandon", action: :abandon
-    get "/cal", action: :cal
     get "/", to: redirect("/prisoner-details")
     get "/unavailable", action: :unavailable
   end
