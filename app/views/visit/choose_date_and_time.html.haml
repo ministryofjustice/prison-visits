@@ -65,7 +65,12 @@
             - week[1].each do |day|
               %td.fc-day.fc-widget-content{ :'data-date' => day, :class => day_classes(day) }
                 .fc-day-content
-                  .fc-day-number= day.strftime('%e')
+                  %a.fc-day-number{ :href => "#date-#{day.strftime('%Y-%m-%d')}" }
+                    %span.visuallyhidden= day.strftime('%A')
+                    %span= day.strftime('%e')
+                    %span.visuallyhidden
+                      = day.strftime('%B')
+                      = bookable?(day) ? 'available' : 'unavailable'
                   - if tag_with_today? day
                     %span.fc-tag.fc-today Today
                   - if tag_with_month? day
@@ -85,7 +90,7 @@
       .slot__month{ :id => month.strftime('month-%Y-%m-%d') }(data-focusfirst="true")
 
         - range_by_month[month].each do |date|
-          .js-slotpicker-options.day-slots.cf{ :id => "date-#{date.strftime('%Y-%m-%d')}" }
+          .js-slotpicker-options.day-slots.cf{ :id => "date-#{date.strftime('%Y-%m-%d')}" }(tabindex='-1')
             %h4= date.strftime("%A %e %B")
             - if visiting_slots.keys.include?(date.strftime('%a').downcase.to_sym) && !unbookable_dates.include?(date)
               - visiting_slots[date.strftime('%a').downcase.to_sym].each_with_index do |slot, index|

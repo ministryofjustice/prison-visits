@@ -65,8 +65,9 @@ SlotPicker:: =
       ga('send', 'event', 'slot', 'promote')
       # moj.Modules.effects.highlight $(this).closest('ul').find('li').eq(promoted-1)
 
-    $('.fc-day, .DateSlider-largeDates li').on 'click chosen', (e) ->
-      _this.selectDay $(this)
+    $('.fc-day-number, .DateSlider-largeDates li').on 'click chosen', (e) ->
+      e.preventDefault()
+      _this.selectDay $(this).closest('.fc-day')
       $('.js-slotpicker').addClass 'is-active'
       _this.confirmVisibility(_this.$months) unless e.type is 'chosen'
   
@@ -76,7 +77,7 @@ SlotPicker:: =
 
     # Show the slots for the selected day
     $('.js-slotpicker-options').removeClass 'is-active'
-    $("#date-#{dateStr}").addClass 'is-active'
+    $("#date-#{dateStr}").addClass('is-active').focus()
 
     # Show unbookable day message
     unless ~pvbe.bookable_dates.indexOf dateStr
