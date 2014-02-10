@@ -30,8 +30,6 @@
 
         = render "shared/cookie_required"
 
-        = render "shared/bookmarklets" if Rails.env.development? || (Rails.env.production? && ENV['APP_PLATFORM'] != 'production')
-        
         = yield :progress_bar
         
         - if notice.present?
