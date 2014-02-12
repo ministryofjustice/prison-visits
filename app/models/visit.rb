@@ -8,7 +8,9 @@ class Visit
   attr_accessor :prisoner
   attr_accessor :visitors
   attr_accessor :slots
+  attr_accessor :visit_id
 
+  validates_presence_of :visit_id
   validates_size_of :visitors, within: 1..MAX_VISITORS, on: :visitors_set
   validates_size_of :adult_visitors, within: 1..MAX_ADULTS, on: :visitors_set, message: "must be between 1 and #{MAX_ADULTS}"
   validates_size_of :slots, within: 1..MAX_SLOTS, on: :date_and_time, message: 'must be at least one and at most three'

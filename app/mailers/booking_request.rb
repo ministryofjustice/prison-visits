@@ -1,3 +1,5 @@
+require 'visit_state_encryptor'
+
 class BookingRequest < ActionMailer::Base
   add_template_helper(ApplicationHelper)
 
@@ -8,9 +10,10 @@ class BookingRequest < ActionMailer::Base
     enable_starttls_auto: true
   }
 
-  def request_email(visit)
+  def request_email(visit, encryptor)
     @visit = visit
     user = visit.visitors.find { |v| v.email }.email
+    @token = encryptor.encrypt(visit)
 
     recipient = if production?
       Rails.configuration.prison_data[visit.prisoner.prison_name.to_s]['email']
@@ -18,7 +21,7 @@ class BookingRequest < ActionMailer::Base
       'pvb-email-test@googlegroups.com'
     end
 
-    mail(from: sender, to: recipient, subject: "Visit request for #{@visit.prisoner.full_name}", reply_to: user)
+    mail(sender: sender, from: user, reply_to: user, to: recipient, subject: "Visit request for #{@visit.prisoner.full_name}")
   end
 
   def production?

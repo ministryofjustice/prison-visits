@@ -1,3 +1,7 @@
+You've received a booking request, please click on the following link to proceed:
+
+<%= new_confirmation_path(state: @token) %>
+
 You received the following booking to visit HMP <%= @visit.prisoner.prison_name %> on one of the following dates:
 
 <% @visit.slots.each_with_index do |slot, index| %>

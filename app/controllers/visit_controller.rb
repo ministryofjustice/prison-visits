@@ -1,4 +1,5 @@
 require 'google_analytics_adapter'
+require 'visit_state_encryptor'
 
 class VisitController < ApplicationController
   before_filter :check_if_within_business_hours, except: [:unavailable]
@@ -93,7 +94,7 @@ class VisitController < ApplicationController
   end
 
   def update_check_your_request
-    BookingRequest.request_email(visit).deliver
+    BookingRequest.request_email(visit, encryptor).deliver
     BookingConfirmation.confirmation_email(visit).deliver
     redirect_to request_sent_path
   end
@@ -108,6 +109,10 @@ class VisitController < ApplicationController
   end
 
 private
+
+  def encryptor
+    VisitStateEncryptor.new("LOL" * 48)
+  end
 
   def visit_params
     params[:visit][:visitor].each do |visitor|

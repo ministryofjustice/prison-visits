@@ -7,6 +7,6 @@ class ApplicationController < ActionController::Base
   end
 
   def visit
-    session[:visit] ||= Visit.new(prisoner: Prisoner.new, visitors: [Visitor.new], slots: [])
+    session[:visit] ||= Visit.new(prisoner: Prisoner.new, visitors: [Visitor.new], slots: [], visit_id: SecureRandom.hex)
   end
 end
