@@ -67,7 +67,7 @@ SlotPicker:: =
 
     $('.fc-day-number, .DateSlider-largeDates li').on 'click chosen', (e) ->
       e.preventDefault()
-      _this.selectDay $(this).closest('.fc-day')
+      _this.selectDay $(this)
       $('.js-slotpicker').addClass 'is-active'
       _this.confirmVisibility(_this.$months) unless e.type is 'chosen'
   

@@ -63,9 +63,9 @@
         - weeks.each do |week|
           %tr
             - week[1].each do |day|
-              %td.fc-day.fc-widget-content{ :'data-date' => day, :class => day_classes(day) }
+              %td.fc-day.fc-widget-content{ :class => day_classes(day) }
                 .fc-day-content
-                  %a.fc-day-number{ :href => "#date-#{day.strftime('%Y-%m-%d')}" }
+                  %a.fc-day-number{ :href => "#date-#{day.strftime('%Y-%m-%d')}", :'data-date' => day }
                     %span.visuallyhidden= day.strftime('%A')
                     %span= day.strftime('%e')
                     %span.visuallyhidden
