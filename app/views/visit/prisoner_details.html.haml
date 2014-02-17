@@ -19,7 +19,14 @@
         %span.progress__label Send request
 
 
-%p You need to speak to the prisoner before you book to check they're happy for you to visit and that you're on their visitor list. You don't need a Visiting Order (VO) number to book. We'll email this to you when your visit is confirmed, within 1 - 3 working days of making your request.
+.guidance
+  %h2 Before you start
+
+  %ul
+    %li Speak to the prisoner to check you're on their visitor list
+    %li You don't need a Visitong Order (VO) number to request a visit
+    %li You'll need the dates of birth for all visitors coming with you
+    %li Your visit will be confirmed be email withing 1 - 3 working days of making your request
 
 = form_for visit.prisoner, url: update_prisoner_details_path, as: :prisoner, :html => { :class => 'form validation', :autocomplete => 'off' } do |f|
 
