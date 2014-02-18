@@ -12,12 +12,12 @@ gem 'rspec-rails'
 gem 'zendesk_api'
 gem 'mail'
 
-group :development do
-  gem 'byebug'
-  gem 'guard-rspec'
-end
-
-group :test do
+group :test, :development do
+  gem 'rspec-rails'
   gem 'byebug'
   gem 'timecop'
+  gem 'rubyzip'
+  gem 'selenium-webdriver'
+  gem 'capybara'
+  gem 'parallel_tests'
 end

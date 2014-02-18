@@ -67,3 +67,4 @@ tramp
 .\#*
 db/password.hash
 .vagrant
+*.log

@@ -34,7 +34,6 @@
             %li= msg
 
   %fieldset.FormBlock
-
     = f.fields_for visit.visitors[0], index: '' do |visitor_form|
       = render 'visitor_fields', f: visitor_form, index: 0, visitor: visit.visitors[0]
     
@@ -64,4 +63,4 @@
 = form_for(Visit.new(prisoner: Prisoner.new, visitors: [Visitor.new, Visitor.new], slots: []), url: '', html: { id: 'template' }) do |f|
   = f.fields_for Visitor.new, index: '' do |visitor_form|
     %script#additional-visitor(type="text/html")
-      = render 'visitor_fields', f: visitor_form, index: 1, visitor: Visitor.new
+      = render 'visitor_fields', f: visitor_form, index: 1, visitor: Visitor.new, js_template: true

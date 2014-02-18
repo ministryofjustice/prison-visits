@@ -3,10 +3,10 @@ $('#add-visitor').remove()
 
 
 addVisitorBlocks = (amount) ->
-  i = 0
+  i = 1
   while i < amount
     compiled = _.template($('#additional-visitor').html())
-    $compiled = $(compiled())
+    $compiled = $(compiled({index: i}))
     moj.showNativeDate $compiled
     $('.additional-visitors').append ($compiled)
     i++
