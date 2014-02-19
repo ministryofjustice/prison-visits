@@ -115,10 +115,16 @@ private
   end
 
   def visit_params
+    dob = [:'date_of_birth(3i)', :'date_of_birth(2i)', :'date_of_birth(1i)']
     params[:visit][:visitor].each do |visitor|
-      date_of_birth = [:'date_of_birth(3i)', :'date_of_birth(2i)', :'date_of_birth(1i)'].map do |key|
-        visitor.delete(key)
-      end.join('-')
+      if visitor[:date_of_birth_native].present?
+        date_of_birth = visitor[:date_of_birth_native]
+        dob.push(:date_of_birth_native).map{|d| visitor.delete(d)}
+      else
+        date_of_birth = dob.map do |key|
+          visitor.delete(key)
+        end.join('-')
+      end
       begin
         visitor[:date_of_birth] = Date.parse(date_of_birth)
       rescue ArgumentError
@@ -129,10 +135,16 @@ private
   end
 
   def prisoner_params
-    date_of_birth = [:'date_of_birth(3i)', :'date_of_birth(2i)', :'date_of_birth(1i)'].map do |key|
-      params[:prisoner].delete(key)
-    end.join('-')
-    params[:prisoner][:date_of_birth] = Date.parse(date_of_birth)
+    dob = [:'date_of_birth(3i)', :'date_of_birth(2i)', :'date_of_birth(1i)']
+    if params[:date_of_birth_native].present?
+      params[:prisoner][:date_of_birth] = Date.parse(params[:date_of_birth_native])
+      dob.map{|d| params[:prisoner].delete(d)}
+    else
+      date_of_birth = dob.map do |key|
+        params[:prisoner].delete(key)
+      end.join('-')
+      params[:prisoner][:date_of_birth] = Date.parse(date_of_birth)
+    end
     params.require(:prisoner).permit(:first_name, :last_name, :date_of_birth, :number, :prison_name)
   rescue ArgumentError
     params.require(:prisoner).permit(:first_name, :last_name, :number, :prison_name)

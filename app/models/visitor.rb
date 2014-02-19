@@ -11,6 +11,7 @@ class Visitor
   attr_accessor :number_of_adults
   attr_accessor :number_of_children
   attr_accessor :date_of_birth
+  attr_accessor :date_of_birth_native
 
   def full_name
     [first_name, last_name].join(' ')
