@@ -59,12 +59,11 @@
     = link_to 'Print this page', '#', :class => 'print-link'
 
 .info
-  %h2 What you need on the day
-
-  %p
-    Please make sure you bring 
+  %h2
     %acronym(title='Identification') ID
-    with you. This can be ONE of the following: 
+    you need for each visit
+
+  %p Please make sure you bring ID with you. This can be ONE of the following:
 
   %ul
     %li passport, including foreign passports, and expired passports where the photograph is still recognisable
@@ -92,22 +91,22 @@
   %p If you need to change or cancel your visit, please contact us as soon as you can.
   %ul
     - if prison_phone.present?
-      %li Telephone: #{prison_phone}
+      %li telephone: #{prison_phone}
     - if prison_email.present?
       %li
-        Email:
+        email:
         = mail_to prison_email
-
-  %h2 What to expect when visiting prison
-
-  %p You will be searched before entering the prison visiting room. Prison staff may check your pockets, pat you down and ask you to go through a metal detector. Dogs may also be used to detect illegal substances.
 
   %h2 What to bring
 
   %ul
-    %li Two forms of ID, one with your address. 
-    %li A small amount of money for tea and coffee during the visit – you won’t be able to give the prisoner any money 
-    %li For more information about what to bring, for example clothes, please see the #{prison_link} page. 
+    %li two forms of ID, one with your address
+    %li a small amount of money for tea and coffee during the visit – you won’t be able to give the prisoner any money
+    %li for more information about what to bring, for example clothes, please see the #{prison_link} page
+
+  %h2 What to expect when visiting prison
+
+  %p You will be searched before entering the prison visiting room. Prison staff may check your pockets, pat you down and ask you to go through a metal detector. Dogs may also be used to detect illegal substances.
 
   %h2 What not to bring
 
