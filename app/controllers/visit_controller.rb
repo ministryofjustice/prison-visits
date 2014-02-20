@@ -124,6 +124,7 @@ private
         date_of_birth = dob.map do |key|
           visitor.delete(key)
         end.join('-')
+        visitor.delete(:date_of_birth_native)
       end
       begin
         visitor[:date_of_birth] = Date.parse(date_of_birth)
