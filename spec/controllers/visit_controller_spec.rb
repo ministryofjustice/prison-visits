@@ -343,7 +343,7 @@ describe VisitController do
 
   context "when accessing the service out of business hours" do
     before :each do
-      Timecop.freeze(Time.local(2013, 12, 1, 23, 30))
+      Timecop.freeze(Time.zone.local(2013, 12, 1, 23, 30))
     end
 
     it "displays an appropriate message" do

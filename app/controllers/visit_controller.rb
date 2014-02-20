@@ -17,7 +17,7 @@ class VisitController < ApplicationController
   end
 
   def check_if_within_business_hours
-    if !(7..22).include?(Time.now.hour)
+    if !(7..22).include?(Time.zone.now.hour)
       redirect_to(unavailable_path)
       return
     end
