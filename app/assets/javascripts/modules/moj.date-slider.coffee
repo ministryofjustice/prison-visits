@@ -22,7 +22,7 @@ DateSlider:: =
   defaults:
     currentPos: 0
     visibleDays: 12
-    displayDays: 7
+    displayDays: 5
     selectableDays: 6
     width: 700
     dayWidth: 100
@@ -104,6 +104,7 @@ DateSlider:: =
     dayHeight = Math.floor @settings.dayWidth * squashDays
     largeHeight = Math.floor dayHeight * magnifyDay
     largeLineHeight = (largeHeight * upness) * 2 + dayHeight
+    topOffset = Math.floor largeHeight * upness
     
     fontSmall = dayHeight * fontSizeScale
     fontLarge = fontSmall * magnifyFont
@@ -136,16 +137,20 @@ DateSlider:: =
 
     @$scrolls.css width: "#{viewPort}px"
 
+    @$touch.css
+      height: "#{largeHeight}px"
+      top: "-#{topOffset}px"
+
     @$large.css
       height: "#{largeHeight}px"
       width: "#{@settings.dayWidth}px"
-      top: "-#{Math.floor(largeHeight * upness) - borderWidth}px"
+      top: "-#{topOffset - borderWidth}px"
       left: "#{@settings.middle}px"
     
     @$frame.css
       width: "#{@settings.dayWidth - borderWidth}px"
       height: "#{largeHeight}px"
-      top: "-#{Math.floor largeHeight * upness}px"
+      top: "-#{topOffset}px"
       left: "#{@settings.middle - borderWidth / 2}px"
 
     @$_el.css visibility: 'visible'

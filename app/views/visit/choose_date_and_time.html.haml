@@ -44,7 +44,7 @@
       %a.DateSlider-button.DateSlider-buttonRight(href='#') &#10095;
       .DateSlider-smallDates.scroll
         %ul.DateSlider-days
-          - bookable_range_with_buffer(3).each do |day|
+          - bookable_range_with_buffer(2).each do |day|
             %li{ :'data-date' => day, :class => ('unavailable' unless bookable?(day)) }= day.strftime '%e'
       .DateSlider-portalFrame
       .DateSlider-largeDates.scroll
