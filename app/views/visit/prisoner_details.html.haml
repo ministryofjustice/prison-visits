@@ -43,7 +43,7 @@
       Date of birth
       %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
     = f.date_select :date_of_birth, order: [:day, :month, :year], start_year: Time.now.year - 18, end_year: Time.now.year - 100, prompt: { day: :day, month: :month, year: :year }, with_css_classes: true
-    %input.hidden.js-native-date__date-input(name='native' type='date')
+    %input.hidden.js-native-date__date-input(name='date_of_birth_native' type='date')
 
   .group{ :class => ('validation-error' if f.object.errors.include?(:number)) }
     = f.label :number do
