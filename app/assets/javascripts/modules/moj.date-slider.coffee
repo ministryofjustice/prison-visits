@@ -14,7 +14,8 @@ DateSlider = ($el, options) ->
   @gather()
   @sizeUp()
   @inputDevice()
-  @selectDateFromIndex 0 if @settings.selectonload
+  if @settings.selectonload and $el.is ':visible'
+    @selectDateFromIndex 0
   return @
 
 DateSlider:: =
