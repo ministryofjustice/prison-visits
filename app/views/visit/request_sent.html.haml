@@ -59,66 +59,72 @@
     = link_to 'Print this page', '#', :class => 'print-link'
 
 .info
-  %h2
-    %acronym(title='Identification') ID
-    you need for each visit
+  %details
+    %summary<
+      %acronym(title='Identification') ID
+      you need for each visit
 
-  %p Please make sure you bring ID with you. This can be ONE of the following:
+    %p Please make sure you bring ID with you. This can be ONE of the following:
 
-  %ul
-    %li passport, including foreign passports, and expired passports where the photograph is still recognisable
-    %li identity card (including European identity cards) 
-    %li driving licence
-    %li benefits book
-    %li senior citizen's public transport photo pass issued by a local authority
-    %li employer's or student ID card but only if this has a photo and clearly shows your name and the issuing employer or educational establishment
+    %ul
+      %li passport, including foreign passports, and expired passports where the photograph is still recognisable
+      %li identity card (including European identity cards) 
+      %li driving licence
+      %li benefits book
+      %li senior citizen's public transport photo pass issued by a local authority
+      %li employer's or student ID card but only if this has a photo and clearly shows your name and the issuing employer or educational establishment
 
-  %p If you don't have one of these forms of ID, you can bring TWO of the following:
+    %p If you don't have one of these forms of ID, you can bring TWO of the following:
 
-  %ul
-    %li birth or marriage certificate
-    %li cheque book or credit or debit card 
-    %li employer's pass or ID or student ID card without photo 
-    %li young person's 'proof of age' card
-    %li trade union or National Students' Union membership card
-    %li rent book
-    %li foreign identity or residents' card
+    %ul
+      %li birth or marriage certificate
+      %li cheque book or credit or debit card 
+      %li employer's pass or ID or student ID card without photo 
+      %li young person's 'proof of age' card
+      %li trade union or National Students' Union membership card
+      %li rent book
+      %li foreign identity or residents' card
 
-  %p If you have any questions about ID requirements, please contact the prison.
+    %p If you have any questions about ID requirements, please contact the prison.
 
-  %h2 Changing or cancelling your visit
+  %details
+    %summary Changing or cancelling your visit
 
-  %p If you need to change or cancel your visit, please contact us as soon as you can.
-  %ul
-    - if prison_phone.present?
-      %li telephone: #{prison_phone}
-    - if prison_email.present?
-      %li
-        email:
-        = mail_to prison_email
+    %p If you need to change or cancel your visit, please contact us as soon as you can.
+    %ul
+      - if prison_phone.present?
+        %li telephone: #{prison_phone}
+      - if prison_email.present?
+        %li
+          email:
+          = mail_to prison_email
 
-  %h2 What to bring
+  %details
+    %summary What to bring
 
-  %ul
-    %li two forms of ID, one with your address
-    %li a small amount of money for tea and coffee during the visit – you won’t be able to give the prisoner any money
-    %li for more information about what to bring, for example clothes, please see the #{prison_link} page
+    %ul
+      %li two forms of ID, one with your address
+      %li a small amount of money for tea and coffee during the visit – you won’t be able to give the prisoner any money
+      %li for more information about what to bring, for example clothes, please see the #{prison_link} page
 
-  %h2 What to expect when visiting prison
+  %details
+    %summary What to expect when visiting prison
 
-  %p You will be searched before entering the prison visiting room. Prison staff may check your pockets, pat you down and ask you to go through a metal detector. Dogs may also be used to detect illegal substances.
+    %p You will be searched before entering the prison visiting room. Prison staff may check your pockets, pat you down and ask you to go through a metal detector. Dogs may also be used to detect illegal substances.
 
-  %h2 What not to bring
+  %details
+    %summary What not to bring
 
-  %p Please do not bring anything restricted or illegal to the prison. For more information about what you are allowed to bring, please see the #{prison_link} page.
+    %p Please do not bring anything restricted or illegal to the prison. For more information about what you are allowed to bring, please see the #{prison_link} page.
 
-  %h2 Your data
+  %details
+    %summary Your data
 
-  %p The Ministry of Justice (HM Prison Service) uses and retains the personal data of visitors for the purposes of the safe and secure provision of Prison Services, including those related to the management and rehabilitation of offenders. 
+    %p The Ministry of Justice (HM Prison Service) uses and retains the personal data of visitors for the purposes of the safe and secure provision of Prison Services, including those related to the management and rehabilitation of offenders. 
 
-  %p Access to the establishment can only be granted by supplying the prescribed information in order to ensure and maintain a safe and secure environment for all. 
+    %p Access to the establishment can only be granted by supplying the prescribed information in order to ensure and maintain a safe and secure environment for all. 
 
-  %p You have the right to request details as to the personal information we hold for you; and subsequently request that we correct any personal information if it is found to be inaccurate or out of date. We will not share your information with other organisations unless it is required for the purposes of prevention, detection of crime, apprehension, prosecution, and management of offenders; prevention of terrorism; National Security; or required to do by law. 
+    %p You have the right to request details as to the personal information we hold for you; and subsequently request that we correct any personal information if it is found to be inaccurate or out of date. We will not share your information with other organisations unless it is required for the purposes of prevention, detection of crime, apprehension, prosecution, and management of offenders; prevention of terrorism; National Security; or required to do by law. 
 
 - content_for :analytics do
   :ruby
