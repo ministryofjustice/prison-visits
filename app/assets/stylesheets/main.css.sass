@@ -17,9 +17,21 @@ legend
   margin-bottom: .5em
   font-weight: bold
 
+details[open]
+  summary:focus
+    outline: none
+
 summary
-  color: $light-blue
+  color: $link-colour
+  font-size: 19px
   text-decoration: underline
+  cursor: pointer
+
+  &:hover
+    color: $link-hover-colour
+
+  &:focus
+    outline: 3px solid $yellow
 
 .summary .well
   margin: 1em 0
@@ -54,6 +66,13 @@ summary
 
 .group__help
   margin-top: 0
+
+details.group__help
+  summary
+    font-size: 16px
+  p
+    margin: 0
+    font-size: 16px
 
 h3 + p
   margin-top: 0
