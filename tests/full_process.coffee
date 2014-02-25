@@ -68,7 +68,7 @@ casper.test.begin 'Prison Visit Booking: Step 1 - prisoner details', (test) ->
     @click '.fc-bookable a.fc-day-number'
     test.assertTextExists 'Choose an alternative date', 'slot help is present'
     
-    @click '.day-slots.is-active label'
+    @click '.day-slots.is-active input'
 
     @capture 'tests/choose-date-and-time.png' if outputImages
 
@@ -81,7 +81,7 @@ casper.test.begin 'Prison Visit Booking: Step 1 - prisoner details', (test) ->
   casper.then ->
     test.comment 'Prison Visit Booking: Step 4 - check your request'
     test.assertTextExists 'Jimmy Fingers', 'prisoner name is present'
-    test.assertTextExists 'Sue Denim', 'user name is present'
+    test.assertTextExists 'Sue Denim', 'visitor name is present'
 
     @capture 'tests/check-your-request.png' if outputImages
 

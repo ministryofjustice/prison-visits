@@ -1,27 +1,28 @@
-!!!
-/[if gt IE 8]<html class="ie">
-/[if IE 6] <html class="ie ie6">
-/[if IE 7] <html class="ie ie7">
-/[if IE 8] <html class="ie ie8">
-<!--<![if !IE]><!-->
-<html>
-<!-- <![endif] -->
-%head
-  = render "shared/head", :title => page_title(yield(:header))
+- content_for :page_title do
+  = page_title(yield(:header))
+
+- content_for :stylesheets do
+  %script(src='/modernizr.custom.44058.js')
+  = stylesheet_link_tag "application", media: "all"
   :erb
     <!--[if IE 8]><link href="<%= asset_path "ie8.css" %>" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
+
+- content_for :head do
   = csrf_meta_tag
   :javascript
     var pvbe = pvbe || {};
-  %script(src='/modernizr.custom.44058.js')
-  = render "shared/analytics"
 
-%body{:class => [Rails.configuration.phase, Rails.configuration.product_type, controller.action_name].join(' ') }
+- content_for :javascripts do
+  %script{src: '//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js'}
+  :javascript
+    window._ || document.write('<script src="/assets/lodash-2.4.1.min.js">\x3C/script>')
+  = javascript_include_tag "application"
 
-  = render "shared/header"
-  = render "shared/cookie_message"
-  = render "shared/phase_indicator"
+- content_for :body_classes, "#{config_item(:phase).to_s.downcase} #{config_item(:product_type).to_s.downcase} #{controller.action_name}"
 
+- content_for :feedback_link, link_to("your feedback", new_feedback_path(referrer: request.original_url))
+
+- content_for :content_override do
   %main#wrapper(role="main")
     .container
       %section.content.inner.cf
@@ -38,15 +39,4 @@
         .content-inner
           = yield
 
-  = render "shared/footer"
-  
-  %script{src: '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'}
-  :javascript
-    window.jQuery || document.write('<script src="/assets/jquery-1.10.2.min.js">\x3C/script>')
-  %script{src: '//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js'}
-  :javascript
-    window._ || document.write('<script src="/assets/lodash-2.4.1.min.js">\x3C/script>')
-  = render "shared/script"
-
-:erb
-  </html>
+= render template: "layouts/moj_template"

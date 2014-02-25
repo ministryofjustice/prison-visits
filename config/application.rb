@@ -28,30 +28,24 @@ module PrisonVisits2
 
     # app title appears in the header bar
     config.app_title = 'Prison visits booking'
-    # phase governs text indicators and highlight colours
-    # presumed values: alpha, beta, live
+    # Proposition Title (Populates proposition header)
+    config.proposition_title = 'Prison visits booking'
+    # Current Phase (Sets the current phase and the colour of phase tags)
+    # Presumed values: alpha, beta, live
     config.phase = 'alpha'
-    # product type may also govern highlight colours
-    # known values: information, service
+    # Product Type (Adds class to body based on service type)
+    # Presumed values: information, service
     config.product_type = 'service'
-    # govbranding switches on or off the crown logo, full footer and NTA font
-    config.govbranding = true
-    # feedback_email is the address linked in the alpha/beta bar asking for feedback
-    config.feedback_email = 'test@example.com'
 
     config.assets.enabled = true
     config.assets.precompile += %w(
-      gov-static/gov-goodbrowsers.css
-      gov-static/gov-ie6.css
-      gov-static/gov-ie7.css
-      gov-static/gov-ie8.css
-      gov-static/gov-fonts.css
-      gov-static/gov-fonts-ie8.css
-      gov-static/gov-print.css
-      moj-base.css
-      gov-static/gov-ie.js
       ie8.css
     )
+
+    # Feedback URL (URL for feedback link in phase banner)
+    config.feedback_url = 'test@example.com'
+    # Google Analytics ID (Tracking ID for the service)
+    config.ga_id = ''
 
     config.prison_data = YAML.load_file(File.join(Rails.root, 'config', 'prison_data.yml')).inject({}) do |h, (name, config)|
       config['enabled'] ? h.merge(name => config) : h

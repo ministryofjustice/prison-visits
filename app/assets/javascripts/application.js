@@ -6,11 +6,6 @@
 // Vendor assets
 //= require jquery.details
 
-// MOJ assets
-//= require moj
-//= require modules/moj.cookie-message
-// require modules/moj.effects
-
 // Project assets
 //= require visitors
 
@@ -22,5 +17,3 @@
 
 // Assets without a better place
 //= require shame
-
-moj.init();

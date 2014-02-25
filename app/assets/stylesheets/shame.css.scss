@@ -1,0 +1,69 @@
+/* clearfix */
+/**
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    contenteditable attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that are clearfixed.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+.cf:before,
+.cf:after,
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after,
+.clearfix:after {
+    clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.cf,
+.clearfix {
+    *zoom: 1;
+}
+/* end clearfix */
+
+
+/* table */
+// Originally from gov_static. Should move to moj_template.
+table {
+  border-collapse: collapse;
+}
+/* end table */
+
+
+/* service header */
+@include media(mobile) {
+  .service-header {
+    margin-left: 16px;
+  }
+}
+/* end service header */
+
+
+/* phase indicator */
+body.alpha .indicator {
+  p,
+  a:visited,
+  a:link {
+    color: $white;
+  }
+  p {
+    padding: 0 30px;
+    @include media(mobile) {
+      padding: 0 15px;
+    }
+  }
+  strong {
+    text-transform: uppercase;
+  }
+}
+/* end phase indicator */

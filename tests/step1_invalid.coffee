@@ -7,6 +7,13 @@ casper.test.begin 'Prison Visit Booking: Step 1 invalid', (test) ->
 
   casper.start 'http://localhost:3000'
 
+  casper.thenOpen 'http://localhost:3000/abandon'
+
+  casper.then ->
+    test.assertTextExists 'Your request has been cancelled', 'session cleared'
+
+  casper.thenOpen 'http://localhost:3000'
+
   casper.viewport 1024, 768
 
   casper.then ->
@@ -24,7 +31,7 @@ casper.test.begin 'Prison Visit Booking: Step 1 invalid', (test) ->
     test.assertSelectorHasText '[for="prisoner_first_name"] .validation-message', "can't be blank", 'page contains name error'
     test.assertSelectorHasText '[for="prisoner_date_of_birth_3i"] .validation-message', "can't be blank", 'page contains age error'
     test.assertSelectorHasText '[for="prisoner_number"] .validation-message', 'must be a valid prisoner number', 'page contains prisoner number error'
-    test.assertSelectorHasText '[for="prisoner_prison_name"] .validation-message', 'must be chosen', 'page contains prisoner number error'
+    test.assertSelectorHasText '[for="prisoner_prison_name"] .validation-message', 'must be chosen', 'page contains prison name error'
 
   casper.then ->
     casper.capture 'tests/prisoner_details_invalid.png' if outputImages
