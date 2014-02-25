@@ -26,13 +26,13 @@
   %main#wrapper(role="main")
     .container
       %section.content.inner.cf
-        %header
-          %h1= yield :header
-
         = render "shared/cookie_required"
 
         = yield :progress_bar
         
+        %header
+          %h1= yield :header
+
         - if notice.present?
           %p.validation-summary= notice
         
