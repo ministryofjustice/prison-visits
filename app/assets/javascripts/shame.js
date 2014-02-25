@@ -10,7 +10,7 @@ $(function () {
     }
   });
 
-  if (moj.isIE8) {
+  if (moj.isIE8()) {
     $('html').addClass('ie8');
   }
 });
