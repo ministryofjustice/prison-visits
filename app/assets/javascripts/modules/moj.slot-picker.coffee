@@ -13,8 +13,6 @@ SlotPicker = (el, options) ->
   @cacheEls el
   @bindEvents()
   @markChosenSlots pvbe.current_slots
-  @$submitButton.prop 'disabled', true
-  @toggleSubmit()
   return @
 
 SlotPicker:: =
@@ -31,7 +29,6 @@ SlotPicker:: =
     @$selectedSlots = $ '.selected-slots li'
     @$removeSlots = '.js-remove-slot'
     @$promoteSlots = '.js-promote-slot'
-    @$submitButton = $ '.js-submit'
     @$promoteHelp = $ '.js-promote-help'
     @$alternativeHelp = $ '.js-alternative-help'
     @$months = $ '.js-slotpicker__months'
@@ -47,7 +44,6 @@ SlotPicker:: =
       _this.unHighlightSlots()
       _this.checkSlot $(this)
       _this.processSlots()
-      _this.toggleSubmit()
       _this.disableCheckboxes _this.limitReached()
       _this.togglePromoteHelp()
       _this.toggleAlternativeHelp()
@@ -94,9 +90,6 @@ SlotPicker:: =
     # Highlight the currently selected day on the calendar
     $('.fc-day').removeClass('fc-state-highlight')
     day.addClass('fc-state-highlight')
-
-  toggleSubmit: ->
-    @$submitButton.prop 'disabled', !@settings.currentSlots.length
 
   togglePromoteHelp: ->
     @$promoteHelp[if @settings.currentSlots.length > 1 then 'addClass' else 'removeClass'] 'is-active'
