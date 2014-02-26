@@ -67,3 +67,19 @@ body.alpha .indicator {
   }
 }
 /* end phase indicator */
+
+
+/* alpha/beta box */
+@include media(mobile) {
+  .service-header {
+    width: auto;
+  }
+}
+/* end alpha/beta box */
+
+
+/* mainstream footer */
+.footer-categories {
+  display: none;
+}
+/* end mainstream footer */
