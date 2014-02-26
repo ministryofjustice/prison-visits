@@ -29,20 +29,25 @@ form
       width: 12.5em
 
 label
+  @include core-19
   display: block
 
 input,
 select
-  font-size: 100%
+  @include core-16
   margin: 0
 
   &[type=text],
   &[type=email],
   &[type=tel],
   &[type=date]
-    font-size: 16px
-    padding: .25em
-    border: 1px solid #bbb
+    width: 250px
+    padding: 5px 4px 2px
+    color: $black
+    border: 1px solid $grey-2
+
+select
+  border-color: $grey-2
 
 .actions
   margin: 1em 0
