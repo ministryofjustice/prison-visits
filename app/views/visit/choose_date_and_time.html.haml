@@ -52,29 +52,29 @@
               = day.strftime '%e'
 
 
-  .fc-content.hidden--mobile
-    %table
+  .hidden--mobile
+    %table.BookingCalendar
       %thead
         %tr
           - [:Mon,:Tue,:Wed,:Thu,:Fri,:Sat,:Sun].each do |d|
-            %th.fc-day-header= d
+            %th= d
 
       %tbody
         - weeks.each do |week|
           %tr
             - week[1].each do |day|
-              %td.fc-day{ :class => day_classes(day) }
-                .fc-day-content
-                  %a.fc-day-number{ :href => "#date-#{day.strftime('%Y-%m-%d')}", :'data-date' => day }
+              %td{ :class => day_classes(day) }
+                .BookingCalendar-content
+                  %a{ :href => "#date-#{day.strftime('%Y-%m-%d')}", :'data-date' => day }
                     %span.visuallyhidden= day.strftime('%A')
                     %span= day.strftime('%e')
                     %span.visuallyhidden
                       = day.strftime('%B')
                       = bookable?(day) ? 'available' : 'unavailable'
                   - if tag_with_today? day
-                    %span.fc-tag.fc-today Today
+                    %span.BookingCalendar-tag.BookingCalendar-today Today
                   - if tag_with_month? day
-                    %span.fc-tag= day.strftime('%b')
+                    %span.BookingCalendar-tag= day.strftime('%b')
 
 .right-column
   .slots.js-slotpicker{ :'data-optionlimits' => number_of_slots }

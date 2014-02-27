@@ -1,62 +1,5 @@
 // Full calendar
 
-.step_prompt
-  @include core-27
-  color: $white
-  margin-bottom: 0
-  padding: 10px 0 6px 10px
-  font-weight: normal
-  text-align: left
-  background: $grey-1
-
-  @include media(mobile)
-    margin-top: 0
-
-th.fc-day-header
-  font-weight: normal
-  text-align: left
-  padding-top: 4px
-  padding-left: 3px
-  background: #fbfbfb
-
-.fc-day
-  width: 14.285714286%
-  padding: 0
-
-.fc-content table
-  width: 100%
-  background: image-url("unavailable_tile.png")
-  border-bottom: 1px solid $grey-3
-
-  td
-    border:
-      color: $grey-3
-      style: solid
-      width: 1px 0 0 1px
-  
-  td:last-child > div
-    border-right: 1px solid $grey-3
-
-.fc-day-content
-  position: relative
-  min-height: 55px
-
-.fc-tag
-  position: absolute
-  bottom: 0
-  width: 100%
-  padding: 0
-  color: $white
-  line-height: normal
-  text-align: center
-  background: $grey-2
-
-.fc-today
-  background: $light-blue
-
-.fc-bookable
-  background: $white
-
 .fc-past
   color: $grey-1
   background: $grey-4
@@ -82,6 +25,3 @@ th.fc-day-header
 
     @include media(desktop)
       border-width: 0 15px 15px 0
-
-.fc-day.fc-state-highlight
-  background: #acdaed

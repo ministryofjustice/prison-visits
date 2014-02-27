@@ -59,9 +59,8 @@ SlotPicker:: =
       _this.promoteSlot promoted
       _this.processSlots()
       ga('send', 'event', 'slot', 'promote')
-      # moj.Modules.effects.highlight $(this).closest('ul').find('li').eq(promoted-1)
 
-    $('.fc-day-number, .DateSlider-largeDates li').on 'click chosen', (e) ->
+    $('.BookingCalendar-day--bookable a, .DateSlider-largeDates li').on 'click chosen', (e) ->
       e.preventDefault()
       _this.selectDay $(this)
       $('.js-slotpicker').addClass 'is-active'
@@ -88,8 +87,8 @@ SlotPicker:: =
           $('#booking-gap').addClass 'is-active'
 
     # Highlight the currently selected day on the calendar
-    $('.fc-state-highlight').removeClass('fc-state-highlight')
-    day.closest('td').addClass('fc-state-highlight')
+    $('.BookingCalendar-day--bookable.is-active').removeClass('is-active')
+    day.closest('td').addClass('is-active')
 
   togglePromoteHelp: ->
     @$promoteHelp[if @settings.currentSlots.length > 1 then 'addClass' else 'removeClass'] 'is-active'
