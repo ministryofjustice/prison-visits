@@ -50,6 +50,9 @@ table.BookingCalendar
 .BookingCalendar-day--bookable
   background: $white
 
+  &.is-active
+    background: #acdaed
+
 .BookingCalendar-day--past
   color: $grey-1
   background: $grey-4
@@ -79,9 +82,6 @@ table.BookingCalendar
   a:hover
     text-decoration: underline
     background: $grey-3
-
-  &.is-active
-    background: #acdaed
 
 .BookingCalendar-tag
   position: absolute
