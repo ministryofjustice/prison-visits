@@ -179,7 +179,7 @@ SlotPicker:: =
 
   highlightDay: (slot) ->
     day = @splitDateAndSlot(slot)[0]
-    $("[data-date=#{day}]")[if ~@settings.currentSlots.join('-').indexOf(day) then 'addClass' else 'removeClass'] 'fc-chosen'
+    $("[data-date=#{day}]")[if ~@settings.currentSlots.join('-').indexOf(day) then 'addClass' else 'removeClass'] 'is-chosen'
 
   confirmVisibility: ($el) -> @moveIntoViewport $el unless isElementInViewport $el.get(0)
 

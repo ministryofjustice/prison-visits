@@ -72,7 +72,7 @@
                       = day.strftime('%B')
                       = bookable?(day) ? 'available' : 'unavailable'
                   - if tag_with_today? day
-                    %span.BookingCalendar-tag.BookingCalendar-today Today
+                    %span.BookingCalendar-tag.BookingCalendar-tag--today Today
                   - if tag_with_month? day
                     %span.BookingCalendar-tag= day.strftime('%b')
 

@@ -128,9 +128,8 @@ module VisitHelper
 
   def day_classes(day)
     classes = []
-    classes << 'fc-past' if day < Date.today
+    classes << 'BookingCalendar-day--past' if day < Date.today
     classes << (bookable?(day) ? 'BookingCalendar-day--bookable' : 'BookingCalendar-day--unbookable')
-    classes << 'fc-chosen' if current_slots.include?(day)
     classes
   end
 

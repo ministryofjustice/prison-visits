@@ -47,12 +47,34 @@ table.BookingCalendar
     span
       padding-left: 3px
 
+.BookingCalendar-day--bookable
+  background: $white
+
+.BookingCalendar-day--past
+  color: $grey-1
+  background: $grey-4
+
+.is-chosen
+  position: relative
+  overflow: hidden
+  
+  &:after
+    position: absolute
+    content: ''
+    top: 0
+    right: 0
+    width: 0
+    height: 0
+    border-style: solid
+    border-width: 0 10px 10px 0
+    border-color: transparent #158bc8 transparent transparent
+
+    @include media(tablet)
+      border-width: 0 15px 15px 0
+
 .BookingCalendar-content
   position: relative
   min-height: 55px
-
-td.BookingCalendar-day--bookable
-  background: $white
 
   a:hover
     text-decoration: underline
@@ -71,7 +93,7 @@ td.BookingCalendar-day--bookable
   text-align: center
   background: $grey-2
 
-.BookingCalendar-today
+.BookingCalendar-tag--today
   background: $light-blue
 
 
