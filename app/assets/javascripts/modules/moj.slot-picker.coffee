@@ -88,8 +88,8 @@ SlotPicker:: =
           $('#booking-gap').addClass 'is-active'
 
     # Highlight the currently selected day on the calendar
-    $('.fc-day').removeClass('fc-state-highlight')
-    day.addClass('fc-state-highlight')
+    $('.fc-state-highlight').removeClass('fc-state-highlight')
+    day.closest('td').addClass('fc-state-highlight')
 
   togglePromoteHelp: ->
     @$promoteHelp[if @settings.currentSlots.length > 1 then 'addClass' else 'removeClass'] 'is-active'
