@@ -47,6 +47,7 @@ GEM
       execjs
     coffee-script-source (1.6.3)
     columnize (0.3.6)
+    curb (0.8.5)
     debugger-linecache (1.2.0)
     diff-lcs (1.2.4)
     erubis (2.7.0)
@@ -171,6 +172,7 @@ DEPENDENCIES
   byebug
   capybara
   coffee-rails
+  curb
   govuk_frontend_toolkit (= 0.43.2)
   haml-rails
   mail

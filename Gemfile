@@ -20,4 +20,5 @@ group :test, :development do
   gem 'selenium-webdriver'
   gem 'capybara'
   gem 'parallel_tests'
+  gem 'curb'
 end

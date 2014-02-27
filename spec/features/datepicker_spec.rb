@@ -2,8 +2,6 @@ require 'spec_helper'
 
 feature "visitor selects a date" do
   before :each do
-    BookingRequest.any_instance.stub(:sender).and_return('lol@biz.info')
-    BookingConfirmation.any_instance.stub(:sender).and_return('lol@biz.info')
     enter_prisoner_information
     enter_visitor_information
     click_button 'Continue'
@@ -23,12 +21,20 @@ feature "visitor selects a date" do
 
   context "that is bookable" do
     it "displays booking slots" do
-      three_days_from_now = Time.now + 3.days
-      find(:xpath, three_days_from_now.strftime("//a[@data-date='%Y-%m-%d']")).click
-      page.should have_content(three_days_from_now.strftime("%A %e %B"))
-      check("slot-#{three_days_from_now.strftime('%Y-%m-%d')}-1400-1600")
-      click_button 'Continue'
+      _when = Time.now + 3.days
+      begin
+        find(:css, _when.strftime("td.fc-bookable .fc-day-number[data-date='%Y-%m-%d']")).click
+      rescue Capybara::ElementNotFound
+        _when += 1.day
+        retry
+      end
 
+      within(:css, _when.strftime("#date-%Y-%m-%d.is-active")) do
+        page.should have_content(_when.strftime("%A %e %B"))
+        check('2:00pm 2 hrs')
+      end
+
+      click_button 'Continue'
       page.should have_content('Check your request')
 
       click_button 'Send request'
