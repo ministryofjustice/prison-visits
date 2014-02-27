@@ -4,8 +4,6 @@
 - content_for :stylesheets do
   %script(src='/modernizr.custom.44058.js')
   = stylesheet_link_tag "application", media: "all"
-  :erb
-    <!--[if IE 8]><link href="<%= asset_path "ie8.css" %>" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
 
 - content_for :head do
   = csrf_meta_tag

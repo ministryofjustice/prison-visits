@@ -10,15 +10,6 @@
   .selected-slots.is-active
     display: block
 
-#calendar
-  margin: 0 -15px
-
-  @include media(desktop)
-    width: 100%
-    float: left
-    max-width: 49%
-    margin-right: 0
-    margin-left: 0
 
 td.fc-day a
   position: absolute
@@ -66,30 +57,13 @@ td.fc-bookable a:hover
     &.is-active
       background-position: right 8px
 
-    // &.is-disabled
-    //   background-position: right -232px
-
     &:last-child
       margin-right: 0
 
     strong
       padding: .5em
 
-.slots
-  @include media(mobile)
-    margin: 0 -15px
-
-  @include media(desktop)
-    float: left
-    clear: left
-    width: 49%
-
 .selected-slots
-  @include media(mobile)
-    margin: 0 -15px
-
-  @include media(desktop)
-    margin-left: 51%
 
   h3,
   p
@@ -188,3 +162,6 @@ td.fc-bookable a:hover
       
       p
         margin: 0
+
+.slot-form
+  clear: both

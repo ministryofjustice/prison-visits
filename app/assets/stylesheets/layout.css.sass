@@ -46,3 +46,31 @@
 .with-image
   clear: left
   padding-top: 1em
+
+
+.left-column
+  float: left
+
+.right-column
+  float: right
+
+.left-column,
+.right-column
+  width: 100%
+  max-width: 49%
+  margin: 0
+
+  @include media(mobile)
+    float: none
+    width: auto
+    max-width: none
+    margin: 0 -15px
+
+  @include media(false, 768px)
+    float: none
+    max-width: none
+
+  @include media(desktop)
+    div:first-child h2,
+    > h2:first-child
+      margin-top: 0

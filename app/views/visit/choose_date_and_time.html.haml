@@ -27,7 +27,7 @@
     %p You need to choose date(s) and time(s) for your visit to continue.
 
 
-#calendar.visible--js-enabled
+.left-column.visible--js-enabled
   %h2.step_prompt First choose a date
   
   .DateSlider.visible--mobile(data-selectonload='true')
@@ -76,52 +76,53 @@
                   - if tag_with_month? day
                     %span.fc-tag= day.strftime('%b')
 
-.slots.js-slotpicker{ :'data-optionlimits' => number_of_slots }
-  %h2.step_prompt Now choose a time
-  .js-slotpicker-options.day-slots#in-the-past
-    %p It is not possible to book a visit in the past.
-  .js-slotpicker-options.day-slots#too-far-ahead
-    %p You can only book a visit in the next #{Slot::BOOKABLE_DAYS} days.
-  .js-slotpicker-options.day-slots#booking-gap
-    %p You can only book a visit 3 days in advance.
+.right-column
+  .slots.js-slotpicker{ :'data-optionlimits' => number_of_slots }
+    %h2.step_prompt Now choose a time
+    .js-slotpicker-options.day-slots#in-the-past
+      %p It is not possible to book a visit in the past.
+    .js-slotpicker-options.day-slots#too-far-ahead
+      %p You can only book a visit in the next #{Slot::BOOKABLE_DAYS} days.
+    .js-slotpicker-options.day-slots#booking-gap
+      %p You can only book a visit 3 days in advance.
 
-  .js-slotpicker__months
-    - range_by_month.keys.each do |month|
-      .slot__month{ :id => month.strftime('month-%Y-%m-%d') }(data-focusfirst="true")
+    .js-slotpicker__months
+      - range_by_month.keys.each do |month|
+        .slot__month{ :id => month.strftime('month-%Y-%m-%d') }(data-focusfirst="true")
 
-        - range_by_month[month].each do |date|
-          .js-slotpicker-options.day-slots.cf{ :id => "date-#{date.strftime('%Y-%m-%d')}", :tabindex => -1 }
-            %h4= date.strftime("%A %e %B")
-            - if visiting_slots.keys.include?(date.strftime('%a').downcase.to_sym) && !unbookable_dates.include?(date)
-              - visiting_slots[date.strftime('%a').downcase.to_sym].each_with_index do |slot, index|
-                - slot_start = Time.strptime(slot[0].to_s, '%H%M')
-                - slot_end = Time.strptime(slot[1].to_s, '%H%M')
-                %label.slot
-                  %input.js-slotpicker-option{ :value => "#{date.strftime('%Y-%m-%d')}-#{slot[0]}-#{slot[1]}" }(type="checkbox" name="slot")
-                  %strong= slot_start.strftime("%l:%M%P")
-                  %span.duration= (slot_end - slot_start).duration
+          - range_by_month[month].each do |date|
+            .js-slotpicker-options.day-slots.cf{ :id => "date-#{date.strftime('%Y-%m-%d')}", :tabindex => -1 }
+              %h4= date.strftime("%A %e %B")
+              - if visiting_slots.keys.include?(date.strftime('%a').downcase.to_sym) && !unbookable_dates.include?(date)
+                - visiting_slots[date.strftime('%a').downcase.to_sym].each_with_index do |slot, index|
+                  - slot_start = Time.strptime(slot[0].to_s, '%H%M')
+                  - slot_end = Time.strptime(slot[1].to_s, '%H%M')
+                  %label.slot
+                    %input.js-slotpicker-option{ :value => "#{date.strftime('%Y-%m-%d')}-#{slot[0]}-#{slot[1]}" }(type="checkbox" name="slot")
+                    %strong= slot_start.strftime("%l:%M%P")
+                    %span.duration= (slot_end - slot_start).duration
 
-            - elsif unbookable_dates.include?(date)
-              %p It is not possible to book a visit on this day.
+              - elsif unbookable_dates.include?(date)
+                %p It is not possible to book a visit on this day.
 
-            - else
-              %p There are no sessions available on #{date.strftime('%A')}s.
+              - else
+                %p There are no sessions available on #{date.strftime('%A')}s.
 
-.selected-slots.js-selected-slots
-  %h2.step_prompt Your visit choices
-  .selected-slots-group
-    %ul
-      - (1..number_of_slots).each_with_index do |i|
-        %li
-          - unless i == 1
-            %a.slot-promote.js-promote-slot{ :href => "##{i}" }
-          %a.slot-remove.js-remove-slot(href="#") &times;
-          .slot-position= i
-          %p.date
-          %p.time
-    %p.js-alternative-help Choose an alternative date: you can choose up to 3.
+  .selected-slots.js-selected-slots
+    %h2.step_prompt Your visit choices
+    .selected-slots-group
+      %ul
+        - (1..number_of_slots).each_with_index do |i|
+          %li
+            - unless i == 1
+              %a.slot-promote.js-promote-slot{ :href => "##{i}" }
+            %a.slot-remove.js-remove-slot(href="#") &times;
+            .slot-position= i
+            %p.date
+            %p.time
+      %p.js-alternative-help Choose an alternative date: you can choose up to 3.
 
-  %p.js-promote-help Use the arrows to put your visit choices in the order that suits you best.
+    %p.js-promote-help Use the arrows to put your visit choices in the order that suits you best.
 
 
 = form_for visit, url: update_choose_date_and_time_path, :html => { :class => 'slot-form' } do |f|
