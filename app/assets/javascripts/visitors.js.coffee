@@ -1,5 +1,5 @@
 # Disable the add visitor button
-$('button[value=add]').prop 'disabled', true
+$('#add-visitor').remove()
 
 
 addVisitorBlocks = (amount) ->
