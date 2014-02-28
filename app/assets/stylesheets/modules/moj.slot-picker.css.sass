@@ -14,20 +14,22 @@
 table.BookingCalendar
   width: 100%
   background: image-url("unavailable_tile.png")
-  border-bottom: 1px solid $grey-3
 
   thead th
-    font-weight: normal
-    text-align: left
-    padding-top: 4px
-    padding-left: 3px
-    background: #fbfbfb
+    padding: 3px 0 0
+    font-size: 19px
+    font-weight: bold
+    line-height: normal
+    text-align: center
+    text-transform: uppercase
+    background: $grey-4
+    border-bottom: 2px solid $grey-2
 
   td
     border:
       color: $grey-3
       style: solid
-      width: 1px 0 0 1px
+      width: 0 0 1px 1px
   
   td:last-child > div
     border-right: 1px solid $grey-3
@@ -47,15 +49,40 @@ table.BookingCalendar
     span
       padding-left: 3px
 
-.BookingCalendar-day--bookable
-  background: $white
+  .BookingCalendar-day--bookable
+    background: $white
 
-  &.is-active
-    background: #acdaed
+    &.is-active
+      background: $light-blue-50
 
-.BookingCalendar-day--past
-  color: $grey-1
-  background: $grey-4
+  .BookingCalendar-day--past
+    background: $grey-2
+    border-left-color: $grey-2
+
+    .BookingCalendar-content a
+      color: $grey-1
+
+  .BookingCalendar-content
+    position: relative
+    min-height: 55px
+
+    a:hover
+      text-decoration: underline
+      background: $light-blue-25
+
+  .BookingCalendar-tag
+    position: absolute
+    bottom: 0
+    left: 0
+    width: 100%
+    padding: 0
+    color: $white
+    line-height: normal
+    text-align: center
+    background: $grey-2
+
+  .BookingCalendar-tag--today
+    background: $light-blue
 
 .is-chosen
   position: relative
@@ -70,31 +97,10 @@ table.BookingCalendar
     height: 0
     border-style: solid
     border-width: 0 10px 10px 0
-    border-color: transparent #158bc8 transparent transparent
+    border-color: transparent $light-blue transparent transparent
 
     @include media(tablet)
       border-width: 0 15px 15px 0
-
-.BookingCalendar-content
-  position: relative
-  min-height: 55px
-
-  a:hover
-    text-decoration: underline
-    background: $grey-3
-
-.BookingCalendar-tag
-  position: absolute
-  bottom: 0
-  width: 100%
-  padding: 0
-  color: $white
-  line-height: normal
-  text-align: center
-  background: $grey-2
-
-.BookingCalendar-tag--today
-  background: $light-blue
 
 
 .arrow-right

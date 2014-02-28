@@ -138,6 +138,6 @@ module VisitHelper
   end
 
   def tag_with_month?(day)
-    weeks_start == day || day.beginning_of_month == day
+    day.beginning_of_month == day
   end
 end
