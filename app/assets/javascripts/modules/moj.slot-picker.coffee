@@ -60,7 +60,7 @@ SlotPicker:: =
       _this.processSlots()
       ga('send', 'event', 'slot', 'promote')
 
-    $('.BookingCalendar-day--bookable a, .DateSlider-largeDates li').on 'click chosen', (e) ->
+    $('.BookingCalendar-dayLink, .DateSlider-largeDates li').on 'click chosen', (e) ->
       e.preventDefault()
       _this.selectDay $(this)
       $('.js-slotpicker').addClass 'is-active'

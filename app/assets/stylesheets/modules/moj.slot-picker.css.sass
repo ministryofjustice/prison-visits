@@ -38,74 +38,72 @@ table.BookingCalendar
     width: 14.285714286%
     padding: 0
 
-  a
-    position: absolute
-    top: 0
-    width: 100%
-    height: 100%
+.BookingCalendar-dayLink,
+.BookingCalendar-dayLink:visited
+  position: absolute
+  top: 0
+  width: 100%
+  height: 100%
+  color: $black
+  text-decoration: none
+
+.BookingCalendar-dayLink
+  &:hover
     color: $black
-    text-decoration: none
+    text-decoration: underline
+    background: $light-blue-25
 
-    span
-      padding-left: 3px
+  &.is-chosen
+    overflow: hidden
+    
+    &:after
+      position: absolute
+      content: ''
+      top: 0
+      right: 0
+      width: 0
+      height: 0
+      border-style: solid
+      border-width: 0 10px 10px 0
+      border-color: transparent $light-blue transparent transparent
 
-  .BookingCalendar-day--bookable
-    background: $white
+      @include media(tablet)
+        border-width: 0 15px 15px 0
 
-    &.is-active
-      background: $light-blue-50
+  span
+    padding-left: 3px
 
-  .BookingCalendar-day--past
-    background: $grey-2
-    border-left-color: $grey-2
+.BookingCalendar-day--bookable
+  background: $white
 
-    .BookingCalendar-content a
-      color: $grey-1
+  &.is-active
+    background: $light-blue-50
 
-  .BookingCalendar-content
-    position: relative
-    min-height: 55px
+.BookingCalendar-day--past
+  background: $grey-2
+  border-left-color: $grey-2
 
-    a:hover
-      text-decoration: underline
-      background: $light-blue-25
+  .BookingCalendar-content a
+    color: $grey-1
 
-  .BookingCalendar-tag
-    position: absolute
-    bottom: 0
-    left: 0
-    width: 100%
-    padding: 0
-    color: $white
-    line-height: normal
-    text-align: center
-    background: $grey-2
-
-  .BookingCalendar-tag--today
-    background: $light-blue
-
-.is-chosen
+.BookingCalendar-content
   position: relative
-  overflow: hidden
-  
-  &:after
-    position: absolute
-    content: ''
-    top: 0
-    right: 0
-    width: 0
-    height: 0
-    border-style: solid
-    border-width: 0 10px 10px 0
-    border-color: transparent $light-blue transparent transparent
+  min-height: 55px
 
-    @include media(tablet)
-      border-width: 0 15px 15px 0
+.BookingCalendar-tag
+  position: absolute
+  bottom: 0
+  left: 0
+  width: 100%
+  padding: 0
+  color: $white
+  line-height: normal
+  text-align: center
+  background: $grey-2
 
+.BookingCalendar-tag--today
+  background: $light-blue
 
-.arrow-right
-  width: 0
-  height: 0
 
 .day-slots
   display: none
