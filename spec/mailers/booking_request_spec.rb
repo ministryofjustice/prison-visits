@@ -30,10 +30,6 @@ describe BookingRequest do
     it "sends an e-mail with the prisoner name in the subject" do
       subject.request_email(sample_visit, encryptor).subject.should == 'Visit request for Jimmy Fingers'
     end
-
-    it "sends an e-mail with a long link to the confirmation page" do
-      subject.request_email(sample_visit, encryptor).body.should =~ /confirmation\/new\?state=/
-    end
   end
 
   context "in production" do
