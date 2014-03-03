@@ -13,11 +13,11 @@
 
 table.BookingCalendar
   width: 100%
+  font-size: 19px
   background: image-url("unavailable_tile.png")
 
   thead th
     padding: 3px 0 0
-    font-size: 19px
     font-weight: bold
     line-height: normal
     text-align: center
@@ -25,7 +25,9 @@ table.BookingCalendar
     background: $grey-4
     border-bottom: 2px solid $grey-2
 
-  td
+  tbody td
+    width: 14.285714286%
+    padding: 0
     border:
       color: $grey-3
       style: solid
@@ -33,10 +35,6 @@ table.BookingCalendar
   
   td:last-child > div
     border-right: 1px solid $grey-3
-
-  tbody td
-    width: 14.285714286%
-    padding: 0
 
 .BookingCalendar-dayLink,
 .BookingCalendar-dayLink:visited
@@ -116,27 +114,34 @@ table.BookingCalendar
   &.is-active
     display: block
 
-  h4
-    font-weight: bold
+  .day-slots-heading
+    @include bold-24
+    margin: .2em 0 .3em
 
   .slot
+    cursor: pointer
     position: relative
     float: left
+    box-sizing: border-box
     min-width: 120px
     margin-right: .5em
-    padding: 4px 7px
-    border: 1px solid $grey-2
-    cursor: pointer
-    background: $white //image-url("radio_buttons.png") no-repeat right -112px
-
-    &.is-active
-      background-position: right 8px
+    padding: .3em 15px .3em 40px
+    font-size: 24px
+    line-height: 1.2em
+    border: 2px solid $grey-2
+    background: $white
 
     &:last-child
       margin-right: 0
 
-    strong
-      padding: .5em
+    input
+      position: absolute
+      top: 50%
+      left: 10px
+      margin-top: -7px
+
+  .duration
+    display: block
 
 .selected-slots
 
@@ -179,6 +184,9 @@ table.BookingCalendar
         padding: 10px 10px 10px 65px
         background: $white
         border: 1px solid $grey-2
+
+        p
+          font-size: 24px
 
         .slot-remove,
         .slot-promote
