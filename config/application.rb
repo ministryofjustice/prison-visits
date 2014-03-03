@@ -50,6 +50,7 @@ module PrisonVisits2
       gov-static/gov-print.css
       moj-base.css
       gov-static/gov-ie.js
+      ie8.css
     )
 
     config.prison_data = YAML.load_file(File.join(Rails.root, 'config', 'prison_data.yml')).inject({}) do |h, (name, config)|
