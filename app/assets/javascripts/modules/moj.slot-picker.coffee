@@ -32,6 +32,8 @@ SlotPicker:: =
     @$promoteHelp = $ '.js-promote-help'
     @$alternativeHelp = $ '.js-alternative-help'
     @$months = $ '.js-slotpicker__months'
+    @$next = $ '.months .next'
+    @$prev = $ '.months .prev'
 
   bindEvents: ->
     # store a reference to obj before 'this' becomes jQuery obj
@@ -65,6 +67,18 @@ SlotPicker:: =
       _this.selectDay $(this)
       $('.js-slotpicker').addClass 'is-active'
       _this.confirmVisibility(_this.$months) unless e.type is 'chosen'
+
+    @$next.on 'click', (e) ->
+      e.preventDefault()
+      $('.BookingCalendar-wrap').animate(
+        scrollTop: 280
+      , 200)
+  
+    @$prev.on 'click', (e) ->
+      e.preventDefault()
+      $('.BookingCalendar-wrap').animate(
+        scrollTop: 0
+      , 200)
   
   selectDay: (day) ->
     dateStr = day.data 'date'

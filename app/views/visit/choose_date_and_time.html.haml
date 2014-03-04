@@ -53,28 +53,34 @@
 
 
   .hidden--mobile
+    = Date.today.strftime('%B')
+    .months
+      %a.next(href='#') Next
+      %a.prev(href='#') Previous
     %table.BookingCalendar
       %thead
         %tr
           - [:Mon,:Tue,:Wed,:Thu,:Fri,:Sat,:Sun].each do |d|
             %th= d
-
-      %tbody
-        - weeks.each do |week|
-          %tr
-            - week[1].each do |day|
-              %td{ :class => day_classes(day) }
-                .BookingCalendar-content
-                  %a.BookingCalendar-dayLink{ :href => "#date-#{day.strftime('%Y-%m-%d')}", :'data-date' => day }
-                    %span.visuallyhidden= day.strftime('%A')
-                    %span= day.strftime('%e')
-                    %span.visuallyhidden
-                      = day.strftime('%B')
-                      = bookable?(day) ? 'available' : 'unavailable'
-                  - if tag_with_today? day
-                    %span.BookingCalendar-tag.BookingCalendar-tag--today Today
-                  - if tag_with_month? day
-                    %span.BookingCalendar-tag= day.strftime('%b')
+    
+    .BookingCalendar-wrap
+      %table.BookingCalendar
+        %tbody
+          - weeks.each do |week|
+            %tr
+              - week[1].each do |day|
+                %td{ :class => day_classes(day) }
+                  .BookingCalendar-content
+                    %a.BookingCalendar-dayLink{ :href => "#date-#{day.strftime('%Y-%m-%d')}", :'data-date' => day }
+                      %span.visuallyhidden= day.strftime('%A')
+                      %span= day.strftime('%e')
+                      %span.visuallyhidden
+                        = day.strftime('%B')
+                        = bookable?(day) ? 'available' : 'unavailable'
+                    - if tag_with_today? day
+                      %span.BookingCalendar-tag.BookingCalendar-tag--today Today
+                    - if tag_with_month? day
+                      %span.BookingCalendar-tag= day.strftime('%b')
 
 .right-column
   .slots.js-slotpicker{ :'data-optionlimits' => number_of_slots }

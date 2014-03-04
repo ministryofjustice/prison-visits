@@ -2,7 +2,7 @@ class Slot
   include ActiveModel::Model
 
   LEAD_DAYS = 3
-  BOOKABLE_DAYS = 28
+  BOOKABLE_DAYS = 89
 
   attr_accessor :date
   attr_accessor :times

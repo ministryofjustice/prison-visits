@@ -11,10 +11,19 @@
     display: block
 
 
+.BookingCalendar-wrap
+  overflow: hidden
+  height: 279px
+  border-bottom: 1px solid $grey-3
+
 table.BookingCalendar
   width: 100%
   font-size: 19px
   background: image-url("unavailable_tile.png")
+
+  th,
+  td
+    width: 14.285714286%
 
   thead th
     padding: 3px 0 0
@@ -26,15 +35,17 @@ table.BookingCalendar
     border-bottom: 2px solid $grey-2
 
   tbody td
-    width: 14.285714286%
     padding: 0
     border:
       color: $grey-3
       style: solid
       width: 0 0 1px 1px
   
-  td:last-child > div
+  td:last-child > div,
     border-right: 1px solid $grey-3
+
+  tbody tr:last-child td
+    border-bottom: none
 
 .BookingCalendar-dayLink,
 .BookingCalendar-dayLink:visited
