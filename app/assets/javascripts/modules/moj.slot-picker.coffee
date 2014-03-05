@@ -34,7 +34,6 @@ SlotPicker:: =
     @$removeSlots = '.js-remove-slot'
     @$promoteSlots = '.js-promote-slot'
     @$promoteHelp = $ '.js-promote-help'
-    @$alternativeHelp = $ '.js-alternative-help'
     @$months = $ '.js-slotpicker__months'
     @$next = $ '.BookingCalendar-nav .next'
     @$prev = $ '.BookingCalendar-nav .prev'
@@ -53,7 +52,6 @@ SlotPicker:: =
       _this.processSlots()
       _this.disableCheckboxes _this.limitReached()
       _this.togglePromoteHelp()
-      _this.toggleAlternativeHelp()
 
     @$wrapper.on 'click', @$removeSlots, (e) ->
       e.preventDefault()
@@ -138,9 +136,6 @@ SlotPicker:: =
 
   togglePromoteHelp: ->
     @$promoteHelp[if @settings.currentSlots.length > 1 then 'addClass' else 'removeClass'] 'is-active'
-
-  toggleAlternativeHelp: ->
-    @$alternativeHelp[if @settings.currentSlots.length > 0 and @settings.currentSlots.length < 3 then 'addClass' else 'removeClass'] 'is-active'
 
   markChosenSlots: (slots) ->
     for slot in slots
