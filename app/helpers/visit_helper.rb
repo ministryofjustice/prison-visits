@@ -113,7 +113,7 @@ module VisitHelper
   end
 
   def weeks_end
-    (Date.today + Slot::BOOKABLE_DAYS.days).end_of_week
+    (Date.today + Slot::BOOKABLE_DAYS.days).end_of_month.end_of_week
   end
 
   def weeks
