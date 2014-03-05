@@ -113,6 +113,35 @@ table.BookingCalendar
 .BookingCalendar-tag--today
   background: $light-blue
 
+.BookingCalendar-availableMonths
+  display: none
+
+.BookingCalendar-nav
+  position: relative
+  background: $grey-2
+
+  strong
+    display: block
+    @include bold-24
+    margin: 0
+    padding: .5em 0
+    text-align: center
+
+  .next,
+  .prev
+    position: absolute
+    top: 0
+    left: 0
+    padding: .632em
+    @include core-19
+    color: $black
+    line-height: 30px
+    text-decoration: none
+
+  .next
+    left: auto
+    right: 0
+
 
 .day-slots
   display: none

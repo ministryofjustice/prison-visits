@@ -53,14 +53,19 @@
 
 
   .hidden--mobile
-    = Date.today.strftime('%B')
-    .months
-      %a.next(href='#') Next
+    %ul.BookingCalendar-availableMonths
+      - bookable_range.group_by{|r|r.beginning_of_month}.keys.each do |month|
+        %li
+          %a{ :href => "#month-#{month.strftime('%Y-%m')}" }= month.strftime('%B')
+
+    .BookingCalendar-nav
       %a.prev(href='#') Previous
+      %strong= Date.today.strftime('%B')
+      %a.next(href='#') Next
     %table.BookingCalendar
       %thead
         %tr
-          - [:Mon,:Tue,:Wed,:Thu,:Fri,:Sat,:Sun].each do |d|
+          - %w(Mon Tue Wed Thu Fri Sat Sun).each do |d|
             %th= d
     
     .BookingCalendar-wrap
@@ -80,7 +85,7 @@
                     - if tag_with_today? day
                       %span.BookingCalendar-tag.BookingCalendar-tag--today Today
                     - if tag_with_month? day
-                      %span.BookingCalendar-tag= day.strftime('%b')
+                      %span.BookingCalendar-tag.BookingCalendar-month{ :id => "month-#{day.strftime('%Y-%m')}" }(tabindex='-1')= day.strftime('%b')
 
 .right-column
   .slots.js-slotpicker{ :'data-optionlimits' => number_of_slots }

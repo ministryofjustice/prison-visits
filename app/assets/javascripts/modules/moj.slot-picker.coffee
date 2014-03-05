@@ -12,6 +12,8 @@ SlotPicker = (el, options) ->
   @settings = $.extend {}, @defaults, options
   @cacheEls el
   @bindEvents()
+  @setupNav()
+  @updateNav 0
   @markChosenSlots pvbe.current_slots
   return @
 
@@ -20,6 +22,8 @@ SlotPicker:: =
     optionlimit: 3
     selections: 'has-selections'
     currentSlots: []
+    calendarDayHeight: 56
+    navPointer: 0
 
   cacheEls: ->
     @$wrapper = $ '#wrapper'
@@ -32,8 +36,9 @@ SlotPicker:: =
     @$promoteHelp = $ '.js-promote-help'
     @$alternativeHelp = $ '.js-alternative-help'
     @$months = $ '.js-slotpicker__months'
-    @$next = $ '.months .next'
-    @$prev = $ '.months .prev'
+    @$next = $ '.BookingCalendar-nav .next'
+    @$prev = $ '.BookingCalendar-nav .prev'
+    @$availableMonths = $ '.BookingCalendar-availableMonths a'
 
   bindEvents: ->
     # store a reference to obj before 'this' becomes jQuery obj
@@ -68,18 +73,45 @@ SlotPicker:: =
       $('.js-slotpicker').addClass 'is-active'
       _this.confirmVisibility(_this.$months) unless e.type is 'chosen'
 
-    @$next.on 'click', (e) ->
+    @$next.on 'click', (e) =>
       e.preventDefault()
-      $('.BookingCalendar-wrap').animate(
-        scrollTop: 280
-      , 200)
+      @nudgeNav 1
   
-    @$prev.on 'click', (e) ->
+    @$prev.on 'click', (e) =>
       e.preventDefault()
-      $('.BookingCalendar-wrap').animate(
-        scrollTop: 0
-      , 200)
+      @nudgeNav -1
   
+  setupNav: ->
+    self = @
+    @settings.months = @$availableMonths.map ->
+      item = $(this)
+
+      label: item.text()
+      date: item.attr 'href'
+      pos: $(item.attr 'href').closest('tr').index() * self.settings.calendarDayHeight
+
+  updateNav: (i) ->
+    if i > 0
+      @$prev.removeClass('hidden').text @settings.months[i-1].label
+    else
+      @$prev.addClass 'hidden'
+
+    if i + 1 < @settings.months.length
+      @$next.removeClass('hidden').text @settings.months[i+1].label
+    else
+      @$next.addClass 'hidden'
+
+    $('.BookingCalendar-nav strong').text @settings.months[i].label
+
+  nudgeNav: (i) ->
+    @settings.navPointer = i + @settings.navPointer
+
+    @updateNav @settings.navPointer
+
+    $('.BookingCalendar-wrap').animate(
+      scrollTop: @settings.months[@settings.navPointer].pos
+    , 200)
+
   selectDay: (day) ->
     dateStr = day.data 'date'
     date = new Date(dateStr)
