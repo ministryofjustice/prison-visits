@@ -19,7 +19,10 @@
         %span.progress__label Send request
 
 
-%p.visible--js-enabled Choose the date first, then the time you'd like to visit. You can pick up to 3 possible times for each booking request. We'll let you know which one is available when we confirm your booking by email.
+%ul.visible--js-enabled
+  %li choose 3 possible dates and times for your visit 
+  %li you’ll receive a confirmation email in 3 working days
+  %li to get started, choose a date on the calendar 
 
 - if visit.slots.any? {|s| s.errors.any?}
   #error-summary.validation-summary.group(role="alert" tabindex="-1" aria-labelledby="error-heading")
