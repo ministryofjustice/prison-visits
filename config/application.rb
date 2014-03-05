@@ -45,7 +45,7 @@ module PrisonVisits2
     # Feedback URL (URL for feedback link in phase banner)
     config.feedback_url = 'test@example.com'
     # Google Analytics ID (Tracking ID for the service)
-    config.ga_id = ''
+    config.ga_id = 'UA-37377084-7'
 
     config.prison_data = YAML.load_file(File.join(Rails.root, 'config', 'prison_data.yml')).inject({}) do |h, (name, config)|
       config['enabled'] ? h.merge(name => config) : h
