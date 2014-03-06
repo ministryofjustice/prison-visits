@@ -258,34 +258,30 @@ table.BookingCalendar
         position: absolute
         top: 50%
         right: 10px
-        width: 1em
-        height: 1em
         margin-top: -15px
-        color: $grey-1
-        font-size: 30px
-        font-weight: bold
-        line-height: 1.15
-        text-align: center
-        text-decoration: none
-        background: $grey-3
-        border-radius: 50%
+        background-image: image-url("icons/remove.png")
 
       .slot-promote
         display: none
         position: absolute
         top: 50%
         right: 50px
-        width: 30px
-        height: 30px
         margin-top: -15px
-        background: image-url("promote_icon.png") no-repeat 0 -90px
-
-        @include device-pixel-ratio
-          background-position: 0 0
-          background-size: 100%
+        background-image: image-url("icons/promote.png")
       
       p
         margin: 0
+
+.icon
+  width: 30px
+  height: 30px
+  overflow: hidden
+  text-indent: 999px
+  background: no-repeat 0 -90px
+
+  @include device-pixel-ratio
+    background-position: 0 0
+    background-size: 100%
 
 .slot-form
   clear: both

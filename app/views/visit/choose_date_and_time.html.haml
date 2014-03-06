@@ -129,8 +129,8 @@
         - (1..number_of_slots).each_with_index do |i|
           %li
             - unless i == 1
-              %a.slot-promote.js-promote-slot{ :href => "##{i}" }
-            %a.slot-remove.js-remove-slot(href="#") &times;
+              %a.icon.slot-promote.js-promote-slot{ :href => "##{i}" } Promote
+            %a.icon.slot-remove.js-remove-slot(href="#") Remove
             .slot-position= i
             %p.date
             %p.time
