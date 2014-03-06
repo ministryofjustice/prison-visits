@@ -137,10 +137,31 @@ table.BookingCalendar
     color: $black
     line-height: 30px
     text-decoration: none
+    background: no-repeat 0 -80px
+
+    &:hover
+      text-decoration: underline
+
+  .prev
+    margin-left: 10px
+    padding-left: 35px
+    background-image: image-url("icons/prev.png")
+
+    @include device-pixel-ratio
+      background-position: 0 10px
+      background-size: 30px
 
   .next
     left: auto
     right: 0
+    margin-right: 10px
+    padding-right: 35px
+    background-image: image-url("icons/next.png")
+    background-position: 100% -80px
+
+    @include device-pixel-ratio
+      background-position: 100% 10px
+      background-size: 30px
 
 
 .slots
