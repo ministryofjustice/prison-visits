@@ -26,45 +26,49 @@
   - if f.object.errors.any?
     = render 'shared/validation'
 
-  .group{ :class => ('validation-error' if f.object.errors.include?(:first_name)) }
-    = f.label :first_name do
-      Prisoner first name
-      %span.validation-message= f.object.errors[:first_name].first if f.object.errors.include?(:first_name)
-    = f.text_field :first_name
+  %h2 Prisoner details
 
-  .group{ :class => ('validation-error' if f.object.errors.include?(:last_name)) }
-    = f.label :last_name do
-      Prisoner last name
-      %span.validation-message= f.object.errors[:last_name].first if f.object.errors.include?(:last_name)
-    = f.text_field :last_name
+  %fieldset.FormBlock
 
-  .group.js-native-date{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
-    %label(for="prisoner_date_of_birth_3i")
-      Date of birth
-      %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
-    = f.date_select :date_of_birth, order: [:day, :month, :year], start_year: Time.now.year - 18, end_year: Time.now.year - 100, prompt: { day: :day, month: :month, year: :year }, with_css_classes: true
-    %input.hidden.js-native-date__date-input(name='date_of_birth_native' type='date')
+    .group{ :class => ('validation-error' if f.object.errors.include?(:first_name)) }
+      = f.label :first_name do
+        Prisoner first name
+        %span.validation-message= f.object.errors[:first_name].first if f.object.errors.include?(:first_name)
+      = f.text_field :first_name
 
-  .group{ :class => ('validation-error' if f.object.errors.include?(:number)) }
-    = f.label :number do
-      Prisoner number
-      %span.validation-message= f.object.errors[:number].first if f.object.errors.include?(:number)
-    = f.text_field :number
-    %details.group__help
-      %summary How to get this?
-      %p The prisoner you’re visiting will be able to give you their prisoner number.
+    .group{ :class => ('validation-error' if f.object.errors.include?(:last_name)) }
+      = f.label :last_name do
+        Prisoner last name
+        %span.validation-message= f.object.errors[:last_name].first if f.object.errors.include?(:last_name)
+      = f.text_field :last_name
 
-  .group{ :class => ('validation-error' if f.object.errors.include?(:prison_name)) }
-    = f.label :prison_name do
-      Name of the prison
-      %span.validation-message= f.object.errors[:prison_name].first if f.object.errors.include?(:prison_name)
-    = f.select :prison_name, prison_names, prompt: 'select a prison'
-    %details.group__help
-      %summary Why are only these prisons available?
-      %p You'll be able to make online visit requests for more prisons in future, this is something we're working on.
+    .group.js-native-date{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
+      %label(for="prisoner_date_of_birth_3i")
+        Date of birth
+        %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
+      = f.date_select :date_of_birth, order: [:day, :month, :year], start_year: Time.now.year - 18, end_year: Time.now.year - 100, prompt: { day: :day, month: :month, year: :year }, with_css_classes: true
+      %input.hidden.js-native-date__date-input(name='date_of_birth_native' type='date')
+
+    .group{ :class => ('validation-error' if f.object.errors.include?(:number)) }
+      = f.label :number do
+        Prisoner number
+        %span.validation-message= f.object.errors[:number].first if f.object.errors.include?(:number)
+      = f.text_field :number
+      %details.group__help
+        %summary How to get this?
+        %p The prisoner you’re visiting will be able to give you their prisoner number.
+
+    .group{ :class => ('validation-error' if f.object.errors.include?(:prison_name)) }
+      = f.label :prison_name do
+        Name of the prison
+        %span.validation-message= f.object.errors[:prison_name].first if f.object.errors.include?(:prison_name)
+      = f.select :prison_name, prison_names, prompt: 'select a prison'
+      %details.group__help
+        %summary Why are only these prisons available?
+        %p You'll be able to make online visit requests for more prisons in future, this is something we're working on.
 
   .actions
-    = link_to 'Cancel and delete all details', abandon_path, :class => 'pull-right', :'data-confirm' => "Are you sure you wish to cancel this visit request?\r\rThis will delete all the information you have entered"
+    %p= link_to 'Cancel and delete all details', abandon_path, :class => 'pull-right', :'data-confirm' => "Are you sure you wish to cancel this visit request?\r\rThis will delete all the information you have entered"
     = f.submit :Continue, :class => 'button button-primary'
 
 %p.note
