@@ -18,17 +18,13 @@ describe BookingRequest do
     end
   end
 
-  let :encryptor do
-    VisitStateEncryptor.new("LOL" * 48)
-  end
-
   it "has its own SMTP configuration" do
     subject.smtp_settings.should_not == ActionMailer::Base.smtp_settings
   end
 
   context "always" do
     it "sends an e-mail with the prisoner name in the subject" do
-      subject.request_email(sample_visit, encryptor).subject.should == 'Visit request for Jimmy Fingers'
+      subject.request_email(sample_visit).subject.should == 'Visit request for Jimmy Fingers'
     end
   end
 
@@ -41,7 +37,7 @@ describe BookingRequest do
     it "sends an e-mail to rochester functional mailbox" do
       sample_visit.tap do |visit|
         visit.prisoner.prison_name = 'Rochester'
-        email = subject.request_email(visit, encryptor)
+        email = subject.request_email(visit)
         email.to.should == ['socialvisits.rochester@hmps.gsi.gov.uk']
         email.from.should == ['sample@email.lol']
         email.reply_to.should == ['sample@email.lol']
@@ -57,7 +53,7 @@ describe BookingRequest do
     
     it "sends an email to a google groups address" do
       sample_visit.tap do |visit|
-        subject.request_email(visit, encryptor).to.should == ['pvb-email-test@googlegroups.com']
+        subject.request_email(visit).to.should == ['pvb-email-test@googlegroups.com']
       end
     end
   end

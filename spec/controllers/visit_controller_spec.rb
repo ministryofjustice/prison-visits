@@ -316,8 +316,6 @@ describe VisitController do
     end
 
     it "sends out emails" do
-      subject.should_receive(:encryptor).and_return(VisitStateEncryptor.new("LOL" * 48))
-
       BookingRequest.any_instance.should_receive(:sender).and_return('test@example.com')
       BookingConfirmation.any_instance.should_receive(:sender).and_return('test@example.com')
 

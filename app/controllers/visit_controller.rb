@@ -1,5 +1,4 @@
 require 'google_analytics_adapter'
-require 'visit_state_encryptor'
 
 class VisitController < ApplicationController
   before_filter :check_if_session_exists, except: [:prisoner_details, :unavailable]
@@ -86,7 +85,7 @@ class VisitController < ApplicationController
   end
 
   def update_check_your_request
-    BookingRequest.request_email(visit, encryptor).deliver
+    BookingRequest.request_email(visit).deliver
     BookingConfirmation.confirmation_email(visit).deliver
     redirect_to request_sent_path
   end
@@ -101,10 +100,6 @@ class VisitController < ApplicationController
   end
 
 private
-
-  def encryptor
-    VisitStateEncryptor.new("LOL" * 48)
-  end
 
   def visit_params
     dob = [:'date_of_birth(3i)', :'date_of_birth(2i)', :'date_of_birth(1i)']
