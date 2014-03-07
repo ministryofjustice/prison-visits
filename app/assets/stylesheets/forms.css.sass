@@ -60,9 +60,12 @@ select
     clear: both
 
 .FormBlock
-  padding: 1em 0 1em 90px
+  padding: 1em 90px
   border:
     color: $grey-2
     style: solid
     width: 1px 0
   background: $grey-4
+
+  @include media(mobile)
+    padding: .5em 30px
