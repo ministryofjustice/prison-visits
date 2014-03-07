@@ -2,7 +2,7 @@
 .visitor.cf{ :id => "visitor-#{index}", :class => ('additional-visitor' unless index.zero?) }
 
   - unless index.zero?
-    %h3
+    %h2
       Visitor
       %span.js-visitor-position= index+1
   
@@ -48,5 +48,3 @@
     %label.remove-visitor
       = check_box_tag 'visit[visitor][][_destroy]', 1, false, { id: "_destroy-#{index}" }
       remove
-  
-= render 'additional_visitors', :v => visitor, :f => f if index.zero?

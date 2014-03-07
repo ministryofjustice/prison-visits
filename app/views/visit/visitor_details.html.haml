@@ -1,4 +1,4 @@
-- content_for :header, 'Visitor 1: your details'
+- content_for :header, 'Visitor 1'
 
 - content_for :progress_bar do
   %ol.progress
@@ -18,6 +18,7 @@
       .progress__step
         %span.progress__label Send request
 
+%h2 Your details
 
 = form_for visit, url: update_visitor_details_path, :html => { :autocomplete => 'off' } do |f|
 
@@ -32,16 +33,30 @@
           - visitor.errors.full_messages.each do |msg|
             %li= msg
 
+  %fieldset.FormBlock
 
-  - visit.visitors.each_with_index do |visitor, index|
-    = f.fields_for visitor, index: '' do |visitor_form|
-      = render 'visitor_fields', f: visitor_form, index: index, visitor: visitor
-  
-  .additional-visitors
+    = f.fields_for visit.visitors[0], index: '' do |visitor_form|
+      = render 'visitor_fields', f: visitor_form, index: 0, visitor: visit.visitors[0]
+    
+  %h2 Other visitors
+  %p.hidden--js-enabled You can have up to 2 adults (over 18) and 3 children visiting at the same time. Seats are provided only for adults, so children may have to sit on your lap. 
+  %p.visible--js-enabled You can have up to 3 adults (over 18) and 3 children visiting at the same time. Seats are provided only for adults, so children may have to sit on your lap.
+
+  %fieldset.FormBlock
+
+    .group.group--inline.visible--js-enabled
+      %label(for="number_of_adults") How many other visitors?
+      = select_tag 'visit[visitor][][number_of_adults]', options_for_select([['none',0],1,2,3,4,5], visit.visitors[0].number_of_adults.to_s), :class => 'number_of_visitors adults'
+
+    .additional-visitors
+      - visit.visitors.each_with_index do |visitor, index|
+        - next if index == 0
+        = f.fields_for visitor, index: '' do |visitor_form|
+          = render 'visitor_fields', f: visitor_form, index: index, visitor: visitor
 
   .actions
     = f.submit :name => 'next', :value => 'Add another visitor', :class => 'button hidden--js-enabled', :id => 'add-visitor'
-    = link_to 'Cancel and delete all details', abandon_path, :class => 'pull-right', :'data-confirm' => "Are you sure you wish to cancel this visit request?\r\rThis will delete all the information you have entered"
+    %p= link_to 'Cancel and delete all details', abandon_path, :class => 'pull-right', :'data-confirm' => "Are you sure you wish to cancel this visit request?\r\rThis will delete all the information you have entered"
     = f.submit :name => 'next', :value => 'Continue', :class => 'button button-primary', :id => 'continue'
 
 -# Repeat an empty instance of the visitor fields to append additional visitors on the client-side

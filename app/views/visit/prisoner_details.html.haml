@@ -23,10 +23,10 @@
 
 = form_for visit.prisoner, url: update_prisoner_details_path, as: :prisoner, :html => { :class => 'form validation', :autocomplete => 'off' } do |f|
 
+  %h2 Prisoner details
+
   - if f.object.errors.any?
     = render 'shared/validation'
-
-  %h2 Prisoner details
 
   %fieldset.FormBlock
 

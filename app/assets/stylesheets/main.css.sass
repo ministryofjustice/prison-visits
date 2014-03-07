@@ -4,14 +4,15 @@ header h1
   margin: .66em 0 .33em
 
 h2
-  margin-top: .5em
+  @include core-24
+  margin-top: 1em
+
+  .check_your_request &
+    @include core-27
+    margin: 0 0 .25em
 
 p
   @include core-19
-
-.prisoner_details h2,
-.visitor_details h2
-  @include core-24
 
 legend
   @include core-24
@@ -45,7 +46,6 @@ summary
   padding-top: 1em
   border-top: 1px dashed $grey-2
 
-  h2,
   ul,
   p
     margin: 0
