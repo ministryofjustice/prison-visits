@@ -68,8 +68,9 @@
         %p You'll be able to make online visit requests for more prisons in future, this is something we're working on.
 
   .actions
-    %p= link_to 'Cancel and delete all details', abandon_path, :class => 'pull-right', :'data-confirm' => "Are you sure you wish to cancel this visit request?\r\rThis will delete all the information you have entered"
-    = f.submit :Continue, :class => 'button button-primary'
+    .primary-actions
+      = f.submit :Continue, :class => 'button button-primary'
+    %p= link_to 'Cancel and delete all details', abandon_path, :'data-confirm' => "Are you sure you wish to cancel this visit request?\r\rThis will delete all the information you have entered"
 
 %p.note
   %strong Please note

@@ -59,6 +59,20 @@ select
   @include media(desktop)
     clear: both
 
+  p
+    margin-top: .263em
+    text-align: right
+
+    @include media(false, 768px)
+      margin-top: 2em
+      text-align: left
+
+.primary-actions
+  float: left
+
+  @include media(false, 768px)
+    float: none
+
 .FormBlock
   padding: 1em 90px
   border:

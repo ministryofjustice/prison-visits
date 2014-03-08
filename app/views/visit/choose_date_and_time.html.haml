@@ -145,8 +145,9 @@
                     %option{ value: value, selected: ('selected' if value == current_slots[index]) }= date.strftime('%A, %e %B - ') + Time.strptime(slot[0].to_s, '%H%M').strftime('%l:%M%P')
 
   .actions
-    = link_to 'Cancel and delete all details', abandon_path, :class => 'pull-right', :'data-confirm' => "Are you sure you wish to cancel this visit request?\r\rThis will delete all the information you have entered"
-    = f.button :Continue, :name => 'next', :value => 'continue', :class => 'button button-primary js-submit'
+    .primary-actions
+      = f.button :Continue, :name => 'next', :value => 'continue', :class => 'button button-primary js-submit'
+    %p= link_to 'Cancel and delete all details', abandon_path, :'data-confirm' => "Are you sure you wish to cancel this visit request?\r\rThis will delete all the information you have entered"
 
 :javascript
   pvbe = {
