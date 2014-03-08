@@ -8,8 +8,9 @@ addVisitorBlocks = (amount) ->
     compiled = _.template($('#additional-visitor').html())
     $compiled = $(compiled())
     moj.showNativeDate $compiled
-    $('.additional-visitors').append setPosition($compiled)
+    $('.additional-visitors').append ($compiled)
     i++
+  updatePositions()
 
 
 removeVisitorBlocks = (amount) ->
@@ -25,10 +26,13 @@ countVisitors = ->
   $('.additional-visitor').length
 
 
-setPosition = ($el) ->
-  count = countVisitors()
-  $el.find('.js-visitor-position').text count+2
-  $el
+updateOption = (num) ->
+  $('.number_of_visitors').val countVisitors()
+
+
+updatePositions = ->
+  $('.additional-visitor').each (i) ->
+    $(this).find('.js-visitor-position').text i+2
 
 
 $('.number_of_visitors').on 'change', ->
@@ -41,3 +45,10 @@ $('.number_of_visitors').on 'change', ->
   # leave as is if the desired amount is the same as currently available
   # remove visitor blocks if the form currently contains more that desired
   else removeVisitorBlocks(current-desired) if desired < current
+
+
+$('body').on 'click', '.remove-link', (e) ->
+  e.preventDefault()
+  $(this).closest('.additional-visitor').remove()
+  updatePositions()
+  updateOption()

@@ -48,3 +48,8 @@
     %label.remove-visitor
       = check_box_tag 'visit[visitor][][_destroy]', 1, false, { id: "_destroy-#{index}" }
       remove
+
+    %p.remove-link.visible--js-enabled
+      = link_to '#' do
+        Remove visitor
+        %span.js-visitor-position= index+1
