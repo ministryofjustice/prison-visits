@@ -21,7 +21,6 @@
 %p Check all the details on this page carefully before clicking 'Send request'
 
 .divider
-  %p.edit-link= link_to 'Edit these prisoner details', prisoner_details_path
   %h2 Prisoner details
   %p
     %big
@@ -36,18 +35,18 @@
   %p
     Prison:
     %strong #{visit.prisoner.prison_name}
+  %p.edit-link= link_to 'Edit these prisoner details', prisoner_details_path
 
 .divider
-  %p.edit-link= link_to 'Edit these visitor details', visitor_details_path
   %h2 Visitor details
   - visit.visitors.each_with_index do |visitor, i|
     - if visitor.first_name.present? || visitor.last_name.present?
       %p
         Visitor #{i+1}:
         %strong #{visitor.first_name} #{visitor.last_name}
+  %p.edit-link= link_to 'Edit these visitor details', visitor_details_path
 
 .divider
-  %p.edit-link= link_to 'Edit these visit times', choose_date_and_time_path
   %h2 Chosen visit times
   %ul.unstyled-list
     - visit.slots.each do |slot|
@@ -57,6 +56,7 @@
           %strong= slot_date.strftime("%A %e %B")
           \ -
           = display_slot_and_duration slot.times
+  %p.edit-link= link_to 'Edit these visit times', choose_date_and_time_path
 
 .actions.divider
   .primary-actions
