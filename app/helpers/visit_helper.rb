@@ -129,6 +129,8 @@ module VisitHelper
   def day_classes(day)
     classes = []
     classes << 'BookingCalendar-day--past' if day < Date.today
+    classes << 'BookingCalendar-day--lead' if day >= Date.today && day < bookable_from
+    classes << 'BookingCalendar-day--beyond' if day > bookable_to
     classes << (bookable?(day) ? 'BookingCalendar-day--bookable' : 'BookingCalendar-day--unbookable')
     classes
   end
