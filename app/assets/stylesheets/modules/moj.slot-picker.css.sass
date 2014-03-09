@@ -122,6 +122,25 @@ table.BookingCalendar
 .BookingCalendar-tag--today
   background: $light-blue
 
+ul.BookingCalendar-key
+  display: table
+  padding: 0
+  list-style: none
+
+  li
+    display: table-cell
+    @include core-16
+
+.BookingCalendar-dayBox
+  float: left
+  width: 19px
+  height: 19px
+  margin-right: 3px
+  border: 1px solid $grey-3
+
+  .BookingCalendar-day--unavailable
+    background: image-url("unavailable_tile.png")
+
 .BookingCalendar-availableMonths
   display: none
 

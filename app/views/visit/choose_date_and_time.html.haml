@@ -89,6 +89,20 @@
                       %span.BookingCalendar-tag.BookingCalendar-tag--today Today
                     - if tag_with_month? day
                       %span.BookingCalendar-tag.BookingCalendar-month{ :id => "month-#{day.strftime('%Y-%m')}" }(tabindex='-1')= day.strftime('%b')
+      
+    %ul.BookingCalendar-key
+      %li
+        .BookingCalendar-dayBox.BookingCalendar-day--past
+        Can't book in the past
+      %li
+        .BookingCalendar-dayBox.BookingCalendar-day--lead
+        Can't book within 72 hrs
+      %li
+        .BookingCalendar-dayBox.BookingCalendar-day--unavailable
+        No visits this day
+      %li
+        .BookingCalendar-dayBox.BookingCalendar-day--beyond
+        Date too far in future
 
 .right-column
   .slots.js-slotpicker{ :'data-optionlimits' => number_of_slots }
