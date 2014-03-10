@@ -96,10 +96,10 @@ table.BookingCalendar
     color: $grey-1
 
 .BookingCalendar-day--lead
-  background: $grey-1
+  background-image: image-url("lead_tile.png")
 
 .BookingCalendar-day--beyond
-  background: $grey-3
+  background-image: image-url("beyond_tile.png")
 
   .BookingCalendar-content a
     color: $grey-1
@@ -138,7 +138,7 @@ ul.BookingCalendar-key
   margin-right: 3px
   border: 1px solid $grey-3
 
-  .BookingCalendar-day--unavailable
+  &.BookingCalendar-day--unavailable
     background: image-url("unavailable_tile.png")
 
 .BookingCalendar-availableMonths
