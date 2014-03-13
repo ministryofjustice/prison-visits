@@ -92,17 +92,11 @@
       
     %ul.BookingCalendar-key
       %li
-        .BookingCalendar-dayBox.BookingCalendar-day--past
-        Can't book in the past
-      %li
-        .BookingCalendar-dayBox.BookingCalendar-day--lead
-        Can't book within 72 hrs
+        .BookingCalendar-dayBox
+        Visits possible on this day
       %li
         .BookingCalendar-dayBox.BookingCalendar-day--unavailable
         No visits this day
-      %li
-        .BookingCalendar-dayBox.BookingCalendar-day--beyond
-        Date too far in future
 
 .right-column
   .slots.js-slotpicker{ :'data-optionlimits' => number_of_slots }
