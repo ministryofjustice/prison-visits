@@ -65,8 +65,8 @@ casper.test.begin 'Prison Visit Booking: Step 1 - prisoner details', (test) ->
 
     test.comment 'Prison Visit Booking: Step 3 - choose a session'
 
-    @click '.fc-bookable a.fc-day-number'
-    test.assertTextExists 'Choose an alternative date', 'slot help is present'
+    @click '.BookingCalendar-day--bookable .BookingCalendar-dayLink'
+    test.assertTextExists 'Choose a second date', 'slot help is present'
     
     @click '.day-slots.is-active input'
 
