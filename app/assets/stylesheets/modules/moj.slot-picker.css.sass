@@ -118,10 +118,13 @@ ul.BookingCalendar-key
 
 .BookingCalendar-dayBox
   float: left
-  width: 19px
-  height: 19px
-  margin-right: 3px
+  width: 29px
+  height: 29px
+  margin: 0 3px 0 5px
   border: 1px solid $grey-3
+
+  li:first-child &
+    margin-left: 0
 
   &.BookingCalendar-day--unavailable
     background: image-url("unavailable_tile.png")
