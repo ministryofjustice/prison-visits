@@ -22,4 +22,5 @@ group :test, :development do
   gem 'curb'
   gem 'parallel'
   gem 'rspec_junit_formatter'
+  gem 'poltergeist'
 end
