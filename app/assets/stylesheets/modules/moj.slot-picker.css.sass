@@ -12,6 +12,7 @@
 
 
 .BookingCalendar-wrap
+  position: relative
   overflow: hidden
   height: 279px
   border-bottom: 1px solid $grey-3
@@ -108,12 +109,11 @@ table.BookingCalendar
   background: $light-blue
 
 ul.BookingCalendar-key
-  display: table
   padding: 0
   list-style: none
 
   li
-    display: table-cell
+    float: left
     @include core-16
 
 .BookingCalendar-dayBox
