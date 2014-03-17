@@ -1,3 +1,5 @@
+require 'name_validator'
+
 class Visitor
   include ActiveModel::Model
 
@@ -16,8 +18,8 @@ class Visitor
     [first_name, last_name].join(' ')
   end
 
-  validates_presence_of :first_name
-  validates_presence_of :last_name
+  validates :first_name, presence: true, name: true
+  validates :last_name, presence: true, name: true
   validates_inclusion_of :date_of_birth, in: ->(_) { 100.years.ago.beginning_of_year.to_date..Date.today }, message: 'must be a valid date'
   validate :validate_user_or_additional
 

@@ -22,6 +22,14 @@ describe Prisoner do
     end
   end
 
+  it "requires a valid name" do
+    prisoner.first_name = '<Jeremy'
+    prisoner.should_not be_valid
+
+    prisoner.last_name = 'Jeremy>'
+    prisoner.should_not be_valid
+  end
+
   ['123', 'abc', 'a123bc', 'aaa1234bc', 'w5678xyz'].each do |number|
     it "must fail if prisoner number is #{number}" do
       prisoner.send('number=', number)

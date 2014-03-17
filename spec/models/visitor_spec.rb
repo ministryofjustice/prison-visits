@@ -7,7 +7,7 @@ describe Visitor do
       v.last_name = 'Fibonacci'
       v.email = 'fibonacci@example.com'
       v.phone = '07776665555'
-      v.date_of_birth = 30.years.ago.to_s
+      v.date_of_birth = 30.years.ago
     end
   end
 
@@ -26,6 +26,22 @@ describe Visitor do
       v.should_not be_valid
       
       v.phone = '01344 123456'
+      v.should be_valid
+    end
+  end
+
+  it "validates names" do
+    visitor.tap do |v|
+      v.index = 0
+      v.date_of_birth = Date.parse "1986-04-20"
+
+      v.first_name = "<Jeremy"
+      v.should_not be_valid
+
+      v.first_name = "Jeremy>"
+      v.should_not be_valid
+
+      v.first_name = "Manfred"
       v.should be_valid
     end
   end
