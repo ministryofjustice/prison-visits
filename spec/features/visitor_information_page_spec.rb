@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 feature "visitor enters visitor information" do
+  include_examples "feature helper"
+
   before :each do
     enter_prisoner_information
   end

@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 feature "visitor enters prisoner information" do
+  include_examples "feature helper"
+
   context "and leaves fields blank" do
     it "validation messages are present" do
       visit '/'
@@ -19,7 +21,7 @@ feature "visitor enters prisoner information" do
     it "prompts for visitor information" do
       enter_prisoner_information
 
-      expect(page).to have_content('Visitor 1: your details')
+      expect(page).to have_content('Visitor 1')
     end
   end
 end

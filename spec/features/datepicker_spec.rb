@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 feature "visitor selects a date" do
+  include_examples "feature helper"
+
   before :each do
     enter_prisoner_information
     enter_visitor_information
@@ -9,12 +11,16 @@ feature "visitor selects a date" do
 
   context "that is unbookable" do
     it "and displays a message saying booking is not possible" do
+      yesterday = Time.now - 1.day
+      find(:css, yesterday.strftime("a.BookingCalendar-dayLink[data-date='%Y-%m-%d']")).click
+      page.should have_content("It is not possible to book a visit in the past.")
+
       tomorrow = Time.now + 1.day
-      find(:xpath, tomorrow.strftime("//a[@data-date='%Y-%m-%d']")).click
+      find(:css, tomorrow.strftime("a.BookingCalendar-dayLink[data-date='%Y-%m-%d']")).click
       page.should have_content('You can only book a visit 3 days in advance.')
 
-      a_month_from_now = Time.now + 1.month + 1.day
-      find(:xpath, a_month_from_now.strftime("//a[@data-date='%Y-%m-%d']")).click
+      a_month_from_now = Time.now + 29.days
+      find(:css, a_month_from_now.strftime("a.BookingCalendar-dayLink[data-date='%Y-%m-%d']")).click
       page.should have_content('You can only book a visit in the next 28 days.')
     end
   end
@@ -23,7 +29,7 @@ feature "visitor selects a date" do
     it "displays booking slots" do
       _when = Time.now + 3.days
       begin
-        find(:css, _when.strftime("td.fc-bookable .fc-day-number[data-date='%Y-%m-%d']")).click
+        find(:css, _when.strftime("a.BookingCalendar-dayLink[data-date='%Y-%m-%d']")).click
       rescue Capybara::ElementNotFound
         _when += 1.day
         retry

@@ -8,7 +8,8 @@
         %span.js-visitor-position
           ${index}
       - else
-        %span.js-visitor-position= index+1
+        %span.js-visitor-position
+          = index+1
   
   .group{ :class => ('validation-error' if f.object.errors.include?(:first_name)) }
     %label{ for: "first_name_#{index}" }
@@ -56,4 +57,9 @@
     %p.remove-link.visible--js-enabled
       = link_to '#' do
         Remove visitor
-        %span.js-visitor-position= index+1
+        - if js_template
+          %span.js-visitor-position
+            ${index}
+        - else
+          %span.js-visitor-position
+            = index+1
