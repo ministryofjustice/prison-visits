@@ -23,7 +23,6 @@ module FeaturesHelper
   end
 
   def enter_additional_visitor_information(n, kind)
-    expect(page).to have_content("Visitor #{n}")
     within "#visitor-#{n}" do
       fill_in "First name", with: 'Andy'
       fill_in "Last name", with: 'Smith'
