@@ -6,8 +6,6 @@ namespace :browserstack do
   end
 
   task :run, :browser do |t, args|
-    require 'rspec/core'
-
     begin
       unless ENV['BS_USERNAME'] && ENV['BS_PASSWORD']
         puts "The BS_USERNAME and BS_PASSWORD environment variables must be set prior to running this task."
@@ -15,7 +13,7 @@ namespace :browserstack do
       end
 
       browsers = YAML.load_file('config/browsers.json')
-      nodes = 2
+      nodes = 5
       
       # Fire up a test server in a background process.
       app_pid = spawn("rails s -e test 2>&1 > rails_browserstack.log")
@@ -28,28 +26,24 @@ namespace :browserstack do
       while content = r.readline
         break if content == "Press Ctrl-C to exit\n"
       end
-      
+
       results = Parallel.map(browsers, in_processes: nodes) do |browser|
         # We're in a subprocess here - set the environment variable BS_BROWSER to the desired browser configuration.
         ENV['BS_BROWSER'] = browser.to_json
- 
-        [RSpec::Core::Runner.run(['spec/features'], stderr = StringIO.new, stdout = StringIO.new), stderr.string, stdout.string]
-      end
 
-      # Convey success/failure status to the parent process.
-      success = true
-      browsers.zip(results).each do |browser, (result, stderr, stdout)|
-        puts browser
-        puts stdout
-        success &= result
+        test_label = ['os', 'os_version', 'browser', 'browser_version'].map { |k| browser[k] }.join('_')
+
+        system("rspec spec/features --format RspecJunitFormatter --out '#{test_label}.xml'")
       end
+      exitstatus = results.count { |e| !e }
+    rescue Exception => e
+      pp e
     ensure
       # Regardless of what happens, terminate everything.
-
-      Process.kill("HUP", pid)
-      Process.kill("HUP", app_pid)
+      Process.kill("TERM", pid)
+      Process.kill("TERM", app_pid)
       Process.waitall
-      exit(success)
+      exit(exitstatus)
     end
   end
 end

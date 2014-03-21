@@ -19,6 +19,7 @@ group :test, :development do
   gem 'rubyzip'
   gem 'selenium-webdriver'
   gem 'capybara'
-  gem 'parallel_tests'
   gem 'curb'
+  gem 'parallel'
+  gem 'rspec_junit_formatter'
 end
