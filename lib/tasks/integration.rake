@@ -5,6 +5,7 @@ namespace :integration do
     require './spec/support/features_helper'
 
     include Capybara::DSL
+    include FeaturesHelper
 
     Capybara.configure do |config|
       config.run_server = false
@@ -25,6 +26,18 @@ namespace :integration do
     enter_additional_visitor_information(5, :child)
     click_button 'Continue'
 
+    yesterday = Time.now - 1.day
+    find(:css, yesterday.strftime("a.BookingCalendar-dayLink[data-date='%Y-%m-%d']")).click
+    page.should have_content("It is not possible to book a visit in the past.")
+
+    tomorrow = Time.now + 1.day
+    find(:css, tomorrow.strftime("a.BookingCalendar-dayLink[data-date='%Y-%m-%d']")).click
+    page.should have_content('You can only book a visit 3 days in advance.')
+
+    a_month_from_now = Time.now + 29.days
+    find(:css, a_month_from_now.strftime("a.BookingCalendar-dayLink[data-date='%Y-%m-%d']")).click
+    page.should have_content('You can only book a visit in the next 28 days.')
+
     _when = Time.now + 3.days
     begin
       find(:css, _when.strftime("a.BookingCalendar-dayLink[data-date='%Y-%m-%d']")).click
@@ -34,14 +47,15 @@ namespace :integration do
     end
 
     within(:css, _when.strftime("#date-%Y-%m-%d.is-active")) do
+      page.should have_content(_when.strftime("%A %e %B"))
       check('2:00pm 2 hrs')
     end
+
     click_button 'Continue'
 
-    three_days_from_now = Time.now + 3.days
-    find(:xpath, three_days_from_now.strftime("//a[@data-date='%Y-%m-%d']")).click
-    check("slot-#{three_days_from_now.strftime('%Y-%m-%d')}-1400-1600")
-    click_button 'Continue'
+    page.should have_content('Check your request')
+
     click_button 'Send request'
+    page.should have_content('Your visit request has been sent')
   end
 end

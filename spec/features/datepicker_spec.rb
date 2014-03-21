@@ -4,6 +4,7 @@ feature "visitor selects a date" do
   include_examples "feature helper"
 
   before :each do
+    visit '/'
     enter_prisoner_information
     enter_visitor_information
     click_button 'Continue'

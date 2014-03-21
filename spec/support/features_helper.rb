@@ -1,6 +1,5 @@
-shared_examples "feature helper" do
+module FeaturesHelper
   def enter_prisoner_information
-    visit '/'
     fill_in 'Prisoner first name', with: 'Jimmy'
     fill_in 'Prisoner last name', with: 'Fingers'
     select '1', from: 'prisoner[date_of_birth(3i)]'
@@ -39,4 +38,8 @@ shared_examples "feature helper" do
       end
     end
   end
+end
+
+shared_examples "feature helper" do
+  include FeaturesHelper
 end

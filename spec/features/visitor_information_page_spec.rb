@@ -4,6 +4,7 @@ feature "visitor enters visitor information" do
   include_examples "feature helper"
 
   before :each do
+    visit '/'
     enter_prisoner_information
   end
 
