@@ -35,7 +35,7 @@
 
   %fieldset.FormBlock
     = f.fields_for visit.visitors[0], index: '' do |visitor_form|
-      = render 'visitor_fields', f: visitor_form, index: 0, visitor: visit.visitors[0]
+      = render 'visitor_fields', f: visitor_form, index: 0, visitor: visit.visitors[0], js_template: false
     
   %h2 Other visitors
   %p.hidden--js-enabled You can have up to 2 adults (over 18) and 3 children visiting at the same time. Seats are provided only for adults, so children may have to sit on your lap. 
@@ -51,7 +51,7 @@
       - visit.visitors.each_with_index do |visitor, index|
         - next if index == 0
         = f.fields_for visitor, index: '' do |visitor_form|
-          = render 'visitor_fields', f: visitor_form, index: index, visitor: visitor
+          = render 'visitor_fields', f: visitor_form, index: index, visitor: visitor, js_template: false
 
   .actions
     .primary-actions
