@@ -23,6 +23,6 @@ class BookingConfirmation < ActionMailer::Base
   end
 
   def sender
-    ENV['SMTP_SENDER']
+    production? ? ENV['SMTP_SENDER'] : 'test@example.com'
   end
 end

@@ -30,7 +30,7 @@ describe BookingRequest do
 
   context "in production" do
     before :each do
-      BookingRequest.any_instance.should_receive(:production?).and_return(true)
+      BookingRequest.any_instance.stub(:production?).and_return(true)
       BookingRequest.any_instance.stub(:sender).and_return('no-reply@pvb.local')
     end
 
@@ -48,7 +48,7 @@ describe BookingRequest do
 
   context "in staging or any other environment" do
     before :each do
-      BookingRequest.any_instance.should_receive(:production?).and_return(false)
+      BookingRequest.any_instance.stub(:production?).and_return(false)
     end
     
     it "sends an email to a google groups address" do

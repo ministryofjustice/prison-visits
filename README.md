@@ -51,29 +51,20 @@ This app uses [RSpec](http://rspec.info/) for Rails (server-side) tests and [Cas
 
 ### Client-side
 
-**Note:** the server must be running for these tests to run.
+## Locally (using firefox)
 
-For browser tests you will need PhantonJS and CasperJS installed.
+    rake spec:features
 
-    brew update && brew install phantomjs
-    brew install casperjs --devel
+## Remotely
 
-To run the tests:
+You'll need to set the environment variables to tell the tests scripts that you want them to be run remotely.
 
-    make
+    export BS_USERNAME browserstack-username
+    export BS_PASSWORD browserstack-password
+    rake spec:features
 
-To see a screen shot of each completed step run:
+## In parallel
 
-    make test-i
+    rake parallel:spec
 
-If tests fail, a screenshot of the failure is saved to `/tests/failure.png`.
 
-#### GruntJS
-
-For convenience, GruntJS has been added to watch the `app/` and `tests/` folders for changes and automatically run the lint and integration tests. Assuming you have [NodeJS](http://nodejs.org/) installed, run `npm install` and then one of the following commands:
-
-    grunt             # JS lint application code
-    grunt tests       # run integration tests
-    grunt watch       # monitor all
-    grunt watch:app   # monitor /app JS and run lint automatically
-    grunt watch:tests # monitor test scripts and run automatically

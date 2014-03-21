@@ -3,9 +3,16 @@ require 'spec_helper'
 describe VisitController do
   render_views
 
+  after :all do
+    Timecop.return
+  end
+
+  before :each do
+    ActionMailer::Base.deliveries.clear
+  end
+
   describe "step 1 - enter prisoner's details" do
     before :each do
-      ActionMailer::Base.deliveries.clear
       Timecop.freeze(Time.local(2013, 12, 1, 12, 00))
     end
 

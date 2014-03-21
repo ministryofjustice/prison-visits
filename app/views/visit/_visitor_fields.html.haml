@@ -1,34 +1,39 @@
 
-.visitor.cf{ :id => "visitor-#{index}", :class => ('additional-visitor' unless index.zero?) }
+.visitor.cf{ :id => "visitor-#{index}", :class => ('additional-visitor' unless index == 0) }
 
-  - unless index.zero?
+  - unless index == 0
     %h2
       Visitor
-      %span.js-visitor-position= index+1
+      - if js_template
+        %span.js-visitor-position
+          ${index}
+      - else
+        %span.js-visitor-position
+          = index+1
   
   .group{ :class => ('validation-error' if f.object.errors.include?(:first_name)) }
     %label{ for: "first_name_#{index}" }
-      = index.zero? ? 'Your first name' : 'First name'
+      = index == 0 ? 'Your first name' : 'First name'
       %span.validation-message= f.object.errors[:first_name].first if f.object.errors.include?(:first_name)
     = f.text_field :first_name, id: "first_name_#{index}"
 
   .group{ :class => ('validation-error' if f.object.errors.include?(:last_name)) }
     %label{ for: "last_name_#{index}" }
-      = index.zero? ? 'Your last name' : 'Last name'
+      = index == 0 ? 'Your last name' : 'Last name'
       %span.validation-message= f.object.errors[:last_name].first if f.object.errors.include?(:last_name)
     = f.text_field :last_name, id: "last_name_#{index}"
 
   .group.js-native-date{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
-    %label(for="prisoner_date_of_birth_3i")
-      = index.zero? ? 'Your date of birth' : 'Date of birth'
+    %label(for="visitor_date_of_birth_3i")
+      = index == 0 ? 'Your date of birth' : 'Date of birth'
       %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
     = f.date_select :date_of_birth, order: [:day, :month, :year], start_year: Time.now.year, end_year: Time.now.year - 100, prompt: { day: :day, month: :month, year: :year }, with_css_classes: true
     %input.hidden.js-native-date__date-input{ :name => "visit[visitor][][date_of_birth_native]" }(type='date')
-    - if index.zero?
+    - if index == 0
       %p.group__help
         %small You must be over 18 to book a visit.
 
-  - if index.zero?
+  - if index == 0
   
     .group{ :class => ('validation-error' if f.object.errors.include?(:email)) }
       = f.label :email do
@@ -44,7 +49,7 @@
         %span.validation-message= f.object.errors[:phone].first if f.object.errors.include?(:phone)
       = f.telephone_field :phone
 
-  - unless index.zero?
+  - unless index == 0
     %label.remove-visitor
       = check_box_tag 'visit[visitor][][_destroy]', 1, false, { id: "_destroy-#{index}" }
       remove
@@ -52,4 +57,9 @@
     %p.remove-link.visible--js-enabled
       = link_to '#' do
         Remove visitor
-        %span.js-visitor-position= index+1
+        - if js_template
+          %span.js-visitor-position
+            ${index}
+        - else
+          %span.js-visitor-position
+            = index+1
