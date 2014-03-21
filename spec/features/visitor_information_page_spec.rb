@@ -36,7 +36,7 @@ feature "visitor enters visitor information" do
           enter_visitor_information
 
           select n.to_s, from: 'visit[visitor][][number_of_adults]'
-          (1...n).each do |m|
+          (1..n).each do |m|
             enter_additional_visitor_information(m, m < 3 ? :adult : :child)
           end
 
