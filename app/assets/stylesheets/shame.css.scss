@@ -85,7 +85,13 @@ body.alpha .indicator {
 /* end mainstream footer */
 
 li {
-  font-size: 19px;
+  @include core-19
+}
+
+ul {
+  @include media(mobile) {
+    padding-left: 20px;
+  }
 }
 
 

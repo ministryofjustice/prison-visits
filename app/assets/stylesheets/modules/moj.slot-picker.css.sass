@@ -224,6 +224,10 @@ ul.BookingCalendar-key
   .js-promote-help
     display: none
 
+    @include media(mobile)
+      margin-left: 15px
+      margin-right: 15px
+
     &.is-active
       display: block
 
@@ -254,6 +258,10 @@ ul.BookingCalendar-key
         padding: 5px 5em
         text-align: center
         color: $grey-1
+
+        @include media(mobile)
+          padding-left: 2em
+          padding-right: 2em
 
       &.is-active
         padding-left: 65px
