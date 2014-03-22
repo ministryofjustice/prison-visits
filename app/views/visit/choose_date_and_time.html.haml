@@ -81,14 +81,14 @@
                   .BookingCalendar-content
                     %a.BookingCalendar-dayLink{ :href => "#date-#{day.strftime('%Y-%m-%d')}", :'data-date' => day }
                       %span.visuallyhidden= day.strftime('%A')
-                      %span= day.strftime('%e')
+                      %span.BookingCalendar-dayNum= day.strftime('%e')
                       %span.visuallyhidden
                         = day.strftime('%B')
                         = bookable?(day) ? 'available' : 'unavailable'
-                    - if tag_with_today? day
-                      %span.BookingCalendar-tag.BookingCalendar-tag--today Today
-                    - if tag_with_month? day
-                      %span.BookingCalendar-tag.BookingCalendar-month{ :id => "month-#{day.strftime('%Y-%m')}" }(tabindex='-1')= day.strftime('%b')
+                      - if tag_with_today? day
+                        %span.BookingCalendar-tag.BookingCalendar-tag--today Today
+                      - if tag_with_month? day
+                        %span.BookingCalendar-tag.BookingCalendar-month{ :id => "month-#{day.strftime('%Y-%m')}" }(tabindex='-1')= day.strftime('%b')
       
     %ul.BookingCalendar-key
       %li
