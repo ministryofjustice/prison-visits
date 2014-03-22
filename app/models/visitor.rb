@@ -27,7 +27,7 @@ class Visitor
     if index.zero?
       errors.add(:email, 'must be given') unless email.present? && email.size > 5
       errors.add(:phone, 'must be given and include area code') unless phone.present? && phone.size > 10
-      errors.add(:date_of_birth, 'You must be over 18 years old to book a visit') unless date_of_birth.present? && date_of_birth < 18.years.ago
+      errors.add(:base, 'You must be over 18 years old to book a visit') unless date_of_birth.present? && date_of_birth < 18.years.ago
     else
       errors.add(:email, 'must not be given') if email.present?
       errors.add(:phone, 'must not be given') if phone.present?
