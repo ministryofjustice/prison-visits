@@ -48,8 +48,8 @@ table.BookingCalendar
   tbody tr:last-child td
     border-bottom: none
 
-.BookingCalendar-dayLink,
-.BookingCalendar-dayLink:visited
+a.BookingCalendar-dayLink,
+a.BookingCalendar-dayLink:visited
   position: absolute
   top: 0
   width: 100%
@@ -57,7 +57,6 @@ table.BookingCalendar
   color: $grey-1
   text-decoration: none
 
-.BookingCalendar-dayLink
   &:hover
     color: $black
     text-decoration: underline
@@ -112,6 +111,7 @@ table.BookingCalendar
   background: $light-blue
 
 ul.BookingCalendar-key
+  overflow: hidden
   padding: 0
   list-style: none
 
