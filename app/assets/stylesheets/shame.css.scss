@@ -78,12 +78,8 @@ body.alpha .indicator {
 /* end alpha/beta box */
 
 
-/* mainstream footer */
-.footer-categories {
-  display: none;
-}
-/* end mainstream footer */
 
+/* list items to same font size as p */
 li {
   @include core-19
 }
@@ -93,8 +89,11 @@ ul {
     padding-left: 20px;
   }
 }
+/* end list items */
 
 
+
+/* mixin shared in date-slider and slot-picker */
 @mixin corner-marker($size: 10px) {
   overflow: hidden;
   
@@ -110,3 +109,4 @@ ul {
     border-color: transparent $light-blue transparent transparent;
   }
 }
+/* end mixin shared in date-slider and slot-picker */
