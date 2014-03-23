@@ -20,18 +20,6 @@ $(function () {
 // $('#footer .footer-meta .copyright a').css('backgroundImage', 'url(/assets/govuk-crest-2x.png)');
 // $('.footer-meta .footer-meta-inner .open-government-licence h2 img').attr('src', '/assets/open-government-licence_2x.png');
 
-// For slot-picker time choices
-function isElementInViewport (el) {
-    var rect = el.getBoundingClientRect();
-
-    return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /*or $(window).height() */
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth) /*or $(window).width() */
-    );
-}
-
 moj.are_cookies_enabled = function () {
   var cookieEnabled = (navigator.cookieEnabled) ? true : false;
 
