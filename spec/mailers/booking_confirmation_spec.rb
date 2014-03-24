@@ -21,7 +21,7 @@ describe BookingConfirmation do
 
   context "always" do
     it "sends out an e-mail with a date in the subject" do
-      subject.confirmation_email(sample_visit).subject.should == "Your visit request for 6 December 2013"
+      subject.confirmation_email(sample_visit).subject.should == "You have requested a visit for 6 December 2013"
     end
   end
 

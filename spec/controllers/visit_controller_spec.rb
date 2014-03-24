@@ -334,7 +334,7 @@ describe VisitController do
       post :update_check_your_request
       response.should redirect_to(request_sent_path)
 
-      ActionMailer::Base.deliveries.map(&:subject).should == ['Visit request for Jimmy Fingers', 'Your visit request for 6 December 2013']
+      ActionMailer::Base.deliveries.map(&:subject).should == ['Visit request for Jimmy Fingers', 'You have requested a visit for 6 December 2013']
     end
 
     it "doesn't send out e-mails if in testing mode" do
