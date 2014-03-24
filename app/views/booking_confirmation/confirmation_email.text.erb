@@ -1,6 +1,10 @@
 Dear <%= @visit.visitors.first.first_name %>,
 
-You have requested the following visiting slots for <%= @visit.visitors.size %> people at HMP <%= @visit.prisoner.prison_name %>:
+YOUR BOOKING REQUEST IS BEING PROCESSED
+
+We have received your visit request. We'll email you within <%= Slot::LEAD_DAYS %> working days to confirm a date and time. Please don't contact us sooner than <%= Slot::LEAD_DAYS %> working days, as we won't be able to comment on booking requests that are being processed.
+
+You have requested the following dates and times for <%= pluralize(@visit.visitors.size, "person") %> at HMP <%= @visit.prisoner.prison_name %>:
 
 <% @visit.slots.each_with_index do |slot, index| %>
 <% if slot.date.present? %>
@@ -8,25 +12,4 @@ You have requested the following visiting slots for <%= @visit.visitors.size %> 
 <% end %>
 <% end %>
 
-Your visit is not yet confirmed. You will receive a confirmation email from the prison booking staff within 3 working days.
-
-Please make sure you bring ID with you. This can be ONE of the following: 
-
- * passport, including foreign passports, and expired passports where the photograph is still recognisable
- * identity card (including European identity cards) 
- * driving licence
- * benefits book
- * senior citizen's public transport photo pass issued by a local authority
- * employer's or student ID card but only if this has a photo and clearly shows your name and the issuing employer or educational establishment
-
-If you don't have one of these forms of ID, you can bring TWO of the following:
-
- * birth or marriage certificate
- * cheque book or credit or debit card 
- * employer's pass or ID or student ID card without photo 
- * young person's 'proof of age' card
- * trade union or National Students' Union membership card
- * rent book
- * foreign identity or residents' card
-
-If you have any questions about ID requirements, please contact the prison.
+If you have any special requirements, eg wheelchair access, or you want to cancel or make a change to your request, please reply to this email.

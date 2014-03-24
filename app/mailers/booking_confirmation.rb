@@ -15,7 +15,7 @@ class BookingConfirmation < ActionMailer::Base
     prison_mailbox = Rails.configuration.prison_data[visit.prisoner.prison_name]['email']
 
     first_date = Date.parse(@visit.slots.first.date)
-    mail(sender: sender, from: prison_mailbox, reply_to: prison_mailbox, to: recipient, subject: "Your visit request for #{first_date.strftime('%e %B %Y').gsub(/^ /,'')}")
+    mail(sender: sender, from: prison_mailbox, reply_to: prison_mailbox, to: recipient, subject: "You have requested a visit for #{first_date.strftime('%e %B %Y').gsub(/^ /,'')}")
   end
 
   def production?
