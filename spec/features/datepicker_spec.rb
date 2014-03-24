@@ -12,8 +12,13 @@ feature "visitor selects a date" do
   context "that is unbookable" do
     it "and displays a message saying booking is not possible" do
       yesterday = Time.now - 1.day
-      find(:css, yesterday.strftime("a.BookingCalendar-dayLink[data-date='%Y-%m-%d']")).click
-      page.should have_content("It is not possible to book a visit in the past.")
+
+      # If the week starts on Monday, don't run this test - "yesterday" will be beyond the first
+      # row of the calendar.
+      if ![0, 7].include?(yesterday.wday)
+        find(:css, yesterday.strftime("a.BookingCalendar-dayLink[data-date='%Y-%m-%d']")).click
+        page.should have_content("It is not possible to book a visit in the past.")
+      end
 
       tomorrow = Time.now + 1.day
       find(:css, tomorrow.strftime("a.BookingCalendar-dayLink[data-date='%Y-%m-%d']")).click
