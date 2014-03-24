@@ -19,6 +19,8 @@ feature "visitor enters prisoner information" do
 
   context "and they fill out all fields" do
     it "prompts for visitor information" do
+      visit '/'
+
       enter_prisoner_information
 
       expect(page).to have_content('Visitor 1')

@@ -15,6 +15,7 @@ class VisitController < ApplicationController
   end
 
   def prisoner_details
+    session[:just_testing] = params[:testing].present?
   end
 
   def update_prisoner_details
@@ -85,8 +86,11 @@ class VisitController < ApplicationController
   end
 
   def update_check_your_request
-    BookingRequest.request_email(visit).deliver
-    BookingConfirmation.confirmation_email(visit).deliver
+    unless just_testing?
+      BookingRequest.request_email(visit).deliver
+      BookingConfirmation.confirmation_email(visit).deliver
+    end
+
     redirect_to request_sent_path
   end
 
@@ -154,5 +158,9 @@ private
         times: segments[3..4].join('-')
       }
     end
+  end
+
+  def just_testing?
+    session[:just_testing]
   end
 end

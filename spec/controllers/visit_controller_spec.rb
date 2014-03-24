@@ -53,6 +53,11 @@ describe VisitController do
         post :update_prisoner_details, bad_prisoner_hash
         response.should redirect_to(prisoner_details_path)
       end
+
+      it "sets the testing flag if 'test' is passed in on the first screen" do
+        get :prisoner_details, testing: 1
+        session[:just_testing].should be_true
+      end
     end
 
     context "given invalid prisoner details" do
@@ -330,6 +335,14 @@ describe VisitController do
       response.should redirect_to(request_sent_path)
 
       ActionMailer::Base.deliveries.map(&:subject).should == ['Visit request for Jimmy Fingers', 'Your visit request for 6 December 2013']
+    end
+
+    it "doesn't send out e-mails if in testing mode" do
+      controller.stub(:just_testing?).and_return(true)
+      expect {
+        post :update_check_your_request
+        response.should redirect_to(request_sent_path)
+      }.not_to change { ActionMailer::Base.deliveries }
     end
   end
 
