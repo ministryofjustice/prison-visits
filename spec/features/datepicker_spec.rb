@@ -1,4 +1,4 @@
-require 'spec_helper'
+=require 'spec_helper'
 
 feature "visitor selects a date" do
   include_examples "feature helper"
@@ -40,7 +40,7 @@ feature "visitor selects a date" do
         find(:css, _when.strftime("#date-%Y-%m-%d.is-active input[value='%Y-%m-%d-1400-1600']"))
       rescue Capybara::ElementNotFound
         _when += 1.day
-        retry
+        retry unless _when > Time.now + 30.days
       end
 
       within(:css, _when.strftime("#date-%Y-%m-%d.is-active")) do
