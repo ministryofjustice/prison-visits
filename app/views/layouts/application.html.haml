@@ -36,5 +36,9 @@
         
         .content-inner
           = yield
+- content_for :after_header do
+  /[if lte IE 6]
+    :javascript
+      document.body.className = document.body.className.replace('js-enabled','');
 
 = render template: "layouts/moj_template"
