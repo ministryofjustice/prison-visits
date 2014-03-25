@@ -36,6 +36,8 @@ feature "visitor selects a date" do
       _when = Time.now + 3.days
       begin
         find(:css, _when.strftime("a.BookingCalendar-dayLink[data-date='%Y-%m-%d']")).click
+        # Some dates are not bookable, ignore those.
+        find(:css, _when.strftime("#date-%Y-%m-%d.is-active input[value='%Y-%m-%d-1400-1600']"))
       rescue Capybara::ElementNotFound
         _when += 1.day
         retry
