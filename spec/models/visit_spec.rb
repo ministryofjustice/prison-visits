@@ -18,6 +18,7 @@ describe Visit do
     v = Visit.new(visit_id: SecureRandom.hex)
 
     v.slots = []
+    v.visitors = []
     v.valid?(:date_and_time).should be_false
 
     (1..3).each do |t|
@@ -27,6 +28,16 @@ describe Visit do
 
     v.slots = [Slot.new] * 4
     v.valid?(:date_and_time).should be_false
+  end
+
+  it "ensures that at most three adults can book a visit" do
+    v = Visit.new(visit_id: SecureRandom.hex)
+    (1..3).each do |n|
+      v.visitors = [double(:adult? => true)] * n
+      v.valid?(:validate_amount_of_adults).should be_true
+    end
+    v.visitors = [double(:adult? => true)] * 4
+    v.valid?(:validate_amount_of_adults).should be_false
   end
 
   it "requires a visit_id" do
