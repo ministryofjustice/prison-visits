@@ -1,4 +1,4 @@
-=require 'spec_helper'
+require 'spec_helper'
 
 feature "visitor selects a date" do
   include_examples "feature helper"
