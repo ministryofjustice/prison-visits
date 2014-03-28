@@ -128,3 +128,27 @@ Gartree:
       - 1400-1600
     sun:
       - 1400-1600
+Brinsford: 
+  enabled: true
+  phone: 01902 533 450
+  email: visitsbooking.westmidlands@noms.gsi.gov.uk
+  address:
+    - New Road  
+    - Featherstone
+    - Wolverhampton
+    - WV10 7PY
+  unbookable:
+    - 2014-12-25
+    - 2014-12-26
+    - 2015-01-01
+  slots:
+    mon:
+      - 1330-1600
+    tue:
+      - 1330-1600
+    thu:
+      - 1330-1600
+    sat:
+      - 1330-1600
+    sun:
+      - 1330-1600
