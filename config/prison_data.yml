@@ -152,3 +152,22 @@ Brinsford:
       - 1330-1600
     sun:
       - 1330-1600
+Drake Hall: 
+  enabled: false
+  phone: 0300 060 6501
+  email: visitsbooking.westmidlands@noms.gsi.gov.uk
+  address:
+    - Eccleshall  
+    - Staffordshire
+    - ST21 6LQ
+  unbookable:
+    - 2014-12-25
+    - 2014-12-26
+    - 2015-01-01
+  slots:
+    tue:
+      - 1330-1545
+    sat:
+      - 1330-1545
+    sun:
+      - 1330-1545
