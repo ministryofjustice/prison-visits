@@ -152,3 +152,35 @@ Brinsford:
       - 1330-1600
     sun:
       - 1330-1600
+Hewell: 
+  enabled: false
+  phone: 01527 785000
+  email: visitsbooking.westmidlands@noms.gsi.gov.uk
+  address:
+    - Hewell Lane  
+    - Redditch
+    - Worcestershire
+    - B97 6QS
+  unbookable:
+    - 2014-04-18
+    - 2014-04-20
+    - 2014-12-25
+    - 2014-12-26
+    - 2015-01-01
+  slots:
+    mon:
+      - 1400-1630
+    tue:
+      - 1400-1630
+    wed: 
+      - 1400-1630
+    thu:
+      - 1400-1630
+    fri: 
+      - 1430-1630
+    sat:
+      - 0930-1130
+      - 1430-1630
+    sun:
+      - 0930-1130
+      - 1430-1630
