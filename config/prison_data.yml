@@ -152,3 +152,33 @@ Brinsford:
       - 1330-1600
     sun:
       - 1330-1600
+Featherstone: 
+  enabled: false
+  phone: 001902 703000
+  email: visitsbooking.westmidlands@noms.gsi.gov.uk
+  address:
+    - New Road  
+    - Featherstone
+    - Wolverhampton
+    - WV10 7PU
+  unbookable:
+    - 2014-04-18
+    - 2014-04-20
+    - 2014-12-25
+    - 2014-12-26
+    - 2015-01-01
+  slots:
+    mon:
+      - 1400-1600
+    tue:
+      - 1400-1600
+    wed: 
+      - 1400-1600
+    thu: 
+      - 1400-1600
+     fri:
+      - 1400-1600
+    sat:
+      - 1400-1600
+    sun:
+      - 1400-1600
