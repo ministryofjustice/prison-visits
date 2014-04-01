@@ -19,11 +19,8 @@ ol.progress
   @include media(mobile)
     margin: 16px 0 0
 
-  .lte-ie8 &
+  @include ie-lte(7)
     display: none
-
-  .ie8 &
-    display: table
 
   li
     display: table-cell
@@ -61,7 +58,7 @@ ol.progress
         @include media(mobile) // mobile second, for IE support
           margin-left: 4px
 
-        .ie8 &
+        @include ie(8)
           background: none
 
     .progress__label
@@ -76,7 +73,7 @@ ol.progress
         margin-left: 0
         text-indent: -9999px // rather than display:none because it retains vertical alignment & accessibility
 
-      .ie8 &
+      @include ie(8)
         display: inline-block
 
     a.progress__label
@@ -99,7 +96,7 @@ ol.progress
         color: $light-blue
         background-color: $white
 
-        .ie8 &
+        @include ie(8)
           color: $white
           background: none
 

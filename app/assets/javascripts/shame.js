@@ -9,10 +9,6 @@ $(function () {
       window.location.href = $(this).attr('href');
     }
   });
-
-  if (moj.isIE8()) {
-    $('html').addClass('ie8');
-  }
 });
 
 // Hacks to show GOV.UK images when offline
@@ -35,7 +31,3 @@ moj.show_cookie_message = function () {
     $('noscript').after( $('noscript').text() );
   }
 }()
-
-moj.isIE8 = function () {
-  return !!navigator.userAgent.match(/MSIE 8/);
-}

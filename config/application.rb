@@ -39,7 +39,9 @@ module PrisonVisits2
 
     config.assets.enabled = true
     config.assets.precompile += %w(
-      ie8.css
+      application-ie6.css
+      application-ie7.css
+      application-ie8.css
     )
 
     # Feedback URL (URL for feedback link in phase banner)
