@@ -21,6 +21,29 @@ By updating this file you can:
 * Edit booking phone number
 * Edit prison address
 
+### Prison visibility
+To enable a prison, set `enabled` to `true`.
+
+### Visiting slots
+
+Slots are shown on a rolling week. Ie the same times are show for every Monday.
+
+Example:
+
+    mon:
+      - 1350-1450 // Creates a 1 hour slot from 1:50pm every Monday
+
+### Visiting slot anomalies
+
+If any particular date breaks this rule, it can be entered into `slot_anomalies`.
+
+**Note:** when a day is found in `slot_anomalies` the whole day is replaced with this data, therefore if the weekday usually contains multiple slots and only a single slot is to be edited, the rest of the slots need to be re-entered into the `slot_anomalies`.
+
+Example:
+
+    2014-04-21:
+      - 0930-1130 // Creates a 2 hour slot from 9:30am on Monday 21 April 2014 only
+
 ## Set-up
 
 Clone the project into a directory on to your environment using [instructions on GitHub](https://help.github.com/categories/54/articles). 
