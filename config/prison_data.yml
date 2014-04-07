@@ -103,6 +103,10 @@ Cardiff:
       - 1350-1520
     sun:
       - 1350-1520
+  slot_anomalies:
+    2014-04-21:
+      - 0945-1115
+      - 1350-1520
 Gartree:
   enabled: true
   phone: 01858 426 727

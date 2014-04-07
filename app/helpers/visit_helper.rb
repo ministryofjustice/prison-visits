@@ -100,6 +100,10 @@ module VisitHelper
     prison_data['email']
   end
 
+  def prison_slot_anomalies
+    prison_data['slot_anomalies']
+  end
+
   def prison_address(glue='<br>')
     prison_data['address'].join(glue).html_safe
   end
@@ -138,5 +142,23 @@ module VisitHelper
 
   def tag_with_month?(day)
     day.beginning_of_month == day
+  end
+
+  def has_anomalies?(day)
+    prison_slot_anomalies && prison_slot_anomalies.keys.include?(day)
+  end
+
+  def anomalies_for_day(day)
+    return prison_slot_anomalies[day].map do |slot|
+      slot.split('-')
+    end
+  end
+
+  def slots_for_day(day)
+    if has_anomalies? day
+      return anomalies_for_day day
+    else
+      return visiting_slots[day.strftime('%a').downcase.to_sym]
+    end
   end
 end
