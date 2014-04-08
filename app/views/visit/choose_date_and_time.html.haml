@@ -115,7 +115,7 @@
           - range_by_month[month].each do |date|
             .js-slotpicker-options.day-slots.cf{ :id => "date-#{date.strftime('%Y-%m-%d')}", :tabindex => -1 }
               %h4.day-slots-heading= date.strftime("%A %e %B")
-              - if visiting_slots.keys.include?(date.strftime('%a').downcase.to_sym) && !unbookable_dates.include?(date)
+              - if day_is_bookable date
                 - slots_for_day(date).each do |slot|
                   - slot_start = Time.strptime(slot[0].to_s, '%H%M')
                   - slot_end = Time.strptime(slot[1].to_s, '%H%M')
@@ -161,9 +161,8 @@
             - bookable_range.each do |date|
               -# Only bookable days
               - if bookable_week_days.include?(date.wday)
-                - weekday = date.strftime('%a').downcase.to_sym
-                - if visiting_slots.keys.include?(weekday)
-                  - visiting_slots[weekday].each_with_index do |slot, i|
+                - if day_is_bookable date
+                  - slots_for_day(date).each do |slot|
                     - value = [date.strftime('%Y-%m-%d'), slot.join('-')].join('-')
                     %option{ value: value, selected: ('selected' if value == current_slots[index]) }= date.strftime('%A, %e %B - ') + Time.strptime(slot[0].to_s, '%H%M').strftime('%l:%M%P')
 

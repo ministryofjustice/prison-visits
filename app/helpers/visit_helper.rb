@@ -161,4 +161,8 @@ module VisitHelper
       return visiting_slots[day.strftime('%a').downcase.to_sym]
     end
   end
+
+  def day_is_bookable(day)
+    visiting_slots.keys.include?(day.strftime('%a').downcase.to_sym) && !unbookable_dates.include?(day)
+  end
 end
