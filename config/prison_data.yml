@@ -258,3 +258,27 @@ Stoke Heath:
       - 1400-1600
     sun:
       - 1400-1600
+Swinfen Hall: 
+  enabled: false
+  phone: 01543 484 000
+  email: visitsbooking.westmidlands@noms.gsi.gov.uk
+  address:
+    - Swinfen Hall  
+    - FLichfield
+    - Staffordshire
+    - WS14 9QS
+  unbookable:
+    - 2014-04-18
+    - 2014-04-21
+    - 2014-12-25
+    - 2014-12-26
+    - 2015-01-01
+  slots:
+    tue:
+      - 1400-1600
+    wed:
+      - 1400-1600
+    sat:
+      - 1400-1600
+    sun:
+      - 1400-1600
