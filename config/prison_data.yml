@@ -259,7 +259,7 @@ Stoke Heath:
     sun:
       - 1400-1600
 Swinfen Hall: 
-  enabled: false
+  enabled: true
   phone: 01543 484 000
   email: visitsbooking.westmidlands@noms.gsi.gov.uk
   address:
