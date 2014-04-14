@@ -283,7 +283,7 @@ Swinfen Hall:
     sun:
       - 1400-1600
 Hewell: 
-  enabled: false
+  enabled: true
   phone: 01527 785000
   email: visitsbooking.westmidlands@noms.gsi.gov.uk
   address:
