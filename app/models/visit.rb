@@ -16,7 +16,7 @@ class Visit
   validate :validate_amount_of_adults
 
   def validate_amount_of_adults
-    errors.add(:base, "You can book for a maximum of 3 adults per visit") if adult_visitors.size > MAX_ADULTS
+    errors.add(:base, "You can book a maximum of 3 adults per visit") if adult_visitors.size > MAX_ADULTS
   end
 
   def adult_visitors
