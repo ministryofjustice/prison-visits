@@ -132,7 +132,7 @@ Gartree:
     sun:
       - 1400-1600
 Brinsford: 
-  enabled: false
+  enabled: true
   phone: 01902 533 450
   email: visitsbooking.westmidlands@noms.gsi.gov.uk
   address:
