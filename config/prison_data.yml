@@ -153,7 +153,7 @@ Brinsford:
     sun:
       - 1330-1600
 Drake Hall: 
-  enabled: false
+  enabled: true
   phone: 0300 060 6501
   email: visitsbooking.westmidlands@noms.gsi.gov.uk
   address:
