@@ -179,7 +179,7 @@ Drake Hall:
     sun:
       - 1330-1545
 Werrington: 
-  enabled: false
+  enabled: true
   phone: 01782 463 300
   email: visitsbooking.westmidlands@noms.gsi.gov.uk
   address:
