@@ -34,7 +34,7 @@ label
 
 input,
 select
-  @include core-16
+  @include core-19
   margin: 0
 
   &[type=text],
@@ -45,6 +45,9 @@ select
     padding: 5px 4px 2px
     color: $black
     border: 1px solid $grey-2
+
+    @include media(mobile)
+      width: 96%
 
 select
   border-color: $grey-2
@@ -82,4 +85,5 @@ select
   background: $grey-4
 
   @include media(mobile)
-    padding: .5em 5px
+    margin: 0 -15px
+    padding: .5em 15px

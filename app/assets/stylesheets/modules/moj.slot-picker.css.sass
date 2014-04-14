@@ -19,6 +19,7 @@
 
 table.BookingCalendar
   width: 100%
+  border-collapse: collapse
   font-size: 19px
   background: image-url("unavailable_tile.png")
 
@@ -48,8 +49,8 @@ table.BookingCalendar
   tbody tr:last-child td
     border-bottom: none
 
-.BookingCalendar-dayLink,
-.BookingCalendar-dayLink:visited
+a.BookingCalendar-dayLink,
+a.BookingCalendar-dayLink:visited
   position: absolute
   top: 0
   width: 100%
@@ -57,30 +58,15 @@ table.BookingCalendar
   color: $grey-1
   text-decoration: none
 
-.BookingCalendar-dayLink
   &:hover
     color: $black
     text-decoration: underline
     background: $light-blue-25
 
   &.is-chosen
-    overflow: hidden
-    
-    &:after
-      position: absolute
-      content: ''
-      top: 0
-      right: 0
-      width: 0
-      height: 0
-      border-style: solid
-      border-width: 0 10px 10px 0
-      border-color: transparent $light-blue transparent transparent
+    @include corner-marker
 
-      @include media(tablet)
-        border-width: 0 15px 15px 0
-
-  span
+  .BookingCalendar-dayNum
     padding-left: 3px
 
 .BookingCalendar-day--bookable
@@ -112,6 +98,7 @@ table.BookingCalendar
   background: $light-blue
 
 ul.BookingCalendar-key
+  overflow: hidden
   padding: 0
   list-style: none
 
@@ -191,7 +178,7 @@ ul.BookingCalendar-key
 
 .day-slots
   display: none
-  padding: .5em
+  padding: 10px
   background: $grey-3
 
   @include media(mobile)
@@ -211,14 +198,28 @@ ul.BookingCalendar-key
     box-sizing: border-box
     min-width: 120px
     margin-right: .5em
+    margin-bottom: .5em
     padding: .3em 15px .3em 40px
     font-size: 24px
     line-height: 1.2em
     border: 2px solid $grey-2
     background: $white
 
+    @include media(mobile)
+      width: 100%
+      padding-top: 10px
+      padding-bottom: 10px
+
+      &.is-active
+        border-color: $light-blue
+        background: $light-blue-25
+
+    &.is-disabled
+      color: $grey-2
+
     &:last-child
       margin-right: 0
+      margin-bottom: 0
 
     input
       position: absolute
@@ -229,6 +230,9 @@ ul.BookingCalendar-key
   .duration
     display: block
 
+    @include media(mobile)
+      display: inline
+
 .selected-slots
 
   h3,
@@ -237,6 +241,10 @@ ul.BookingCalendar-key
 
   .js-promote-help
     display: none
+
+    @include media(mobile)
+      margin-left: 15px
+      margin-right: 15px
 
     &.is-active
       display: block
@@ -265,13 +273,21 @@ ul.BookingCalendar-key
         margin-top: 0
 
       .prompt
-        padding: 5px 5em
+        padding: 5px 18%
         text-align: center
         color: $grey-1
 
+        @include media(mobile)
+          padding-left: 10%
+          padding-right: 10%
+
       &.is-active
         padding-left: 65px
+        padding-right: 80px
         border-style: solid
+
+        @include media(mobile)
+          padding-left: 55px
 
         p
           font-size: 24px
@@ -301,6 +317,9 @@ ul.BookingCalendar-key
         font-weight: bold
         text-align: center
         margin: -10px 0 0 -10px
+
+        @include media(mobile)
+          width: 45px
 
       .slot-remove
         display: none

@@ -42,5 +42,5 @@ $ ->
 
   moj.showNativeDate $('form')
 
-  selects = $ '.js-native-date select'
-  selects.first().change() if selects.closest('.year').val() isnt ''
+  selects = $('.js-native-date select:first-of-type')
+  selects.change() if selects.closest('.year').val() isnt ''

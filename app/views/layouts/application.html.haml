@@ -1,14 +1,23 @@
 - content_for :page_title do
   = page_title(yield(:header))
 
+
 - content_for :stylesheets do
   %script(src='/modernizr.custom.44058.js')
-  = stylesheet_link_tag "application", media: "all"
+  /[if IE 6]
+    = stylesheet_link_tag "application-ie6", media: "all"
+  /[if IE 7]
+    = stylesheet_link_tag "application-ie7", media: "all"
+  /[if IE 8]
+    = stylesheet_link_tag "application-ie8", media: "all"
+  = "<!--[if gt IE 8]><!-->#{stylesheet_link_tag("application", media: "all")}<!--<![endif]-->".html_safe
+
 
 - content_for :head do
   = csrf_meta_tag
   :javascript
     var pvbe = pvbe || {};
+
 
 - content_for :javascripts do
   %script{src: '//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js'}
@@ -16,9 +25,14 @@
     window._ || document.write('<script src="/assets/lodash-2.4.1.min.js">\x3C/script>')
   = javascript_include_tag "application"
 
+
 - content_for :body_classes, "#{config_item(:phase).to_s.downcase} #{config_item(:product_type).to_s.downcase} #{controller.action_name}"
 
+
 - content_for :feedback_link, link_to("your feedback", new_feedback_path(referrer: request.original_url))
+
+- content_for :after_header do
+  / [if lte IE 6] <script>document.body.className = document.body.className.replace('js-enabled','');</script>
 
 - content_for :content_override do
   %main#wrapper(role="main")
@@ -40,5 +54,6 @@
   /[if lte IE 6]
     :javascript
       document.body.className = document.body.className.replace('js-enabled','');
+
 
 = render template: "layouts/moj_template"

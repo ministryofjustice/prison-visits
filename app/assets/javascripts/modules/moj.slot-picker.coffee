@@ -69,7 +69,6 @@ SlotPicker:: =
       e.preventDefault()
       _this.selectDay $(this)
       $('.js-slotpicker').addClass 'is-active'
-      _this.confirmVisibility(_this.$months) unless e.type is 'chosen'
 
     @$next.on 'click', (e) =>
       e.preventDefault()
@@ -221,14 +220,6 @@ SlotPicker:: =
   highlightDay: (slot) ->
     day = @splitDateAndSlot(slot)[0]
     $("[data-date=#{day}]")[if ~@settings.currentSlots.join('-').indexOf(day) then 'addClass' else 'removeClass'] 'is-chosen'
-
-  confirmVisibility: ($el) -> @moveIntoViewport $el unless isElementInViewport $el.get(0)
-
-  moveIntoViewport: ($el) ->
-    bottom = $el.offset().top + $el.height()
-    $('html,body').animate
-      scrollTop: bottom - $(window).height()
-    , 350
     
 
 

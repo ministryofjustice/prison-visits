@@ -132,7 +132,7 @@ Gartree:
     sun:
       - 1400-1600
 Brinsford: 
-  enabled: false
+  enabled: true
   phone: 01902 533 450
   email: visitsbooking.westmidlands@noms.gsi.gov.uk
   address:
@@ -157,3 +157,156 @@ Brinsford:
       - 1330-1600
     sun:
       - 1330-1600
+Drake Hall: 
+  enabled: true
+  phone: 0300 060 6501
+  email: visitsbooking.westmidlands@noms.gsi.gov.uk
+  address:
+    - Eccleshall  
+    - Staffordshire
+    - ST21 6LQ
+  unbookable:
+    - 2014-04-18
+    - 2014-04-21
+    - 2014-12-25
+    - 2014-12-26
+    - 2015-01-01
+  slots:
+    tue:
+      - 1330-1545
+    sat:
+      - 1330-1545
+    sun:
+      - 1330-1545
+Werrington: 
+  enabled: true
+  phone: 01782 463 300
+  email: visitsbooking.westmidlands@noms.gsi.gov.uk
+  address:
+    - Werrington  
+    - Stoke-On-Trent
+    - ST9 0DX
+  unbookable:
+    - 2014-04-18
+    - 2014-04-21
+    - 2014-12-25
+    - 2014-12-26
+    - 2015-01-01
+  slots:
+    wed:
+      - 1400-1600
+    fri: 
+      - 1400-1600
+    sat:
+      - 1430-1630
+    sun:
+      - 1430-1630
+Featherstone: 
+  enabled: true
+  phone: 001902 703000
+  email: visitsbooking.westmidlands@noms.gsi.gov.uk
+  address:
+    - New Road  
+    - Featherstone
+    - Wolverhampton
+    - WV10 7PU
+  unbookable:
+    - 2014-04-18
+    - 2014-04-21
+    - 2014-12-25
+    - 2014-12-26
+    - 2015-01-01
+  slots:
+    tue:
+      - 1400-1600
+    wed: 
+      - 1400-1600
+    thu: 
+      - 1400-1600
+    fri:
+      - 1400-1600
+    sat:
+      - 1400-1600
+    sun:
+      - 1400-1600
+Stoke Heath: 
+  enabled: true
+  phone: 0300 0606506
+  email: visitsbooking.westmidlands@noms.gsi.gov.uk
+  address:
+    - Market Drayton  
+    - Shropshire
+    - TF9 2JL
+  unbookable:
+    - 2014-04-18
+    - 2014-04-21
+    - 2014-12-25
+    - 2014-12-26
+    - 2015-01-01
+  slots:
+    mon:
+      - 1400-1600
+    tue:
+      - 1400-1600
+    wed:
+      - 1400-1600
+    thu:
+      - 1400-1600
+    sat:
+      - 1400-1600
+    sun:
+      - 1400-1600
+Swinfen Hall: 
+  enabled: true
+  phone: 01543 484 000
+  email: visitsbooking.westmidlands@noms.gsi.gov.uk
+  address:
+    - Swinfen Hall  
+    - FLichfield
+    - Staffordshire
+    - WS14 9QS
+  unbookable:
+    - 2014-04-18
+    - 2014-04-21
+    - 2014-12-25
+    - 2014-12-26
+    - 2015-01-01
+  slots:
+    tue:
+      - 1400-1600
+    wed:
+      - 1400-1600
+    sat:
+      - 1400-1600
+    sun:
+      - 1400-1600
+Hewell: 
+  enabled: true
+  phone: 01527 785000
+  email: visitsbooking.westmidlands@noms.gsi.gov.uk
+  address:
+    - Hewell Lane  
+    - Redditch
+    - Worcestershire
+    - B97 6QS
+  unbookable:
+    - 2014-12-25
+    - 2014-12-26
+    - 2015-01-01
+  slots:
+    mon:
+      - 1400-1630
+    tue:
+      - 1400-1630
+    wed: 
+      - 1400-1630
+    thu:
+      - 1400-1630
+    fri: 
+      - 1430-1630
+    sat:
+      - 0930-1130
+      - 1430-1630
+    sun:
+      - 0930-1130
+      - 1430-1630

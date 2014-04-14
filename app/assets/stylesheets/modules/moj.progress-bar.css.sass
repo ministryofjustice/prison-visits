@@ -4,7 +4,7 @@ $spacing_for_chevron: 14px
 ol.progress
   display: table
   width: 100%
-  margin: 48px 0 16px
+  margin: 24px 0 16px
   padding: 0
   counter-reset: pos
   list-style-type: none
@@ -13,14 +13,14 @@ ol.progress
     bottom: 1px solid $grey-2
   background-color: $grey-4
 
+  .js-enabled &
+    margin-top: 48px
+
   @include media(mobile)
     margin: 16px 0 0
 
-  .lte-ie8 &
+  @include ie-lte(7)
     display: none
-
-  .ie8 &
-    display: table
 
   li
     display: table-cell
@@ -58,7 +58,7 @@ ol.progress
         @include media(mobile) // mobile second, for IE support
           margin-left: 4px
 
-        .ie8 &
+        @include ie(8)
           background: none
 
     .progress__label
@@ -73,7 +73,7 @@ ol.progress
         margin-left: 0
         text-indent: -9999px // rather than display:none because it retains vertical alignment & accessibility
 
-      .ie8 &
+      @include ie(8)
         display: inline-block
 
     a.progress__label
@@ -96,7 +96,7 @@ ol.progress
         color: $light-blue
         background-color: $white
 
-        .ie8 &
+        @include ie(8)
           color: $white
           background: none
 

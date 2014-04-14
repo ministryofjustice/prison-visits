@@ -30,8 +30,12 @@
         - visit.errors.full_messages.each do |msg|
           %li= msg
         - visit.visitors.select{|v|v.errors.any?}.each do |visitor|
-          - visitor.errors.full_messages.each do |msg|
-            %li= msg
+          - visitor.errors.messages.each do |key, val|
+            %li
+              - if key == :base
+                = val.join(', ').humanize
+              - else
+                = [(visitor.index == 0 ? "your" : "visitor #{visitor.index+1}"), key, val.join(' and ')].join(' ').humanize
 
   %fieldset.FormBlock
     = f.fields_for visit.visitors[0], index: '' do |visitor_form|

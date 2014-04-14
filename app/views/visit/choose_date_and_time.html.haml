@@ -27,7 +27,7 @@
 - if visit.slots.any? {|s| s.errors.any?}
   #error-summary.validation-summary.group(role="alert" tabindex="-1" aria-labelledby="error-heading")
     %h2#error-heading You need to fix the errors on this page before continuing.
-    %p You need to choose date(s) and time(s) for your visit to continue.
+    %p You need to select a date and time for your visit.
 
 
 .left-column.visible--js-enabled
@@ -81,14 +81,14 @@
                   .BookingCalendar-content
                     %a.BookingCalendar-dayLink{ :href => "#date-#{day.strftime('%Y-%m-%d')}", :'data-date' => day }
                       %span.visuallyhidden= day.strftime('%A')
-                      %span= day.strftime('%e')
+                      %span.BookingCalendar-dayNum= day.strftime('%e')
                       %span.visuallyhidden
                         = day.strftime('%B')
                         = bookable?(day) ? 'available' : 'unavailable'
-                    - if tag_with_today? day
-                      %span.BookingCalendar-tag.BookingCalendar-tag--today Today
-                    - if tag_with_month? day
-                      %span.BookingCalendar-tag.BookingCalendar-month{ :id => "month-#{day.strftime('%Y-%m')}" }(tabindex='-1')= day.strftime('%b')
+                      - if tag_with_today? day
+                        %span.BookingCalendar-tag.BookingCalendar-tag--today Today
+                      - if tag_with_month? day
+                        %span.BookingCalendar-tag.BookingCalendar-month{ :id => "month-#{day.strftime('%Y-%m')}" }(tabindex='-1')= day.strftime('%b')
       
     %ul.BookingCalendar-key
       %li

@@ -32,58 +32,35 @@
 /* end clearfix */
 
 
-/* table */
-// Originally from gov_static. Should move to moj_template.
-table {
-  border-collapse: collapse;
-}
-/* end table */
 
-
-/* service header */
-@include media(mobile) {
-  .service-header {
-    margin-left: 16px;
-  }
-}
-/* end service header */
-
-
-/* phase indicator */
-body.alpha .indicator {
-  p,
-  a:visited,
-  a:link {
-    color: $white;
-  }
-  p {
-    padding: 0 30px;
-    @include media(mobile) {
-      padding: 0 15px;
-    }
-  }
-  strong {
-    text-transform: uppercase;
-  }
-}
-/* end phase indicator */
-
-
-/* alpha/beta box */
-@include media(mobile) {
-  .service-header {
-    width: auto;
-  }
-}
-/* end alpha/beta box */
-
-
-/* mainstream footer */
-.footer-categories {
-  display: none;
-}
-/* end mainstream footer */
-
+/* list items to same font size as p */
 li {
-  font-size: 19px;
+  @include core-19
 }
+
+ul {
+  @include media(mobile) {
+    padding-left: 20px;
+  }
+}
+/* end list items */
+
+
+
+/* mixin shared in date-slider and slot-picker */
+@mixin corner-marker($size: 10px) {
+  overflow: hidden;
+  
+  &:after {
+    position: absolute;
+    content: '';
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 $size $size 0;
+    border-color: transparent $light-blue transparent transparent;
+  }
+}
+/* end mixin shared in date-slider and slot-picker */
