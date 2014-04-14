@@ -232,7 +232,7 @@ Featherstone:
     sun:
       - 1400-1600
 Stoke Heath: 
-  enabled: false
+  enabled: true
   phone: 0300 0606506
   email: visitsbooking.westmidlands@noms.gsi.gov.uk
   address:
