@@ -231,3 +231,30 @@ Featherstone:
       - 1400-1600
     sun:
       - 1400-1600
+Stoke Heath: 
+  enabled: false
+  phone: 0300 0606506
+  email: visitsbooking.westmidlands@noms.gsi.gov.uk
+  address:
+    - Market Drayton  
+    - Shropshire
+    - TF9 2JL
+  unbookable:
+    - 2014-04-18
+    - 2014-04-21
+    - 2014-12-25
+    - 2014-12-26
+    - 2015-01-01
+  slots:
+    mon:
+      - 1400-1600
+    tue:
+      - 1400-1600
+    wed:
+      - 1400-1600
+    thu:
+      - 1400-1600
+    sat:
+      - 1400-1600
+    sun:
+      - 1400-1600
