@@ -202,7 +202,7 @@ Werrington:
     sun:
       - 1430-1630
 Featherstone: 
-  enabled: false
+  enabled: true
   phone: 001902 703000
   email: visitsbooking.westmidlands@noms.gsi.gov.uk
   address:
