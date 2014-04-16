@@ -26,7 +26,7 @@
   = javascript_include_tag "application"
 
 
-- content_for :body_classes, "#{config_item(:phase).to_s.downcase} #{config_item(:product_type).to_s.downcase} #{controller.action_name}"
+- content_for :body_classes, "#{config_item(:phase).to_s.downcase} #{config_item(:product_type).to_s.downcase} #{controller.controller_name} #{controller.action_name}"
 
 
 - content_for :feedback_link, link_to("your feedback", new_feedback_path(referrer: request.original_url))
