@@ -1,11 +1,14 @@
-namespace :app do
+namespace :static_pages do
   desc "Generates static pages"
-  task static: :environment do
+  task generate: 'assets:precompile' do
     pages = {
       'static/404' => '404.html',
       'static/500' => '500.html',
       'static/503' => '503.html'
     }
+
+    # Silence a warning for the session key not being set.
+    Rails.application.config.secret_key_base = SecureRandom.hex
     app = ActionDispatch::Integration::Session.new(Rails.application)
 
     pages.each do |route, output|

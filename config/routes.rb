@@ -13,9 +13,7 @@ PrisonVisits2::Application.routes.draw do
     get "/unavailable", action: :unavailable
   end
   
-  if Rails.env.development?
-    get "static/404"
-    get "static/500"
-    get "static/503"
-  end
+  get "static/404"
+  get "static/500"
+  get "static/503"
 end
