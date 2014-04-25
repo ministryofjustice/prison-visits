@@ -58,7 +58,12 @@
           = display_slot_and_duration slot.times
   %p.edit-link= link_to 'Edit these visit times', choose_date_and_time_path
 
-.actions.divider
-  .primary-actions
-    = button_to 'Send request', update_check_your_request_path, class: 'button button-primary', form: { id: 'send-request-form' }
-  %p= link_to 'Cancel and delete all details', abandon_path, :'data-confirm' => "Are you sure you wish to cancel this visit request?\r\rThis will delete all the information you have entered"
+
+.divider
+  
+  = render 'shared/data_protection_act'
+  
+  .actions
+    .primary-actions
+      = button_to 'Send request', update_check_your_request_path, class: 'button button-primary', form: { id: 'send-request-form' }
+    %p= link_to 'Cancel and delete all details', abandon_path, :'data-confirm' => "Are you sure you wish to cancel this visit request?\r\rThis will delete all the information you have entered"
