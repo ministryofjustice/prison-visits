@@ -20,7 +20,7 @@
 
 %p Check all the details on this page carefully before clicking 'Send request'
 
-.divider
+.divider.compact
   %h2 Prisoner details
   %p
     %big
@@ -37,7 +37,7 @@
     %strong #{visit.prisoner.prison_name}
   %p.edit-link= link_to 'Edit these prisoner details', prisoner_details_path
 
-.divider
+.divider.compact
   %h2 Visitor details
   - visit.visitors.each_with_index do |visitor, i|
     - if visitor.first_name.present? || visitor.last_name.present?
@@ -46,7 +46,7 @@
         %strong #{visitor.first_name} #{visitor.last_name}
   %p.edit-link= link_to 'Edit these visitor details', visitor_details_path
 
-.divider
+.divider.compact
   %h2 Chosen visit times
   %ul.unstyled-list
     - visit.slots.each do |slot|
