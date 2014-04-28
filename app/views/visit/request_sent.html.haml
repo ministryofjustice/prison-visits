@@ -117,14 +117,7 @@
 
     %p Please do not bring anything restricted or illegal to the prison. For more information about what you are allowed to bring, please see the #{prison_link} page.
 
-  %details
-    %summary Your data
-
-    %p The Ministry of Justice (HM Prison Service) uses and retains the personal data of visitors for the purposes of the safe and secure provision of Prison Services, including those related to the management and rehabilitation of offenders. 
-
-    %p Access to the establishment can only be granted by supplying the prescribed information in order to ensure and maintain a safe and secure environment for all. 
-
-    %p You have the right to request details as to the personal information we hold for you; and subsequently request that we correct any personal information if it is found to be inaccurate or out of date. We will not share your information with other organisations unless it is required for the purposes of prevention, detection of crime, apprehension, prosecution, and management of offenders; prevention of terrorism; National Security; or required to do by law. 
+  = render 'shared/data_protection_act'
 
 - content_for :analytics do
   :ruby
