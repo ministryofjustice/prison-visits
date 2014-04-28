@@ -12,4 +12,8 @@ PrisonVisits2::Application.routes.draw do
     get "/", to: redirect("/prisoner-details")
     get "/unavailable", action: :unavailable
   end
+  
+  get "static/404"
+  get "static/500"
+  get "static/503"
 end
