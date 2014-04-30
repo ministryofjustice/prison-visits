@@ -342,6 +342,7 @@ describe VisitController do
       expect {
         post :update_check_your_request
         response.should redirect_to(request_sent_path)
+        response.body.should_not include('ga(')
       }.not_to change { ActionMailer::Base.deliveries }
     end
   end
