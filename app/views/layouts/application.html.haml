@@ -31,8 +31,10 @@
 
 - content_for :feedback_link, link_to("your feedback", new_feedback_path(referrer: request.original_url))
 
+
 - content_for :after_header do
   / [if lte IE 6] <script>document.body.className = document.body.className.replace('js-enabled','');</script>
+
 
 - content_for :content_override do
   %main#wrapper(role="main")
@@ -50,10 +52,6 @@
         
         .content-inner
           = yield
-- content_for :after_header do
-  /[if lte IE 6]
-    :javascript
-      document.body.className = document.body.className.replace('js-enabled','');
 
 
 = render template: "layouts/moj_template"
