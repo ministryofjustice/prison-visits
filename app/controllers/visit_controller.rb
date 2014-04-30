@@ -2,6 +2,7 @@ require 'google_analytics_adapter'
 
 class VisitController < ApplicationController
   before_filter :check_if_session_exists, except: [:prisoner_details, :unavailable]
+  helper_method :just_testing?
 
   def cal
     
