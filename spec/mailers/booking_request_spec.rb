@@ -38,7 +38,7 @@ describe BookingRequest do
       sample_visit.tap do |visit|
         visit.prisoner.prison_name = 'Rochester'
         email = subject.request_email(visit)
-        email.to.should == ['socialvisits.rochester@hmps.gsi.gov.uk']
+        email.to.should == ['socialvisits.rochester@maildrop.dsd.io']
         email.from.should == ['sample@email.lol']
         email.reply_to.should == ['sample@email.lol']
         email.sender.should == 'no-reply@pvb.local'

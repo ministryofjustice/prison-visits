@@ -34,8 +34,8 @@ describe BookingConfirmation do
     it "sends an e-mail to the person who requested a booking" do
       email = subject.confirmation_email(sample_visit)
       email.to.should == ['sample@email.lol'] 
-      email.from.should == ['socialvisits.rochester@hmps.gsi.gov.uk']
-      email.reply_to.should == ['socialvisits.rochester@hmps.gsi.gov.uk']
+      email.from.should == ['socialvisits.rochester@maildrop.dsd.io']
+      email.reply_to.should == ['socialvisits.rochester@maildrop.dsd.io']
       email.sender.should == 'no-reply@pvb.local'
     end
   end

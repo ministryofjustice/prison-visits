@@ -1,0 +1,331 @@
+Rochester:
+  enabled: true
+  phone: 01634 803100
+  email: socialvisits.rochester@maildrop.dsd.io
+  address:
+    - 1 Fort Road
+    - Rochester
+    - Kent
+    - ME1 3QS
+  unbookable:
+    - 2013-12-25
+    - 2013-12-26
+    - 2014-12-25
+    - 2014-12-26
+  slots:
+    mon:
+      - 1400-1600
+    tue:
+      - 1400-1600
+    wed:
+      - 1400-1600
+    thu:
+      - 1400-1600
+    sat:
+      - 0915-1115
+      - 1400-1600
+    sun:
+      - 1400-1600
+Durham:
+  enabled: true
+  phone: 0191 3323417
+  email: socialvisits.durham@maildrop.dsd.io
+  address:
+    - Old Elvet
+    - Durham
+    - DH1 3HU
+  unbookable:
+    - 2014-04-18
+    - 2014-12-25
+    - 2014-12-26
+    - 2015-01-01
+  slots:
+    mon:
+      - 1345-1545
+    tue:
+      - 1345-1545
+      - 1715-1900
+    wed:
+      - 1345-1545
+      - 1715-1900
+    thu:
+      - 1345-1545
+    fri:
+      - 1345-1545
+    sat:
+      - 0900-1145
+      - 1345-1645
+    sun:
+      - 0900-1145
+      - 1345-1645
+Cardiff:
+  enabled: true
+  phone: 029 20923327
+  email: socialvisits.cardiff@maildrop.dsd.io
+  address:
+    - Knox Road
+    - Cardiff
+    - CF24 0UG
+  unbookable:
+    - 2014-02-05
+    - 2014-03-05
+    - 2014-04-02
+    - 2014-04-18
+    - 2014-05-07
+    - 2014-06-04
+    - 2014-07-02
+    - 2014-08-06
+    - 2014-09-03
+    - 2014-10-01
+    - 2014-11-05
+    - 2014-12-03
+    - 2014-12-25
+    - 2014-12-26
+    - 2015-01-01
+  slots:
+    mon:
+      - 1350-1450
+      - 1450-1550
+    tue:
+      - 1350-1450
+      - 1450-1550
+    wed:
+      - 1350-1450
+      - 1450-1550
+    thu:
+      - 1350-1450
+      - 1450-1550
+    fri:
+      - 1350-1450
+      - 1450-1550
+    sat:
+      - 0945-1115
+      - 1350-1520
+    sun:
+      - 1350-1520
+  slot_anomalies:
+    2014-04-21:
+      - 0945-1115
+      - 1350-1520
+    2014-05-05:
+      - 0945-1115
+      - 1350-1520
+    2014-05-26:
+      - 0945-1115
+      - 1350-1520
+Gartree:
+  enabled: true
+  phone: 01858 426 727
+  email: SocialVisits.Gartree@maildrop.dsd.io
+  address:
+    - Gallow Field Rd
+    - Market Harborough
+    - Leicestershire
+    - LE16 7RP
+  unbookable:
+    - 2014-04-18
+    - 2014-04-21
+    - 2014-12-25
+    - 2014-12-26
+    - 2015-01-01
+  slots:
+    tue:
+      - 1400-1600
+    thu:
+      - 1400-1600
+    sat:
+      - 1400-1600
+    sun:
+      - 1400-1600
+Brinsford: 
+  enabled: true
+  phone: 01902 533 450
+  email: visitsbooking.westmidlands@maildrop.dsd.io
+  address:
+    - New Road  
+    - Featherstone
+    - Wolverhampton
+    - WV10 7PY
+  unbookable:
+    - 2014-04-18
+    - 2014-04-21
+    - 2014-05-05
+    - 2014-05-26
+    - 2014-12-25
+    - 2014-12-26
+    - 2015-01-01
+  slots:
+    mon:
+      - 1330-1600
+    tue:
+      - 1330-1600
+    thu:
+      - 1330-1600
+    sat:
+      - 1330-1600
+    sun:
+      - 1330-1600
+Drake Hall: 
+  enabled: true
+  phone: 0300 060 6501
+  email: visitsbooking.westmidlands@maildrop.dsd.io
+  address:
+    - Eccleshall  
+    - Staffordshire
+    - ST21 6LQ
+  unbookable:
+    - 2014-04-18
+    - 2014-04-21
+    - 2014-05-05
+    - 2014-05-26
+    - 2014-12-25
+    - 2014-12-26
+    - 2015-01-01
+  slots:
+    tue:
+      - 1330-1545
+    sat:
+      - 1330-1545
+    sun:
+      - 1330-1545
+Werrington: 
+  enabled: true
+  phone: 01782 463 300
+  email: visitsbooking.westmidlands@maildrop.dsd.io
+  address:
+    - Werrington  
+    - Stoke-On-Trent
+    - ST9 0DX
+  unbookable:
+    - 2014-04-18
+    - 2014-04-21
+    - 2014-05-05
+    - 2014-05-26
+    - 2014-12-25
+    - 2014-12-26
+    - 2015-01-01
+  slots:
+    wed:
+      - 1400-1600
+    fri: 
+      - 1400-1600
+    sat:
+      - 1430-1630
+    sun:
+      - 1430-1630
+Featherstone: 
+  enabled: true
+  phone: 001902 703000
+  email: visitsbooking.westmidlands@maildrop.dsd.io
+  address:
+    - New Road  
+    - Featherstone
+    - Wolverhampton
+    - WV10 7PU
+  unbookable:
+    - 2014-04-18
+    - 2014-04-21
+    - 2014-05-05
+    - 2014-05-26
+    - 2014-12-25
+    - 2014-12-26
+    - 2015-01-01
+  slots:
+    tue:
+      - 1400-1600
+    wed: 
+      - 1400-1600
+    thu: 
+      - 1400-1600
+    fri:
+      - 1400-1600
+    sat:
+      - 1400-1600
+    sun:
+      - 1400-1600
+Stoke Heath: 
+  enabled: true
+  phone: 0300 0606506
+  email: visitsbooking.westmidlands@maildrop.dsd.io
+  address:
+    - Market Drayton  
+    - Shropshire
+    - TF9 2JL
+  unbookable:
+    - 2014-04-18
+    - 2014-04-21
+    - 2014-05-05
+    - 2014-12-25
+    - 2014-12-26
+    - 2015-01-01
+  slots:
+    mon:
+      - 1400-1600
+    tue:
+      - 1400-1600
+    wed:
+      - 1400-1600
+    thu:
+      - 1400-1600
+    sat:
+      - 1400-1600
+    sun:
+      - 1400-1600
+Swinfen Hall: 
+  enabled: true
+  phone: 01543 484 000
+  email: visitsbooking.westmidlands@maildrop.dsd.io
+  address:
+    - Swinfen Hall  
+    - FLichfield
+    - Staffordshire
+    - WS14 9QS
+  unbookable:
+    - 2014-04-18
+    - 2014-04-21
+    - 2014-05-05
+    - 2014-05-26
+    - 2014-12-25
+    - 2014-12-26
+    - 2015-01-01
+  slots:
+    tue:
+      - 1400-1600
+    wed:
+      - 1400-1600
+    sat:
+      - 1400-1600
+    sun:
+      - 1400-1600
+Hewell: 
+  enabled: true
+  phone: 01527 785000
+  email: visitsbooking.westmidlands@maildrop.dsd.io
+  address:
+    - Hewell Lane  
+    - Redditch
+    - Worcestershire
+    - B97 6QS
+  unbookable:
+    - 2014-05-05
+    - 2014-05-26
+    - 2014-12-25
+    - 2014-12-26
+    - 2015-01-01
+  slots:
+    mon:
+      - 1400-1630
+    tue:
+      - 1400-1630
+    wed: 
+      - 1400-1630
+    thu:
+      - 1400-1630
+    fri: 
+      - 1430-1630
+    sat:
+      - 0930-1130
+      - 1430-1630
+    sun:
+      - 0930-1130
+      - 1430-1630

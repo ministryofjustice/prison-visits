@@ -48,7 +48,7 @@ module PrisonVisits2
       application-ie8.css
     )
 
-    config.prison_data = YAML.load_file(File.join(Rails.root, 'config', 'prison_data.yml')).inject({}) do |h, (name, config)|
+    config.prison_data = YAML.load_file(ENV['PRISON_DATA_FILE'] || File.join(Rails.root, 'config', 'prison_data_staging.yml')).inject({}) do |h, (name, config)|
       config['enabled'] ? h.merge(name => config) : h
     end
   end
