@@ -1,5 +1,8 @@
 $spacing_for_chevron: 14px
 
+@mixin visuallyhide
+  text-indent: -9999px // rather than display:none because it retains vertical alignment & accessibility
+  overflow: hidden
 
 ol.progress
   display: table
@@ -61,6 +64,10 @@ ol.progress
         @include ie(8)
           background: none
 
+      @include media($max-width: 320px)
+        &:not(.progress--active)
+          max-width: 40px
+
     .progress__label
       display: inline-block
       margin:
@@ -71,7 +78,7 @@ ol.progress
       @include media(mobile)
         width: 0
         margin-left: 0
-        text-indent: -9999px // rather than display:none because it retains vertical alignment & accessibility
+        @include visuallyhide
 
       @include ie(8)
         display: inline-block
@@ -109,6 +116,9 @@ ol.progress
 
         @include media(tablet)
           margin-left: 2.474em
+
+        @include media($max-width: 320px)
+          @include visuallyhide
 
     &.progress--active:last-child
       background-image: none
