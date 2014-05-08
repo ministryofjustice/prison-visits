@@ -62,7 +62,8 @@ class GoogleAnalyticsAdapter
       slot_times: slot_times,
       slot_weekdays: slot_weekdays,
       days_to_first_slot: days_to_first_slot,
-      days_to_last_slot: days_to_last_slot
+      days_to_last_slot: days_to_last_slot,
+      completed_at: Time.now.utc.strftime("%Y%m%d%H%M%S")
     }
   end
 
