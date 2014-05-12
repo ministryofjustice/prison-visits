@@ -359,4 +359,18 @@ describe VisitController do
       session[:visit].should be_nil
     end
   end
+
+  describe "on session time out" do
+    before :each do
+      session.clear
+    end
+
+    [:update_prisoner_details, :update_visitor_details, :update_choose_date_and_time, :update_check_your_request].each do |a|
+      it "redirects and displays timeout notice" do
+        post a
+        response.should redirect_to(prisoner_details_path)
+        flash.notice.should == 'Your session timed out because no information was entered for more than 20 minutes.'
+      end
+    end
+  end
 end
