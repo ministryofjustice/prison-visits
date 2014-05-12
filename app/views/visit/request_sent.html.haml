@@ -49,6 +49,8 @@
       %br
       = prison_address
 
+  %p= link_to 'View on Google maps', "http://google.com/maps?q=#{prison_postcode}", :rel => 'external'
+
   - if prison_phone.present?
     %p
       Tel:

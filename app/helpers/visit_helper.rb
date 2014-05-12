@@ -100,6 +100,10 @@ module VisitHelper
     prison_data['email']
   end
 
+  def prison_postcode
+    prison_data['address'][-1]
+  end
+
   def prison_slot_anomalies
     prison_data['slot_anomalies']
   end
