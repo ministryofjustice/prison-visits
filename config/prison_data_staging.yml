@@ -1,7 +1,7 @@
 Rochester:
   enabled: true
   phone: 01634 803100
-  email: socialvisits.rochester@maildrop.dsd.io
+  email: pvb.socialvisits.rochester@maildrop.dsd.io
   address:
     - 1 Fort Road
     - Rochester
@@ -29,7 +29,7 @@ Rochester:
 Durham:
   enabled: true
   phone: 0191 3323417
-  email: socialvisits.durham@maildrop.dsd.io
+  email: pvb.socialvisits.durham@maildrop.dsd.io
   address:
     - Old Elvet
     - Durham
@@ -61,7 +61,7 @@ Durham:
 Cardiff:
   enabled: true
   phone: 029 20923327
-  email: socialvisits.cardiff@maildrop.dsd.io
+  email: pvb.socialvisits.cardiff@maildrop.dsd.io
   address:
     - Knox Road
     - Cardiff
@@ -116,7 +116,7 @@ Cardiff:
 Gartree:
   enabled: true
   phone: 01858 426 727
-  email: SocialVisits.Gartree@maildrop.dsd.io
+  email: Pvb.Socialvisits.Gartree@maildrop.dsd.io
   address:
     - Gallow Field Rd
     - Market Harborough
@@ -140,7 +140,7 @@ Gartree:
 Brinsford: 
   enabled: true
   phone: 01902 533 450
-  email: visitsbooking.westmidlands@maildrop.dsd.io
+  email: pvb.visitsbooking.westmidlands@maildrop.dsd.io
   address:
     - New Road  
     - Featherstone
@@ -168,7 +168,7 @@ Brinsford:
 Drake Hall: 
   enabled: true
   phone: 0300 060 6501
-  email: visitsbooking.westmidlands@maildrop.dsd.io
+  email: pvb.visitsbooking.westmidlands@maildrop.dsd.io
   address:
     - Eccleshall  
     - Staffordshire
@@ -191,7 +191,7 @@ Drake Hall:
 Werrington: 
   enabled: true
   phone: 01782 463 300
-  email: visitsbooking.westmidlands@maildrop.dsd.io
+  email: pvb.visitsbooking.westmidlands@maildrop.dsd.io
   address:
     - Werrington  
     - Stoke-On-Trent
@@ -216,7 +216,7 @@ Werrington:
 Featherstone: 
   enabled: true
   phone: 001902 703000
-  email: visitsbooking.westmidlands@maildrop.dsd.io
+  email: pvb.visitsbooking.westmidlands@maildrop.dsd.io
   address:
     - New Road  
     - Featherstone
@@ -246,7 +246,7 @@ Featherstone:
 Stoke Heath: 
   enabled: true
   phone: 0300 0606506
-  email: visitsbooking.westmidlands@maildrop.dsd.io
+  email: pvb.visitsbooking.westmidlands@maildrop.dsd.io
   address:
     - Market Drayton  
     - Shropshire
@@ -274,7 +274,7 @@ Stoke Heath:
 Swinfen Hall: 
   enabled: true
   phone: 01543 484 000
-  email: visitsbooking.westmidlands@maildrop.dsd.io
+  email: pvb.visitsbooking.westmidlands@maildrop.dsd.io
   address:
     - Swinfen Hall  
     - FLichfield
@@ -300,7 +300,7 @@ Swinfen Hall:
 Hewell: 
   enabled: true
   phone: 01527 785000
-  email: visitsbooking.westmidlands@maildrop.dsd.io
+  email: pvb.visitsbooking.westmidlands@maildrop.dsd.io
   address:
     - Hewell Lane  
     - Redditch
