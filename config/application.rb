@@ -32,10 +32,14 @@ module PrisonVisits2
     config.proposition_title = 'Prison visits booking'
     # Current Phase (Sets the current phase and the colour of phase tags)
     # Presumed values: alpha, beta, live
-    config.phase = 'alpha'
+    config.phase = 'beta'
     # Product Type (Adds class to body based on service type)
     # Presumed values: information, service
     config.product_type = 'service'
+    # Feedback URL (URL for feedback link in phase banner)
+    config.feedback_url = 'test@example.com'
+    # Google Analytics ID (Tracking ID for the service)
+    config.ga_id = ENV['GA_TRACKING_ID']
 
     config.assets.enabled = true
     config.assets.precompile += %w(
@@ -43,11 +47,6 @@ module PrisonVisits2
       application-ie7.css
       application-ie8.css
     )
-
-    # Feedback URL (URL for feedback link in phase banner)
-    config.feedback_url = 'test@example.com'
-    # Google Analytics ID (Tracking ID for the service)
-    config.ga_id = ENV['GA_TRACKING_ID']
 
     config.prison_data = YAML.load_file(File.join(Rails.root, 'config', 'prison_data.yml')).inject({}) do |h, (name, config)|
       config['enabled'] ? h.merge(name => config) : h
