@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
+require 'spec_helper'
 require 'selenium/webdriver'
+
+ENV['SMTP_SENDER'] = 'test@example.com'
 
 if username = ENV['BS_USERNAME']
   password = ENV['BS_PASSWORD']

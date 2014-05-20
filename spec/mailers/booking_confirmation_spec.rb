@@ -20,33 +20,20 @@ describe BookingConfirmation do
   end
 
   context "always" do
+    before :each do
+      BookingConfirmation.any_instance.stub(:sender).and_return('no-reply@pvb.local')
+    end
+
     it "sends out an e-mail with a date in the subject" do
       subject.confirmation_email(sample_visit).subject.should == "You have requested a visit for 6 December 2013"
-    end
-  end
-
-  context "in production" do
-    before :each do
-      BookingConfirmation.any_instance.stub(:production?).and_return(true)
-      BookingConfirmation.any_instance.stub(:sender).and_return('no-reply@pvb.local')
     end
 
     it "sends an e-mail to the person who requested a booking" do
       email = subject.confirmation_email(sample_visit)
       email.to.should == ['sample@email.lol'] 
-      email.from.should == ['socialvisits.rochester@maildrop.dsd.io']
-      email.reply_to.should == ['socialvisits.rochester@maildrop.dsd.io']
+      email.from.should == ['pvb.socialvisits.rochester@maildrop.dsd.io']
+      email.reply_to.should == ['pvb.socialvisits.rochester@maildrop.dsd.io']
       email.sender.should == 'no-reply@pvb.local'
-    end
-  end
-
-  context "in staging or any other environment" do
-    before :each do
-      BookingConfirmation.any_instance.stub(:production?).and_return(false)
-    end
-
-    it "sends an email to a google groups address" do
-      subject.confirmation_email(sample_visit).to.should == ['pvb-email-test@googlegroups.com']
     end
   end
 end
