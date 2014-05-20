@@ -11,11 +11,7 @@ class BookingConfirmation < ActionMailer::Base
     mail(sender: sender, from: prison_mailbox, reply_to: prison_mailbox, to: email, subject: "You have requested a visit for #{first_date.strftime('%e %B %Y').gsub(/^ /,'')}")
   end
 
-  def production?
-    ENV['APP_PLATFORM'] == 'production'
-  end
-
   def sender
-    production? ? ENV['SMTP_SENDER'] : 'test@example.com'
+    ENV['SMTP_SENDER']
   end
 end

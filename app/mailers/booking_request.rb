@@ -17,11 +17,7 @@ class BookingRequest < ActionMailer::Base
     mail(sender: sender, from: user, reply_to: user, to: recipient, subject: "Visit request for #{@visit.prisoner.full_name}")
   end
 
-  def production?
-    ENV['APP_PLATFORM'] == 'production'
-  end
-
   def sender
-    production? ? ENV['SMTP_SENDER'] : 'test@example.com'
+    ENV['SMTP_SENDER']
   end
 end
