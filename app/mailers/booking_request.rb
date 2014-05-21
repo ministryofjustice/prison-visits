@@ -12,20 +12,12 @@ class BookingRequest < ActionMailer::Base
     @visit = visit
     user = visit.visitors.find { |v| v.email }.email
 
-    recipient = if production?
-      Rails.configuration.prison_data[visit.prisoner.prison_name.to_s]['email']
-    else
-      'pvb-email-test@googlegroups.com'
-    end
+    recipient = Rails.configuration.prison_data[visit.prisoner.prison_name.to_s]['email']
 
     mail(sender: sender, from: user, reply_to: user, to: recipient, subject: "Visit request for #{@visit.prisoner.full_name}")
   end
 
-  def production?
-    ENV['APP_PLATFORM'] == 'production'
-  end
-
   def sender
-    production? ? ENV['SMTP_SENDER'] : 'test@example.com'
+    ENV['SMTP_SENDER']
   end
 end

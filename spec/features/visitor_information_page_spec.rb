@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'browserstack_helper'
 
 feature "visitor enters visitor information" do
   include_examples "feature helper"
