@@ -365,8 +365,8 @@ describe VisitController do
     end
 
     it "sends out emails" do
-      BookingRequest.any_instance.should_receive(:sender).and_return('test@example.com')
-      BookingConfirmation.any_instance.should_receive(:sender).and_return('test@example.com')
+      BookingRequest.any_instance.stub(:smtp_domain).and_return('example.com')
+      BookingConfirmation.any_instance.stub(:smtp_domain).and_return('example.com')
 
       post :update_check_your_request
       response.should redirect_to(request_sent_path)

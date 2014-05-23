@@ -21,7 +21,7 @@ describe BookingConfirmation do
 
   context "always" do
     before :each do
-      BookingConfirmation.any_instance.stub(:sender).and_return('no-reply@pvb.local')
+      BookingConfirmation.any_instance.stub(:smtp_domain).and_return('example.com')
     end
 
     it "sends out an e-mail with a date in the subject" do
@@ -31,9 +31,8 @@ describe BookingConfirmation do
     it "sends an e-mail to the person who requested a booking" do
       email = subject.confirmation_email(sample_visit)
       email.to.should == ['sample@email.lol'] 
-      email.from.should == ['pvb.socialvisits.rochester@maildrop.dsd.io']
+      email.from.should == ['no-reply@example.com']
       email.reply_to.should == ['pvb.socialvisits.rochester@maildrop.dsd.io']
-      email.sender.should == 'no-reply@pvb.local'
     end
   end
 end

@@ -1,5 +1,9 @@
+require 'mailer_helper'
+
 class BookingRequest < ActionMailer::Base
   add_template_helper(ApplicationHelper)
+
+  include MailerHelper::NoReply
 
   self.smtp_settings = {
     address: ENV['GSI_SMTP_HOSTNAME'],
@@ -14,10 +18,6 @@ class BookingRequest < ActionMailer::Base
 
     recipient = Rails.configuration.prison_data[visit.prisoner.prison_name.to_s]['email']
 
-    mail(sender: sender, from: user, reply_to: user, to: recipient, subject: "Visit request for #{@visit.prisoner.full_name}")
-  end
-
-  def sender
-    ENV['SMTP_SENDER']
+    mail(from: noreply_address, reply_to: user, to: recipient, subject: "Visit request for #{@visit.prisoner.full_name}")
   end
 end

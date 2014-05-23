@@ -24,7 +24,7 @@ describe BookingRequest do
 
   context "always" do
     before :each do
-      BookingRequest.any_instance.stub(:sender).and_return('no-reply@pvb.local')
+      BookingRequest.any_instance.stub(:smtp_domain).and_return('example.com')
     end
 
     it "sends an e-mail with the prisoner name in the subject" do
@@ -35,10 +35,10 @@ describe BookingRequest do
       sample_visit.tap do |visit|
         visit.prisoner.prison_name = 'Rochester'
         email = subject.request_email(visit)
+
         email.to.should == ['pvb.socialvisits.rochester@maildrop.dsd.io']
-        email.from.should == ['sample@email.lol']
+        email.from.should == ['no-reply@example.com']
         email.reply_to.should == ['sample@email.lol']
-        email.sender.should == 'no-reply@pvb.local'
       end
     end
   end

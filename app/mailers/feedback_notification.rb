@@ -1,5 +1,5 @@
 class FeedbackNotification < ActionMailer::Base
-  default from: 'no-reply@digital.justice.gov.uk', to: 'prisonvisits@digital.justice.gov.uk'
+  default from: "no-reply@#{ENV['SMTP_DOMAIN']}", to: 'prisonvisits@digital.justice.gov.uk'
 
   def new_message(message)
     @message = message
