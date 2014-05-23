@@ -5,6 +5,10 @@ class VisitController < ApplicationController
   before_filter :check_if_session_exists, except: [:prisoner_details, :unavailable]
   helper_method :just_testing?
 
+  if Rails.env.production? && ENV['APP_PLATFORM'] != 'production'
+    http_basic_authenticate_with name: ENV['HTTP_USER'], password: ENV['HTTP_PASSWORD']
+  end
+
   def cal
     
   end
