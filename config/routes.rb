@@ -11,6 +11,7 @@ PrisonVisits2::Application.routes.draw do
     get "/abandon", action: :abandon
     get "/", to: redirect("/prisoner-details")
     get "/unavailable", action: :unavailable
+    post "/webhooks/email/:auth", controller: 'webhooks', action: 'email'
   end
 
   get "cookies" => "static#cookies"
