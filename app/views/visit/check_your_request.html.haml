@@ -44,6 +44,12 @@
       %p
         Visitor #{i+1}:
         %strong #{visitor.first_name} #{visitor.last_name}
+        \ -
+        = visitor.date_of_birth.strftime("%e %B %Y")
+        - if age(visitor.date_of_birth) < 17
+          %small.child Child
+        - else
+          %small.adult Adult
   %p.edit-link= link_to 'Edit these visitor details', visitor_details_path
 
 .divider.compact

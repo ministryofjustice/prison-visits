@@ -9,6 +9,37 @@ $(function () {
       window.location.href = $(this).attr('href');
     }
   });
+
+  function getAge(d1, d2){
+    d2 = d2 || new Date();
+    var diff = d2.getTime() - d1.getTime();
+    return Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+  }
+
+  $('body').on('change', '.js-native-date select', function() {
+    
+    var dob, el,
+        selects = $(this).siblings('select').add($(this)),
+        year = selects.closest('.year').val(),
+        month = selects.closest('.month').val(),
+        day = selects.closest('.day').val();
+
+    el = $(this).closest('.additional-visitor').find('h2');
+
+    if (year!=='' && month !== '' && day !== '') {
+      dob = new Date(year, month-1, day);
+      
+      el.find('small').remove();
+      
+      if (getAge(dob) > 17) {
+        el.append(' <small class="adult">Adult</small>');
+      } else {
+        el.append(' <small class="child">Child</small>');
+      }
+    }
+  });
+
+  $('.js-native-date select').change();
 });
 
 // Hacks to show GOV.UK images when offline
