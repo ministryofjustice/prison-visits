@@ -64,4 +64,15 @@
           = yield
 
 
+- content_for :footer_app_links do
+  %li
+    %a{href: "http://www.gov.uk/help"} Help
+  %li
+    = link_to "Cookies", cookies_path
+  %li
+    = link_to "Feedback", new_feedback_path(referrer: request.original_url)
+  %li
+    %a{href: "http://www.gov.uk/cymraeg"} Cymraeg
+
+
 = render template: "layouts/moj_template"

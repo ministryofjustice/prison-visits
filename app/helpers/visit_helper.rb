@@ -169,4 +169,9 @@ module VisitHelper
   def day_is_bookable(day)
     visiting_slots.keys.include?(day.strftime('%a').downcase.to_sym) && !unbookable_dates.include?(day)
   end
+
+  def age(dob)
+    now = Time.now.utc.to_date
+    now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
+  end
 end
