@@ -133,7 +133,7 @@ private
         # NOOP
       end
     end
-    params.require(:visit).require(:visitor)
+    trim_whitespace_from_values(params.require(:visit).require(:visitor))
   end
 
   def prisoner_params
@@ -147,9 +147,9 @@ private
       end.join('-')
       params[:prisoner][:date_of_birth] = Date.parse(date_of_birth)
     end
-    params.require(:prisoner).permit(:first_name, :last_name, :date_of_birth, :number, :prison_name)
+    trim_whitespace_from_values(params.require(:prisoner).permit(:first_name, :last_name, :date_of_birth, :number, :prison_name))
   rescue ArgumentError
-    params.require(:prisoner).permit(:first_name, :last_name, :number, :prison_name)
+    trim_whitespace_from_values(params.require(:prisoner).permit(:first_name, :last_name, :number, :prison_name))
   end
 
   def slot_params
@@ -172,5 +172,25 @@ private
 
   def just_testing?
     session[:just_testing]
+  end
+
+  def trim_whitespace_from_values(p)
+    case p
+    when Hash
+      p.inject(p.class.new) do |h, (k, v)|
+        if v.is_a?(String)
+          h[k] = v.strip
+        else
+          h[k] = trim_whitespace_from_values(v)
+        end
+        h
+      end
+    when Array
+      p.map do |v|
+        trim_whitespace_from_values(v)
+      end
+    else
+      p
+    end
   end
 end

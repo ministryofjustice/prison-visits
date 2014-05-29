@@ -58,6 +58,14 @@ describe VisitController do
         get :prisoner_details, testing: 1
         session[:just_testing].should be_true
       end
+
+      context "whitespace trimming" do
+        it "removes whitespace from strings" do
+          post :update_prisoner_details, { prisoner: { first_name: ' Jimmy ', last_name: ' Fingers ' } }
+          controller.visit.prisoner.first_name.should == 'Jimmy'
+          controller.visit.prisoner.last_name.should == 'Fingers'
+        end
+      end
     end
 
     context "given invalid prisoner details" do
@@ -215,6 +223,35 @@ describe VisitController do
         session[:visit].valid?(:visitors_set).should be_false
       end
     end
+
+    context "whitespace trimming" do
+      let(:visitor_hash) do
+        {
+          visit: {
+            visitor: [
+              first_name: ' Sue ',
+              last_name: ' Demin ',
+              :'date_of_birth(3i)' => '14',
+              :'date_of_birth(2i)' => '03',
+              :'date_of_birth(1i)' => '1986',
+              email: 'sue.denim@gmail.com',
+              phone: '07783 123 456'
+            ]
+          },
+          next: ''
+        }
+      end
+
+      before :each do
+        get :prisoner_details
+      end
+
+      it "removes whitespace from strings" do
+        post :update_visitor_details, visitor_hash
+        controller.visit.visitors.first.first_name.should == 'Sue'
+        controller.visit.visitors.first.last_name.should == 'Demin'
+      end
+    end
   end
 
   describe "step 4 - select a timeslot" do
@@ -232,7 +269,7 @@ describe VisitController do
                 slot: '2013-01-01-1345-2000'
               }
             ]
-          }
+          },
         }
       end
 
