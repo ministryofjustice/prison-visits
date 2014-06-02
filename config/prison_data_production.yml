@@ -330,7 +330,7 @@ Hewell:
       - 0930-1130
       - 1430-1630
 Foston Hall: 
-enabled: false
+enabled: true
   phone: 01283 584357 
   email: SocialVisits.FostonHall@hmps.gsi.gov.uk
   address:
