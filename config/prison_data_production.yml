@@ -330,7 +330,7 @@ Hewell:
       - 0930-1130
       - 1430-1630
 Foston Hall: 
-enabled: true
+  enabled: true
   phone: 01283 584357 
   email: SocialVisits.FostonHall@hmps.gsi.gov.uk
   address:
@@ -355,7 +355,7 @@ enabled: true
       - 0930-1130
       - 1400-1600
 Holloway:
-enabled: false
+  enabled: false
   phone: 020 7979 4751 
   email: SocialVisits.Holloway@hmps.gsi.gov.uk
   address:
@@ -409,12 +409,12 @@ enabled: false
     2014-12-18:
       - 0930-1030
     2014-05-29:
-     - 0930-1030
+      - 0930-1030
     2014-07-24:
-     - 0930-1030
+      - 0930-1030
     2014-08-21:
-     - 0930-1030
+      - 0930-1030
     2014-10-30:
-     - 0930-1030
+      - 0930-1030
     2014-12-18:
-     - 0930-1030
+      - 0930-1030
