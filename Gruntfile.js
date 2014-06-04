@@ -87,7 +87,7 @@ module.exports = function(grunt) {
     },
 
     jshint: {
-      all: ['Gruntfile.js', 'app/assets/javascripts/**/*.js']
+      all: ['Gruntfile.js', 'app/assets/javascripts/**/*.js', 'scripts/visiting_times.js']
     }
   });
 
