@@ -418,3 +418,321 @@ Holloway:
       - 0930-1030
     2014-12-18:
       - 0930-1030
+Bristol: 
+  enabled: false
+  phone: 01173 732358 
+  email: SocialVisits.Bristol@hmps.gsi.gov.uk
+  address:
+    - 19 Cambridge Road
+    - Bristol
+    - BS7 8PS
+  unbookable:
+    - 2014-12-25
+    - 2014-12-26
+    - 2015-04-03
+  slots:
+    mon:
+      - 1400-1600
+    tue:
+      - 1400-1600
+    wed: 
+      - 1400-1600
+    thu:
+      - 1400-1600
+    fri: 
+      - 1400-1600
+    sat:
+      - 1400-1600
+    sun:
+      - 1400-1600
+Buckley Hall: 
+  enabled: false
+  phone: 01706 514350 
+  email: SocialVisits.buckleyhall@hmps.gsi.gov.uk
+  address:
+    - Buckley Road
+    - OL12 9DP
+  unbookable:
+    - 2014-12-25
+    - 2014-12-26
+    - 2015-01-01
+    - 2015-04-03
+  slots:
+    mon:
+      - 1400-1600
+    tue:
+      - 1400-1600
+    wed: 
+      - 1400-1600
+      - 1745-1845
+    thu:
+      - 1400-1600
+    fri: 
+      - 1400-1600
+    sat:
+      - 0930-1130
+      - 1400-1600 
+    sun:
+      - 0930-1130
+      - 1400-1600
+Bure: 
+  enabled: false
+  phone: 01603 326252
+  email: SocialVisits.bure@hmps.gsi.gov.uk
+  address:
+    - Jaguar Drive
+    - NR10 5GB
+  unbookable:
+    - 2014-12-25
+    - 2015-01-01
+    - 2015-04-03
+  slots:
+    fri: 
+      - 1400-1600
+    sat:
+      - 0930-1130
+      - 1400-1600 
+    sun:
+      - 0930-1130
+      - 1400-1600
+Coldingley: 
+  enabled: false
+  phone: 01483 344418
+  email: SocialVisits.coldingley@hmps.gsi.gov.uk
+  address:
+    - Shaftesbury Road
+    - GU24 9EX
+  unbookable:
+    - 2014-12-25
+    - 2014-07-30
+    - 2014-08-20
+    - 2014-10-29
+    - 2014-12-19
+    - 2015-01-01
+    - 2015-04-03
+  slots:
+    mon: 
+      - 1400-1545
+    wed:
+      - 1400-1545 
+    thu:
+      - 1400-1545
+    fri:
+      - 1800-1900
+    sat:
+      - 1400-1545
+    sun:
+      - 1400-1545
+Cookham Wood: 
+  enabled: false
+  phone: 01634 202557
+  email: SocialVisits.CookhamWood@hmps.gsi.gov.uk
+  address:
+    - Sir Evelyn Road
+    - ME1 3LU
+  unbookable:
+    - 2014-12-25
+  slots:
+    wed:
+      - 1815-1930 
+    sat:
+      - 0930-1130
+      - 1430-1630
+    sun:
+      - 0930-1130
+      - 1430-1630
+Deerbolt:  
+  enabled: false
+  phone: 01833 633349
+  email: SocialVisits.Deerbolt@hmps.gsi.gov.uk
+  address:
+    - Bowes Road
+    - DL12 9BG 
+  unbookable:
+    - 2014-12-25
+    - 2014-12-26
+    - 2015-04-03
+  slots:
+    thu:
+      - 1345-1545
+    sat:
+      - 1345-1545
+    sun:
+      - 1345-1545
+Exeter:  
+  enabled: false
+  phone: 01392 41 5833
+  email: SocialVisits.Exeter@hmps.gsi.gov.uk
+  address:
+    - New North Road
+    - EX4 4EX 
+  unbookable:
+    - 2014-12-25
+    - 2014-12-26
+    - 2015-04-03
+  slots:
+    mon:
+      - 1415-1615
+    tue:
+      - 1415-1615
+    thu:
+      - 1415-1615
+    fri: 
+      - 1415-1615
+    sat:
+      - 1415-1615
+    sun:
+      - 1415-1615
+Lewes:  
+  enabled: false
+  phone: 01273785277
+  email: SocialVisits.Lewes@hmps.gsi.gov.uk
+  address:
+    - 1 Brighton Road
+    - BN7 1EA 
+  unbookable:
+    - 2014-12-25
+    - 2015-01-01
+    - 2015-04-03
+  slots:
+    mon:
+      - 0930-1100
+      - 1410-1535
+    tue:
+      - 1410-1535
+    wed:
+      - 0930-1100
+      - 1410-1535
+    thu:
+      - 1410-1535
+    fri: 
+      - 0930-1100
+      - 1410-1535
+    sat:
+      - 1410-1535
+    sun:
+      - 1410-1535
+Moorland Closed:  
+  enabled: false
+  phone: 01302523087
+  email: SocialVisits.MoorlandClosed@hmps.gsi.gov.uk
+  address:
+    - Bawtry Road
+    - DN7 6BW 
+  unbookable:
+    - 2014-12-25
+  slots:
+    wed:
+      - 1340-1545
+    thu:
+      - 1340-1545
+    sat:
+      - 1340-1545
+    sun:
+      - 1340-1545
+Onley:  
+  enabled: false
+  phone: 01788 523 402
+  email: SocialVisits.Onley@hmps.gsi.gov.uk
+  address:
+    - Willoughby
+    - CV23 8AP 
+  unbookable:
+    - 2014-12-25
+  slots:
+    mon:
+      - 1345-1445
+      - 1515-1615
+    tue:
+      - 1345-1445
+      - 1515-1615
+    wed:
+      - 1345-1445
+      - 1515-1615
+    thu:
+      - 1345-1445
+      - 1515-1615
+    fri:
+      - 1430-1600
+    sat:
+      - 1345-1445
+      - 1515-1615
+    sun:
+      - 1345-1445
+      - 1515-1615
+The Mount:  
+  enabled: false
+  phone: 01442 836352
+  email: SocialVisits.TheMount@hmps.gsi.gov.uk
+  address:
+    - Molyneaux Avenue
+    - HP3 0NZ 
+  unbookable:
+    - 2014-12-25
+  slots:
+    thu:
+      - 1400-1600
+      - 1500-1600
+    fri:
+      - 1400-1600
+      - 1500-1600
+    sat:
+      - 0900-1100
+      - 1000-1100
+      - 1400-1600
+      - 1500-1600
+    sun:
+      - 0900-1100
+      - 1000-1100
+      - 1400-1600
+      - 1500-1600
+Wayland:  
+  enabled: false
+  phone: 001953 804152
+  email: SocialVisits.Wayland@hmps.gsi.gov.uk
+  address:
+    - Griston
+    - IP25 6RL 
+  unbookable:
+    - 2014-12-25
+  slots:
+    tue:
+      - 1400-1600
+    wed:
+      - 1400-1600
+    thu:
+      - 1400-1600
+    fri:
+      - 1400-1600
+    sat:
+      - 1400-1600
+    sun:
+      - 1400-1600
+Wealstun:  
+  enabled: false
+  phone: 01937 444599
+  email: SocialVisits.Wealstun@hmps.gsi.gov.uk
+  address:
+    - Church Causeway
+    - LS23 7AZ 
+  unbookable:
+    - 2014-12-25
+  slots:
+    mon:
+      - 0930-1130
+      - 1330-1530
+    tue:
+      - 0930-1130
+      - 1330-1530
+    wed:
+      - 0930-1130
+      - 1330-1530
+    thu:
+      - 0930-1130
+      - 1330-1530
+    sat:
+      - 0930-1130
+      - 1345-1600
+    sun:
+      - 0930-1130
+      - 1345-1600
