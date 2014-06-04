@@ -34,7 +34,7 @@ var prisons = [
 'HMYOI HINDLEY', // flag - youth times
 'HMP HOLLESLEY BAY',
 'HMP HOLME HOUSE', // 000000
-'HMP HULL',
+'HMP HULL', // joined times
 'HMP HUNTERCOMBE',
 'HMP ISLE OF WIGHT - PARKHURST',
 'HMP KENNET',
@@ -76,13 +76,13 @@ var prisons = [
 ];
 
 // For testing with specific prisons
-// prisons = ['HMP LEEDS'];
+prisons = ['HMP HOLME HOUSE'];
 
 casper.start("http://www.google.com", function () {
 
   prisons.forEach(function (prison) {
 
-    casper.thenOpen(url + prison.replace(' ', '_'), function () {
+    casper.thenOpen(url + prison.replace(/ /g, '_'), function () {
 
       var obj = {};
 
@@ -159,6 +159,9 @@ casper.start("http://www.google.com", function () {
 
           var fixKnownIssues = function (times, prison) {
             switch (prison) {
+              case 'HMP_HOLME_HOUSE':
+                times = times.join(',').replace('190000','1900').split(',');
+                break;
               case 'HMP_LEEDS':
                 times = times.join(',').replace('10130','1030').split(',');
                 break;
