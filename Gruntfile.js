@@ -58,6 +58,18 @@ module.exports = function(grunt) {
         // opens a new failure image if tests fail
         // command: 'rm -f tests/failure.png; casperjs test tests || open tests/failure.png'
         command: 'rm -f tests/failure.png; casperjs test tests'
+      },
+      scrape: {
+        options: {
+          stdout: true
+        },
+        command: 'casperjs scripts/visiting_times.js'
+      },
+      yaml: {
+        options: {
+          stdout: true
+        },
+        command: 'json2yaml prison_data.json > prison_data.yaml -d 8'
       }
     },
 
@@ -101,6 +113,7 @@ module.exports = function(grunt) {
 
   // Default task(s)
   grunt.registerTask('default', 'JS lint application code', ['jshint','coffeelint:app','coffee_jshint:app']);
-  grunt.registerTask('tests', 'run integration tests', ['coffeelint:tests','coffee_jshint:tests','shell']);
+  grunt.registerTask('tests', 'run integration tests', ['coffeelint:tests','coffee_jshint:tests','shell:tests']);
+  grunt.registerTask('scrape', 'scrape web for visiting times', ['shell:scrape','shell:yaml']);
 
 };
