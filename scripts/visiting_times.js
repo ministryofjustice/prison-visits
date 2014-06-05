@@ -86,6 +86,15 @@ casper.start("http://www.google.com", function () {
 
       var obj = {};
 
+      var formatForPVB = function (s) {
+        var words;
+        s = s.replace(/(HMP|HMYOI|HMP-YOI) /, '');
+        words = s.split(' ');
+        return words.map(function (word) {
+          return word[0] + word.substr(1).toLowerCase();
+        }).join(' ');
+      };
+
       var details = {
 
         "slots": this.evaluate(function () {
@@ -159,10 +168,10 @@ casper.start("http://www.google.com", function () {
 
           var fixKnownIssues = function (times, prison) {
             switch (prison) {
-              case 'HMP_HOLME_HOUSE':
+              case 'HOLME_HOUSE':
                 times = times.join(',').replace('190000','1900').split(',');
                 break;
-              case 'HMP_LEEDS':
+              case 'LEEDS':
                 times = times.join(',').replace('10130','1030').split(',');
                 break;
             }
@@ -171,7 +180,7 @@ casper.start("http://www.google.com", function () {
           };
 
           var prisonName = function () {
-            return document.location.href.split('=')[1];
+            return document.location.href.split('=')[1].replace(/(HMP|HMYOI|HMP-YOI)_/, '');
           };
 
           var extractTimes = function (s) {
@@ -218,7 +227,7 @@ casper.start("http://www.google.com", function () {
         })
       };
 
-      obj[prison] = details;
+      obj[formatForPVB(prison)] = details;
 
       times.push(obj);
     });
