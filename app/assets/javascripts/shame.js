@@ -55,10 +55,10 @@ moj.are_cookies_enabled = function () {
     cookieEnabled = (document.cookie.indexOf("testcookie") != -1) ? true : false;
   }
   return (cookieEnabled);
-}
+};
 
 moj.show_cookie_message = function () {
   if (!moj.are_cookies_enabled()) {
     $('noscript').after( $('noscript').text() );
   }
-}()
+}();
