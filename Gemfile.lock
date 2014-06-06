@@ -52,6 +52,14 @@ GEM
     curb (0.8.5)
     debugger-linecache (1.2.0)
     diff-lcs (1.2.5)
+    elasticsearch (1.0.2)
+      elasticsearch-api (= 1.0.2)
+      elasticsearch-transport (= 1.0.2)
+    elasticsearch-api (1.0.2)
+      multi_json
+    elasticsearch-transport (1.0.2)
+      faraday
+      multi_json
     erubis (2.7.0)
     execjs (2.0.2)
     faraday (0.8.8)
@@ -192,6 +200,7 @@ DEPENDENCIES
   capybara
   coffee-rails
   curb
+  elasticsearch
   govuk_frontend_toolkit (= 0.43.2)
   haml-rails
   mail

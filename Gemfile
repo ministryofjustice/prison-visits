@@ -11,6 +11,7 @@ gem 'coffee-rails'
 gem 'rspec-rails'
 gem 'zendesk_api'
 gem 'mail'
+gem 'elasticsearch'
 
 group :test, :development do
   gem 'rspec-rails'
