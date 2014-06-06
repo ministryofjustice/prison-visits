@@ -237,11 +237,12 @@ casper.run(function() {
   // Create object of full prison details
   times.forEach(function (times) {
     var name = formatForPVB(times[0]);
-    prison_data[name] = prison_details[times[0].replace(/_/g,'')];
-    prison_data[name].address = prison_details[times[0].replace(/_/g,'')].address.split(',');
+    prison_data[name] = prison_details[times[0].replace(/_/g,'')]; // start with details from prison_details object
+    prison_data[name].address = prison_details[times[0].replace(/_/g,'')].address.split(','); // make address an array
+    prison_data[name].unbookable = ['2014-12-25']; // add standard unbookable dates
     prison_data[name].slots = times[1];
   });
-  
+
   utils.dump(prison_data);
   var fs = require('fs');
   fs.write('prison_data.json', JSON.stringify(prison_data), 'w');
