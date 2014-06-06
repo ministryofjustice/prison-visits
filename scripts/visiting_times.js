@@ -45,8 +45,8 @@ var prison_details = {
 "HMP-YOI HATFIELD (MOORLAND OPEN)": {"address":"Thorne Road,DN7 6El","email":"SocialVisits.Hatfield@hmps.gsi.gov.uk","phone":"01405 746611"},
 "HMP HAVERIGG": {"address":"MILLOM,LA18 4NA ","email":"socialvisits.haverigg@hmps.gsi.gov.uk","phone":"01229713016"},
 "HMP HIGH DOWN": {"address":"Sutton Lane,SM2 5PJ ","email":"socialvisits.highdown@hmps.gsi.gov.uk","phone":"0300 060 6503"},
-"HMP HIGHPOINT NORTH": {"address":"Stradishall,CB8 9YG ","email":"SocialVisits.Highpoint @hmps.gsi.gov.uk","phone":"0207 147 6570"},
-"HMP HIGHPOINT SOUTH": {"address":"Stradishall,CB8 9YG ","email":"SocialVisits.Highpoint @hmps.gsi.gov.uk","phone":"0207 147 6570"}
+"HMP HIGHPOINT NORTH": {"address":"Stradishall,CB8 9YG ","email":"SocialVisits.Highpoint@hmps.gsi.gov.uk","phone":"0207 147 6570"},
+"HMP HIGHPOINT SOUTH": {"address":"Stradishall,CB8 9YG ","email":"SocialVisits.Highpoint@hmps.gsi.gov.uk","phone":"0207 147 6570"}
 };
 
 var p1 = {
