@@ -972,3 +972,98 @@ Aylesbury:
       - 1415-1615
     wed:
       - 1415-1615
+'Isle Of Wight - Albany':
+  enabled: true
+  phone: '01983 556573'
+  email: ""
+  address:
+    - '55 Parkhurst Road'
+    - 'PO30 5RS'
+  unbookable:
+    - 2014-12-25
+  slots:
+    fri:
+      - 1400-1600
+    mon:
+      - 1400-1600
+    sat:
+      - 1400-1600
+    sun:
+      - 1400-1600
+    wed:
+      - 1400-1600
+'Blantyre House':
+  enabled: true
+  phone: ""
+  email: SocialVisits.BlantyreHouse@hmps.gsi.gov.uk
+  address:
+    - Goudhurst
+    - 'TN17 2NH'
+  unbookable:
+    - 2014-12-25
+  slots:
+    sat:
+      - 1345-1600
+    sun:
+      - 1345-1600
+    wed:
+      - 1345-1600
+Brixton:
+  enabled: true
+  phone: '0208 678 1433'
+  email: socialvisitsbrixton@hmps.gsi.gov.uk
+  address:
+    - 'Jebb Avenue'
+    - 'SW2 5XF'
+  unbookable:
+    - 2014-12-25
+  slots:
+    fri:
+      - 0845-0945
+      - 1000-1100
+      - 1400-1500
+      - 1515-1615
+    sat:
+      - 0845-0945
+      - 1000-1100
+      - 1400-1500
+      - 1515-1615
+    sun:
+      - 1400-1615
+    thu:
+      - 0845-0945
+      - 1000-1100
+      - 1400-1500
+      - 1515-1615
+    tue:
+      - 0845-0945
+      - 1000-1100
+      - 1400-1500
+      - 1515-1615
+    wed:
+      - 0845-0945
+      - 1000-1100
+      - 1400-1500
+      - 1515-1615
+Bullingdon:
+  enabled: true
+  phone: '01869 353176'
+  email: socialvisits.bullingdon@hmps.gsi.gov.uk
+  address:
+    - Bicester
+    - 'OX25 1PZ '
+  unbookable:
+    - 2014-12-25
+  slots:
+    mon:
+      - 1400-1610
+    sat:
+      - 1400-1610
+    sun:
+      - 1400-1610
+    thu:
+      - 1400-1610
+    tue:
+      - 1400-1610
+    wed:
+      - 1400-1610
