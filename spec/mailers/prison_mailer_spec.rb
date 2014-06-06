@@ -66,6 +66,7 @@ describe PrisonMailer do
         subject.booking_receipt_email(sample_visit, confirmation).tap do |email|
           email.subject.should == "Booking receipt for Jimmy Fingers"
           email.body.should include('Mark')
+          email.body.should include('A message')
         end
       end
     end
