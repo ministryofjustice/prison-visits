@@ -28,4 +28,58 @@ describe PrisonMailer do
       end.deliver
     }.to change { ActionMailer::Base.deliveries.size }.by(1)
   end
+
+  let! :subject do
+    PrisonMailer
+  end
+
+  let :host do
+    'lolhost.com'
+  end
+
+  let :confirmation_with_slot do
+    Confirmation.new(message: 'A message', outcome: 'slot_0')
+  end
+
+  let :confirmation_without_slot do
+    Confirmation.new(message: 'A message', outcome: 'no_slot_available')
+  end
+
+  let :confirmation_not_on_contact_list do
+    Confirmation.new(message: 'A message', outcome: 'not_on_contact_list')
+  end
+
+  context "always" do
+    it "sends an e-mail with the prisoner name in the subject" do
+      subject.booking_request_email(sample_visit, "token", host).subject.should == 'Visit request for Jimmy Fingers'
+    end
+
+    it "sends an e-mail with a long link to the confirmation page" do
+      email = subject.booking_request_email(sample_visit, "token", host)
+      email.body.should =~ /confirmation\/new\?state=token/
+      email.body.should =~ /https:\/\/lolhost.com/
+      email.content_type.should == 'text/html; charset=UTF-8'
+    end
+
+    it "sends a booking receipt to a prison to create an audit trail" do
+      subject.booking_receipt_email(sample_visit, confirmation_with_slot).subject.should == "Booking receipt for Jimmy Fingers"
+      subject.booking_receipt_email(sample_visit, confirmation_without_slot).subject.should == "Booking receipt for Jimmy Fingers"
+      subject.booking_receipt_email(sample_visit, confirmation_not_on_contact_list).subject.should == "Booking receipt for Jimmy Fingers"
+    end
+
+    it "sends an e-mail to rochester functional mailbox" do
+      sample_visit.tap do |visit|
+        visit.prisoner.prison_name = 'Rochester'
+        subject.booking_request_email(visit, "token", host).to.should == ['pvb.socialvisits.rochester@maildrop.dsd.io']
+      end
+    end
+
+    it "sends an e-mail with a link over https" do
+      subject.booking_request_email(sample_visit, "token", host).body.should =~ /https:\/\/lolhost.com/
+    end
+
+    it "uses its own configuration (GSI)" do
+      subject.smtp_settings.should_not === ActionMailer::Base.smtp_settings
+    end
+  end
 end

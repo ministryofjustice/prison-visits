@@ -8,6 +8,22 @@ require 'rspec/autorun'
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
+module HelperMethods
+  def sample_visit
+    Visit.new.tap do |v|
+      v.visit_id = "ABC"
+      v.slots = [Slot.new(date: '2013-07-07', times: "1400-1600")]
+      v.prisoner = Prisoner.new.tap do |p|
+        p.date_of_birth = Date.new(2013, 6, 30)
+        p.first_name = 'Jimmy'
+        p.last_name = 'Fingers'
+        p.prison_name = 'Rochester'
+      end
+      v.visitors = [Visitor.new(email: 'visitor@example.com', date_of_birth: Date.new(1918, 11, 11), first_name: 'Mark', last_name: 'Fingers')]
+    end
+  end
+end
+
 RSpec.configure do |config|
   # ## Mock Framework
   #
@@ -27,4 +43,5 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+  config.include HelperMethods
 end

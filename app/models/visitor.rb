@@ -18,6 +18,10 @@ class Visitor
     [first_name, last_name].join(' ')
   end
 
+  def last_initial
+    @last_name.chars.first.upcase
+  end
+
   validates :first_name, presence: true, name: true
   validates :last_name, presence: true, name: true
   validates_inclusion_of :date_of_birth, in: ->(_) { 100.years.ago.beginning_of_year.to_date..Date.today }, message: 'must be a valid date'

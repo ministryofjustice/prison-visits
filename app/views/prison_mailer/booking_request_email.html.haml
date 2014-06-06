@@ -1,0 +1,70 @@
+!!!
+%body
+  %p
+    You have received a visit request: 
+    = link_to("process the booking", new_confirmation_url(state: @token, host: @host, protocol: @protocol))
+
+  %table
+    - @visit.visitors.each_with_index do |visitor, index|
+      %caption
+        Visitor
+        = index + 1
+      %tr
+        %td
+          First name:
+        %td
+          = visitor.first_name
+      %tr
+        %td
+          Last name:
+        %td
+          = visitor.last_name
+      - if visitor.date_of_birth
+        %tr
+          %td
+            Date of birth:
+          %td
+            = visitor.date_of_birth.strftime("%e %B %Y")
+      - if visitor.email
+        %tr
+          %td
+            E-mail:
+          %td
+            = visitor.email
+      - if visitor.phone
+        %tr
+          %td
+            Phone:
+          %td
+            = visitor.phone
+
+  %p
+    They are requesting a visit to:
+  %table
+    %caption
+      Prisoner
+    %tr
+      %td
+        First name:
+      %td
+        = @visit.prisoner.first_name
+    %tr
+      %td
+        Last name:
+      %td
+        = @visit.prisoner.last_name
+    %tr
+      %td
+        Number:
+      %td
+        = @visit.prisoner.number
+    %tr
+      %td
+        Prison:
+      %td
+        = @visit.prisoner.prison_name
+    %tr
+      %td
+        Date of birth:
+      %td
+        = @visit.prisoner.date_of_birth.strftime("%e %B %Y")

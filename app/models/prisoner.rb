@@ -20,6 +20,10 @@ class Prisoner
     [@first_name, @last_name].join(' ')
   end
 
+  def last_initial
+    @last_name.chars.first.upcase
+  end
+
   def age
     if date_of_birth
       (Date.today - date_of_birth.to_date).to_i / 365

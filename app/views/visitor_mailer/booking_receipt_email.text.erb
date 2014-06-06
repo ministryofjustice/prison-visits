@@ -1,0 +1,19 @@
+Dear <%= @visit.visitors.first.first_name %>,
+
+YOUR BOOKING REQUEST IS BEING PROCESSED
+
+We have received your visit request. We'll email you within 3 working days to confirm a date and time. Please don't contact us
+sooner than 3 working days, as we won't be able to comment on booking requests that are being processed.
+
+You have requested the following dates and times for <%= @visit.visitors.size %> people at HMP <%= @visit.prisoner.prison_name %>:
+
+<% @visit.slots.each_with_index do |slot, index| %>
+<% if slot.date.present? %>
+<%= index + 1%>. <%= Date.parse(slot.date).strftime("%A %e %B") %>, <%= display_time_slot(slot.times) %>
+<% end %>
+<% end %>
+
+If you want to cancel or make a change to your request or have any special requirements, e.g. wheelchair access, please contact us.
+
+* telephone: <%= Rails.configuration.prison_data[@visit.prisoner.prison_name][:phone] %>
+* email: <%= Rails.configuration.prison_data[@visit.prisoner.prison_name][:email] %>
