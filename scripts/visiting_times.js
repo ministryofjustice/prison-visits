@@ -25,9 +25,9 @@ var prison_details = {
 "HMP-YOI CHELMSFORD": {"address":"200 Springfield Road,CM2 6LQ ","email":"SocialVisits.Chelmsford@hmps.gsi.gov.uk","phone":"01245 552265"},
 "HMP STOCKEN": {"address":"Stocken Hall Road,LE15 7RD", "email":"SocialVisits.Stocken@hmps.gsi.gov.uk", "phone":"01780 795156"},
 "HMP DARTMOOR": {"address":"Princetown,PL20 6RR", "email":"", "phone":"01822 322022"},
-"HMP LOW NEWTON": { "address": "Brasside,DH1 5YA", "email": "SocialVisits.LowNewton@hmps.gsi.gov.uk", "phone":"0191 376 4147"}
+"HMP-YOI LOW NEWTON": { "address": "Brasside,DH1 5YA", "email": "SocialVisits.LowNewton@hmps.gsi.gov.uk", "phone":"0191 376 4147"},
+"HMYOI AYLESBURY": {"address":"Bierton Road,HP20 1EH","email":"visitsbookingaylesbury@hmps.gsi.gov.uk","phone":"01296 444099"}
 };
-
 
 var unfeasible_prisons = {
 "HMP BLANTYRE HOUSE": {"address":"Goudhurst,TN17 2NH","email":"SocialVisits.BlantyreHouse@hmps.gsi.gov.uk","phone":""},
@@ -244,10 +244,15 @@ casper.run(function() {
 
   // Create object of full prison details
   times.forEach(function (times) {
-    var name = formatForPVB(times[0]);
-    prison_data[name] = prison_details[times[0].replace(/_/g,'')]; // start with details from prison_details object
-    prison_data[name].address = prison_details[times[0].replace(/_/g,'')].address.split(','); // make address an array
-    prison_data[name].unbookable = ['2014-12-25']; // add standard unbookable dates
+    var name = formatForPVB(times[0]),
+        details = prison_details[times[0].replace(/_/g,'')];
+
+    prison_data[name] = {}; // start with a blank object
+    prison_data[name].enabled = false; // disable by default
+    prison_data[name].phone = details.phone;
+    prison_data[name].email = details.email;
+    prison_data[name].address = details.address.split(','); // make address an array
+    prison_data[name].unbookable = ('2014-12-25').split(','); // add standard unbookable dates
     prison_data[name].slots = times[1];
   });
 
