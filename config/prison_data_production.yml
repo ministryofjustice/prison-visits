@@ -2,6 +2,7 @@ Rochester:
   enabled: true
   phone: 01634 803100
   email: socialvisits.rochester@hmps.gsi.gov.uk
+  web: http://www.justice.gov.uk/contacts/prison-finder/rochester
   address:
     - 1 Fort Road
     - Rochester
@@ -30,6 +31,7 @@ Durham:
   enabled: true
   phone: 0191 3323417
   email: socialvisits.durham@hmps.gsi.gov.uk
+  web: http://www.justice.gov.uk/contacts/prison-finder/durham
   address:
     - Old Elvet
     - Durham
@@ -62,6 +64,7 @@ Cardiff:
   enabled: true
   phone: 029 20923327
   email: socialvisits.cardiff@hmps.gsi.gov.uk
+  web: http://www.justice.gov.uk/contacts/prison-finder/cardiff
   address:
     - Knox Road
     - Cardiff
