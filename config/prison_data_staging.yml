@@ -2,7 +2,6 @@ Rochester:
   enabled: true
   phone: 01634 803100
   email: pvb.socialvisits.rochester@maildrop.dsd.io
-  web: http://www.justice.gov.uk/contacts/prison-finder/rochester
   address:
     - 1 Fort Road
     - Rochester
@@ -31,7 +30,6 @@ Durham:
   enabled: true
   phone: 0191 3323417
   email: pvb.socialvisits.durham@maildrop.dsd.io
-  web: http://www.justice.gov.uk/contacts/prison-finder/durham
   address:
     - Old Elvet
     - Durham
@@ -64,7 +62,6 @@ Cardiff:
   enabled: true
   phone: 029 20923327
   email: pvb.socialvisits.cardiff@maildrop.dsd.io
-  web: http://www.justice.gov.uk/contacts/prison-finder/cardiff
   address:
     - Knox Road
     - Cardiff

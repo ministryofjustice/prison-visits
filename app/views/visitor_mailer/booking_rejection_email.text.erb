@@ -11,7 +11,7 @@ You have tried to book a visit but not all visitors are on the prisoner’s cont
 
 <%= @message_from_prison_staff %>
 
-If you have any questions, visit the prison website (<%= Rails.configuration.prison_data[@visit.prisoner.prison_name][:web] %>) or call the 
+If you have any questions, visit the prison website (<%= prison_link(@visit) %>) or call the 
 prison on <%= Rails.configuration.prison_data[@visit.prisoner.prison_name]['phone'] %>.
 
 

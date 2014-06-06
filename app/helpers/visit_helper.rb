@@ -112,8 +112,9 @@ module VisitHelper
     prison_data['address'].join(glue).html_safe
   end
 
-  def prison_link
-    link_to "#{visit.prisoner.prison_name.capitalize} prison", "http://www.justice.gov.uk/contacts/prison-finder/#{visit.prisoner.prison_name.downcase}", :rel => 'external'
+  def prison_link(visit)
+    prisonfinder_url = ['http://www.justice.gov.uk/contacts/prison-finder', visit.prisoner.prison_name.downcase.gsub(/[^a-z]/, '-')].join('/')
+    link_to "#{visit.prisoner.prison_name.capitalize} prison", prisonfinder_url, :rel => 'external'
   end
 
   def weeks_start

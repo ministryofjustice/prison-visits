@@ -107,7 +107,7 @@
     %ul
       %li two forms of ID, one with your address
       %li a small amount of money for tea and coffee during the visit – you won’t be able to give the prisoner any money
-      %li for more information about what to bring, for example clothes, please see the #{prison_link} page
+      %li for more information about what to bring, for example clothes, please see the #{prison_link(@visit)} page
 
   %details
     %summary What to expect when visiting prison
@@ -117,7 +117,7 @@
   %details
     %summary What not to bring
 
-    %p Please do not bring anything restricted or illegal to the prison. For more information about what you are allowed to bring, please see the #{prison_link} page.
+    %p Please do not bring anything restricted or illegal to the prison. For more information about what you are allowed to bring, please see the #{prison_link(@visit)} page.
 
   = render 'shared/data_protection_act'
 

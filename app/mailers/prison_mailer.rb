@@ -7,6 +7,7 @@ class PrisonMailer < ActionMailer::Base
   include MailerHelper::Addresses
 
   add_template_helper(ApplicationHelper)
+  add_template_helper(VisitHelper)
 
   def self.smtp_settings
     {
