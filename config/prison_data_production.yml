@@ -736,3 +736,239 @@ Wealstun:
     sun:
       - 0930-1130
       - 1345-1600
+Bedford:
+  enabled: false
+  phone: '01234 373196'
+  email: SocialVisits.Bedford@hmps.gsi.gov.uk
+  address:
+    - 'St. Loyes Street'
+    - 'MK40 1HG'
+  unbookable:
+    - 2014-12-25
+  slots:
+    mon:
+      - 1345-1445
+      - 1515-1615
+    sat:
+      - 1345-1445
+      - 1515-1615
+    sun:
+      - 1345-1445
+      - 1515-1615
+    thu:
+      - 1345-1445
+      - 1515-1615
+    tue:
+      - 1345-1445
+      - 1515-1615
+    wed:
+      - 1345-1445
+      - 1515-1615
+Preston:
+  enabled: false
+  phone: '01772 444666'
+  email: ""
+  address:
+    - '2 Ribbleton Lane'
+    - 'PR1 5AB '
+  unbookable:
+    - 2014-12-25
+  slots:
+    fri:
+      - 1400-1600
+    mon:
+      - 1400-1600
+    sat:
+      - 1400-1600
+    sun:
+      - 1400-1600
+    thu:
+      - 1400-1600
+    tue:
+      - 1400-1600
+    wed:
+      - 1400-1600
+Maidstone:
+  enabled: false
+  phone: '016220775619'
+  email: Socialvisits.maidstone@hmps.gsi.gov.uk
+  address:
+    - '36 County Road'
+    - 'ME14 1UZ '
+  unbookable:
+    - 2014-12-25
+  slots:
+    fri:
+      - 1400-1625
+    mon:
+      - 1400-1625
+    sat:
+      - 1400-1625
+    sun:
+      - 1400-1625
+    thu:
+      - 1400-1625
+    wed:
+      - 1400-1625
+'Warren Hill':
+  enabled: false
+  phone: '020 8588 4002'
+  email: SocialVisits.WarrenHill@hmps.gsi.gov.uk
+  address:
+    - Hollesley
+    - 'IP12 3JW '
+  unbookable:
+    - 2014-12-25
+  slots:
+    sat:
+      - 1400-1600
+    sun:
+      - 1400-1600
+    wed:
+      - 1415-1600
+Wetherby:
+  enabled: false
+  phone: '01937 544207'
+  email: SocialVisits.Wetherby@hmps.gsi.gov.uk
+  address:
+    - 'York Road'
+    - 'LS22 5ED '
+  unbookable:
+    - 2014-12-25
+  slots:
+    fri:
+      - 1400-1600
+    mon:
+      - 1400-1600
+    sat:
+      - 1400-1600
+    sun:
+      - 1400-1600
+    thu:
+      - 1400-1600
+    tue:
+      - 1400-1600
+    wed:
+      - 1400-1600
+Erlestoke:
+  enabled: false
+  phone: '01380 814264'
+  email: eecmbookavisit@hmps.gsi.gov.uk
+  address:
+    - DEVIZES
+    - 'SN10 5TU'
+  unbookable:
+    - 2014-12-25
+  slots:
+    sat:
+      - 1400-1600
+    sun:
+      - 1400-1600
+    thu:
+      - 1345-1600
+    tue:
+      - 1345-1600
+Chelmsford:
+  enabled: false
+  phone: '01245 552265'
+  email: SocialVisits.Chelmsford@hmps.gsi.gov.uk
+  address:
+    - '200 Springfield Road'
+    - 'CM2 6LQ '
+  unbookable:
+    - 2014-12-25
+  slots:
+    mon:
+      - 1415-1600
+    sat:
+      - 0930-1100
+      - 1430-1545
+    sun:
+      - 0930-1100
+      - 1430-1545
+    thu:
+      - 1415-1600
+    tue:
+      - 1415-1600
+    wed:
+      - 1415-1600
+Stocken:
+  enabled: false
+  phone: '01780 795156'
+  email: SocialVisits.Stocken@hmps.gsi.gov.uk
+  address:
+    - 'Stocken Hall Road'
+    - 'LE15 7RD'
+  unbookable:
+    - 2014-12-25
+  slots:
+    fri:
+      - 1345-1545
+    sat:
+      - 0915-1115
+      - 1345-1545
+    sun:
+      - 0915-1115
+      - 1345-1545
+    wed:
+      - 1345-1545
+Dartmoor:
+  enabled: false
+  phone: '01822 322022'
+  email: ""
+  address:
+    - Princetown
+    - 'PL20 6RR'
+  unbookable:
+    - 2014-12-25
+  slots:
+    fri:
+      - 1400-1600
+    sat:
+      - 1400-1600
+    sun:
+      - 1400-1600
+    thu:
+      - 1400-1600
+    wed:
+      - 1400-1600
+'Low Newton':
+  enabled: false
+  phone: '0191 376 4147'
+  email: SocialVisits.LowNewton@hmps.gsi.gov.uk
+  address:
+    - Brasside
+    - 'DH1 5YA'
+  unbookable:
+    - 2014-12-25
+  slots:
+    fri:
+      - 1415-1545
+    sat:
+      - 1400-1545
+    sun:
+      - 1400-1545
+    thu:
+      - 1415-1545
+    tue:
+      - 1415-1545
+Aylesbury:
+  enabled: false
+  phone: '01296 444099'
+  email: visitsbookingaylesbury@hmps.gsi.gov.uk
+  address:
+    - 'Bierton Road'
+    - 'HP20 1EH'
+  unbookable:
+    - 2014-12-25
+  slots:
+    mon:
+      - 1415-1615
+    sat:
+      - 1400-1535
+    sun:
+      - 1400-1535
+    thu:
+      - 1415-1615
+    wed:
+      - 1415-1615
