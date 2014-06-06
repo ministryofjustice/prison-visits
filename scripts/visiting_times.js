@@ -15,7 +15,7 @@ var arrayFromObject = function (obj) {
   return list;
 };
 
-var prison_details = {
+var prison_details1 = {
 "HMP BEDFORD": {"address":"St. Loyes Street,MK40 1HG","email":"SocialVisits.Bedford@hmps.gsi.gov.uk","phone":"01234 373196"},
 "HMP PRESTON": {"address":"2 Ribbleton Lane,PR1 5AB ","email":"","phone":"01772 444666"},
 "HMP MAIDSTONE": {"address":"36 County Road,ME14 1UZ ","email":"Socialvisits.maidstone@hmps.gsi.gov.uk","phone":"016220775619"},
@@ -26,13 +26,14 @@ var prison_details = {
 "HMP STOCKEN": {"address":"Stocken Hall Road,LE15 7RD", "email":"SocialVisits.Stocken@hmps.gsi.gov.uk", "phone":"01780 795156"},
 "HMP DARTMOOR": {"address":"Princetown,PL20 6RR", "email":"", "phone":"01822 322022"},
 "HMP-YOI LOW NEWTON": { "address": "Brasside,DH1 5YA", "email": "SocialVisits.LowNewton@hmps.gsi.gov.uk", "phone":"0191 376 4147"},
-"HMYOI AYLESBURY": {"address":"Bierton Road,HP20 1EH","email":"visitsbookingaylesbury@hmps.gsi.gov.uk","phone":"01296 444099"}
-};
-
-var unfeasible_prisons = {
+"HMYOI AYLESBURY": {"address":"Bierton Road,HP20 1EH","email":"visitsbookingaylesbury@hmps.gsi.gov.uk","phone":"01296 444099"},
+"HMP ISLE OF WIGHT - ALBANY": {"address":"55 Parkhurst Road,PO30 5RS","email":"","phone":"01983 556573"},
 "HMP BLANTYRE HOUSE": {"address":"Goudhurst,TN17 2NH","email":"SocialVisits.BlantyreHouse@hmps.gsi.gov.uk","phone":""},
 "HMP BRIXTON": {"address":"Jebb Avenue,SW2 5XF","email":"socialvisitsbrixton@hmps.gsi.gov.uk","phone":"0208 678 1433"},
-"HMP BULLINGDON": {"address":"Bicester,OX25 1PZ ","email":"socialvisits.bullingdon@hmps.gsi.gov.uk","phone":"01869 353176"},
+"HMP BULLINGDON": {"address":"Bicester,OX25 1PZ ","email":"socialvisits.bullingdon@hmps.gsi.gov.uk","phone":"01869 353176"}
+};
+
+var prison_details = {
 "HMP DOWNVIEW": {"address":"Sutton Lane,SM2 5PD","email":"socialvisits.downview@hmps.gsi.gov.uk","phone":"0208 196 6359"},
 "HMP-YOI EAST SUTTON PARK": {"address":"Sutton Valence,ME17 3DF ","email":"Socialvisits.Eastsuttonpark@hmps.gsi.gov.uk","phone":""},
 "HMP SHEPPEY CLUSTER - ELMLEY": {"address":"Church Road,ME12 4DZ ","email":"SocialVisits.Elmley@hmps.gsi.gov.uk","phone":"0300 060 6605"},
@@ -44,7 +45,11 @@ var unfeasible_prisons = {
 "HMP-YOI HATFIELD (MOORLAND OPEN)": {"address":"Thorne Road,DN7 6El","email":"SocialVisits.Hatfield@hmps.gsi.gov.uk","phone":"01405 746611"},
 "HMP HAVERIGG": {"address":"MILLOM,LA18 4NA ","email":"socialvisits.haverigg@hmps.gsi.gov.uk","phone":"01229713016"},
 "HMP HIGH DOWN": {"address":"Sutton Lane,SM2 5PJ ","email":"socialvisits.highdown@hmps.gsi.gov.uk","phone":"0300 060 6503"},
-"HMP HIGHPOINT": {"address":"Stradishall,CB8 9YG ","email":"SocialVisits.Highpoint @hmps.gsi.gov.uk","phone":"0207 147 6570"},
+"HMP HIGHPOINT NORTH": {"address":"Stradishall,CB8 9YG ","email":"SocialVisits.Highpoint @hmps.gsi.gov.uk","phone":"0207 147 6570"},
+"HMP HIGHPOINT SOUTH": {"address":"Stradishall,CB8 9YG ","email":"SocialVisits.Highpoint @hmps.gsi.gov.uk","phone":"0207 147 6570"}
+};
+
+var p1 = {
 "HMYOI HINDLEY": {"address":"Gibson Street,WN2 5TH ","email":"socialvisits.hindley@hmps.gsi.gov.uk","phone":"01440 743134"},
 "HMP HOLLESLEY BAY": {"address":"WOODBRIDGE,IP12 3JW ","email":"SocialVisits.HollesleyBay@hmps.gsi.gov.uk","phone":""},
 "HMP-YOI HOLLOWAY": {"address":"Parkhurst Road,N7 0NU ","email":"socialvisits.holloway@hmps.gsi.gov.uk","phone":""},
@@ -251,6 +256,7 @@ casper.run(function() {
     prison_data[name].enabled = false; // disable by default
     prison_data[name].phone = details.phone;
     prison_data[name].email = details.email;
+    // prison_data[name].email = 'pvb.visitsbooking.'+ name.replace(/ /g, '').toLowerCase() +'@maildrop.dsd.io';
     prison_data[name].address = details.address.split(','); // make address an array
     prison_data[name].unbookable = ('2014-12-25').split(','); // add standard unbookable dates
     prison_data[name].slots = times[1];
