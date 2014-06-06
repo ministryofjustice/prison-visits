@@ -334,8 +334,14 @@ describe VisitController do
   end
 
   describe "step 5" do
+    let :mock_metrics_logger do
+      MockMetricsLogger.new
+    end
+
     before :each do
       Timecop.freeze(Time.local(2013, 12, 1, 12, 0))
+      ActionMailer::Base.deliveries.clear
+      subject.stub(:metrics_logger).and_return(mock_metrics_logger)
 
       session[:visit] = Visit.new.tap do |v|
         v.prisoner = Prisoner.new.tap do |p|
@@ -365,13 +371,16 @@ describe VisitController do
     end
 
     it "sends out emails" do
-      BookingRequest.any_instance.stub(:smtp_domain).and_return('example.com')
-      BookingConfirmation.any_instance.stub(:smtp_domain).and_return('example.com')
+      mock_metrics_logger.should_receive(:record_visit_request).with(session[:visit])
+
+      PrisonMailer.any_instance.should_receive(:sender).and_return('test@example.com')
+      VisitorMailer.any_instance.should_receive(:sender).and_return('test@example.com')
 
       post :update_check_your_request
       response.should redirect_to(request_sent_path)
 
-      ActionMailer::Base.deliveries.map(&:subject).should == ['Visit request for Jimmy Fingers', 'You have requested a visit for 6 December 2013']
+      ActionMailer::Base.deliveries.map(&:subject).should == ['Visit request for Jimmy Fingers',
+                                                              'Your visit for 6 December 2013 will be processed soon.']
     end
 
     it "doesn't send out e-mails if in testing mode" do
