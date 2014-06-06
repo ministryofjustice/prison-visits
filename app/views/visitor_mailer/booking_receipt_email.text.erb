@@ -2,10 +2,9 @@ Dear <%= @visit.visitors.first.first_name %>,
 
 YOUR BOOKING REQUEST IS BEING PROCESSED
 
-We have received your visit request. We'll email you within 3 working days to confirm a date and time. Please don't contact us
-sooner than 3 working days, as we won't be able to comment on booking requests that are being processed.
+We have received your visit request. We'll email you within 3 working days to confirm a date and time. Please don't contact us sooner than 3 working days, as we won't be able to comment on booking requests that are being processed.
 
-You have requested the following dates and times for <%= @visit.visitors.size %> people at HMP <%= @visit.prisoner.prison_name %>:
+These are the options you have requested for your visit at <%= @visit.prisoner.prison_name %> for <%= @visit.visitors.size %> people:
 
 <% @visit.slots.each_with_index do |slot, index| %>
 <% if slot.date.present? %>
