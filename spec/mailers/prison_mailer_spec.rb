@@ -62,9 +62,12 @@ describe PrisonMailer do
     end
 
     it "sends a booking receipt to a prison to create an audit trail" do
-      subject.booking_receipt_email(sample_visit, confirmation_with_slot).subject.should == "Booking receipt for Jimmy Fingers"
-      subject.booking_receipt_email(sample_visit, confirmation_without_slot).subject.should == "Booking receipt for Jimmy Fingers"
-      subject.booking_receipt_email(sample_visit, confirmation_not_on_contact_list).subject.should == "Booking receipt for Jimmy Fingers"
+      [confirmation_with_slot, confirmation_without_slot, confirmation_not_on_contact_list].each do |confirmation|
+        subject.booking_receipt_email(sample_visit, confirmation).tap do |email|
+          email.subject.should == "Booking receipt for Jimmy Fingers"
+          email.body.should include('Mark')
+        end
+      end
     end
 
     it "sends an e-mail to rochester functional mailbox" do

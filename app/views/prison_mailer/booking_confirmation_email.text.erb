@@ -1,12 +1,12 @@
 Dear <%= @visit.visitors.first.first_name %>,
 
-Your visit to <%= @visit.prisoner.first_name %> <%= @visit.prisoner.last_initial %> at <%= @visit.prisoner.prison_name %> at <%= @slot.times %> on <%= @slot.date %> is now successfully confirmed.
+Your visit to <%= @visit.prisoner.first_name %> <%= @visit.prisoner.last_name %> at <%= @visit.prisoner.prison_name %> at <%= @slot.times %> on <%= @slot.date %> is now successfully confirmed.
 
 <% @visit.visitors.each_with_index do |visitor, index| %>
 Visitor <%= index + 1 %>
 =========
 First name: <%= visitor.first_name %>
-Last name: <%= visitor.last_initial %>
+Last name: <%= visitor.last_name %>
 
 <% end %>
 

@@ -60,6 +60,7 @@ describe VisitorMailer do
 
         email.body.raw_source.should include("email: pvb.socialvisits.rochester@maildrop.dsd.io")
         email.body.raw_source.should include("phone: 01634 803100")
+        email.body.raw_source.should_not include("Jimmy Fingers")
       end
     end
 
@@ -73,6 +74,7 @@ describe VisitorMailer do
 
         email.body.raw_source.should include('http://www.justice.gov.uk/contacts/prison-finder/rochester')
         email.body.raw_source.should include("01634 803100")
+        email.body.raw_source.should_not include("Jimmy Fingers")
       end
     end
 
@@ -86,6 +88,7 @@ describe VisitorMailer do
 
         email.body.raw_source.should include('http://www.justice.gov.uk/contacts/prison-finder/rochester')
         email.body.raw_source.should include("01634 803100")
+        email.body.raw_source.should_not include("Jimmy Fingers")
       end
     end
 
@@ -95,6 +98,7 @@ describe VisitorMailer do
         email.subject.should == "Your visit for 7 July 2013 will be processed soon."
         email.from.should == ["no-reply@example.com"]
         email.to.should == ['visitor@example.com']
+        email.body.raw_source.should_not include("Jimmy Fingers")
       end
     end
 

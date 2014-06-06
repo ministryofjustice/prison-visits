@@ -36,10 +36,10 @@ class PrisonMailer < ActionMailer::Base
     if confirmation.slot_selected?
       @slot = visit.slots[confirmation.slot]
       mail(from: sender, to: recipient, subject: "Booking receipt for #{@visit.prisoner.full_name}",
-           template_path: "visitor_mailer", template_name: "booking_confirmation_email")
+           template_name: "booking_confirmation_email")
     else
       mail(from: sender, to: recipient, subject: "Booking receipt for #{@visit.prisoner.full_name}",
-           template_path: "visitor_mailer", template_name: "booking_rejection_email")
+           template_name: "booking_rejection_email")
     end
   end
 

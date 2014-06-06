@@ -2,7 +2,7 @@ Dear <%= @visit.visitors.first.first_name %>,
 
 <% case @confirmation.outcome %>
 <% when 'no_slot_available' %>
-We’re sorry but the dates and times you chose to visit <%= @visit.prisoner.first_name %> <%= @visit.prisoner.last_initial %> at <%= @visit.prisoner.prison_name %> were not available. 
+We’re sorry but the dates and times you chose to visit <%= @visit.prisoner.first_name %> <%= @visit.prisoner.last_name %> at <%= @visit.prisoner.prison_name %> were not available. 
 
 Please visit http://gov.uk/prison-visits/ to choose some alternative dates.
 <% when 'not_on_contact_list' %>
