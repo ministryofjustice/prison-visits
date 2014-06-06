@@ -25,7 +25,8 @@ describe ConfirmationsController do
       end
       get :new, state: MESSAGE_ENCRYPTOR.encrypt_and_sign(visit)
       subject.booked_visit.should.equal? visit
-      response.should redirect_to(new_confirmation_path)
+      response.should be_success
+      response.should render_template('confirmations/new')
     end
 
     it "doesn't resurrect a visit which has already been booked" do

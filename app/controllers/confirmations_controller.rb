@@ -9,13 +9,12 @@ class ConfirmationsController < ApplicationController
   end
 
   def new
+    reset_session if params[:state]
     @confirmation = Confirmation.new
     metrics_logger.record_link_click(booked_visit)
     if metrics_logger.processed?(booked_visit)
       reset_session
       redirect_to confirmation_path
-    else
-      redirect_to new_confirmation_path if params[:state]
     end
   end
 
