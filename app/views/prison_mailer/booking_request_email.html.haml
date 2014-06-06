@@ -1,48 +1,77 @@
 !!!
 %body
+  :css
+    .copy-paste-window {
+      word-wrap: break-word;
+      border: thin solid gray;
+      padding: 5px;
+      width: 80%;
+    }
+
+    td {
+      padding: .3em 1em;
+    }
+
+    .odd td {
+      background-color: #eeeeee;
+    }
+
+    .even td {
+    }
+
+    td.first {
+      width: 6em;
+    }
   %p
     You have received a visit request: 
     = link_to("process the booking", new_confirmation_url(state: @token, host: @host, protocol: @protocol))
 
-  The following slots were requested:
+  %p
+    If you cannot click on the link above, please copy and paste the text below into the address window of your browser:
+  %div.copy-paste-window
+    = new_confirmation_url(state: @token, host: @host, protocol: @protocol)
+
+  %p
+    The following slots were requested:
 
   %ol
-  - @visit.slots.each_with_index do |slot, index|
-    - if slot.date.present?
-      %li
-        = Date.parse(slot.date).strftime('%A, %e %B %Y at ')
-        = display_slot_and_duration slot.times
+    - @visit.slots.each_with_index do |slot, index|
+      - if slot.date.present?
+        %li
+          = Date.parse(slot.date).strftime('%A, %e %B %Y at ')
+          = display_slot_and_duration slot.times
 
   %table
     - @visit.visitors.each_with_index do |visitor, index|
-      %caption
-        Visitor
-        = index + 1
       %tr
-        %td
+        %th{colspan: 2}
+          Visitor
+          = index + 1
+      %tr.odd
+        %td.first
           First name:
         %td
           = visitor.first_name
-      %tr
-        %td
+      %tr.even
+        %td.first
           Last name:
         %td
           = visitor.last_name
       - if visitor.date_of_birth
-        %tr
-          %td
+        %tr.odd
+          %td.first
             Date of birth:
           %td
             = visitor.date_of_birth.strftime("%e %B %Y")
       - if visitor.email
-        %tr
-          %td
+        %tr.even
+          %td.first
             E-mail:
           %td
             = visitor.email
       - if visitor.phone
-        %tr
-          %td
+        %tr.odd
+          %td.first
             Phone:
           %td
             = visitor.phone
@@ -50,30 +79,31 @@
   %p
     They are requesting a visit to:
   %table
-    %caption
-      Prisoner
     %tr
-      %td
+      %th
+        Prisoner
+    %tr.odd
+      %td.first
         First name:
       %td
         = @visit.prisoner.first_name
-    %tr
-      %td
+    %tr.even
+      %td.first
         Last name:
       %td
         = @visit.prisoner.last_name
-    %tr
-      %td
+    %tr.odd
+      %td.first
         Number:
       %td
         = @visit.prisoner.number
-    %tr
-      %td
+    %tr.even
+      %td.first
         Prison:
       %td
         = @visit.prisoner.prison_name
-    %tr
-      %td
+    %tr.odd
+      %td.first
         Date of birth:
       %td
         = @visit.prisoner.date_of_birth.strftime("%e %B %Y")
