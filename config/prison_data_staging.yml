@@ -355,7 +355,7 @@ Foston Hall:
       - 0930-1130
       - 1400-1600
 Holloway:
-  enabled: false
+  enabled: true
   phone: 020 7979 4751 
   email: pvb.holloway@maildrop.dsd.io
   address:
@@ -419,9 +419,9 @@ Holloway:
     2014-12-18:
       - 0930-1030
 Bristol: 
-  enabled: false
+  enabled: true
   phone: 01173 732358 
-  email: SocialVisits.Bristol@hmps.gsi.gov.uk
+  email: pvb.visitsbooking.bristol@maildrop.dsd.io
   address:
     - 19 Cambridge Road
     - Bristol
@@ -446,9 +446,9 @@ Bristol:
     sun:
       - 1400-1600
 Buckley Hall: 
-  enabled: false
+  enabled: true
   phone: 01706 514350 
-  email: SocialVisits.buckleyhall@hmps.gsi.gov.uk
+  email: pvb.visitsbooking.buckleyhall@maildrop.dsd.io
   address:
     - Buckley Road
     - OL12 9DP
@@ -476,9 +476,9 @@ Buckley Hall:
       - 0930-1130
       - 1400-1600
 Bure: 
-  enabled: false
+  enabled: true
   phone: 01603 326252
-  email: SocialVisits.bure@hmps.gsi.gov.uk
+  email: pvb.visitsbooking.bure@maildrop.dsd.io
   address:
     - Jaguar Drive
     - NR10 5GB
@@ -496,9 +496,9 @@ Bure:
       - 0930-1130
       - 1400-1600
 Coldingley: 
-  enabled: false
+  enabled: true
   phone: 01483 344418
-  email: SocialVisits.coldingley@hmps.gsi.gov.uk
+  email: pvb.visitsbooking.coldingley@maildrop.dsd.io
   address:
     - Shaftesbury Road
     - GU24 9EX
@@ -524,9 +524,9 @@ Coldingley:
     sun:
       - 1400-1545
 Cookham Wood: 
-  enabled: false
+  enabled: true
   phone: 01634 202557
-  email: SocialVisits.CookhamWood@hmps.gsi.gov.uk
+  email: pvb.visitsbooking.cookhamwood@maildrop.dsd.io
   address:
     - Sir Evelyn Road
     - ME1 3LU
@@ -542,9 +542,9 @@ Cookham Wood:
       - 0930-1130
       - 1430-1630
 Deerbolt:  
-  enabled: false
+  enabled: true
   phone: 01833 633349
-  email: SocialVisits.Deerbolt@hmps.gsi.gov.uk
+  email: pvb.visitsbooking.deerbolt@maildrop.dsd.io
   address:
     - Bowes Road
     - DL12 9BG 
@@ -560,9 +560,9 @@ Deerbolt:
     sun:
       - 1345-1545
 Exeter:  
-  enabled: false
+  enabled: true
   phone: 01392 41 5833
-  email: SocialVisits.Exeter@hmps.gsi.gov.uk
+  email: pvb.visitsbooking.exeter@maildrop.dsd.io
   address:
     - New North Road
     - EX4 4EX 
@@ -584,9 +584,9 @@ Exeter:
     sun:
       - 1415-1615
 Lewes:  
-  enabled: false
+  enabled: true
   phone: 01273785277
-  email: SocialVisits.Lewes@hmps.gsi.gov.uk
+  email: pvb.visitsbooking.lewes@maildrop.dsd.io
   address:
     - 1 Brighton Road
     - BN7 1EA 
@@ -613,9 +613,9 @@ Lewes:
     sun:
       - 1410-1535
 Moorland Closed:  
-  enabled: false
+  enabled: true
   phone: 01302523087
-  email: SocialVisits.MoorlandClosed@hmps.gsi.gov.uk
+  email: pvb.visitsbooking.moorlandclosed@maildrop.dsd.io
   address:
     - Bawtry Road
     - DN7 6BW 
@@ -631,9 +631,9 @@ Moorland Closed:
     sun:
       - 1340-1545
 Onley:  
-  enabled: false
+  enabled: true
   phone: 01788 523 402
-  email: SocialVisits.Onley@hmps.gsi.gov.uk
+  email: pvb.visitsbooking.onley@maildrop.dsd.io
   address:
     - Willoughby
     - CV23 8AP 
@@ -661,9 +661,9 @@ Onley:
       - 1345-1445
       - 1515-1615
 The Mount:  
-  enabled: false
+  enabled: true
   phone: 01442 836352
-  email: SocialVisits.TheMount@hmps.gsi.gov.uk
+  email: pvb.visitsbooking.themount@maildrop.dsd.io
   address:
     - Molyneaux Avenue
     - HP3 0NZ 
@@ -687,9 +687,9 @@ The Mount:
       - 1400-1600
       - 1500-1600
 Wayland:  
-  enabled: false
+  enabled: true
   phone: 001953 804152
-  email: SocialVisits.Wayland@hmps.gsi.gov.uk
+  email: pvb.visitsbooking.wayland@maildrop.dsd.io
   address:
     - Griston
     - IP25 6RL 
@@ -709,9 +709,9 @@ Wayland:
     sun:
       - 1400-1600
 Wealstun:  
-  enabled: false
+  enabled: true
   phone: 01937 444599
-  email: SocialVisits.Wealstun@hmps.gsi.gov.uk
+  email: pvb.visitsbooking.wealstun@maildrop.dsd.io
   address:
     - Church Causeway
     - LS23 7AZ 
@@ -737,9 +737,9 @@ Wealstun:
       - 0930-1130
       - 1345-1600
 Bedford:
-  enabled: false
+  enabled: true
   phone: '01234 373196'
-  email: SocialVisits.Bedford@hmps.gsi.gov.uk
+  email: pvb.visitsbooking.bedford@maildrop.dsd.io
   address:
     - 'St. Loyes Street'
     - 'MK40 1HG'
@@ -765,7 +765,7 @@ Bedford:
       - 1345-1445
       - 1515-1615
 Preston:
-  enabled: false
+  enabled: true
   phone: '01772 444666'
   email: ""
   address:
@@ -789,9 +789,9 @@ Preston:
     wed:
       - 1400-1600
 Maidstone:
-  enabled: false
+  enabled: true
   phone: '016220775619'
-  email: Socialvisits.maidstone@hmps.gsi.gov.uk
+  email: pvb.visitsbooking.maidstone@maildrop.dsd.io
   address:
     - '36 County Road'
     - 'ME14 1UZ '
@@ -811,9 +811,9 @@ Maidstone:
     wed:
       - 1400-1625
 'Warren Hill':
-  enabled: false
+  enabled: true
   phone: '020 8588 4002'
-  email: SocialVisits.WarrenHill@hmps.gsi.gov.uk
+  email: pvb.visitsbooking.warrenhill@maildrop.dsd.io
   address:
     - Hollesley
     - 'IP12 3JW '
@@ -827,9 +827,9 @@ Maidstone:
     wed:
       - 1415-1600
 Wetherby:
-  enabled: false
+  enabled: true
   phone: '01937 544207'
-  email: SocialVisits.Wetherby@hmps.gsi.gov.uk
+  email: pvb.visitsbooking.wetherby@maildrop.dsd.io
   address:
     - 'York Road'
     - 'LS22 5ED '
@@ -851,9 +851,9 @@ Wetherby:
     wed:
       - 1400-1600
 Erlestoke:
-  enabled: false
+  enabled: true
   phone: '01380 814264'
-  email: eecmbookavisit@hmps.gsi.gov.uk
+  email: pvb.visitsbooking.erlestoke@maildrop.dsd.io
   address:
     - DEVIZES
     - 'SN10 5TU'
@@ -869,9 +869,9 @@ Erlestoke:
     tue:
       - 1345-1600
 Chelmsford:
-  enabled: false
+  enabled: true
   phone: '01245 552265'
-  email: SocialVisits.Chelmsford@hmps.gsi.gov.uk
+  email: pvb.visitsbooking.chelmsford@maildrop.dsd.io
   address:
     - '200 Springfield Road'
     - 'CM2 6LQ '
@@ -893,9 +893,9 @@ Chelmsford:
     wed:
       - 1415-1600
 Stocken:
-  enabled: false
+  enabled: true
   phone: '01780 795156'
-  email: SocialVisits.Stocken@hmps.gsi.gov.uk
+  email: pvb.visitsbooking.stocken@maildrop.dsd.io
   address:
     - 'Stocken Hall Road'
     - 'LE15 7RD'
@@ -913,7 +913,7 @@ Stocken:
     wed:
       - 1345-1545
 Dartmoor:
-  enabled: false
+  enabled: true
   phone: '01822 322022'
   email: ""
   address:
@@ -933,9 +933,9 @@ Dartmoor:
     wed:
       - 1400-1600
 'Low Newton':
-  enabled: false
+  enabled: true
   phone: '0191 376 4147'
-  email: SocialVisits.LowNewton@hmps.gsi.gov.uk
+  email: pvb.visitsbooking.lownewton@maildrop.dsd.io
   address:
     - Brasside
     - 'DH1 5YA'
@@ -953,9 +953,9 @@ Dartmoor:
     tue:
       - 1415-1545
 Aylesbury:
-  enabled: false
+  enabled: true
   phone: '01296 444099'
-  email: visitsbookingaylesbury@hmps.gsi.gov.uk
+  email: pvb.visitsbooking.aylesbury@maildrop.dsd.io
   address:
     - 'Bierton Road'
     - 'HP20 1EH'
