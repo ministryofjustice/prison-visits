@@ -973,7 +973,7 @@ Aylesbury:
     wed:
       - 1415-1615
 'Isle Of Wight - Albany':
-  enabled: false
+  enabled: true
   phone: '01983 556573'
   email: ""
   address:

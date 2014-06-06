@@ -973,7 +973,7 @@ Aylesbury:
     wed:
       - 1415-1615
 'Isle Of Wight - Albany':
-  enabled: true
+  enabled: false
   phone: '01983 556573'
   email: ""
   address:
@@ -993,7 +993,7 @@ Aylesbury:
     wed:
       - 1400-1600
 'Blantyre House':
-  enabled: true
+  enabled: false
   phone: ""
   email: SocialVisits.BlantyreHouse@hmps.gsi.gov.uk
   address:
@@ -1009,7 +1009,7 @@ Aylesbury:
     wed:
       - 1345-1600
 Brixton:
-  enabled: true
+  enabled: false
   phone: '0208 678 1433'
   email: socialvisitsbrixton@hmps.gsi.gov.uk
   address:
@@ -1046,7 +1046,7 @@ Brixton:
       - 1400-1500
       - 1515-1615
 Bullingdon:
-  enabled: true
+  enabled: false
   phone: '01869 353176'
   email: socialvisits.bullingdon@hmps.gsi.gov.uk
   address:
