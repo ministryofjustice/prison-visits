@@ -4,10 +4,7 @@ class VisitController < ApplicationController
   before_filter :check_if_session_timed_out, only: [:update_prisoner_details, :update_visitor_details, :update_choose_date_and_time, :update_check_your_request]
   before_filter :check_if_session_exists, except: [:prisoner_details, :unavailable]
   helper_method :just_testing?
-
-  if Rails.env.production? && ENV['APP_PLATFORM'] != 'production'
-    http_basic_authenticate_with name: ENV['HTTP_USER'], password: ENV['HTTP_PASSWORD']
-  end
+  helper_method :visit
 
   def cal
     
@@ -19,6 +16,10 @@ class VisitController < ApplicationController
       return
     end
     verify_authenticity_token
+  end
+
+  def visit
+    session[:visit] ||= Visit.new(prisoner: Prisoner.new, visitors: [Visitor.new], slots: [], visit_id: SecureRandom.hex)
   end
 
   def check_if_session_exists
@@ -101,10 +102,12 @@ class VisitController < ApplicationController
 
   def update_check_your_request
     unless just_testing?
-      BookingRequest.request_email(visit).deliver
-      BookingConfirmation.confirmation_email(visit).deliver
+      @token = encryptor.encrypt_and_sign(visit)
+      PrisonMailer.booking_request_email(visit, @token, request.host).deliver
+      VisitorMailer.booking_receipt_email(visit).deliver
     end
 
+    metrics_logger.record_visit_request(visit)
     redirect_to request_sent_path
   end
 
@@ -118,6 +121,14 @@ class VisitController < ApplicationController
   end
 
 private
+
+  def metrics_logger
+    METRICS_LOGGER
+  end
+
+  def encryptor
+    MESSAGE_ENCRYPTOR
+  end
 
   def visit_params
     dob = [:'date_of_birth(3i)', :'date_of_birth(2i)', :'date_of_birth(1i)']
