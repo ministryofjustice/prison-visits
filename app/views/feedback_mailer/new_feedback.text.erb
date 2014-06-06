@@ -1,0 +1,9 @@
+A user has submitted new feedback for:
+
+Date: <%= Time.now %>
+Service name: PVBE
+User email: <%= @feedback.email %>
+Page: <%= @feedback.referrer %>
+Browser: <%= @feedback.user_agent %>
+Feedback:
+<%= @feedback.text %>

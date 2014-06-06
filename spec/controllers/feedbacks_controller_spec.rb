@@ -12,7 +12,7 @@ describe FeedbacksController do
   end
 
   it "redirects to show page on successful feedback submission" do
-    FeedbackNotification.should_receive(:new_message).once.and_call_original
+    FeedbackMailer.should_receive(:new_feedback).once.and_call_original
     ZendeskHelper.should_receive(:send_to_zendesk).once
     expect {
       post :create, feedback: { email: 'test@lol.biz.info', text: 'feedback', referrer: 'ref' }

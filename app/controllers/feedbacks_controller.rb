@@ -13,7 +13,7 @@ class FeedbacksController < ApplicationController
   def create
     @feedback = Feedback.new(feedback_params)
     if @feedback.valid?
-      FeedbackNotification.new_message(@feedback).deliver
+      FeedbackMailer.new_feedback(@feedback).deliver
       ZendeskHelper.send_to_zendesk(@feedback)
       redirect_to feedback_path
     else
