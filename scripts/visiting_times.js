@@ -5,14 +5,20 @@ var casper = require("casper").create();
 var utils = require("utils");
 var url = "http://www.insidetime.co.uk/info-visitorsinfo.asp?nameofprison=";
 var times = [];
-var prison_data = {};
+var prisons = [];
+
+var arrayFromObject = function (obj) {
+  var list = [];
+  for (var i in obj) {
+    list.push(i);
+  }
+  return list;
+};
 
 var prison_details = {
 "HMP BEDFORD": {"address":"St. Loyes Street,MK40 1HG","email":"SocialVisits.Bedford@hmps.gsi.gov.uk","tel":"01234 373196"},
 "HMP BLANTYRE HOUSE": {"address":"Goudhurst,TN17 2NH","email":"SocialVisits.BlantyreHouse@hmps.gsi.gov.uk","tel":""},
-"HMP BRIXTON": {"address":"Jebb Avenue,SW2 5XF","email":"socialvisitsbrixton@hmps.gsi.gov.uk","tel":"0208 678 1433"}};
-
-var prison_details2 = {
+"HMP BRIXTON": {"address":"Jebb Avenue,SW2 5XF","email":"socialvisitsbrixton@hmps.gsi.gov.uk","tel":"0208 678 1433"},
 "HMP BULLINGDON": {"address":"Bicester,OX25 1PZ ","email":"socialvisits.bullingdon@hmps.gsi.gov.uk","tel":"01869 353176"},
 "HMP-YOI CHELMSFORD": {"address":"200 Springfield Road,CM2 6LQ ","email":"SocialVisits.Chelmsford@hmps.gsi.gov.uk","tel":"01245 552265"},
 "HMP DOWNVIEW": {"address":"Sutton Lane,SM2 5PD","email":"socialvisits.downview@hmps.gsi.gov.uk","tel":"0208 196 6359"},
@@ -68,95 +74,16 @@ var prison_details2 = {
 "HMP WYMOTT": {"address":"Ulnes Walton Lane,PR26 8LW","email":"socialvisits.wymott@hmps.gsi.gov.uk","tel":"01772 442234"}
 };
 
-var prisons = [
-'HMYOI AYLESBURY',
-'HMP BEDFORD',
-'HMP BLANTYRE HOUSE',
-'HMP BRISTOL',
-'HMP BRIXTON', // commas
-'HMP BULLINGDON',
-'HMP BURE',
-'HMP-YOI CHELMSFORD',
-'HMP COLDINGLEY', // (enhancedonly)
-'HMYOI DEERBOLT',
-'HMP DOWNVIEW',
-'HMP-YOI EAST SUTTON PARK',
-'HMP SHEPPEY CLUSTER - ELMLEY',
-'HMP EVERTHORPE',
-'HMP-YOI EXETER',
-'HMYOI FELTHAM',
-'HMP FOSTON HALL',
-'HMYOI GLEN PARVA', // (closedvisits1400-1500) flag
-'HMP GRENDON',
-'HMP GUYS MARSH',
-'HMP-YOI HATFIELD (MOORLAND OPEN)',
-'HMP HAVERIGG',
-'HMP HIGH DOWN', // (enhancedonly)
-'HMP HIGHPOINT', // split north/south
-'HMYOI HINDLEY', // flag - youth times
-'HMP HOLLESLEY BAY',
-'HMP HOLME HOUSE', // 000000
-'HMP HULL', // joined times
-'HMP HUNTERCOMBE',
-'HMP ISLE OF WIGHT - PARKHURST',
-'HMP KENNET',
-'HMP KIRKHAM',
-'HMYOI LANCASTER FARMS',
-'HMP LEEDS', // commas
-'HMP LEICESTER',
-'HMP LEWES',
-'HMP LINCOLN',
-'HMP LINDHOLME',
-'HMP-YOI LITTLEHEY', // (YOI)
-'HMP MAIDSTONE',
-'HMP-YOI MOORLAND CLOSED',
-'HMP-YOI NEW HALL',
-'HMP NORTH SEA CAMP',
-'HMP-YOI NORWICH', // flag - times per wing
-'HMP NOTTINGHAM',
-'HMYOI PORTLAND',
-'HMP PRESCOED',
-'HMP PRESTON',
-'HMP RANBY',
-'HMP SEND',
-'HMP SPRING HILL',
-'HMP SHEPPEY CLUSTER - STANDFORD HILL',
-'HMP STYAL',
-'HMP SUDBURY',
-'HMP SHEPPEY CLUSTER - SWALESIDE',
-'HMP SWANSEA', // commas
-'HMP THE MOUNT',
-'HMP USK',
-'HMP WANDSWORTH', // commas
-'HMP-YOI WARREN HILL',
-'HMP WEALSTUN',
-'HMYOI WETHERBY',
-'HMP WINCHESTER',
-'HMP WOLDS',
-'HMP WORMWOOD SCRUBS', // (18+only)
-'HMP WYMOTT'
-];
+var prisons = arrayFromObject(prison_details);
 
 // For testing with specific prisons
-// prisons = ['HMP-YOI CHELMSFORD'];
+// prisons = ["HMP BEDFORD", "HMP BLANTYRE HOUSE"];
 
 casper.start("http://www.google.com", function () {
 
-  // for (var prison in prison_details) {
   prisons.forEach(function (prison) {
 
     casper.thenOpen(url + prison.replace(/ /g, '_'), function () {
-
-      var obj = {};
-
-      var formatForPVB = function (s) {
-        var words;
-        s = s.replace(/(HMP|HMYOI|HMP-YOI) /, '');
-        words = s.split(' ');
-        return words.map(function (word) {
-          return word[0] + word.substr(1).toLowerCase();
-        }).join(' ');
-      };
 
       var time_slots = this.evaluate(function () {
 
@@ -230,10 +157,10 @@ casper.start("http://www.google.com", function () {
 
         var fixKnownIssues = function (times, prison) {
           switch (prison) {
-            case 'HOLME_HOUSE':
+            case 'HMP_HOLME_HOUSE':
               times = times.join(',').replace('190000','1900').split(',');
               break;
-            case 'LEEDS':
+            case 'HMP_LEEDS':
               times = times.join(',').replace('10130','1030').split(',');
               break;
           }
@@ -289,18 +216,34 @@ casper.start("http://www.google.com", function () {
       });
       // end evaluate
 
-      obj[formatForPVB(prison)] = time_slots;
-
-      times.push(obj);
-      // prison_details[prison].enabled = false;
-      // prison_details[prison].slots = time_slots;
+      times.push([prison, time_slots]);
     });
   });
 });
 
 casper.run(function() {
-  utils.dump(times);
+
+  var prison_data = {};
+
+  var formatForPVB = function (s) {
+    var words;
+    s = s.replace(/(HMP|HMYOI|HMP-YOI) /, '');
+    words = s.split(' ');
+    return words.map(function (word) {
+      return word[0] + word.substr(1).toLowerCase();
+    }).join(' ');
+  };
+
+  // Create object of full prison details
+  times.forEach(function (times) {
+    var name = formatForPVB(times[0]);
+    prison_data[name] = prison_details[times[0].replace(/_/g,'')];
+    prison_data[name].address = prison_details[times[0].replace(/_/g,'')].address.split(',');
+    prison_data[name].slots = times[1];
+  });
+  
+  utils.dump(prison_data);
   var fs = require('fs');
-  fs.write('prison_data.json', JSON.stringify(times), 'w');
+  fs.write('prison_data.json', JSON.stringify(prison_data), 'w');
   this.exit();
 });
