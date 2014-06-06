@@ -8,6 +8,7 @@ feature "visitor selects a date" do
     enter_prisoner_information
     enter_visitor_information
     click_button 'Continue'
+    VisitController.any_instance.stub(:metrics_logger).and_return(MockMetricsLogger.new)
   end
 
   context "that is unbookable" do
