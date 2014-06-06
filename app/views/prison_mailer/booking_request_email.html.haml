@@ -4,6 +4,15 @@
     You have received a visit request: 
     = link_to("process the booking", new_confirmation_url(state: @token, host: @host, protocol: @protocol))
 
+  The following slots were requested:
+
+  %ol
+  - @visit.slots.each_with_index do |slot, index|
+    - if slot.date.present?
+      %li
+        = Date.parse(slot.date).strftime('%A, %e %B %Y at ')
+        = display_slot_and_duration slot.times
+
   %table
     - @visit.visitors.each_with_index do |visitor, index|
       %caption
