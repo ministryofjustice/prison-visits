@@ -56,7 +56,7 @@ describe "Prison data" do
         _, s = staging_prison_data.shift
 
         p.each_key do |k|
-          next if k == 'email'
+          next if ['email','enabled'].include? k
           p[k].should == s[k]
         end
       end
