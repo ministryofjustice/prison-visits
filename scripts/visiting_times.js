@@ -15,7 +15,7 @@ var arrayFromObject = function (obj) {
   return list;
 };
 
-var prison_details1 = {
+var prison_details_done = {
 "HMP BEDFORD": {"address":"St. Loyes Street,MK40 1HG","email":"SocialVisits.Bedford@hmps.gsi.gov.uk","phone":"01234 373196"},
 "HMP PRESTON": {"address":"2 Ribbleton Lane,PR1 5AB ","email":"","phone":"01772 444666"},
 "HMP MAIDSTONE": {"address":"36 County Road,ME14 1UZ ","email":"Socialvisits.maidstone@hmps.gsi.gov.uk","phone":"016220775619"},
@@ -30,10 +30,7 @@ var prison_details1 = {
 "HMP ISLE OF WIGHT - ALBANY": {"address":"55 Parkhurst Road,PO30 5RS","email":"","phone":"01983 556573"},
 "HMP BLANTYRE HOUSE": {"address":"Goudhurst,TN17 2NH","email":"SocialVisits.BlantyreHouse@hmps.gsi.gov.uk","phone":""},
 "HMP BRIXTON": {"address":"Jebb Avenue,SW2 5XF","email":"socialvisitsbrixton@hmps.gsi.gov.uk","phone":"0208 678 1433"},
-"HMP BULLINGDON": {"address":"Bicester,OX25 1PZ ","email":"socialvisits.bullingdon@hmps.gsi.gov.uk","phone":"01869 353176"}
-};
-
-var prison_details = {
+"HMP BULLINGDON": {"address":"Bicester,OX25 1PZ ","email":"socialvisits.bullingdon@hmps.gsi.gov.uk","phone":"01869 353176"},
 "HMP DOWNVIEW": {"address":"Sutton Lane,SM2 5PD","email":"socialvisits.downview@hmps.gsi.gov.uk","phone":"0208 196 6359"},
 "HMP-YOI EAST SUTTON PARK": {"address":"Sutton Valence,ME17 3DF ","email":"Socialvisits.Eastsuttonpark@hmps.gsi.gov.uk","phone":""},
 "HMP SHEPPEY CLUSTER - ELMLEY": {"address":"Church Road,ME12 4DZ ","email":"SocialVisits.Elmley@hmps.gsi.gov.uk","phone":"0300 060 6605"},
@@ -49,33 +46,36 @@ var prison_details = {
 "HMP HIGHPOINT SOUTH": {"address":"Stradishall,CB8 9YG ","email":"SocialVisits.Highpoint@hmps.gsi.gov.uk","phone":"0207 147 6570"}
 };
 
-var p1 = {
-"HMYOI HINDLEY": {"address":"Gibson Street,WN2 5TH ","email":"socialvisits.hindley@hmps.gsi.gov.uk","phone":"01440 743134"},
-"HMP HOLLESLEY BAY": {"address":"WOODBRIDGE,IP12 3JW ","email":"SocialVisits.HollesleyBay@hmps.gsi.gov.uk","phone":""},
-"HMP-YOI HOLLOWAY": {"address":"Parkhurst Road,N7 0NU ","email":"socialvisits.holloway@hmps.gsi.gov.uk","phone":""},
+var prison_details = {
 "HMP HOLME HOUSE": {"address":"Holme House Road,S18 2QU","email":"SocialVisits@hmpholme house.gsi.gov.uk","phone":"03000 606602"},
 "HMP HULL": {"address":"Hedon Road,HU9 5LS ","email":"SocialVisits.Hull@hmps.gsi.gov.uk","phone":"01482 282016"},
 "HMP HUNTERCOMBE": {"address":"Huntercombe Place,RG9 5SB ","email":"socialvisits.huntercombe@hmps.gsi.gov.uk","phone":"01302 524980"},
 "HMP ISLE OF WIGHT - PARKHURST": {"address":"Clissold Road ,PO30 5RS ","email":"visitshmpiow@hmps.gsi.gov.uk","phone":"01983 634218"},
+"HMP LEEDS": {"address":"Gloucester Terrace,LS12 2TJ ","email":"SocialVisits.Leeds@hmps.gsi.gov.uk","phone":"0113 203 2995"},
+"HMP-YOI NEW HALL": {"address":"Dial Wood,WF4 4XX","email":"SocialVisits.NewHall@hmps.gsi.gov.uk","phone":"01924 803219"},
+"HMP NOTTINGHAM": {"address":"Perry Road,NG5 3AG ","email":"SocialVisits.Nottingham@hmps.gsi.gov.uk","phone":"0115 962 8980"},
+"HMP SEND": {"address":"Ripley Road,GU23 7LJ ","email":"SocialVisits.Send@hmps.gsi.gov.uk","phone":"01483 471033"},
+"HMP STYAL": {"address":"WILMSLOW,SK9 4HR ","email":"socialvisits.styal@hmps.gsi.gov.uk","phone":"01625553195"}
+};
+
+var unfeasible_prisons = {
+"HMYOI HINDLEY": {"address":"Gibson Street,WN2 5TH ","email":"socialvisits.hindley@hmps.gsi.gov.uk","phone":"01440 743134"},
+"HMP-YOI HOLLOWAY": {"address":"Parkhurst Road,N7 0NU ","email":"socialvisits.holloway@hmps.gsi.gov.uk","phone":""},
+"HMP HOLLESLEY BAY": {"address":"WOODBRIDGE,IP12 3JW ","email":"SocialVisits.HollesleyBay@hmps.gsi.gov.uk","phone":""},
 "HMP KENNET": {"address":"Parkbourn,L31 1HX ","email":"socialvisits.kennet@hmps.gsi.gov.uk","phone":"0151 213 3179"},
 "HMP KIRKHAM": {"address":"Freckleton Road, Kirkham,PR4 2RN","email":"socialvisits.kirkham@hmps.gsi.gov.uk","phone":""},
 "HMYOI LANCASTER FARMS": {"address":"Stone Row Head,LA1 3QZ","email":"socialvisits.lancasterfarms@hmps.gsi.gov.uk","phone":"01524 563636"},
-"HMP LEEDS": {"address":"Gloucester Terrace,LS12 2TJ ","email":"SocialVisits.Leeds@hmps.gsi.gov.uk","phone":"0113 203 2995"},
 "HMP LEICESTER": {"address":"116 Welford Road,LE2 7AJ","email":"No Active Social Visits FMB","phone":"0116 228 3128"},
 "HMP LINCOLN": {"address":"Greetwell Road,LN2 4BD ","email":"socialvisits.Lincoln@hmps.gsi.gov.uk","phone":"01522 663172"},
 "HMP LINDHOLME": {"address":"Bawtry Road,DN7 6EE ","email":"SocialVisits.Lindholme@hmps.gsi.gov.uk","phone":"01302 524980"},
 "HMP-YOI LITTLEHEY": {"address":"Perry,PE28 0SR","email":"socialvisits.littlehey@hmps.gsi.gov.uk","phone":"01480 335650"},
-"HMP-YOI NEW HALL": {"address":"Dial Wood,WF4 4XX","email":"SocialVisits.NewHall@hmps.gsi.gov.uk","phone":"01924 803219"},
 "HMP NORTH SEA CAMP": {"address":"Freiston,PE22 0QX","email":"SocialVisits.NorthSeaCamp@hmps.gsi.gov.uk","phone":"01205 769 368"},
 "HMP-YOI NORWICH": {"address":"Knox Road,NR1 4LU ","email":"socialvisits.norwich@hmps.gsi.gov.uk","phone":"01603 708795"},
-"HMP NOTTINGHAM": {"address":"Perry Road,NG5 3AG ","email":"SocialVisits.Nottingham@hmps.gsi.gov.uk","phone":"0115 962 8980"},
 "HMYOI PORTLAND": {"address":"104 The Grove,DT5 1DL","email":"SocialVisits.Portland@hmps.gsi.gov.uk","phone":"01305 715775"},
 "HMP PRESCOED": {"address":"Coed-y-Paen,NP4 0TB","email":"Not required","phone":""},
 "HMP RANBY": {"address":"RETFORD,DN22 8EU","email":"visitsbookingranby@hmps.gsi.gov.uk","phone":"01777 862107"},
-"HMP SEND": {"address":"Ripley Road,GU23 7LJ ","email":"SocialVisits.Send@hmps.gsi.gov.uk","phone":"01483 471033"},
 "HMP SPRING HILL": {"address":"Grendon Underwood,HP18 0TL ","email":"","phone":""},
 "HMP SHEPPEY CLUSTER - STANDFORD HILL": {"address":"Church Road,ME12 4AA ","email":"SocialVisits.StandfordHill@hmps.gsi.gov.uk","phone":"0300 060 6603"},
-"HMP STYAL": {"address":"WILMSLOW,SK9 4HR ","email":"socialvisits.styal@hmps.gsi.gov.uk","phone":"01625553195"},
 "HMP SUDBURY": {"address":"Ashbourne,DE6 5HW ","email":"","phone":""},
 "HMP SHEPPEY CLUSTER - SWALESIDE": {"address":"Brabazon Road,ME12 4AX","email":"SocialVisits.Swaleside@hmps.gsi.gov.uk","phone":"0300 060 6604"},
 "HMP SWANSEA": {"address":"200 Oystermouth Road,SA1 3SR","email":"socvisswansea@hmps.gsi.gov.uk","phone":"01792 48 5322"},
@@ -170,10 +170,10 @@ casper.start("http://www.google.com", function () {
 
         var fixKnownIssues = function (times, prison) {
           switch (prison) {
-            case 'HMP_HOLME_HOUSE':
+            case 'HOLME_HOUSE':
               times = times.join(',').replace('190000','1900').split(',');
               break;
-            case 'HMP_LEEDS':
+            case 'LEEDS':
               times = times.join(',').replace('10130','1030').split(',');
               break;
           }
