@@ -6,7 +6,7 @@ module FeaturesHelper
     select 'May', from: 'prisoner[date_of_birth(2i)]'
     select '1969', from: 'prisoner[date_of_birth(1i)]'
     fill_in 'Prisoner number', with: 'a0000aa'
-    select 'Rochester', from: 'prisoner[prison_name]'
+    find(:css, ".ui-autocomplete-input").set('Rochester')
     click_button 'Continue'
   end
 
