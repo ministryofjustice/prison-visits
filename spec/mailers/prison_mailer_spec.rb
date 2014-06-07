@@ -74,7 +74,7 @@ describe PrisonMailer do
     it "sends an e-mail to rochester functional mailbox" do
       sample_visit.tap do |visit|
         visit.prisoner.prison_name = 'Rochester'
-        subject.booking_request_email(visit, "token", host).to.should == ['pvb.socialvisits.rochester@maildrop.dsd.io']
+        subject.booking_request_email(visit, "token", host).to.should == ['pvb.rochester@maildrop.dsd.io']
       end
     end
 
