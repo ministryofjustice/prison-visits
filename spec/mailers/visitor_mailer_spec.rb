@@ -53,7 +53,7 @@ describe VisitorMailer do
     context "booking is successful" do
       it "sends out an e-mail" do
         email = subject.booking_confirmation_email(sample_visit, confirmation)
-        email.subject.should == "Your visit for 7 July 2013 has been confirmed."
+        email.subject.should == "Your visit for 7 July 2013 has been confirmed"
         email.from.should == ["no-reply@example.com"]
         email.reply_to.should == ["pvb.rochester@maildrop.dsd.io"]
         email.to.should == ["visitor@example.com"]
@@ -68,7 +68,7 @@ describe VisitorMailer do
     context "booking is unsuccessful because of a slot not being available" do
       it "sends out an e-mail with a date in the subject" do
         email = subject.booking_rejection_email(sample_visit, confirmation_no_slot_available)
-        email.subject.should == "Your visit for 7 July 2013 could not be booked."
+        email.subject.should == "Your visit for 7 July 2013 could not be booked"
         email.from.should == ["no-reply@example.com"]
         email.reply_to.should == ["pvb.rochester@maildrop.dsd.io"]
         email.to.should == ["visitor@example.com"]
@@ -83,7 +83,7 @@ describe VisitorMailer do
     context "booking is unsuccessful because of a visitor not being on a contact list" do
       it "sends out an e-mail with a date in the subject" do
         email = subject.booking_rejection_email(sample_visit, confirmation_not_on_contact_list)
-        email.subject.should == "Your visit for 7 July 2013 could not be booked."
+        email.subject.should == "Your visit for 7 July 2013 could not be booked"
         email.from.should == ["no-reply@example.com"]
         email.reply_to.should == ["pvb.rochester@maildrop.dsd.io"]
         email.to.should == ["visitor@example.com"]
@@ -98,7 +98,7 @@ describe VisitorMailer do
     context "booking receipt sent" do
       it "sends out an e-mail with a date in the subject" do
         email = subject.booking_receipt_email(sample_visit)
-        email.subject.should == "Your visit for 7 July 2013 will be processed soon."
+        email.subject.should == "Your visit request for 7 July 2013 will be processed soon"
         email.from.should == ["no-reply@example.com"]
         email.to.should == ['visitor@example.com']
         email.body.raw_source.should_not include("Jimmy Fingers")

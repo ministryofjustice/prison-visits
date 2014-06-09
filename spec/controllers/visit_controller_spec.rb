@@ -380,7 +380,7 @@ describe VisitController do
       response.should redirect_to(request_sent_path)
 
       ActionMailer::Base.deliveries.map(&:subject).should == ['Visit request for Jimmy Fingers',
-                                                              'Your visit for 6 December 2013 will be processed soon.']
+                                                              'Your visit request for 6 December 2013 will be processed soon']
     end
 
     it "doesn't send out e-mails if in testing mode" do
