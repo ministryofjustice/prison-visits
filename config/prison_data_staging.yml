@@ -1567,7 +1567,7 @@ Swaleside:
 'Standford Hill':
   enabled: true
   phone: '0300 060 6603'
-  email: pvb.visitsbooking.sheppeycluster-standfordhill@maildrop.dsd.io
+  email: pvb.standfordhill@maildrop.dsd.io
   address:
     - 'Church Road'
     - 'ME12 4AA '
@@ -1583,7 +1583,7 @@ Swaleside:
 Liverpool:
   enabled: true
   phone: '0151 530 4050'
-  email: pvb.visitsbooking.liverpool@maildrop.dsd.io
+  email: pvb.liverpool@maildrop.dsd.io
   address:
     - '68 Hornby Road'
     - 'L9 3DF'
@@ -1624,7 +1624,7 @@ Liverpool:
 Bullingdon:
   enabled: true
   phone: '01869 353176'
-  email: pvb.visitsbooking.bullingdon@maildrop.dsd.io
+  email: pvb.bullingdon@maildrop.dsd.io
   address:
     - Bicester
     - 'OX25 1PZ'

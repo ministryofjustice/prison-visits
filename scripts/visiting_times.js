@@ -258,7 +258,7 @@ casper.run(function() {
     prison_data[name].enabled = true; // disable by default
     prison_data[name].phone = details.phone;
     prison_data[name].email = details.email.toLowerCase();
-    prison_data[name].email = 'pvb.visitsbooking.'+ name.replace(/ /g, '').toLowerCase() +'@maildrop.dsd.io';
+    prison_data[name].email = 'pvb.'+ name.replace(/ /g, '').toLowerCase() +'@maildrop.dsd.io';
     prison_data[name].address = details.address.split(','); // make address an array
     prison_data[name].unbookable = ('2014-12-25').split(','); // add standard unbookable dates
     prison_data[name].slots = times[1];
