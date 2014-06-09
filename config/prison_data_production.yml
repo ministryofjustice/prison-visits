@@ -116,7 +116,7 @@ Cardiff:
 Gartree:
   enabled: true
   phone: 01858 426 727
-  email: SocialVisits.Gartree@hmps.gsi.gov.uk
+  email: socialvisits.gartree@hmps.gsi.gov.uk
   address:
     - Gallow Field Rd
     - Market Harborough
@@ -332,7 +332,7 @@ Hewell:
 Foston Hall: 
   enabled: true
   phone: 01283 584357 
-  email: SocialVisits.FostonHall@hmps.gsi.gov.uk
+  email: socialvisits.fostonhall@hmps.gsi.gov.uk
   address:
     - Foston Hall
     - Derby
@@ -357,7 +357,7 @@ Foston Hall:
 Holloway:
   enabled: false
   phone: 020 7979 4751 
-  email: SocialVisits.Holloway@hmps.gsi.gov.uk
+  email: socialvisits.holloway@hmps.gsi.gov.uk
   address:
     - Pankhurst Road
     - London
@@ -421,7 +421,7 @@ Holloway:
 Bristol: 
   enabled: true
   phone: 01173 732358 
-  email: SocialVisits.Bristol@hmps.gsi.gov.uk
+  email: socialvisits.bristol@hmps.gsi.gov.uk
   address:
     - 19 Cambridge Road
     - Bristol
@@ -448,7 +448,7 @@ Bristol:
 Buckley Hall: 
   enabled: true
   phone: 01706 514350 
-  email: SocialVisits.buckleyhall@hmps.gsi.gov.uk
+  email: socialvisits.buckleyhall@hmps.gsi.gov.uk
   address:
     - Buckley Road
     - OL12 9DP
@@ -478,7 +478,7 @@ Buckley Hall:
 Bure: 
   enabled: true
   phone: 01603 326252
-  email: SocialVisits.bure@hmps.gsi.gov.uk
+  email: socialvisits.bure@hmps.gsi.gov.uk
   address:
     - Jaguar Drive
     - NR10 5GB
@@ -498,7 +498,7 @@ Bure:
 Coldingley: 
   enabled: true
   phone: 01483 344418
-  email: SocialVisits.coldingley@hmps.gsi.gov.uk
+  email: socialvisits.coldingley@hmps.gsi.gov.uk
   address:
     - Shaftesbury Road
     - GU24 9EX
@@ -526,7 +526,7 @@ Coldingley:
 Cookham Wood: 
   enabled: true
   phone: 01634 202557
-  email: SocialVisits.CookhamWood@hmps.gsi.gov.uk
+  email: socialvisits.cookhamwood@hmps.gsi.gov.uk
   address:
     - Sir Evelyn Road
     - ME1 3LU
@@ -544,7 +544,7 @@ Cookham Wood:
 Deerbolt:  
   enabled: true
   phone: 01833 633349
-  email: SocialVisits.Deerbolt@hmps.gsi.gov.uk
+  email: socialvisits.deerbolt@hmps.gsi.gov.uk
   address:
     - Bowes Road
     - DL12 9BG 
@@ -562,7 +562,7 @@ Deerbolt:
 Exeter:  
   enabled: true
   phone: 01392 41 5833
-  email: SocialVisits.Exeter@hmps.gsi.gov.uk
+  email: socialvisits.exeter@hmps.gsi.gov.uk
   address:
     - New North Road
     - EX4 4EX 
@@ -586,7 +586,7 @@ Exeter:
 Lewes:  
   enabled: true
   phone: 01273785277
-  email: SocialVisits.Lewes@hmps.gsi.gov.uk
+  email: socialvisits.lewes@hmps.gsi.gov.uk
   address:
     - 1 Brighton Road
     - BN7 1EA 
@@ -615,7 +615,7 @@ Lewes:
 Moorland Closed:  
   enabled: true
   phone: 01302523087
-  email: SocialVisits.MoorlandClosed@hmps.gsi.gov.uk
+  email: socialvisits.moorlandclosed@hmps.gsi.gov.uk
   address:
     - Bawtry Road
     - DN7 6BW 
@@ -633,7 +633,7 @@ Moorland Closed:
 Onley:  
   enabled: true
   phone: 01788 523 402
-  email: SocialVisits.Onley@hmps.gsi.gov.uk
+  email: socialvisits.onley@hmps.gsi.gov.uk
   address:
     - Willoughby
     - CV23 8AP 
@@ -663,7 +663,7 @@ Onley:
 The Mount:  
   enabled: true
   phone: 01442 836352
-  email: SocialVisits.TheMount@hmps.gsi.gov.uk
+  email: socialvisits.themount@hmps.gsi.gov.uk
   address:
     - Molyneaux Avenue
     - HP3 0NZ 
@@ -689,7 +689,7 @@ The Mount:
 Wayland:  
   enabled: true
   phone: 001953 804152
-  email: SocialVisits.Wayland@hmps.gsi.gov.uk
+  email: socialvisits.wayland@hmps.gsi.gov.uk
   address:
     - Griston
     - IP25 6RL 
@@ -711,7 +711,7 @@ Wayland:
 Wealstun:  
   enabled: true
   phone: 01937 444599
-  email: SocialVisits.Wealstun@hmps.gsi.gov.uk
+  email: socialvisits.wealstun@hmps.gsi.gov.uk
   address:
     - Church Causeway
     - LS23 7AZ 
@@ -739,7 +739,7 @@ Wealstun:
 Bedford:
   enabled: true
   phone: '01234 373196'
-  email: SocialVisits.Bedford@hmps.gsi.gov.uk
+  email: socialvisits.bedford@hmps.gsi.gov.uk
   address:
     - 'St. Loyes Street'
     - 'MK40 1HG'
@@ -791,7 +791,7 @@ Preston:
 Maidstone:
   enabled: true
   phone: '016220775619'
-  email: Socialvisits.maidstone@hmps.gsi.gov.uk
+  email: socialvisits.maidstone@hmps.gsi.gov.uk
   address:
     - '36 County Road'
     - 'ME14 1UZ '
@@ -813,7 +813,7 @@ Maidstone:
 'Warren Hill':
   enabled: true
   phone: '020 8588 4002'
-  email: SocialVisits.WarrenHill@hmps.gsi.gov.uk
+  email: socialvisits.warrenhill@hmps.gsi.gov.uk
   address:
     - Hollesley
     - 'IP12 3JW '
@@ -829,7 +829,7 @@ Maidstone:
 Wetherby:
   enabled: true
   phone: '01937 544207'
-  email: SocialVisits.Wetherby@hmps.gsi.gov.uk
+  email: socialvisits.wetherby@hmps.gsi.gov.uk
   address:
     - 'York Road'
     - 'LS22 5ED '
@@ -871,7 +871,7 @@ Erlestoke:
 Chelmsford:
   enabled: true
   phone: '01245 552265'
-  email: SocialVisits.Chelmsford@hmps.gsi.gov.uk
+  email: socialvisits.chelmsford@hmps.gsi.gov.uk
   address:
     - '200 Springfield Road'
     - 'CM2 6LQ '
@@ -895,7 +895,7 @@ Chelmsford:
 Stocken:
   enabled: true
   phone: '01780 795156'
-  email: SocialVisits.Stocken@hmps.gsi.gov.uk
+  email: socialvisits.stocken@hmps.gsi.gov.uk
   address:
     - 'Stocken Hall Road'
     - 'LE15 7RD'
@@ -915,7 +915,7 @@ Stocken:
 Dartmoor:
   enabled: true
   phone: '01822 322022'
-  email: "Socialvisits.dartmoor@hmps.gsi.gov.uk"
+  email: "socialvisits.dartmoor@hmps.gsi.gov.uk"
   address:
     - Princetown
     - 'PL20 6RR'
@@ -935,7 +935,7 @@ Dartmoor:
 'Low Newton':
   enabled: true
   phone: '0191 376 4147'
-  email: SocialVisits.LowNewton@hmps.gsi.gov.uk
+  email: socialvisits.lownewton@hmps.gsi.gov.uk
   address:
     - Brasside
     - 'DH1 5YA'
@@ -995,7 +995,7 @@ Albany:
 'Blantyre House':
   enabled: false
   phone: ""
-  email: SocialVisits.BlantyreHouse@hmps.gsi.gov.uk
+  email: socialvisits.blantyrehouse@hmps.gsi.gov.uk
   address:
     - Goudhurst
     - 'TN17 2NH'
@@ -1086,7 +1086,7 @@ Downview:
 'East Sutton Park':
   enabled: false
   phone: ""
-  email: Socialvisits.Eastsuttonpark@hmps.gsi.gov.uk
+  email: socialvisits.eastsuttonpark@hmps.gsi.gov.uk
   address:
     - 'Sutton Valence'
     - 'ME17 3DF '
@@ -1100,7 +1100,7 @@ Downview:
 Elmley:
   enabled: true
   phone: '0300 060 6605'
-  email: SocialVisits.Elmley@hmps.gsi.gov.uk
+  email: socialvisits.elmley@hmps.gsi.gov.uk
   address:
     - 'Church Road'
     - 'ME12 4DZ '
@@ -1124,7 +1124,7 @@ Elmley:
 Everthorpe:
   enabled: false
   phone: '01430 426505'
-  email: SocialVisits.Everthorpe@hmps.gsi.gov.uk
+  email: socialvisits.everthorpe@hmps.gsi.gov.uk
   address:
     - '1a Beck Road'
     - 'HU15 1RB'
@@ -1177,7 +1177,7 @@ Feltham:
 Grendon:
   enabled: false
   phone: ""
-  email: socialvisits.Grendon@hmps.gsi.gov.uk
+  email: socialvisits.grendon@hmps.gsi.gov.uk
   address:
     - 'Grendon Underwood'
     - 'HP18 0TL'
@@ -1193,7 +1193,7 @@ Grendon:
 'Guys Marsh':
   enabled: true
   phone: '01747 856586'
-  email: SocialVisitsGuysMarsh@hmps.gsi.gov.uk
+  email: socialvisitsguysmarsh@hmps.gsi.gov.uk
   address:
     - SHAFTESBURY
     - 'SP7 0AH '
@@ -1209,7 +1209,7 @@ Grendon:
 'Hatfield (moorland Open)':
   enabled: false
   phone: '01405 746611'
-  email: SocialVisits.Hatfield@hmps.gsi.gov.uk
+  email: socialvisits.hatfield@hmps.gsi.gov.uk
   address:
     - 'Thorne Road'
     - 'DN7 6El'
@@ -1272,7 +1272,7 @@ Haverigg:
 Highpoint:
   enabled: true
   phone: '0207 147 6570'
-  email: 'SocialVisits.Highpoint@hmps.gsi.gov.uk'
+  email: 'socialvisits.highpoint@hmps.gsi.gov.uk'
   address:
     - Stradishall
     - 'CB8 9YG '
@@ -1317,7 +1317,7 @@ Highpoint:
 Hull:
   enabled: false
   phone: '01482 282016'
-  email: SocialVisits.Hull@hmps.gsi.gov.uk
+  email: socialvisits.hull@hmps.gsi.gov.uk
   address:
     - 'Hedon Road'
     - 'HU9 5LS '
@@ -1377,7 +1377,7 @@ Parkhurst:
 Leeds:
   enabled: true
   phone: '0113 203 2995'
-  email: SocialVisits.Leeds@hmps.gsi.gov.uk
+  email: socialvisits.leeds@hmps.gsi.gov.uk
   address:
     - 'Gloucester Terrace'
     - 'LS12 2TJ '
@@ -1422,7 +1422,7 @@ Leeds:
 'New Hall':
   enabled: true
   phone: '01924 803219'
-  email: SocialVisits.NewHall@hmps.gsi.gov.uk
+  email: socialvisits.newhall@hmps.gsi.gov.uk
   address:
     - 'Dial Wood'
     - 'WF4 4XX'
@@ -1442,7 +1442,7 @@ Leeds:
 Nottingham:
   enabled: true
   phone: '0115 962 8980'
-  email: SocialVisits.Nottingham@hmps.gsi.gov.uk
+  email: socialvisits.nottingham@hmps.gsi.gov.uk
   address:
     - 'Perry Road'
     - 'NG5 3AG '
@@ -1467,7 +1467,7 @@ Nottingham:
 Send:
   enabled: true
   phone: '01483 471033'
-  email: SocialVisits.Send@hmps.gsi.gov.uk
+  email: socialvisits.send@hmps.gsi.gov.uk
   address:
     - 'Ripley Road'
     - 'GU23 7LJ '
@@ -1505,7 +1505,7 @@ Styal:
 Swaleside:
   enabled: true
   phone: '0300 060 6604'
-  email: SocialVisits.Swaleside@hmps.gsi.gov.uk
+  email: socialvisits.swaleside@hmps.gsi.gov.uk
   address:
     - 'Brabazon Road'
     - 'ME12 4AX'
