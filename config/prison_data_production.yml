@@ -767,7 +767,7 @@ Bedford:
 Preston:
   enabled: true
   phone: '01772 444666'
-  email: ""
+  email: "socialvisits.preston@hmps.gsi.gov.uk"
   address:
     - '2 Ribbleton Lane'
     - 'PR1 5AB '
@@ -915,7 +915,7 @@ Stocken:
 Dartmoor:
   enabled: true
   phone: '01822 322022'
-  email: ""
+  email: "Socialvisits.dartmoor@hmps.gsi.gov.uk"
   address:
     - Princetown
     - 'PL20 6RR'
@@ -975,7 +975,7 @@ Aylesbury:
 Albany:
   enabled: true
   phone: '01983 556573'
-  email: ""
+  email: "visitshmpiow@hmps.gsi.gov.uk"
   address:
     - '55 Parkhurst Road'
     - 'PO30 5RS'
@@ -1291,7 +1291,7 @@ Highpoint:
 'Holme House':
   enabled: true
   phone: '03000 606602'
-  email: 'SocialVisits@hmpholme house.gsi.gov.uk'
+  email: 'SocialVisits@hmpholmehouse.gsi.gov.uk'
   address:
     - 'Holme House Road'
     - 'S18 2QU'
