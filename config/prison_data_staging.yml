@@ -1526,3 +1526,39 @@ Swaleside:
       - 1400-1600
     wed:
       - 1400-1600
+'Norwich (A, B, C, E, M only)':
+  enabled: true
+  phone: '01603 708795'
+  email: pvb.norwich@maildrop.dsd.io
+  address:
+    - 'Knox Road'
+    - 'NR1 4LU '
+  unbookable:
+    - 2014-12-25
+  slots:
+    tue:
+      - 1415-1615
+    wed:
+      - 1400-1600
+    thu:
+      - 1400-1600
+    sat:
+      - 1415-1615
+    sun:
+      - 0930-1130
+'Norwich (F, G, H, L only)':
+  enabled: true
+  phone: '01603 708795'
+  email: pvb.norwich@maildrop.dsd.io
+  address:
+    - 'Knox Road'
+    - 'NR1 4LU '
+  unbookable:
+    - 2014-12-25
+  slots:
+    tue:
+      - 1415-1615
+    sat:
+      - 0930-1130
+    sun:
+      - 1415-1615
