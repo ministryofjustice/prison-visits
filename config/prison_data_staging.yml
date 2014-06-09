@@ -1539,7 +1539,7 @@ Swaleside:
     tue:
       - 1415-1615
     wed:
-      - 1400-1600
+      - 1415-1615
     thu:
       - 1400-1600
     sat:
@@ -1558,7 +1558,88 @@ Swaleside:
   slots:
     tue:
       - 1415-1615
+    thu:
+      - 1415-1615
     sat:
       - 0930-1130
     sun:
       - 1415-1615
+'Sheppey Cluster - Standford Hill':
+  enabled: true
+  phone: '0300 060 6603'
+  email: pvb.visitsbooking.sheppeycluster-standfordhill@maildrop.dsd.io
+  address:
+    - 'Church Road'
+    - 'ME12 4AA '
+  unbookable:
+    - 2014-12-25
+  slots:
+    thu:
+      - 1400-1600
+    tue:
+      - 1400-1600
+    wed:
+      - 1400-1600
+Liverpool:
+  enabled: true
+  phone: '0151 530 4050'
+  email: pvb.visitsbooking.liverpool@maildrop.dsd.io
+  address:
+    - '68 Hornby Road'
+    - 'L9 3DF'
+  unbookable:
+    - 2014-12-25
+  slots:
+    fri:
+      - 0905-1005
+      - 1030-1130
+      - 1355-1455
+      - 1525-1625
+    mon:
+      - 1355-1455
+      - 1525-1625
+    sat:
+      - 0900-1000
+      - 1030-1130
+      - 1350-1450
+      - 1515-1615
+    sun:
+      - 0900-1000
+      - 1030-1130
+      - 1350-1450
+      - 1515-1615
+    thu:
+      - 0905-1005
+      - 1030-1130
+      - 1355-1455
+      - 1525-1625
+    tue:
+      - 1355-1455
+      - 1525-1625
+    wed:
+      - 0905-1005
+      - 1030-1130
+      - 1355-1455
+      - 1525-1625
+Bullingdon:
+  enabled: true
+  phone: '01869 353176'
+  email: pvb.visitsbooking.bullingdon@maildrop.dsd.io
+  address:
+    - Bicester
+    - 'OX25 1PZ'
+  unbookable:
+    - 2014-12-25
+  slots:
+    mon:
+      - 1400-1610
+    sat:
+      - 1400-1610
+    sun:
+      - 1400-1610
+    thu:
+      - 1400-1610
+    tue:
+      - 1400-1610
+    wed:
+      - 1400-1610

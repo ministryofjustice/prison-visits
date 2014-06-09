@@ -43,11 +43,14 @@ var prison_details1 = {
 "HMP HAVERIGG": {"address":"MILLOM,LA18 4NA ","email":"socialvisits.haverigg@hmps.gsi.gov.uk","phone":"01229713016"},
 "HMP HIGH DOWN": {"address":"Sutton Lane,SM2 5PJ ","email":"socialvisits.highdown@hmps.gsi.gov.uk","phone":"0300 060 6503"},
 "HMP HIGHPOINT NORTH": {"address":"Stradishall,CB8 9YG ","email":"SocialVisits.Highpoint @hmps.gsi.gov.uk","phone":"0207 147 6570"},
-"HMP HIGHPOINT SOUTH": {"address":"Stradishall,CB8 9YG ","email":"SocialVisits.Highpoint @hmps.gsi.gov.uk","phone":"0207 147 6570"}
+"HMP HIGHPOINT SOUTH": {"address":"Stradishall,CB8 9YG ","email":"SocialVisits.Highpoint @hmps.gsi.gov.uk","phone":"0207 147 6570"},
+"HMP-YOI NORWICH": {"address":"Knox Road,NR1 4LU ","email":"socialvisits.norwich@hmps.gsi.gov.uk","phone":"01603 708795"}
 };
 
 var prison_details = {
-"HMP-YOI NORWICH": {"address":"Knox Road,NR1 4LU ","email":"socialvisits.norwich@hmps.gsi.gov.uk","phone":"01603 708795"}
+"HMP SHEPPEY CLUSTER - STANDFORD HILL": {"address":"Church Road,ME12 4AA ","email":"SocialVisits.StandfordHill@hmps.gsi.gov.uk","phone":"0300 060 6603"},
+"HMP LIVERPOOL": {"address":"68 Hornby Road,L9 3DF","email":"socialvisits.liverpool@hmps.gsi.gov.uk","phone":"0151 530 4050"},
+"HMP BULLINGDON": {"address":"Bicester,OX25 1PZ","email":"socialvisits.bullingdon@hmps.gsi.gov.uk","phone":"01869 353176"}
 };
 
 var p1 = {
@@ -74,7 +77,6 @@ var p1 = {
 "HMP RANBY": {"address":"RETFORD,DN22 8EU","email":"visitsbookingranby@hmps.gsi.gov.uk","phone":"01777 862107"},
 "HMP SEND": {"address":"Ripley Road,GU23 7LJ ","email":"SocialVisits.Send@hmps.gsi.gov.uk","phone":"01483 471033"},
 "HMP SPRING HILL": {"address":"Grendon Underwood,HP18 0TL ","email":"","phone":""},
-"HMP SHEPPEY CLUSTER - STANDFORD HILL": {"address":"Church Road,ME12 4AA ","email":"SocialVisits.StandfordHill@hmps.gsi.gov.uk","phone":"0300 060 6603"},
 "HMP STYAL": {"address":"WILMSLOW,SK9 4HR ","email":"socialvisits.styal@hmps.gsi.gov.uk","phone":"01625553195"},
 "HMP SUDBURY": {"address":"Ashbourne,DE6 5HW ","email":"","phone":""},
 "HMP SHEPPEY CLUSTER - SWALESIDE": {"address":"Brabazon Road,ME12 4AX","email":"SocialVisits.Swaleside@hmps.gsi.gov.uk","phone":"0300 060 6604"},
@@ -253,10 +255,10 @@ casper.run(function() {
         details = prison_details[times[0].replace(/_/g,'')];
 
     prison_data[name] = {}; // start with a blank object
-    prison_data[name].enabled = false; // disable by default
+    prison_data[name].enabled = true; // disable by default
     prison_data[name].phone = details.phone;
     prison_data[name].email = details.email.toLowerCase();
-    // prison_data[name].email = 'pvb.visitsbooking.'+ name.replace(/ /g, '').toLowerCase() +'@maildrop.dsd.io';
+    prison_data[name].email = 'pvb.visitsbooking.'+ name.replace(/ /g, '').toLowerCase() +'@maildrop.dsd.io';
     prison_data[name].address = details.address.split(','); // make address an array
     prison_data[name].unbookable = ('2014-12-25').split(','); // add standard unbookable dates
     prison_data[name].slots = times[1];
