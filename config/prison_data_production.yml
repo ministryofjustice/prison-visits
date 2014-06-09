@@ -1291,7 +1291,7 @@ Highpoint:
 'Holme House':
   enabled: true
   phone: '03000 606602'
-  email: 'SocialVisits@hmpholmehouse.gsi.gov.uk'
+  email: 'socialvisits.holmehouse@hmps.gsi.gov.uk'
   address:
     - 'Holme House Road'
     - 'S18 2QU'
