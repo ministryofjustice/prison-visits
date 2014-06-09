@@ -1564,8 +1564,8 @@ Swaleside:
       - 0930-1130
     sun:
       - 1415-1615
-'Sheppey Cluster - Standford Hill':
-  enabled: false
+'Standford Hill':
+  enabled: true
   phone: '0300 060 6603'
   email: socialvisits.standfordhill@hmps.gsi.gov.uk
   address:
@@ -1581,7 +1581,7 @@ Swaleside:
     wed:
       - 1400-1600
 Liverpool:
-  enabled: false
+  enabled: true
   phone: '0151 530 4050'
   email: socialvisits.liverpool@hmps.gsi.gov.uk
   address:
@@ -1622,7 +1622,7 @@ Liverpool:
       - 1355-1455
       - 1525-1625
 Bullingdon:
-  enabled: false
+  enabled: true
   phone: '01869 353176'
   email: socialvisits.bullingdon@hmps.gsi.gov.uk
   address:
