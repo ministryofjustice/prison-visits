@@ -1315,7 +1315,7 @@ Highpoint:
     wed:
       - 1300-1545
 Hull:
-  enabled: true
+  enabled: false
   phone: '01482 282016'
   email: pvb.hull@maildrop.dsd.io
   address:
