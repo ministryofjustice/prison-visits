@@ -419,7 +419,7 @@ Holloway:
     2014-12-18:
       - 0930-1030
 Bristol: 
-  enabled: false
+  enabled: true
   phone: 01173 732358 
   email: SocialVisits.Bristol@hmps.gsi.gov.uk
   address:
@@ -446,7 +446,7 @@ Bristol:
     sun:
       - 1400-1600
 Buckley Hall: 
-  enabled: false
+  enabled: true
   phone: 01706 514350 
   email: SocialVisits.buckleyhall@hmps.gsi.gov.uk
   address:
@@ -476,7 +476,7 @@ Buckley Hall:
       - 0930-1130
       - 1400-1600
 Bure: 
-  enabled: false
+  enabled: true
   phone: 01603 326252
   email: SocialVisits.bure@hmps.gsi.gov.uk
   address:
@@ -496,7 +496,7 @@ Bure:
       - 0930-1130
       - 1400-1600
 Coldingley: 
-  enabled: false
+  enabled: true
   phone: 01483 344418
   email: SocialVisits.coldingley@hmps.gsi.gov.uk
   address:
@@ -524,7 +524,7 @@ Coldingley:
     sun:
       - 1400-1545
 Cookham Wood: 
-  enabled: false
+  enabled: true
   phone: 01634 202557
   email: SocialVisits.CookhamWood@hmps.gsi.gov.uk
   address:
@@ -542,7 +542,7 @@ Cookham Wood:
       - 0930-1130
       - 1430-1630
 Deerbolt:  
-  enabled: false
+  enabled: true
   phone: 01833 633349
   email: SocialVisits.Deerbolt@hmps.gsi.gov.uk
   address:
@@ -560,7 +560,7 @@ Deerbolt:
     sun:
       - 1345-1545
 Exeter:  
-  enabled: false
+  enabled: true
   phone: 01392 41 5833
   email: SocialVisits.Exeter@hmps.gsi.gov.uk
   address:
@@ -584,7 +584,7 @@ Exeter:
     sun:
       - 1415-1615
 Lewes:  
-  enabled: false
+  enabled: true
   phone: 01273785277
   email: SocialVisits.Lewes@hmps.gsi.gov.uk
   address:
@@ -613,7 +613,7 @@ Lewes:
     sun:
       - 1410-1535
 Moorland Closed:  
-  enabled: false
+  enabled: true
   phone: 01302523087
   email: SocialVisits.MoorlandClosed@hmps.gsi.gov.uk
   address:
@@ -631,7 +631,7 @@ Moorland Closed:
     sun:
       - 1340-1545
 Onley:  
-  enabled: false
+  enabled: true
   phone: 01788 523 402
   email: SocialVisits.Onley@hmps.gsi.gov.uk
   address:
@@ -661,7 +661,7 @@ Onley:
       - 1345-1445
       - 1515-1615
 The Mount:  
-  enabled: false
+  enabled: true
   phone: 01442 836352
   email: SocialVisits.TheMount@hmps.gsi.gov.uk
   address:
@@ -687,7 +687,7 @@ The Mount:
       - 1400-1600
       - 1500-1600
 Wayland:  
-  enabled: false
+  enabled: true
   phone: 001953 804152
   email: SocialVisits.Wayland@hmps.gsi.gov.uk
   address:
@@ -709,7 +709,7 @@ Wayland:
     sun:
       - 1400-1600
 Wealstun:  
-  enabled: false
+  enabled: true
   phone: 01937 444599
   email: SocialVisits.Wealstun@hmps.gsi.gov.uk
   address:
@@ -737,7 +737,7 @@ Wealstun:
       - 0930-1130
       - 1345-1600
 Bedford:
-  enabled: false
+  enabled: true
   phone: '01234 373196'
   email: SocialVisits.Bedford@hmps.gsi.gov.uk
   address:
@@ -765,7 +765,7 @@ Bedford:
       - 1345-1445
       - 1515-1615
 Preston:
-  enabled: false
+  enabled: true
   phone: '01772 444666'
   email: ""
   address:
@@ -789,7 +789,7 @@ Preston:
     wed:
       - 1400-1600
 Maidstone:
-  enabled: false
+  enabled: true
   phone: '016220775619'
   email: Socialvisits.maidstone@hmps.gsi.gov.uk
   address:
@@ -811,7 +811,7 @@ Maidstone:
     wed:
       - 1400-1625
 'Warren Hill':
-  enabled: false
+  enabled: true
   phone: '020 8588 4002'
   email: SocialVisits.WarrenHill@hmps.gsi.gov.uk
   address:
@@ -827,7 +827,7 @@ Maidstone:
     wed:
       - 1415-1600
 Wetherby:
-  enabled: false
+  enabled: true
   phone: '01937 544207'
   email: SocialVisits.Wetherby@hmps.gsi.gov.uk
   address:
@@ -851,7 +851,7 @@ Wetherby:
     wed:
       - 1400-1600
 Erlestoke:
-  enabled: false
+  enabled: true
   phone: '01380 814264'
   email: eecmbookavisit@hmps.gsi.gov.uk
   address:
@@ -869,7 +869,7 @@ Erlestoke:
     tue:
       - 1345-1600
 Chelmsford:
-  enabled: false
+  enabled: true
   phone: '01245 552265'
   email: SocialVisits.Chelmsford@hmps.gsi.gov.uk
   address:
@@ -893,7 +893,7 @@ Chelmsford:
     wed:
       - 1415-1600
 Stocken:
-  enabled: false
+  enabled: true
   phone: '01780 795156'
   email: SocialVisits.Stocken@hmps.gsi.gov.uk
   address:
@@ -913,7 +913,7 @@ Stocken:
     wed:
       - 1345-1545
 Dartmoor:
-  enabled: false
+  enabled: true
   phone: '01822 322022'
   email: ""
   address:
@@ -933,7 +933,7 @@ Dartmoor:
     wed:
       - 1400-1600
 'Low Newton':
-  enabled: false
+  enabled: true
   phone: '0191 376 4147'
   email: SocialVisits.LowNewton@hmps.gsi.gov.uk
   address:
@@ -953,7 +953,7 @@ Dartmoor:
     tue:
       - 1415-1545
 Aylesbury:
-  enabled: false
+  enabled: true
   phone: '01296 444099'
   email: visitsbookingaylesbury@hmps.gsi.gov.uk
   address:
@@ -973,7 +973,7 @@ Aylesbury:
     wed:
       - 1415-1615
 Albany:
-  enabled: false
+  enabled: true
   phone: '01983 556573'
   email: ""
   address:
@@ -1098,7 +1098,7 @@ Downview:
     sun:
       - 1330-1530
 Elmley:
-  enabled: false
+  enabled: true
   phone: '0300 060 6605'
   email: SocialVisits.Elmley@hmps.gsi.gov.uk
   address:
@@ -1153,7 +1153,7 @@ Feltham:
     - 2014-12-25
   slots: {  }
 'Glen Parva':
-  enabled: false
+  enabled: true
   phone: '0116 228 4366'
   email: socialvisits.glenparva@hmps.gsi.gov.uk
   address:
@@ -1191,7 +1191,7 @@ Grendon:
     wed:
       - 1410-1600
 'Guys Marsh':
-  enabled: false
+  enabled: true
   phone: '01747 856586'
   email: SocialVisitsGuysMarsh@hmps.gsi.gov.uk
   address:
@@ -1270,7 +1270,7 @@ Haverigg:
     wed:
       - 1400-1600
 Highpoint:
-  enabled: false
+  enabled: true
   phone: '0207 147 6570'
   email: 'SocialVisits.Highpoint@hmps.gsi.gov.uk'
   address:
@@ -1289,7 +1289,7 @@ Highpoint:
       - 0900-1100
       - 1400-1600
 'Holme House':
-  enabled: false
+  enabled: true
   phone: '03000 606602'
   email: 'SocialVisits@hmpholme house.gsi.gov.uk'
   address:
@@ -1337,7 +1337,7 @@ Hull:
       - 0930-1130
       - 1345-1545
 Huntercombe:
-  enabled: false
+  enabled: true
   phone: '01302 524980'
   email: socialvisits.huntercombe@hmps.gsi.gov.uk
   address:
@@ -1355,7 +1355,7 @@ Huntercombe:
     thu:
       - 1345-1615
 Parkhurst:
-  enabled: false
+  enabled: true
   phone: '01983 634218'
   email: visitshmpiow@hmps.gsi.gov.uk
   address:
@@ -1375,7 +1375,7 @@ Parkhurst:
     wed:
       - 1400-1600
 Leeds:
-  enabled: false
+  enabled: true
   phone: '0113 203 2995'
   email: SocialVisits.Leeds@hmps.gsi.gov.uk
   address:
@@ -1420,7 +1420,7 @@ Leeds:
       - 1515-1615
       - 1745-1845
 'New Hall':
-  enabled: false
+  enabled: true
   phone: '01924 803219'
   email: SocialVisits.NewHall@hmps.gsi.gov.uk
   address:
@@ -1440,7 +1440,7 @@ Leeds:
     wed:
       - 1400-1600
 Nottingham:
-  enabled: false
+  enabled: true
   phone: '0115 962 8980'
   email: SocialVisits.Nottingham@hmps.gsi.gov.uk
   address:
@@ -1465,7 +1465,7 @@ Nottingham:
       - 0900-1100
       - 1400-1600
 Send:
-  enabled: false
+  enabled: true
   phone: '01483 471033'
   email: SocialVisits.Send@hmps.gsi.gov.uk
   address:
@@ -1503,7 +1503,7 @@ Styal:
     wed:
       - 1345-1545
 Swaleside:
-  enabled: false
+  enabled: true
   phone: '0300 060 6604'
   email: SocialVisits.Swaleside@hmps.gsi.gov.uk
   address:
