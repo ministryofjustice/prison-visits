@@ -1529,7 +1529,7 @@ Swaleside:
 'Norwich (A, B, C, E, M only)':
   enabled: true
   phone: '01603 708795'
-  email: socialvisits.norwich@hmps.gsi.gov.uk
+  email: pvb.norwich@maildrop.dsd.io
   address:
     - 'Knox Road'
     - 'NR1 4LU '
@@ -1549,7 +1549,7 @@ Swaleside:
 'Norwich (F, G, H, L only)':
   enabled: true
   phone: '01603 708795'
-  email: socialvisits.norwich@hmps.gsi.gov.uk
+  email: pvb.norwich@maildrop.dsd.io
   address:
     - 'Knox Road'
     - 'NR1 4LU '
