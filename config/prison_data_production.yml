@@ -955,7 +955,7 @@ Dartmoor:
 Aylesbury:
   enabled: true
   phone: '01296 444099'
-  email: visitsbookingaylesbury@hmps.gsi.gov.uk
+  email: visitsbooking.aylesbury@hmps.gsi.gov.uk
   address:
     - 'Bierton Road'
     - 'HP20 1EH'
