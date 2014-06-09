@@ -53,6 +53,12 @@ describe "Prison data" do
         end
       end
     end
+
+    it "should contain lowercase email addresses for all prisons" do
+      subject.values.each do |prison|
+        prison['email'].should match(/^[a-z0-9@\.-]+$/)
+      end
+    end
   end
 
   context "staging" do
