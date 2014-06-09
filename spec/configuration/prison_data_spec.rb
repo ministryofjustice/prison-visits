@@ -40,6 +40,12 @@ describe "Prison data" do
       end
     end
 
+    it "each enabled prison has a valid e-mail address" do
+      subject.values.each do |prison|
+        Mail::Address.new(prison['email']).to_s.should_not be_empty if prison['enabled']
+      end
+    end
+
     ['phone', 'email', 'address', 'unbookable', 'slots', 'enabled'].each do |attribute|
       it "each section has a #{attribute} section" do
         subject.values.each do |prison|
