@@ -47,18 +47,24 @@
       = f.text_field :last_name
 
     .group.js-native-date{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
-      %label(for="prisoner_date_of_birth_3i")
-        Date of birth
-        %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
-      = f.date_select :date_of_birth, order: [:day, :month, :year], start_year: Time.now.year - 18, end_year: Time.now.year - 100, prompt: { day: :day, month: :month, year: :year }, with_css_classes: true
-      %input.hidden.js-native-date__date-input(name='date_of_birth_native' type='date')
+      %fieldset
+        %legend
+          Date of birth
+          %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
+        .date-of-birth
+          %p.form-hint.datefield-hint For example, 28 4 2014
+          - dates = ['day', 'month', 'year']
+          - dates.each_with_index do |o, i|
+            .datefield{:class => "form-group form-group-#{o}"}
+              %label{:for => "prisoner_date_of_birth_#{dates.count - i}i"} #{o.mb_chars.titleize}
+              %input.form-control{:value => (visit.prisoner.date_of_birth ? visit.prisoner.date_of_birth.send(o) : ''), :type => "text", :name => "prisoner[date_of_birth(#{dates.count - i}i)]", :id => "prisoner_date_of_birth_#{dates.count - i}i"}
+      %input.hidden.js-native-date__date-input(name='date_of_birth_native' type='date'){ :value => (visit.prisoner.date_of_birth ? visit.prisoner.date_of_birth.strftime('%Y-%m-%d') : '') }
 
     .group{ :class => ('validation-error' if f.object.errors.include?(:number)) }
       = f.label :number do
         Prisoner number
         %span.validation-message= f.object.errors[:number].first if f.object.errors.include?(:number)
-      %p.FormBlock-hint
-        %small the prisoner can give you this
+      %p.form-hint The prisoner can give you this.
       = f.text_field :number
 
     .group{ :class => ('validation-error' if f.object.errors.include?(:prison_name)) }

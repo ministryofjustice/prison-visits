@@ -20,17 +20,55 @@
 
 
 form
+  .form-hint
+    color: $grey-1
+    margin: 0
+    @include media(mobile)
+      color: $black
+  
   .group
     margin: 1em 0
 
+    fieldset
+      margin: 0
+    
+    legend
+      @include copy-19
+      margin: 0
+      padding: 0 !important
+      font-weight: bold
+
+    .form-group
+      &.form-group-day,
+      &.form-group-month,
+      &.form-group-year
+        float: left
+        margin-right: 20px
+        clear: none
+        width: 50px
+
+        label,
+        input[type="text"]
+          display: block
+          max-width: 100%
+          font-weight: normal
+      
+      &.form-group-year
+        width: 70px
+  
+  .date-of-birth
+    overflow: hidden
+  
   .group--inline
     label
       float: left
       width: 12.5em
+  
 
 label
   @include core-19
   display: block
+  font-weight: bold
 
 input,
 select
@@ -90,7 +128,3 @@ select
   @include media(mobile)
     margin: 0 -15px
     padding: .5em 15px
-
-.FormBlock-hint
-  margin: 0
-  line-height: 1

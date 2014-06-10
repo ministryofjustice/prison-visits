@@ -11,7 +11,7 @@
 //= require visitors
 
 // Candidates for re-usable components
-//= require date-picker
+//= require modules/moj.date-picker
 //= require modules/moj.autocomplete
 //= require modules/moj.slot-picker
 //= require modules/moj.hijacks
