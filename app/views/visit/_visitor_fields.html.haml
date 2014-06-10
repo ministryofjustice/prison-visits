@@ -27,11 +27,11 @@
     %label(for="visitor_date_of_birth_3i")
       = index == 0 ? 'Your date of birth' : 'Date of birth'
       %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
+    - if index == 0
+      %p.FormBlock-hint
+        %small you must be over 18 to book a visit
     = f.date_select :date_of_birth, order: [:day, :month, :year], start_year: Time.now.year, end_year: Time.now.year - 100, prompt: { day: :day, month: :month, year: :year }, with_css_classes: true
     %input.hidden.js-native-date__date-input{ :name => "visit[visitor][][date_of_birth_native]" }(type='date')
-    - if index == 0
-      %p.group__help
-        %small You must be over 18 to book a visit.
 
   - if index == 0
   
@@ -39,9 +39,9 @@
       = f.label :email do
         Email address
         %span.validation-message= f.object.errors[:email].first if f.object.errors.include?(:email)
+      %p.FormBlock-hint
+        %small you will receive visit confirmation by email. please make sure you enter your email correctly
       = f.email_field :email
-      %p.group__help
-        %small You will receive confirmation of your visit by email.
 
     .group{ :class => ('validation-error' if f.object.errors.include?(:phone)) }
       = f.label :phone do

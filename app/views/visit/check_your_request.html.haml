@@ -35,10 +35,13 @@
   %p
     Prison:
     %strong #{visit.prisoner.prison_name}
-  %p.edit-link= link_to 'Edit these prisoner details', prisoner_details_path
+  %p.edit-link= link_to 'Change prisoner details', prisoner_details_path
 
 .divider.compact
   %h2 Visitor details
+  %p
+    Confirmation email:
+    %strong= visit.visitors.first.email
   - visit.visitors.each_with_index do |visitor, i|
     - if visitor.first_name.present? || visitor.last_name.present?
       %p
@@ -50,19 +53,24 @@
           %small.child Child
         - else
           %small.adult Adult
-  %p.edit-link= link_to 'Edit these visitor details', visitor_details_path
+  %p.edit-link= link_to 'Change visitor details', visitor_details_path
 
 .divider.compact
-  %h2 Chosen visit times
+  %h2 Your visit preference
+  %p
+    We try to accommodate your first choice.
+    - if visit.slots.dup.delete_if{|s|s.date.blank?}.size < 3
+      You can #{link_to('choose more visit options', choose_date_and_time_path)}.
   %ul.unstyled-list
-    - visit.slots.each do |slot|
+    - visit.slots.each_with_index do |slot, index|
       - if slot.date.present?
         %li
+          Option #{index+1}:
           - slot_date = Date.parse(slot.date)
           %strong= slot_date.strftime("%A %e %B")
           \ -
           = display_slot_and_duration slot.times
-  %p.edit-link= link_to 'Edit these visit times', choose_date_and_time_path
+  %p.edit-link= link_to 'Change visit options', choose_date_and_time_path
 
 
 .divider

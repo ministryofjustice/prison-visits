@@ -57,10 +57,9 @@
       = f.label :number do
         Prisoner number
         %span.validation-message= f.object.errors[:number].first if f.object.errors.include?(:number)
+      %p.FormBlock-hint
+        %small the prisoner can give you this
       = f.text_field :number
-      %details.group__help
-        %summary How to get this?
-        %p The prisoner you’re visiting will be able to give you their prisoner number.
 
     .group{ :class => ('validation-error' if f.object.errors.include?(:prison_name)) }
       = f.label :prison_name do

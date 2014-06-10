@@ -31,11 +31,12 @@
 
 .well.summary-pane.pull-left.cf
   %p.flat
-    Requested visiting times:
+    Your visit preference:
   %ul.unstyled-list
-    - visit.slots.each do |slot|
+    - visit.slots.each_with_index do |slot, index|
       - if slot.date.present?
         %li
+          Option #{index+1}:
           - slot_date = Date.parse(slot.date)
           %strong= slot_date.strftime("%A %e %B")
           \ -
