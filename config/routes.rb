@@ -16,7 +16,8 @@ PrisonVisits2::Application.routes.draw do
 
   get "cookies" => "static#cookies"
   
-  get "static/404"
+  get "terms-and-conditions" => "static#terms_and_conditions"
+
   get "static/500"
   get "static/503"
 end
