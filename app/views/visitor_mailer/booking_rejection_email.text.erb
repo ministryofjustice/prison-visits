@@ -15,7 +15,4 @@ You need to contact the prisoner to be added to the contact list.
 
 <%= @message_from_prison %>
 
-If you have any questions, visit the prison website (<%= prison_url(@visit) %>) or call the 
-prison on <%= Rails.configuration.prison_data[@visit.prisoner.prison_name]['phone'] %>.
-
-
+If you have any questions, visit the prison website: <%= prison_url(@visit) %> or call the prison on <%= Rails.configuration.prison_data[@visit.prisoner.prison_name]['phone'] %>.

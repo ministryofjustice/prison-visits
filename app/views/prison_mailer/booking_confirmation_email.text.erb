@@ -1,13 +1,9 @@
 Dear <%= @visit.visitors.first.first_name %>,
 
-Your visit to <%= @visit.prisoner.first_name %> <%= @visit.prisoner.last_name %> at <%= @visit.prisoner.prison_name %> at <%= @slot.times %> on <%= @slot.date %> is now successfully confirmed.
+Your visit to <%= @visit.prisoner.first_name %> <%= @visit.prisoner.last_name %> at <%= @visit.prisoner.prison_name %> from <%= display_time_slot(@slot.times) %> on <%= format_date(@slot.date) %> is now successfully confirmed.
 
 <% @visit.visitors.each_with_index do |visitor, index| %>
-Visitor <%= index + 1 %>
-=========
-First name: <%= visitor.first_name %>
-Last name: <%= visitor.last_name %>
-
+Visitor <%= index + 1 %>: <%= visitor.first_name %> <%= visitor.last_name %>.
 <% end %>
 
 <%= @message_from_prison %>
@@ -44,23 +40,12 @@ If you have any questions about ID requirements, please contact the prison.
 
 What to expect when visiting prison
 
-You will be searched before entering the prison visiting room. Prison staff may check  your pockets, pat you down and ask
-you to go through a metal detector. Dogs may also be used to detect illegal substances.
+You will be searched before entering the prison visiting room. Prison staff may check  your pockets, pat you down and ask you to go through a metal detector. Dogs may also be used to detect illegal substances.
 
 What not to bring
 
-Please do not bring anything restricted or illegal to the prison. For more information about what you are allowed to bring, please see the <%= @visit.prisoner.prison_name %> page: <%= Rails.configuration.prison_data[@visit.prisoner.prison_name.to_s]['web'] %> 
+Please do not bring anything restricted or illegal to the prison. For more information about what you are allowed to bring, please see the <%= @visit.prisoner.prison_name %> page: <%= prison_url(@visit) %> 
 
 Your data
 
-The Ministry of Justice (HM Prison Service) uses and retains the personal data 
-of visitors for the purposes of the safe and secure provision of Prison Services, 
-including those related to the management and rehabilitation of offenders. 
-Access to the establishment can only be granted by supplying the prescribed 
-information in order to ensure and maintain a safe and secure environment for all. 
-You have the right to request details as to the personal information we hold for you; 
-and subsequently request that we correct any personal information if it is found to be 
-inaccurate or out of date. We will not share your information with other organisations 
-unless it is required for the purposes of prevention, detection of crime, apprehension, 
-prosecution, and management of offenders; prevention of terrorism; National 
-Security; or required to do by law. 
+The Ministry of Justice (HM Prison Service) uses and retains the personal data of visitors for the purposes of the safe and secure provision of Prison Services, including those related to the management and rehabilitation of offenders. Access to the establishment can only be granted by supplying the prescribed information in order to ensure and maintain a safe and secure environment for all. You have the right to request details as to the personal information we hold for you; and subsequently request that we correct any personal information if it is found to be inaccurate or out of date. We will not share your information with other organisations unless it is required for the purposes of prevention, detection of crime, apprehension, prosecution, and management of offenders; prevention of terrorism; National  Security; or required to do by law. 
