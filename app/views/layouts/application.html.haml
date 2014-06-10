@@ -49,7 +49,7 @@
 - content_for :content_override do
   %main#wrapper(role="main")
     .container
-      %section.content.inner.cf
+      %section#content.content.inner.cf
         = render "shared/cookie_required"
 
         = yield :progress_bar

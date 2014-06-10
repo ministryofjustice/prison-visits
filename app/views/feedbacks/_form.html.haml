@@ -16,6 +16,7 @@
     %strong Please don't include any sensitive personal information (eg. prisoner numbers)
   
   %fieldset
+    %legend.visuallyhidden Feedback form
     .group{ :class => ('validation-error' if f.object.errors.include?(:text)) }
       = f.label :text do
         Your comments

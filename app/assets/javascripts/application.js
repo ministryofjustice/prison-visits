@@ -16,6 +16,7 @@
 //= require modules/moj.slot-picker
 //= require modules/moj.hijacks
 //= require modules/moj.date-slider
+//= require modules/moj.timeout-prompt
 
 // Assets without a better place
 //= require shame
