@@ -1,7 +1,11 @@
 module ApplicationHelper
+  def format_date(string)
+    Date.parse(string).strftime("%e %B %Y").strip
+  end
+  
   def display_time_slot(times, glue=' to ')
     from, to = times.split('-')
-    [format_time_str(from), format_time_str(to)].join(glue)
+    [format_time_str(from).strip, format_time_str(to).strip].join(glue)
   end
 
   def display_slot_and_duration(times, glue=' - ')

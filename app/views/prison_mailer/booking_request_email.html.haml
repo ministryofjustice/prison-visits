@@ -27,10 +27,7 @@
     = link_to("process the booking", new_confirmation_url(state: @token, host: @host, protocol: @protocol))
 
   %p
-    If you cannot click on the link above, please copy and paste the text below into the address window of your browser:
-  %div.copy-paste-window
-    = new_confirmation_url(state: @token, host: @host, protocol: @protocol)
-
+    If you cannot click on the link above, please scroll down to the bottom of this email. You will find a link to copy and paste into your browser.
   %p
     The following slots were requested:
 
@@ -107,3 +104,8 @@
         Date of birth:
       %td
         = @visit.prisoner.date_of_birth.strftime("%e %B %Y")
+  %p
+    To use this link to process the booking, copy the entire link and paste it into the address bar of your browser.
+  %div.copy-paste-window
+    = new_confirmation_url(state: @token, host: @host, protocol: @protocol)
+
