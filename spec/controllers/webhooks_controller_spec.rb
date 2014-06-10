@@ -48,6 +48,11 @@ describe WebhooksController do
     email.merge(auth: 'irrelevant')
   end
 
+  def bad_encoding(email)
+    email.merge(charsets: { from: 'utf-8', to: 'utf-8', subject: 'utf-8', text: 'unicode-1-1-utf-7' }.to_json)
+
+  end
+
   before :each do
     ActionMailer::Base.deliveries.clear
   end
@@ -81,6 +86,13 @@ describe WebhooksController do
 
     after :each do
       ActionMailer::Base.deliveries.should == []
+    end
+
+    context "on bad encoding" do
+      it "discards the email" do
+        post :email, authorized(bad_encoding(email_from_prison))
+        response.should be_successful
+      end
     end
 
     context "on bad data" do

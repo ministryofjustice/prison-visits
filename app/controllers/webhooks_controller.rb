@@ -19,7 +19,7 @@ class WebhooksController < ApplicationController
     else
       render text: "Unauthorized.", status: 403
     end
-  rescue ParsedEmail::ParseError
+  rescue ParsedEmail::ParseError, ArgumentError
     render text: "Discarded."
   end
 
