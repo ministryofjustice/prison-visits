@@ -56,9 +56,9 @@
   %p.edit-link= link_to 'Change visitor details', visitor_details_path
 
 .divider.compact
-  %h2 Your visit preference
+  %h2 Your visit options
   %p
-    We try to accommodate your first choice.
+    You can choose 3 options for 1 visit.
     - if visit.slots.dup.delete_if{|s|s.date.blank?}.size < 3
       You can #{link_to('choose more visit options', choose_date_and_time_path)}.
   %ul.unstyled-list
