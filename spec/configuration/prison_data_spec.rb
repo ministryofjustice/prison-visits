@@ -59,6 +59,16 @@ describe "Prison data" do
         prison['email'].should match(/^[a-z0-9@\.-]+$/)
       end
     end
+
+    it "should contain slots which are 9 chars long for all prisons" do
+      subject.values.each do |prison|
+        prison['slots'].each do |day, times|
+          times.each do |time|
+            time.should match(/^[0-9-]{9}$/)
+          end
+        end
+      end
+    end
   end
 
   context "staging" do
