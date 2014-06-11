@@ -355,7 +355,7 @@ Foston Hall:
       - 0930-1130
       - 1400-1600
 Holloway:
-  enabled: false
+  enabled: true
   phone: 020 7979 4751 
   email: pvb.holloway@maildrop.dsd.io
   address:
