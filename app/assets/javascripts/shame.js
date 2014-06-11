@@ -62,3 +62,10 @@ moj.show_cookie_message = function () {
     $('noscript').after( $('noscript').text() );
   }
 }();
+
+moj.focusAriaAlert = function() {
+    var ariaAlert = document.getElementById('error-summary');
+    if(ariaAlert){
+        $(ariaAlert).focus();
+    }
+}();

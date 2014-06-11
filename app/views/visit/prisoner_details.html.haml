@@ -4,6 +4,7 @@
   %ol.progress
     %li.progress--active
       .progress__step
+        %span.visuallyhidden Current step
         %span.progress__label Prisoner details
     %li
       .progress__step
@@ -33,7 +34,7 @@
     = render 'shared/validation'
 
   %fieldset.FormBlock
-
+    %legend.visuallyhidden Prisoner details
     .group{ :class => ('validation-error' if f.object.errors.include?(:first_name)) }
       = f.label :first_name do
         Prisoner first name
@@ -47,20 +48,25 @@
       = f.text_field :last_name
 
     .group.js-native-date{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
-      %label(for="prisoner_date_of_birth_3i")
-        Date of birth
-        %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
-      = f.date_select :date_of_birth, order: [:day, :month, :year], start_year: Time.now.year - 18, end_year: Time.now.year - 100, prompt: { day: :day, month: :month, year: :year }, with_css_classes: true
-      %input.hidden.js-native-date__date-input(name='date_of_birth_native' type='date')
+      %fieldset
+        %legend
+          Date of birth
+          %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
+        .date-of-birth
+          %p#dobHint.form-hint.datefield-hint For example, 28 4 2014
+          - dates = ['day', 'month', 'year']
+          - dates.each_with_index do |o, i|
+            .datefield{:class => "form-group form-group-#{o}"}
+              %label{:for => "prisoner_date_of_birth_#{dates.count - i}i"} #{o.mb_chars.titleize}
+              %input.form-control{:value => (visit.prisoner.date_of_birth ? visit.prisoner.date_of_birth.send(o) : ''), :type => "text", :name => "prisoner[date_of_birth(#{dates.count - i}i)]", :id => "prisoner_date_of_birth_#{dates.count - i}i", :'aria-describedby' => "dobHint"}
+      %input.hidden.js-native-date__date-input(name='date_of_birth_native' type='date'){ :value => (visit.prisoner.date_of_birth ? visit.prisoner.date_of_birth.strftime('%Y-%m-%d') : '') }
 
     .group{ :class => ('validation-error' if f.object.errors.include?(:number)) }
       = f.label :number do
         Prisoner number
         %span.validation-message= f.object.errors[:number].first if f.object.errors.include?(:number)
+      %p.form-hint The prisoner can give you this.
       = f.text_field :number
-      %details.group__help
-        %summary How to get this?
-        %p The prisoner you’re visiting will be able to give you their prisoner number.
 
     .group{ :class => ('validation-error' if f.object.errors.include?(:prison_name)) }
       = f.label :prison_name do

@@ -14,7 +14,7 @@ feature "visitor enters visitor information" do
 
       expect(page).to have_css(".field_with_errors #first_name_0")
       expect(page).to have_css(".field_with_errors #last_name_0")
-      expect(page).to have_css("label[for='visitor_date_of_birth_3i'] .validation-message")
+      expect(page).to have_css(".js-native-date .validation-message")
       expect(page).to have_css(".field_with_errors #visit_visitor__email")
       expect(page).to have_css(".field_with_errors #visit_visitor__phone")
     end

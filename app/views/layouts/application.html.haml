@@ -49,7 +49,7 @@
 - content_for :content_override do
   %main#wrapper(role="main")
     .container
-      %section.content.inner.cf
+      %section#content.content.inner.cf
         = render "shared/cookie_required"
 
         = yield :progress_bar
@@ -69,6 +69,8 @@
     %a{href: "http://www.gov.uk/help"} Help
   %li
     = link_to "Cookies", cookies_path
+  %li
+    = link_to "Terms & Conditions", terms_and_conditions_path
   %li
     = link_to "Feedback", new_feedback_path(referrer: request.original_url)
   %li

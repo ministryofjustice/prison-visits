@@ -1,4 +1,4 @@
-- content_for :header, 'Your visit request has been sent'
+- content_for :header, 'Your request is being processed'
 
 - content_for :progress_bar do
   %ol.progress
@@ -16,13 +16,14 @@
         %span.progress__label Check request
     %li.progress--active
       .progress__step
+        %span.visuallyhidden Current step
         %span.progress__label Send request
 
-%p
-  We'll email you at
-  %strong= visit.visitors[0].email
-  within 3 working days to confirm your visit.
-  If you don't receive a confirmation email, please
+%p 
+  %strong Your visit is not booked yet:
+  you'll get a confirmation email to 
+  = mail_to visit.visitors.first.email
+  within 3 working days. If you don't get a confirmation email, please
   - if prison_phone.present?
     call #{prison_phone} or
   email us at
@@ -31,11 +32,12 @@
 
 .well.summary-pane.pull-left.cf
   %p.flat
-    Requested visiting times:
+    Your visit options:
   %ul.unstyled-list
-    - visit.slots.each do |slot|
+    - visit.slots.each_with_index do |slot, index|
       - if slot.date.present?
         %li
+          Option #{index+1}:
           - slot_date = Date.parse(slot.date)
           %strong= slot_date.strftime("%A %e %B")
           \ -
@@ -118,8 +120,6 @@
     %summary What not to bring
 
     %p Please do not bring anything restricted or illegal to the prison. For more information about what you are allowed to bring, please see the #{prison_link(visit)} page.
-
-  = render 'shared/data_protection_act'
 
 - unless just_testing?
   - content_for :analytics do
