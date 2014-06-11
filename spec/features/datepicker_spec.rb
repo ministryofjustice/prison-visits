@@ -53,7 +53,7 @@ feature "visitor selects a date" do
       page.should have_content('Check your request')
 
       click_button 'Send request'
-      page.should have_content('Your visit request has been sent')
+      page.should have_content('Your request is being processed')
     end
   end
 end
