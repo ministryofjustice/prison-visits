@@ -1787,26 +1787,6 @@ Littlehey:
     wed:
       - 0915-1115
       - 1400-1600
-'New Hall':
-  enabled: false
-  phone: '01924 803219'
-  email: socialvisits.newhall@hmps.gsi.gov.uk
-  address:
-    - 'Dial Wood'
-    - 'WF4 4XX'
-  unbookable:
-    - 2014-12-25
-  slots:
-    sat:
-      - 1400-1600
-    sun:
-      - 1400-1600
-    thu:
-      - 1400-1600
-    tue:
-      - 1400-1600
-    wed:
-      - 1400-1600
 'North Sea Camp':
   enabled: false
   phone: '01205 769 368'
