@@ -1822,31 +1822,6 @@ Littlehey:
       - 1330-1545
     wed:
       - 1330-1545
-Nottingham:
-  enabled: false
-  phone: '0115 962 8980'
-  email: pvb.nottingham@maildrop.dsd.io
-  address:
-    - 'Perry Road'
-    - 'NG5 3AG '
-  unbookable:
-    - 2014-12-25
-  slots:
-    fri:
-      - 0900-1100
-      - 1400-1600
-    sat:
-      - 0900-1100
-      - 1400-1600
-    sun:
-      - 0900-1100
-      - 1400-1600
-    thu:
-      - 0900-1100
-      - 1400-1600
-    tue:
-      - 0900-1100
-      - 1400-1600
 Portland:
   enabled: false
   phone: '01305 715775'
@@ -2213,3 +2188,25 @@ Feltham (Young People 15-18 only):
     sun: 
       - 1330-1500
       - 1500-1630
+Whatton:
+  enabled: true
+  phone: '01949 803564'
+  email: pvb.whatton@maildrop.dsd.io
+  address:
+    - 'New Lane'
+    - 'NG13 9FQ '
+  unbookable:
+    - 2014-12-25
+  slots:
+    fri:
+      - 1415-1615
+    mon:
+      - 1415-1615
+    sat:
+      - 0900-1130
+      - 1400-1600
+    sun:
+      - 0900-1130
+      - 1400-1600
+    thu:
+      - 1415-1615

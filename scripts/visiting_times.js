@@ -74,15 +74,16 @@ var prison_details1 = {
 "HMP WINCHESTER": {"address":"Romsey Road,SO22 5DF","email":"Socialvisits.winchester@hmps.gsi.gov.uk","phone":"0845 223 5514"},
 "HMP WORMWOOD SCRUBS": {"address":"Du Cane Road,W12 0AE","email":"socialvisits.WormwoodScrubs@hmps.gsi.gov.uk","phone":"020 8588 3564"},
 "HMP WYMOTT": {"address":"Ulnes Walton Lane,PR26 8LW","email":"socialvisits.wymott@hmps.gsi.gov.uk","phone":"01772 442234"},
-"HMP USK": {"address":"47 Maryport Street,NP15 1XP","email":"Social Visits, Usk","phone":"01291 671730"}
-};
-
-var prison_details = {
+"HMP USK": {"address":"47 Maryport Street,NP15 1XP","email":"Social Visits, Usk","phone":"01291 671730"},
 "HMP SPRING HILL": {"address":"Grendon Underwood,HP18 0TL ","email":"","phone":""},
 "HMP SUDBURY": {"address":"Ashbourne,DE6 5HW ","email":"","phone":""},
 "HMP LEICESTER": {"address":"116 Welford Road,LE2 7AJ","email":"No Active Social Visits FMB","phone":"0116 228 3128"},
 "HMP WOLDS": {"address":"Everthorpe,HU15 2JZ ","email":"?","phone":"01430 428584"},
 "HMP PRESCOED": {"address":"Coed-y-Paen,NP4 0TB","email":"Not required","phone":""}
+};
+
+var prison_details = {
+"HMP WHATTON": {"address":"New Lane,NG13 9FQ ","email":"SocialVisits.Whatton@hmps.gsi.gov.uk","phone":"01949 803564"}
 };
 
 var prisons = arrayFromObject(prison_details);
