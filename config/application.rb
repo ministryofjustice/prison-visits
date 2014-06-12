@@ -53,5 +53,7 @@ module PrisonVisits2
     end.with_indifferent_access
 
     config.permitted_ips_for_confirmations = (ENV['PRISON_ESTATE_IPS'] || '').split(',')
+
+    config.autoload_paths << 'lib'
   end
 end

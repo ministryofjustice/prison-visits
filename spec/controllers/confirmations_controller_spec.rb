@@ -14,7 +14,7 @@ describe ConfirmationsController do
   context "before interaction" do
     before :each do
       controller.stub(:metrics_logger).and_return(mock_metrics_logger)
-      controller.stub(:check_ip_ranges)
+      controller.stub(:reject_untrusted_ips!)
     end
 
     it "resurrects the visit" do
@@ -76,7 +76,7 @@ describe ConfirmationsController do
       VisitorMailer.any_instance.stub(:sender).and_return('test@example.com')
       PrisonMailer.any_instance.stub(:sender).and_return('test@example.com')
       controller.stub(:metrics_logger).and_return(mock_metrics_logger)
-      controller.stub(:check_ip_ranges)
+      controller.stub(:reject_untrusted_ips!)
     end
 
     context "when a form is submitted with a slot selected" do

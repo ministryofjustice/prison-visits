@@ -1,12 +1,6 @@
 class ConfirmationsController < ApplicationController
   helper_method :booked_visit
-  before_filter :check_ip_ranges
-
-  def check_ip_ranges
-    unless Rails.configuration.permitted_ips_for_confirmations.include?(request.remote_ip)
-      raise ActionController::RoutingError.new('Not found')
-    end
-  end
+  permit_only_from_prisons
 
   def new
     reset_session if params[:state]
