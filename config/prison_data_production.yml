@@ -670,9 +670,6 @@ The Mount:
   unbookable:
     - 2014-12-25
   slots:
-  unbookable:
-    - 2014-12-25
-  slots:
     thu:
       - 1345-1545
     fri:
@@ -1360,40 +1357,35 @@ Leeds:
     - 2014-12-25
   slots:
     fri:
-      - 0830-0930
       - 1030-1130
-      - 1345-1445
-      - 1515-1615
+      - 1400-1500
+      - 1530-1630
     mon:
-      - 0830-0930
       - 1030-1130
-      - 1345-1445
-      - 1515-1615
+      - 1400-1500
+      - 1530-1630
     sat:
       - 0900-1000
       - 1030-1130
-      - 1345-1445
-      - 1515-1615
+      - 1400-1500
+      - 1530-1630
     sun:
       - 0900-1000
       - 1030-1130
-      - 1345-1445
-      - 1515-1615
+      - 1400-1500
+      - 1530-1630
     thu:
-      - 1345-1445
-      - 1515-1615
-      - 1745-1845
+      - 1030-1130
+      - 1400-1500
+      - 1530-1630
     tue:
-      - 0830-0930
       - 1030-1130
-      - 1345-1445
-      - 1515-1615
+      - 1400-1500
+      - 1530-1630
     wed:
-      - 0830-0930
       - 1030-1130
-      - 1345-1445
-      - 1515-1615
-      - 1745-1845
+      - 1400-1500
+      - 1530-1630
 'New Hall':
   enabled: true
   phone: '01924 803219'
@@ -1553,7 +1545,7 @@ Swaleside:
       - 1345-1545
     sun:
       - 1345-1545
-Liverpool:
+Liverpool (Open only):
   enabled: true
   phone: '0151 530 4050'
   email: socialvisits.liverpool@hmps.gsi.gov.uk
@@ -1851,40 +1843,6 @@ Ranby:
     sun:
       - 0815-1100
       - 1330-1600
-Swansea:
-  enabled: false
-  phone: '01792 48 5322'
-  email: socvisswansea@hmps.gsi.gov.uk
-  address:
-    - '200 Oystermouth Road'
-    - 'SA1 3SR'
-  unbookable:
-    - 2014-12-25
-  slots:
-    fri:
-      - 1015-1115
-    mon:
-      - 1345-1445
-      - 1515-1615
-    sat:
-      - 0915-1015
-      - 1045-1145
-      - 1345-1445
-      - 1515-1615
-    sun:
-      - 1345-1445
-      - 1515-1615
-    thu:
-      - 1015-1115
-      - 1345-1445
-      - 1515-1615
-    tue:
-      - 1015-1115
-      - 1345-1445
-      - 1515-1615
-    wed:
-      - 1345-1445
-      - 1515-1615
 Wandsworth:
   enabled: false
   phone: '01924 612274'
@@ -1931,8 +1889,39 @@ Wandsworth:
       - 1100-1200
       - 1345-1445
       - 1515-1615
-Winchester:
-  enabled: false
+Winchester (Remand only):
+  enabled: true
+  phone: '0845 223 5514'
+  email: socialvisits.winchester@hmps.gsi.gov.uk
+  address:
+    - 'Romsey Road'
+    - 'SO22 5DF'
+  unbookable:
+    - 2014-12-25
+  slots:
+    fri:
+      - 1400-1500
+      - 1515-1615
+    mon:
+      - 1400-1500
+      - 1515-1615
+    sat:
+      - 1400-1500
+      - 1515-1615
+    sun:
+      - 1400-1500
+      - 1515-1615
+    thu:
+      - 1400-1500
+      - 1515-1615
+    tue:
+      - 1400-1500
+      - 1515-1615
+    wed:
+      - 1400-1500
+      - 1515-1615
+Winchester (Convicted only):
+  enabled: true
   phone: '0845 223 5514'
   email: socialvisits.winchester@hmps.gsi.gov.uk
   address:
@@ -2263,3 +2252,53 @@ Eastwood Park:
       - 1530-1630
     sun:
       - 1400-1600
+Leyhill:
+  enabled: true
+  phone: 01454 264211
+  email: socialvisits.leyhill@hmps.gsi.gov.uk
+  address: 
+   - Wotton-under-edge
+   - GL12 8BT
+  unbookable:
+    - 2014-12-25
+  slots:
+    tue:
+      - 1330-1530
+    thu:
+      - 1330-1530
+    sat:
+      - 1330-1530
+    sun:
+      - 1330-1530
+Swansea:
+  enabled: true
+  phone: 01792 48 5322
+  email: socialvisits.swansea@hmps.gsi.gov.uk
+  address: 
+   - 200 Oystermouth Road
+   - SA1 3SR
+  unbookable:
+    - 2014-12-25
+  slots:
+    mon: 
+      - 1000-1100
+      - 1345-1445
+      - 1515-1615
+    tue:
+      - 1000-1100
+      - 1345-1445
+      - 1515-1615
+    thu:
+      - 1000-1100
+      - 1345-1445
+      - 1515-1615
+    fri: 
+      - 1000-1100
+      - 1345-1445
+      - 1515-1615
+    sat:
+      - 1345-1445
+      - 1515-1615
+    sun:
+      - 1345-1445
+      - 1515-1615
