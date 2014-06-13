@@ -74,8 +74,8 @@
         %span.validation-message= f.object.errors[:prison_name].first if f.object.errors.include?(:prison_name)
       = f.select :prison_name, prison_names, { prompt: 'select a prison' }, { class: 'js-autocomplete' }
       %details.group__help
-        %summary Why are only these prisons available?
-        %p You can’t make an online visit request for all prisons (eg high-security and private prisons). If the prison you're visiting is not shown, <a href="http://www.justice.gov.uk/contacts/prison-finder">contact the prison</a> to find out how to book.
+        %summary Why aren't all prisons available?
+        %p You can’t make an online visit request for all prisons (eg high-security and private prisons). If you can’t enter the prison you're visiting, contact the prison <a href="http://www.justice.gov.uk/contacts/prison-finder">contact the prison</a> to find out how to book.
 
   .actions
     .primary-actions
