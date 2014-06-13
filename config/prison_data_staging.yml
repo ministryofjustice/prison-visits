@@ -139,7 +139,7 @@ Gartree:
       - 1400-1600
 Brinsford: 
   enabled: true
-  phone: 01902 533 450
+  phone: 0300 060 6500
   email: pvb.brinsford@maildrop.dsd.io
   address:
     - New Road  
@@ -190,7 +190,7 @@ Drake Hall:
       - 1330-1545
 Werrington: 
   enabled: true
-  phone: 01782 463 300
+  phone:  0300 060 6508
   email: pvb.werrington@maildrop.dsd.io
   address:
     - Werrington  
@@ -215,7 +215,7 @@ Werrington:
       - 1430-1630
 Featherstone: 
   enabled: true
-  phone: 001902 703000
+  phone: 0300 060 6502
   email: pvb.featherstone@maildrop.dsd.io
   address:
     - New Road  
@@ -245,7 +245,7 @@ Featherstone:
       - 1400-1600
 Stoke Heath: 
   enabled: true
-  phone: 0300 0606506
+  phone: 0300 060 6506
   email: pvb.stokeheath@maildrop.dsd.io
   address:
     - Market Drayton  
@@ -273,7 +273,7 @@ Stoke Heath:
       - 1400-1600
 Swinfen Hall: 
   enabled: true
-  phone: 01543 484 000
+  phone: 0300 060 6507
   email: pvb.swinfenhall@maildrop.dsd.io
   address:
     - Swinfen Hall  
@@ -299,7 +299,7 @@ Swinfen Hall:
       - 1400-1600
 Hewell: 
   enabled: true
-  phone: 01527 785000
+  phone: 0300 060 6503
   email: pvb.hewell@maildrop.dsd.io
   address:
     - Hewell Lane  
@@ -916,7 +916,7 @@ Dartmoor:
   unbookable:
     - 2014-12-25
   slots:
-    fri:
+    tue:
       - 1400-1600
     sat:
       - 1400-1600
@@ -1550,7 +1550,7 @@ Swaleside:
       - 1345-1545
     sun:
       - 1345-1545
-Liverpool:
+Liverpool (Open only):
   enabled: true
   phone: '0151 530 4050'
   email: pvb.liverpool@maildrop.dsd.io
@@ -1591,7 +1591,21 @@ Liverpool:
       - 1030-1130
       - 1355-1455
       - 1525-1625
-Bullingdon:
+Liverpool (Closed only):
+  enabled: true
+  phone: '0151 530 4050'
+  email: pvb.liverpool@maildrop.dsd.io
+  address:
+    - '68 Hornby Road'
+    - 'L9 3DF'
+  unbookable:
+    - 2014-12-25
+  slots:
+    mon:
+      - 1025-1125
+    tue:
+      - 1025-1125 
+Bullingdon (Convicted Only):
   enabled: true
   phone: '01869 353176'
   email: pvb.bullingdon@maildrop.dsd.io
@@ -1612,6 +1626,24 @@ Bullingdon:
     tue:
       - 1400-1610
     wed:
+      - 1400-1610
+Bullingdon (Remand Only):
+  enabled: true
+  phone: '01869 353176'
+  email: pvb.bullingdon@maildrop.dsd.io
+  address:
+    - Bicester
+    - 'OX25 1PZ'
+  unbookable:
+    - 2014-12-25
+  slots:
+    mon:
+      - 1400-1610
+    sat:
+      - 1400-1610
+    thu:
+      - 1400-1610
+    tue:
       - 1400-1610
 Hindley:
   enabled: false
