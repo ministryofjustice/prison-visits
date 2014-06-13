@@ -614,7 +614,7 @@ Lewes:
       - 1410-1535
 Moorland Closed:  
   enabled: true
-  phone: 01302523087
+  phone: 01302523289
   email: socialvisits.moorlandclosed@hmps.gsi.gov.uk
   address:
     - Bawtry Road
@@ -1204,7 +1204,7 @@ Grendon:
     sun:
       - 1330-1545
 'Hatfield (moorland Open)':
-  enabled: false
+  enabled: true
   phone: '01405 746611'
   email: socialvisits.hatfield@hmps.gsi.gov.uk
   address:
@@ -1946,7 +1946,7 @@ Winchester:
     wed:
       - 1400-1600
 'Wormwood Scrubs':
-  enabled: false
+  enabled: true
   phone: '020 8588 3564'
   email: socialvisits.wormwoodscrubs@hmps.gsi.gov.uk
   address:
@@ -1974,7 +1974,7 @@ Winchester:
       - 0930-1100
       - 1400-1600
 Wymott:
-  enabled: false
+  enabled: true
   phone: '01772 442234'
   email: socialvisits.wymott@hmps.gsi.gov.uk
   address:
@@ -2058,6 +2058,10 @@ Risley:
     wed:
       - 1400-1600
     thu:
+      - 1400-1600
+    mon:
+      - 1400-1600
+    tue:
       - 1400-1600
     fri:
       - 0900-1115
@@ -2193,3 +2197,59 @@ Whatton:
       - 1400-1600
     thu:
       - 1415-1615
+Pentonville:
+  enabled: true
+  phone: 020 70237251
+  email: socialvisits.pentonville@hmps.gsi.gov.uk
+  address:
+    - Caledonian Road
+    - N7 8TT 
+  unbookable:
+    - 2014-12-25
+    - 2015-04-03
+  slots:
+    mon:
+      - 0915-1115
+      - 1400-1600
+    tue:
+      - 1400-1600
+    wed:
+      - 0915-1115
+      - 1400-1600
+    thu:
+      - 0915-1115
+      - 1400-1600
+    fri:
+      - 1400-1600
+    sat:
+      - 0915-1115
+      - 1400-1600
+    sun:
+      - 1400-1600
+Eastwood Park:
+  enabled: true
+  phone: 01454 382159
+  email: socialvisits.eastwoodpark@hmps.gsi.gov.uk
+  address:
+    - Falfield
+    - GL12 8DB 
+  unbookable:
+    - 2014-12-25
+  slots:
+    tue:
+      - 1400-1500
+      - 1530-1630
+    wed:
+      - 1400-1500
+      - 1530-1630
+    thu:
+      - 1400-1500
+      - 1530-1630
+    fri:
+      - 1400-1500
+      - 1530-1630
+    sat:
+      - 1400-1500
+      - 1530-1630
+    sun:
+      - 1400-1600
