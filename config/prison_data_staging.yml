@@ -2223,3 +2223,30 @@ Pentonville:
       - 1400-1600
     sun:
       - 1400-1600
+Eastwood Park:
+  enabled: true
+  phone: 01454 382159
+  email: pvb.eastwoodpark@maildrop.dsd.io
+  address:
+    - Falfield
+    - GL12 8DB 
+  unbookable:
+    - 2014-12-25
+  slots:
+    tue:
+      - 1400-1500
+      - 1530-1630
+    wed:
+      - 1400-1500
+      - 1530-1630
+    thu:
+      - 1400-1500
+      - 1530-1630
+    fri:
+      - 1400-1500
+      - 1530-1630
+    sat:
+      - 1400-1500
+      - 1530-1630
+    sun:
+      - 1400-1600
