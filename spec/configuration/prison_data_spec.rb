@@ -10,7 +10,7 @@ describe "Prison data" do
   end
 
   let :production_prison_data_as_text do
-    File.read(File.join(Rails.root, "config", "prison_data_production.yml"))
+    File.readlines(File.join(Rails.root, "config", "prison_data_production.yml"))
   end
 
   context "production" do
@@ -75,7 +75,7 @@ describe "Prison data" do
     end
 
     it "should contain no duplicate prisons" do
-      prisons_names = production_prison_data_as_text.each_line.reject{ |l| l.match(/^\s+/i) } # plain text as Yaml allows duplicates and uses latest
+      prisons_names = production_prison_data_as_text.reject{ |l| l.match(/^\s+/i) } # plain text as Yaml allows duplicates and uses latest
       prisons_names.detect{ |e| prisons_names.count(e) > 1 }.should be(nil)
     end
   end
