@@ -2302,3 +2302,29 @@ Swansea:
     sun:
       - 1345-1445
       - 1515-1615
+Usk:
+  enabled: true
+  phone: 01291 671730
+  email: pvb.usk@maildrop.dsd.io
+  address: 
+   - 47 Maryport Street
+   - NP15 1XP
+  unbookable:
+    - 2014-12-25
+  slots:
+    mon: 
+      - 1700-1900
+    tue:
+      - 1400-1600
+    wed:
+      - 1400-1600
+      - 1700-1900
+    thu:
+      - 1400-1600
+    fri: 
+      - 1400-1600
+      - 1700-1900
+    sat:
+      - 1400-1600
+    sun:
+      - 1400-1600    
