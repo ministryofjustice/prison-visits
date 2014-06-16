@@ -927,7 +927,7 @@ Dartmoor:
     wed:
       - 1400-1600
 'Low Newton':
-  enabled: false
+  enabled: true
   phone: '0191 376 4147'
   email: socialvisits.lownewton@hmps.gsi.gov.uk
   address:
