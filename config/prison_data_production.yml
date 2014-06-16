@@ -1994,32 +1994,6 @@ Wymott:
       - 1315-1600
     wed:
       - 1315-1600
-Usk:
-  enabled: false
-  phone: '01291 671730'
-  email: socialvisits.usk@hmps.gsi.gov.uk
-  address:
-    - '47 Maryport Street'
-    - 'NP15 1XP'
-  unbookable:
-    - 2014-12-25
-  slots:
-    fri:
-      - 1400-1600
-      - 1700-1900
-    mon:
-      - 1700-1900
-    sat:
-      - 1400-1600
-    sun:
-      - 1400-1600
-    thu:
-      - 1400-1600
-    tue:
-      - 1400-1600
-    wed:
-      - 1430-1600
-      - 1700-1900
 'Thorn Cross':
   enabled: true
   phone: '01925805018'
