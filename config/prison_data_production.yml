@@ -2301,4 +2301,22 @@ Usk:
     sat:
       - 1400-1600
     sun:
-      - 1400-1600  
+      - 1400-1600
+Ford:
+  enabled: true
+  phone: 
+  email: socialvisits.ford@hmps.gsi.gov.uk
+  address: 
+   - Arundel
+   - BN18 0BX 
+  unbookable:
+    - 2014-12-25
+  slots:
+    wed: 
+      - 1800-2000
+    fri:
+      - 1400-1600
+    sat:
+      - 1400-1600
+    sun:
+      - 1400-1600
