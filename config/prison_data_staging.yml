@@ -818,8 +818,8 @@ Maidstone:
       - 1400-1600
     sun:
       - 1400-1600
-    wed:
-      - 1415-1600
+    fri:
+      - 1400-1600      
 Wetherby:
   enabled: true
   phone: '01937 544207'
@@ -1243,7 +1243,7 @@ Haverigg:
       - 1400-1600
 Highpoint:
   enabled: true
-  phone: '0207 147 6570'
+  phone: 01440 743134
   email: pvb.highpointnorth@maildrop.dsd.io
   address:
     - Stradishall
@@ -1256,7 +1256,7 @@ Highpoint:
     mon:
       - 1400-1600
     sat:
-      - 1430-1630
+      - 1400-1600
     sun:
       - 0900-1100
       - 1400-1600
@@ -1824,7 +1824,7 @@ Portland:
     thu:
       - 1345-1600
 Ranby:
-  enabled: false
+  enabled: true 
   phone: '01777 862107'
   email: pvb.ranby@maildrop.dsd.io
   address:
@@ -1834,15 +1834,16 @@ Ranby:
     - 2014-12-25
   slots:
     fri:
-      - 1330-1600
+      - 0845-1100
+      - 1345-1600
     mon:
-      - 1330-1600
+      - 1345-1600
     sat:
-      - 0815-1100
-      - 1330-1600
+      - 0845-1100
+      - 1345-1600
     sun:
-      - 0815-1100
-      - 1330-1600
+      - 0845-1100
+      - 1345-1600
 Wandsworth:
   enabled: false
   phone: '01924 612274'
