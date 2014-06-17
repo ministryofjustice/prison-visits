@@ -1,5 +1,3 @@
-require 'name_validator'
-
 class Visitor
   include ActiveModel::Model
 

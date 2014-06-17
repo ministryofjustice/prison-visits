@@ -1,5 +1,3 @@
-require 'zendesk_helper'
-
 class FeedbacksController < ApplicationController
   protect_from_forgery
 

@@ -1,5 +1,3 @@
-require 'mailer_helper'
-
 class BookingConfirmation < ActionMailer::Base
   add_template_helper(ApplicationHelper)
 

@@ -1,5 +1,3 @@
-require 'name_validator'
-
 class Prisoner
   include ActiveModel::Model
 

@@ -1,5 +1,3 @@
-require 'email_validator'
-
 class Feedback
   include ActiveModel::Model
 

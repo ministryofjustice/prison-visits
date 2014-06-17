@@ -1,5 +1,3 @@
-require 'mailer_helper'
-
 class PrisonMailer < ActionMailer::Base
 
   include MailerHelper::NoReply

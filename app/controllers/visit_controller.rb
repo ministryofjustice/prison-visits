@@ -1,5 +1,3 @@
-require 'google_analytics_adapter'
-
 class VisitController < ApplicationController
   before_filter :check_if_session_timed_out, only: [:update_prisoner_details, :update_visitor_details, :update_choose_date_and_time, :update_check_your_request]
   before_filter :check_if_session_exists, except: [:prisoner_details, :unavailable]
