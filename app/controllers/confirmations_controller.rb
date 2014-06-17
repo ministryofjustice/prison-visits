@@ -40,7 +40,7 @@ class ConfirmationsController < ApplicationController
   end
 
   def booked_visit
-    session[:booked_visit] ||= encryptor.decrypt_and_verify(params[:state])
+    session[:booked_visit] ||= legacy_data_fixes(encryptor.decrypt_and_verify(params[:state]))
   end
 
   def confirmation_params
@@ -53,5 +53,16 @@ class ConfirmationsController < ApplicationController
 
   def metrics_logger
     METRICS_LOGGER
+  end
+
+  def legacy_data_fixes(visit)
+    if prison_name = {
+        'Liverpool' => 'Liverpool (Open only)',
+        'Winchester' => 'Winchester (Convicted only)',
+        'Bullingdon' => 'Bullingdon (Convicted Only)'
+      }[visit.prisoner.prison_name]
+      visit.prisoner.prison_name = prison_name
+    end
+    visit
   end
 end

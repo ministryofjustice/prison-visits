@@ -41,6 +41,23 @@ describe ConfirmationsController do
       end
     end
 
+    ['Liverpool', 'Winchester', 'Bullingdon'].each do |prison_name|
+      it "resurrects a visit with a old prison name (#{prison_name}) to avoid a runtime exception" do
+        sample_visit.tap do |visit|
+          visit.prisoner.prison_name = prison_name
+          mock_metrics_logger.should_receive(:record_link_click)
+          mock_metrics_logger.should_receive(:processed?) do |v|
+            v.should.eql? visit
+            false
+          end
+          get :new, state: MESSAGE_ENCRYPTOR.encrypt_and_sign(visit)
+          response.should be_success
+          response.should render_template('confirmations/new')
+          controller.booked_visit.prisoner.prison_name.should_not == prison_name
+        end
+      end
+    end
+
     it "bails out if the state is corrupt or not present" do
       expect {
         get :new
