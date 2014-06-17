@@ -1181,7 +1181,7 @@ Grendon:
 'Hatfield (moorland Open)':
   enabled: true
   phone: '01405 746611'
-  email: socialvisits.hatfield@hmps.gsi.gov.uk
+  email: socialvisitshatfield@hmps.gsi.gov.uk
   address:
     - 'Thorne Road'
     - 'DN7 6El'
@@ -1215,7 +1215,7 @@ Haverigg:
     wed:
       - 1400-1545
 'High Down':
-  enabled: false
+  enabled: true
   phone: '0300 060 6503'
   email: socialvisits.highdown@hmps.gsi.gov.uk
   address:
@@ -1224,20 +1224,13 @@ Haverigg:
   unbookable:
     - 2014-12-25
   slots:
-    fri:
-      - 0930-1115
-      - 1400-1600
-    mon:
-      - 1400-1600
     sat:
       - 1400-1600
     sun:
       - 1400-1600
     thu:
-      - 0930-1115
       - 1400-1600
     tue:
-      - 0930-1115
       - 1400-1600
     wed:
       - 1400-1600
