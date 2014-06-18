@@ -1819,7 +1819,7 @@ Portland:
 Ranby:
   enabled: true
   phone: '01777 862107'
-  email: visitsbooking.ranby@hmps.gsi.gov.uk
+  email: visitsbookingranby@hmps.gsi.gov.uk
   address:
     - RETFORD
     - 'DN22 8EU'
