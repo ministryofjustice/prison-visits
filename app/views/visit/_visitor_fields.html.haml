@@ -37,7 +37,7 @@
         - dates.each_with_index do |o, i|
           .datefield{:class => "form-group form-group-#{o}"}
             %label{:for => "visitor_date_of_birth_#{dates.count - i}i_#{index}"} #{o.mb_chars.titleize}
-            %input.form-control{:value => (visit.visitors[index.to_i].date_of_birth ? visit.visitors[index.to_i].date_of_birth.send(o) : ''), :type => "text", :name => "visit[visitor][][date_of_birth(#{dates.count - i}i)]", :id => "visitor_date_of_birth_#{dates.count - i}i_#{index}", :'aria-describedby' => "dobHint"}
+            %input.form-control{:value => (visit.visitors[index.to_i].date_of_birth && !js_template ? visit.visitors[index.to_i].date_of_birth.send(o) : ''), :type => "text", :name => "visit[visitor][][date_of_birth(#{dates.count - i}i)]", :id => "visitor_date_of_birth_#{dates.count - i}i_#{index}", :'aria-describedby' => "dobHint"}
       %input.hidden.js-native-date__date-input{ :value => (visit.visitors[index.to_i].date_of_birth ? visit.visitors[index.to_i].date_of_birth.strftime('%Y-%m-%d') : ''), :name => "visit[visitor][][date_of_birth_native]" }(type='date')
 
   - if index == 0
