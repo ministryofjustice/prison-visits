@@ -72,14 +72,19 @@
       // Our items have HTML tags.  The default rendering uses text()
       // to set the content of the <a> tag.  We need html().
       this.$text.data("ui-autocomplete")._renderItem = function(ul, item) {
-        return $("<li>").append($("<a>").html(item.label)).appendTo(ul);
+        var label = $("<a>").html(item.label);
+        if (item.value === -1) {
+          label.addClass("ui-menu-noresults");
+        }
+        return $("<li>").append(label).appendTo(ul);
       };
 
       // set callbacks for autocomplete
       this.$text.on({
         autocompleteselect: this._autocompleteselect,
         autocompletechange: this._autocompletechange,
-        autocompletesearch: this._autocompletesearch
+        autocompletesearch: this._autocompletesearch,
+        autocompletefocus: this._autocompletefocus
       });
 
       // append input to wrapper
@@ -89,22 +94,52 @@
     _source: function(request, response){
       var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex(request.term), "i");
 
-      response(
-        this.$select.children("option").map(function() {
-          var text = $( this ).text();
-          if (this.value && (!request.term || matcher.test(text))){
-            return {
-              label: request.term !== "" ? text.replace(new RegExp("^(?![^&;]+;)(?!<[^<>]*)(" + $.ui.autocomplete.escapeRegex(request.term) + ")(?![^<>]*>)(?![^&;]+;)", "gi"), "<strong>$1</strong>") : text,
-              value: text,
-              option: this
-            };
-          }
-        })
-      );
+      if (this._hasMatches(request.term)) {
+        response(
+          this.$select.children("option").map(function() {
+            var text = $( this ).text();
+            if (this.value && (!request.term || matcher.test(text))){
+              return {
+                label: request.term !== "" ? text.replace(new RegExp("^(?![^&;]+;)(?!<[^<>]*)(" + $.ui.autocomplete.escapeRegex(request.term) + ")(?![^<>]*>)(?![^&;]+;)", "gi"), "<strong>$1</strong>") : text,
+                value: text,
+                option: this
+              };
+            }
+          })
+        );
+      } else {
+        response([{ label: 'Prison not found.', value: -1}]);
+      }
+    },
+
+    _hasMatches: function (term) {
+      var matched = false,
+          matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex(term) + "[a-z]*", "i");
+      
+      this.$select.children("option").each(function() {
+        // if a match is found, select it and change to proper case in text field
+        if (matcher.test($(this).text().toLowerCase())) {
+          matched = true;
+        }
+      });
+      
+      return matched;
+    },
+
+    _autocompletefocus: function(event, ui) {
+      // don't select 'no results' as value
+      if (ui.item.value === -1) {
+        event.preventDefault();
+      }
     },
 
     _autocompleteselect: function(event, ui) {
-      ui.item.option.selected = true;
+      // don't input '-1' (no results) into text box
+      if (ui.item.value === -1) {
+        event.preventDefault();
+      } else {
+        ui.item.option.selected = true;
+      }
     },
 
     _autocompletechange: function(event, ui) {
@@ -112,7 +147,7 @@
           $select = $text.data("select");
 
       // Selected an item, nothing to do
-      if (ui.item) {
+      if (ui.item && ui.item.value !== -1) {
         return;
       }
 
@@ -144,7 +179,7 @@
 
     // stop first item being selected when no value has been entered
     _autocompletesearch: function(event, ui) {
-      if($(this).val() === ""){
+      if($(this).val() === "") {
         $(this).data("ui-autocomplete").options.autoFocus = false;
       } else {
         $(this).data("ui-autocomplete").options.autoFocus = true;
