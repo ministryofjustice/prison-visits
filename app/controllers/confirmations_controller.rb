@@ -8,8 +8,10 @@ class ConfirmationsController < ApplicationController
     metrics_logger.record_link_click(booked_visit)
     if metrics_logger.processed?(booked_visit)
       reset_session
-      redirect_to confirmation_path
+      render '_already_booked'
     end
+  rescue ActiveSupport::MessageVerifier::InvalidSignature
+    render '_bad_state', status: 400
   end
 
   def create

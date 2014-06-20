@@ -37,7 +37,8 @@ describe ConfirmationsController do
           true
         end
         get :new, state: MESSAGE_ENCRYPTOR.encrypt_and_sign(visit)
-        response.should redirect_to(confirmation_path)
+        response.should be_success
+        response.should render_template('confirmations/_already_booked')
       end
     end
 
@@ -59,13 +60,13 @@ describe ConfirmationsController do
     end
 
     it "bails out if the state is corrupt or not present" do
-      expect {
-        get :new
-      }.to raise_error(ActiveSupport::MessageVerifier::InvalidSignature)
+      get :new
+      response.status.should == 400
+      response.should render_template('confirmations/_bad_state')
       
-      expect {
-        get :new, state: 'bad state'
-      }.to raise_error(ActiveSupport::MessageVerifier::InvalidSignature)
+      get :new, state: 'bad state'
+      response.status.should == 400
+      response.should render_template('confirmations/_bad_state')
     end
   end
 
