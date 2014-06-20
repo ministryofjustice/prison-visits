@@ -93,7 +93,7 @@
     %p
       %strong
         %label(for='confirmation_outcome_not_on_contact_list')
-          = radio_button_tag 'confirmation[outcome]', 'not_on_contact_list'
+          = radio_button_tag 'confirmation[outcome]', Confirmation::NOT_ON_CONTACT_LIST
           The visitor is not on the prisoner’s contact list
 
   %p
@@ -104,7 +104,7 @@
     %p
       %strong
         %label(for='confirmation_outcome_no_slot_available')
-          = radio_button_tag 'confirmation[outcome]', 'no_slot_available'
+          = radio_button_tag 'confirmation[outcome]', Confirmation::NO_SLOT_AVAILABLE
           None of the chosen times are available
 
   %p
@@ -114,7 +114,7 @@
     %p
       %strong
         %label(for='confirmation_outcome_no_vos_left')
-          = radio_button_tag 'confirmation[outcome]', 'no_vos_left'
+          = radio_button_tag 'confirmation[outcome]', Confirmation::NO_VOS_LEFT
           The prisoner does not have any visiting allowance left
 
     .group

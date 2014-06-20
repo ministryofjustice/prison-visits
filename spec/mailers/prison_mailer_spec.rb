@@ -46,7 +46,7 @@ describe PrisonMailer do
   end
 
   let :confirmation_not_on_contact_list do
-    Confirmation.new(message: 'A message', outcome: 'not_on_contact_list')
+    Confirmation.new(message: 'A message', outcome: Confirmation::NOT_ON_CONTACT_LIST)
   end
 
   context "always" do

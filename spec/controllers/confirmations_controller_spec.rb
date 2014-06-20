@@ -98,13 +98,13 @@ describe ConfirmationsController do
     context "when a form is submitted indicating the visitor is not on the contact list" do
       it "sends out an e-mail and records a metric" do
         controller.should_receive(:reset_session).once
-        mock_metrics_logger.should_receive(:record_booking_rejection).with(visit, 'not_on_contact_list')
+        mock_metrics_logger.should_receive(:record_booking_rejection).with(visit, Confirmation::NOT_ON_CONTACT_LIST)
         VisitorMailer.should_receive(:booking_rejection_email).with(visit, an_instance_of(Confirmation)).once.and_call_original
         PrisonMailer.should_receive(:booking_receipt_email).with(visit, an_instance_of(Confirmation)).once.and_call_original 
       end
 
       after :each do
-        post :create, confirmation: { outcome: 'not_on_contact_list' }
+        post :create, confirmation: { outcome: Confirmation::NOT_ON_CONTACT_LIST }
         response.should redirect_to(confirmation_path)
         ActionMailer::Base.deliveries.map(&:subject).should == ["Your visit for 7 July 2013 could not be booked", "Booking receipt for Jimmy Fingers"]
       end
@@ -113,13 +113,13 @@ describe ConfirmationsController do
     context "when a form is submitted and no VOs are available" do
       it "sends out an e-mail and records a metric" do
         controller.should_receive(:reset_session).once
-        mock_metrics_logger.should_receive(:record_booking_rejection).with(visit, 'no_vos_left')
+        mock_metrics_logger.should_receive(:record_booking_rejection).with(visit, Confirmation::NO_VOS_LEFT)
         VisitorMailer.should_receive(:booking_rejection_email).with(visit, an_instance_of(Confirmation)).once.and_call_original
         PrisonMailer.should_receive(:booking_receipt_email).with(visit, an_instance_of(Confirmation)).once.and_call_original 
       end
 
       after :each do
-        post :create, confirmation: { outcome: 'no_vos_left' }
+        post :create, confirmation: { outcome: Confirmation::NO_VOS_LEFT }
         response.should redirect_to(confirmation_path)
         ActionMailer::Base.deliveries.map(&:subject).should == ["Your visit for 7 July 2013 could not be booked", "Booking receipt for Jimmy Fingers"]
       end

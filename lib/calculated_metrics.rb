@@ -13,9 +13,6 @@ class CalculatedMetrics
     end
   end
 
-  NO_SLOT_AVAILABLE = 'no_slot_available'
-  NOT_ON_CONTACT_LIST = 'not_on_contact_list'
-  NO_VOS_LEFT = 'no_vos_left'
   
   def initialize(aggregated_metrics)
     @dataset = aggregated_metrics
