@@ -23,7 +23,9 @@
   %strong Your visit is not booked yet:
   you'll get a confirmation email to 
   = mail_to visit.visitors.first.email
-  within 3 working days. If you don't get a confirmation email, please
+  within 3 working days.
+  %strong If you don't get a confirmation email, check your spam or junk mail folder for it.
+  If it isn't there, please
   - if prison_phone.present?
     call #{prison_phone} or
   email us at
