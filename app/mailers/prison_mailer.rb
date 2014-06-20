@@ -23,7 +23,7 @@ class PrisonMailer < ActionMailer::Base
     @host = host
     @protocol = 'https://'
 
-    mail(from: sender, reply_to: user, to: recipient, subject: "Visit request for #{@visit.prisoner.full_name}")
+    mail(from: sender, to: recipient, subject: "Visit request for #{@visit.prisoner.full_name}")
   end
 
   def booking_receipt_email(visit, confirmation)

@@ -55,7 +55,7 @@ describe VisitorMailer do
         email = subject.booking_confirmation_email(sample_visit, confirmation)
         email.subject.should == "Your visit for 7 July 2013 has been confirmed"
         email.from.should == ["no-reply@example.com"]
-        email.reply_to.should == ["pvb.rochester@maildrop.dsd.io"]
+        email.reply_to.should be_nil
         email.to.should == ["visitor@example.com"]
 
         email.body.raw_source.should include("email: pvb.rochester@maildrop.dsd.io")
@@ -70,7 +70,7 @@ describe VisitorMailer do
         email = subject.booking_rejection_email(sample_visit, confirmation_no_slot_available)
         email.subject.should == "Your visit for 7 July 2013 could not be booked"
         email.from.should == ["no-reply@example.com"]
-        email.reply_to.should == ["pvb.rochester@maildrop.dsd.io"]
+        email.reply_to.should be_nil
         email.to.should == ["visitor@example.com"]
 
         email.body.raw_source.should include('http://www.justice.gov.uk/contacts/prison-finder/rochester')
@@ -85,7 +85,7 @@ describe VisitorMailer do
         email = subject.booking_rejection_email(sample_visit, confirmation_not_on_contact_list)
         email.subject.should == "Your visit for 7 July 2013 could not be booked"
         email.from.should == ["no-reply@example.com"]
-        email.reply_to.should == ["pvb.rochester@maildrop.dsd.io"]
+        email.reply_to.should be_nil
         email.to.should == ["visitor@example.com"]
 
         email.body.raw_source.should include('http://www.justice.gov.uk/contacts/prison-finder/rochester')
