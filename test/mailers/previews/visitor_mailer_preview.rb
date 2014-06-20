@@ -13,6 +13,10 @@ class VisitorMailerPreview < ActionMailer::Preview
     VisitorMailer.booking_rejection_email(sample_visit, rejected_confirmation('not_on_contact_list'))
   end
 
+  def booking_rejection_no_vos_left
+    VisitorMailer.booking_rejection_email(sample_visit, rejected_confirmation('no_vos_left'))
+  end
+
   def booking_receipt
     VisitorMailer.booking_receipt_email(sample_visit)
   end

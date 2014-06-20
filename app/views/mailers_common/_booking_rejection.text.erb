@@ -9,6 +9,8 @@ Please visit http://gov.uk/prison-visits/ to choose some alternative dates.
 You have tried to book a visit but not all visitors are on the prisoner’s contact list.
 
 You need to contact the prisoner to be added to the contact list.
+<% when 'no_vos_left' %>
+You have tried to book a visit but the prisoner you want to visit has not got any visiting allowance left. You need to contact the prisoner to find out more about their visiting allowance.
 <% else %>
 <% raise 'bad reason' %>
 <% end %>

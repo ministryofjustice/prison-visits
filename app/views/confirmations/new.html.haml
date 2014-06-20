@@ -106,8 +106,20 @@
         %label(for='confirmation_outcome_no_slot_available')
           = radio_button_tag 'confirmation[outcome]', 'no_slot_available'
           None of the chosen times are available
+
+  %p
+    5. If the prisoner does not have any VOs to cover this visit, select the option below.
+
+  .group{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
+    %p
+      %strong
+        %label(for='confirmation_outcome_no_vos_left')
+          = radio_button_tag 'confirmation[outcome]', 'no_vos_left'
+          The prisoner does not have any visiting allowance left
+
+    .group
   
-  %p 5. Enter the VO number here (except for visits to prisoners on remand). You can also add any additional information.
+  %p 6. Enter the VO number here (except for visits to prisoners on remand). You can also add any additional information.
   = f.text_area :message
 
   = f.button 'Send confirmation email', :class => 'button button-primary js-submit'

@@ -110,6 +110,21 @@ describe ConfirmationsController do
       end
     end
 
+    context "when a form is submitted and no VOs are available" do
+      it "sends out an e-mail and records a metric" do
+        controller.should_receive(:reset_session).once
+        mock_metrics_logger.should_receive(:record_booking_rejection).with(visit, 'no_vos_left')
+        VisitorMailer.should_receive(:booking_rejection_email).with(visit, an_instance_of(Confirmation)).once.and_call_original
+        PrisonMailer.should_receive(:booking_receipt_email).with(visit, an_instance_of(Confirmation)).once.and_call_original 
+      end
+
+      after :each do
+        post :create, confirmation: { outcome: 'no_vos_left' }
+        response.should redirect_to(confirmation_path)
+        ActionMailer::Base.deliveries.map(&:subject).should == ["Your visit for 7 July 2013 could not be booked", "Booking receipt for Jimmy Fingers"]
+      end
+    end
+
     context "when a form is submitted without a slot" do
       it "sends out an e-mail and records a metric" do
         controller.should_receive(:reset_session).once

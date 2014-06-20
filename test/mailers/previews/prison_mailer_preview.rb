@@ -16,4 +16,8 @@ class PrisonMailerPreview < ActionMailer::Preview
   def booking_receipt_rejected_not_on_contact_list
     PrisonMailer.booking_receipt_email(sample_visit, rejected_confirmation('not_on_contact_list'))
   end
+
+  def booking_receipt_rejected_no_vos_left
+    PrisonMailer.booking_receipt_email(sample_visit, rejected_confirmation('no_vos_left'))
+  end
 end
