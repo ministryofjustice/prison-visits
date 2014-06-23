@@ -23,8 +23,8 @@ describe VisitorMailer do
   it "delivers an automated response" do
     expect {
       VisitorMailer.autorespond(email).tap do |m|
-        m.from.should == ['no-reply@example.com']
-        m.to.should == ['visitor@example.com']
+        m[:from].should == noreply_address
+        m[:to].should == visitor_address
       end.deliver
     }.to change { ActionMailer::Base.deliveries.size }.by(1)
   end
@@ -46,7 +46,11 @@ describe VisitorMailer do
   end
 
   let :noreply_address do
-    
+    Mail::Field.new('from', "Prison Visits Booking <no-reply@example.com> (Unattended)")
+  end
+
+  let :visitor_address do
+    Mail::Field.new('to', "Mark Fingers <visitor@example.com>")
   end
 
   context "always" do
@@ -54,9 +58,9 @@ describe VisitorMailer do
       it "sends out an e-mail" do
         email = subject.booking_confirmation_email(sample_visit, confirmation)
         email.subject.should == "Your visit for 7 July 2013 has been confirmed"
-        email.from.should == ["no-reply@example.com"]
-        email.reply_to.should be_nil
-        email.to.should == ["visitor@example.com"]
+        email[:from].should == noreply_address
+        email[:reply_to].should be_nil
+        email[:to].should == visitor_address
 
         email.body.raw_source.should include("email: pvb.rochester@maildrop.dsd.io")
         email.body.raw_source.should include("phone: 01634 803100")
@@ -69,9 +73,9 @@ describe VisitorMailer do
       it "sends out an e-mail with a date in the subject" do
         email = subject.booking_rejection_email(sample_visit, confirmation_no_slot_available)
         email.subject.should == "Your visit for 7 July 2013 could not be booked"
-        email.from.should == ["no-reply@example.com"]
-        email.reply_to.should be_nil
-        email.to.should == ["visitor@example.com"]
+        email[:from].should == noreply_address
+        email[:reply_to].should be_nil
+        email[:to].should == visitor_address
 
         email.body.raw_source.should include('http://www.justice.gov.uk/contacts/prison-finder/rochester')
         email.body.raw_source.should include("01634 803100")
@@ -84,9 +88,9 @@ describe VisitorMailer do
       it "sends out an e-mail with a date in the subject" do
         email = subject.booking_rejection_email(sample_visit, confirmation_not_on_contact_list)
         email.subject.should == "Your visit for 7 July 2013 could not be booked"
-        email.from.should == ["no-reply@example.com"]
-        email.reply_to.should be_nil
-        email.to.should == ["visitor@example.com"]
+        email[:from].should == noreply_address
+        email[:reply_to].should be_nil
+        email[:to].should == visitor_address
 
         email.body.raw_source.should include('http://www.justice.gov.uk/contacts/prison-finder/rochester')
         email.body.raw_source.should include("01634 803100")
@@ -99,14 +103,15 @@ describe VisitorMailer do
       it "sends out an e-mail with a date in the subject" do
         email = subject.booking_receipt_email(sample_visit)
         email.subject.should == "Your visit request for 7 July 2013 will be processed soon"
-        email.from.should == ["no-reply@example.com"]
-        email.to.should == ['visitor@example.com']
+        email[:from].should == noreply_address
+        email[:reply_to].should be_nil
+        email[:to].should == visitor_address
         email.body.raw_source.should_not include("Jimmy Fingers")
       end
     end
 
     it "sends an e-mail to the person who requested a booking" do
-      subject.booking_confirmation_email(sample_visit, confirmation).to.should == ['visitor@example.com']
+      subject.booking_confirmation_email(sample_visit, confirmation)[:to].should == visitor_address
     end
   end
 end

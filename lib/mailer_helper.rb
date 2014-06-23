@@ -21,7 +21,11 @@ module MailerHelper
     end
     
     def first_visitor_email
-      @visit.visitors.find { |v| v.email }.email
+      visitor = @visit.visitors.find { |v| v.email }
+      Mail::Address.new.tap do |m|
+        m.display_name = visitor.full_name
+        m.address = visitor.email
+      end.to_s
     end
   end
 end
