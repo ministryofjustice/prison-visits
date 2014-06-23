@@ -1634,7 +1634,7 @@ Bullingdon (Remand Only):
     tue:
       - 1400-1610
 Hindley:
-  enabled: true
+  enabled: false
   phone: '01440 743134'
   email: socialvisits.hindley@hmps.gsi.gov.uk
   address:
