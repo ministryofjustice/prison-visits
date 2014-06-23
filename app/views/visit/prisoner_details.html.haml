@@ -56,9 +56,9 @@
           %p#dobHint.form-hint.datefield-hint For example, 28 4 2014
           - dates = ['day', 'month', 'year']
           - dates.each_with_index do |o, i|
-            .datefield{:class => "form-group form-group-#{o}"}
-              %label{:for => "prisoner_date_of_birth_#{dates.count - i}i"} #{o.mb_chars.titleize}
-              %input.form-control{:value => (visit.prisoner.date_of_birth ? visit.prisoner.date_of_birth.send(o) : ''), :type => "text", :name => "prisoner[date_of_birth(#{dates.count - i}i)]", :id => "prisoner_date_of_birth_#{dates.count - i}i", :'aria-describedby' => "dobHint"}
+            .datefield{ :class => "form-group form-group-#{o}" }
+              %label{ :for => "prisoner_date_of_birth_#{dates.count - i}i"} #{o.mb_chars.titleize }
+              %input.form-control{ :value => (visit.prisoner.date_of_birth ? visit.prisoner.date_of_birth.send(o) : ''), :type => "text", :name => "prisoner[date_of_birth(#{dates.count - i}i)]", :id => "prisoner_date_of_birth_#{dates.count - i}i", :'aria-describedby' => "dobHint" }
       %input.hidden.js-native-date__date-input(name='date_of_birth_native' type='date'){ :value => (visit.prisoner.date_of_birth ? visit.prisoner.date_of_birth.strftime('%Y-%m-%d') : '') }
 
     .group{ :class => ('validation-error' if f.object.errors.include?(:number)) }
