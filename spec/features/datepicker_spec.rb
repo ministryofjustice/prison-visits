@@ -9,6 +9,7 @@ feature "visitor selects a date" do
     enter_visitor_information
     click_button 'Continue'
     VisitController.any_instance.stub(:metrics_logger).and_return(MockMetricsLogger.new)
+    EmailValidator.any_instance.stub(:validate).and_return(true)
   end
 
   context "that is unbookable" do

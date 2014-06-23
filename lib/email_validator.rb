@@ -6,4 +6,3 @@ class EmailValidator < ActiveModel::EachValidator
     record.errors.add(attribute, "is not a valid address")
   end
 end
-

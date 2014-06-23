@@ -17,7 +17,7 @@ module FeaturesHelper
       fill_in 'visit[visitor][][date_of_birth(3i)]', with: '1'
       fill_in 'visit[visitor][][date_of_birth(2i)]', with: 'June'
       fill_in 'visit[visitor][][date_of_birth(1i)]', with: '1977'
-      fill_in "Email address", with: 'test@example.com'
+      fill_in "Email address", with: 'test@maildrop.dsd.io'
       fill_in "Contact phone number", with: '09998887777'
     end
   end

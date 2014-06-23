@@ -109,7 +109,7 @@ describe VisitController do
               :'date_of_birth(3i)' => '14',
               :'date_of_birth(2i)' => '03',
               :'date_of_birth(1i)' => '1986',
-              email: 'sue.denim@gmail.com',
+              email: 'sue.denim@maildrop.dsd.io',
               phone: '07783 123 456'
             ]
           },
@@ -138,7 +138,7 @@ describe VisitController do
               :'date_of_birth(3i)' => '14',
               :'date_of_birth(2i)' => '03',
               :'date_of_birth(1i)' => '1986',
-              email: 'sue.denim@gmail.com',
+              email: 'sue.denim@maildrop.dsd.io',
               phone: '07783 123 456'
             ]
           },
@@ -167,7 +167,7 @@ describe VisitController do
               :'date_of_birth(3i)' => '14',
               :'date_of_birth(2i)' => '03',
               :'date_of_birth(1i)' => '1986',
-              email: 'sue.denim@gmail.com',
+              email: 'sue.denim@maildrop.dsd.io',
               phone: '07783 123 456'
             ] * 7
           },
@@ -197,7 +197,7 @@ describe VisitController do
                 :'date_of_birth(3i)' => '14',
                 :'date_of_birth(2i)' => '03',
                 :'date_of_birth(1i)' => '1986',
-                email: 'sue.denim@gmail.com',
+                email: 'sue.denim@maildrop.dsd.io',
                 phone: '07783 123 456'
               ],
               [
@@ -234,7 +234,7 @@ describe VisitController do
               :'date_of_birth(3i)' => '14',
               :'date_of_birth(2i)' => '03',
               :'date_of_birth(1i)' => '1986',
-              email: 'sue.denim@gmail.com',
+              email: 'sue.denim@maildrop.dsd.io',
               phone: '07783 123 456'
             ]
           },

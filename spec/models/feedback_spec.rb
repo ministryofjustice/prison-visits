@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe Feedback do
+  before :each do
+    EmailValidator.any_instance.stub(:has_mx_records).with('maildrop.dsd.io').and_return(true)
+  end
+
   it "validates required attributes" do
     subject.should_not be_valid
 
@@ -16,7 +20,7 @@ describe Feedback do
     subject.referrer = "referrer"
     subject.should_not be_valid
 
-    subject.email = "email@lol.biz.info"
+    subject.email = "test@maildrop.dsd.io"
     subject.should be_valid
 
     subject.email = nil

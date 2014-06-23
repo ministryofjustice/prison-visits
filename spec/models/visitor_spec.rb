@@ -1,11 +1,15 @@
 require 'spec_helper'
 
 describe Visitor do
+  before :each do
+    EmailValidator.any_instance.stub(:has_mx_records).with('maildrop.dsd.io').and_return(true)
+  end
+
   let :visitor do
     Visitor.new.tap do |v|
       v.first_name = 'Otto'
       v.last_name = 'Fibonacci'
-      v.email = 'fibonacci@example.com'
+      v.email = 'test@maildrop.dsd.io'
       v.phone = '07776665555'
       v.date_of_birth = 30.years.ago
     end
@@ -22,7 +26,7 @@ describe Visitor do
       v.date_of_birth = Date.parse "1986-04-20"
       v.should_not be_valid
 
-      v.email = 'jimmy@fingers.com'
+      v.email = 'jimmy@maildrop.dsd.io'
       v.should_not be_valid
       
       v.phone = '01344 123456'
