@@ -1,8 +1,26 @@
-class EmailValidator < ActiveModel::EachValidator
-  def validate_each(record, attribute, value)
-    parsed = Mail::Address.new(value)
-    record.errors.add(attribute, "is not a valid address") unless parsed.address == value && parsed.local != value
+class EmailValidator < ActiveModel::Validator
+  def validate(record)
+    parsed = Mail::Address.new(record.email)
+    unless parsed.local &&
+        parsed.domain &&
+        parsed.address == record.email &&
+        parsed.local != record.email &&
+        has_mx_records(parsed.domain)
+      set_error(record)
+    end
   rescue Mail::Field::ParseError
-    record.errors.add(attribute, "is not a valid address")
+    set_error(record)
+  end
+
+  def has_mx_records(domain)
+    Resolv::DNS.open do |dns|
+      return dns.getresources(domain, Resolv::DNS::Resource::IN::MX).any?
+    end
+  rescue Resolv::ResolvError, Resolv::ResolvTimeout
+    true
+  end
+
+  def set_error(record)
+    record.errors.add(:email, "is not a valid address")
   end
 end

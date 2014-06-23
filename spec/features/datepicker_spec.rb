@@ -4,12 +4,12 @@ feature "visitor selects a date" do
   include_examples "feature helper"
 
   before :each do
+    VisitController.any_instance.stub(:metrics_logger).and_return(MockMetricsLogger.new)
+    EmailValidator.any_instance.stub(:has_mx_records).and_return(true)
     visit '/'
     enter_prisoner_information
     enter_visitor_information
     click_button 'Continue'
-    VisitController.any_instance.stub(:metrics_logger).and_return(MockMetricsLogger.new)
-    EmailValidator.any_instance.stub(:validate).and_return(true)
   end
 
   context "that is unbookable" do

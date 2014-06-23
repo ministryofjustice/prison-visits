@@ -4,9 +4,9 @@ feature "visitor enters visitor information" do
   include_examples "feature helper"
 
   before :each do
+    EmailValidator.any_instance.stub(:has_mx_records).and_return(true)
     visit '/'
     enter_prisoner_information
-    EmailValidator.any_instance.stub(:has_mx_records).and_return(true)
   end
 
   context "and leaves fields blank" do
