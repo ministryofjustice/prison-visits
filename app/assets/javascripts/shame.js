@@ -16,13 +16,13 @@ $(function () {
     return Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
   }
 
-  $('body').on('change', '.js-native-date select', function() {
+  $('body').on('change', '.known-date input', function() {
     
     var dob, el,
-        selects = $(this).siblings('select').add($(this)),
-        year = selects.closest('.year').val(),
-        month = selects.closest('.month').val(),
-        day = selects.closest('.day').val();
+        known = $(this).closest('.known-date'),
+        year = known.find('.year').val(),
+        month = known.find('.month').val(),
+        day = known.find('.day').val();
 
     el = $(this).closest('.additional-visitor').find('h2');
 
@@ -39,7 +39,7 @@ $(function () {
     }
   });
 
-  $('.js-native-date select').change();
+  $('.known-date input').change();
 });
 
 // Hacks to show GOV.UK images when offline
