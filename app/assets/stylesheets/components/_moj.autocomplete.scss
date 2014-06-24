@@ -38,6 +38,9 @@
       &.ui-state-focus {
         background-color: $light-blue-25;
         color: $black;
+        &.ui-menu-noresults {
+          background-color: $white;
+        }
       }
     }
   }
