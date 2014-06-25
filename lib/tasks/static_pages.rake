@@ -4,7 +4,10 @@ namespace :static_pages do
     pages = {
       'static/404' => '404.html',
       'static/500' => '500.html',
-      'static/503' => '503.html'
+      'static/503' => '503.html',
+      '/cookies' => 'cookies.html',
+      '/cookies-disabled' => 'cookies-disabled.html',
+      '/terms-and-conditions' => 'terms-and-conditions.html'
     }
 
     # Silence a warning for the session key not being set.
