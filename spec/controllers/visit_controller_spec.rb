@@ -435,4 +435,17 @@ describe VisitController do
       end
     end
   end
+
+  context "browsing without a session present" do
+    before :each do
+      session.clear
+    end
+
+    [:visitor_details, :choose_date_and_time, :check_your_request, :request_sent].each do |action|
+      it "and accessing #{action} redirects to the prisoner information page" do
+        get action
+        response.should redirect_to(prisoner_details_path)
+      end
+    end
+  end
 end

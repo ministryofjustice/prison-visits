@@ -17,7 +17,7 @@ class VisitController < ApplicationController
   end
 
   def check_if_session_timed_out
-    unless session[:visit]
+    unless visit
       redirect_to(prisoner_details_path, notice: 'Your session timed out because no information was entered for more than 20 minutes.')
       return
     end
@@ -25,17 +25,18 @@ class VisitController < ApplicationController
   end
 
   def visit
-    session[:visit] ||= Visit.new(prisoner: Prisoner.new, visitors: [Visitor.new], slots: [], visit_id: SecureRandom.hex)
+    session[:visit]
   end
 
   def check_if_session_exists
-    unless session[:visit]
+    unless visit
       redirect_to(prisoner_details_path)
       return
     end
   end
 
   def prisoner_details
+    session[:visit] ||= Visit.new(prisoner: Prisoner.new, visitors: [Visitor.new], slots: [], visit_id: SecureRandom.hex)
     session[:just_testing] = params[:testing].present?
     response.set_cookie 'cookies-enabled', 1
   end
