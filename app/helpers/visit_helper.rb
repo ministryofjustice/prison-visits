@@ -89,7 +89,7 @@ module VisitHelper
   end
 
   def prison_data
-    Rails.configuration.prison_data[visit.prisoner.prison_name.to_s] || Rails.logger.warn("Missing prison: #{visit.prisoner.prison_name}") && {}
+    Rails.configuration.prison_data[visit.prisoner.prison_name.to_s]
   end
 
   def prison_phone
