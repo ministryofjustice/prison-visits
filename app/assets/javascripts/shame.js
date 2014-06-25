@@ -58,7 +58,7 @@ moj.are_cookies_enabled = function () {
 };
 
 moj.show_cookie_message = function () {
-  if (!moj.are_cookies_enabled()) {
+  if (!moj.are_cookies_enabled() &&  $('body.visit').length) {
     $('noscript').after( $('noscript').text() );
   }
 }();

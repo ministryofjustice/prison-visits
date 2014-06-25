@@ -18,6 +18,9 @@
 /public/404.html
 /public/500.html
 /public/503.html
+/public/cookies.html
+/public/cookies-disabled.html
+/public/terms-and-conditions.html
 /public/assets
 data/ait.csv
 .DS_Store

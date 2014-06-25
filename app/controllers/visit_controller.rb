@@ -1,4 +1,5 @@
 class VisitController < ApplicationController
+  before_filter :check_if_cookies_enabled, only: [:update_prisoner_details]
   before_filter :check_if_session_timed_out, only: [:update_prisoner_details, :update_visitor_details, :update_choose_date_and_time, :update_check_your_request]
   before_filter :check_if_session_exists, except: [:prisoner_details, :unavailable]
   helper_method :just_testing?
@@ -6,6 +7,13 @@ class VisitController < ApplicationController
 
   def cal
     
+  end
+
+  def check_if_cookies_enabled
+    unless cookies['cookies-enabled']
+      redirect_to cookies_disabled_path
+      return
+    end
   end
 
   def check_if_session_timed_out
@@ -29,6 +37,7 @@ class VisitController < ApplicationController
 
   def prisoner_details
     session[:just_testing] = params[:testing].present?
+    response.set_cookie 'cookies-enabled', 1
   end
 
   def update_prisoner_details
