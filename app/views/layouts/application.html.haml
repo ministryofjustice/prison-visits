@@ -50,7 +50,8 @@
   %main#wrapper(role="main")
     .container
       %section#content.content.inner.cf
-        = render "shared/cookie_required"
+        - if controller.controller_name == 'visit'
+          = render "shared/cookie_required"
 
         = yield :progress_bar
         
