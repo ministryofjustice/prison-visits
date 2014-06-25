@@ -6,11 +6,6 @@
     display: block;
     clear: both;
   }
-
-  @include media(tablet) {
-    // margin-left: -15px;
-    // margin-right: -15px;
-  }
 }
 
 .Grid-cell {
