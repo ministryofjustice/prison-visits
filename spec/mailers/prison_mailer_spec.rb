@@ -56,8 +56,6 @@ describe PrisonMailer do
 
     it "sends an e-mail with a long link to the confirmation page" do
       email = subject.booking_request_email(sample_visit, "token", host)
-      email.to.should == ['pvb.rochester@maildrop.dsd.io']
-      email.reply_to.should be_nil
       email.body.should =~ /confirmation\/new\?state=token/
       email.body.should =~ /https:\/\/lolhost.com/
       email.content_type.should == 'text/html; charset=UTF-8'
