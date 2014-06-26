@@ -1313,7 +1313,7 @@ Hull:
       - 1345-1545
 Huntercombe:
   enabled: true
-  phone: '01302 524980'
+  phone: 01491 643151
   email: socialvisits.huntercombe@hmps.gsi.gov.uk
   address:
     - 'Huntercombe Place'
@@ -2454,3 +2454,17 @@ Ford:
       - 1400-1600
     sun:
       - 1400-1600
+Askham Grange:
+  enabled: true
+  phone: 
+  email: socialvisits.askhamgrange@hmps.gsi.gov.uk
+  address: 
+   - Askham Richard
+   - YO23 3FT
+  unbookable:
+    - 2014-12-25
+  slots:
+    sat:
+      - 1345-1545
+    sun:
+      - 1345-1545
