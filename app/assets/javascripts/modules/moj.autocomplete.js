@@ -92,7 +92,8 @@
     },
 
     _source: function(request, response){
-      var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex(request.term), "i");
+      var term = this.stripFormal(request.term);
+      var matcher = new RegExp("^" + term, "i");
 
       if (this._hasMatches(request.term)) {
         response(
@@ -100,7 +101,7 @@
             var text = $( this ).text();
             if (this.value && (!request.term || matcher.test(text))){
               return {
-                label: request.term !== "" ? text.replace(new RegExp("^(?![^&;]+;)(?!<[^<>]*)(" + $.ui.autocomplete.escapeRegex(request.term) + ")(?![^<>]*>)(?![^&;]+;)", "gi"), "<strong>$1</strong>") : text,
+                label: request.term !== "" ? text.replace(new RegExp("^(?![^&;]+;)(?!<[^<>]*)(" + term + ")(?![^<>]*>)(?![^&;]+;)", "gi"), "<strong>$1</strong>") : text,
                 value: text,
                 option: this
               };
@@ -112,9 +113,18 @@
       }
     },
 
+    stripFormal: function (term) {
+      var matcher = term.match(/^(hmp?|yoi)? ?/, "i");
+      if (matcher[0].length) {
+        term = term.replace(matcher[0], '');
+      }
+      return $.ui.autocomplete.escapeRegex(term);
+    },
+
     _hasMatches: function (term) {
       var matched = false,
-          matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex(term) + "[a-z]*", "i");
+          term = this.stripFormal(term),
+          matcher = new RegExp("^" + term + "[a-z]*", "i");
       
       this.$select.children("option").each(function() {
         // if a match is found, select it and change to proper case in text field
