@@ -63,8 +63,9 @@ describe CalculatedMetrics do
     end
 
     it "calculates percentage of rejected visits with a purpose" do
-      subject.percent_rejected(CalculatedMetrics::NO_SLOT_AVAILABLE)[prison].should be_within(0.001).of(1.0/6)
-      subject.percent_rejected(CalculatedMetrics::NOT_ON_CONTACT_LIST)[prison].should be_within(0.001).of(1.0/6)
+      subject.percent_rejected(Confirmation::NO_SLOT_AVAILABLE)[prison].should be_within(0.001).of(1.0/6)
+      subject.percent_rejected(Confirmation::NOT_ON_CONTACT_LIST)[prison].should be_within(0.001).of(1.0/6)
+      subject.percent_rejected(Confirmation::NO_VOS_LEFT)[prison].should be_within(0.001).of(0.0)
     end
   end
 end

@@ -10,7 +10,11 @@ class VisitorMailerPreview < ActionMailer::Preview
   end
 
   def booking_rejection_not_on_contact_list
-    VisitorMailer.booking_rejection_email(sample_visit, rejected_confirmation('not_on_contact_list'))
+    VisitorMailer.booking_rejection_email(sample_visit, rejected_confirmation(Confirmation::NOT_ON_CONTACT_LIST))
+  end
+
+  def booking_rejection_no_vos_left
+    VisitorMailer.booking_rejection_email(sample_visit, rejected_confirmation(Confirmation::NO_VOS_LEFT))
   end
 
   def booking_receipt
