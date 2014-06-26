@@ -3,6 +3,9 @@ header h1
   font-weight: bold
   margin: .66em 0 .33em
 
+.h3
+  @include core-24
+
 h2
   @include core-24
   margin-top: 1em
@@ -96,6 +99,7 @@ h3 + p
   margin-top: 0
 
 .unstyled-list
+  margin: 0
   padding-left: 0
   list-style-type: none
 
@@ -115,6 +119,49 @@ small.child
 small.child
   background: #959595
 
+dl
+  margin-bottom: 0
+
+dd
+  margin: 0
+
+.jump-links
+  list-style: none
+  margin: 0
+  padding: 0
+
+  li
+    margin: .5em 0
+    padding: 0
+    @include core-16
+
+  a
+    font-weight: bold
+
+// Final page
+.request_sent
+  .visit-times li
+    @include core-24
+
+  .map-link
+    @include core-16
+    margin-top: 0
+
+#info
+  margin-top: 1em
+
+  h2
+    @include core-36
+    margin-top: 2em
+    font-weight: bold
+
+    &:first-child
+      margin-top: 0
+
+  nav h2
+    @include core-16
+    margin-top: 0
+    font-weight: normal
 
 // Shame
 
