@@ -67,9 +67,9 @@
       %td.align-right
         = display_percent(@dataset.percent_rejected[prison])
       %td.align-right
-        = display_percent(@dataset.percent_rejected(CalculatedMetrics::NO_SLOT_AVAILABLE)[prison])
+        = display_percent(@dataset.percent_rejected(Confirmation::NO_SLOT_AVAILABLE)[prison])
       %td.align-right
-        = display_percent(@dataset.percent_rejected(CalculatedMetrics::NOT_ON_CONTACT_LIST)[prison])
+        = display_percent(@dataset.percent_rejected(Confirmation::NOT_ON_CONTACT_LIST)[prison])
       %td.align-right
-        = display_percent(@dataset.percent_rejected(CalculatedMetrics::NO_VOS_LEFT)[prison])
+        = display_percent(@dataset.percent_rejected(Confirmation::NO_VOS_LEFT)[prison])
 
