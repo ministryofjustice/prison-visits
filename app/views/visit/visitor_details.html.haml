@@ -19,6 +19,9 @@
       .progress__step
         %span.progress__label Send request
 
+
+%p Speak to the prisoner to check you’re on their visitor list (visitor identities will be checked)
+
 %h2 Your details
 
 = form_for visit, url: update_visitor_details_path, :html => { :autocomplete => 'off' } do |f|
