@@ -40,6 +40,11 @@ $(function () {
   });
 
   $('.known-date input').change();
+
+  $('.js-SumbitOnce').on('click', function () {
+    var but = $(this);
+    but[but.get(0).tagName == 'INPUT' ? 'val' : 'text'](but.data('alt')).addClass('disabled');
+  });
 });
 
 // Hacks to show GOV.UK images when offline
