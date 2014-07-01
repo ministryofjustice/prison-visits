@@ -1894,7 +1894,7 @@ Lindholme:
     wed:
       - 1400-1530
 Littlehey:
-  enabled: false
+  enabled: true
   phone: '01480 335650'
   email: pvb.littlehey@maildrop.dsd.io
   address:
@@ -1907,10 +1907,10 @@ Littlehey:
       - 0845-1045
       - 1400-1600
     sat:
-      - 0845-1045
+      - 0915-1115
       - 1400-1600
     sun:
-      - 0845-1045
+      - 0915-1115
       - 1400-1600
     thu:
       - 0915-1115
