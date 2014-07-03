@@ -2177,6 +2177,13 @@ Risley:
     sun:
       - 0900-1115
       - 1400-1600
+  slot_anomalies:
+    2014-07-25:
+      - 1400-1600
+    2014-08-22:
+      - 1400-1600
+    2014-10-31:
+      - 1400-1600
 Feltham (Young Adults 18-21 only): 
   enabled: true
   phone:  0208 844 5400
