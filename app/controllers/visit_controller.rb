@@ -146,12 +146,12 @@ private
         dob.push(:date_of_birth_native).map{|d| visitor.delete(d)}
       else
         date_of_birth = dob.map do |key|
-          visitor.delete(key)
-        end.join('-')
+          visitor.delete(key).to_i
+        end
         visitor.delete(:date_of_birth_native)
       end
       begin
-        visitor[:date_of_birth] = Date.parse(date_of_birth)
+        visitor[:date_of_birth] = Date.new(*date_of_birth.reverse)
       rescue ArgumentError
         # NOOP
       end
@@ -166,9 +166,9 @@ private
       dob.map{|d| params[:prisoner].delete(d)}
     else
       date_of_birth = dob.map do |key|
-        params[:prisoner].delete(key)
-      end.join('-')
-      params[:prisoner][:date_of_birth] = Date.parse(date_of_birth)
+        params[:prisoner].delete(key).to_i
+      end
+      params[:prisoner][:date_of_birth] = Date.new(*date_of_birth.reverse)
     end
     trim_whitespace_from_values(params.require(:prisoner).permit(:first_name, :last_name, :date_of_birth, :number, :prison_name))
   rescue ArgumentError

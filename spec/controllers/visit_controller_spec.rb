@@ -69,6 +69,14 @@ describe VisitController do
           response.should redirect_to(prisoner_details_path)
         end
 
+        it "doesn't accept the year as having two digits" do
+          prisoner_hash[:prisoner][:'date_of_birth(3i)'] = '5'
+          prisoner_hash[:prisoner][:'date_of_birth(2i)'] = '2'
+          prisoner_hash[:prisoner][:'date_of_birth(1i)'] = '12'
+          post :update_prisoner_details, prisoner_hash
+          response.should redirect_to(prisoner_details_path)
+        end
+
         it "sets the testing flag if 'test' is passed in on the first screen" do
           get :prisoner_details, testing: 1
           session[:just_testing].should be_true
@@ -169,6 +177,34 @@ describe VisitController do
           post :update_visitor_details, visitor_hash
           response.should redirect_to(visitor_details_path)
           session[:visit].visitors[0].should_not be_valid
+        end
+      end
+
+      context "given a visitor with two digit year component of DOB" do
+        let :visitor_hash do
+          {
+            visit: {
+              visitor: [
+                        first_name: 'James',
+                        last_name: 'Fingers',
+                        :'date_of_birth(3i)' => '5',
+                        :'date_of_birth(2i)' => '3',
+                        :'date_of_birth(1i)' => '12',
+                        email: 'sue.denim@maildrop.dsd.io',
+                        phone: '07783 123 456'
+                       ]
+            },
+            next: ''
+          }
+        end
+
+        before :each do
+          get :prisoner_details
+        end
+
+        it "rejects visitor information" do
+          post :update_visitor_details, visitor_hash
+          response.should redirect_to(visitor_details_path)
         end
       end
 
