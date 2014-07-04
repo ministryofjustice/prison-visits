@@ -6,7 +6,7 @@ We have received your visit request. We'll email you within 3 working days to co
 
 If you don’t receive a confirmation email within 3 days, please check your spam or junk folder for it.
 
-These are the options you have requested for your visit at <%= @visit.prisoner.prison_name %> for <%= @visit.visitors.size %> people:
+These are the options you have requested for your visit at <%= @visit.prisoner.prison_name %> for <%= @visit.visitors.size %> <%= @visit.visitors.size > 1 ? 'people' : 'person' %>:
 
 <% @visit.slots.each_with_index do |slot, index| %>
 <% if slot.date.present? %>
