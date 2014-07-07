@@ -1159,7 +1159,7 @@ Wolds:
 Grendon:
   enabled: true
   phone: ""
-  email: SocialVisits.Grendon@hmps.gsi.gov.uk
+  email: socialvisits.grendon@hmps.gsi.gov.uk
   address:
     - 'Grendon Underwood'
     - 'HP18 0TL'
@@ -2477,7 +2477,7 @@ Askham Grange:
 Spring Hill:
   enabled: true
   phone: 
-  email: SocialVisits.SpringHill@hmps.gsi.gov.uk
+  email: socialvisits.springhill@hmps.gsi.gov.uk
   address: 
    - Grendon Underwood
    - HP18 0TL
