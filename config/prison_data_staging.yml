@@ -1157,7 +1157,7 @@ Wolds:
     wed:
       - 1400-1545
 Grendon:
-  enabled: false
+  enabled: true
   phone: ""
   email: pvb.grendon@maildrop.dsd.io
   address:
@@ -1167,11 +1167,11 @@ Grendon:
     - 2014-12-25
   slots:
     sat:
-      - 1400-1600
+      - 1345-1545
     sun:
-      - 1400-1600
+      - 1345-1545
     wed:
-      - 1410-1600
+      - 1400-1600
 'Guys Marsh':
   enabled: true
   phone: '01747 856586'
@@ -2474,3 +2474,17 @@ Askham Grange:
       - 1345-1545
     sun:
       - 1345-1545
+Spring Hill:
+  enabled: true
+  phone: 
+  email: pvb.springhill@maildrop.dsd.io
+  address: 
+   - Grendon Underwood
+   - HP18 0TL
+  unbookable:
+    - 2014-12-25
+  slots:
+    sat:
+      - 1345-1600
+    sun:
+      - 1345-1600
