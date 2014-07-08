@@ -51,6 +51,7 @@
         %legend
           Date of birth
           %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
+          %span.validation-message= 'year must be four digits' if visit.prisoner.date_of_birth && visit.prisoner.date_of_birth.year < 100
         .date-of-birth
           %p#dobHint.form-hint.datefield-hint For example, 28 4 2014
           - dates = ['day', 'month', 'year']
