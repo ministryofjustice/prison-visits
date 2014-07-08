@@ -1,0 +1,37 @@
+:css
+  table {
+    border-collapse: collapse;
+  }
+
+  td {
+    text-align: right;
+    min-width: 2em;
+  }
+
+  .prison-name {
+    text-align: left;
+  }
+
+  .even {
+    background-color: LightGray;
+  }
+
+%h1
+  Confirmations by week
+  = link_to('CSV', format: :csv)
+
+%table
+  %tr
+    %th
+      Prison
+    - @report.wc_offsets.times do |week_no|
+      %th
+        = WeeklyConfirmationsReport::FIRST_WEEK + week_no * 7
+  - @prisons.each_with_index do |prison, i|
+    %tr{class: i.even? ? 'even' : 'odd'}
+      %td.prison-name
+        = prison
+      - @report.wc_offsets.times do |week_no|
+        %td
+          = (@report.weekly[prison][week_no] || []).size
+
