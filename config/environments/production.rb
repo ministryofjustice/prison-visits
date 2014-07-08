@@ -87,4 +87,7 @@ PrisonVisits2::Application.configure do
     authentication: :login,
     enable_starttls_auto: true
   }
+
+  config.logstasher.enabled = true
+  config.logstasher.logger = Logger.new(File.join(Rails.root, "log", "logstash_production.json"))
 end

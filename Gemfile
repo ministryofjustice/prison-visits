@@ -12,6 +12,7 @@ gem 'rspec-rails'
 gem 'zendesk_api'
 gem 'mail'
 gem 'elasticsearch'
+gem 'logstasher'
 
 group :test, :development do
   gem 'rspec-rails'
