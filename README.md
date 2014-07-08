@@ -60,6 +60,12 @@ Then point your favourite browser to [http://localhost:3000/](http://localhost:3
 
 ## Dependencies
 
+### SlotPicker
+
+Used for choose and choose-date-and-time page. 
+
+This is included via a [Bower package](http://bower.io). To update run `bower update`.
+
 ### Modernizr
 
 Used to detect touch enabled devices and whether the device has a native date input. To keep download small, a custom build of Modernizr with only these requirements is in use.

@@ -135,5 +135,31 @@ article th {
   background-color: $grey-8;
   border: solid 1px $grey-6;
 }
-
 /* end table from alphagov/static */
+
+
+/* SlotPicker */
+.SlotPicker-days {
+  margin: 0;
+}
+.SlotPicker-dayTitle {
+  margin: 0;
+}
+@include media(mobile) {
+  ul.BookingCalendar-legend {
+    margin: 0;
+    padding: 0 15px 20px;
+    background: #dee0e2;
+
+    li {
+      font-size: 16px;
+    }
+  }
+  .BookingCalendar-legendBox {
+    border: 2px solid #999;
+  }
+  .BookingCalendar-legendBox--available {
+    background: $white;
+  }
+}
+/*end SlotPicker */
