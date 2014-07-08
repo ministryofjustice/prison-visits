@@ -1,11 +1,9 @@
-// Library assets
-//= require Date.format
-//= require Array.move
-//= require Array.indexof
-
 // Vendor assets
 //= require jquery.details
 //= require jquery-ui-autocomplete
+//= require handlebars-v1.3.0
+//= require dist/javascripts/moj.slot-picker
+//= require dist/javascripts/moj.date-slider
 
 // Project assets
 //= require visitors
@@ -13,9 +11,7 @@
 // Candidates for re-usable components
 //= require modules/moj.date-picker
 //= require modules/moj.autocomplete
-//= require modules/moj.slot-picker
 //= require modules/moj.hijacks
-//= require modules/moj.date-slider
 //= require modules/moj.timeout-prompt
 
 // Assets without a better place

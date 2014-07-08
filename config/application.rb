@@ -46,6 +46,7 @@ module PrisonVisits2
       application-ie6.css
       application-ie7.css
       application-ie8.css
+      *.png
     )
 
     config.prison_data = YAML.load_file(ENV['PRISON_DATA_FILE'] || File.join(Rails.root, 'config', 'prison_data_staging.yml')).inject({}) do |h, (name, config)|
@@ -55,5 +56,7 @@ module PrisonVisits2
     config.permitted_ips_for_confirmations = (ENV['PRISON_ESTATE_IPS'] || '').split(',')
 
     config.autoload_paths << 'lib'
+    
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'moj.slot-picker', 'dist', 'stylesheets')
   end
 end
