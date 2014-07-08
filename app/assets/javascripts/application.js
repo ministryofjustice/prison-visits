@@ -9,7 +9,6 @@
 //= require visitors
 
 // Candidates for re-usable components
-//= require modules/moj.date-picker
 //= require modules/moj.autocomplete
 //= require modules/moj.hijacks
 //= require modules/moj.timeout-prompt
