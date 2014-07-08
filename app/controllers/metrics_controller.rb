@@ -3,10 +3,6 @@ class MetricsController < ApplicationController
 
   INDEX_NAME = :pvb
 
-  def prisons
-    render json: Rails.configuration.prison_data
-  end
-
   def index
     @prison = clean_string(params[:prison])
     @dataset = CalculatedMetrics.from_elasticsearch(query(@prison))
@@ -15,6 +11,19 @@ class MetricsController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render json: @dataset }
+    end
+  end
+
+  def weekly
+    @report = WeeklyConfirmationsReport.from_elasticsearch(elastic_client.search(index: INDEX_NAME, q: "label0:result_*", size: 1_000_000))
+    @prisons = @report.prisons
+    @this_week_no = Time.now.yday / 7
+
+    respond_to do |format|
+      format.html
+      format.csv do
+        render text: @report.csv
+      end
     end
   end
 

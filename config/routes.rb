@@ -23,6 +23,6 @@ PrisonVisits2::Application.routes.draw do
   get "static/503"
   get "static/404"
 
-  get "metrics/prisons(.:format)" => "metrics#prisons"
+  get "metrics/weekly" => "metrics#weekly"
   get "metrics(/:prison)(.:format)" => "metrics#index"
 end
