@@ -22,12 +22,6 @@
       padding-right: 30px
       padding-left: 30px
 
-  .content-inner form
-    max-width: 708px
-
-    .choose_date_and_time &
-      max-width: none
-
 .well
   padding: 1em
   background: $grey-3
@@ -88,14 +82,9 @@
 .static
 
   section.inner
-    min-height: 400px
-    padding-top: 60px
     margin: 0 auto
-    max-width: 960px
 
-    div
-      max-width: 550px
-
-    p
-      font-size: 19px
-      font-weight: normal
+    @include media(tablet)
+      max-width: 960px
+      min-height: 400px
+      padding-top: 60px

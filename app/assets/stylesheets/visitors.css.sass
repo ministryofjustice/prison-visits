@@ -33,12 +33,10 @@
       background-size: 83px 1000px
 
   .remove-link
-    position: absolute
-    bottom: 1em
-    right: 0
-
-    @include media(mobile)
-      position: static
+    @include media($size: 920px)
+      position: absolute
+      bottom: 1em
+      right: 0
 
 #visitor-0,
 #visitor-1

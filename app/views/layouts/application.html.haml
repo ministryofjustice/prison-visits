@@ -60,8 +60,7 @@
         - if notice.present?
           %p.validation-summary= notice
         
-        .content-inner
-          = yield
+        = yield
 
 
 - content_for :footer_app_links do
