@@ -65,13 +65,13 @@
         Prisoner number
         %span.validation-message= f.object.errors[:number].first if f.object.errors.include?(:number)
       %p.form-hint The prisoner can give you this.
-      = f.text_field :number
+      = f.text_field :number, placeholder: 'eg a1234bc'
 
     .group{ :class => ('validation-error' if f.object.errors.include?(:prison_name)) }
       = f.label :prison_name do
         Name of the prison
         %span.validation-message= f.object.errors[:prison_name].first if f.object.errors.include?(:prison_name)
-      = f.select :prison_name, prison_names, { prompt: 'select a prison' }, { class: 'js-autocomplete' }
+      = f.select :prison_name, prison_names, { prompt: 'select a prison' }, { class: 'js-autocomplete', placeholder: 'eg Cardiff' }
       %details.group__help
         %summary Why aren't all prisons available?
         %p You can’t make an online visit request for all prisons (eg high-security and private prisons). If you can’t enter the prison you're visiting, <a href="http://www.justice.gov.uk/contacts/prison-finder">contact the prison</a> to find out how to book.
