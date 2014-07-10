@@ -26,4 +26,20 @@ describe FeedbacksController do
     response.should render_template('feedbacks/new')
     response.should be_success
   end
+
+  context "there is an active booking session present" do
+    before :each do
+      session[:visit] = Visit.new(prisoner: Prisoner.new(prison_name: 'Rochester'))
+    end
+
+    it "extracts the prison name from the session" do
+      ZendeskHelper.should_receive(:send_to_zendesk).once.with do |feedback|
+        feedback.prison.should == 'Rochester'
+      end
+      expect {
+        post :create, feedback: { email: 'test@maildrop.dsd.io', text: 'feedback', referrer: 'ref', prison: 'Rochester' }
+        response.should redirect_to feedback_path
+      }.to change { ActionMailer::Base.deliveries.size }.by(1)
+    end
+  end
 end

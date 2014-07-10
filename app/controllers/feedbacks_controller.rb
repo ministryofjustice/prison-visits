@@ -10,6 +10,9 @@ class FeedbacksController < ApplicationController
 
   def create
     @feedback = Feedback.new(feedback_params)
+    if visit = session[:visit]
+      @feedback.prison = visit.prisoner.prison_name
+    end
     if @feedback.valid?
       FeedbackMailer.new_feedback(@feedback).deliver
       ZendeskHelper.send_to_zendesk(@feedback)
@@ -21,6 +24,6 @@ class FeedbacksController < ApplicationController
 
   private
   def feedback_params
-    params.require(:feedback).permit(:referrer, :text, :email, :user_agent)
+    params.require(:feedback).permit(:referrer, :text, :email, :user_agent, :prison)
   end
 end
