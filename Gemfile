@@ -13,6 +13,7 @@ gem 'zendesk_api'
 gem 'mail'
 gem 'elasticsearch'
 gem 'logstasher'
+gem 'sentry-raven'
 
 group :test, :development do
   gem 'rspec-rails'
