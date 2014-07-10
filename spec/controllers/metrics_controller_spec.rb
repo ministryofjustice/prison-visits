@@ -29,11 +29,6 @@ describe MetricsController do
         JSON.parse(response.body)
       end
 
-      it "renders a list of all prisons" do
-        get :prisons, format: :json
-        JSON.parse(response.body)
-      end
-
       after :each do
         response.should be_success
       end

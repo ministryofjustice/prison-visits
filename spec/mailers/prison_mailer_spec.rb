@@ -42,11 +42,15 @@ describe PrisonMailer do
   end
 
   let :confirmation_without_slot do
-    Confirmation.new(message: 'A message', outcome: 'no_slot_available')
+    Confirmation.new(message: 'A message', outcome: Confirmation::NO_SLOT_AVAILABLE)
   end
 
   let :confirmation_not_on_contact_list do
     Confirmation.new(message: 'A message', outcome: Confirmation::NOT_ON_CONTACT_LIST)
+  end
+
+  let :confirmation_no_vos_left do
+    Confirmation.new(message: 'A message', outcome: Confirmation::NO_VOS_LEFT)
   end
 
   context "always" do
@@ -62,9 +66,15 @@ describe PrisonMailer do
     end
 
     it "sends a booking receipt to a prison to create an audit trail" do
-      [confirmation_with_slot, confirmation_without_slot, confirmation_not_on_contact_list].each do |confirmation|
+      subject.booking_receipt_email(sample_visit, confirmation_with_slot).tap do |email|
+        email.subject.should == "COPY of booking confirmation for Jimmy Fingers"
+        email.body.should include('Mark')
+        email.body.should include('A message')
+      end
+
+      [confirmation_without_slot, confirmation_not_on_contact_list, confirmation_no_vos_left].each do |confirmation|
         subject.booking_receipt_email(sample_visit, confirmation).tap do |email|
-          email.subject.should == "Booking receipt for Jimmy Fingers"
+          email.subject.should == "COPY of booking rejection for Jimmy Fingers"
           email.body.should include('Mark')
           email.body.should include('A message')
         end

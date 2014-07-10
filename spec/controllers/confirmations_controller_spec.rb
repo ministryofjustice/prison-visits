@@ -91,7 +91,7 @@ describe ConfirmationsController do
       after :each do
         post :create, confirmation: { outcome: 'slot_0' }
         response.should redirect_to(confirmation_path)
-        ActionMailer::Base.deliveries.map(&:subject).should == ["Your visit for 7 July 2013 has been confirmed", "Booking receipt for Jimmy Fingers"]
+        ActionMailer::Base.deliveries.map(&:subject).should == ["Your visit for 7 July 2013 has been confirmed", "COPY of booking confirmation for Jimmy Fingers"]
       end
     end
 
@@ -106,7 +106,7 @@ describe ConfirmationsController do
       after :each do
         post :create, confirmation: { outcome: Confirmation::NOT_ON_CONTACT_LIST }
         response.should redirect_to(confirmation_path)
-        ActionMailer::Base.deliveries.map(&:subject).should == ["Your visit for 7 July 2013 could not be booked", "Booking receipt for Jimmy Fingers"]
+        ActionMailer::Base.deliveries.map(&:subject).should == ["Your visit for 7 July 2013 could not be booked", "COPY of booking rejection for Jimmy Fingers"]
       end
     end
 
@@ -121,7 +121,7 @@ describe ConfirmationsController do
       after :each do
         post :create, confirmation: { outcome: Confirmation::NO_VOS_LEFT }
         response.should redirect_to(confirmation_path)
-        ActionMailer::Base.deliveries.map(&:subject).should == ["Your visit for 7 July 2013 could not be booked", "Booking receipt for Jimmy Fingers"]
+        ActionMailer::Base.deliveries.map(&:subject).should == ["Your visit for 7 July 2013 could not be booked", "COPY of booking rejection for Jimmy Fingers"]
       end
     end
 
@@ -136,7 +136,7 @@ describe ConfirmationsController do
       after :each do
         post :create, confirmation: { outcome: 'no_slot_available' }
         response.should redirect_to(confirmation_path)
-        ActionMailer::Base.deliveries.map(&:subject).should == ["Your visit for 7 July 2013 could not be booked", "Booking receipt for Jimmy Fingers"]
+        ActionMailer::Base.deliveries.map(&:subject).should == ["Your visit for 7 July 2013 could not be booked", "COPY of booking rejection for Jimmy Fingers"]
       end
     end
 
