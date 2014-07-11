@@ -968,8 +968,8 @@ Aylesbury:
       - 1415-1615
 Albany:
   enabled: true
-  phone: '01983 556573'
-  email: "visitshmpiow@hmps.gsi.gov.uk"
+  phone: '01983 634218'
+  email: "socialvisitsisleofwight@hmps.gsi.gov.uk"
   address:
     - '55 Parkhurst Road'
     - 'PO30 5RS'
@@ -1332,7 +1332,7 @@ Huntercombe:
 Parkhurst:
   enabled: true
   phone: '01983 634218'
-  email: visitshmpiow@hmps.gsi.gov.uk
+  email: socialvisitsisleofwight@hmps.gsi.gov.uk 
   address:
     - 'Clissold Road '
     - 'PO30 5RS '
