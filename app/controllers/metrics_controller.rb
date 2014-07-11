@@ -11,6 +11,7 @@ class MetricsController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render json: @dataset }
+      format.csv { render text: @dataset.csv }
     end
   end
 

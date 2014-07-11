@@ -1,3 +1,5 @@
+require 'csv'
+
 class CalculatedMetrics
   class DataSeries < Array
     def percentile(n=95)
@@ -13,10 +15,27 @@ class CalculatedMetrics
     end
   end
 
-  
   def initialize(aggregated_metrics)
     @dataset = aggregated_metrics
     @percent_rejected = {}
+  end
+
+  def csv
+    CSV.generate do |csv|
+      csv << ['Prison', 'Total', 'Waiting', 'Overdue', 'Rejected', 'Confirmed', 'End-to-end time', 'Processing time', '% rejected']
+      prisons.each do |prison|
+        csv << [prison,
+                total_visits[prison],
+                waiting_visits[prison],
+                overdue_visits((Time.now - 3.days).to_i)[prison],
+                rejected_visits[prison],
+                confirmed_visits[prison],
+                end_to_end_time[prison].percentile(95),
+                processing_time[prison].percentile(95),
+                percent_rejected[prison]
+               ]
+      end
+    end
   end
 
   def prisons
