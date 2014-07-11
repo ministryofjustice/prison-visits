@@ -5,12 +5,10 @@ describe MetricsController do
     controller.stub(:elastic_client).and_return(double(search: []))
   end
 
-  context "IP restrictions" do
-    it "denies all other requests" do
-      controller.stub(:reject_untrusted_ips!).and_raise(ActionController::RoutingError.new("Not found"))
-      expect {
-        get :index
-      }.to raise_error(ActionController::RoutingError)
+  context "IP & key restrictions" do
+    it "are enabled" do
+      controller.should_receive(:reject_untrusted_ips_and_without_key!)
+      get :index
     end
   end
 

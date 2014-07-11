@@ -53,6 +53,8 @@ module PrisonVisits2
       config['enabled'] ? h.merge(name => config) : h
     end.with_indifferent_access
 
+    config.metrics_auth_key = ENV['METRICS_AUTH_KEY']
+
     config.permitted_ips_for_confirmations = (ENV['PRISON_ESTATE_IPS'] || '').split(',')
 
     config.autoload_paths << 'lib'
