@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def reject_untrusted_ips_and_without_key!
-    unless Rails.configuration.metrics_auth_key == params[:key]
+    unless Rails.configuration.metrics_auth_key.secure_compare(params[:key])
       reject_untrusted_ips!
     end
   end

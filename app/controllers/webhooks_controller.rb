@@ -28,6 +28,6 @@ class WebhooksController < ApplicationController
   end
 
   def authorized?
-    !params[:auth].empty? && params[:auth] == ENV['WEBHOOK_AUTH_KEY']
+    !params[:auth].empty? && params[:auth].secure_compare(ENV['WEBHOOK_AUTH_KEY'])
   end
 end

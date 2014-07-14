@@ -14,7 +14,7 @@ describe MetricsController do
 
   context "when accessing the site from the right IP address" do
     before :each do
-      controller.stub(:reject_untrusted_ips!)
+      controller.stub(:reject_untrusted_ips_and_without_key!)
     end
 
     context "for all prisons" do
