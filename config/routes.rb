@@ -16,7 +16,7 @@ PrisonVisits2::Application.routes.draw do
 
   get "cookies-disabled" => "static#cookies_disabled", as: :cookies_disabled
   get "cookies" => "static#cookies"
-  
+  get "unsubscribe" => "static#unsubscribe"
   get "terms-and-conditions" => "static#terms_and_conditions"
 
   get "static/500"
