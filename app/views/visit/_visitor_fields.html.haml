@@ -1,0 +1,71 @@
+
+.visitor.cf{ :id => "visitor-#{index}", :class => ('additional-visitor' unless index == 0) }
+
+  - unless index == 0
+    %h2
+      Visitor
+      - if js_template
+        %span.js-visitor-position
+          ${index}
+      - else
+        %span.js-visitor-position
+          = index+1
+  
+  .group{ :class => ('validation-error' if f.object.errors.include?(:first_name)) }
+    %label{ for: "first_name_#{index}" }
+      = index == 0 ? 'Your first name' : 'First name'
+      %span.validation-message= f.object.errors[:first_name].first if f.object.errors.include?(:first_name)
+    = f.text_field :first_name, id: "first_name_#{index}"
+
+  .group{ :class => ('validation-error' if f.object.errors.include?(:last_name)) }
+    %label{ for: "last_name_#{index}" }
+      = index == 0 ? 'Your last name' : 'Last name'
+      %span.validation-message= f.object.errors[:last_name].first if f.object.errors.include?(:last_name)
+    = f.text_field :last_name, id: "last_name_#{index}"
+
+  .group.js-native-date{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
+    %fieldset
+      %legend
+        = index == 0 ? 'Your date of birth' : 'Date of birth'
+        %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
+        %span.validation-message= 'year must be four digits' if f.object.date_of_birth && f.object.date_of_birth.year < 100
+      .known-date
+        #dobHint
+          - if index == 0
+            %p.form-hint You must be over 18 to book a visit.
+          %p.form-hint.datefield-hint For example, 28 4 1996
+        - dates = ['day', 'month', 'year']
+        - dates.each_with_index do |o, i|
+          .datefield{ :class => "form-group form-group-#{o}" }
+            %label{ :for => "visitor_date_of_birth_#{dates.count - i}i_#{index}" } #{o.mb_chars.titleize}
+            %input.form-control{ :value => (visit.visitors[index.to_i].date_of_birth && !js_template ? visit.visitors[index.to_i].date_of_birth.send(o) : ''), :type => "text", :name => "visit[visitor][][date_of_birth(#{dates.count - i}i)]", :id => "visitor_date_of_birth_#{dates.count - i}i_#{index}", :class => o, :'aria-describedby' => "dobHint" }
+
+  - if index == 0
+  
+    .group{ :class => ('validation-error' if f.object.errors.include?(:email)) }
+      = f.label :email do
+        Email address
+        %span.validation-message= f.object.errors[:email].first if f.object.errors.include?(:email)
+      %p.form-hint#emailHint You will receive visit confirmation by email. Please make sure you enter your email correctly.
+      = f.email_field :email, :'aria-describedby' => "emailHint"
+
+    .group{ :class => ('validation-error' if f.object.errors.include?(:phone)) }
+      = f.label :phone do
+        Contact phone number
+        %span.validation-message= f.object.errors[:phone].first if f.object.errors.include?(:phone)
+      = f.telephone_field :phone
+
+  - unless index == 0
+    %label.remove-visitor
+      = check_box_tag 'visit[visitor][][_destroy]', 1, false, { id: "_destroy-#{index}" }
+      remove
+
+    %p.remove-link.visible--js-enabled
+      = link_to '#' do
+        Remove visitor
+        - if js_template
+          %span.js-visitor-position
+            ${index}
+        - else
+          %span.js-visitor-position
+            = index+1

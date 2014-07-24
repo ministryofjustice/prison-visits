@@ -1,0 +1,84 @@
+- content_for :header, 'Check your request'
+
+- content_for :progress_bar do
+  %ol.progress
+    %li.progress--completed
+      .progress__step
+        %span.progress__label Prisoner details
+    %li.progress--completed
+      .progress__step
+        %span.progress__label Visitor details
+    %li.progress--completed.progress--previous
+      .progress__step
+        %span.progress__label Choose time
+    %li.progress--active
+      .progress__step
+        %span.visuallyhidden Current step
+        %span.progress__label Check request
+    %li
+      .progress__step
+        %span.progress__label Send request
+
+%p Check all the details on this page carefully before clicking 'Send request'
+
+.divider.compact
+  %h2 Prisoner details
+  %p
+    %big
+      %strong #{visit.prisoner.first_name} #{visit.prisoner.last_name}
+  %p
+    Date of birth:
+    %strong= visit.prisoner.date_of_birth.strftime("%e %B %Y")
+  - if visit.prisoner.number.present?
+    %p
+      Prisoner number:
+      %strong #{visit.prisoner.number}
+  %p
+    Prison:
+    %strong #{visit.prisoner.prison_name}
+  %p.edit-link= link_to 'Change prisoner details', prisoner_details_path
+
+.divider.compact
+  %h2 Visitor details
+  %p
+    Confirmation email:
+    %strong= visit.visitors.first.email
+  - visit.visitors.each_with_index do |visitor, i|
+    - if visitor.first_name.present? || visitor.last_name.present?
+      %p
+        Visitor #{i+1}:
+        %strong #{visitor.first_name} #{visitor.last_name}
+        \ -
+        = visitor.date_of_birth.strftime("%e %B %Y")
+        - if visitor.adult?
+          %small.adult Adult
+        - else
+          %small.child Child
+  %p.edit-link= link_to 'Change visitor details', visitor_details_path
+
+.divider.compact
+  %h2 Your visit options
+  %p
+    You can choose 3 options for 1 visit.
+    - if visit.slots.dup.delete_if{|s|s.date.blank?}.size < 3
+      You can #{link_to('choose more visit options', choose_date_and_time_path)}.
+  %ul.unstyled-list
+    - visit.slots.each_with_index do |slot, index|
+      - if slot.date.present?
+        %li
+          Option #{index+1}:
+          - slot_date = Date.parse(slot.date)
+          %strong= slot_date.strftime("%A %e %B")
+          \ -
+          = display_slot_and_duration slot.times
+  %p.edit-link= link_to 'Change visit options', choose_date_and_time_path
+
+
+.divider
+  
+  = link_to 'Terms & conditions', terms_and_conditions_path
+  
+  .actions
+    .primary-actions
+      = button_to 'Send request', update_check_your_request_path, class: 'button button-primary', form: { id: 'send-request-form' }
+    %p= link_to 'Cancel and delete all details', abandon_path, :'data-confirm' => "Are you sure you wish to cancel this visit request?\r\rThis will delete all the information you have entered"

@@ -1,0 +1,65 @@
+<script type="text/html" id="SlotPicker-tmplDay">
+  <li class="SlotPicker-day" id="date-{{ slot }}" tabindex="-1">
+    <h2 class="SlotPicker-dayTitle">{{ date }}</h2>
+    {{#if oneSlot}}
+      <p class="SlotPicker-dayOneSlot">Only one time is available on this day, select it to continue</p>
+    {{/if}}
+    {{{ slots }}}
+  </li>
+</script>
+
+<script type="text/html" id="SlotPicker-tmplTimeSlot">
+  <label class="SlotPicker-label" for="slot-{{ slot }}">
+    <input class="SlotPicker-slot" type="checkbox" value="{{ slot }}" id="slot-{{ slot }}">
+    <strong class="SlotPicker-time">{{ time }}</strong>
+    <span class="SlotPicker-duration">{{ duration }}</span>
+  </label>
+</script>
+
+<script type="text/html" id="BookingCalendar-tmplRow">
+  <tr>
+    {{{ cells }}}
+  </tr>
+</script>
+
+<script type="text/html" id="BookingCalendar-tmplDate">
+  <td class="{{ klass }}">
+    <div class="BookingCalendar-content">
+      <a class="BookingCalendar-dateLink" data-date="{{ date }}" href="#date-{{ date }}">
+        <span class="BookingCalendar-day">{{ day }}</span>
+        {{#if today}}
+          <span class="BookingCalendar-tag BookingCalendar-tag--today">Today</span>
+        {{/if}}
+        {{#if newMonth}}
+          <span class="BookingCalendar-tag" id="month-{{ monthIso }}">{{ monthShort }}</span>
+        {{/if}}
+      </a>
+    </div>
+  </td>
+</script>
+
+<script type="text/html" id="SlotPicker-tmplChoice">
+  <li>
+    {{#if notFirst}}
+      <a class="SlotPicker-icon SlotPicker-icon--promote" href="#">Promote</a>
+    {{/if}}
+    <a class="SlotPicker-icon SlotPicker-icon--remove" href="#">Remove</a>
+    <span class="SlotPicker-position">{{ num }}</span>
+    <p class="SlotPicker-date"></p>
+    <p class="SlotPicker-time"></p>
+    <p class="SlotPicker-prompt">Choose a date and time from the calendar</p>
+  </li>
+</script>
+
+<script type="text/html" id="DateSlider-tmplDay">
+  <li data-date="{{ isoDate }}" class="{{ klass }}">
+    {{#if dayLabel}}
+      <small>{{ weekDay }}</small>
+    {{/if}}
+    {{ day }}
+  </li>
+</script>
+
+<script type="text/html" id="DateSlider-tmplMonth">
+  <span data-date="{{ yearMonth }}">{{ month }}</span>
+</script>

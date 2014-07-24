@@ -1,0 +1,134 @@
+.validation-summary,
+.validation-error
+  padding: 1em
+  border: 3px solid #df3034
+  background: #fef7f7
+
+.validation-summary
+  margin-top: 1em
+
+form .validation-summary
+  margin: 0 0 1em
+  & :first-child
+    margin-top: 0
+  & :last-child
+    margin-bottom: 0
+  &.alert-dialog
+    margin-top: 1em
+
+.validation-error
+  border-width: 0 0 0 3px
+
+.validation-message
+  display: block
+  color: #df3034
+
+
+form
+  .form-hint
+    color: $grey-1
+    margin: 0
+    @include media(mobile)
+      color: $black
+  
+  .group
+    margin: 1em 0
+
+    fieldset
+      margin: 0
+    
+    legend
+      @include copy-19
+      margin: 0
+      padding: 0 !important
+      font-weight: bold
+
+    .form-group
+      &.form-group-day,
+      &.form-group-month,
+      &.form-group-year
+        float: left
+        margin-right: 20px
+        clear: none
+        width: 50px
+
+        label,
+        input[type="text"]
+          display: block
+          max-width: 100%
+          font-weight: normal
+      
+      &.form-group-year
+        width: 70px
+  
+  .group--inline
+    label
+      float: left
+      width: 12.5em
+  
+
+label
+  @include core-19
+  display: block
+
+input,
+select
+  @include core-19
+  margin: 0
+
+  &[type=text],
+  &[type=email],
+  &[type=tel],
+  &[type=date]
+    width: 250px
+    padding: 5px 4px 2px
+    color: $black
+    border: 1px solid $grey-2
+
+    @include media(mobile)
+      width: 96%
+
+select
+  border-color: $grey-2
+
+.button
+  font-size: 19px
+
+.actions
+  margin: 1em 0
+  padding-top: 1em
+
+  @include media(desktop)
+    clear: both
+
+  p
+    margin-top: .263em
+    text-align: right
+
+    @include media(false, 768px)
+      margin-top: 2em
+      text-align: left
+
+.primary-actions
+  float: left
+
+  @include media(false, 768px)
+    float: none
+
+  @include ie(6)
+    float: none
+
+.FormBlock
+  padding: 1em 90px
+  border:
+    color: $grey-2
+    style: solid
+    width: 1px 0
+  background: $grey-4
+
+  @include media(mobile)
+    margin: 0 -15px
+    padding: .5em 15px
+
+  label
+    font-weight: bold

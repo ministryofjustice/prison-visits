@@ -1,0 +1,6 @@
+.indicator.cf
+  %p
+    %strong #{Rails.configuration.phase.capitalize}:
+    This is a new service -
+    = link_to "your feedback", new_feedback_path(referrer: request.original_url)
+    will help us to improve it

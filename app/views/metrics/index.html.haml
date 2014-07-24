@@ -1,0 +1,77 @@
+:css
+  .prison_name {
+    width: 17em;
+  }
+
+  .even {
+    background-color: LightGray;
+  }
+
+  table {
+    border-collapse: collapse;
+  }
+
+  table .narrow {
+    width: 3em;
+  }
+
+  table .align-right {
+    text-align: right;
+  }
+%h1
+  Performance dashboard
+  = link_to('CSV', format: :csv)
+
+%table
+  %tr
+    %th
+      Prison name
+    %th
+      Total
+    %th
+      Waiting
+    %th
+      Overdue
+    %th
+      Rejected
+    %th
+      Confirmed
+    %th
+      End-to-end time
+    %th
+      Processing time
+    %th
+      \% rejected
+    %th
+      \% rejected (no slot)
+    %th
+      \% rejected (contact list)
+    %th
+      \% rejected (no vos left)
+  - @prisons.each_with_index do |prison, i|
+    %tr{class: i.even? ? 'even' : 'odd'}
+      %td.prison_name
+        = prison
+      %td.narrow.align-right
+        = @dataset.total_visits[prison]
+      %td.narrow.align-right
+        = @dataset.waiting_visits[prison]
+      %td.narrow.align-right
+        = @dataset.overdue_visits(3.days.ago.to_i)[prison]
+      %td.narrow.align-right
+        = @dataset.rejected_visits[prison]
+      %td.narrow.align-right
+        = @dataset.confirmed_visits[prison]
+      %td.align-right
+        = display_interval(@dataset.end_to_end_time[prison].percentile(95))
+      %td.align-right
+        = display_interval(@dataset.processing_time[prison].percentile(95))
+      %td.align-right
+        = display_percent(@dataset.percent_rejected[prison])
+      %td.align-right
+        = display_percent(@dataset.percent_rejected(Confirmation::NO_SLOT_AVAILABLE)[prison])
+      %td.align-right
+        = display_percent(@dataset.percent_rejected(Confirmation::NOT_ON_CONTACT_LIST)[prison])
+      %td.align-right
+        = display_percent(@dataset.percent_rejected(Confirmation::NO_VOS_LEFT)[prison])
+
