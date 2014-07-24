@@ -1,5 +1,9 @@
 # Prison Visit Booking email
 
+[![Build Status](https://travis-ci.org/ministryofjustice/prison-visits.png?branch=master)](https://travis-ci.org/ministryofjustice/prison-visits)
+[![Code Climate](https://codeclimate.com/github/ministryofjustice/prison-visits.png)](https://codeclimate.com/github/ministryofjustice/prison-visits)
+[![Code Coverage](https://codeclimate.com/github/ministryofjustice/prison-visits/coverage.png)](https://codeclimate.com/github/ministryofjustice/prison-visits)
+
 Also known as "PVBE", is the Alpha system for the Prison Visit Booking exemplar. 
 
 It is a Ruby on Rails cookie based (no database) service which enables a user to pick 3 posible visiting times and submit the required details of a visit to the relevant prison. 
