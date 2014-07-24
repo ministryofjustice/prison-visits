@@ -2,4 +2,5 @@ language: ruby
 rvm:
   - 2.0.0
 script:
-  - bundle exec rake spec
+  - bundle exec rake spec:configuration spec:controllers spec:helpers spec:lib spec:mailers spec:models
+
