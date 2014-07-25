@@ -2,16 +2,8 @@ class VisitController < ApplicationController
   before_filter :check_if_cookies_enabled, only: [:update_prisoner_details]
   before_filter :check_if_session_timed_out, only: [:update_prisoner_details, :update_visitor_details, :update_choose_date_and_time, :update_check_your_request]
   before_filter :check_if_session_exists, except: [:prisoner_details, :unavailable]
-  before_filter :preserve_tracer_metadata
   helper_method :just_testing?
   helper_method :visit
-
-  def preserve_tracer_metadata
-    if visit = session[:visit]
-      @tracer_visit_id = visit.visit_id
-      @tracer_prison = visit.prisoner.prison_name
-    end
-  end
 
   def check_if_cookies_enabled
     unless cookies['cookies-enabled']
@@ -40,8 +32,9 @@ class VisitController < ApplicationController
   end
 
   def prisoner_details
-    session[:visit] ||= Visit.new(prisoner: Prisoner.new, visitors: [Visitor.new], slots: [], visit_id: SecureRandom.hex)
+    session[:visit] ||= Visit.new(prisoner: Prisoner.new, visitors: [Visitor.new], slots: [], visit_id: (visit_id = SecureRandom.hex))
     session[:just_testing] = params[:testing].present?
+    logstasher_add_visit_id(visit_id)
     response.set_cookie 'cookies-enabled', 1
   end
 

@@ -1,7 +1,8 @@
 if LogStasher.enabled
-  LogStasher.add_custom_fields do |fields|
-    fields[:request_id] = request.env['action_dispatch.request_id']
-    fields[:visit_id] = @tracer_visit_id if @tracer_visit_id
-    fields[:prison] = @tracer_prison if @tracer_prison
+  LogStasher.add_custom_fields_to_request_context do |fields|
+    if visit = session[:visit] || session[:booked_visit]
+      fields[:visit_id] = visit.visit_id
+      fields[:prison] = visit.prisoner.prison_name
+    end
   end
 end

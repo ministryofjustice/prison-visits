@@ -16,6 +16,13 @@ describe ApplicationController do
       Raven.extra_context.should == {request_id: 'request_id', visit_id: 'visit-id', prison: 'Rochester'}
       response['X-Request-Id'].should == 'request_id'
     end
+
+    it "sets additional metadata for logstasher" do
+      visit_id = "LOL"
+      LogStasher.request_context.should_receive(:[]=).with(:visit_id, visit_id)
+      LogStasher.custom_fields.should_receive(:<<).with(:visit_id)
+      controller.logstasher_add_visit_id(visit_id)
+    end
   end
 
   context "when IP & key restriction is enabled" do

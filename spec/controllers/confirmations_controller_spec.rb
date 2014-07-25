@@ -12,10 +12,6 @@ describe ConfirmationsController do
   end
 
   context "in correct IP range" do
-    before :each do
-      controller.should_receive(:preserve_tracer_metadata).once.and_call_original
-    end
-
     context "before interaction" do
       before :each do
         controller.stub(:metrics_logger).and_return(mock_metrics_logger)
@@ -23,6 +19,7 @@ describe ConfirmationsController do
       end
 
       it "resurrects the visit" do
+        controller.should_receive(:logstasher_add_visit_id).with(visit.visit_id)
         mock_metrics_logger.should_receive(:record_link_click)
         mock_metrics_logger.should_receive(:processed?) do |v|
           v.should.eql? visit
@@ -51,6 +48,7 @@ describe ConfirmationsController do
         it "resurrects a visit with a old prison name (#{prison_name}) to avoid a runtime exception" do
           sample_visit.tap do |visit|
             visit.prisoner.prison_name = prison_name
+            controller.should_receive(:logstasher_add_visit_id).with(visit.visit_id)
             mock_metrics_logger.should_receive(:record_link_click)
             mock_metrics_logger.should_receive(:processed?) do |v|
               v.should.eql? visit
@@ -89,7 +87,6 @@ describe ConfirmationsController do
 
       context "when a form is submitted with a slot selected" do
         it "sends out an e-mail and records a metric" do
-          controller.should_receive(:reset_session).once
           mock_metrics_logger.should_receive(:record_booking_confirmation).with(visit)
           VisitorMailer.should_receive(:booking_confirmation_email).with(visit, an_instance_of(Confirmation)).once.and_call_original
           PrisonMailer.should_receive(:booking_receipt_email).with(visit, an_instance_of(Confirmation)).once.and_call_original
@@ -104,7 +101,6 @@ describe ConfirmationsController do
 
       context "when a form is submitted indicating the visitor is not on the contact list" do
         it "sends out an e-mail and records a metric" do
-          controller.should_receive(:reset_session).once
           mock_metrics_logger.should_receive(:record_booking_rejection).with(visit, Confirmation::NOT_ON_CONTACT_LIST)
           VisitorMailer.should_receive(:booking_rejection_email).with(visit, an_instance_of(Confirmation)).once.and_call_original
           PrisonMailer.should_receive(:booking_receipt_email).with(visit, an_instance_of(Confirmation)).once.and_call_original 
@@ -119,7 +115,6 @@ describe ConfirmationsController do
 
       context "when a form is submitted and no VOs are available" do
         it "sends out an e-mail and records a metric" do
-          controller.should_receive(:reset_session).once
           mock_metrics_logger.should_receive(:record_booking_rejection).with(visit, Confirmation::NO_VOS_LEFT)
           VisitorMailer.should_receive(:booking_rejection_email).with(visit, an_instance_of(Confirmation)).once.and_call_original
           PrisonMailer.should_receive(:booking_receipt_email).with(visit, an_instance_of(Confirmation)).once.and_call_original 
@@ -134,7 +129,6 @@ describe ConfirmationsController do
 
       context "when a form is submitted without a slot" do
         it "sends out an e-mail and records a metric" do
-          controller.should_receive(:reset_session).once
           mock_metrics_logger.should_receive(:record_booking_rejection).with(visit, 'no_slot_available')
           VisitorMailer.should_receive(:booking_rejection_email).with(visit, an_instance_of(Confirmation)).once.and_call_original
           PrisonMailer.should_receive(:booking_receipt_email).with(visit, an_instance_of(Confirmation)).once.and_call_original 
@@ -162,6 +156,14 @@ describe ConfirmationsController do
         it "redirects back to the new action" do
           post :create, confirmation: { outcome: 'lol' }
           response.should render_template('confirmations/new')
+        end
+      end
+
+      context "when the thank you screen is accessed" do
+        it "resets the session" do
+          controller.should_receive(:reset_session).once
+          get :show
+          response.should render_template('confirmations/show')
         end
       end
     end
