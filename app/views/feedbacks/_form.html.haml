@@ -1,4 +1,6 @@
-%p Use this form to report a problem or suggest improvements to the service. If you want to make or change a visit request please call the prison’s visit booking line.
+%p Use this form to report a problem or ask us a question.
+
+%p If you need to cancel or change a visit booking, please call the prison’s visit booking line.
 
 = form_for @feedback, :url => feedback_path, :html => {:novalidate => 'novalidate'} do |f|
   %input{name: 'feedback[referrer]', type: 'hidden', value: (params[:referrer] || (params[:feedback][:referrer] if params[:feedback]))}/
@@ -13,13 +15,13 @@
           %li= msg
 
   %p
-    %strong Please don't include any sensitive personal information (eg. prisoner numbers)
+    %strong Please don't include any sensitive personal information (eg. prisoner numbers).
   
   %fieldset
     %legend.visuallyhidden Feedback form
     .group{ :class => ('validation-error' if f.object.errors.include?(:text)) }
       = f.label :text do
-        Your comments
+        Your question
         %span.validation-message= f.object.errors[:text].first if f.object.errors.include?(:text)
       = f.text_area :text, :cols => 50, :rows => 5
 
