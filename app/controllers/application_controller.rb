@@ -35,4 +35,9 @@ class ApplicationController < ActionController::Base
   def request_id
     request.env['action_dispatch.request_id']
   end
+
+  def logstasher_add_visit_id(visit_id)
+    LogStasher.request_context[:visit_id] = visit_id
+    LogStasher.custom_fields << :visit_id
+  end
 end

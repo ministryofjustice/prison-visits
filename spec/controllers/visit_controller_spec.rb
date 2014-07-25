@@ -43,10 +43,11 @@ describe VisitController do
     describe "step 1 - enter prisoner's details" do
       before :each do
         Timecop.freeze(Time.local(2013, 12, 1, 12, 00))
-        controller.should_receive(:preserve_tracer_metadata).at_least(1).and_call_original
       end
 
       it "renders the form for entering prisoner details, and assigns the session" do
+        SecureRandom.should_receive(:hex).and_return(visit_id = 'LOL' * 10)
+        controller.should_receive(:logstasher_add_visit_id).with(visit_id)
         expect {
           get :prisoner_details
           response.should be_success
@@ -121,7 +122,6 @@ describe VisitController do
     describe "step 2" do
       before :each do
         Timecop.freeze(Time.local(2013, 12, 1, 12, 00))
-        controller.should_receive(:preserve_tracer_metadata).at_least(1).and_call_original
       end
 
       context "given valid visitor information" do
@@ -310,7 +310,6 @@ describe VisitController do
     describe "step 4 - select a timeslot" do
       before :each do
         Timecop.freeze(Time.local(2013, 12, 1, 12, 0))
-        controller.should_receive(:preserve_tracer_metadata).at_least(1).and_call_original
         get :prisoner_details
       end
 
@@ -394,7 +393,6 @@ describe VisitController do
 
       before :each do
         Timecop.freeze(Time.local(2013, 12, 1, 12, 0))
-        controller.should_receive(:preserve_tracer_metadata).at_least(1).and_call_original
         ActionMailer::Base.deliveries.clear
         subject.stub(:metrics_logger).and_return(mock_metrics_logger)
 

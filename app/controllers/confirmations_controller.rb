@@ -1,14 +1,6 @@
 class ConfirmationsController < ApplicationController
   helper_method :booked_visit
   permit_only_from_prisons
-  before_action :preserve_tracer_metadata
-
-  def preserve_tracer_metadata
-    if visit = session[:booked_visit]
-      @tracer_visit_id = visit.visit_id
-      @tracer_prison = visit.prisoner.prison_name
-    end
-  end
 
   def new
     reset_session if params[:state]
@@ -18,6 +10,7 @@ class ConfirmationsController < ApplicationController
       reset_session
       render '_already_booked'
     end
+    logstasher_add_visit_id(booked_visit.visit_id)
   rescue ActiveSupport::MessageVerifier::InvalidSignature
     render '_bad_state', status: 400
   end
@@ -37,10 +30,10 @@ class ConfirmationsController < ApplicationController
     end
     PrisonMailer.booking_receipt_email(booked_visit, @confirmation).deliver
     redirect_to confirmation_path
-    reset_session
   end
 
   def show
+    reset_session
   end
 
   def booked_visit
