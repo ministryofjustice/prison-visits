@@ -1,33 +1,4 @@
 module VisitHelper
-  def year_limit(index)
-    index.zero? ? Visitor::USER_MIN_AGE : 0
-  end
-
-  def dob_year_range(index)
-    100.years.ago.strftime('%Y').to_i..year_limit(index).years.ago.strftime('%Y').to_i
-  end
-
-  def dob_month_range
-    (Date.today.beginning_of_year..Date.today.end_of_year).group_by do |date|
-      date.beginning_of_month
-    end
-  end
-
-  def dob_day_range
-    dec = Date.parse('2013-12-01')
-    dec.beginning_of_month..dec.end_of_month
-  end
-
-  def select_year(dob, year, default=0)
-    if dob.present?
-      if dob.strftime('%Y').to_i == year
-        return 'selected'
-      end
-    elsif default.years.ago.strftime('%Y').to_i == year
-      return 'selected'
-    end
-  end
-
   def visiting_slots
     prison_data['slots'].inject({}) do |hash, (day, slots)|
       hash.merge({
@@ -50,10 +21,6 @@ module VisitHelper
 
   def bookable_range
     bookable_from..bookable_to
-  end
-
-  def bookable_range_with_buffer(buffer)
-    (bookable_from - buffer.days)..(bookable_to + buffer.days)
   end
 
   def number_of_slots
