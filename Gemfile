@@ -12,7 +12,7 @@ gem 'rspec-rails'
 gem 'zendesk_api'
 gem 'mail'
 gem 'elasticsearch'
-gem 'logstasher', git: 'https://github.com/jasiek/logstasher.git', branch: 'action-mailer-logging'
+gem 'logstasher', git: 'https://github.com/jasiek/logstasher.git', branch: 'action-mailer-custom-fields'
 gem 'sentry-raven'
 
 group :test, :development do
