@@ -14,7 +14,8 @@ The request is sent via secure email and prison staff will then manually enter t
 
 Prison details are store in a single Yaml file which can be edited directly on this website by anyone with access to this repository. [Yaml files](http://en.wikipedia.org/wiki/YAML) use a two-space indentation syntax, so be careful.
 
-[prison_detail.yaml](https://github.com/ministryofjustice/prison-visits2/blob/master/config/prison_data.yml)
+[Staging](https://github.com/ministryofjustice/prison-visits/blob/master/config/prison_data_staging.yml)
+[Production](https://github.com/ministryofjustice/prison-visits/blob/master/config/prison_data_production.yml)
 
 By updating this file you can:
 

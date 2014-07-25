@@ -1,5 +1,5 @@
 {
-  "name": "prison-visits2",
+  "name": "prison-visits",
   "version": "0.21.0",
   "dependencies": {
     "moj.slot-picker": "*"
