@@ -23,10 +23,6 @@ module VisitHelper
     bookable_from..bookable_to
   end
 
-  def bookable_range_with_buffer(buffer)
-    (bookable_from - buffer.days)..(bookable_to + buffer.days)
-  end
-
   def number_of_slots
     Visit::MAX_SLOTS
   end
