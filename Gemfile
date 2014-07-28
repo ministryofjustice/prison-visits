@@ -13,6 +13,7 @@ gem 'mail'
 gem 'elasticsearch'
 gem 'logstasher', git: 'https://github.com/jasiek/logstasher.git', branch: 'action-mailer-custom-fields'
 gem 'sentry-raven'
+gem 'redcarpet'
 
 group :test, :development do
   gem 'rspec-rails'
@@ -25,5 +26,4 @@ group :test, :development do
   gem 'parallel'
   gem 'rspec_junit_formatter'
   gem 'poltergeist'
-  gem 'redcarpet'
 end
