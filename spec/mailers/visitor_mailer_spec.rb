@@ -38,11 +38,15 @@ describe VisitorMailer do
   end
 
   let :confirmation_no_slot_available do
-    Confirmation.new(message: 'A message', outcome: 'no_slot_available')
+    Confirmation.new(message: 'A message', outcome: Confirmation::NO_SLOT_AVAILABLE)
   end
 
   let :confirmation_not_on_contact_list do
     Confirmation.new(message: 'A message', outcome: Confirmation::NOT_ON_CONTACT_LIST)
+  end
+
+  let :confirmation_no_vos_left do
+    Confirmation.new(message: 'A message', outcome: Confirmation::NO_VOS_LEFT)
   end
 
   let :noreply_address do
@@ -71,6 +75,15 @@ describe VisitorMailer do
         email.body.raw_source.should include("phone: 01634 803100")
         email.body.raw_source.should_not include("Jimmy Harris")
         email.body.raw_source.should include('A message')
+      end
+
+      it "sends out an e-mail with the List-Unsubscribe header set" do
+        header_value = '<https://www.prisonvisits.service.gov.uk/unsubscribe>'
+        subject.booking_receipt_email(sample_visit)['List-Unsubscribe'].value.should ==  header_value
+        [confirmation_no_slot_available, confirmation_not_on_contact_list, confirmation_no_vos_left].each do |outcome|
+          subject.booking_rejection_email(sample_visit, outcome)['List-Unsubscribe'].value.should == header_value
+        end
+        subject.booking_confirmation_email(sample_visit, confirmation)['List-Unsubscribe'].value.should == header_value
       end
     end
 

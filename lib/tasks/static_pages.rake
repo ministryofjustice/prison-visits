@@ -7,7 +7,8 @@ namespace :static_pages do
       'static/503' => '503.html',
       '/cookies' => 'cookies.html',
       '/cookies-disabled' => 'cookies-disabled.html',
-      '/terms-and-conditions' => 'terms-and-conditions.html'
+      '/terms-and-conditions' => 'terms-and-conditions.html',
+      '/unsubscribe' => 'unsubscribe.html'
     }
 
     # Silence a warning for the session key not being set.

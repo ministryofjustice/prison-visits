@@ -6,7 +6,9 @@ class VisitorMailer < ActionMailer::Base
 
   add_template_helper(ApplicationHelper)
   add_template_helper(VisitHelper)
-  
+
+  default('List-Unsubscribe' => '<https://www.prisonvisits.service.gov.uk/unsubscribe>')
+
   def booking_confirmation_email(visit, confirmation)
     @visit = visit
     @slot = visit.slots[confirmation.slot.to_i]
