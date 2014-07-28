@@ -18,4 +18,6 @@ If you want to cancel or make a change to your request or have any special requi
 * telephone: <%= Rails.configuration.prison_data[@visit.prisoner.prison_name][:phone] %>
 * email: <%= Rails.configuration.prison_data[@visit.prisoner.prison_name][:email] %>
 
-Your feedback will help us to improve the service, please take a moment to rate it: http://www.gov.uk/done/prison-visits
+Need help? If you have a question or need any help with the online visits service, please contact us: <%= new_feedback_url %>
+
+You can also rate the online service: http://www.gov.uk/done/prison-visits
