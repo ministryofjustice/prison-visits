@@ -21,5 +21,5 @@ PrisonVisits2::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  config.action_mailer.default_url_options = { host: "localhost", protocol: "http" }
+  config.action_mailer.default_url_options = { host: "localhost", protocol: "http", port: "3000" }
 end
