@@ -8,7 +8,7 @@ describe CalculatedMetrics::DataSeries do
     
     it "such percentiles" do
       (1..100).step(5) do |p|
-        subject.percentile(p).should < p * 0.01 + 0.001
+        subject.percentile(p).should < p * 0.01 + 0.002
       end
     end
   end
