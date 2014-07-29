@@ -25,8 +25,10 @@ class VisitorMailer < ActionMailer::Base
     mail(from: sender, reply_to: prison_mailbox_email, to: recipient, subject: "Your visit for #{first_date.strftime('%e %B %Y').gsub(/^ /,'')} could not be booked")
   end
 
-  def booking_receipt_email(visit)
+  def booking_receipt_email(visit, host)
     @visit = visit
+    @host = host
+    @protocol = 'https'
 
     mail(from: sender, reply_to: prison_mailbox_email, to: recipient, subject: "Your visit request for #{first_date.strftime('%e %B %Y').gsub(/^ /,'')} will be processed soon")
   end

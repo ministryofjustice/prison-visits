@@ -10,6 +10,10 @@ describe MetricsLogger do
     sample_visit
   end
 
+  let :visit_id do
+    SecureRandom.hex
+  end
+
   before :each do
     Timecop.freeze(time = Time.utc(2013, 12, 12, 0, 0, 0))
     (@timestamp = time.to_i).should == 1386806400
@@ -37,10 +41,68 @@ describe MetricsLogger do
   end
 
   it "responds to a visit being processed or not" do
-    @client.should_receive(:search).
-      with(index: MetricsLogger::INDEX_NAME, search_type: :count,
-           body: { query: { bool: { must: [{term: {visit_id: visit.visit_id}}, {prefix: {label0: "result_"}}]}}}).
-      and_return({'hits' => {'total' => 1}})
+    subject.should_receive(:visit_status).with(visit.visit_id).and_return(:confirmed)
     subject.processed?(visit).should be_true
+  end
+
+  
+  it "responds with a visit status as confirmed" do
+    @client.should_receive(:search).
+      with(index: MetricsLogger::INDEX_NAME, q: "visit_id:#{visit_id}").
+      and_return({'hits' => {
+                     'total' => 1,
+                     'hits' => [{
+                                  "_index" => "pvb",
+                                  "_type" => "metric",
+                                  "_id" => "lYVH1f77Q16W4Ymf1p8bBQ",
+                                  "_score" => 1,
+                                  "_source" => {
+                                    "visit_id" => visit_id,
+                                    "timestamp" => 1406045814,
+                                    "prison" => "Cardiff",
+                                    "label0" => "result_confirmed"
+                                  }
+                                }]}})
+    subject.visit_status(visit_id).should == :confirmed
+  end
+
+  it "responds with a visit status as rejected" do
+    @client.should_receive(:search).
+      with(index: MetricsLogger::INDEX_NAME, q: "visit_id:#{visit_id}").
+      and_return({'hits' => {
+                     'total' => 1,
+                     'hits' => [{
+                                  "_index" => "pvb",
+                                  "_type" => "metric",
+                                  "_id" => "lYVH1f77Q16W4Ymf1p8bBQ",
+                                  "_score" => 1,
+                                  "_source" => {
+                                    "visit_id" => visit_id,
+                                    "timestamp" => 1406045814,
+                                    "prison" => "Cardiff",
+                                    "label0" => "result_rejected"
+                                  }
+                                }]}})
+    subject.visit_status(visit_id).should == :rejected
+  end
+
+  it "responds with a visit status as not processed" do
+    @client.should_receive(:search).
+      with(index: MetricsLogger::INDEX_NAME, q: "visit_id:#{visit_id}").
+      and_return({'hits' => {
+                     'total' => 1,
+                     'hits' => [{
+                                  "_index" => "pvb",
+                                  "_type" => "metric",
+                                  "_id" => "lYVH1f77Q16W4Ymf1p8bBQ",
+                                  "_score" => 1,
+                                  "_source" => {
+                                    "visit_id" => visit_id,
+                                    "timestamp" => 1406045814,
+                                    "prison" => "Cardiff",
+                                    "label0" => "opened_link"
+                                  }
+                                }]}})
+   subject.visit_status(visit_id).should == :pending
   end
 end

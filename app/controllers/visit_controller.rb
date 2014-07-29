@@ -1,7 +1,7 @@
 class VisitController < ApplicationController
   before_filter :check_if_cookies_enabled, only: [:update_prisoner_details]
   before_filter :check_if_session_timed_out, only: [:update_prisoner_details, :update_visitor_details, :update_choose_date_and_time, :update_check_your_request]
-  before_filter :check_if_session_exists, except: [:prisoner_details, :unavailable]
+  before_filter :check_if_session_exists, except: [:prisoner_details, :unavailable, :status]
   helper_method :just_testing?
   helper_method :visit
 
@@ -109,7 +109,7 @@ class VisitController < ApplicationController
     unless just_testing?
       @token = encryptor.encrypt_and_sign(visit)
       PrisonMailer.booking_request_email(visit, @token, request.host).deliver
-      VisitorMailer.booking_receipt_email(visit).deliver
+      VisitorMailer.booking_receipt_email(visit, request.host).deliver
     end
 
     metrics_logger.record_visit_request(visit)
@@ -125,7 +125,9 @@ class VisitController < ApplicationController
     reset_session
   end
 
-private
+  def status
+    @visit_status = metrics_logger.visit_status(params[:id])
+  end
 
   def metrics_logger
     METRICS_LOGGER
@@ -135,6 +137,7 @@ private
     MESSAGE_ENCRYPTOR
   end
 
+  private
   def visit_params
     dob = [:'date_of_birth(3i)', :'date_of_birth(2i)', :'date_of_birth(1i)']
     params[:visit][:visitor].each do |visitor|
