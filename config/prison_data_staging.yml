@@ -1586,6 +1586,38 @@ Swaleside:
       - 0930-1130
     sun:
       - 1415-1615
+'Norwich (Britannia House)':
+  enabled: true
+  phone: '01603 708795'
+  email: pvb.norwich@maildrop.dsd.io
+  finder_slug: norwich
+  address:
+    - 'Knox Road'
+    - 'NR1 4LU'
+  unbookable:
+    - 2014-12-25
+  slots:
+    mon:
+      - 0930-1130
+      - 1400-1600
+    tue:
+      - 0930-1130
+      - 1400-1600
+    wed:
+      - 0930-1130
+      - 1400-1600
+    thu:
+      - 0930-1130
+      - 1400-1600
+    fri: 
+      - 0930-1130
+      - 1400-1600
+    sat:
+      - 0930-1130
+      - 1400-1600
+    sun:
+      - 0930-1130
+      - 1400-1600
 'Standford Hill':
   enabled: true
   phone: '0300 060 6603'
