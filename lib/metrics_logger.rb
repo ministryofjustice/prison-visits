@@ -29,15 +29,28 @@ class MetricsLogger
   end
 
   def processed?(visit)
-    @client.search(index: INDEX_NAME,
-                   search_type: :count,
-                   body: {
-                     query: {
-                       bool: {
-                         must: [{term: { visit_id: visit.visit_id }}, {prefix: { label0: "result_"}}]
-                       }
-                     }
-                   })['hits']['total'] > 0
+    [:confirmed, :rejected].include?(visit_status(visit.visit_id))
+  end
+
+  def visit_status(visit_id)
+    results = @client.search(index: INDEX_NAME, q: "visit_id:#{visit_id}")
+    return false unless results['hits']['total'] > 0
+
+    confirmed = results['hits']['hits'].find do |entry|
+      entry['_source']['label0'] == 'result_confirmed'
+    end
+
+    rejected = results['hits']['hits'].find do |entry|
+      entry['_source']['label0'] == 'result_rejected'
+    end
+
+    if confirmed
+      :confirmed
+    elsif rejected
+      :rejected
+    else
+      :pending
+    end
   end
 
   def now_in_utc

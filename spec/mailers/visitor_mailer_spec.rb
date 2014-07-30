@@ -61,6 +61,10 @@ describe VisitorMailer do
     Mail::Field.new('reply-to', "pvb.rochester@maildrop.dsd.io")
   end
 
+  let :host do
+    'localhost'
+  end
+
   context "always" do
     context "booking is successful" do
       it "sends out an e-mail" do
@@ -79,7 +83,7 @@ describe VisitorMailer do
 
       it "sends out an e-mail with the List-Unsubscribe header set" do
         header_value = '<https://www.prisonvisits.service.gov.uk/unsubscribe>'
-        subject.booking_receipt_email(sample_visit)['List-Unsubscribe'].value.should ==  header_value
+        subject.booking_receipt_email(sample_visit, host)['List-Unsubscribe'].value.should ==  header_value
         [confirmation_no_slot_available, confirmation_not_on_contact_list, confirmation_no_vos_left].each do |outcome|
           subject.booking_rejection_email(sample_visit, outcome)['List-Unsubscribe'].value.should == header_value
         end
@@ -121,12 +125,13 @@ describe VisitorMailer do
 
     context "booking receipt sent" do
       it "sends out an e-mail with a date in the subject" do
-        email = subject.booking_receipt_email(sample_visit)
+        email = subject.booking_receipt_email(sample_visit, host)
         email.subject.should == "Your visit request for 7 July 2013 will be processed soon"
         email[:from].should == noreply_address
         email[:reply_to].should == prison_address
         email[:to].should == visitor_address
         email.body.raw_source.should_not include("Jimmy Harris")
+        email.body.raw_source.should include(visit_status_url(host: host, protocol: 'https', id: sample_visit.visit_id))
       end
     end
 

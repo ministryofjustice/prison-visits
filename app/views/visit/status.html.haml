@@ -1,0 +1,15 @@
+- case @visit_status
+- when :confirmed
+  %h1 Your visit is confirmed
+  %p Your visit has been confirmed and you should have received a confirmation email. 
+- when :rejected
+  %h1 Your visit request has been rejected
+  %p You should have received an email to say that your visit cannot take place as planned.
+- when :pending
+  %h1 Your visit is pending
+  %p Your visit request is currently being processed. You’ll get a confirmation email within 3 working days.
+%p If you don’t receive a confirmation email within 3 days, please check your spam or junk folder. You need to do this on a computer or tablet (rather than a smart phone).
+%p
+  To stop visit confirmation emails going to your spam or junk folder please add
+  %span.no-wrap no-reply@email.prisonvisits.service.gov.uk
+  to your address book or safe senders list. 

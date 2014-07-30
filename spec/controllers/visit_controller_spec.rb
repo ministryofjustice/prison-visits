@@ -25,6 +25,35 @@ describe VisitController do
     }
   end
 
+  context "always" do
+    let :visit_id do
+      SecureRandom.hex
+    end
+
+    it "displays the status of a visit not yet created" do
+      controller.metrics_logger.should_receive(:visit_status).with(visit_id).twice.and_return(false)
+      get :status, id: visit_id 
+      response.status.should == 200
+    end
+
+    it "displays the status of an unprocessed visit" do
+      controller.metrics_logger.should_receive(:visit_status).with(visit_id).and_return(:pending)
+    end
+
+    it "displays the status of a confirmed visit" do
+      controller.metrics_logger.should_receive(:visit_status).with(visit_id).and_return(:confirmed)
+    end
+
+    it "displays the status of a rejected visit" do
+      controller.metrics_logger.should_receive(:visit_status).with(visit_id).and_return(:rejected)
+    end
+
+    after :each do
+      get :status, id: visit_id
+      response.should be_success
+    end
+  end
+
   context "cookies are disabled" do
     it "redirects the user to a page telling them that they won't be able to use the site" do
       get :prisoner_details
@@ -397,6 +426,7 @@ describe VisitController do
         subject.stub(:metrics_logger).and_return(mock_metrics_logger)
 
         session[:visit] = Visit.new.tap do |v|
+          v.visit_id = SecureRandom.hex
           v.prisoner = Prisoner.new.tap do |p|
             p.first_name = 'Jimmy'
             p.last_name = 'Harris'
