@@ -131,7 +131,7 @@ describe VisitorMailer do
         email[:reply_to].should == prison_address
         email[:to].should == visitor_address
         email.body.raw_source.should_not include("Jimmy Harris")
-        email.body.raw_source.should include("https://localhost:3000/status/#{sample_visit.visit_id}")
+        email.body.raw_source.should include(visit_status_url(host: host, protocol: 'https', id: sample_visit.visit_id))
       end
     end
 
