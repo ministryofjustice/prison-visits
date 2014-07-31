@@ -1,0 +1,78 @@
+- content_for :header, "Prison data"
+
+:css
+  dt {
+    font-weight: bold;
+  }
+
+- Rails.configuration.prison_data.each do |prison|
+  %h2{ id: prison[0].parameterize }= prison[0]
+
+  %dl
+    %dt Enabled
+    %dd= prison[1]['enabled'] ? 'Yes' : 'No'
+
+    %dt NOMIS ID
+    %dd= prison[1]['nomis_id']
+
+    - if prison[1]['enabled']
+
+      %dt Canned responses
+      %dd= prison[1]['canned_responses'] ? 'Yes' : 'No'
+
+      %dt Booking line
+      %dd= prison[1]['phone']
+
+      %dt Functional mailbox
+      %dd= prison[1]['email']
+
+      - if prison[1]['address']
+        %dt Address
+        %dd= prison[1]['address'].join ', '
+
+      - if prison[1]['finder_slug']
+        %dt Prison finder slug
+        %dd= prison[1]['finder_slug']
+
+      - if prison[1]['lead_days']
+        %dt Custom lead time
+        %dd #{prison[1]['lead_days']} days
+
+      - if prison[1]['works_weekends']
+        %dt Process visits on weekends
+        %dd= prison[1]['works_weekends'] ? 'Yes' : 'No'
+
+      %dt Slots
+      %dl
+        %table
+          %tr
+            - days = [:mon, :tue, :wed, :thu, :fri, :sat, :sun]
+            - days.each do |d|
+              %th= d.to_s.humanize
+          %tr
+            - days.each do |d|
+              %td
+                - if prison[1]['slots'] && prison[1]['slots'].include?(d)
+                  - prison[1]['slots'][d].each do |slot|
+                    %div= display_time_slot slot
+
+      - if prison[1]['unbookable']
+        %dt Un-bookable dates
+        %dl= prison[1]['unbookable'].join('<br>').html_safe
+
+      - if prison[1]['slot_anomalies']
+        %dt Slot anomalies
+        %dl
+          %dl
+            - prison[1]['slot_anomalies'].each do |date, slots|
+              %dt= format_date date
+              %ul
+                - slots.each do |slot|
+                  %li= display_time_slot slot
+    
+    - else
+      %dt Not enabled because
+      %dd
+        - if prison[1]['reason']
+          = prison[1]['reason']
+        - else 'default'

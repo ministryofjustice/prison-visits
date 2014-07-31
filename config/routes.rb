@@ -46,6 +46,7 @@ PrisonVisits2::Application.routes.draw do
   get "static/503"
   get "static/404"
   get "static/prison_emails"
+  get "static/data"
 
   scope controller: :metrics do
     get "metrics", action: :index
