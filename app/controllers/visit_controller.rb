@@ -108,8 +108,8 @@ class VisitController < ApplicationController
   def update_check_your_request
     unless just_testing?
       @token = encryptor.encrypt_and_sign(visit)
-      PrisonMailer.booking_request_email(visit, @token, request.host).deliver
-      VisitorMailer.booking_receipt_email(visit, request.host).deliver
+      PrisonMailer.booking_request_email(visit, @token).deliver
+      VisitorMailer.booking_receipt_email(visit).deliver
     end
 
     metrics_logger.record_visit_request(visit)

@@ -19,12 +19,10 @@ class PrisonMailer < ActionMailer::Base
     }
   end
 
-  def booking_request_email(visit, token, host)
+  def booking_request_email(visit, token)
     @visit = visit
     user = visit.visitors.find { |v| v.email }.email
     @token = token
-    @host = host
-    @protocol = 'https://'
 
     mail(from: sender, reply_to: user, to: recipient, subject: "Visit request for #{@visit.prisoner.full_name} on #{Date.parse(@visit.slots.first.date).strftime('%A %e %B')}")
   end
