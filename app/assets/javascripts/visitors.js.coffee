@@ -5,7 +5,7 @@ $('#add-visitor').remove()
 addVisitorBlocks = (amount) ->
   i = 1
   while i < amount + 1
-    compiled = _.template($('#additional-visitor').html())
+    compiled = Handlebars.compile $('#additional-visitor').html()
     $compiled = $(compiled({index: i}))
     $('.additional-visitors').append ($compiled)
     i++
