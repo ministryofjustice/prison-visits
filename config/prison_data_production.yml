@@ -2036,20 +2036,24 @@ Littlehey:
     wed:
       - 1330-1545
 Portland:
-  enabled: false
-  phone: '01305 715775'
+  enabled: true
+  phone: 01305 715775
   email: socialvisits.portland@hmps.gsi.gov.uk
   address:
-    - '104 The Grove'
-    - 'DT5 1DL'
+    - 104 The Grove
+    - DT5 1DL
   unbookable:
     - 2014-12-25
+    - 2014-12-26
+    - 2015-01-01
   slots:
     sat:
-      - 1345-1630
+      - 1345-1600
     sun:
-      - 1345-1630
+      - 1345-1600
     thu:
+      - 1345-1600
+    tue:
       - 1345-1600
 Ranby:
   enabled: true
