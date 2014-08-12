@@ -15,6 +15,14 @@ PrisonVisits2::Application.routes.draw do
     post "/webhooks/email/:auth", controller: 'webhooks', action: 'email'
   end
 
+  scope :controller => 'staff' do
+    get "staff" => "staff#index"
+    ['changes', 'guide', 'troubleshooting', 'training', 'stats', 'downloads'].each do |n|
+      label = n.gsub '-', '_'
+      get "staff/#{n}", action: label, as: label
+    end
+  end
+
   get "cookies-disabled" => "static#cookies_disabled", as: :cookies_disabled
   get "cookies" => "static#cookies"
   get "unsubscribe" => "static#unsubscribe"
