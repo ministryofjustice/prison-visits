@@ -1951,7 +1951,7 @@ Lancaster Farms:
 Lincoln:
   enabled: true
   phone: '01522 663172'
-  email: socialvisits.lincoln@hmps.gsi.gov.uk
+  email: lincolnsocialvisits@hmps.gsi.gov.uk
   address:
     - 'Greetwell Road'
     - 'LN2 4BD '
