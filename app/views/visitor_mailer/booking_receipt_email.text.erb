@@ -1,6 +1,6 @@
 Dear <%= @visit.visitors.first.first_name %>,
 
-YOUR BOOKING REQUEST IS BEING PROCESSED
+YOUR VISIT IS NOT BOOKED YET 
 
 You can check the status of your request here:
 <%= visit_status_url(@visit.visit_id, host: @host, protocol: @protocol) %>
