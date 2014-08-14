@@ -7,12 +7,16 @@ module VisitHelper
     end
   end
 
+  def lead_days
+    1 + (prison_data['lead_days'] || Slot::LEAD_DAYS)
+  end
+
   def unbookable_dates
     prison_data['unbookable'] || []
   end
 
   def bookable_from
-    Date.today + Slot::LEAD_DAYS
+    Date.today + lead_days
   end
 
   def bookable_to

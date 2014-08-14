@@ -93,18 +93,18 @@ describe VisitHelper do
       helper.day_is_bookable(Date.parse("2014-08-14")).should == true
       helper.day_is_bookable(Date.parse("2014-08-15")).should == false
     end
-  end
 
-  it "starts bookings after lead time" do
-    helper.bookable_from.should == 3.days.from_now.to_date
+    it "provides a 28 day booking range" do
+      helper.bookable_range.should == (4.days.from_now.to_date..28.days.from_now.to_date)
+    end
+
+    it "starts bookings after lead time excluding current day" do
+      helper.bookable_from.should == 4.days.from_now.to_date
+    end
   end
 
   it "ends bookings at the bookable limit" do
     helper.bookable_to.should == 28.days.from_now.to_date
-  end
-
-  it "provides a 28 day booking range" do
-    helper.bookable_range.should == (3.days.from_now.to_date..28.days.from_now.to_date)
   end
 
   it "should return 3 slots" do
