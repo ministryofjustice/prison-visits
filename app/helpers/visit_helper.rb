@@ -11,12 +11,45 @@ module VisitHelper
     1 + (prison_data['lead_days'] || Slot::LEAD_DAYS)
   end
 
+  def work_weekends?
+    prison_data['work_weekends'] || false
+  end
+
   def unbookable_dates
     prison_data['unbookable'] || []
   end
 
-  def bookable_from
-    Date.today + lead_days
+  def bookable_from(day=Date.today)
+    date = day + lead_days
+    date = skip_weekend date unless work_weekends?
+  end
+
+  def skip_weekend(date)
+    case date.wday
+    when 6
+      return date + 2
+    when 0
+      return date + 1
+    else
+      return date
+    end
+  end
+
+  def weekend_days_in_range(range)
+    range.select{ |d| [0, 6].include?(d.wday) }.size
+  end
+
+  def exclude_weekends(from, days)
+    from = skip_weekend from
+    to = from + days
+    extra = weekend_days_in_range(from..to)
+    if extra > 0
+      extra = extra - 2 if to.saturday?
+      extra = extra - 1 if to.sunday?
+      return exclude_weekends(to, extra)
+    else
+      return to
+    end
   end
 
   def bookable_to

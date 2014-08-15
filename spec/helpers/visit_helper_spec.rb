@@ -99,11 +99,30 @@ describe VisitHelper do
     end
 
     it "starts bookings after lead time excluding current day" do
-      helper.bookable_from.should == 4.days.from_now.to_date
+      helper.bookable_from(Date.parse("2014-08-13")).should == Date.parse("2014-08-19")
+    end
+
+    it "informs when booking staff work on weekends" do
+      helper.work_weekends?.is_a? TrueClass
+      helper.work_weekends?.should == false
     end
   end
 
-  it "ends bookings at the bookable limit" do
+  it "should not allow processing days to include weekends" do
+    helper.skip_weekend(Date.parse("2014-08-16")).should == Date.parse("2014-08-18")
+  end
+
+  it "return all weekend days within a range" do
+    helper.weekend_days_in_range(Date.parse("2014-08-16")..Date.parse("2014-08-18")).should == 2
+  end
+
+  it "make sure lead days exclude weekends" do
+    helper.exclude_weekends(Date.parse("2014-08-13"), 1 + 2).should == Date.parse("2014-08-18")
+    helper.exclude_weekends(Date.parse("2014-08-14"), 1 + 2).should == Date.parse("2014-08-19")
+    helper.exclude_weekends(Date.parse("2014-08-16"), 1 + 4).should == Date.parse("2014-08-22")
+  end
+
+  it "allows bookings up to 28 days from now" do
     helper.bookable_to.should == 28.days.from_now.to_date
   end
 
