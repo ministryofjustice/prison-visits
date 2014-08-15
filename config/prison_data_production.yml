@@ -901,7 +901,7 @@ Stocken:
     wed:
       - 1345-1545
 Dartmoor:
-  enabled: false
+  enabled: true
   phone: '01822 322022'
   email: "socvisdartmoor@hmps.gsi.gov.uk"
   address:
