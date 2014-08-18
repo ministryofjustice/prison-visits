@@ -131,16 +131,21 @@ select
     float: none
 
 .FormBlock
-  padding: 1em 90px
+  padding: .5em 15px
+  margin: 0 -15px
   border:
     color: $grey-2
     style: solid
     width: 1px 0
   background: $grey-4
 
-  @include media(mobile)
-    margin: 0 -15px
-    padding: .5em 15px
+  @include media(tablet)
+    margin: 0
+    padding: 1em 60px
+
+  @include media(desktop)
+    padding-left: 90px
+    padding-right: 90px
 
   label
     font-weight: bold

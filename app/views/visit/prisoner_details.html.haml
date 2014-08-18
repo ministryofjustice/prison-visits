@@ -20,75 +20,77 @@
         %span.progress__label Send request
 
 
-%ul
-  %li you don’t need a Visiting Order (VO) number to request a visit
-  %li you need the dates of birth for all visitors coming with you
-  %li your visit will be confirmed by email within 3 working days of making your request
+.Grid
+  .Grid-2-3
+    %ul
+      %li you don’t need a Visiting Order (VO) number to request a visit
+      %li you need the dates of birth for all visitors coming with you
+      %li your visit will be confirmed by email within 3 working days of making your request
 
-= form_for visit.prisoner, url: update_prisoner_details_path, as: :prisoner, :html => { :class => 'form validation', :autocomplete => 'off' } do |f|
+    = form_for visit.prisoner, url: update_prisoner_details_path, as: :prisoner, :html => { :class => 'form validation', :autocomplete => 'off' } do |f|
 
-  %h2 Prisoner details
+      %h2 Prisoner details
 
-  - if f.object.errors.any?
-    = render 'shared/validation'
+      - if f.object.errors.any?
+        = render 'shared/validation'
 
-  %fieldset.FormBlock
-    %legend.visuallyhidden Prisoner details
-    .group{ :class => ('validation-error' if f.object.errors.include?(:first_name)) }
-      = f.label :first_name do
-        Prisoner first name
-        %span.validation-message= f.object.errors[:first_name].first if f.object.errors.include?(:first_name)
-      = f.text_field :first_name
+      %fieldset.FormBlock
+        %legend.visuallyhidden Prisoner details
+        .group{ :class => ('validation-error' if f.object.errors.include?(:first_name)) }
+          = f.label :first_name do
+            Prisoner first name
+            %span.validation-message= f.object.errors[:first_name].first if f.object.errors.include?(:first_name)
+          = f.text_field :first_name
 
-    .group{ :class => ('validation-error' if f.object.errors.include?(:last_name)) }
-      = f.label :last_name do
-        Prisoner last name
-        %span.validation-message= f.object.errors[:last_name].first if f.object.errors.include?(:last_name)
-      = f.text_field :last_name
+        .group{ :class => ('validation-error' if f.object.errors.include?(:last_name)) }
+          = f.label :last_name do
+            Prisoner last name
+            %span.validation-message= f.object.errors[:last_name].first if f.object.errors.include?(:last_name)
+          = f.text_field :last_name
 
-    .group.js-native-date{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
-      %fieldset
-        %legend
-          Date of birth
-          %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
-          %span.validation-message= 'year must be four digits' if visit.prisoner.date_of_birth && visit.prisoner.date_of_birth.year < 100
-        .date-of-birth
-          %p#dobHint.form-hint.datefield-hint For example, 28 4 2014
-          - dates = ['day', 'month', 'year']
-          - dates.each_with_index do |o, i|
-            .datefield{ :class => "form-group form-group-#{o}" }
-              %label{ :for => "prisoner_date_of_birth_#{dates.count - i}i"} #{o.mb_chars.titleize }
-              %input.form-control{ :value => (visit.prisoner.date_of_birth ? visit.prisoner.date_of_birth.send(o) : ''), :type => "number", :pattern => "[0-9]*", :name => "prisoner[date_of_birth(#{dates.count - i}i)]", :id => "prisoner_date_of_birth_#{dates.count - i}i", :'aria-describedby' => "dobHint" }
+        .group.js-native-date{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
+          %fieldset
+            %legend
+              Date of birth
+              %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
+              %span.validation-message= 'year must be four digits' if visit.prisoner.date_of_birth && visit.prisoner.date_of_birth.year < 100
+            .date-of-birth
+              %p#dobHint.form-hint.datefield-hint For example, 28 4 2014
+              - dates = ['day', 'month', 'year']
+              - dates.each_with_index do |o, i|
+                .datefield{ :class => "form-group form-group-#{o}" }
+                  %label{ :for => "prisoner_date_of_birth_#{dates.count - i}i"} #{o.mb_chars.titleize }
+                  %input.form-control{ :value => (visit.prisoner.date_of_birth ? visit.prisoner.date_of_birth.send(o) : ''), :type => "number", :pattern => "[0-9]*", :name => "prisoner[date_of_birth(#{dates.count - i}i)]", :id => "prisoner_date_of_birth_#{dates.count - i}i", :'aria-describedby' => "dobHint" }
 
-    .group{ :class => ('validation-error' if f.object.errors.include?(:number)) }
-      = f.label :number do
-        Prisoner number
-        %span.validation-message= f.object.errors[:number].first if f.object.errors.include?(:number)
-      %p.form-hint The prisoner can give you this.
-      = f.text_field :number, placeholder: 'eg a1234bc'
+        .group{ :class => ('validation-error' if f.object.errors.include?(:number)) }
+          = f.label :number do
+            Prisoner number
+            %span.validation-message= f.object.errors[:number].first if f.object.errors.include?(:number)
+          %p.form-hint The prisoner can give you this.
+          = f.text_field :number, placeholder: 'eg a1234bc'
 
-    .group{ :class => ('validation-error' if f.object.errors.include?(:prison_name)) }
-      = f.label :prison_name do
-        Name of the prison
-        %span.validation-message= f.object.errors[:prison_name].first if f.object.errors.include?(:prison_name)
-      = f.select :prison_name, prison_names, { prompt: 'select a prison' }, { class: 'js-autocomplete', placeholder: 'eg Cardiff' }
-      %details.group__help
-        %summary Why aren't all prisons available?
-        %p You can’t make an online visit request for all prisons (eg high-security and private prisons). If you can’t enter the prison you're visiting, <a href="http://www.justice.gov.uk/contacts/prison-finder">contact the prison</a> to find out how to book.
+        .group{ :class => ('validation-error' if f.object.errors.include?(:prison_name)) }
+          = f.label :prison_name do
+            Name of the prison
+            %span.validation-message= f.object.errors[:prison_name].first if f.object.errors.include?(:prison_name)
+          = f.select :prison_name, prison_names, { prompt: 'select a prison' }, { class: 'js-autocomplete', placeholder: 'eg Cardiff' }
+          %details.group__help
+            %summary Why aren't all prisons available?
+            %p You can’t make an online visit request for all prisons (eg high-security and private prisons). If you can’t enter the prison you're visiting, <a href="http://www.justice.gov.uk/contacts/prison-finder">contact the prison</a> to find out how to book.
 
-  .actions
-    .primary-actions
-      = f.submit :Continue, :class => 'button button-primary'
-    %p= link_to 'Cancel and delete all details', abandon_path, :'data-confirm' => "Are you sure you wish to cancel this visit request?\r\rThis will delete all the information you have entered"
+      .actions
+        .primary-actions
+          = f.submit :Continue, :class => 'button button-primary'
+        %p= link_to 'Cancel and delete all details', abandon_path, :'data-confirm' => "Are you sure you wish to cancel this visit request?\r\rThis will delete all the information you have entered"
 
-%p.note
-  %strong Please note
-  %br
-  If you don't enter any information for more than 20 minutes, then your session will time out and you'll need to start again.
-- content_for :analytics do
-  :ruby
-    haml_io << "var serverTime = " + Time.now.to_f.to_s + ";\n";
-  var clientTime = (new Date()).valueOf() / 1000;
-  var offset = clientTime - serverTime;
-  ga('set', 'metric7', parseInt(offset, 10));
+    %p.note
+      %strong Please note
+      %br
+      If you don't enter any information for more than 20 minutes, then your session will time out and you'll need to start again.
+    - content_for :analytics do
+      :ruby
+        haml_io << "var serverTime = " + Time.now.to_f.to_s + ";\n";
+      var clientTime = (new Date()).valueOf() / 1000;
+      var offset = clientTime - serverTime;
+      ga('set', 'metric7', parseInt(offset, 10));
 
