@@ -26,19 +26,6 @@ describe VisitHelper do
         }
     end
 
-    it "provides unbookable days" do
-      helper.unbookable_dates.should == [
-        Date.parse('2013-12-25'),
-        Date.parse('2013-12-26'),
-        Date.parse('2014-12-25'),
-        Date.parse('2014-12-26')
-      ]
-    end
-
-    it "provides a list of bookable days" do
-      helper.bookable_week_days.should == [ 0, 1, 2, 3, 4, 6 ]
-    end
-
     it "provides current slots" do
       helper.current_slots.should == ["2014-05-12-1045-1345"]
     end
@@ -87,47 +74,6 @@ describe VisitHelper do
     it "provides all the slots for a particular day" do
       helper.anomalies_for_day(Date.parse("2014-08-14")).should == [["0700", "0900"]]
     end
-
-    it "informs when it's possible to book for a particular day" do
-      helper.day_is_bookable(Date.today).is_a? TrueClass
-      helper.day_is_bookable(Date.parse("2014-08-14")).should == true
-      helper.day_is_bookable(Date.parse("2014-08-15")).should == false
-    end
-
-    it "provides a 28 day booking range" do
-      helper.bookable_range.should == (4.days.from_now.to_date..28.days.from_now.to_date)
-    end
-
-    it "starts bookings after lead time excluding current day" do
-      helper.bookable_from(Date.parse("2014-08-13")).should == Date.parse("2014-08-19")
-    end
-
-    it "informs when booking staff work on weekends" do
-      helper.work_weekends?.is_a? TrueClass
-      helper.work_weekends?.should == false
-    end
-  end
-
-  it "should not allow processing days to include weekends" do
-    helper.skip_weekend(Date.parse("2014-08-16")).should == Date.parse("2014-08-18")
-  end
-
-  it "return all weekend days within a range" do
-    helper.weekend_days_in_range(Date.parse("2014-08-16")..Date.parse("2014-08-18")).should == 2
-  end
-
-  it "make sure lead days exclude weekends" do
-    helper.exclude_weekends(Date.parse("2014-08-13"), 1 + 2).should == Date.parse("2014-08-18")
-    helper.exclude_weekends(Date.parse("2014-08-14"), 1 + 2).should == Date.parse("2014-08-19")
-    helper.exclude_weekends(Date.parse("2014-08-16"), 1 + 4).should == Date.parse("2014-08-22")
-  end
-
-  it "allows bookings up to 28 days from now" do
-    helper.bookable_to.should == 28.days.from_now.to_date
-  end
-
-  it "should return 3 slots" do
-    helper.number_of_slots.should == 3
   end
 
   it "should provide the prison name" do
