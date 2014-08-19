@@ -84,11 +84,11 @@ describe Schedule do
       Rails.configuration.prison_data['Lewes']
     end
 
-    # it "does indeed work on weekends" do
-    #   (Date.new(2014, 8, 18)..Date.new(2014, 8, 24)).each do |start_date|
-    #     subject.dates(start_date, 14).first.should == start_date + 4
-    #   end
-    # end
+    it "does indeed work on weekends" do
+      (Date.new(2014, 8, 18)..Date.new(2014, 8, 24)).each do |start_date|
+        subject.dates(start_date, 14).first.should == start_date + 4
+      end
+    end
   end
 
   context "prison with anomalies" do

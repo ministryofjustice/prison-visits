@@ -587,6 +587,7 @@ Lewes:
   enabled: true
   phone: 01273785277
   email: socialvisits.lewes@hmps.gsi.gov.uk
+  works_weekends: true
   address:
     - 1 Brighton Road
     - BN7 1EA 

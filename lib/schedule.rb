@@ -5,6 +5,7 @@ class Schedule
     @unbookable_dates = prison_data_for_prison[:unbookable].to_set
     @visiting_slots = prison_data_for_prison[:slots]
     @anomalous_dates = (prison_data_for_prison[:slot_anomalies] || {}).keys
+    @works_weekends = prison_data_for_prison[:works_weekends]
   end
 
   def dates(starting_when, how_many_days)
@@ -39,7 +40,11 @@ class Schedule
     }
     Enumerator.new do |e|
       enumerable.each do |current|
-        e.yield(current) if current - start_date > offsets[start_date.wday]
+        if @works_weekends
+          e.yield(current) if current - start_date > lead_days
+        else
+          e.yield(current) if current - start_date > offsets[start_date.wday]
+        end
       end
     end
   end
