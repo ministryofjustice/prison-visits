@@ -28,9 +28,18 @@ class Schedule
   end
 
   def except_lead_days(start_date, lead_days, enumerable)
+    offsets = {
+      0 => lead_days,
+      1 => lead_days,
+      2 => lead_days,
+      3 => lead_days + 2,
+      4 => lead_days + 2,
+      5 => lead_days + 2,
+      6 => lead_days + 1
+    }
     Enumerator.new do |e|
       enumerable.each do |current|
-        e.yield(current) unless current < start_date + lead_days
+        e.yield(current) if current - start_date > offsets[start_date.wday]
       end
     end
   end
