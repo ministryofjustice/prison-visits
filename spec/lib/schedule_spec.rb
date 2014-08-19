@@ -47,13 +47,13 @@ describe Schedule do
       start_date = Date.new(2014, 8, 21) # Thursday
       subject.dates(start_date, 14).first == start_date + 5 # Wednesday
 
-      start_date = Date.new(2014, 8, 19) # Friday
+      start_date = Date.new(2014, 8, 22) # Friday
       subject.dates(start_date, 14).first == start_date + 5 # Thursday
 
-      start_date = Date.new(2014, 8, 19) # Saturday
+      start_date = Date.new(2014, 8, 23) # Saturday
       subject.dates(start_date, 14).first == start_date + 4 # Thursday
 
-      start_date = Date.new(2014, 8, 19) # Sunday
+      start_date = Date.new(2014, 8, 24) # Sunday
       subject.dates(start_date, 14).first == start_date + 3 # Thursday
     end
   end
@@ -82,13 +82,13 @@ describe Schedule do
       start_date = Date.new(2014, 8, 21) # Thursday
       subject.dates(start_date, 14).first == start_date + 5 # Wednesday
 
-      start_date = Date.new(2014, 8, 19) # Friday
+      start_date = Date.new(2014, 8, 22) # Friday
       subject.dates(start_date, 14).first == start_date + 5 # Thursday
 
-      start_date = Date.new(2014, 8, 19) # Saturday
+      start_date = Date.new(2014, 8, 23) # Saturday
       subject.dates(start_date, 14).first == start_date + 4 # Thursday
 
-      start_date = Date.new(2014, 8, 19) # Sunday
+      start_date = Date.new(2014, 8, 24) # Sunday
       subject.dates(start_date, 14).first == start_date + 3 # Thursday
     end
   end
@@ -104,6 +104,18 @@ describe Schedule do
       end
       prison[:slot_anomalies] = {anomalous_date => ['0945-1300']}
       subject.dates(Date.new(2014, 1, 1), 60).to_a.should include anomalous_date
+    end
+  end
+
+  context "prison works on weekends" do
+    let :prison do
+      Rails.configuration.prison_data['Lewes']
+    end
+
+    it "assumes weekends are working days" do
+      (Date.new(2014, 8, 18)..Date.new(2014, 8, 25)).each do |start_date|
+        subject.dates(start_date, 14).first == start_date + 3
+      end
     end
   end
 end
