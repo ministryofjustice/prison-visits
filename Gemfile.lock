@@ -134,6 +134,23 @@ GEM
     raindrops (0.12.0)
     rake (10.3.2)
     redcarpet (3.1.2)
+    redis (3.1.0)
+    redis-actionpack (4.0.0)
+      actionpack (~> 4)
+      redis-rack (~> 1.5.0)
+      redis-store (~> 1.1.0)
+    redis-activesupport (4.0.0)
+      activesupport (~> 4)
+      redis-store (~> 1.1.0)
+    redis-rack (1.5.0)
+      rack (~> 1.5)
+      redis-store (~> 1.1.0)
+    redis-rails (4.0.0)
+      redis-actionpack (~> 4)
+      redis-activesupport (~> 4)
+      redis-store (~> 1.1.0)
+    redis-store (1.1.4)
+      redis (>= 2.2)
     request_store (1.1.0)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
@@ -229,6 +246,7 @@ DEPENDENCIES
   prison_staff_info!
   rails
   redcarpet
+  redis-rails
   rspec-rails
   rspec_junit_formatter
   rubyzip

@@ -22,31 +22,12 @@ describe MetricsController do
         get :index
       end
 
-      it "renders a json view" do
-        get :index, format: :json
-        JSON.parse(response.body)
+      it "renders a csv view" do
+        get :index, format: :csv
       end
 
       after :each do
         response.should be_success
-      end
-    end
-
-    context "for a single prison" do
-      it "renders a html view" do
-        get :index, prison: 'Rochester'
-        response.should be_success
-      end
-
-      it "renders a json view" do
-        get :index, prison: 'Rochester', format: :json
-        response.should be_success
-        JSON.parse(response.body)
-      end
-
-      it "escapes the prison name" do
-        controller.elastic_client.should_receive(:search).with(index: :pvb, q: 'prison:\+\-\&\&\|\|\!\(\)\{\}\[\]\^\"\~\*\?\:\\\\', size: 10_000, sort: 'timestamp:desc').once
-        get :index, prison: '+-&&||!(){}[]^"~*?:\\'
       end
     end
   end

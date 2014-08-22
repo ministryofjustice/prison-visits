@@ -15,6 +15,7 @@ gem 'logstasher'
 gem 'sentry-raven'
 gem 'redcarpet'
 gem 'prison_staff_info', git: 'git@github.com:ministryofjustice/prison_staff_info.git', branch: 'master'
+gem 'redis-rails'
 
 group :test, :development do
   gem 'rspec-rails'
