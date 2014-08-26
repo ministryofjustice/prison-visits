@@ -6,18 +6,13 @@ describe Feedback do
   end
 
   it "validates required attributes" do
-    subject.should_not be_valid
-
-    subject.text = "test"
-    subject.should_not be_valid
-
     subject.user_agent = 'Mozilla'
     subject.should_not be_valid
 
     subject.email = "broken email"
     subject.should_not be_valid
 
-    subject.referrer = "referrer"
+    subject.text = "test"
     subject.should_not be_valid
 
     subject.email = "test@maildrop.dsd.io"
