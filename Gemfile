@@ -11,7 +11,7 @@ gem 'coffee-rails'
 gem 'zendesk_api'
 gem 'mail'
 gem 'elasticsearch'
-gem 'logstasher', git: 'https://github.com/jasiek/logstasher.git', branch: 'action-mailer-custom-fields'
+gem 'logstasher'
 gem 'sentry-raven'
 gem 'redcarpet'
 
