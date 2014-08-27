@@ -25,7 +25,7 @@ feature "visitor selects a date" do
 
       tomorrow = Time.now + 1.day
       find(:css, tomorrow.strftime("a.BookingCalendar-dayLink[data-date='%Y-%m-%d']")).click
-      page.should have_content('You can only book a visit 3 days in advance.')
+      page.should have_content('You can only book a visit 3 working days in advance.')
 
       a_month_from_now = Time.now + 29.days
       find(:css, a_month_from_now.strftime("a.BookingCalendar-dayLink[data-date='%Y-%m-%d']")).click

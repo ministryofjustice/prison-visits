@@ -23,7 +23,7 @@
 = render 'slotpicker_templates'
 
 %ul.visible--js-enabled
-  %li we'll confirm your booking within 3 days
+  %li we'll confirm your booking within 3 working days
   %li we'll try to accommodate your first choice but it's not always possible
 
 - if visit.slots.any? {|s| s.errors.any?}
@@ -91,7 +91,7 @@
           %p You can only book a visit in the next {{ daysInRange }} days.
         %li.SlotPicker-day.SlotPicker-day--leadtime
           %h2.SlotPicker-dayTitle
-          %p You can only book a visit 3 days in advance.
+          %p You can only book a visit 3 working days in advance.
 
   .left-column
 
