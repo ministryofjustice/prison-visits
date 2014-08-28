@@ -1,0 +1,36 @@
+.SlotPicker-choices
+  padding: 0
+  background: none
+
+  > p
+    margin: .5em 0
+
+.SlotPicker-choice
+  margin: 0
+  padding: 0
+  border: 10px solid $grey-3
+
+  &:last-of-type
+    border-top: none
+
+  &.is-chosen
+    padding: 0
+
+    .inner
+      padding-left: 65px
+      padding-right: 80px
+
+      @include media(mobile)
+        padding-left: 55px
+
+  .inner
+    cursor: pointer
+    position: relative
+    margin-top: 10px
+    padding: 10px
+    min-height: 60px
+    background: $white
+    border: 1px solid $grey-2
+
+    &:first-child
+      margin-top: 0
