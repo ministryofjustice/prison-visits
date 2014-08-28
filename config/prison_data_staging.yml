@@ -964,7 +964,7 @@ Aylesbury:
       - 1415-1615
     wed:
       - 1415-1615
-Albany:
+Isle of Wight - Albany:
   enabled: true
   phone: '01983 634218'
   email: "pvb.albany@maildrop.dsd.io"
@@ -1402,7 +1402,7 @@ Huntercombe:
       - 1345-1615
     thu:
       - 1345-1615
-Parkhurst:
+Isle of Wight - Parkhurst:
   enabled: true
   phone: '01983 634218'
   email: pvb.isleofwight-parkhurst@maildrop.dsd.io
