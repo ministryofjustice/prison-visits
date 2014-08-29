@@ -1,7 +1,7 @@
 // Vendor assets
+//= require handlebars-v1.3.0
 //= require jquery.details
 //= require jquery-ui-autocomplete
-//= require handlebars-v1.3.0
 //= require dist/javascripts/moj.slot-picker
 //= require dist/javascripts/moj.date-slider
 

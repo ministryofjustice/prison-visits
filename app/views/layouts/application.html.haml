@@ -29,9 +29,6 @@
 
 
 - content_for :javascripts do
-  %script{src: '//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js'}
-  :javascript
-    window._ || document.write('<script src="/assets/lodash-2.4.1.min.js">\x3C/script>')
   = javascript_include_tag "application"
 
 
