@@ -62,3 +62,26 @@ module PrisonVisits2
     config.assets.paths << Rails.root.join('vendor', 'assets', 'moj.slot-picker', 'dist', 'stylesheets')
   end
 end
+
+class PrisonVisits2::Application
+  def self.update_cache_via_cron
+    CronLock.new.tap do |lock|
+      lock.run do
+        refresher = CacheRefresher.new(ELASTIC_CLIENT, config.prison_data.keys.sort)
+        partial_data = refresher.fetch
+        updated_data = refresher.update(partial_data, Time.now)
+        CacheRefresher.store(updated_data)
+      end
+    end
+  end
+
+  def self.prepopulate_cache
+    CronLock.new.tap do |lock|
+      lock.run do
+        refresher = CacheRefresher.new(ELASTIC_CLIENT, config.prison_data.keys.sort)
+        updated_data = refresher.precalculate_from_scratch
+        CacheRefresher.store(updated_data)
+      end
+    end
+  end
+end
