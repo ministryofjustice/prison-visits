@@ -11,7 +11,7 @@ describe CronLock do
 
   context "lock was acquired" do
     before :each do
-      redis_client.should_receive(:set).and_return(true)
+      redis_client.should_receive(:setnx).and_return(true)
       redis_client.should_receive(:del)
     end
 
@@ -41,7 +41,7 @@ describe CronLock do
 
   context "lock was not acquired" do
     before :each do
-      redis_client.should_receive(:set).and_return(false)
+      redis_client.should_receive(:setnx).and_return(false)
       redis_client.should_receive(:run_internal).never
       redis_client.should_receive(:del).never
     end

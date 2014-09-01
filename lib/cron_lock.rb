@@ -10,7 +10,7 @@ class CronLock
   end
 
   def lock(&block)
-    if @redis_client.set(KEY, value, nx: true)
+    if @redis_client.setnx(KEY, value)
       begin
         block.call
       ensure
