@@ -1,3 +1,10 @@
+GIT
+  remote: git@github.com:ministryofjustice/prison_staff_info.git
+  revision: master
+  branch: master
+  specs:
+    prison_staff_info (0.0.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -219,6 +226,7 @@ DEPENDENCIES
   moj_template
   parallel
   poltergeist
+  prison_staff_info!
   rails
   redcarpet
   rspec-rails

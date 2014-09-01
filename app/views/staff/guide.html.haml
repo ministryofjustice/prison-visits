@@ -1,0 +1,13 @@
+- content_for :header, 'A guide for staff'
+
+.Grid
+  .Grid-2-3
+    %aside
+      %nav.page-navigation
+        = render 'content/guide_nav'
+    
+    = render 'content/guide'
+
+
+  .Grid-1-3
+    = render 'content/nav'
