@@ -24,10 +24,10 @@ describe CacheRefresher do
   context "always" do
     it "is attached to Rails.cache" do
       Rails.cache.should_receive(:read).with(random_key)
-      subject.cache_read(random_key)
+      CacheRefresher.cache_read(random_key)
 
       Rails.cache.should_receive(:write).with(random_key, random_value)
-      subject.cache_write(random_key, random_value)
+      CacheRefresher.cache_write(random_key, random_value)
     end
 
     it "builds an empty dataset" do
@@ -79,8 +79,8 @@ describe CacheRefresher do
     end
 
     it "retrieves data from the cache" do
-      subject.should_receive(:cache_read).with('current_version').and_return(0)
-      subject.should_receive(:cache_read).with(['Rochester', 0].join).and_return(CalculatedMetrics.new)
+      CacheRefresher.should_receive(:cache_read).with('current_version').and_return(0)
+      CacheRefresher.should_receive(:cache_read).with(['Rochester', 0].join).and_return(CalculatedMetrics.new)
       subject.should_receive(:query).never
       subject.fetch.should_not be_nil
     end

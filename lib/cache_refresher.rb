@@ -25,9 +25,9 @@ class CacheRefresher
   end
 
   def fetch
-    if version = cache_read('current_version')
+    if version = CacheRefresher.cache_read('current_version')
       dataset = @prisons.inject({}) do |h, prison_name|
-        h[prison_name] = cache_read([prison_name, version].join) || (raise); h
+        h[prison_name] = CacheRefresher.cache_read([prison_name, version].join) || (raise); h
       end
       Dataset.new(version, dataset)
     end
@@ -46,11 +46,11 @@ class CacheRefresher
     end
   end
 
-  def cache_read(key)
+  def self.cache_read(key)
     Rails.cache.read(key)
   end
 
-  def cache_write(key, value)
+  def self.cache_write(key, value)
     Rails.cache.write(key, value)
   end
 
