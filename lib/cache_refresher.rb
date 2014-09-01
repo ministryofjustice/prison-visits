@@ -68,10 +68,4 @@ class CacheRefresher
     end
     cache_write('current_version', version)
   end
-
-  def self.cron_run
-    now = Time.now
-    version, dataset = new(ELASTIC_CLIENT, Rails.configuration.prison_data.keys.sort).update(now)
-    store(now, dataset)
-  end
 end
