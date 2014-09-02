@@ -32,6 +32,9 @@ if username = ENV['BS_USERNAME']
   Capybara.app_host = 'http://localhost:3000'
   Capybara.run_server = false
 else
-  Capybara.default_driver = :selenium
+  Capybara.register_driver :chrome do |app|
+    Capybara::Selenium::Driver.new(app, browser: :chrome)
+  end
+  Capybara.default_driver = :chrome
 end
 

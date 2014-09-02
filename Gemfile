@@ -28,4 +28,5 @@ group :test, :development do
   gem 'parallel'
   gem 'rspec_junit_formatter'
   gem 'poltergeist'
+  gem 'chromedriver-helper'
 end
