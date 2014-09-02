@@ -1,5 +1,5 @@
 class MetricsController < ApplicationController
-#  permit_only_from_prisons_or_with_key
+  permit_only_from_prisons_or_with_key
 
   def index
     @prisons = Rails.configuration.prison_data.keys.sort

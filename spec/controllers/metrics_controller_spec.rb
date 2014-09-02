@@ -1,8 +1,12 @@
 require 'spec_helper'
 
 describe MetricsController do
+  let :mock_refresher do
+    double('cache_refresher', fetch: CacheRefresher::Dataset.new(0, {}), update: CacheRefresher::Dataset.new(1, {}))
+  end
+
   before :each do
-    controller.stub(:elastic_client).and_return(double(search: []))
+    controller.stub(:cache_refresher).and_return(mock_refresher)
   end
 
   context "IP & key restrictions" do
