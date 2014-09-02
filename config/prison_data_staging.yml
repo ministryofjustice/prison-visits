@@ -2022,7 +2022,7 @@ Littlehey:
       - 0915-1115
       - 1400-1600
 'North Sea Camp':
-  enabled: false
+  enabled: true
   phone: '01205 769 368'
   email: pvb.northseacamp@maildrop.dsd.io
   address:
