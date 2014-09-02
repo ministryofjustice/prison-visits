@@ -1,14 +1,17 @@
+require 'csv'
+
 class StaticController < ApplicationController
   def prison_emails
     respond_to do |format|
       format.csv do
-        emails = Rails.configuration.prison_data.values.select do |data|
-          data[:enabled]
-        end.map do |data|
-          data[:email].inspect
-        end.uniq
+        csv_string = CSV.generate do |csv|
+          csv << ['name', 'email']
+          Rails.configuration.prison_data.each_pair do |prison_name, data|
+            csv << [prison_name, data[:email]] if data[:enabled]
+          end
+        end
 
-        render text: emails.join("\n")
+        render text: csv_string
       end
     end
   end

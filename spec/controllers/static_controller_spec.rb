@@ -11,9 +11,5 @@ describe StaticController do
     it "doesn't contain duplicate entries" do
       @lines.uniq.should == @lines
     end
-
-    it "contains quoted e-mail addresses" do
-      @lines.first.should =~ /".*"/
-    end
   end
 end
