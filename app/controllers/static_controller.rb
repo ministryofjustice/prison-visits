@@ -5,8 +5,8 @@ class StaticController < ApplicationController
         emails = Rails.configuration.prison_data.values.select do |data|
           data[:enabled]
         end.map do |data|
-          data[:email]
-        end
+          data[:email].inspect
+        end.uniq
 
         render text: emails.join("\n")
       end
