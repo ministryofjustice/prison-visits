@@ -20,6 +20,10 @@ describe MetricsLogger do
     @client = double
   end
 
+  after :each do
+    Timecop.return
+  end
+
   it "logs a visit request" do
     subject.should_receive(:<<).with(body: {visit_id: "ABC", timestamp: 1386806400, prison: "Rochester", label0: :visit_request})
     subject.record_visit_request(visit)

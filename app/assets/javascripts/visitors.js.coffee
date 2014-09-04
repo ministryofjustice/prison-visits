@@ -6,7 +6,7 @@ addVisitorBlocks = (amount) ->
   i = 1
   while i < amount + 1
     compiled = Handlebars.compile $('#additional-visitor').html()
-    $compiled = $(compiled({index: i}))
+    $compiled = $(compiled({index: countVisitors() + 1}))
     $('.additional-visitors').append ($compiled)
     i++
   updatePositions()
