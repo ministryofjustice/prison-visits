@@ -30,4 +30,5 @@ group :test, :development do
   gem 'rspec_junit_formatter'
   gem 'poltergeist'
   gem 'chromedriver-helper'
+  gem 'database_cleaner'
 end
