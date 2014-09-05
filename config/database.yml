@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: pvb_development
+
+test:
+  <<: *default
+  database: pvb_test
+
+production:
+  adapter: postgresql
+  host: <%= ENV['DB_HOST'] %>
+  encoding: unicode
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+  database: <%= ENV['DB_NAME'] %>
+  pool: 5
