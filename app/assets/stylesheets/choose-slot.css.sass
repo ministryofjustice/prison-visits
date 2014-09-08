@@ -5,6 +5,10 @@
   > p
     margin: .5em 0
 
+    @include media(mobile)
+      margin-right: 15px
+      margin-left: 15px
+
 .SlotPicker-choice
   margin: 0
   padding: 0
@@ -34,3 +38,39 @@
 
     &:first-child
       margin-top: 0
+
+.SlotPicker-days
+  margin: 0
+
+.SlotPicker-dayTitle
+  margin: 0
+
+.SlotPicker-position span
+  line-height: normal
+
+@include media(mobile)
+  ul.BookingCalendar-legend
+    margin: 0
+    padding: 0 15px 20px
+    background: #dee0e2
+
+    li
+      font-size: 16px
+    
+  
+  .BookingCalendar-legendBox
+    border: 2px solid #999
+  
+  .BookingCalendar-legendBox--available
+    background: $white
+  
+
+.BookingCalendar-legendDesc
+  font-size: 16px
+
+.BookingCalendar-navFull
+  display: none
+  @include media($size: 860px)
+    display: inline
+  
+

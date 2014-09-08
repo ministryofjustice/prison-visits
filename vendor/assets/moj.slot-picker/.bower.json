@@ -1,6 +1,6 @@
 {
   "name": "moj.slot-picker",
-  "version": "0.20.1",
+  "version": "0.21.1",
   "main": "dist/javascript/moj.slot-picker.css",
   "ignore": [
     ".jshintrc",
@@ -16,11 +16,11 @@
   ],
   "description": "A Web user interface for selecting 3 time slots in order of preference",
   "license": "OGL2 http://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/",
-  "_release": "0.20.1",
+  "_release": "0.21.1",
   "_resolution": {
     "type": "version",
-    "tag": "0.20.1",
-    "commit": "75dd1bf693060cffbee4e4e2711deadee2f7340e"
+    "tag": "0.21.1",
+    "commit": "fe17dbd29815712d1de78f4ee83391491891ac61"
   },
   "_source": "git://github.com/ministryofjustice/moj_slotpicker.git",
   "_target": "*",

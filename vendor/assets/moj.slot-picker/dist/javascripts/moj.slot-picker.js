@@ -1,6 +1,6 @@
 /**
  * moj.slot-picker - UI components for selecting time slots
- * @version v0.20.1
+ * @version v0.21.1
  * @link https://github.com/ministryofjustice/moj_slotpicker
  * @license OGL v2.0 - https://github.com/ministryofjustice/moj_slotpicker/blob/master/LICENCE.md
  */
@@ -17,7 +17,7 @@
     this.cacheElsRendered($el);
     this.bindEvents();
     this.activateOriginalSlots(this.settings.originalSlots);
-    this.settings.navMonths = this.setupNav(this.settings.bookableTimes);
+    this.settings.navMonths = this.getMonthPositions(this.settings.bookableTimes);
     this.updateNav(0);
     this.activateNextOption();
     return this;
@@ -116,15 +116,18 @@
       var len = this.settings.bookableDates.length,
           from = this.settings.bookableDates[0],
           to = this.settings.bookableDates[len-1],
-          $beyond = $('.SlotPicker-day--beyond');
+          $beyond = $('.SlotPicker-day--beyond'),
+          tomorrow = new Date(this.settings.today.getTime());
+
+      tomorrow.setDate(tomorrow.getDate() + 1);
 
       $('.SlotPicker-days', this.$_el).append(this.buildDays());
       $('.BookingCalendar-datesBody', this.$_el).append(this.buildDates(from, to));
       $('.SlotPicker-choices', this.$_el).prepend(this.buildChoices());
-      $beyond.html($beyond.html().replace('{{ daysInRange }}', moj.Helpers.daysInRange(moj.Helpers.dateFromIso(from), moj.Helpers.dateFromIso(to))));
+      $beyond.html($beyond.html().replace('{{ daysInRange }}', moj.Helpers.daysInRange(tomorrow, moj.Helpers.dateFromIso(to))));
     },
 
-    setupNav: function(dates) {
+    getMonthPositions: function(dates) {
       var months = [], lastMonth, day, month;
       
       for (day in dates) {
@@ -142,19 +145,33 @@
     },
 
     updateNav: function(i) {
+      var prev = $('.BookingCalendar-nav--prev', this.$_el),
+          next = $('.BookingCalendar-nav--next', this.$_el);
+
       if (i > 0) {
-        $('.BookingCalendar-nav--prev', this.$_el).addClass('is-active').text(this.settings.navMonths[i - 1].label);
+        prev.addClass('is-active');
+        prev.html(this.navLabel(this.settings.navMonths[i - 1].label));
       } else {
-        $('.BookingCalendar-nav--prev', this.$_el).removeClass('is-active');
+        prev.removeClass('is-active');
       }
 
       if (i + 1 < this.settings.navMonths.length) {
-        $('.BookingCalendar-nav--next', this.$_el).addClass('is-active').text(this.settings.navMonths[i + 1].label);
+        next.addClass('is-active');
+        next.html(this.navLabel(this.settings.navMonths[i + 1].label));
       } else {
-        $('.BookingCalendar-nav--next', this.$_el).removeClass('is-active');
+        next.removeClass('is-active');
       }
 
       this.$currentMonth.text(this.settings.navMonths[i].label);
+    },
+
+    navLabel: function(text) {
+      var template = moj.Helpers.getTemplate('#BookingCalendar-tmplNav');
+
+      return template({
+        monthAbr: text.substr(0, 3),
+        monthRemaining: text.substr(3)
+      });
     },
 
     nudgeNav: function(i) {
