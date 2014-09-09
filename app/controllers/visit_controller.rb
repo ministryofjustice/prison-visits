@@ -35,7 +35,7 @@ class VisitController < ApplicationController
     session[:visit] ||= Visit.new(prisoner: Prisoner.new, visitors: [Visitor.new], slots: [], visit_id: (visit_id = SecureRandom.hex))
     session[:just_testing] = params[:testing].present?
     logstasher_add_visit_id(visit_id)
-    response.set_cookie 'cookies-enabled', 1
+    response.set_cookie 'cookies-enabled', value: 1, secure: request.ssl?, httponly: true, domain: service_domain
   end
 
   def update_prisoner_details
@@ -195,6 +195,10 @@ class VisitController < ApplicationController
 
   def just_testing?
     session[:just_testing]
+  end
+
+  def service_domain
+    SERVICE_DOMAIN
   end
 
   def trim_whitespace_from_values(p)

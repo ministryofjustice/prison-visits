@@ -9,6 +9,8 @@ describe VisitController do
 
   before :each do
     ActionMailer::Base.deliveries.clear
+    controller.stub(:service_domain => 'lol.biz.info')
+    request.stub(:ssl? => true)
   end
 
   let(:prisoner_hash) do
@@ -81,6 +83,16 @@ describe VisitController do
           get :prisoner_details
           response.should be_success
         }.to change { session[:visit] }
+      end
+
+      it "sets the 'cookies-enabled' cookie" do
+        get :prisoner_details
+        response.should be_success
+        response['Set-Cookie'].tap do |c|
+          c.should =~ /secure/i
+          c.should =~ /httponly/i
+          c.should =~ /domain=lol.biz.info/i
+        end
       end
 
       context "given valid prisoner details" do

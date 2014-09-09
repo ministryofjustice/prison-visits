@@ -18,7 +18,7 @@ describe VisitHelper do
     it "provides a hash of slots by day" do
       helper.visiting_slots.should == {
           :mon => [["1400", "1600"]],
-          :sat => [["0915", "1115"], ["1400", "1600"]],
+          :sat => [["0930", "1130"], ["1400", "1600"]],
           :sun => [["1400", "1600"]],
           :thu => [["1400", "1600"]],
           :tue => [["1400", "1600"]],
