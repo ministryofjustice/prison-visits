@@ -35,16 +35,20 @@
 - content_for :body_classes, "#{config_item(:phase).to_s.downcase} #{config_item(:product_type).to_s.downcase} #{controller.controller_name} #{controller.action_name}"
 
 
-- content_for :feedback_link_override do
-  %p
-    BETA: This is a new service. If you need any help with using it, please 
-    = succeed "." do
-      = link_to("contact us", new_feedback_path(referrer: request.original_url))
-
+- content_for :cookie_message do
+  GOV.UK uses cookies to make the site simpler. 
+  = succeed '.' do
+    = link_to "Find out more about cookies", cookies_path
 
 - content_for :content_override do
   %main#wrapper(role="main")
     .container
+      .phase-banner
+        %p
+          This is a new service. If you need any help with using it, please 
+          = succeed "." do
+            = link_to("contact us", new_feedback_path(referrer: request.original_url))
+
       %section#content.content.inner.cf
         - if controller.controller_name == 'visit'
           = render "shared/cookie_required"
@@ -61,16 +65,9 @@
 
 
 - content_for :footer_app_links do
-  %li
-    %a{href: "http://www.gov.uk/help"} Help
-  %li
-    = link_to "Cookies", cookies_path
-  %li
-    = link_to "Terms & Conditions", terms_and_conditions_path
-  %li
-    = link_to "Feedback", new_feedback_path(referrer: request.original_url)
-  %li
-    %a{href: "http://www.gov.uk/cymraeg"} Cymraeg
+  %li= link_to "Cookies", cookies_path
+  %li= link_to "Terms and Conditions", terms_and_conditions_path
+  %li= link_to "Contact us", new_feedback_path(referrer: request.original_url)
 
 
 = render template: "layouts/moj_template"
