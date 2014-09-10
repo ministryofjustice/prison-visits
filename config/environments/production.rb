@@ -52,7 +52,7 @@ PrisonVisits2::Application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
   # Use a different cache store in production.
-  config.cache_store = :redis_store, ENV['REDIS_URL'], { expires_in: 6.hours }
+  # config.cache_store = :redis_store, ENV['REDIS_URL'], { expires_in: 6.hours }
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = "http://assets.example.com"

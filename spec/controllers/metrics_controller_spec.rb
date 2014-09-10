@@ -1,14 +1,6 @@
 require 'spec_helper'
 
 describe MetricsController do
-  let :mock_refresher do
-    double('cache_refresher', fetch: CacheRefresher::Dataset.new(0, {}), update: CacheRefresher::Dataset.new(1, {}))
-  end
-
-  before :each do
-    controller.stub(:cache_refresher).and_return(mock_refresher)
-  end
-
   context "IP & key restrictions" do
     it "are enabled" do
       controller.should_receive(:reject_untrusted_ips_and_without_key!)
@@ -27,6 +19,7 @@ describe MetricsController do
       end
 
       it "renders a csv view" do
+        CSVFormatter.any_instance.should_receive(:generate).once
         get :index, format: :csv
       end
 

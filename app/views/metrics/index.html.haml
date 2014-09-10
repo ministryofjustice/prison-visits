@@ -53,25 +53,25 @@
       %td.prison_name
         = prison
       %td.narrow.align-right
-        = @dataset[prison].total_visits
+        = @dataset.total_visits[prison]
       %td.narrow.align-right
-        = @dataset[prison].waiting_visits
+        = @dataset.waiting_visits[prison]
       %td.narrow.align-right
-        = @dataset[prison].overdue_visits(@overdue_threshold)
+        = @dataset.overdue_visits[prison]
       %td.narrow.align-right
-        = @dataset[prison].rejected_visits
+        = @dataset.rejected_visits[prison]
       %td.narrow.align-right
-        = @dataset[prison].confirmed_visits
+        = @dataset.confirmed_visits[prison]
       %td.align-right
-        = display_interval(@dataset[prison].end_to_end_time.percentile(95))
+        = display_interval(@dataset.end_to_end_times[prison])
       %td.align-right
-        = display_interval(@dataset[prison].processing_time.percentile(95))
+        = display_interval(@dataset.processing_times[prison])
       %td.align-right
-        = display_percent(@dataset[prison].percent_rejected)
+        = display_percent(@dataset.percent_rejected(prison))
       %td.align-right
-        = display_percent(@dataset[prison].percent_rejected(Confirmation::NO_SLOT_AVAILABLE))
+        = display_percent(@dataset.percent_rejected(prison, Confirmation::NO_SLOT_AVAILABLE))
       %td.align-right
-        = display_percent(@dataset[prison].percent_rejected(Confirmation::NOT_ON_CONTACT_LIST))
+        = display_percent(@dataset.percent_rejected(prison, Confirmation::NOT_ON_CONTACT_LIST))
       %td.align-right
-        = display_percent(@dataset[prison].percent_rejected(Confirmation::NO_VOS_LEFT))
+        = display_percent(@dataset.percent_rejected(prison, Confirmation::NO_VOS_LEFT))
 
