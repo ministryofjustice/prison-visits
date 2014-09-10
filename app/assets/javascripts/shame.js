@@ -45,6 +45,10 @@ $(function () {
     var but = $(this);
     but[but.get(0).tagName == 'INPUT' ? 'val' : 'text'](but.data('alt')).addClass('disabled');
   });
+
+  $('#ad-help').on('click', function () {
+    ga('send', 'event', 'external-link', 'ad-help');
+  });
 });
 
 
