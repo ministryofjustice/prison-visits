@@ -1,25 +1,5 @@
 - content_for :header, 'Choose 3 options for your visit'
 
-- content_for :progress_bar do
-  %ol.progress
-    %li.progress--completed
-      .progress__step
-        %span.progress__label Prisoner details
-    %li.progress--completed.progress--previous
-      .progress__step
-        %span.progress__label Visitor details
-    %li.progress--active
-      .progress__step
-        %span.visuallyhidden Current step
-        %span.progress__label Choose time
-    %li
-      .progress__step
-        %span.progress__label Check request
-    %li
-      .progress__step
-        %span.progress__label Send request
-
-
 = render 'slotpicker_templates'
 
 %ul.visible--js-enabled
