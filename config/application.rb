@@ -27,9 +27,9 @@ module PrisonVisits2
     # config.i18n.default_locale = :de
 
     # app title appears in the header bar
-    config.app_title = 'Prison visits booking'
+    config.app_title = 'Visit someone in prison'
     # Proposition Title (Populates proposition header)
-    config.proposition_title = 'Prison visits booking'
+    config.proposition_title = 'Visit someone in prison'
     # Current Phase (Sets the current phase and the colour of phase tags)
     # Presumed values: alpha, beta, live
     config.phase = 'live'
