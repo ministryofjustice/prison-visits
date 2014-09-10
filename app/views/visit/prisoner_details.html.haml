@@ -1,25 +1,5 @@
 - content_for :header, 'Who are you visiting?'
 
-- content_for :progress_bar do
-  %ol.progress
-    %li.progress--active
-      .progress__step
-        %span.visuallyhidden Current step
-        %span.progress__label Prisoner details
-    %li
-      .progress__step
-        %span.progress__label Visitor details
-    %li
-      .progress__step
-        %span.progress__label Choose time
-    %li
-      .progress__step
-        %span.progress__label Check request
-    %li
-      .progress__step
-        %span.progress__label Send request
-
-
 .Grid
   .Grid-2-3
     %ul
@@ -94,3 +74,4 @@
       var offset = clientTime - serverTime;
       ga('set', 'metric7', parseInt(offset, 10));
 
+    = render 'ad_help'

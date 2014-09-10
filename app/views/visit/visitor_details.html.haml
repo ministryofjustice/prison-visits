@@ -1,25 +1,5 @@
 - content_for :header, 'Visitor 1'
 
-- content_for :progress_bar do
-  %ol.progress
-    %li.progress--completed.progress--previous
-      .progress__step
-        %span.progress__label Prisoner details
-    %li.progress--active
-      .progress__step
-        %span.visuallyhidden Current step
-        %span.progress__label Visitor details
-    %li
-      .progress__step
-        %span.progress__label Choose time
-    %li
-      .progress__step
-        %span.progress__label Check request
-    %li
-      .progress__step
-        %span.progress__label Send request
-
-
 .Grid
   .Grid-2-3
   
@@ -75,3 +55,5 @@
       = f.fields_for Visitor.new, index: '' do |visitor_form|
         %script#additional-visitor(type="text/html")
           = render 'visitor_fields', f: visitor_form, index: '{{index}}', visitor: Visitor.new, js_template: true
+
+    = render 'ad_help'

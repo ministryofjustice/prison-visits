@@ -9,7 +9,6 @@ PrisonVisits2::Application.routes.draw do
       post "/#{n}", action: "update_#{label}", as: "update_#{label}"
     end
     get "/abandon", action: :abandon
-    get "/", to: redirect("/prisoner-details")
     get "/unavailable", action: :unavailable
     get "/status/:id", action: :status, as: :visit_status
     post "/webhooks/email/:auth", controller: 'webhooks', action: 'email'
@@ -35,4 +34,6 @@ PrisonVisits2::Application.routes.draw do
 
   get "metrics/weekly" => "metrics#weekly"
   get "metrics(/:prison)(.:format)" => "metrics#index"
+
+  get "/", to: redirect("https://www.gov.uk/prisonvisits")
 end

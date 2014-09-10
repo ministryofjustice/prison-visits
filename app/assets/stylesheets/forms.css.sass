@@ -1,3 +1,6 @@
+@mixin clearfix-vertical-flow
+  border-bottom: 1px solid transparent
+
 .validation-summary,
 .validation-error
   padding: 1em
@@ -25,6 +28,8 @@ form .validation-summary
 
 
 form
+  @include clearfix-vertical-flow
+
   .form-hint
     color: $grey-1
     margin: 0
