@@ -5,6 +5,15 @@ GIT
   specs:
     prison_staff_info (0.0.2)
 
+GIT
+  remote: git@github.com:shadabahmed/logstasher.git
+  revision: ea99f9254c1e4e1d776b622f4a81d37c58091173
+  branch: issue-49
+  specs:
+    logstasher (0.6.1)
+      logstash-event (~> 1.1.0)
+      request_store
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -94,9 +103,6 @@ GEM
     json (1.8.1)
     kgio (2.8.0)
     logstash-event (1.1.5)
-    logstasher (0.6.1)
-      logstash-event (~> 1.1.0)
-      request_store
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -227,7 +233,7 @@ DEPENDENCIES
   elasticsearch
   govuk_frontend_toolkit (= 1.5.0)
   haml-rails
-  logstasher
+  logstasher!
   mail
   moj_template (= 0.16.1)
   parallel
