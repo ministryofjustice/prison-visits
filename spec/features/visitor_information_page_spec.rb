@@ -5,7 +5,7 @@ feature "visitor enters visitor information" do
 
   before :each do
     EmailValidator.any_instance.stub(:has_mx_records).and_return(true)
-    visit '/'
+    visit '/prisoner-details'
     enter_prisoner_information
   end
 

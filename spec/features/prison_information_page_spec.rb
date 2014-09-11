@@ -5,7 +5,7 @@ feature "visitor enters prisoner information" do
 
   context "and leaves fields blank" do
     it "validation messages are present" do
-      visit '/'
+      visit '/prisoner-details'
 
       click_button 'Continue'
 
@@ -19,7 +19,7 @@ feature "visitor enters prisoner information" do
 
   context "and they fill out all fields" do
     it "prompts for visitor information" do
-      visit '/'
+      visit '/prisoner-details'
 
       enter_prisoner_information
 

@@ -6,7 +6,7 @@ feature "visitor selects a date" do
   before :each do
     VisitController.any_instance.stub(:metrics_logger).and_return(MockMetricsLogger.new)
     EmailValidator.any_instance.stub(:has_mx_records).and_return(true)
-    visit '/'
+    visit '/prisoner-details'
     enter_prisoner_information
     enter_visitor_information
     click_button 'Continue'
