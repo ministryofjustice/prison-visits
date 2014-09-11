@@ -1298,7 +1298,23 @@ Haverigg:
       - 1400-1600
     wed:
       - 1400-1600
-Highpoint:
+Highpoint North:  
+  enabled: true
+  phone: 01440 743134
+  email: 'socialvisits.highpoint@hmps.gsi.gov.uk'
+  address:
+    - Stradishall
+    - 'CB8 9YG '
+  unbookable:
+    - 2014-12-25
+  slots:
+    fri:
+      - 1430-1630
+    sat:
+      - 1400-1600
+    sun:
+      - 1400-1600
+Highpoint South:
   enabled: true
   phone: 01440 743134
   email: 'socialvisits.highpoint@hmps.gsi.gov.uk'
