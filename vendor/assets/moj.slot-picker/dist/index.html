@@ -58,15 +58,22 @@
 
 <script type="text/html" id="SlotPicker-tmplChoice">
   <div class="SlotPicker-choice">
-    <div class="SlotPicker-position"><span>{{ num }}</span></div>
-    <p class="SlotPicker-date"></p>
-    <p class="SlotPicker-time"></p>
-    <p class="SlotPicker-prompt">Choose a date and time from the calendar</p>
-    {{#if notFirst}}
-      <a class="SlotPicker-icon SlotPicker-icon--promote" href="#">Promote</a>
-    {{/if}}
-    <a class="SlotPicker-icon SlotPicker-icon--remove" href="#">Remove</a>
+    <div class="SlotPicker-choiceInner">
+      <div class="SlotPicker-position"><span>{{ num }}</span></div>
+      <div class="SlotPicker-choiceContent">
+        <p class="SlotPicker-date"></p>
+        <p class="SlotPicker-time"></p>
+      </div>
+      <p class="SlotPicker-prompt">Choose a date and time from the calendar</p>
+      {{#unless first}}
+        <a class="SlotPicker-icon SlotPicker-icon--promote" href="#">Promote</a>
+      {{/unless}}
+      <a class="SlotPicker-icon SlotPicker-icon--remove" href="#">Remove</a>
+    </div>
   </div>
+  {{#if first}}
+    <p>Choose two alternative dates in case your first choice isn’t available.</p>
+  {{/if}}
 </script>
 
 <script type="text/html" id="DateSlider-tmplDay">
@@ -247,7 +254,7 @@
 
 <p><a href="#" id="displayOutput">Alert chosen slots</a></p>
 
-<script src="../vendor/modernizr.custom.44058.js"></script>
+<script src="../vendor/modernizr.custom.85598.js"></script>
 <script src="../vendor/jquery-1.11.0.js"></script>
 <script src="../vendor/handlebars-v1.3.0.js"></script>
 

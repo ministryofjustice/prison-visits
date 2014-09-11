@@ -44,20 +44,22 @@
 
 <script type="text/html" id="SlotPicker-tmplChoice">
   <div class="SlotPicker-choice">
-    <div class="inner">
+    <div class="SlotPicker-choiceInner">
       <div class="SlotPicker-position"><span>{{ num }}</span></div>
-      <p class="SlotPicker-date"></p>
-      <p class="SlotPicker-time"></p>
+      <div class="SlotPicker-choiceContent">
+        <p class="SlotPicker-date"></p>
+        <p class="SlotPicker-time"></p>
+      </div>
       <p class="SlotPicker-prompt">Choose a date and time from the calendar</p>
-      {{#if notFirst}}
+      {{#unless first}}
         <a class="SlotPicker-icon SlotPicker-icon--promote" href="#">Promote</a>
-      {{/if}}
+      {{/unless}}
       <a class="SlotPicker-icon SlotPicker-icon--remove" href="#">Remove</a>
     </div>
   </div>
-  {{#unless notFirst}}
+  {{#if first}}
     <p>Choose two alternative dates in case your first choice isn't available.</p>
-  {{/unless}}
+  {{/if}}
 </script>
 
 <script type="text/html" id="DateSlider-tmplDay">
