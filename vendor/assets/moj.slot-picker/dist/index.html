@@ -52,17 +52,28 @@
   </td>
 </script>
 
+<script type="text/html" id="BookingCalendar-tmplNav">
+  {{ monthAbr }}<span class="BookingCalendar-navFull">{{ monthRemaining }}</span>
+</script>
+
 <script type="text/html" id="SlotPicker-tmplChoice">
-  <li>
-    {{#if notFirst}}
-      <a class="SlotPicker-icon SlotPicker-icon--promote" href="#">Promote</a>
-    {{/if}}
-    <a class="SlotPicker-icon SlotPicker-icon--remove" href="#">Remove</a>
-    <span class="SlotPicker-position">{{ num }}</span>
-    <p class="SlotPicker-date"></p>
-    <p class="SlotPicker-time"></p>
-    <p class="SlotPicker-prompt">Choose a date and time from the calendar</p>
-  </li>
+  <div class="SlotPicker-choice">
+    <div class="SlotPicker-choiceInner">
+      <div class="SlotPicker-position"><span>{{ num }}</span></div>
+      <div class="SlotPicker-choiceContent">
+        <p class="SlotPicker-date"></p>
+        <p class="SlotPicker-time"></p>
+      </div>
+      <p class="SlotPicker-prompt">Choose a date and time from the calendar</p>
+      {{#unless first}}
+        <a class="SlotPicker-icon SlotPicker-icon--promote" href="#">Promote</a>
+      {{/unless}}
+      <a class="SlotPicker-icon SlotPicker-icon--remove" href="#">Remove</a>
+    </div>
+  </div>
+  {{#if first}}
+    <p>Choose two alternative dates in case your first choice isn’t available.</p>
+  {{/if}}
 </script>
 
 <script type="text/html" id="DateSlider-tmplDay">
@@ -136,12 +147,12 @@
 
     <ul class="BookingCalendar-legend">
       <li>
-        <div class="BookingCalendar-legendBox"></div>
-        Available
+        <span class="BookingCalendar-legendBox"></span>
+        <p class="BookingCalendar-legendDesc">Available</p>
       </li>
       <li>
-        <div class="BookingCalendar-legendBox BookingCalendar-legendBox--unavailable"></div>
-        Unavailable
+        <span class="BookingCalendar-legendBox BookingCalendar-legendBox--unavailable"></span>
+        <p class="BookingCalendar-legendDesc">Unavailable</p>
       </li>
     </ul>
   </div>
@@ -168,8 +179,6 @@
   </div>
 
   <div class="SlotPicker-choices">
-    <ul>
-    </ul>
     <p class="SlotPicker-promoteHelp">Use the arrows to put your visit choices in the order that suits you best.</p>
   </div>
 
@@ -245,7 +254,7 @@
 
 <p><a href="#" id="displayOutput">Alert chosen slots</a></p>
 
-<script src="../vendor/modernizr.custom.44058.js"></script>
+<script src="../vendor/modernizr.custom.85598.js"></script>
 <script src="../vendor/jquery-1.11.0.js"></script>
 <script src="../vendor/handlebars-v1.3.0.js"></script>
 

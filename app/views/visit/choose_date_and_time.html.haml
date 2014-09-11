@@ -1,10 +1,8 @@
-- content_for :header, 'Choose 3 options for your visit'
+- content_for :header, 'When do you want to visit?'
 
 = render 'slotpicker_templates'
 
-%ul.visible--js-enabled
-  %li we'll confirm your booking within 3 working days
-  %li we'll try to accommodate your first choice but it's not always possible
+%p.visible--js-enabled Pick the day you want to visit from the calendar.
 
 - if visit.slots.any? {|s| s.errors.any?}
   #error-summary.validation-summary.group(role="alert" tabindex="-1" aria-labelledby="error-heading")
@@ -53,10 +51,10 @@
     %ul.BookingCalendar-legend
       %li
         .BookingCalendar-legendBox.BookingCalendar-legendBox--available
-        Visit days
+        %p.BookingCalendar-legendDesc Visit days
       %li
         .BookingCalendar-legendBox.BookingCalendar-legendBox--unavailable
-        Non-visit days
+        %p.BookingCalendar-legendDesc Non-visit days
 
     .SlotPicker-timeSlots
       %ul.SlotPicker-days
@@ -76,7 +74,6 @@
   .left-column
 
     .SlotPicker-choices.visible--js-enabled
-      %ul
       %p.SlotPicker-promoteHelp Use the arrows to put your visit choices in the order that suits you best.
 
 

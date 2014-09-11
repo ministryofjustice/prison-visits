@@ -1,6 +1,6 @@
 /**
  * moj.slot-picker - UI components for selecting time slots
- * @version v0.19.2
+ * @version v0.21.1
  * @link https://github.com/ministryofjustice/moj_slotpicker
  * @license OGL v2.0 - https://github.com/ministryofjustice/moj_slotpicker/blob/master/LICENCE.md
  */
@@ -28,7 +28,7 @@ table.BookingCalendar-dates {
   border-style: solid;
   border-color: #dee0e2;
   border-collapse: collapse;
-  background: image-url("images/unavailable_tile.png"); }
+  background: #dee0e2 image-url("images/unavailable_tile.png"); }
   table.BookingCalendar-dates th,
   table.BookingCalendar-dates td {
     width: 14.28571%; }
@@ -105,33 +105,55 @@ a.BookingCalendar-dateLink .BookingCalendar-day {
   background: #2b8cc4; }
 
 ul.BookingCalendar-legend {
-  overflow: hidden;
   padding: 0;
   list-style: none; }
-  ul.BookingCalendar-legend li {
-    float: left;
-    margin-right: 20px;
+  ul.BookingCalendar-legend > li {
+    display: table-cell;
     font-family: "nta", Arial, sans-serif;
     font-size: 16px;
     line-height: 1.25;
     font-weight: 300;
     text-transform: none; }
     @media (max-width: 640px) {
-      ul.BookingCalendar-legend li {
+      ul.BookingCalendar-legend > li {
         font-size: 14px;
         line-height: 1.14286; } }
-    ul.BookingCalendar-legend li:last-child {
+    ul.BookingCalendar-legend > li:last-child .BookingCalendar-legendDesc {
       margin-right: 0; }
+  @media (max-width: 640px) {
+    ul.BookingCalendar-legend {
+      margin: 0;
+      padding: 0 15px 20px;
+      background: #dee0e2; } }
 
 .BookingCalendar-legendBox {
   float: left;
   width: 29px;
   height: 29px;
   margin: 0 5px 0 0;
+  background: white;
   border: 1px solid #dee0e2; }
+  @media (max-width: 640px) {
+    .BookingCalendar-legendBox {
+      border-width: 2px;
+      border-color: #999999; } }
+
+.BookingCalendar-legendDesc {
+  float: left;
+  margin-right: 1em;
+  font-family: "nta", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.25;
+  font-weight: 300;
+  text-transform: none;
+  line-height: 0; }
+  @media (max-width: 640px) {
+    .BookingCalendar-legendDesc {
+      font-size: 14px;
+      line-height: 1.14286; } }
 
 .BookingCalendar-legendBox--unavailable {
-  background: image-url("images/unavailable_tile.png"); }
+  background: #dee0e2 image-url("images/unavailable_tile.png"); }
 
 .BookingCalendar-header {
   position: relative;
@@ -204,6 +226,12 @@ a.BookingCalendar-nav--next {
       background-position: 100% 10px;
       background-size: 30px; } }
 
+.BookingCalendar-navFull {
+  display: none; }
+  @media (min-width: 769px) {
+    .BookingCalendar-navFull {
+      display: inline; } }
+
 .SlotPicker-timeSlots {
   display: none; }
   .SlotPicker-timeSlots.is-active {
@@ -211,8 +239,7 @@ a.BookingCalendar-nav--next {
 
 .SlotPicker-days {
   overflow: hidden;
-  margin-bottom: 10px;
-  margin-left: 0;
+  margin: 0;
   padding: 0; }
   @media (max-width: 768px) {
     .SlotPicker-days {
@@ -238,7 +265,7 @@ a.BookingCalendar-nav--next {
   font-weight: 400;
   text-transform: none;
   font-weight: 700;
-  margin: 0.2em 0 0.3em; }
+  margin: 0; }
   @media (max-width: 640px) {
     .SlotPicker-dayTitle {
       font-size: 20px;
@@ -291,57 +318,67 @@ a.BookingCalendar-nav--next {
     .SlotPicker-duration {
       display: inline; } }
 
-.SlotPicker-choices ul {
+.SlotPicker-choices {
   zoom: 1;
   margin: 0;
-  padding: 10px;
-  list-style-type: none;
-  background: #dee0e2; }
+  list-style-type: none; }
   @media (min-width: 769px) {
-    .SlotPicker-choices ul {
+    .SlotPicker-choices {
       min-height: 236px; } }
-  .SlotPicker-choices ul li {
+
+.SlotPicker-choice {
+  padding: 10px;
+  background: #dee0e2; }
+  .SlotPicker-choice + .SlotPicker-choice {
+    padding-top: 0; }
+  .SlotPicker-choice .SlotPicker-choiceInner {
     cursor: pointer;
+    overflow: hidden;
     position: relative;
-    margin-top: 10px;
-    padding: 10px;
     min-height: 60px;
+    padding: 10px;
     background: white;
     border: 1px solid #bfc1c3; }
-    .SlotPicker-choices ul li:first-child {
-      margin-top: 0; }
-    .SlotPicker-choices ul li .SlotPicker-prompt {
-      display: none;
-      padding: 5px 18%;
-      text-align: center;
-      color: #6f777b; }
-      @media (max-width: 640px) {
-        .SlotPicker-choices ul li .SlotPicker-prompt {
-          padding-left: 10%;
-          padding-right: 10%; } }
-    .SlotPicker-choices ul li.is-clicked .SlotPicker-prompt {
+  .SlotPicker-choice .SlotPicker-prompt {
+    display: none;
+    margin-left: 55px;
+    padding: 5px 18%;
+    text-align: center;
+    color: #6f777b; }
+    @media (max-width: 640px) {
+      .SlotPicker-choice .SlotPicker-prompt {
+        margin-left: 45px;
+        padding-left: 10%;
+        padding-right: 10%; } }
+  .SlotPicker-choice.is-clicked .SlotPicker-prompt {
+    display: block; }
+  .SlotPicker-choice.is-chosen .SlotPicker-choiceInner {
+    padding-left: 65px;
+    padding-right: 80px; }
+    @media (max-width: 640px) {
+      .SlotPicker-choice.is-chosen .SlotPicker-choiceInner {
+        padding-left: 55px; } }
+    .SlotPicker-choice.is-chosen .SlotPicker-choiceInner p {
+      font-size: 24px; }
+    .SlotPicker-choice.is-chosen .SlotPicker-choiceInner .SlotPicker-prompt {
+      display: none; }
+    .SlotPicker-choice.is-chosen .SlotPicker-choiceInner .SlotPicker-icon--remove,
+    .SlotPicker-choice.is-chosen .SlotPicker-choiceInner .SlotPicker-icon--promote {
       display: block; }
-    .SlotPicker-choices ul li.is-chosen {
-      padding-left: 65px;
-      padding-right: 80px; }
-      @media (max-width: 640px) {
-        .SlotPicker-choices ul li.is-chosen {
-          padding-left: 55px; } }
-      .SlotPicker-choices ul li.is-chosen p {
-        font-size: 24px; }
-      .SlotPicker-choices ul li.is-chosen .SlotPicker-prompt {
-        display: none; }
-      .SlotPicker-choices ul li.is-chosen .SlotPicker-icon--remove,
-      .SlotPicker-choices ul li.is-chosen .SlotPicker-icon--promote {
-        display: block; }
-      .SlotPicker-choices ul li.is-chosen .SlotPicker-date {
-        font-weight: bold; }
-      .SlotPicker-choices ul li.is-chosen .SlotPicker-position {
-        background-color: #6f777b; }
-    .SlotPicker-choices ul li.is-active .SlotPicker-position {
-      background-color: #2b8cc4; }
-    .SlotPicker-choices ul li p {
-      margin: 0; }
+    .SlotPicker-choice.is-chosen .SlotPicker-choiceInner .SlotPicker-date {
+      font-weight: bold; }
+    .SlotPicker-choice.is-chosen .SlotPicker-choiceInner .SlotPicker-position {
+      background-color: #6f777b; }
+  .SlotPicker-choice.is-active .SlotPicker-position {
+    background-color: #2b8cc4; }
+  .SlotPicker-choice p {
+    margin: 0; }
+
+.SlotPicker-choiceContent {
+  position: relative;
+  top: 0;
+  -webkit-transition: top 0.3s ease-out;
+  transition: top 0.3s ease-out; }
 
 .SlotPicker-promoteHelp {
   display: none; }
@@ -350,6 +387,7 @@ a.BookingCalendar-nav--next {
 
 .SlotPicker-position {
   position: absolute;
+  top: 10px;
   left: 10px;
   height: 100%;
   background: #bfc1c3;
@@ -357,11 +395,16 @@ a.BookingCalendar-nav--next {
   width: 55px;
   font-size: 48px;
   font-weight: bold;
-  text-align: center;
   margin: -10px 0 0 -10px; }
   @media (max-width: 640px) {
     .SlotPicker-position {
       width: 45px; } }
+  .SlotPicker-position span {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    margin-top: -0.6em;
+    text-align: center; }
 
 .SlotPicker-icon {
   display: none;

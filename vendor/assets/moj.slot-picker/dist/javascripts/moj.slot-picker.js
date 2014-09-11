@@ -1,6 +1,6 @@
 /**
  * moj.slot-picker - UI components for selecting time slots
- * @version v0.19.2
+ * @version v0.21.1
  * @link https://github.com/ministryofjustice/moj_slotpicker
  * @license OGL v2.0 - https://github.com/ministryofjustice/moj_slotpicker/blob/master/LICENCE.md
  */
@@ -17,7 +17,7 @@
     this.cacheElsRendered($el);
     this.bindEvents();
     this.activateOriginalSlots(this.settings.originalSlots);
-    this.settings.navMonths = this.setupNav(this.settings.bookableTimes);
+    this.settings.navMonths = this.getMonthPositions(this.settings.bookableTimes);
     this.updateNav(0);
     this.activateNextOption();
     return this;
@@ -27,7 +27,6 @@
     
     defaults: {
       optionLimit: 3,
-      leadDays: 3,
       singleUnavailableMsg: true,
       selections: 'has-selections',
       bookableDates: [],
@@ -52,7 +51,7 @@
     },
 
     cacheElsRendered: function($el) {
-      this.$choice = $('.SlotPicker-choices li', $el);
+      this.$choice = $('.SlotPicker-choice', $el);
       this.$currentMonth = $('.BookingCalendar-currentMonth', $el);
     },
 
@@ -80,8 +79,7 @@
       this.$_el.on('click', '.SlotPicker-icon--promote', function(e) {
         e.preventDefault();
         e.stopPropagation();
-        self.promoteSlot($(this).closest('li').index());
-        self.processSlots();
+        self.promoteSlot($(this));
       });
 
       this.$_el.on('click chosen', '.BookingCalendar-dateLink, .DateSlider-largeDates li', function(e) {
@@ -101,31 +99,56 @@
         self.nudgeNav(-1);
       });
 
-      this.$_el.on('click', '.SlotPicker-choices li.is-active', function() {
+      this.$_el.on('click', '.SlotPicker-choice.is-active', function() {
         $(this).addClass('is-clicked');
         // scroll - top of DateSlider
         self.confirmVisibility($('.DateSlider').first(), 'top');
       });
 
-      this.$_el.on('click', '.SlotPicker-choices li.is-chosen', function() {
+      this.$_el.on('click', '.SlotPicker-choice.is-chosen', function() {
         var date = $(this).find('.SlotPicker-icon--remove').data('slot-option').attr('id').split('slot-')[1].substr(0, 10);
         $('.BookingCalendar-dateLink[data-date="' + date + '"]').click();
       });
+    },
+
+    promoteSlot: function(slot) {
+      var promoted = slot.closest('.SlotPicker-choice'),
+          index = promoted.index('.SlotPicker-choice'),
+          demoted = $('.SlotPicker-choice:eq(' + (index - 1) + ')'),
+          h = promoted.find('.SlotPicker-choiceInner').height() + parseInt(promoted.find('.SlotPicker-choiceInner').css('padding-top')),
+          self = this;
+      
+      var promote = function() {
+        self.shiftSlot(index);
+        self.processSlots();
+      };
+
+      var transition = function() {
+        return Modernizr.csstransitions ? 300 : 0;
+      };
+      
+      promoted.find('.SlotPicker-choiceContent').css('top', -h + 'px');
+      demoted.find('.SlotPicker-choiceContent').css('top', h + 'px');
+
+      setTimeout(function(){promote()}, transition());
     },
 
     renderElements: function() {
       var len = this.settings.bookableDates.length,
           from = this.settings.bookableDates[0],
           to = this.settings.bookableDates[len-1],
-          $beyond = $('.SlotPicker-day--beyond');
+          $beyond = $('.SlotPicker-day--beyond'),
+          tomorrow = new Date(this.settings.today.getTime());
+
+      tomorrow.setDate(tomorrow.getDate() + 1);
 
       $('.SlotPicker-days', this.$_el).append(this.buildDays());
       $('.BookingCalendar-datesBody', this.$_el).append(this.buildDates(from, to));
-      $('.SlotPicker-choices ul', this.$_el).append(this.buildChoices());
-      $beyond.html($beyond.html().replace('{{ daysInRange }}', moj.Helpers.daysInRange(moj.Helpers.dateFromIso(from), moj.Helpers.dateFromIso(to))));
+      $('.SlotPicker-choices', this.$_el).prepend(this.buildChoices());
+      $beyond.html($beyond.html().replace('{{ daysInRange }}', moj.Helpers.daysInRange(tomorrow, moj.Helpers.dateFromIso(to))));
     },
 
-    setupNav: function(dates) {
+    getMonthPositions: function(dates) {
       var months = [], lastMonth, day, month;
       
       for (day in dates) {
@@ -143,19 +166,33 @@
     },
 
     updateNav: function(i) {
+      var prev = $('.BookingCalendar-nav--prev', this.$_el),
+          next = $('.BookingCalendar-nav--next', this.$_el);
+
       if (i > 0) {
-        $('.BookingCalendar-nav--prev', this.$_el).addClass('is-active').text(this.settings.navMonths[i - 1].label);
+        prev.addClass('is-active');
+        prev.html(this.navLabel(this.settings.navMonths[i - 1].label));
       } else {
-        $('.BookingCalendar-nav--prev', this.$_el).removeClass('is-active');
+        prev.removeClass('is-active');
       }
 
       if (i + 1 < this.settings.navMonths.length) {
-        $('.BookingCalendar-nav--next', this.$_el).addClass('is-active').text(this.settings.navMonths[i + 1].label);
+        next.addClass('is-active');
+        next.html(this.navLabel(this.settings.navMonths[i + 1].label));
       } else {
-        $('.BookingCalendar-nav--next', this.$_el).removeClass('is-active');
+        next.removeClass('is-active');
       }
 
       this.$currentMonth.text(this.settings.navMonths[i].label);
+    },
+
+    navLabel: function(text) {
+      var template = moj.Helpers.getTemplate('#BookingCalendar-tmplNav');
+
+      return template({
+        monthAbr: text.substr(0, 3),
+        monthRemaining: text.substr(3)
+      });
     },
 
     nudgeNav: function(i) {
@@ -292,6 +329,7 @@
       $slot.find('.SlotPicker-date').text(day);
       $slot.find('.SlotPicker-time').text(time + ', ' + duration);
       $slot.find('.SlotPicker-icon--remove').data('slot-option', checkbox);
+      $slot.find('.SlotPicker-choiceContent').removeAttr('style');
     },
 
     populateSlotInputs: function(index, chosen) {
@@ -357,7 +395,7 @@
       this.markDate(slot);
     },
 
-    promoteSlot: function(pos) {
+    shiftSlot: function(pos) {
       this.settings.currentSlots = this.move(this.settings.currentSlots, pos, pos - 1);
     },
 
@@ -419,7 +457,7 @@
       for (i = 1; i <= opts; i++) {
         out+= template({
           num: i,
-          notFirst: i > 1
+          first: i === 1
         });
       }
 

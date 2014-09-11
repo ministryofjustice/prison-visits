@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.22.1 (2014-09-11)
+* Fix: missing comma IE bug
+
+## 0.22.0 (2014-09-11)
+* New: Transition added to UI choices when reordering
+* Change: Extra element added to UI choices to help style alternatives
+
+## 0.21.1 (2014-09-08)
+* Fix: Correct daysInRange to count days from tomorrow
+
+## 0.21.0 (2014-09-07)
+* New: Responsive month labels
+* Fix: Set background colours on day elements & key
+* Fix: Vertical centre legend
+
+## 0.20.1 (2014-08-28)
+* Fix: Reordering now works when UI choices are adajecent to other elements
+* Fix: failing original slots spec
+
+## 0.20.0 (2014-08-28)
+* Change: UI slots now require 'SlotPicker-choice' class
+
 ## 0.19.2 (2014-07-11)
 * Fix: IE7/8 display wrong time for 0845
 
