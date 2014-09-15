@@ -1107,6 +1107,7 @@ Downview:
       - 1400-1600
 'East Sutton Park':
   enabled: false
+  reason: coming_soon
   phone: ""
   email: socialvisits.eastsuttonpark@hmps.gsi.gov.uk
   address:
@@ -1359,6 +1360,7 @@ Highpoint South:
       - 1345-1545
 Hull:
   enabled: false
+  reason: coming_soon
   phone: '01482 282016'
   email: socialvisits.hull@hmps.gsi.gov.uk
   address:
@@ -2775,6 +2777,7 @@ Hatfield:
   enabled: false
 Kirklevington Grange:
   enabled: false
+  reason: coming_soon
 Long Lartin:
   enabled: false
 Lowdham Grange:
@@ -2794,6 +2797,7 @@ Peterborough:
   enabled: false
 Prescoed:
   enabled: false
+  reason: coming_soon
   finder_slug: usk-prescoed-prescoed
 Rye Hill:
   enabled: false
