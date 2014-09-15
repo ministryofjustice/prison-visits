@@ -979,8 +979,6 @@ Isle of Wight - Albany:
       - 1400-1600
     sun:
       - 1400-1600
-    wed:
-      - 1400-1600
 'Blantyre House':
   enabled: false
   phone: ""
@@ -1416,8 +1414,6 @@ Isle of Wight - Parkhurst:
     sat:
       - 1400-1600
     sun:
-      - 1400-1600
-    wed:
       - 1400-1600
 Leeds:
   enabled: true
