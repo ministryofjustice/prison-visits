@@ -28,7 +28,7 @@ feature "visitor enters visitor information" do
 
         click_button 'Continue'
 
-        expect(page).to have_content('Choose 3 options for your visit')
+        expect(page).to have_content('When do you want to visit?')
       end
     end
 
@@ -43,7 +43,7 @@ feature "visitor enters visitor information" do
           end
 
           click_button 'Continue'
-          expect(page).to have_content('Choose 3 options for your visit')
+          expect(page).to have_content('When do you want to visit?')
         end
       end
     end
