@@ -21,6 +21,10 @@ module VisitHelper
     Rails.configuration.prison_data[source.prisoner.prison_name.to_s]
   end
 
+  def prison_name(source=visit)
+    source.prisoner.prison_name
+  end
+
   def prison_phone
     prison_data['phone']
   end
@@ -51,8 +55,9 @@ module VisitHelper
     ['http://www.justice.gov.uk/contacts/prison-finder', slug].join('/')
   end
 
-  def prison_link(visit)
-    link_to "#{visit.prisoner.prison_name.capitalize} prison", prison_url(visit), :rel => 'external'
+  def prison_link(source=visit, link_text=nil)
+    link_text = link_text ? link_text : "#{visit.prisoner.prison_name.capitalize} prison"
+    link_to link_text, prison_url(visit), :rel => 'external'
   end
 
   def has_anomalies?(day)
