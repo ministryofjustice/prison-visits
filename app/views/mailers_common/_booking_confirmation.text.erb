@@ -12,8 +12,8 @@ Changing or cancelling your visit:
 
 Please don't reply to this email to change any details of your visit. Instead you must contact us directly. Please do this as soon as you can.
 
-* telephone: <%= Rails.configuration.prison_data[@visit.prisoner.prison_name][:phone] %>
-* email: <%= Rails.configuration.prison_data[@visit.prisoner.prison_name][:email] %>
+* telephone: <%= prison_phone %>
+* email: <%= prison_email %>
 
 What to bring
 
