@@ -60,91 +60,11 @@
 .Grid#info
   .Grid-1-3
     %nav
-      %h2 Visiting #{visit.prisoner.prison_name} prison
-      %ul.jump-links
-        %li
-          %a(href='#info-check-spam') If you don't get an email to confirm your visit
-        %li
-          %a(href='#info-id-requirements') ID you need for each visit
-        %li
-          %a(href='#info-cancelling') Changing or cancelling your visit
-        %li
-          %a(href='#info-what-to-bring') What to bring
-        %li
-          %a(href='#info-what-to-expect') What to expect when visiting prison
-        %li
-          %a(href='#info-what-not-to-bring') What not to bring
+      = render 'content/confirmation_page_nav'
 
   .Grid-2-3
     
-    %h2#info-check-spam If you don't get an email to confirm your visit
-
-    %p Follow these steps if you don't get an email to confirm your visit within 3 working days.
-
-    %ul
-      %li Check your spam / junk folder on a computer or tablet (rather than a smart phone). If the confirmation email is there, mark it as 'not spam' so that you don't have problems with future emails.
-      %li
-        Contact the prison
-        - if prison_phone.present?
-          on #{prison_phone} or 
-        by email at #{prison_email_link}. Please don't contact us sooner than 3 working days, as we won't be able to comment on booking requests that are being processed.
-    
-    %h2#info-id-requirements
-      %strong<
-        %acronym(title='Identification') ID
-        you need for each visit
-
-    %p Please make sure you bring ID with you. This can be ONE of the following:
-
-    %ul
-      %li passport, including foreign passports, and expired passports where the photograph is still recognisable
-      %li identity card (including European identity cards) 
-      %li driving licence
-      %li benefits book
-      %li senior citizen's public transport photo pass issued by a local authority
-      %li employer's or student ID card but only if this has a photo and clearly shows your name and the issuing employer or educational establishment
-
-    %p If you don't have one of these forms of ID, you can bring TWO of the following:
-
-    %ul
-      %li birth or marriage certificate
-      %li cheque book or credit or debit card 
-      %li employer's pass or ID or student ID card without photo 
-      %li young person's 'proof of age' card
-      %li trade union or National Students' Union membership card
-      %li rent book
-      %li foreign identity or residents' card
-
-    %p If you have any questions about ID requirements, please contact the prison.
-
-  
-    %h2#info-cancelling Changing or cancelling your visit
-
-    %p If you need to change or cancel your visit, please contact us as soon as you can.
-    %ul
-      - if prison_phone.present?
-        %li telephone: #{prison_phone}
-      - if prison_email.present?
-        %li email: #{prison_email_link}
-
-  
-    %h2#info-what-to-bring What to bring
-
-    %ul
-      %li two forms of ID, one with your address
-      %li a small amount of money for tea and coffee during the visit – you won’t be able to give the prisoner any money
-      %li for more information about what to bring, for example clothes, please see the #{prison_link(visit)} page
-
-  
-    %h2#info-what-to-expect What to expect when visiting prison
-
-    %p You will be searched before entering the prison visiting room. Prison staff may check your pockets, pat you down and ask you to go through a metal detector. Dogs may also be used to detect illegal substances.
-
-  
-    %h2#info-what-not-to-bring What not to bring
-
-    %p Please do not bring anything restricted or illegal to the prison. For more information about what you are allowed to bring, please see the #{prison_link(visit)} page.
-
+    = render 'content/confirmation_page'
 
 - unless just_testing?
   - content_for :analytics do
