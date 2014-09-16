@@ -7,12 +7,8 @@ describe VisitHelper do
       Slot.new(date: (Date.parse("2014-05-12")).to_s, times: "1045-1345", index: 1)
     end
 
-    let :visit do
-      Visit.new(prisoner: Prisoner.new(prison_name: "Rochester"), visitors: [Visitor.new], slots: [slot], visit_id: SecureRandom.hex)
-    end
-
     before :each do
-      helper.stub(visit: visit)
+      helper.stub(visit: sample_visit)
     end
 
     it "provides a hash of slots by day" do
@@ -27,7 +23,7 @@ describe VisitHelper do
     end
 
     it "provides current slots" do
-      helper.current_slots.should == ["2014-05-12-1045-1345"]
+      helper.current_slots.should == ["2013-07-07-1400-1600"]
     end
 
     it "provides the phone number" do
@@ -51,11 +47,11 @@ describe VisitHelper do
     end
 
     it "provides the URL" do
-      helper.prison_url(visit).should include "www.justice.gov.uk/contacts/prison-finder/rochester"
+      helper.prison_url(sample_visit).should include "www.justice.gov.uk/contacts/prison-finder/rochester"
     end
 
     it "provides the link" do
-      helper.prison_link(visit).should == '<a href="http://www.justice.gov.uk/contacts/prison-finder/rochester" rel="external">Rochester prison</a>'
+      helper.prison_link(sample_visit).should == '<a href="http://www.justice.gov.uk/contacts/prison-finder/rochester" rel="external">Rochester prison</a>'
     end
 
     it "provides the slot anomalies" do

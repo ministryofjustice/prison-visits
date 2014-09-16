@@ -39,7 +39,7 @@ class VisitController < ApplicationController
   end
 
   def update_prisoner_details
-    if (visit.prisoner = Prisoner.new(prisoner_params)).valid?
+    if (visit.prisoner = Prisoner.new(prisoner_params_with_prison)).valid?
       redirect_to visitor_details_path
     else
       redirect_to prisoner_details_path
@@ -173,6 +173,14 @@ class VisitController < ApplicationController
     trim_whitespace_from_values(params.require(:prisoner).permit(:first_name, :last_name, :date_of_birth, :number, :prison_name))
   rescue ArgumentError
     trim_whitespace_from_values(params.require(:prisoner).permit(:first_name, :last_name, :number, :prison_name))
+  end
+
+  def prisoner_params_with_prison
+    prisoner_params.tap do |p|
+      unless (prison_name = p[:prison_name]).blank?
+        p[:prison] = Rails.configuration.prison_data[prison_name]
+      end
+    end
   end
 
   def slot_params

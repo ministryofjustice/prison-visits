@@ -8,6 +8,7 @@ describe Prisoner do
       p.date_of_birth = 30.years.ago
       p.number = 'c2341em'
       p.prison_name = 'Rochester'
+      p.prison = Rails.configuration.prison_data[p.prison_name]
     end
   end 
 

@@ -127,7 +127,7 @@ describe VisitController do
 
         context "whitespace trimming" do
           it "removes whitespace from strings" do
-            post :update_prisoner_details, { prisoner: { first_name: ' Jimmy ', last_name: ' Harris ' } }
+            post :update_prisoner_details, { prisoner: { first_name: ' Jimmy ', last_name: ' Harris ', prison_name: 'Rochester' } }
             controller.visit.prisoner.first_name.should == 'Jimmy'
             controller.visit.prisoner.last_name.should == 'Harris'
           end

@@ -5,6 +5,7 @@ class Prisoner
   attr_accessor :last_name
   attr_accessor :number
   attr_accessor :prison_name
+  attr_accessor :prison
   attr_accessor :date_of_birth
 
   validates :first_name, presence: true, name: true
@@ -13,6 +14,7 @@ class Prisoner
   validates_inclusion_of :date_of_birth, in: ->(_) { 100.years.ago.beginning_of_year..Time.now }, if: ->(p) { p.date_of_birth }, message: "must be a valid date of birth"
   validates_format_of :number, with: /\A[a-z]\d{4}[a-z]{2}\z/i, message: "must be a valid prisoner number" # eg a1234aa
   validates_inclusion_of :prison_name, in: Rails.configuration.prison_data.map{|k,v|k}.sort, message: "must be chosen"
+  validates_presence_of :prison
 
   def full_name
     [@first_name, @last_name].join(' ')
