@@ -22,4 +22,4 @@ You have tried to book a visit but the prisoner you want to visit has not got an
 
 <%= @message_from_prison %>
 
-If you have any questions, visit the prison website: <%= prison_url(@visit) %> or call the prison on <%= Rails.configuration.prison_data[@visit.prisoner.prison_name]['phone'] %>.
+If you have any questions, visit the prison website: <%= prison_url(@visit) %> or call the prison on <%= prison_phone %>.

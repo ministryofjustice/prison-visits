@@ -18,8 +18,8 @@ These are the options you have requested for your visit at <%= @visit.prisoner.p
 <% end %>
 
 If you want to cancel or make a change to your request or have any special requirements, e.g. wheelchair access, please contact us.
-* telephone: <%= Rails.configuration.prison_data[@visit.prisoner.prison_name][:phone] %>
-* email: <%= Rails.configuration.prison_data[@visit.prisoner.prison_name][:email] %>
+* telephone: prison_phone %>
+* email: prison_email %>
 
 Need help or want to make a complaint? If you have a question or need any help with the online visits service, please contact us: <%= new_feedback_url %>
 
