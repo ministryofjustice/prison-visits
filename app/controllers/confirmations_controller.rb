@@ -37,11 +37,17 @@ class ConfirmationsController < ApplicationController
   end
 
   def booked_visit
-    session[:booked_visit] ||= legacy_data_fixes(encryptor.decrypt_and_verify(params[:state]))
+    session[:booked_visit] ||= maybe_add_prison(encryptor.decrypt_and_verify(params[:state]))
   end
 
   def confirmation_params
     params.require(:confirmation).permit(:outcome, :message)
+  end
+
+  def maybe_add_prison(visit)
+    visit.tap do |v|
+      v.prisoner.prison ||= Rails.configuration.prison_data[v.prisoner.prison_name]
+    end
   end
   
   def encryptor
@@ -50,17 +56,5 @@ class ConfirmationsController < ApplicationController
 
   def metrics_logger
     METRICS_LOGGER
-  end
-
-  def legacy_data_fixes(visit)
-    if prison_name = {
-        'Hatfield (moorland Open)' => 'Hatfield Open',
-        'Highpoint' => 'Highpoint North',
-        'Albany' => 'Isle of Wight - Albany',
-        'Parkhurst' => 'Isle of Wight - Parkhurst'
-      }[visit.prisoner.prison_name]
-      visit.prisoner.prison_name = prison_name
-    end
-    visit
   end
 end
