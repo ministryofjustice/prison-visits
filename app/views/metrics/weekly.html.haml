@@ -24,14 +24,13 @@
   %tr
     %th
       Prison
-    - @report.wc_offsets.times do |week_no|
+    - @dataset.week_range.each do |week_no|
       %th
-        = WeeklyConfirmationsReport::FIRST_WEEK + week_no * 7
+        = @start_of_year + week_no * 7
   - @prisons.each_with_index do |prison, i|
     %tr{class: i.even? ? 'even' : 'odd'}
       %td.prison-name
         = prison
-      - @report.wc_offsets.times do |week_no|
+      - @dataset.week_range.each do |week_no|
         %td
-          = (@report.weekly[prison][week_no] || []).size
-
+          = @dataset.for_prison(prison)[week_no]

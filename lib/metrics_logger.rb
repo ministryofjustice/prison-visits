@@ -1,31 +1,27 @@
 class MetricsLogger
-  attr_reader :file
-
-  INDEX_NAME = :pvb
-  DOCUMENT_TYPE = :metric
-
-  def initialize(client)
-    @client = client
-  end
-
   def record_visit_request(visit)
-    self << generate_entry(visit, :visit_request)
+    VisitMetricsEntry.create!(visit_id: visit.visit_id, requested_at: now_in_utc, prison_name: visit.prisoner.prison_name)
   end
 
   def record_link_click(visit)
-    self << generate_entry(visit, :opened_link)
+    update_entry(visit.visit_id) do |e|
+      e.opened_at = now_in_utc
+    end
   end
 
   def record_booking_confirmation(visit)
-    self << generate_entry(visit, :result_confirmed)
+    update_entry(visit.visit_id) do |e|
+      e.processed_at = now_in_utc
+      e.outcome = :confirmed
+    end
   end
 
   def record_booking_rejection(visit, reason)
-    self << generate_entry(visit, :result_rejected, reason)
-  end
-
-  def <<(entry)
-    @client.index(entry.merge({index: INDEX_NAME, type: DOCUMENT_TYPE}))
+    update_entry(visit.visit_id) do |e|
+      e.processed_at = now_in_utc
+      e.outcome = :rejected
+      e.reason = reason
+    end
   end
 
   def processed?(visit)
@@ -33,41 +29,19 @@ class MetricsLogger
   end
 
   def visit_status(visit_id)
-    results = @client.search(index: INDEX_NAME, q: "visit_id:#{visit_id}")
-    return false unless results['hits']['total'] > 0
-
-    confirmed = results['hits']['hits'].find do |entry|
-      entry['_source']['label0'] == 'result_confirmed'
-    end
-
-    rejected = results['hits']['hits'].find do |entry|
-      entry['_source']['label0'] == 'result_rejected'
-    end
-
-    if confirmed
-      :confirmed
-    elsif rejected
-      :rejected
-    else
-      :pending
-    end
+    (find_entry(visit_id).outcome || :pending).to_sym
   end
 
   def now_in_utc
-    Time.now.utc.to_i
+    Time.now.utc
   end
 
-  def generate_entry(visit, *args)
-    labels = args.each_with_index.inject({}) do |h, (label, i)|
-      h[:"label#{i}"] = label; h
-    end
-    {
-      body: 
-      {
-        visit_id: visit.visit_id,
-        timestamp: now_in_utc,
-        prison: visit.prisoner.prison_name,
-      }.merge(labels)
-    }
+  def update_entry(visit_id)
+    yield entry = find_entry(visit_id)
+    entry.save!
+  end
+
+  def find_entry(visit_id)
+    VisitMetricsEntry.where(visit_id: visit_id).first
   end
 end

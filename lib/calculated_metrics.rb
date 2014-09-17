@@ -1,124 +1,48 @@
 require 'csv'
 
 class CalculatedMetrics
-  class DataSeries < Array
-    def percentile(n=95)
-      return nil if self.size < 16
+  attr_reader :total_visits, :waiting_visits, :overdue_visits, :confirmed_visits, :rejected_visits, :rejected_for_reason, :end_to_end_times, :processing_times
 
-      percentile_idx = (self.size * n / 100.0).round
-
-      self[percentile_idx]
-    end
-
-    def self.from_array(array)
-      new(array.sort)
-    end
+  def initialize(model, overdue_threshold)
+    @model = model
+    @overdue_threshold = overdue_threshold
   end
 
-  def initialize
-    @waiting_visit_ids = {}
-    @opened_visit_ids = {}
-    @end_to_end_times = []
-    @processing_times = []
-    @total_visits = 0
-    @waiting_visits = 0
-    @rejected_visits = 0
-    @confirmed_visits = 0
-    @rejected_for_reason = Hash.new(0)
-  end
+  def refresh
+    @total_visits = @model.group(:prison_name).count
+    @waiting_visits = @model.group(:prison_name).where(processed_at: nil).count
+    @overdue_visits = @model.group(:prison_name).where("processed_at IS NULL AND ? - requested_at > INTERVAL '? seconds'", Time.now, @overdue_threshold).count
+    @confirmed_visits = @model.group(:prison_name).where(outcome: 'confirmed').count
+    @rejected_visits = @model.group(:prison_name).where(outcome: 'rejected').count
+    @rejected_for_reason = @model.group(:prison_name, :reason).where(outcome: 'rejected').count
+    @end_to_end_times = calculate_percentiles('end_to_end_time')
+    @processing_times = calculate_percentiles('processing_time')
 
-  def update(elastic_feed)
-    return self if elastic_feed.empty?
-
-    elastic_feed['hits']['hits'].each do |entry|
-      entry = entry['_source']
-      visit_id = entry['visit_id']
-      timestamp = entry['timestamp']
-
-      case entry['label0']
-      when 'visit_request'
-        @total_visits +=1
-        @waiting_visit_ids[visit_id] = timestamp
-      when 'opened_link'
-        @opened_visit_ids[visit_id] = timestamp
-      when 'result_rejected'
-        if start_time = @waiting_visit_ids[visit_id]
-          @end_to_end_times << timestamp - start_time
-        end
-        if opened_time = @opened_visit_ids[visit_id]
-          @processing_times << timestamp - opened_time
-        end
-
-        @waiting_visit_ids.delete(visit_id)
-        @opened_visit_ids.delete(visit_id)
-        @rejected_visits += 1
-        @rejected_for_reason[entry['label1']] += 1
-      when 'result_confirmed'
-        if start_time = @waiting_visit_ids[visit_id]
-          @end_to_end_times << timestamp - start_time
-        end
-        if opened_time = @opened_visit_ids[visit_id]
-          @processing_times << timestamp - opened_time
-        end
-
-        @waiting_visit_ids.delete(visit_id)
-        @opened_visit_ids.delete(visit_id)
-        @confirmed_visits += 1
-      end
+    [@total_visits, @waiting_visits, @overdue_visits, @confirmed_visits, @rejected_visits, @rejected_for_reason].each do |hash|
+      hash.default = 0
     end
+    
     self
   end
 
-  def as_csv_row(prison_name, timestamp)
-    [
-     prison_name,
-     total_visits,
-     waiting_visits,
-     overdue_visits(timestamp),
-     rejected_visits,
-     confirmed_visits,
-     end_to_end_time.percentile(95),
-     processing_time.percentile(95),
-     percent_rejected
-    ]
-  end
-
-  def total_visits
-    @total_visits
-  end
-
-  def waiting_visits
-    @waiting_visit_ids.size
-  end
-
-  def overdue_visits(now)
-    now = now.to_i
-    @waiting_visit_ids.count do |_, timestamp|
-      timestamp < now
+  def percent_rejected(prison, reason=nil)
+    if reason
+      1.0 * (@rejected_for_reason[[prison, reason]] || 0) / @total_visits[prison]
+    else
+      1.0 * (@rejected_visits[prison] || 0) / @total_visits[prison]
     end
   end
 
-  def rejected_visits
-    @rejected_visits
-  end
-
-  def confirmed_visits
-    @confirmed_visits
-  end
-
-  def rejected_for_reason
-    @rejected_for_reason
-  end
-
-  def end_to_end_time
-    DataSeries.from_array(@end_to_end_times)
-  end
-
-  def processing_time
-    DataSeries.from_array(@processing_times)
-  end
-
-  def percent_rejected(reason=nil)
-    (reason ? @rejected_for_reason[reason] : @rejected_visits) / @total_visits.to_f
+  def calculate_percentiles(column)
+    @model.connection.execute(%Q{
+WITH percentiles AS (SELECT prison_name, #{column}, cume_dist() OVER (PARTITION BY prison_name ORDER BY #{column}) AS percentile
+                     FROM visit_metrics_entries WHERE processed_at IS NOT NULL),
+     top_percentiles AS (SELECT prison_name, #{column}, rank() OVER (PARTITION BY prison_name ORDER BY #{column})
+                     FROM percentiles WHERE percentile >= 0.95)
+SELECT prison_name, #{column} FROM top_percentiles WHERE rank = 1
+}).each_with_object({}) do |row, h|
+      h[row['prison_name']] = row[column].to_i
+    end
   end
 end
+

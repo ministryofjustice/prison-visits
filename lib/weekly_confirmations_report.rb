@@ -1,56 +1,55 @@
 require 'csv'
 
 class WeeklyConfirmationsReport
-  FIRST_WEEK = Date.new(2014, 6, 9)
-
-  def initialize(aggregated)
-    @aggregated = aggregated
-    @max_timestamp = 0
+  def initialize(model, year, start_of_year)
+    @model = model
+    @year = year
+    @start_of_year = start_of_year
   end
 
-  def weekly
-    @weekly ||= @aggregated.inject({}) do |h, (prison, timestamps)|
-      @max_timestamp = [timestamps.max, @max_timestamp].max
+  def week_range
+    @min_week..@max_week
+  end
 
-      h[prison] = timestamps.group_by do |timestamp|
-        (Time.at(timestamp) - FIRST_WEEK.to_time).floor / (7 * 24 * 3600)
-      end
+  def for_prison(prison_name)
+    @dataset[prison_name]
+  end
+
+  def refresh
+    @min_week = 55
+    @max_week = 0
+    hash_with_default = Hash.new { |h, k|
+      h[k] = Array.new(52, 0)
+    }
+
+    @dataset = @model.connection.execute("
+SELECT prison_name,
+       EXTRACT(week FROM processed_at) AS weekno,
+       COUNT(*)
+FROM visit_metrics_entries
+WHERE processed_at IS NOT NULL AND EXTRACT(year FROM processed_at) = 2014
+GROUP BY prison_name, EXTRACT(week FROM processed_at) ORDER BY prison_name, weekno").inject(hash_with_default) do |h, row|
+
+      weekno = row['weekno'].to_i
+      prison_name = row['prison_name']
+      count = row['count'].to_i
+
+      @min_week = weekno if weekno < @min_week
+      @max_week = weekno if weekno > @max_week
+
+      h[prison_name][weekno] = count
       h
     end
-  end
 
-  def prisons
-    weekly.keys.sort
-  end
-
-  def wc_dates
-    (FIRST_WEEK..Time.at(@max_timestamp).to_date).step(7).to_a
-  end
-
-  def wc_offsets
-    wc_dates.size
+    self
   end
 
   def csv
-    CSV.generate do |csv|
-      csv << ['Prison'] + wc_dates
-      prisons.each do |prison|
-        csv << [prison] + wc_offsets.times.map { |o| (weekly[prison][o] || []).size }
+    CSV.generate(headers: true) do |csv|
+      csv << ['Prison'] + week_range.map { |weekno| @start_of_year + weekno * 7 }
+      @dataset.keys.sort.each do |prison|
+        csv << [prison] + week_range.map { |weekno| @dataset[prison][weekno] }
       end
     end
-  end
-
-  def self.from_elasticsearch(raw_metrics)
-    return {} if raw_metrics.empty?
-
-    aggregated = raw_metrics['hits']['hits'].inject({}) do |h, row|
-      entry = row['_source']
-      prison = entry['prison']
-
-      h[prison] ||= []
-      h[prison] << entry['timestamp']
-      h
-    end
-    new(aggregated)
   end
 end

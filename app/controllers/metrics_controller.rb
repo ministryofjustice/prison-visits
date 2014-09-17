@@ -3,36 +3,28 @@ class MetricsController < ApplicationController
 
   def index
     @prisons = Rails.configuration.prison_data.keys.sort
-    versioned_dataset = cache_refresher.update(cache_refresher.fetch, Time.now)
-    @overdue_threshold = 3.days.ago
-    @dataset = versioned_dataset.dataset
+    @dataset = CalculatedMetrics.new(VisitMetricsEntry, 3.days).refresh
 
     respond_to do |format|
       format.html
       format.csv do
-        render text: CSVStreamer.new(versioned_dataset, @overdue_threshold).csv
+        render text: CSVFormatter.new(@prisons).generate(@dataset)
       end
     end
   end
 
   def weekly
-    @report = WeeklyConfirmationsReport.from_elasticsearch(elastic_client.search(index: :pvb, q: "label0:result_*", size: 1_000_000))
-    @prisons = @report.prisons
-    @this_week_no = Time.now.yday / 7
+    year = (params[:year] || Time.now.year).to_i
+    # First monday of the year, most of the time.
+    @start_of_year = Date.new(year, 1, 1) - Date.new(year, 1, 1).wday + 1
+    @dataset = WeeklyConfirmationsReport.new(VisitMetricsEntry, year, @start_of_year).refresh
+    @prisons = Rails.configuration.prison_data.keys.sort
 
     respond_to do |format|
       format.html
       format.csv do
-        render text: @report.csv
+        render text: @dataset.csv
       end
     end
-  end
-
-  def elastic_client
-    ELASTIC_CLIENT
-  end
-
-  def cache_refresher
-    @refresher ||= CacheRefresher.new(elastic_client, @prisons)
   end
 end

@@ -11,11 +11,11 @@ gem 'coffee-rails'
 gem 'zendesk_api'
 gem 'mail'
 gem 'elasticsearch'
-gem 'logstasher'
+gem 'logstasher', git: 'git@github.com:shadabahmed/logstasher.git', branch: 'master'
 gem 'sentry-raven'
 gem 'redcarpet'
 gem 'prison_staff_info', git: 'git@github.com:ministryofjustice/prison_staff_info.git', branch: 'master'
-gem 'redis-rails'
+gem 'pg'
 
 group :test, :development do
   gem 'rspec-rails'
@@ -29,4 +29,5 @@ group :test, :development do
   gem 'rspec_junit_formatter'
   gem 'poltergeist'
   gem 'chromedriver-helper'
+  gem 'database_cleaner'
 end
