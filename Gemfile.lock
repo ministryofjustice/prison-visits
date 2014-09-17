@@ -7,8 +7,8 @@ GIT
 
 GIT
   remote: git@github.com:shadabahmed/logstasher.git
-  revision: ea99f9254c1e4e1d776b622f4a81d37c58091173
-  branch: issue-49
+  revision: a679f66d72d7f74a928cdf0dbff1c85cb22b5e32
+  branch: master
   specs:
     logstasher (0.6.1)
       logstash-event (~> 1.1.0)
