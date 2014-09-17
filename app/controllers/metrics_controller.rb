@@ -14,14 +14,16 @@ class MetricsController < ApplicationController
   end
 
   def weekly
-    @report = WeeklyConfirmationsReport.from_elasticsearch(elastic_client.search(index: :pvb, q: "label0:result_*", size: 1_000_000))
-    @prisons = @report.prisons
-    @this_week_no = Time.now.yday / 7
+    year = (params[:year] || Time.now.year).to_i
+    # First monday of the year, most of the time.
+    @start_of_year = Date.new(year, 1, 1) - Date.new(year, 1, 1).wday + 1
+    @dataset = WeeklyConfirmationsReport.new(VisitMetricsEntry, year, @start_of_year).refresh
+    @prisons = Rails.configuration.prison_data.keys.sort
 
     respond_to do |format|
       format.html
       format.csv do
-        render text: @report.csv
+        render text: @dataset.csv
       end
     end
   end
