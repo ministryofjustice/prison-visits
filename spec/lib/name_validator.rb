@@ -16,6 +16,12 @@ describe NameValidator do
     }.to change { model.errors.empty? }
   end
 
+  it "enforces that names should be under 30 bytes in length" do
+    expect {
+      subject.validate_each(model, :first_name, 'A long string that is not a name')
+    }.to change { model.errors.empty? }
+  end
+
   it "allows legitimate names" do
     expect {
       subject.validate_each(model, :first_name, 'Manfred')

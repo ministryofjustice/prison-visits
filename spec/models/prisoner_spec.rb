@@ -30,6 +30,16 @@ describe Prisoner do
     prisoner.should_not be_valid
   end
 
+  it "requires a first name under 30 bytes" do
+    prisoner.first_name = "An awfully long name, far too long to be considered valid, may in fact be a monologue"
+    prisoner.should_not be_valid
+  end
+
+  it "requires a last name under 30 bytes" do
+    prisoner.last_name =  "It could even be a secret message that someone is trying to get to a prison guard"
+    prisoner.should_not be_valid
+  end
+
   ['123', 'abc', 'a123bc', 'aaa1234bc', 'w5678xyz'].each do |number|
     it "must fail if prisoner number is #{number}" do
       prisoner.send('number=', number)
