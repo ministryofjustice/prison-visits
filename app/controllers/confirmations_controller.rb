@@ -11,8 +11,9 @@ class ConfirmationsController < ApplicationController
       render '_already_booked'
     end
     logstasher_add_visit_id(booked_visit.visit_id)
-  rescue ActiveSupport::MessageVerifier::InvalidSignature
+  rescue ActiveSupport::MessageVerifier::InvalidSignature => e
     render '_bad_state', status: 400
+    Raven.capture_exception(e)
   end
 
   def create
