@@ -18,7 +18,7 @@ module VisitHelper
   end
 
   def prison_data(source=visit)
-    source.prisoner.prison
+    Rails.configuration.prison_data[source.prisoner.prison_name.to_s]
   end
 
   def prison_phone
