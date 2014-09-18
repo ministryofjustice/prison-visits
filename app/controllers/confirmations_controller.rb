@@ -38,7 +38,7 @@ class ConfirmationsController < ApplicationController
   end
 
   def booked_visit
-    session[:booked_visit] ||= legacy_data_fixes(encryptor.decrypt_and_verify(params[:state]))
+    session[:booked_visit] ||= remove_prison(legacy_data_fixes(encryptor.decrypt_and_verify(params[:state])))
   end
 
   def confirmation_params
@@ -63,5 +63,11 @@ class ConfirmationsController < ApplicationController
       visit.prisoner.prison_name = prison_name
     end
     visit
+  end
+
+  def remove_prison(visit)
+    visit.tap do |v|
+      v.prisoner.prison = nil
+    end
   end
 end

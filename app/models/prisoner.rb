@@ -5,6 +5,7 @@ class Prisoner
   attr_accessor :last_name
   attr_accessor :number
   attr_accessor :prison_name
+  attr_accessor :prison
   attr_accessor :date_of_birth
 
   validates :first_name, presence: true, name: true
