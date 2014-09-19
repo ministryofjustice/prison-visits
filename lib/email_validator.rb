@@ -16,11 +16,10 @@ class EmailValidator < ActiveModel::Validator
   end
 
   def has_mx_records(domain)
-    Resolv::DNS.open do |dns|
-      return dns.getresources(domain, Resolv::DNS::Resource::IN::MX).any?
-    end
-  rescue Resolv::ResolvError, Resolv::ResolvTimeout => e
-    Raven.capture_exception(e)
+    Resolv::DNS.new.getresource(domain, Resolv::DNS::Resource::IN::MX)
+  rescue Resolv::ResolvError
+    false
+  rescue Resolv::ResolvTimeout
     true
   end
 

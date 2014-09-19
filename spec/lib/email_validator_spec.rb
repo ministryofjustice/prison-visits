@@ -58,7 +58,7 @@ describe EmailValidator do
 
   context "DNS checks for domain" do
     it "checks for the existence of an MX record for the domain" do
-      Resolv::DNS.any_instance.should_receive(:getresources).and_return([])
+      Resolv::DNS.any_instance.should_receive(:getresource).and_raise(Resolv::ResolvError)
       expect {
         model.email = 'test@gmail.co.uk'
         subject.validate(model)
@@ -66,7 +66,7 @@ describe EmailValidator do
     end
 
     it "doesn't return an error when the MX lookup timed out" do
-      Resolv::DNS.any_instance.should_receive(:getresources).and_raise(Resolv::ResolvTimeout)
+      Resolv::DNS.any_instance.should_receive(:getresource).and_raise(Resolv::ResolvTimeout)
       expect {
         model.email = 'test@irrelevant.com'
         subject.validate(model)
