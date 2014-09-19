@@ -8,6 +8,9 @@ class EmailValidator < ActiveModel::Validator
         has_mx_records(parsed.domain)
       set_error(record)
     end
+    maybe_set_error(record, "is not a valid address because it ends with a dot") do
+      parsed.domain.present? && parsed.domain.end_with?('.')
+    end
   rescue Mail::Field::ParseError
     set_error(record)
   end
@@ -22,5 +25,9 @@ class EmailValidator < ActiveModel::Validator
 
   def set_error(record)
     record.errors.add(:email, "is not a valid address")
+  end
+
+  def maybe_set_error(record, message)
+    record.errors.add(:email, message) if yield
   end
 end

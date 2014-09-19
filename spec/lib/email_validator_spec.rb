@@ -39,6 +39,14 @@ describe EmailValidator do
     }.not_to change { model.errors.empty? }
   end
 
+  it "doesn't allow domains with a dot at the end" do
+    subject.should_receive(:has_mx_records).and_return(true)
+    expect {
+      model.email = 'feedback@domain.com.'
+      subject.validate(model)
+    }.to change { model.errors.empty? }
+  end
+
   context "DNS checks for domain" do
     it "checks for the existence of an MX record for the domain" do
       Resolv::DNS.any_instance.should_receive(:getresources).and_return([])
