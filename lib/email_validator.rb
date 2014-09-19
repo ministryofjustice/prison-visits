@@ -19,7 +19,8 @@ class EmailValidator < ActiveModel::Validator
     Resolv::DNS.open do |dns|
       return dns.getresources(domain, Resolv::DNS::Resource::IN::MX).any?
     end
-  rescue Resolv::ResolvError, Resolv::ResolvTimeout
+  rescue Resolv::ResolvError, Resolv::ResolvTimeout => e
+    Raven.capture_exception(e)
     true
   end
 
