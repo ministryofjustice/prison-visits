@@ -1,15 +1,15 @@
 class EmailValidator < ActiveModel::Validator
   def validate(record)
     parsed = Mail::Address.new(record.email)
+    maybe_set_error(record, "is not a valid address because it ends with a dot or starts with a dot") do
+      parsed.domain.present? && (parsed.domain.end_with?('.') || parsed.domain.start_with?('.'))
+    end
     unless parsed.local &&
         parsed.domain &&
         parsed.address == record.email &&
         parsed.local != record.email &&
         has_mx_records(parsed.domain)
       set_error(record)
-    end
-    maybe_set_error(record, "is not a valid address because it ends with a dot") do
-      parsed.domain.present? && parsed.domain.end_with?('.')
     end
   rescue Mail::Field::ParseError
     set_error(record)
