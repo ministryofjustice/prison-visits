@@ -36,7 +36,7 @@ class CalculatedMetrics
   def calculate_percentiles(column)
     @model.connection.execute(%Q{
 WITH percentiles AS (SELECT prison_name, #{column}, cume_dist() OVER (PARTITION BY prison_name ORDER BY #{column}) AS percentile
-                     FROM visit_metrics_entries WHERE processed_at IS NOT NULL),
+                     FROM visit_metrics_entries WHERE #{column} IS NOT NULL),
      top_percentiles AS (SELECT prison_name, #{column}, rank() OVER (PARTITION BY prison_name ORDER BY #{column})
                      FROM percentiles WHERE percentile >= 0.95)
 SELECT prison_name, #{column} FROM top_percentiles WHERE rank = 1
