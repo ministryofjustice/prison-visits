@@ -7,8 +7,7 @@
       you'll get a confirmation email to 
       = mail_to visit.visitors.first.email
       within 3 working days. If you don't get a confirmation email, please
-      - if prison_phone.present?
-        call #{prison_phone} or
+      = conditional_text prison_phone, 'call ', ' or'
       email us at #{prison_email_link}.
 
 
@@ -46,9 +45,9 @@
       %dt Tel
       %dd.h3
         %strong= prison_phone
+      %br
     
     - if prison_email.present?
-      %br
       %dt Email
       %dd
         %strong= prison_email_link
