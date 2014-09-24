@@ -60,5 +60,7 @@ module PrisonVisits2
     config.autoload_paths << 'lib'
     
     config.assets.paths << Rails.root.join('vendor', 'assets', 'moj.slot-picker', 'dist', 'stylesheets')
+
+    config.middleware.delete 'ActiveRecord::QueryCache'
   end
 end
