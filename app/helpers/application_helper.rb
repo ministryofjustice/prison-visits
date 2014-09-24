@@ -30,4 +30,10 @@ module ApplicationHelper
     page_title.unshift(header) if header.present?
     page_title.join glue
   end
+
+  def conditional_text(variable, prefix='', suffix='')
+    if variable.present?
+      prefix + variable + suffix
+    end
+  end
 end

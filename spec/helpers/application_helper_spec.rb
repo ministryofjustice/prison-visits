@@ -32,4 +32,9 @@ describe ApplicationHelper do
   it "creates a time from a string" do
     helper.time_from_str("1545").should == DateTime.now.change({:hour => 15 , :min => 45 , :sec => 0 })
   end
+
+  it "displays a prefix and suffix around a variable when it exists" do
+    phone = "12345"
+    helper.conditional_text(phone, "call ", " or").should == "call 12345 or"
+  end
 end
