@@ -88,4 +88,55 @@ describe MetricsLogger do
     subject.processed?(visit).should be_false
     subject.visit_status(visit.visit_id).should == :pending
   end
+
+  context "the backing store is down" do
+    it "silently discards a visit request" do
+      VisitMetricsEntry.should_receive(:create!).and_raise(e = PG::ConnectionBad.new)
+      Raven.should_receive(:capture_exception).with(e)
+      expect {
+        subject.record_visit_request(visit)
+      }.not_to change { VisitMetricsEntry.count }
+    end
+
+    context "looking for an entry" do
+      before :each do
+        VisitMetricsEntry.should_receive(:where).and_raise(e = PG::ConnectionBad.new)
+        Raven.should_receive(:capture_exception).with(e)
+      end
+      
+      it "silently discards a link click" do
+        subject.record_link_click(visit)
+      end
+      
+      it "silently discards a booking confirmation" do
+        subject.record_booking_confirmation(visit)
+      end
+      
+      it "silently discards a booking rejection" do
+        subject.record_booking_rejection(visit, 'reason')
+      end
+
+      it "returns unknown as status" do
+        subject.processed?(visit)
+      end
+    end
+  end
+
+  context "data is inconsistent following an outage in the backing store" do
+    it "silently discards a link click" do
+      subject.record_link_click(visit).should be_nil
+    end
+      
+    it "silently discards a booking confirmation" do
+      subject.record_booking_confirmation(visit).should be_nil
+    end
+    
+    it "silently discards a booking rejection" do
+      subject.record_booking_rejection(visit, 'reason').should be_nil
+    end
+
+    it "returns status as unknown" do
+      subject.processed?(visit).should be_false
+    end
+  end
 end
