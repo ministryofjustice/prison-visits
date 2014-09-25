@@ -36,7 +36,7 @@ class Prisoner
 
   def prison_in_service
     if !self.prison_name.blank? && !Rails.configuration.prison_data[self.prison_name]['enabled']
-      errors.add(:prison_name, 'is not avaiable')
+      errors.add(:prison_name, 'is not available')
       errors.add(:prison_name_reason, true)
     end
   end
