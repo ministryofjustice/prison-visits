@@ -2,7 +2,7 @@ class PrisonMailerPreview < ActionMailer::Preview
   include MailerPreviewCommon
 
   def booking_request
-    PrisonMailer.booking_request_email(sample_visit, SecureRandom.hex * 40, 'localhost:3000')
+    PrisonMailer.booking_request_email(sample_visit, SecureRandom.hex * 40)
   end
 
   def booking_receipt_accepted

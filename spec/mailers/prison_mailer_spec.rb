@@ -33,10 +33,6 @@ describe PrisonMailer do
     PrisonMailer
   end
 
-  let :host do
-    'lolhost.com'
-  end
-
   let :confirmation_with_slot do
     Confirmation.new(message: 'A message', outcome: 'slot_0')
   end
@@ -55,13 +51,13 @@ describe PrisonMailer do
 
   context "always" do
     it "sends an e-mail with the prisoner name in the subject" do
-      subject.booking_request_email(sample_visit, "token", host).subject.should == 'Visit request for Jimmy Harris on Sunday  7 July'
+      subject.booking_request_email(sample_visit, "token").subject.should == 'Visit request for Jimmy Harris on Sunday  7 July'
     end
 
     it "sends an e-mail with a long link to the confirmation page" do
-      email = subject.booking_request_email(sample_visit, "token", host)
+      email = subject.booking_request_email(sample_visit, "token")
       email.body.should =~ /confirmation\/new\?state=token/
-      email.body.should =~ /https:\/\/lolhost.com/
+      email.body.should =~ /https:\/\/localhost/
       email.content_type.should == 'text/html; charset=UTF-8'
     end
 
@@ -84,12 +80,12 @@ describe PrisonMailer do
     it "sends an e-mail to rochester functional mailbox" do
       sample_visit.tap do |visit|
         visit.prisoner.prison_name = 'Rochester'
-        subject.booking_request_email(visit, "token", host).to.should == ['pvb.rochester@maildrop.dsd.io']
+        subject.booking_request_email(visit, "token").to.should == ['pvb.rochester@maildrop.dsd.io']
       end
     end
 
     it "sends an e-mail with a link over https" do
-      subject.booking_request_email(sample_visit, "token", host).body.should =~ /https:\/\/lolhost.com/
+      subject.booking_request_email(sample_visit, "token").body.should =~ /https:\/\/localhost/
     end
 
     it "uses its own configuration (GSI)" do
