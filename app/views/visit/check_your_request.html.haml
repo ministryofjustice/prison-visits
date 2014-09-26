@@ -9,7 +9,7 @@
       %strong #{visit.prisoner.first_name} #{visit.prisoner.last_name}
   %p
     Date of birth:
-    %strong= visit.prisoner.date_of_birth.strftime("%e %B %Y")
+    %strong= format_date visit.prisoner.date_of_birth
   - if visit.prisoner.number.present?
     %p
       Prisoner number:
@@ -30,29 +30,33 @@
         Visitor #{i+1}:
         %strong #{visitor.first_name} #{visitor.last_name}
         \ -
-        = visitor.date_of_birth.strftime("%e %B %Y")
+        = format_date visitor.date_of_birth
         - if visitor.adult?
           %small.adult Adult
         - else
           %small.child Child
   %p.edit-link= link_to 'Change visitor details', visitor_details_path
 
-.divider.compact
-  %h2 Your visit options
+.divider.compact.visit-details
+  %h2 Your visit
+  - if visit.slots.dup.delete_if{|s|s.date.blank?}.size < 3
+    %p You can choose up to 2 alternative dates if your first choice isn’t available.
+
+  %p First choice:
   %p
-    You can choose 3 options for 1 visit.
-    - if visit.slots.dup.delete_if{|s|s.date.blank?}.size < 3
-      You can #{link_to('choose more visit options', choose_date_and_time_path)}.
-  %ul.unstyled-list
-    - visit.slots.each_with_index do |slot, index|
-      - if slot.date.present?
-        %li
-          Option #{index+1}:
-          - slot_date = Date.parse(slot.date)
-          %strong= slot_date.strftime("%A %e %B")
-          \ -
-          = display_slot_and_duration slot.times
-  %p.edit-link= link_to 'Change visit options', choose_date_and_time_path
+    %strong= format_day visit.slots.first.date
+    = display_slot_and_duration visit.slots.first.times
+  
+  - if visit.slots[1].date.present?
+    %p.alt Alternatives:
+    %ol.unstyled-list
+      - visit.slots[1..-1].each do |slot|
+        - if slot.date.present?
+          %li
+            %strong= format_day slot.date
+            = display_slot_and_duration slot.times
+
+  %p.edit-link= link_to 'Change visit details', choose_date_and_time_path
 
 
 .divider

@@ -76,7 +76,7 @@
             %label{ for: "confirmation_outcome_slot_#{index}" }
               = radio_button_tag 'confirmation[outcome]', "slot_#{index}"
               = succeed ':' do
-                = index == 0 ? "Visit requested" : "Alternative #{index}"
+                = index == 0 ? "First choice" : "Alternative #{index}"
               = Date.parse(slot.date).strftime('%A, %d/%m/%Y from ')
               = format_time_str_24 slot.times.split('-')[0]
               \-

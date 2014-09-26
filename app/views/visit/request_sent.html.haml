@@ -14,15 +14,17 @@
 .Grid
   .Grid-2-3
     %dl
-      %dt Your visit options
+      %dt Your visit
       %dd
         %ul.unstyled-list.visit-times
           - visit.slots.each_with_index do |slot, index|
             - if slot.date.present?
               %li
-                Option #{index+1}:
-                - slot_date = Date.parse(slot.date)
-                %strong= slot_date.strftime("%A %e %B")
+                - if index == 0
+                  First choice:
+                - else
+                  Alternative #{index}:
+                %strong= format_day slot.date
                 \ -
                 = display_slot_and_duration slot.times
 

@@ -1,8 +1,20 @@
 require 'spec_helper'
 
 describe ApplicationHelper do
-  it "formats a date" do
+  it "formats a date from a string" do
     helper.format_date('2014-07-24').should == "24 July 2014"
+  end
+
+  it "formats a date from a date" do
+    helper.format_date(Date.parse('2014-07-24')).should == "24 July 2014"
+  end
+
+  it "formats a day from a string" do
+    helper.format_day('2014-07-24').should == "Thursday 24 July"
+  end
+
+  it "formats a day from a date" do
+    helper.format_day(Date.parse('2014-07-24')).should == "Thursday 24 July"
   end
 
   it "displays a long time" do
