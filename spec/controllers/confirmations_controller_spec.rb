@@ -11,6 +11,10 @@ describe ConfirmationsController do
     sample_visit
   end
 
+  let :encrypted_visit do
+    MESSAGE_ENCRYPTOR.encrypt_and_sign(visit)
+  end
+
   context "in correct IP range" do
     context "before interaction" do
       before :each do
@@ -25,7 +29,7 @@ describe ConfirmationsController do
           v.should.eql? visit
           false
         end
-        get :new, state: MESSAGE_ENCRYPTOR.encrypt_and_sign(visit)
+        get :new, state: encrypted_visit
         subject.booked_visit.should.equal? visit
         response.should be_success
         response.should render_template('confirmations/new')
@@ -38,7 +42,7 @@ describe ConfirmationsController do
             v.should.eql? visit
             true
           end
-          get :new, state: MESSAGE_ENCRYPTOR.encrypt_and_sign(visit)
+          get :new, state: encrypted_visit
           response.should be_success
           response.should render_template('confirmations/_already_booked')
         end
@@ -54,7 +58,7 @@ describe ConfirmationsController do
               v.should.eql? visit
               false
             end
-            get :new, state: MESSAGE_ENCRYPTOR.encrypt_and_sign(visit)
+            get :new, state: encrypted_visit
             response.should be_success
             response.should render_template('confirmations/new')
             controller.booked_visit.prisoner.prison_name.should_not == prison_name
@@ -77,7 +81,6 @@ describe ConfirmationsController do
 
     context "interaction" do
       before :each do
-        controller.stub(:booked_visit).and_return(visit)
         ActionMailer::Base.deliveries.clear
         VisitorMailer.any_instance.stub(:sender).and_return('test@example.com')
         PrisonMailer.any_instance.stub(:sender).and_return('test@example.com')
@@ -87,13 +90,13 @@ describe ConfirmationsController do
 
       context "when a form is submitted with a slot selected" do
         it "sends out an e-mail and records a metric" do
-          mock_metrics_logger.should_receive(:record_booking_confirmation).with(visit)
-          VisitorMailer.should_receive(:booking_confirmation_email).with(visit, an_instance_of(Confirmation)).once.and_call_original
-          PrisonMailer.should_receive(:booking_receipt_email).with(visit, an_instance_of(Confirmation)).once.and_call_original
+          mock_metrics_logger.should_receive(:record_booking_confirmation) { |actual_visit| visit.should.eql? actual_visit }
+          VisitorMailer.should_receive(:booking_confirmation_email) { |actual_visit, confirmation| visit.should.eql? actual_visit; confirmation.should be an_instance_of(Confirmation) }.once.and_call_original
+          PrisonMailer.should_receive(:booking_receipt_email) { |actual_visit, confirmation| visit.should.eql? actual_visit; confirmation.should be an_instance_of(Confirmation) }.once.and_call_original
         end
 
         after :each do
-          post :create, confirmation: { outcome: 'slot_0' }
+          post :create, confirmation: { outcome: 'slot_0' }, state: encrypted_visit
           response.should redirect_to(confirmation_path)
           ActionMailer::Base.deliveries.map(&:subject).should == ["Your visit for 7 July 2013 has been confirmed", "COPY of booking confirmation for Jimmy Harris"]
         end
@@ -101,13 +104,13 @@ describe ConfirmationsController do
 
       context "when a form is submitted indicating the visitor is not on the contact list" do
         it "sends out an e-mail and records a metric" do
-          mock_metrics_logger.should_receive(:record_booking_rejection).with(visit, Confirmation::NOT_ON_CONTACT_LIST)
-          VisitorMailer.should_receive(:booking_rejection_email).with(visit, an_instance_of(Confirmation)).once.and_call_original
-          PrisonMailer.should_receive(:booking_receipt_email).with(visit, an_instance_of(Confirmation)).once.and_call_original 
+          mock_metrics_logger.should_receive(:record_booking_rejection) { |actual_visit, reason| visit.should.eql? actual_visit; reason.should == Confirmation::NOT_ON_CONTACT_LIST }
+          VisitorMailer.should_receive(:booking_rejection_email) { |actual_visit, confirmation| visit.should.eql? actual_visit; confirmation.should be an_instance_of(Confirmation) }.once.and_call_original
+          PrisonMailer.should_receive(:booking_receipt_email) { |actual_visit, confirmation| visit.should.eql? actual_visit; confirmation.should be an_instance_of(Confirmation) }.once.and_call_original
         end
 
         after :each do
-          post :create, confirmation: { outcome: Confirmation::NOT_ON_CONTACT_LIST }
+          post :create, confirmation: { outcome: Confirmation::NOT_ON_CONTACT_LIST }, state: encrypted_visit
           response.should redirect_to(confirmation_path)
           ActionMailer::Base.deliveries.map(&:subject).should == ["Your visit for 7 July 2013 could not be booked", "COPY of booking rejection for Jimmy Harris"]
         end
@@ -115,13 +118,13 @@ describe ConfirmationsController do
 
       context "when a form is submitted and no VOs are available" do
         it "sends out an e-mail and records a metric" do
-          mock_metrics_logger.should_receive(:record_booking_rejection).with(visit, Confirmation::NO_VOS_LEFT)
-          VisitorMailer.should_receive(:booking_rejection_email).with(visit, an_instance_of(Confirmation)).once.and_call_original
-          PrisonMailer.should_receive(:booking_receipt_email).with(visit, an_instance_of(Confirmation)).once.and_call_original 
+          mock_metrics_logger.should_receive(:record_booking_rejection) { |actual_visit, reason| visit.should.eql? actual_visit; reason.should == Confirmation::NO_VOS_LEFT }
+          VisitorMailer.should_receive(:booking_rejection_email) { |actual_visit, confirmation| visit.should.eql? actual_visit; confirmation.should be an_instance_of(Confirmation) }.once.and_call_original
+          PrisonMailer.should_receive(:booking_receipt_email) { |actual_visit, confirmation| visit.should.eql? actual_visit; confirmation.should be an_instance_of(Confirmation) }.once.and_call_original
         end
 
         after :each do
-          post :create, confirmation: { outcome: Confirmation::NO_VOS_LEFT }
+          post :create, confirmation: { outcome: Confirmation::NO_VOS_LEFT }, state: encrypted_visit
           response.should redirect_to(confirmation_path)
           ActionMailer::Base.deliveries.map(&:subject).should == ["Your visit for 7 July 2013 could not be booked", "COPY of booking rejection for Jimmy Harris"]
         end
@@ -129,13 +132,13 @@ describe ConfirmationsController do
 
       context "when a form is submitted without a slot" do
         it "sends out an e-mail and records a metric" do
-          mock_metrics_logger.should_receive(:record_booking_rejection).with(visit, 'no_slot_available')
-          VisitorMailer.should_receive(:booking_rejection_email).with(visit, an_instance_of(Confirmation)).once.and_call_original
-          PrisonMailer.should_receive(:booking_receipt_email).with(visit, an_instance_of(Confirmation)).once.and_call_original 
+          mock_metrics_logger.should_receive(:record_booking_rejection) { |actual_visit, reason| actual_visit.should.eql? visit; reason.should == 'no_slot_available' }
+          VisitorMailer.should_receive(:booking_rejection_email) { |actual_visit, confirmation| visit.should.eql? actual_visit; confirmation.should be an_instance_of(Confirmation) }.once.and_call_original
+          PrisonMailer.should_receive(:booking_receipt_email) { |actual_visit, confirmation| visit.should.eql? actual_visit; confirmation.should be an_instance_of(Confirmation) }.once.and_call_original
         end
 
         after :each do
-          post :create, confirmation: { outcome: 'no_slot_available' }
+          post :create, confirmation: { outcome: 'no_slot_available' }, state: encrypted_visit
           response.should redirect_to(confirmation_path)
           ActionMailer::Base.deliveries.map(&:subject).should == ["Your visit for 7 July 2013 could not be booked", "COPY of booking rejection for Jimmy Harris"]
         end
@@ -143,18 +146,18 @@ describe ConfirmationsController do
 
       context "when a link is clicked" do
         it "records the metrics" do
-          mock_metrics_logger.should_receive(:record_link_click).with(visit)
-          mock_metrics_logger.should_receive(:processed?).with(visit)
+          mock_metrics_logger.should_receive(:record_link_click) { |actual_visit| visit.should.eql? actual_visit }
+          mock_metrics_logger.should_receive(:processed?) { |actual_visit| visit.should.eql? actual_visit }
         end
 
         after :each do
-          get :new, state: MESSAGE_ENCRYPTOR.encrypt_and_sign(visit)
+          get :new, state: encrypted_visit
         end
       end
 
       context "when an incomplete form is submitted" do
         it "redirects back to the new action" do
-          post :create, confirmation: { outcome: 'lol' }
+          post :create, confirmation: { outcome: 'lol' }, state: encrypted_visit
           response.should render_template('confirmations/new')
         end
       end
@@ -162,7 +165,7 @@ describe ConfirmationsController do
       context "when the thank you screen is accessed" do
         it "resets the session" do
           controller.should_receive(:reset_session).once
-          get :show
+          get :show, state: encrypted_visit
           response.should render_template('confirmations/show')
         end
       end
