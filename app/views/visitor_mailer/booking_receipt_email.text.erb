@@ -1,6 +1,6 @@
 Dear <%= @visit.visitors.first.first_name %>,
 
-YOUR VISIT IS NOT BOOKED YET 
+YOUR VISIT IS NOT BOOKED YET
 
 You can check the status of your request here:
 <%= visit_status_url(@visit.visit_id, host: @host, protocol: @protocol) %>
@@ -9,15 +9,17 @@ We have received your visit request. We'll email you within 3 working days to co
 
 If you don’t receive a confirmation email within 3 working days, please check your spam or junk folder for it. You need to do this on a computer or tablet (rather than a smart phone).
 
-These are the options you have requested for your visit at <%= @visit.prisoner.prison_name %> for <%= @visit.visitors.size %> <%= @visit.visitors.size > 1 ? 'people' : 'person' %>:
+To stop visit confirmation emails going to your spam or junk folder please add no-reply@email.prisonvisits.service.gov.uk to your address book or safe senders list.
+
+You have requested a visit to <%= @visit.prisoner.prison_name %> for <%= @visit.visitors.size %> <%= @visit.visitors.size > 1 ? 'people' : 'person' %>:
 
 <% @visit.slots.each_with_index do |slot, index| %>
 <% if slot.date.present? %>
-<%= index + 1%>. <%= Date.parse(slot.date).strftime("%A %e %B") %>, <%= display_time_slot(slot.times) %>
+<% if index == 0 %>First choice: <% else %>Alternative <%= index %>:<% end %> <%= Date.parse(slot.date).strftime("%A %e %B") %>, <%= display_time_slot(slot.times) %>
 <% end %>
 <% end %>
 
-If you want to cancel or make a change to your request or have any special requirements, e.g. wheelchair access, please contact us.
+If you want to cancel or make a change to your request or have any special requirements, eg wheelchair access, please contact us.
 * telephone: <%= prison_phone %>
 * email: <%= prison_email %>
 
