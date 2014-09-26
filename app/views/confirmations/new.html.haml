@@ -61,7 +61,7 @@
 %h2 Confirm the visit, or ask the visitor to choose new visit times
 
 = form_for @confirmation, url: confirmation_path do |f|
-
+  = hidden_field_tag :state, params[:state]
   %p
     1. If one of the visit times is available and the visitor(s) are on the prisoner’s contact list, then enter the visit on Prison NOMIS.
   
