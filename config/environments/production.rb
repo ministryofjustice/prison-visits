@@ -93,5 +93,5 @@ PrisonVisits2::Application.configure do
   config.logstasher.log_controller_parameters = true
   config.logstasher.logger_path = File.join(Rails.root, "log", "logstash_production.json")
 
-  config.action_mailer.default_url_options = { host: ENV["SERVICE_URL"] || "www.prisonvisits.service.gov.uk", protocol: "https" }
+  config.action_mailer.default_url_options = { host: ENV["SERVICE_URL"] || (raise "Missing SERVICE_URL"), protocol: "https" }
 end
