@@ -7,7 +7,7 @@ Rochester:
     - Rochester
     - Kent
     - ME1 3QS
-  lead_days: 3
+  lead_days: 0
   unbookable:
     - 2013-12-25
     - 2013-12-26
