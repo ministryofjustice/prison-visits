@@ -1,6 +1,12 @@
 module ApplicationHelper
-  def format_date(string)
-    Date.parse(string).strftime("%e %B %Y").strip
+  def format_date(date)
+    date = Date.parse(date) if date.class == String
+    date.strftime("%e %B %Y").strip
+  end
+
+  def format_day(date)
+    date = Date.parse(date) if date.class == String
+    date.strftime("%A %e %B").strip
   end
   
   def display_time_slot(times, glue=' to ')

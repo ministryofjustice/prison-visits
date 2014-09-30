@@ -31,7 +31,7 @@
     %strong #{@visit.prisoner.date_of_birth.strftime("%e %B %Y")}
 
   %p
-    Visit requested:
+    First choice:
     %b
       = Date.parse(@visit.slots.first.date).strftime('%A, %d/%m/%Y at ')
       = format_time_str_24 @visit.slots.first.times.split('-')[0]
