@@ -1,6 +1,17 @@
-%p Use this form to report a problem or ask us a question.
+%p If you need to ask a question about: 
 
-%p If you need to cancel or change a visit booking, please call the prison’s visit booking line.
+%ul
+  %li whether your visit has been booked 
+  %li cancelling or changing visit details eg names of visitors, dates or times
+  %li what you can bring when you visit, eg clothes or money 
+  %li prisoner's contact lists or visiting allowance
+
+%p
+  You must 
+  %a(href="http://www.justice.gov.uk/contacts/prison-finder") contact the prison
+  for help. 
+
+%p You can use this form to tell us about a problem you’re having with the visit request website, or to ask us a question about how to use it. 
 
 = form_for @feedback, :url => feedback_path, :html => {:novalidate => 'novalidate'} do |f|
   %input{name: 'feedback[referrer]', type: 'hidden', value: (params[:referrer] || (params[:feedback][:referrer] if params[:feedback]))}/
@@ -37,3 +48,4 @@
     
     .actions
       = f.submit 'Send', :class => 'button button-primary js-SumbitOnce', :id => 'submit-button', :'data-alt' => 'Please wait…'
+      
