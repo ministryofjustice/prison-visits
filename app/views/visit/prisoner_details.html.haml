@@ -57,11 +57,11 @@
             %p
               - case prison_data['reason']
                 - when 'it_issues'
-                  = "HMP #{prison_name} is unable to process online visit requests right now. You can #{prison_link visit, 'contact the prison'} directly to book a visit instead.".html_safe
+                  HMP #{prison_name} is unable to process online visit requests right now. You can #{prison_link visit, 'contact the prison'} directly to book a visit instead.
                 - when 'coming_soon'
-                  = "HMP #{prison_name} isn’t able to process online visit requests yet. You can #{prison_link visit, 'contact the prison'} directly to book a visit instead.".html_safe
+                  HMP #{prison_name} isn’t able to process online visit requests yet. You can #{prison_link visit, 'contact the prison'} directly to book a visit instead.
                 - else
-                  = "HMP #{prison_name} is unable to process online visit requests. Instead you can #{prison_link visit, 'contact the prison'} directly to book a visit.".html_safe
+                  HMP #{prison_name} is unable to process online visit requests. Instead you can #{prison_link visit, 'contact the prison'} directly to book a visit.
           = f.select :prison_name, prison_names, { prompt: 'select a prison' }, { class: 'js-autocomplete', placeholder: 'eg Cardiff' }
 
       .actions
