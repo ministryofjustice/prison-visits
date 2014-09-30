@@ -29,10 +29,6 @@ class Prisoner
       (Date.today - date_of_birth.to_date).to_i / 365
     end
   end
-  
-  def prison_data(source=visit)
-    Rails.configuration.prison_data[source.prisoner.prison_name]
-  end
 
   def prison_in_service
     if !self.prison_name.blank? && !Rails.configuration.prison_data[self.prison_name]['enabled']

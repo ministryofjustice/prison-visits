@@ -38,12 +38,12 @@ describe "Prison data" do
 
     it "should contain no duplicate prisons" do
       prisons_names = production_prison_data_as_text.reject{ |l| l.match(/^\s+/i) } # plain text as Yaml allows duplicates and uses latest
-      prisons_names.detect{ |e| prisons_names.count(e) > 1 }.should be(nil)
+      prisons_names.uniq.should == prisons_names
     end
 
     context "enabled prisons" do
       let :subject do
-        production_prison_data.reject!{|key, val|!key['enabled']}
+        production_prison_data.select! {|p| p['enabled']}
       end
 
       it "each unbookable date for each prison should be a valid date" do
@@ -70,7 +70,7 @@ describe "Prison data" do
 
       it "should contain lowercase email addresses for all prisons" do
         subject.values.each do |prison|
-          prison['email'].should match(/^[a-z0-9@\.-]+$/)
+          prison['email'].should == prison['email'].downcase
         end
       end
 
