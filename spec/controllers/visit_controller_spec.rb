@@ -456,7 +456,7 @@ describe VisitController do
                           vi.date_of_birth = Date.today - 20.years
                         end]
 
-          v.slots = [Slot.new(date: '2013-12-06', times: '0945-1115')]
+          v.slots = [Slot.new(date: '2013-12-06', times: '0945-1115'), Slot.new, Slot.new]
         end
       end
 
