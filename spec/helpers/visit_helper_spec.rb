@@ -78,6 +78,6 @@ describe VisitHelper do
 
   it "should provide the prison name" do
     helper.prison_names.class.should == Array
-    helper.prison_names.first.should == "Askham Grange"
+    helper.prison_names.first.should == "Acklington"
   end
 end

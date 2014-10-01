@@ -49,9 +49,7 @@ module PrisonVisits2
       *.png
     )
 
-    config.prison_data = YAML.load_file(ENV['PRISON_DATA_FILE'] || File.join(Rails.root, 'config', 'prison_data_staging.yml')).inject({}) do |h, (name, config)|
-      config['enabled'] ? h.merge(name => config) : h
-    end.with_indifferent_access
+    config.prison_data = YAML.load_file(ENV['PRISON_DATA_FILE'] || File.join(Rails.root, 'config', 'prison_data_staging.yml')).with_indifferent_access
 
     config.metrics_auth_key = ENV['METRICS_AUTH_KEY']
 

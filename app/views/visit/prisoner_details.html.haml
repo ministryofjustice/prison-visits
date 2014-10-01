@@ -53,10 +53,16 @@
           = f.label :prison_name do
             Name of the prison
             %span.validation-message= f.object.errors[:prison_name].first if f.object.errors.include?(:prison_name)
+          - if f.object.errors.include?(:prison_name_reason)
+            %p
+              - case prison_data['reason']
+                - when 'it_issues'
+                  HMP #{prison_name} is unable to process online visit requests right now. You can #{prison_link visit, 'contact the prison'} directly to book a visit instead.
+                - when 'coming_soon'
+                  HMP #{prison_name} isn’t able to process online visit requests yet. You can #{prison_link visit, 'contact the prison'} directly to book a visit instead.
+                - else
+                  HMP #{prison_name} is unable to process online visit requests. Instead you can #{prison_link visit, 'contact the prison'} directly to book a visit.
           = f.select :prison_name, prison_names, { prompt: 'select a prison' }, { class: 'js-autocomplete', placeholder: 'eg Cardiff' }
-          %details.group__help
-            %summary Why aren't all prisons available?
-            %p You can’t make an online visit request for all prisons (eg high-security and private prisons). If you can’t enter the prison you're visiting, <a href="http://www.justice.gov.uk/contacts/prison-finder">contact the prison</a> to find out how to book.
 
       .actions
         .primary-actions

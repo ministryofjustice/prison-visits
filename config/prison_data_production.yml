@@ -979,6 +979,7 @@ Isle of Wight - Albany:
       - 1400-1600
 'Blantyre House':
   enabled: false
+  reason: it_issues
   phone: ""
   email: socialvisits.blantyrehouse@hmps.gsi.gov.uk
   address:
@@ -1089,6 +1090,7 @@ Brixton:
       - 1345-1645
 Downview:
   enabled: false
+  reason: coming_soon
   phone: '0208 196 6359'
   email: socialvisits.downview@hmps.gsi.gov.uk
   address:
@@ -1105,6 +1107,7 @@ Downview:
       - 1400-1600
 'East Sutton Park':
   enabled: false
+  reason: coming_soon
   phone: ""
   email: socialvisits.eastsuttonpark@hmps.gsi.gov.uk
   address:
@@ -1357,6 +1360,7 @@ Highpoint South:
       - 1345-1545
 Hull:
   enabled: false
+  reason: coming_soon
   phone: '01482 282016'
   email: socialvisits.hull@hmps.gsi.gov.uk
   address:
@@ -2744,3 +2748,66 @@ Channings Wood:
       - 1400-1600
     sun:
       - 1400-1600
+Acklington:
+  enabled: false
+  finder_slug: acklington2
+Altcourse:
+  enabled: false
+Ashfield:
+  enabled: false
+Belmarsh:
+  enabled: false
+Birmingham:
+  enabled: false
+Bronzefield:
+  enabled: false
+Doncaster:
+  enabled: false
+Dovegate:
+  enabled: false
+Forest Bank:
+  enabled: false
+Frankland:
+  enabled: false
+Full Sutton:
+  enabled: false
+Garth:
+  enabled: false
+Hatfield:
+  enabled: false
+Kirklevington Grange:
+  enabled: false
+  reason: coming_soon
+Long Lartin:
+  enabled: false
+Lowdham Grange:
+  enabled: false
+Manchester:
+  enabled: false
+Morton Hall:
+  enabled: false
+Northumberland:
+  enabled: false
+Oakwood:
+  enabled: false
+  finder_slug: hmp-oakwood
+Parc:
+  enabled: false
+Peterborough:
+  enabled: false
+Prescoed:
+  enabled: false
+  reason: coming_soon
+  finder_slug: usk-prescoed-prescoed
+Rye Hill:
+  enabled: false
+Stafford:
+  enabled: false
+Thameside:
+  enabled: false
+Wakefield:
+  enabled: false
+Whitemoor:
+  enabled: false
+Woodhill:
+  enabled: false
