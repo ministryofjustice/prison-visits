@@ -104,4 +104,36 @@ describe Schedule do
       subject.dates(Date.new(2014, 1, 1), 60).to_a.should include anomalous_date
     end
   end
+
+  context "prison with custom lead days" do
+    #    December 2014
+    # Su Mo Tu We Th Fr Sa
+    #     1  2  3  4  5  6
+    #  7  8  9 10 11 12 13
+    # 14 15 16 17 18 19 20
+    # 21 22 23 24 25 26 27
+    # 28 29 30 31
+
+    let :prison do
+      Rails.configuration.prison_data['Durham'].dup
+    end
+
+    it "allows earlier bookings" do
+      prison[:lead_days] = 0
+
+      subject.dates(start_date, 28).first.should == start_date + 2
+    end
+
+    context "which works on weekends" do
+      let :prison do
+        Rails.configuration.prison_data['Lewes'].dup
+      end
+
+      it "allows earlier bookings" do
+        prison[:lead_days] = 0
+
+        subject.dates(start_date, 28).first.should == start_date + 1
+      end
+    end
+  end
 end

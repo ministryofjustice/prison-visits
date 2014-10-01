@@ -6,10 +6,11 @@ class Schedule
     @visiting_slots = prison_data_for_prison[:slots]
     @anomalous_dates = (prison_data_for_prison[:slot_anomalies] || {}).keys
     @works_weekends = prison_data_for_prison[:works_weekends]
+    @lead_days = prison_data_for_prison[:lead_days] || 3
   end
 
   def dates(starting_when, how_many_days)
-    except_lead_days(starting_when, 3, except_days_without_slots(except_unbookable(starting_when..(starting_when + how_many_days))))
+    except_lead_days(starting_when, @lead_days, except_days_without_slots(except_unbookable(starting_when..(starting_when + how_many_days))))
   end
 
   def except_unbookable(enumerable)
