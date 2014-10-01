@@ -9,6 +9,7 @@ gmail.c
 gmail.con
 gmail.om
 hays-travelco.uk
+hitmail.com
 homail.com
 hormail.com
 hotma.com
@@ -16,6 +17,7 @@ hotmaail.co.uk
 hotmaail.com
 hotmai.co.uk
 hotmai.com
+hotmailco.uk
 hotmail.co
 hotmail.co.ik
 hotmail.co.uj
