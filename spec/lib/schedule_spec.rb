@@ -136,4 +136,52 @@ describe Schedule do
       end
     end
   end
+
+  context "custom lead days equal to zero (next-day visits) when the prison works on weekends" do
+    let :prison do
+      Rails.configuration.prison_data['Highpoint North'].dup
+    end
+
+    it "allows a next-day booking but not on the weekend" do
+      #    December 2014
+      # Su Mo Tu We Th Fr Sa
+      #     1  2  3  4  5  6
+      #  7  8  9 10 11 12 13
+      # 14 15 16 17 18 19 20
+      # 21 22 23 24 25 26 27
+      # 28 29 30 31
+
+      date_range = (Date.new(2014, 12, 1)..Date.new(2014, 12, 28))
+
+      # Monday
+      start_date = Date.new(2014, 12, 1)
+      subject.except_lead_days(start_date, 0, date_range).first.should == start_date + 1
+
+      # Tuesday
+      start_date = Date.new(2014, 12, 2)
+      subject.except_lead_days(start_date, 0, date_range).first.should == start_date + 1
+
+      # Wednesday
+      start_date = Date.new(2014, 12, 3)
+      subject.except_lead_days(start_date, 0, date_range).first.should == start_date + 1
+
+      # Thursday
+      start_date = Date.new(2014, 12, 4)
+      subject.except_lead_days(start_date, 0, date_range).first.should == start_date + 1
+
+      # Friday
+      start_date = Date.new(2014, 12, 5)
+      subject.except_lead_days(start_date, 0, date_range).first.should == start_date + 3
+
+      # Saturday
+      start_date = Date.new(2014, 12, 6)
+      subject.except_lead_days(start_date, 0, date_range).first.should == start_date + 2
+
+      # Sunday
+      start_date = Date.new(2014, 12, 7)
+      subject.except_lead_days(start_date, 0, date_range).first.should == start_date + 1
+
+      subject.dates(start_date = Date.new(2014, 12, 4), 28).first.should == start_date + 1
+    end
+  end
 end

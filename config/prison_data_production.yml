@@ -1301,6 +1301,7 @@ Highpoint North:
   enabled: true
   phone: 01440 743134
   email: 'socialvisits.highpoint@hmps.gsi.gov.uk'
+  lead_days: 0
   address:
     - Stradishall
     - 'CB8 9YG '
@@ -1317,6 +1318,7 @@ Highpoint South:
   enabled: true
   phone: 01440 743134
   email: 'socialvisits.highpoint@hmps.gsi.gov.uk'
+  lead_days: 0
   address:
     - Stradishall
     - 'CB8 9YG '

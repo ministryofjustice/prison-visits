@@ -30,15 +30,27 @@ class Schedule
   end
 
   def except_lead_days(start_date, lead_days, enumerable)
-    offsets = {
-      0 => lead_days,
-      1 => lead_days,
-      2 => lead_days,
-      3 => lead_days + 2,
-      4 => lead_days + 2,
-      5 => lead_days + 2,
-      6 => lead_days + 1
-    }
+    if lead_days == 0
+      offsets = {
+        0 => 0,
+        1 => 0,
+        2 => 0,
+        3 => 0,
+        4 => 0,
+        5 => 2,
+        6 => 1
+      }
+    else
+      offsets = {
+        0 => lead_days,
+        1 => lead_days,
+        2 => lead_days,
+        3 => lead_days + 2,
+        4 => lead_days + 2,
+        5 => lead_days + 2,
+        6 => lead_days + 1
+      }
+    end
     Enumerator.new do |e|
       enumerable.each do |current|
         if @works_weekends

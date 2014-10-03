@@ -1304,6 +1304,7 @@ Highpoint North:
   enabled: true
   phone: 01440 743134
   email: pvb.highpointnorth@maildrop.dsd.io
+  lead_days: 0
   address:
     - Stradishall
     - 'CB8 9YG '
@@ -1320,6 +1321,7 @@ Highpoint South:
   enabled: true
   phone: 01440 743134
   email: pvb.highpointnorth@maildrop.dsd.io
+  lead_days: 0
   address:
     - Stradishall
     - 'CB8 9YG '
