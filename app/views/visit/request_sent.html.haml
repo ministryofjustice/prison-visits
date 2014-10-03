@@ -67,6 +67,9 @@
     
     = render 'content/confirmation_page'
 
+    .footnote
+      %p Take a moment to #{link_to('rate this service', 'http://www.gov.uk/done/prison-visits')}.
+
 - unless just_testing?
   - content_for :analytics do
     :ruby
