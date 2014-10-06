@@ -19,7 +19,7 @@ class CSVFormatter
            dataset.confirmed_visits[prison],
            dataset.end_to_end_times[prison],
            dataset.processing_times[prison],
-           dataset.rejected_visits[prison] / dataset.total_visits[prison]
+           dataset.total_visits[prison] > 0 ? dataset.rejected_visits[prison] / dataset.total_visits[prison] : 0
           ]
       end
     end
