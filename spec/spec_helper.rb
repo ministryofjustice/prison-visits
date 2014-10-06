@@ -18,6 +18,7 @@ module HelperMethods
         p.first_name = 'Jimmy'
         p.last_name = 'Harris'
         p.prison_name = 'Rochester'
+        p.number = 'a0000aa'
       end
       v.visitors = [Visitor.new(email: 'visitor@example.com', date_of_birth: Date.new(1918, 11, 11), first_name: 'Mark', last_name: 'Harris')]
     end
