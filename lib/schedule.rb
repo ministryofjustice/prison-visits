@@ -1,16 +1,20 @@
 class Schedule
   WEEK_DAYS_MAP = { sun: 0, mon: 1, tue: 2, wed: 3, thu: 4, fri: 5, sat: 6 }.invert
+  DEFAULT_BOOKING_WINDOW = 28 # days
+  DEFAULT_LEAD_DAYS = 3 # days
+
+  attr_reader :lead_days
 
   def initialize(prison_data_for_prison)
     @unbookable_dates = prison_data_for_prison[:unbookable].to_set
     @visiting_slots = prison_data_for_prison[:slots]
     @anomalous_dates = (prison_data_for_prison[:slot_anomalies] || {}).keys
     @works_weekends = prison_data_for_prison[:works_weekends]
-    @lead_days = prison_data_for_prison[:lead_days] || 3
+    @lead_days = prison_data_for_prison[:lead_days] || DEFAULT_LEAD_DAYS
   end
 
-  def dates(starting_when, how_many_days)
-    except_lead_days(starting_when, @lead_days, except_days_without_slots(except_unbookable(starting_when..(starting_when + how_many_days))))
+  def dates(starting_when)
+    except_lead_days(starting_when, except_days_without_slots(except_unbookable(default_booking_range(starting_when))))
   end
 
   def except_unbookable(enumerable)
@@ -29,7 +33,7 @@ class Schedule
     end
   end
 
-  def except_lead_days(start_date, lead_days, enumerable)
+  def except_lead_days(start_date, enumerable)
     if lead_days == 0
       offsets = {
         0 => 0,
@@ -60,6 +64,10 @@ class Schedule
         end
       end
     end
+  end
+
+  def default_booking_range(starting_when)
+    starting_when..(starting_when + DEFAULT_BOOKING_WINDOW)
   end
 end
 

@@ -4,9 +4,12 @@
   .Grid-2-3
     %p 
       %strong Your visit is not booked yet:
-      you'll get a confirmation email to 
+      you'll get an email to 
       = mail_to visit.visitors.first.email
-      within 3 working days. If you don't get a confirmation email, please
+      by
+      = when_to_expect_reply
+      to confirm the date and time of your visit. 
+      If you don't get a confirmation email, please
       = conditional_text prison_phone, 'call ', ' or'
       email us at #{prison_email_link}.
 

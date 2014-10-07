@@ -128,6 +128,7 @@ describe VisitorMailer do
         email[:to].should == visitor_address
         email.body.raw_source.should_not include("Jimmy Harris")
         email.body.raw_source.should include(visit_status_url(id: sample_visit.visit_id))
+        email.body.raw_source.should match(/by Wednesday  8 October to/)
       end
     end
 

@@ -74,6 +74,10 @@ describe VisitHelper do
     it "provides all the slots for a particular day" do
       helper.anomalies_for_day(Date.parse("2014-08-14")).should == [["0700", "0900"]]
     end
+
+    it "provides a formatted date for when a response may be sent out" do
+      helper.when_to_expect_reply(Date.parse("2014-10-03")).should == "Monday  6 October"
+    end
   end
 
   it "should provide the prison name" do
