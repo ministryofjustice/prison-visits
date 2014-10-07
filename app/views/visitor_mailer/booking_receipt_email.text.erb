@@ -18,6 +18,8 @@ You have requested a visit to <%= @visit.prisoner.prison_name %> for <%= @visit.
 <% if index == 0 %>First choice: <% else %>Alternative <%= index %>:<% end %> <%= Date.parse(slot.date).strftime("%A %e %B") %>, <%= display_time_slot(slot.times) %>
 <% end %>
 <% end %>
+Prisoner: <%= @visit.prisoner.first_name %> <%= @visit.prisoner.last_initial %>
+Prisoner number: <%= @visit.prisoner.number.upcase %>
 
 If you want to cancel or make a change to your request or have any special requirements, eg wheelchair access, please contact us.
 * telephone: <%= prison_phone %>
