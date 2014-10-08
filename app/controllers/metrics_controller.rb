@@ -3,13 +3,21 @@ class MetricsController < ApplicationController
 
   def index
     @prisons = Rails.configuration.prison_data.keys.sort
-    @dataset = CalculatedMetrics.new(VisitMetricsEntry, 3.days).refresh
+    @dataset = CalculatedMetrics.new(VisitMetricsEntry, 3.days)
 
     respond_to do |format|
       format.html
       format.csv do
         render text: CSVFormatter.new(@prisons).generate(@dataset)
       end
+    end
+  end
+
+  def show
+    @prison = params[:prison]
+    @dataset = DetailedMetrics.new(VisitMetricsEntry, @prison)
+    respond_to do |format|
+      format.html
     end
   end
 

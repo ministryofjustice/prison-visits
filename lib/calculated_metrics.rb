@@ -6,6 +6,7 @@ class CalculatedMetrics
   def initialize(model, overdue_threshold)
     @model = model
     @overdue_threshold = overdue_threshold
+    refresh
   end
 
   def refresh

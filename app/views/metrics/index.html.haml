@@ -51,7 +51,7 @@
   - @prisons.each_with_index do |prison, i|
     %tr{class: i.even? ? 'even' : 'odd'}
       %td.prison_name
-        = prison
+        = link_to(prison, prison_metrics_path(prison))
       %td.narrow.align-right
         = @dataset.total_visits[prison]
       %td.narrow.align-right
