@@ -32,8 +32,9 @@ PrisonVisits2::Application.routes.draw do
   get "static/404"
   get "static/prison_emails"
 
+  get "metrics" => "metrics#index"
   get "metrics/weekly" => "metrics#weekly"
-  get "metrics(/:prison)(.:format)" => "metrics#index"
+  get "metrics(/:prison)" => "metrics#show", as: :prison_metrics
 
   get "/", to: redirect("https://www.gov.uk/prisonvisits")
 end
