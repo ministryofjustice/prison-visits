@@ -6,8 +6,8 @@ class Schedule
   attr_reader :lead_days
 
   def initialize(prison_data_for_prison)
-    @unbookable_dates = prison_data_for_prison[:unbookable].to_set
-    @visiting_slots = prison_data_for_prison[:slots]
+    @unbookable_dates = (prison_data_for_prison[:unbookable] || []).to_set
+    @visiting_slots = prison_data_for_prison[:slots] || {}
     @anomalous_dates = (prison_data_for_prison[:slot_anomalies] || {}).keys
     @works_weekends = prison_data_for_prison[:works_weekends]
     @lead_days = prison_data_for_prison[:lead_days] || DEFAULT_LEAD_DAYS

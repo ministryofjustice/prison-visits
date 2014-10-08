@@ -184,4 +184,14 @@ describe Schedule do
       subject.dates(start_date = Date.new(2014, 12, 4)).first.should == start_date + 1
     end
   end
+
+  context "prison without unbookable dates" do
+    let :prison do
+      Rails.configuration.prison_data['Oakwood'].dup
+    end
+
+    it "should return a list of dates" do
+      subject.dates(start_date = Date.new(2014, 12, 4)).first.should be_nil
+    end
+  end
 end
