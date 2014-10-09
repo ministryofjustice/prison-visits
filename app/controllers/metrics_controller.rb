@@ -13,12 +13,15 @@ class MetricsController < ApplicationController
     end
   end
 
-  def show
+  def all_time
     @prison = params[:prison]
     @dataset = DetailedMetrics.new(VisitMetricsEntry, @prison)
     respond_to do |format|
       format.html
     end
+  end
+
+  def fortnightly
   end
 
   def weekly

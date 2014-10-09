@@ -34,7 +34,8 @@ PrisonVisits2::Application.routes.draw do
 
   get "metrics" => "metrics#index"
   get "metrics/weekly" => "metrics#weekly"
-  get "metrics(/:prison)" => "metrics#show", as: :prison_metrics
+  get "metrics/:prison/all_time" => "metrics#all_time", as: :prison_metrics_all_time
+  get "metrics/:prison/fortnightly" => "metrics#fortnightly", as: :prison_metrics_fortnightly
 
   get "/", to: redirect("https://www.gov.uk/prisonvisits")
 end
