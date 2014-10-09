@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class VisitorMailer < ActionMailer::Base
 
   include MailerHelper::NoReply
@@ -17,7 +18,7 @@ class VisitorMailer < ActionMailer::Base
     @slot = visit.slots[confirmation.slot.to_i]
     @message_from_prison = confirmation.message
 
-    mail(from: sender, reply_to: prison_mailbox_email, to: recipient, subject: "Your visit for #{Date.parse(@slot.date).strftime('%e %B %Y').gsub(/^ /,'')} has been confirmed")
+    mail(from: sender, reply_to: prison_mailbox_email, to: recipient, subject: "Visit confirmed: your visit for #{Date.parse(@slot.date).strftime('%e %B %Y').gsub(/^ /,'')} has been confirmed")
   end
 
   def booking_rejection_email(visit, confirmation)
@@ -25,13 +26,13 @@ class VisitorMailer < ActionMailer::Base
     @message_from_prison = confirmation.message
     @confirmation = confirmation
     
-    mail(from: sender, reply_to: prison_mailbox_email, to: recipient, subject: "Your visit for #{first_date.strftime('%e %B %Y').gsub(/^ /,'')} could not be booked")
+    mail(from: sender, reply_to: prison_mailbox_email, to: recipient, subject: "Visit cannot take place: your visit for #{first_date.strftime('%e %B %Y').gsub(/^ /,'')} could not be booked")
   end
 
   def booking_receipt_email(visit)
     @visit = visit
 
-    mail(from: sender, reply_to: prison_mailbox_email, to: recipient, subject: "Your visit request for #{first_date.strftime('%e %B %Y').gsub(/^ /,'')} will be processed soon")
+    mail(from: sender, reply_to: prison_mailbox_email, to: recipient, subject: "Not booked yet: we've received your visit request for #{first_date.strftime('%e %B %Y').gsub(/^ /,'')}")
   end
 
   def sender

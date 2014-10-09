@@ -98,7 +98,7 @@ describe ConfirmationsController do
         after :each do
           post :create, confirmation: { outcome: 'slot_0' }, state: encrypted_visit
           response.should redirect_to(confirmation_path)
-          ActionMailer::Base.deliveries.map(&:subject).should == ["Your visit for 7 July 2013 has been confirmed", "COPY of booking confirmation for Jimmy Harris"]
+          ActionMailer::Base.deliveries.map(&:subject).should == ["Visit confirmed: your visit for 7 July 2013 has been confirmed", "COPY of booking confirmation for Jimmy Harris"]
         end
       end
 
@@ -112,7 +112,7 @@ describe ConfirmationsController do
         after :each do
           post :create, confirmation: { outcome: Confirmation::NOT_ON_CONTACT_LIST }, state: encrypted_visit
           response.should redirect_to(confirmation_path)
-          ActionMailer::Base.deliveries.map(&:subject).should == ["Your visit for 7 July 2013 could not be booked", "COPY of booking rejection for Jimmy Harris"]
+          ActionMailer::Base.deliveries.map(&:subject).should == ["Visit cannot take place: your visit for 7 July 2013 could not be booked", "COPY of booking rejection for Jimmy Harris"]
         end
       end
 
@@ -126,7 +126,7 @@ describe ConfirmationsController do
         after :each do
           post :create, confirmation: { outcome: Confirmation::NO_VOS_LEFT }, state: encrypted_visit
           response.should redirect_to(confirmation_path)
-          ActionMailer::Base.deliveries.map(&:subject).should == ["Your visit for 7 July 2013 could not be booked", "COPY of booking rejection for Jimmy Harris"]
+          ActionMailer::Base.deliveries.map(&:subject).should == ["Visit cannot take place: your visit for 7 July 2013 could not be booked", "COPY of booking rejection for Jimmy Harris"]
         end
       end
 
@@ -140,7 +140,7 @@ describe ConfirmationsController do
         after :each do
           post :create, confirmation: { outcome: 'no_slot_available' }, state: encrypted_visit
           response.should redirect_to(confirmation_path)
-          ActionMailer::Base.deliveries.map(&:subject).should == ["Your visit for 7 July 2013 could not be booked", "COPY of booking rejection for Jimmy Harris"]
+          ActionMailer::Base.deliveries.map(&:subject).should == ["Visit cannot take place: your visit for 7 July 2013 could not be booked", "COPY of booking rejection for Jimmy Harris"]
         end
       end
 
