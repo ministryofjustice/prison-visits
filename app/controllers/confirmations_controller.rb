@@ -55,6 +55,7 @@ class ConfirmationsController < ApplicationController
 
   def legacy_data_fixes(visit)
     if prison_name = {
+        'Hollesley Bay' => 'Hollesley Bay Open',
         'Hatfield (moorland Open)' => 'Hatfield Open',
         'Highpoint' => 'Highpoint North',
         'Albany' => 'Isle of Wight - Albany',
