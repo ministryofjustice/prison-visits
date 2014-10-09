@@ -8,11 +8,19 @@ function percentile(array, n) {
 }
 
 function formatSeconds(s) {
+    if (s == 0) {
+        return '';
+    }
+    
     var output = [];
-    var d = parseInt(s / (24 * 3600));
-    s -= d * 24 * 3600;
-    if (d > 0) {
-        output = output.concat([d, 'days']);
+    var d = s / (24 * 3600)
+    s -= parseInt(d) * 24 * 3600;
+    if (d > 1) {
+        output = output.concat([d.toPrecision(2), 'days']);
+    } else {
+        var h = parseInt(s / 3600);
+        s -= h * 3600;
+        output = output.concat([h, 'hrs']);
     }
     return output.join(' ');
 }
