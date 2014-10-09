@@ -64,7 +64,20 @@ class DetailedMetrics
     @scoped_model.waiting.pluck("EXTRACT(epoch FROM NOW() - requested_at) AS delay")
   end
 
+  def total
+    @scoped_model.count
+  end
+
+  def waiting
+    @scoped_model.waiting.count
+  end
+
   def series(column)
     @scoped_model.where.not(column => nil).pluck(column)
+  end
+
+  def median(array)
+    size = array.size
+    array.sort[size / 2 + 1]
   end
 end

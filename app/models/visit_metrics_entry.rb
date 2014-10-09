@@ -4,6 +4,8 @@ class VisitMetricsEntry < ActiveRecord::Base
   scope :processed, -> { where.not(processed_at: nil) }
   scope :waiting, -> { where(processed_at: nil) }
   scope :for_prison, -> (p) { where(prison_name: p) }
+  scope :after, -> (date) { where('requested_at > ?', date) }
+  scope :before, -> (date) { where('processed_at <= ?', date) }
 
   def processed?
     if block_given?

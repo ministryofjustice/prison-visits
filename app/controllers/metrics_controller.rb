@@ -22,6 +22,12 @@ class MetricsController < ApplicationController
   end
 
   def fortnightly
+    @prison = params[:prison]
+    @start_date, @end_date = Date.today - 18, Date.today - 4
+    @dataset = DetailedWindowedMetrics.new(VisitMetricsEntry, @prison, @start_date..@end_date)
+    respond_to do |format|
+      format.html
+    end
   end
 
   def weekly

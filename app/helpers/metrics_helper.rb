@@ -23,6 +23,10 @@ module MetricsHelper
     end + "#{seconds}s"
   end
 
+  def display_interval_as_fraction(seconds)
+    sprintf("%2.2f days", seconds.to_f / (24 * 3600))
+  end
+
   def display_percent(value)
     return if value.nil? || value.nan?
 
