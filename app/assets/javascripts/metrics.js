@@ -20,7 +20,17 @@ function formatSeconds(s) {
     } else {
         var h = parseInt(s / 3600);
         s -= h * 3600;
-        output = output.concat([h, 'hrs']);
+        if (h > 1) {
+            output = output.concat([h, 'hrs']);
+        } else {
+            var m = parseInt(s / 60);
+            s -= m * 60;
+            if (m > 1) {
+                output = output.concat([m, 'mins']);
+            } else {
+                output = output.concat([s, 'secs']);
+            }
+        }
     }
     return output.join(' ');
 }
