@@ -143,6 +143,8 @@ describe Schedule do
     end
 
     it "allows a next-day booking but not on the weekend" do
+      prison[:lead_days] = 0
+
       #    December 2014
       # Su Mo Tu We Th Fr Sa
       #     1  2  3  4  5  6

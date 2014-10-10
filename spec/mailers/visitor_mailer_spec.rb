@@ -5,6 +5,11 @@ describe VisitorMailer do
   before :each do
     ActionMailer::Base.deliveries.clear
     VisitorMailer.any_instance.stub(:smtp_domain).and_return('example.com')
+    Timecop.freeze(Time.local(2013, 7, 4))
+  end
+
+  after :each do
+    Timecop.return
   end
 
   let :email do
@@ -129,7 +134,7 @@ describe VisitorMailer do
         email[:to].should == visitor_address
         email.body.raw_source.should_not include("Jimmy Harris")
         email.body.raw_source.should include(visit_status_url(id: sample_visit.visit_id))
-        email.body.raw_source.should match(/by Friday 10 October to/)
+        email.body.raw_source.should match(/by Friday  5 July to/)
       end
     end
 

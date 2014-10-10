@@ -48,7 +48,6 @@ class MetricsLogger
   def update_entry(visit_id)
     if entry = find_entry(visit_id)
       yield entry
-      puts entry.changes
       entry.save! if entry.changed?
     end
   rescue PG::ConnectionBad => e
