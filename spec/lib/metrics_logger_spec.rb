@@ -27,7 +27,7 @@ describe MetricsLogger do
     end
   end
 
-  it "logs when the prison staff clicks on the link" do
+  it "logs when the prison staff clicks on the link, but only the first instance" do
     subject.record_visit_request(visit)
     expect {
       subject.record_link_click(visit)
@@ -35,9 +35,14 @@ describe MetricsLogger do
     VisitMetricsEntry.last.tap do |entry|
       entry.visit_id.should == 'ABC'
       entry.requested_at.should == @time
+      entry.opened_at.should == @time
       entry.prison_name.should == 'Rochester'
       entry.processed_at.should be_nil
     end
+    Timecop.return
+    expect {
+      subject.record_link_click(visit)
+    }.not_to change { VisitMetricsEntry.last.opened_at }
   end
 
   it "logs when the visit is confirmed" do

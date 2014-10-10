@@ -7,7 +7,7 @@ class MetricsLogger
 
   def record_link_click(visit)
     update_entry(visit.visit_id) do |e|
-      e.opened_at = now_in_utc
+      e.opened_at ||= now_in_utc
     end
   end
 
@@ -48,7 +48,8 @@ class MetricsLogger
   def update_entry(visit_id)
     if entry = find_entry(visit_id)
       yield entry
-      entry.save!
+      puts entry.changes
+      entry.save! if entry.changed?
     end
   rescue PG::ConnectionBad => e
     Raven.capture_exception(e)
