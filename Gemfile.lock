@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:ministryofjustice/prison_staff_info.git
-  revision: a2df6abd6acf7e41919aadf1043c017f469681cd
+  revision: e0c4766b7029a80720532ca82a2b2a3975b45ac2
   branch: master
   specs:
     prison_staff_info (0.0.2)
