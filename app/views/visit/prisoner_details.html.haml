@@ -14,7 +14,7 @@
       - if f.object.errors.any?
         = render 'shared/validation'
 
-      %fieldset.FormBlock
+      %fieldset
         %legend.visuallyhidden Prisoner details
         .group{ :class => ('validation-error' if f.object.errors.include?(:first_name)) }
           = f.label :first_name do

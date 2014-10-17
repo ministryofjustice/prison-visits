@@ -24,7 +24,7 @@
                   - else
                     = [(visitor.index == 0 ? "your" : "visitor #{visitor.index+1}"), key, val.join(' and ')].join(' ').humanize
 
-      %fieldset.FormBlock
+      %fieldset
         %legend.visuallyhidden Your details
         = f.fields_for visit.visitors[0], index: '' do |visitor_form|
           = render 'visitor_fields', f: visitor_form, index: 0, visitor: visit.visitors[0], js_template: false
@@ -32,7 +32,7 @@
       %h2 Other visitors
       %p You can have up to 3 adults (over 18) and 3 children visiting at the same time. Seats are provided only for adults, so children may have to sit on your lap.
 
-      %fieldset.FormBlock
+      %fieldset
         %legend.visuallyhidden Other visitors
         .group.group--inline.visible--js-enabled
           %label(for="number_of_adults") How many other visitors?
