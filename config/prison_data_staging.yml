@@ -910,6 +910,7 @@ Dartmoor:
   address:
     - Princetown
     - 'PL20 6RR'
+  lead_days: 4  
   unbookable:
     - 2014-12-25
   slots:
