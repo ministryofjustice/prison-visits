@@ -15,6 +15,8 @@ class MetricsLogger
     update_entry(visit.visit_id) do |e|
       e.processed_at = now_in_utc
       e.outcome = :confirmed
+      e.processing_time = e.processed_at - e.opened_at
+      e.end_to_end_time = e.processed_at - e.requested_at
     end
   end
 
@@ -23,6 +25,8 @@ class MetricsLogger
       e.processed_at = now_in_utc
       e.outcome = :rejected
       e.reason = reason
+      e.processing_time = e.processed_at - e.opened_at
+      e.end_to_end_time = e.processed_at - e.requested_at
     end
   end
 

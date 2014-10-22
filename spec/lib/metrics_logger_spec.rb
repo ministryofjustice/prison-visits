@@ -24,6 +24,8 @@ describe MetricsLogger do
       entry.prison_name.should == 'Rochester'
       entry.opened_at.should be_nil
       entry.processed_at.should be_nil
+      entry.processing_time.should be_nil
+      entry.end_to_end_time.should be_nil
     end
   end
 
@@ -38,6 +40,8 @@ describe MetricsLogger do
       entry.opened_at.should == @time
       entry.prison_name.should == 'Rochester'
       entry.processed_at.should be_nil
+      entry.end_to_end_time.should be_nil
+      entry.processing_time.should be_nil
     end
     Timecop.return
     expect {
@@ -47,6 +51,7 @@ describe MetricsLogger do
 
   it "logs when the visit is confirmed" do
     subject.record_visit_request(visit)
+    subject.record_link_click(visit)
     expect {
       subject.record_booking_confirmation(visit)
     }.to change { VisitMetricsEntry.count }.by 0
@@ -56,11 +61,14 @@ describe MetricsLogger do
       entry.prison_name.should == 'Rochester'
       entry.processed_at.should == @time
       entry.outcome.should == 'confirmed'
+      entry.end_to_end_time.should == 0
+      entry.processing_time.should == 0
     end
   end
 
   it "logs when the visit is rejected" do
     subject.record_visit_request(visit)
+    subject.record_link_click(visit)
     expect {
       subject.record_booking_rejection(visit, 'because')
     }.to change { VisitMetricsEntry.count }.by 0
@@ -71,11 +79,14 @@ describe MetricsLogger do
       entry.processed_at.should == @time
       entry.outcome.should == 'rejected'
       entry.reason.should == 'because'
+      entry.end_to_end_time.should == 0
+      entry.processing_time.should == 0
     end
   end
 
   it "responds with a visit status as confirmed" do
     subject.record_visit_request(visit)
+    subject.record_link_click(visit)
     subject.record_booking_confirmation(visit)
     subject.processed?(visit).should be_true
     subject.visit_status(visit.visit_id).should == :confirmed
@@ -83,6 +94,7 @@ describe MetricsLogger do
 
   it "responds with a visit status as rejected" do
     subject.record_visit_request(visit)
+    subject.record_link_click(visit)
     subject.record_booking_rejection(visit, 'because')
     subject.processed?(visit).should be_true
     subject.visit_status(visit.visit_id).should == :rejected
