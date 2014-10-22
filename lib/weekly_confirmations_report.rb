@@ -1,6 +1,8 @@
 require 'csv'
 
 class WeeklyConfirmationsReport
+  attr_reader :total
+  
   def initialize(model, year, start_of_year)
     @model = model
     @year = year
@@ -39,6 +41,15 @@ GROUP BY prison_name, EXTRACT(week FROM processed_at) ORDER BY prison_name, week
 
       h[prison_name][weekno] = count
       h
+    end
+
+    @total = @model.connection.execute("
+SELECT EXTRACT(week FROM processed_at) AS weekno, COUNT(*)
+FROM visit_metrics_entries
+WHERE processed_at IS NOT NULL AND EXTRACT(year FROM processed_at) = 2014
+GROUP BY weekno ORDER BY weekno").inject(Array.new(52, 0)) do |arr, row|
+      arr[row['weekno'].to_i] = row['count'].to_i
+      arr
     end
 
     self

@@ -16,8 +16,12 @@
     background-color: LightGray;
   }
 
+  .total td {
+    border: thin solid black;
+  }
+
 %h1
-  Confirmations by week
+  Visits requested by week
   = link_to('CSV', format: :csv)
 
 %table
@@ -27,6 +31,12 @@
     - @dataset.week_range.each do |week_no|
       %th
         = @start_of_year + week_no * 7
+  %tr.total
+    %td.prison-name
+      TOTAL
+    - @dataset.week_range.each do |week_no|
+      %td
+        = @dataset.total[week_no]
   - @prisons.each_with_index do |prison, i|
     %tr{class: i.even? ? 'even' : 'odd'}
       %td.prison-name
