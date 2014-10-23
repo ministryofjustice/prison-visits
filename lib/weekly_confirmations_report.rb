@@ -30,6 +30,7 @@ SELECT prison_name,
        COUNT(*)
 FROM visit_metrics_entries
 WHERE processed_at IS NOT NULL AND EXTRACT(year FROM processed_at) = 2014
+AND outcome = 'confirmed'
 GROUP BY prison_name, EXTRACT(week FROM processed_at) ORDER BY prison_name, weekno").inject(hash_with_default) do |h, row|
 
       weekno = row['weekno'].to_i
@@ -47,6 +48,7 @@ GROUP BY prison_name, EXTRACT(week FROM processed_at) ORDER BY prison_name, week
 SELECT EXTRACT(week FROM processed_at) AS weekno, COUNT(*)
 FROM visit_metrics_entries
 WHERE processed_at IS NOT NULL AND EXTRACT(year FROM processed_at) = 2014
+AND outcome = 'confirmed'
 GROUP BY weekno ORDER BY weekno").inject(Array.new(52, 0)) do |arr, row|
       arr[row['weekno'].to_i] = row['count'].to_i
       arr
