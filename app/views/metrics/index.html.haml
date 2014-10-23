@@ -8,6 +8,8 @@
   }
 
   table {
+    width: 120%;
+    margin-left: -100px;
     border-collapse: collapse;
   }
 
@@ -63,7 +65,7 @@
       %td.narrow.align-right
         = @dataset.confirmed_visits[prison]
       %td.align-right
-        = display_interval(@dataset.end_to_end_times[prison])
+        = display_interval_as_fraction(@dataset.end_to_end_times[prison])
       %td.align-right
         = display_interval(@dataset.processing_times[prison])
       %td.align-right

@@ -17,29 +17,6 @@ class DetailedMetrics
     @scoped_model.waiting.minimum('EXTRACT(EPOCH FROM NOW() - requested_at)').to_i
   end
   
-  def performance_score
-    score = 1.0 * processed_before / (processed_before + processed_after)
-  end
-
-  def performance_score_label
-    case performance_score
-    when (0.97..1)
-      'Exemplary'
-    when (0.95..0.97)
-      'Very Good'
-    when (0.93..0.95)
-      'Good'
-    when (0.92..0.93)
-      'Acceptable'
-    when (0.9..0.92)
-      'Poor'
-    when (0.8..0.9)
-      'Very Poor'
-    when (0..0.8)
-      'Unacceptable'
-    end
-  end
-
   def week_hour_breakdown(column)
     @scoped_model.
       group("EXTRACT(dow FROM #{column})::integer").
@@ -79,5 +56,10 @@ class DetailedMetrics
   def median(array)
     size = array.size
     array.sort[size / 2 + 1]
+  end
+
+  def percentile(array, pct=0.95)
+    size = array.size
+    array.sort[(pct * size).floor]
   end
 end

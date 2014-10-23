@@ -15,14 +15,14 @@
     %th
       Over 3 days
     %th
-      Mark
+      Status
   %tr
     %td
       = @dataset.processed_before
     %td
       = @dataset.processed_after
     %td
-      = @dataset.performance_score_label
+      = image_for_performance_score(@dataset.percentile(@dataset.end_to_end_times))
 
 %h2
   End to end processing time
