@@ -109,7 +109,7 @@
           })
         );
       } else {
-        response([{ label: 'Prison not found.', value: -1}]);
+        response([{ label: 'Prison not found', value: -1}]);
       }
     },
 

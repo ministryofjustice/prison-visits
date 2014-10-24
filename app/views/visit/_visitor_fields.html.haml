@@ -33,7 +33,7 @@
         #dobHint
           - if index == 0
             %p.form-hint You must be over 18 to book a visit.
-          %p.form-hint.datefield-hint For example, 28 4 1996
+          %p.form-hint.datefield-hint eg 28 04 1996
         - dates = ['day', 'month', 'year']
         - dates.each_with_index do |o, i|
           .datefield{ :class => "form-group form-group-#{o}" }
@@ -46,12 +46,12 @@
       = f.label :email do
         Email address
         %span.validation-message= f.object.errors[:email].first if f.object.errors.include?(:email)
-      %p.form-hint#emailHint You will receive visit confirmation by email. Please make sure you enter your email correctly.
+      %p.form-hint#emailHint You'll receive confirmation by email.
       = f.email_field :email, :'aria-describedby' => "emailHint"
 
     .group{ :class => ('validation-error' if f.object.errors.include?(:phone)) }
       = f.label :phone do
-        Contact phone number
+        Phone number
         %span.validation-message= f.object.errors[:phone].first if f.object.errors.include?(:phone)
       = f.telephone_field :phone
 
