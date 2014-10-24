@@ -44,6 +44,10 @@
   %main#wrapper(role="main")
     .container
       .phase-banner
+        - if controller.controller_name == 'confirmations'
+          %p.pull-right
+            %a= link_to 'Booking staff information', staff_path
+
         %p
           This is a new service. If you need any help with using it, please 
           = succeed "." do
