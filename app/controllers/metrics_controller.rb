@@ -3,7 +3,12 @@ class MetricsController < ApplicationController
 
   def index
     @prisons = Rails.configuration.prison_data.keys.sort
-    @dataset = CalculatedMetrics.new(VisitMetricsEntry, 3.days)
+    if params[:range] == 'all'
+      @dataset = CalculatedMetrics.new(VisitMetricsEntry, 3.days)
+    else
+      @start_date, @end_date = fortnightly_range.first, fortnightly_range.last
+      @dataset = CalculatedMetrics.new(VisitMetricsEntry, 3.days, fortnightly_range)
+    end
 
     respond_to do |format|
       format.html
@@ -43,5 +48,9 @@ class MetricsController < ApplicationController
         render text: @dataset.csv
       end
     end
+  end
+
+  def fortnightly_range
+    (Date.today - 18)..(Date.today - 4)
   end
 end

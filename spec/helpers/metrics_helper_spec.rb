@@ -14,8 +14,8 @@ describe MetricsHelper do
   end
 
   it "displays percentages" do
-    helper.display_percent(1.0/3).should == "33.3%"
-    helper.display_percent(0.1).should == "10.0%"
-    helper.display_percent(0.0).should == "0.0%"
+    helper.display_percent(1.0/3).should == "33.3"
+    helper.display_percent(0.1).should == "10.0"
+    helper.display_percent(0.0).should == "0.0"
   end
 end

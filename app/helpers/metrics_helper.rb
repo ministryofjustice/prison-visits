@@ -23,14 +23,14 @@ module MetricsHelper
     end + "#{seconds}s"
   end
 
-  def display_interval_as_fraction(seconds)
-    sprintf("%2.2f days", seconds.to_f / (24 * 3600))
+  def display_interval_as_fraction(seconds, split)
+    sprintf("%2.2f", seconds.to_f / split)
   end
 
   def display_percent(value)
     return if value.nil? || value.nan?
 
-    sprintf("%.1f%%", value * 100)
+    sprintf("%.1f", value * 100)
   end
 
   def image_for_performance_score(score)

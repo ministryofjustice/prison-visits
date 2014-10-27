@@ -1,6 +1,5 @@
 :css
-  .prison_name {
-    width: 17em;
+  td.prison-name {
   }
 
   .even {
@@ -8,72 +7,37 @@
   }
 
   table {
-    width: 120%;
-    margin-left: -100px;
     border-collapse: collapse;
+    background: white;
+  }
+
+  table td {
+    padding-right: 0.5em;
+    vertical-align: bottom;
+    text-align: right;
   }
 
   table .narrow {
     width: 3em;
   }
 
-  table .align-right {
-    text-align: right;
+  table .left-border {
+    border-left: thin solid grey;
   }
-%h1
-  Performance dashboard
-  = link_to('CSV', format: :csv)
-
-%table
-  %tr
-    %th
-      Prison name
-    %th
-      Total
-    %th
-      Waiting
-    %th
-      Overdue
-    %th
-      Rejected
-    %th
-      Confirmed
-    %th
-      End-to-end time
-    %th
-      Processing time
-    %th
-      \% rejected
-    %th
-      \% rejected (no slot)
-    %th
-      \% rejected (contact list)
-    %th
-      \% rejected (no vos left)
-  - @prisons.each_with_index do |prison, i|
-    %tr{class: i.even? ? 'even' : 'odd'}
-      %td.prison_name
-        = link_to(prison, prison_metrics_all_time_path(prison))
-      %td.narrow.align-right
-        = @dataset.total_visits[prison]
-      %td.narrow.align-right
-        = @dataset.waiting_visits[prison]
-      %td.narrow.align-right
-        = @dataset.overdue_visits[prison]
-      %td.narrow.align-right
-        = @dataset.rejected_visits[prison]
-      %td.narrow.align-right
-        = @dataset.confirmed_visits[prison]
-      %td.align-right
-        = display_interval_as_fraction(@dataset.end_to_end_times[prison])
-      %td.align-right
-        = display_interval(@dataset.processing_times[prison])
-      %td.align-right
-        = display_percent(@dataset.percent_rejected(prison))
-      %td.align-right
-        = display_percent(@dataset.percent_rejected(prison, Confirmation::NO_SLOT_AVAILABLE))
-      %td.align-right
-        = display_percent(@dataset.percent_rejected(prison, Confirmation::NOT_ON_CONTACT_LIST))
-      %td.align-right
-        = display_percent(@dataset.percent_rejected(prison, Confirmation::NO_VOS_LEFT))
-
+  
+- if @start_date
+  %h1
+    From
+    = format_date(@start_date)
+    to
+    = format_date(@end_date)
+  %h3
+    = link_to('View this data for all time', range: 'all')
+    = link_to('Download this view as CSV', format: :csv, range: '')
+- else
+  %h1
+    All time
+  %h3
+    = link_to('View this data for the past two weeks', range: '')
+    = link_to('Download this view as CSV', format: :csv, range: 'all')
+= render partial: 'all_prisons', locals: {dataset: @dataset}

@@ -1,0 +1,58 @@
+.table-wrap
+  %table
+    %tr
+      %th
+      %th{colspan: 5}
+        Number of visits
+      %th
+        End to end
+      %th{colspan: 4}
+        Percent rejected
+    %tr
+      %td.prison-name
+        Prison name
+      %td
+        Total
+      %td
+        Waiting
+      %td
+        Overdue
+      %td
+        Rejected
+      %td
+        Confirmed
+      %td
+        (days)
+      %td
+        Overall
+      %td
+        No slot
+      %td
+        Not on contact list
+      %td
+        No VOs left
+    - @prisons.each_with_index do |prison, i|
+      %tr{class: i.even? ? 'even' : 'odd'}
+        %td.prison-name
+          = link_to(prison, prison_metrics_all_time_path(prison))
+        %td.narrow.left-border
+          = dataset.total_visits[prison]
+        %td.narrow
+          = dataset.waiting_visits[prison]
+        %td.narrow
+          = dataset.overdue_visits[prison]
+        %td.narrow
+          = dataset.rejected_visits[prison]
+        %td.narrow
+          = dataset.confirmed_visits[prison]
+        %td.left-border
+          = display_interval_as_fraction(dataset.end_to_end_times[prison], 1.day)
+        %td.narrow.left-border
+          = display_percent(dataset.percent_rejected(prison))
+        %td.narrow
+          = display_percent(dataset.percent_rejected(prison, Confirmation::NO_SLOT_AVAILABLE))
+        %td.narrow
+          = display_percent(dataset.percent_rejected(prison, Confirmation::NOT_ON_CONTACT_LIST))
+        %td.narrow
+          = display_percent(dataset.percent_rejected(prison, Confirmation::NO_VOS_LEFT))
+

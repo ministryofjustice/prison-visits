@@ -3,19 +3,28 @@ require 'csv'
 class CalculatedMetrics
   attr_reader :total_visits, :waiting_visits, :overdue_visits, :confirmed_visits, :rejected_visits, :rejected_for_reason, :end_to_end_times, :processing_times
 
-  def initialize(model, overdue_threshold)
+  def initialize(model, overdue_threshold, date_range=nil)
     @model = model
     @overdue_threshold = overdue_threshold
+    @date_range = date_range
     refresh
   end
 
+  def scope
+    if @date_range
+      @model.where('requested_at IS NULL OR requested_at > ?', @date_range.first).where('processed_at IS NULL OR processed_at <= ?', @date_range.last)
+    else
+      @model
+    end
+  end
+
   def refresh
-    @total_visits = @model.group(:prison_name).count
-    @waiting_visits = @model.group(:prison_name).where(processed_at: nil).count
-    @overdue_visits = @model.group(:prison_name).where("processed_at IS NULL AND ? - requested_at > INTERVAL '? seconds'", Time.now, @overdue_threshold).count
-    @confirmed_visits = @model.group(:prison_name).where(outcome: 'confirmed').count
-    @rejected_visits = @model.group(:prison_name).where(outcome: 'rejected').count
-    @rejected_for_reason = @model.group(:prison_name, :reason).where(outcome: 'rejected').count
+    @total_visits = scope.group(:prison_name).count
+    @waiting_visits = scope.group(:prison_name).where(processed_at: nil).count
+    @overdue_visits = scope.group(:prison_name).where("processed_at IS NULL AND ? - requested_at > INTERVAL '? seconds'", Time.now, @overdue_threshold).count
+    @confirmed_visits = scope.group(:prison_name).where(outcome: 'confirmed').count
+    @rejected_visits = scope.group(:prison_name).where(outcome: 'rejected').count
+    @rejected_for_reason = scope.group(:prison_name, :reason).where(outcome: 'rejected').count
     @end_to_end_times = calculate_percentiles('end_to_end_time')
     @processing_times = calculate_percentiles('processing_time')
 
@@ -35,15 +44,31 @@ class CalculatedMetrics
   end
 
   def calculate_percentiles(column)
+    (@date_range ? calculate_percentiles_with_date_range(column) : calculate_percentiles_without_date_range(column)).each_with_object({}) do |row, h|
+      h[row['prison_name']] = row[column].to_i
+    end
+  end
+
+  def calculate_percentiles_with_date_range(column)
+    @model.connection.execute(%Q{
+WITH percentiles AS (SELECT prison_name, #{column}, cume_dist() OVER (PARTITION BY prison_name ORDER BY #{column}) AS percentile
+                     FROM visit_metrics_entries WHERE #{column} IS NOT NULL
+                     AND requested_at IS NULL OR requested_at > '#{@date_range.first}'::date
+                     AND processed_at IS NULL OR processed_at <= '#{@date_range.last}'::date),
+     top_percentiles AS (SELECT prison_name, #{column}, rank() OVER (PARTITION BY prison_name ORDER BY #{column})
+                     FROM percentiles WHERE percentile >= 0.95)
+SELECT prison_name, #{column} FROM top_percentiles WHERE rank = 1
+})
+  end
+
+  def calculate_percentiles_without_date_range(column)
     @model.connection.execute(%Q{
 WITH percentiles AS (SELECT prison_name, #{column}, cume_dist() OVER (PARTITION BY prison_name ORDER BY #{column}) AS percentile
                      FROM visit_metrics_entries WHERE #{column} IS NOT NULL),
      top_percentiles AS (SELECT prison_name, #{column}, rank() OVER (PARTITION BY prison_name ORDER BY #{column})
                      FROM percentiles WHERE percentile >= 0.95)
 SELECT prison_name, #{column} FROM top_percentiles WHERE rank = 1
-}).each_with_object({}) do |row, h|
-      h[row['prison_name']] = row[column].to_i
-    end
+})
   end
 end
 
