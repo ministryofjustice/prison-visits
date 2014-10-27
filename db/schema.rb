@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141010142416) do
+ActiveRecord::Schema.define(version: 20141027171148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,8 +28,9 @@ ActiveRecord::Schema.define(version: 20141010142416) do
     t.integer  "end_to_end_time"
   end
 
+  add_index "visit_metrics_entries", ["end_to_end_time", "requested_at", "processed_at"], name: "visit_metrics_entries_end_to_end_time_requested_at_processe_idx", using: :btree
   add_index "visit_metrics_entries", ["prison_name"], name: "index_visit_metrics_entries_on_prison_name", using: :btree
-  add_index "visit_metrics_entries", ["requested_at"], name: "index_visit_metrics_entries_on_requested_at", using: :btree
+  add_index "visit_metrics_entries", ["requested_at", "processed_at"], name: "index_visit_metrics_entries_on_requested_at_and_processed_at", using: :btree
   add_index "visit_metrics_entries", ["visit_id"], name: "index_visit_metrics_entries_on_visit_id", unique: true, using: :btree
 
 end
