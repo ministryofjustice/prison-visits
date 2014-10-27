@@ -114,7 +114,7 @@
     },
 
     stripFormal: function (term) {
-      var matcher = term.match(/^(hmp?|yoi)? ?/, "i");
+      var matcher = term.match(/^(hmp?|yoi)? ?/i);
       if (matcher[0].length) {
         term = term.replace(matcher[0], '');
       }
