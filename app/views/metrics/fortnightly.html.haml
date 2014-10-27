@@ -35,7 +35,7 @@
       Waiting
   %tr
     %td
-      = display_interval_as_fraction(@dataset.median(@dataset.end_to_end_times))
+      = display_interval_as_fraction(@dataset.median(@dataset.end_to_end_times), 1.day)
     %td
       = @dataset.total
     %td
