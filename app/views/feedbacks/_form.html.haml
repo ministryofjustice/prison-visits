@@ -13,7 +13,7 @@
 
 %p You can use this form to tell us about a problem you’re having with the visit request website, or to ask us a question about how to use it. 
 
-= form_for @feedback, :url => feedback_path, :html => {:novalidate => 'novalidate'} do |f|
+= form_for @feedback, :url => feedback_path, :html => {:novalidate => 'novalidate', :class => 'js-SubmitOnce'} do |f|
   %input{name: 'feedback[referrer]', type: 'hidden', value: (params[:referrer] || (params[:feedback][:referrer] if params[:feedback]))}/
   %input{name: 'feedback[user_agent]', type: 'hidden', value: request.headers['HTTP_USER_AGENT']}
 
@@ -47,5 +47,5 @@
       .group__help We'll only use this to reply to your message.
     
     .actions
-      = f.submit 'Send', :class => 'button button-primary js-SumbitOnce', :id => 'submit-button', :'data-alt' => 'Please wait…'
+      = f.submit 'Send', :class => 'button button-primary', :id => 'submit-button'
       
