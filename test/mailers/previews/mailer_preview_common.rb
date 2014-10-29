@@ -2,7 +2,9 @@ module MailerPreviewCommon
   def sample_visit
     Visit.new.tap do |v|
       v.visit_id = "ABC"
-      v.slots = [Slot.new(date: '2013-07-07', times: '1400-1600'), Slot.new(date: '2013-07-09', times: '1200-1400')]
+      v.slots = [Slot.new(date: '2013-07-07', times: '1400-1600'),
+                 Slot.new(date: '2013-07-09', times: '1200-1400'),
+                 Slot.new(date: '2013-07-11', times: '1200-1400'),]
       v.prisoner = Prisoner.new.tap do |p|
         p.date_of_birth = Date.new(2013, 6, 30)
         p.number = 'a1234bc'
@@ -18,7 +20,7 @@ module MailerPreviewCommon
   end
 
   def accepted_confirmation
-    Confirmation.new(outcome: 'slot_0', message: 'Thank you.')
+    Confirmation.new(outcome: 'slot_2', message: 'Thank you.')
   end
 
   def rejected_confirmation(outcome)
