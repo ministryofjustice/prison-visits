@@ -12,6 +12,7 @@
 //= require modules/moj.autocomplete
 //= require modules/moj.hijacks
 //= require modules/moj.timeout-prompt
+//= require modules/moj.submit-once
 
 // Assets without a better place
 //= require shame
