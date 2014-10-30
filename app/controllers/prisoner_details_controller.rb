@@ -3,6 +3,9 @@ class PrisonerDetailsController < ApplicationController
   helper_method :visit
 
   def edit
+    session[:visit] ||= new_session
+    logstasher_add_visit_id(visit.visit_id)
+    response.set_cookie 'cookies-enabled', value: 1, secure: request.ssl?, httponly: true, domain: service_domain
   end
 
   def update
@@ -21,7 +24,7 @@ class PrisonerDetailsController < ApplicationController
   end
 
   def visit
-    Visit.new(prisoner: Prisoner.new)
+    session[:visit]
   end
 
   def prisoner_params
@@ -38,6 +41,10 @@ class PrisonerDetailsController < ApplicationController
     ParamUtils.trim_whitespace_from_values(params.require(:prisoner).permit(:first_name, :last_name, :date_of_birth, :number, :prison_name))
   rescue ArgumentError
     ParamUtils.trim_whitespace_from_values(params.require(:prisoner).permit(:first_name, :last_name, :number, :prison_name))
+  end
+
+  def new_session
+    Visit.new(visit_id: SecureRandom.hex, prisoner: Prisoner.new)
   end
 
   def service_domain
