@@ -1,0 +1,119 @@
+- content_for :header, 'Which prison are you visiting?'
+
+.Grid
+  .Grid-2-3
+    %ul
+      %li you don’t need a Visiting Order (VO) number to request a visit
+      %li you need the dates of birth for all visitors coming with you
+      %li your visit will be confirmed by email within 3 working days of making your request
+
+    = form_for visit.prisoner, url: prisoner_details_path(attempts: params[:attempts]), method: :put, as: :prisoner, :html => { :class => 'form validation', :autocomplete => 'off' } do |f|
+      %h1= @attempts
+      - if f.object.errors.any?
+        - if f.object.errors.include?(:api)
+          - if params[:attempts].to_i > 1
+            #error-summary.validation-summary.group
+              %h2 Your details have not been recognised
+              %p Your booking can’t be processed because your details don’t match what we have on record.
+              %p You can either:
+              %ul 
+                %li Check your details and try again
+                %li Submit a visit request for prison staff to check manually. They’ll confirm your visit in 3 working days. 
+
+              %p= f.submit 'Submit a visit request', :class => 'button button-primary', :id => 'continue_as_email', name: 'next'
+
+          - else
+            #error-summary.validation-summary.group(role="alert" tabindex="-1" aria-labelledby="error-heading")
+              %h2#error-heading Your details need to be checked
+              %p To protect prisoners’ identity, we can’t highlight incorrect details.
+              %p Carefully check the following:
+              %ul
+                %li names should be entered exactly as they appear on official documents, eg ‘Thomas’ instead of ‘Tom’
+                %li the prisoner number should follow this format a1111aa
+              %p If you’re sure that all details are correct, contact the prisoner to check with them.
+              %p You won’t be able to book a visit to a prisoner who has moved prison or has no visit entitlement left.
+
+        - else
+          = render 'shared/validation'
+
+      .group{ :class => ('validation-error' if f.object.errors.include?(:prison_name)) }
+        = f.label :prison_name do
+          Name of the prison
+          %p.form-hint eg Cardiff
+          %span.validation-message= f.object.errors[:prison_name].first if f.object.errors.include?(:prison_name)
+        - if f.object.errors.include?(:prison_name_reason)
+          %p
+            - case prison_data['reason']
+              - when 'it_issues'
+                HMP #{prison_name} is unable to process online visit requests right now. You can #{prison_link visit, 'contact the prison'} directly to book a visit instead.
+              - when 'coming_soon'
+                HMP #{prison_name} isn’t able to process online visit requests yet. You can #{prison_link visit, 'contact the prison'} directly to book a visit instead.
+              - else
+                HMP #{prison_name} is unable to process online visit requests. Instead you can #{prison_link visit, 'contact the prison'} directly to book a visit.
+        = f.select :prison_name, prison_names, { prompt: 'select a prison' }, { class: 'js-autocomplete' }
+
+      #instant-booking
+        - if visit.prisoner.prison_name && visit.prisoner.prison_name != '' && !f.object.errors.include?(:api)
+          - if instant_booking? && !process_as_email?
+            .flow-note
+              %p= "You can now make an instant visit booking at HMP #{prison_name}."
+          - else
+            .flow-note
+              %p= "You can request a visit to HMP #{prison_name} and you’ll get confirmation by email within 3 working days."
+
+      %fieldset.secondary{ :class => ('hidden' unless visit.prisoner.prison_name.present?) }
+        %h2 Who are you visiting?
+        %legend.visuallyhidden Who are you visiting?
+
+        %p Enter details exactly as they appear on official documents, eg full names not nicknames.
+
+        .group{ :class => ('validation-error' if f.object.errors.include?(:first_name)) }
+          = f.label :first_name do
+            Prisoner first name
+            %span.validation-message= f.object.errors[:first_name].first if f.object.errors.include?(:first_name)
+          = f.text_field :first_name
+
+        .group{ :class => ('validation-error' if f.object.errors.include?(:last_name)) }
+          = f.label :last_name do
+            Prisoner last name
+            %span.validation-message= f.object.errors[:last_name].first if f.object.errors.include?(:last_name)
+          = f.text_field :last_name
+
+        .group.js-native-date{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
+          %fieldset
+            %legend
+              Prisoner date of birth
+              %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
+              %span.validation-message= 'year must be four digits' if visit.prisoner.date_of_birth && visit.prisoner.date_of_birth.year < 100
+            .date-of-birth
+              %p#dobHint.form-hint.datefield-hint eg 28 04 1996
+              - dates = ['day', 'month', 'year']
+              - dates.each_with_index do |o, i|
+                .datefield{ :class => "form-group form-group-#{o}" }
+                  %label{ :for => "prisoner_date_of_birth_#{dates.count - i}i"} #{o.mb_chars.titleize }
+                  %input.form-control{ :value => (visit.prisoner.date_of_birth ? visit.prisoner.date_of_birth.send(o) : ''), :type => "number", :pattern => "[0-9]*", :name => "prisoner[date_of_birth(#{dates.count - i}i)]", :id => "prisoner_date_of_birth_#{dates.count - i}i", :'aria-describedby' => "dobHint" }
+
+        .group{ :class => ('validation-error' if f.object.errors.include?(:number)) }
+          = f.label :number do
+            Prisoner number
+            %span.validation-message= f.object.errors[:number].first if f.object.errors.include?(:number)
+          %p.form-hint eg a1234bc
+          = f.text_field :number
+
+      .actions
+        .primary-actions
+          = f.submit :Continue, :class => 'button button-primary'
+        %p= link_to 'Cancel and delete all details', abandon_path, :'data-confirm' => "Are you sure you wish to cancel this visit request?\r\rThis will delete all the information you have entered"
+
+    %p.note
+      %strong Please note
+      %br
+      If you don't enter any information for more than 20 minutes, then your session will time out and you'll need to start again.
+    - content_for :analytics do
+      :ruby
+        haml_io << "var serverTime = " + Time.now.to_f.to_s + ";\n";
+      var clientTime = (new Date()).valueOf() / 1000;
+      var offset = clientTime - serverTime;
+      ga('set', 'metric7', parseInt(offset, 10));
+
+    = render 'ad_help'
