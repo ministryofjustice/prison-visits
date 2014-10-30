@@ -39,4 +39,8 @@ class PrisonerDetailsController < ApplicationController
   rescue ArgumentError
     ParamUtils.trim_whitespace_from_values(params.require(:prisoner).permit(:first_name, :last_name, :number, :prison_name))
   end
+
+  def service_domain
+    'lol.biz.info'
+  end
 end
