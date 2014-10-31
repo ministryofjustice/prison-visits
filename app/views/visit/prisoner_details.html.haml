@@ -49,7 +49,7 @@
             Prisoner number
             %span.validation-message= f.object.errors[:number].first if f.object.errors.include?(:number)
           %p.form-hint eg a1234bc
-          = f.text_field :number
+          = f.text_field :number, :maxlength => 7
 
         .group{ :class => ('validation-error' if f.object.errors.include?(:prison_name)) }
           = f.label :prison_name do
