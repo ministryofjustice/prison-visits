@@ -48,7 +48,7 @@ describe ConfirmationsController do
         end
       end
 
-      ['Hollesley Bay', 'Hatfield (moorland Open)', 'Highpoint', 'Albany', 'Parkhurst'].each do |prison_name|
+      ['Hollesley Bay', 'Hatfield (moorland Open)', 'Highpoint', 'Albany', 'Parkhurst', 'Liverpool (Open only)'].each do |prison_name|
         it "resurrects a visit with a old prison name (#{prison_name}) to avoid a runtime exception" do
           sample_visit.tap do |visit|
             visit.prisoner.prison_name = prison_name

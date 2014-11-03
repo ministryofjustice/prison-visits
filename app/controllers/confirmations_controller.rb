@@ -59,7 +59,8 @@ class ConfirmationsController < ApplicationController
         'Hatfield (moorland Open)' => 'Hatfield Open',
         'Highpoint' => 'Highpoint North',
         'Albany' => 'Isle of Wight - Albany',
-        'Parkhurst' => 'Isle of Wight - Parkhurst'
+        'Parkhurst' => 'Isle of Wight - Parkhurst',
+        'Liverpool (Open only)' => 'Liverpool Social Visits'
       }[visit.prisoner.prison_name]
       visit.prisoner.prison_name = prison_name
     end
