@@ -1,0 +1,2 @@
+module Deferred::VisitorsDetailsHelper
+end
