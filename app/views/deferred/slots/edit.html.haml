@@ -75,7 +75,7 @@
       %p.SlotPicker-promoteHelp Use the arrows to put your visit choices in the order that suits you best.
 
 
-  = form_for visit, url: update_choose_date_and_time_path, :html => { :class => 'slot-form' } do |f|
+  = form_for visit, url: deferred_slots_path, method: :put, :html => { :class => 'slot-form' } do |f|
 
     .hidden--js-enabled
       - @slots.each_with_index do |slot, index|

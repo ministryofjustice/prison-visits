@@ -30,7 +30,7 @@ class Deferred::VisitorsDetailsController < ApplicationController
         redirect_to edit_deferred_visitors_details_path, notice: "You may only have a maximum of #{Visit::MAX_VISITORS} visitors"
       end
     else
-      redirect_to go_back ? edit_deferred_visitors_details_path : "/"
+      redirect_to go_back ? edit_deferred_visitors_details_path : edit_deferred_slots_path
     end
   end
 
