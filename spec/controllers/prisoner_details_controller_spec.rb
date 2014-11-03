@@ -59,7 +59,7 @@ describe PrisonerDetailsController do
 
       it "updates prisoner details" do
         post :update, prisoner_hash
-        response.should redirect_to(visitor_details_path)
+        response.should redirect_to(edit_deferred_visitors_details_path)
       end
 
       it "updates prisoner details with bad date and redirects back" do

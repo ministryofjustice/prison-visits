@@ -10,7 +10,7 @@ class PrisonerDetailsController < ApplicationController
 
   def update
     if (visit.prisoner = Prisoner.new(prisoner_params)).valid?
-      render text: 'OK'
+      redirect_to edit_deferred_visitors_details_path
     else
       redirect_to edit_prisoner_details_path
     end
@@ -44,7 +44,7 @@ class PrisonerDetailsController < ApplicationController
   end
 
   def new_session
-    Visit.new(visit_id: SecureRandom.hex, prisoner: Prisoner.new)
+    Visit.new(visit_id: SecureRandom.hex, prisoner: Prisoner.new, visitors: [Visitor.new])
   end
 
   def service_domain
