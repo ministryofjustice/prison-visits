@@ -1960,6 +1960,8 @@ Kirkham:
   unbookable:
     - 2014-12-25
   slots:
+    fri:
+      - 1300-1530
     sat:
       - 1300-1530
     sun:
