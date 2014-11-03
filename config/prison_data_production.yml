@@ -785,7 +785,7 @@ Preston:
       - 1400-1600
 Maidstone:
   enabled: true
-  phone: '016220775619'
+  phone: '01622 775619'
   email: socialvisits.maidstone@hmps.gsi.gov.uk
   address:
     - '36 County Road'
@@ -1253,6 +1253,8 @@ Hatfield Open:
   unbookable:
     - 2014-12-25
   slots:
+    thu:
+      - 1400-1600
     sat:
       - 1400-1600
     sun:
