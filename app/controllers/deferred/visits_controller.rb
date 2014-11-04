@@ -1,6 +1,4 @@
 class Deferred::VisitsController < ApplicationController
-  helper_method :visit
-
   def edit
   end
 
@@ -16,10 +14,6 @@ class Deferred::VisitsController < ApplicationController
   def show
     render
     reset_session
-  end
-
-  def visit
-    session[:visit]
   end
 
   def encryptor

@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  helper_method :visit
   before_filter :add_extra_sentry_metadata
 
   def self.permit_only_from_prisons
@@ -39,5 +40,9 @@ class ApplicationController < ActionController::Base
   def logstasher_add_visit_id(visit_id)
     LogStasher.request_context[:visit_id] = visit_id
     LogStasher.custom_fields << :visit_id
+  end
+
+  def visit
+    session[:visit]
   end
 end

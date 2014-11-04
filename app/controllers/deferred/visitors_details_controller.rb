@@ -1,6 +1,4 @@
 class Deferred::VisitorsDetailsController < ApplicationController
-  helper_method :visit
-  
   def edit
   end
 
@@ -32,10 +30,6 @@ class Deferred::VisitorsDetailsController < ApplicationController
     else
       redirect_to go_back ? edit_deferred_visitors_details_path : edit_deferred_slots_path
     end
-  end
-
-  def visit
-    session[:visit]
   end
 
   def visitors_params

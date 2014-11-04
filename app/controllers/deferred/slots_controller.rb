@@ -1,6 +1,4 @@
 class Deferred::SlotsController < ApplicationController
-  helper_method :visit
-  
   def edit
     @slots = visit.slots.empty? ? [Slot.new, Slot.new, Slot.new] : visit.slots
   end
@@ -22,10 +20,6 @@ class Deferred::SlotsController < ApplicationController
     else
       redirect_to edit_deferred_visit_path
     end
-  end
-
-  def visit
-    session[:visit]
   end
 
   def slot_params

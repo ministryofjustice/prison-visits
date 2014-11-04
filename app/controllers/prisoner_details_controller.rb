@@ -1,6 +1,5 @@
 class PrisonerDetailsController < ApplicationController
   before_filter :check_if_cookies_enabled, only: :update
-  helper_method :visit
 
   def edit
     session[:visit] ||= new_session
@@ -21,10 +20,6 @@ class PrisonerDetailsController < ApplicationController
       redirect_to cookies_disabled_path
       return
     end
-  end
-
-  def visit
-    session[:visit]
   end
 
   def prisoner_params
