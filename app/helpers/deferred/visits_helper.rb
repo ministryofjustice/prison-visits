@@ -1,0 +1,2 @@
+module Deferred::VisitsHelper
+end
