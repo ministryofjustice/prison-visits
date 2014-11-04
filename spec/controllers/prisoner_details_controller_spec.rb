@@ -43,6 +43,7 @@ describe PrisonerDetailsController do
     end
 
     it "sets the 'cookies-enabled' cookie" do
+      controller.stub(service_domain: 'lol.biz.info')
       get :edit
       response.should be_success
       response['Set-Cookie'].tap do |c|

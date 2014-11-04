@@ -48,6 +48,6 @@ class PrisonerDetailsController < ApplicationController
   end
 
   def service_domain
-    'lol.biz.info'
+    SERVICE_DOMAIN
   end
 end
