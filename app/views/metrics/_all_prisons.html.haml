@@ -34,7 +34,7 @@
     - @prisons.each_with_index do |prison, i|
       %tr{class: i.even? ? 'even' : 'odd'}
         %td.prison-name
-          = link_to(prison, prison_metrics_all_time_path(prison))
+          = link_to(prison, prison_metrics_fortnightly_path(prison))
         %td.narrow.left-border
           = dataset.total_visits[prison]
         %td.narrow
