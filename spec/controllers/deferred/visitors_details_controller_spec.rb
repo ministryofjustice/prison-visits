@@ -5,7 +5,11 @@ describe Deferred::VisitorsDetailsController do
 
   before :each do
     session[:visit] = Visit.new(visit_id: SecureRandom.hex, prisoner: Prisoner.new, visitors: [Visitor.new])
+    cookies['cookies-enabled'] = 1
   end
+
+  it_behaves_like "a browser without a session present"
+  it_behaves_like "a session timed out"
 
   context "given prisoner data in the session" do
     let :add_visitor_hash do

@@ -6,8 +6,12 @@ describe Deferred::SlotsController do
   before :each do
     Timecop.freeze(Time.local(2013, 12, 1, 12, 0))
     session[:visit] = Visit.new(visit_id: SecureRandom.hex, prisoner: Prisoner.new, visitors: [Visitor.new], slots: [])
+    cookies['cookies-enabled'] = 1
   end
   
+  it_behaves_like "a browser without a session present"
+  it_behaves_like "a session timed out"
+
   context "correct slot information" do
     let(:slots_hash) do
       {

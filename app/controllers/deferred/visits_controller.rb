@@ -1,8 +1,11 @@
 class Deferred::VisitsController < ApplicationController
+  include CookieGuard
+  include SessionGuard
+
   def edit
   end
 
-  def create
+  def update
     @token = encryptor.encrypt_and_sign(visit)
     PrisonMailer.booking_request_email(visit, @token).deliver
     VisitorMailer.booking_receipt_email(visit).deliver

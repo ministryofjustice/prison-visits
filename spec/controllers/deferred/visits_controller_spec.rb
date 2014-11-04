@@ -3,6 +3,13 @@ require 'spec_helper'
 describe Deferred::VisitsController do
   render_views
 
+  before :each do
+    cookies['cookies-enabled'] = 1
+  end
+
+  it_behaves_like "a browser without a session present"
+  it_behaves_like "a session timed out"
+
   context "given correct data" do
     let :mock_metrics_logger do
       MockMetricsLogger.new
@@ -47,7 +54,7 @@ describe Deferred::VisitsController do
       PrisonMailer.any_instance.should_receive(:sender).and_return('test@example.com')
       VisitorMailer.any_instance.should_receive(:sender).and_return('test@example.com')
 
-      post :create
+      post :update
       response.should redirect_to(deferred_visit_path)
 
       ActionMailer::Base.deliveries.map(&:subject).should == ['Visit request for Jimmy Harris on Friday  6 December',

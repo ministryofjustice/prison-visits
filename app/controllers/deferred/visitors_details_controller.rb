@@ -1,4 +1,7 @@
 class Deferred::VisitorsDetailsController < ApplicationController
+  include CookieGuard
+  include SessionGuard
+
   def edit
   end
 

@@ -1,4 +1,7 @@
 class Deferred::SlotsController < ApplicationController
+  include CookieGuard
+  include SessionGuard
+
   def edit
     @slots = visit.slots.empty? ? [Slot.new, Slot.new, Slot.new] : visit.slots
   end
