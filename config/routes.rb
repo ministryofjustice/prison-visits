@@ -7,6 +7,7 @@ PrisonVisits2::Application.routes.draw do
   namespace :deferred do
     resource :visitors_details
     resource :slots
+    resource :visit
   end
 
   scope :controller => 'visit' do

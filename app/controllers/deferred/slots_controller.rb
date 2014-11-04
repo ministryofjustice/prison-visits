@@ -20,7 +20,7 @@ class Deferred::SlotsController < ApplicationController
     if go_back
       redirect_to edit_deferred_slots_path
     else
-      redirect_to "/"
+      redirect_to edit_deferred_visit_path
     end
   end
 

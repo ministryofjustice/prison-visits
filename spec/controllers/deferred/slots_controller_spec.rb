@@ -23,7 +23,7 @@ describe Deferred::SlotsController do
 
     it "permits us to select a time slot" do
       post :update, slots_hash
-      response.should redirect_to("/")
+      response.should redirect_to(edit_deferred_visit_path)
     end
   end
 
@@ -49,7 +49,7 @@ describe Deferred::SlotsController do
 
     it "accepts the submission" do
       post :update, slots_hash
-      response.should redirect_to("/")
+      response.should redirect_to(edit_deferred_visit_path)
     end
   end
 
@@ -62,7 +62,7 @@ describe Deferred::SlotsController do
 
     it "accepts the submission" do
       post :update, slots_hash
-      response.should redirect_to("/")
+      response.should redirect_to(edit_deferred_visit_path)
     end
   end
 
