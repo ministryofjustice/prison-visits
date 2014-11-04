@@ -17,7 +17,10 @@ describe PrisonerDetailsController do
     }
   end
 
-  context "cookies are disabled" do
+  it_behaves_like "a browser without a session present"
+  it_behaves_like "a session timed out"
+
+  context "when cookies are disabled" do
     it "redirects the user to a page telling them that they won't be able to use the site" do
       get :edit
       response.should be_success
