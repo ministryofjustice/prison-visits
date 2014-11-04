@@ -104,4 +104,87 @@ describe Deferred::VisitorsDetailsController do
       }.not_to change { session[:visit].visitors[0].first_name }
     end
   end
+
+  context "given a visitor with two digit year component of DOB" do
+    let :visitor_hash do
+      {
+        visit: {
+          visitor: [
+                    first_name: 'James',
+                    last_name: 'Harris',
+                    :'date_of_birth(3i)' => '5',
+                    :'date_of_birth(2i)' => '3',
+                    :'date_of_birth(1i)' => '12',
+                    email: 'sue.denim@maildrop.dsd.io',
+                    phone: '07783 123 456'
+                   ]
+        },
+        next: ''
+      }
+    end
+
+    it "rejects visitor information" do
+      post :update, visitor_hash
+      response.should redirect_to(edit_deferred_visitors_details_path)
+    end
+  end
+
+  context "given too many visitors" do
+    let(:visitor_hash) do
+      {
+        visit: {
+          visitor: [
+                    first_name: 'Sue',
+                    last_name: 'Demin',
+                    :'date_of_birth(3i)' => '14',
+                    :'date_of_birth(2i)' => '03',
+                    :'date_of_birth(1i)' => '1986',
+                    email: 'sue.denim@maildrop.dsd.io',
+                    phone: '07783 123 456'
+                   ] * 7
+        },
+        next: ''
+      }
+    end
+
+    it "rejects the submission if there are too many visitors" do
+      post :update, visitor_hash
+      response.should redirect_to(edit_deferred_visitors_details_path)
+      session[:visit].valid?(:visitors_set).should be_false
+    end
+  end
+
+  context "given too many adult visitors" do
+    let(:visitor_hash) do
+      {
+        visit: {
+          visitor: [
+                    [
+                     first_name: 'Sue',
+                     last_name: 'Demin',
+                     :'date_of_birth(3i)' => '14',
+                     :'date_of_birth(2i)' => '03',
+                     :'date_of_birth(1i)' => '1986',
+                     email: 'sue.denim@maildrop.dsd.io',
+                     phone: '07783 123 456'
+                    ],
+                    [
+                     first_name: 'John',
+                     last_name: 'Denver',
+                     :'date_of_birth(3i)' => '31',
+                     :'date_of_birth(2i)' => '12',
+                     :'date_of_birth(1i)' => '1943'
+                    ] * 3
+                   ].flatten
+        },
+        next: ''
+      }
+    end
+
+    it "rejects the submission if there are too many adult visitors" do
+      post :update, visitor_hash
+      response.should redirect_to(edit_deferred_visitors_details_path)
+      session[:visit].valid?(:visitors_set).should be_false
+    end
+  end
 end
