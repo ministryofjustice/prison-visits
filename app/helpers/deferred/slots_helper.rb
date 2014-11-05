@@ -1,2 +1,0 @@
-module Deferred::SlotsHelper
-end
