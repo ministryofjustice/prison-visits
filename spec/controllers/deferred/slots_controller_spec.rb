@@ -8,6 +8,10 @@ describe Deferred::SlotsController do
     session[:visit] = Visit.new(visit_id: SecureRandom.hex, prisoner: Prisoner.new, visitors: [Visitor.new], slots: [])
     cookies['cookies-enabled'] = 1
   end
+
+  after :each do
+    Timecop.return
+  end
   
   it_behaves_like "a browser without a session present"
   it_behaves_like "a session timed out"

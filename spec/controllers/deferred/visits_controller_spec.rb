@@ -43,6 +43,10 @@ describe Deferred::VisitsController do
       end
     end
 
+    after :each do
+      Timecop.return
+    end
+
     it "displays a summary" do
       get :edit
       response.should be_success
