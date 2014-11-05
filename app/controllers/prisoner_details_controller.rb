@@ -5,7 +5,7 @@ class PrisonerDetailsController < ApplicationController
   def edit
     session[:visit] ||= new_session
     logstasher_add_visit_id(visit.visit_id)
-    response.set_cookie 'cookies-enabled', value: 1, secure: request.ssl?, httponly: true, domain: service_domain
+    response.set_cookie 'cookies-enabled', value: 1, secure: request.ssl?, httponly: true, domain: service_domain, path: '/'
   end
 
   def update

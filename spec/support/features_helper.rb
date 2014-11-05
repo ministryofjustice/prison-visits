@@ -1,12 +1,14 @@
 module FeaturesHelper
   def enter_prisoner_information
+    find(:css, ".ui-autocomplete-input").set('Cardiff')
+    click_button 'Continue'
+
     fill_in 'Prisoner first name', with: 'Jimmy'
     fill_in 'Prisoner last name', with: 'Harris'
     fill_in 'prisoner[date_of_birth(3i)]', with: '1'
     fill_in 'prisoner[date_of_birth(2i)]', with: '5'
     fill_in 'prisoner[date_of_birth(1i)]', with: '1969'
     fill_in 'Prisoner number', with: 'a0000aa'
-    find(:css, ".ui-autocomplete-input").set('Rochester')
     click_button 'Continue'
   end
 
@@ -18,7 +20,7 @@ module FeaturesHelper
       fill_in 'visit[visitor][][date_of_birth(2i)]', with: '6'
       fill_in 'visit[visitor][][date_of_birth(1i)]', with: '1977'
       fill_in "Email address", with: 'test@maildrop.dsd.io'
-      fill_in "Contact phone number", with: '09998887777'
+      fill_in "Phone number", with: '09998887777'
     end
   end
 
