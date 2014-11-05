@@ -1,6 +1,5 @@
 PrisonVisits2::Application.routes.draw do
   resource :feedback
-  resource :confirmation
 
   resource :prisoner_details
 
@@ -8,6 +7,7 @@ PrisonVisits2::Application.routes.draw do
     resource :visitors_details
     resource :slots
     resource :visit
+    resource :confirmation
   end
 
   scope :controller => 'visit' do

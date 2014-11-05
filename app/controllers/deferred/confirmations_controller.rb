@@ -1,4 +1,4 @@
-class ConfirmationsController < ApplicationController
+class Deferred::ConfirmationsController < ApplicationController
   helper_method :booked_visit
   permit_only_from_prisons
 
@@ -30,7 +30,7 @@ class ConfirmationsController < ApplicationController
       metrics_logger.record_booking_rejection(booked_visit, @confirmation.outcome)
     end
     PrisonMailer.booking_receipt_email(booked_visit, @confirmation).deliver
-    redirect_to confirmation_path
+    redirect_to deferred_confirmation_path
   end
 
   def show
