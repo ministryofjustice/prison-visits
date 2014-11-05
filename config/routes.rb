@@ -44,6 +44,9 @@ PrisonVisits2::Application.routes.draw do
     get "metrics/:prison/fortnightly", action: :fortnightly, as: :prison_metrics_fortnightly
   end
 
+  # Legacy URLs
   get "/prisoner-details", to: redirect("/prisoner_details/edit")
+  resource :confirmation, controller: 'deferred_confirmations'
+
   get "/", to: redirect("https://www.gov.uk/prisonvisits")
 end
