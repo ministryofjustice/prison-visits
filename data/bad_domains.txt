@@ -5,7 +5,9 @@ btinternet.clm
 btopnworld.com
 example.com
 gamail.com
+gamail.co.uk
 gamil.com
+gamil.co.uk
 g.mail.com
 gmai.com
 gmail
@@ -42,6 +44,7 @@ hptmail.com
 htomail.co.uk
 htmail.com
 i.cloud.com
+icould.com
 iloud.com
 live.cco.uk
 live.co.ul
