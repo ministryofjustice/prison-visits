@@ -6,7 +6,7 @@ GIT
     prison_staff_info (0.0.2)
 
 GIT
-  remote: git@github.com:shadabahmed/logstasher.git
+  remote: https://github.com/shadabahmed/logstasher.git
   revision: a679f66d72d7f74a928cdf0dbff1c85cb22b5e32
   branch: master
   specs:
