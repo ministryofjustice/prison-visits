@@ -8,6 +8,9 @@
 // Project assets
 //= require visitors
 
+// GOVUK modules
+//= require govuk/selection-buttons
+
 // Candidates for re-usable components
 //= require modules/moj.autocomplete
 //= require modules/moj.hijacks

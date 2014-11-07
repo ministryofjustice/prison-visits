@@ -1,7 +1,14 @@
 $(function () {
+
+  var $blockLabels;
+
+  // Change appearance of block labels when interacting
+  $blockLabels = $(".block-label input[type='radio'], .block-label input[type='checkbox']");
+  new GOVUK.SelectionButtons($blockLabels);
+
   // Expanding details/summary polyfill
   $('details').details();
-  
+
   // Browser confirm dialog
   $(document).on('click', '[data-confirm]', function (e) {
     e.preventDefault();
@@ -17,7 +24,7 @@ $(function () {
   }
 
   $('body').on('change', '.known-date input', function() {
-    
+
     var dob, el,
         known = $(this).closest('.known-date'),
         year = known.find('.year').val(),
@@ -28,9 +35,9 @@ $(function () {
 
     if (year!=='' && month !== '' && day !== '') {
       dob = new Date(year, month-1, day);
-      
+
       el.find('small').remove();
-      
+
       if (getAge(dob) > 17) {
         el.append(' <small class="adult">Adult</small>');
       } else {
