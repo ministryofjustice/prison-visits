@@ -24,7 +24,7 @@
         - if slot.date.present?
           %li
             %label.block-label{ for: "confirmation_outcome_slot_#{index}" }
-              = radio_button_tag 'confirmation[outcome]', "slot_#{index}"
+              = radio_button_tag 'confirmation[outcome]', "slot_#{index}", false, { :class => 'js-Conditional' }
               = succeed ':' do
                 = index == 0 ? "First choice" : "Alternative #{index}"
               %strong
@@ -34,48 +34,58 @@
                 = format_time_str_24 slot.times.split('-')[1]
 
       %li
-        %label.block-label(for='confirmation_outcome_no_slot_available')
-          = radio_button_tag 'confirmation[outcome]', Confirmation::NO_SLOT_AVAILABLE
+        %label.block-label.reveal-publish-delegate(for='confirmation_outcome_no_slot_available' )
+          = radio_button_tag 'confirmation[outcome]', Confirmation::NO_SLOT_AVAILABLE, false, { :'data-conditional-el' => 'details_no_slot_available', :class => 'js-Conditional' }
           None of the chosen times are available
+
+  #details_no_slot_available.group
+    %p What they see…
 
   %h2 Entitlement (VOs)
 
   .group{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
-    %div
-      %label.block-label(for='confirmation_outcome_no_vos_left')
-        = radio_button_tag 'confirmation[outcome]', Confirmation::NO_VOS_LEFT
-        The prisoner does not have any visiting allowance left
-    %div
-      %label.block-label(for='confirmation_outcome_no_pvos_left')
-        = radio_button_tag 'confirmation[outcome]', Confirmation::NO_PVOS_LEFT
-        The prisoner does not have any weekend allowance
+    %label.block-label(for='confirmation_outcome_no_vos_left')
+      = radio_button_tag 'confirmation[outcome]', Confirmation::NO_VOS_LEFT, false, { :'data-conditional-el' => 'details_no_vos_left', :class => 'js-Conditional' }
+      The prisoner does not have any visiting allowance left
+
+  #details_no_vos_left.group
+    %p What they see…
+
+  .group
+    %label.block-label(for='confirmation_outcome_no_pvos_left')
+      = radio_button_tag 'confirmation[outcome]', Confirmation::NO_PVOS_LEFT, false, { :'data-conditional-el' => 'details_no_pvos_left', :class => 'js-Conditional' }
+      The prisoner does not have any weekend allowance
+
+  #details_no_pvos_left.group
+    %p What they see…
 
   %h2 Details incorrect
 
   .group{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
-    %div
-      %label.block-label(for='confirmation_outcome_prisoner_incorrect')
-        = check_box_tag 'confirmation[outcome]', Confirmation::PRISONER_INCORRECT
-        Prisoner details are inorrect
+    %label.block-label(for='confirmation_prisoner_incorrect')
+      = check_box_tag 'confirmation[prisoner_incorrect]', Confirmation::PRISONER_INCORRECT, false, { :'data-conditional-el' => 'prisoner_incorrect', :class => 'js-Conditional' }
+      Prisoner details are inorrect
 
-  .group
-    %label.block-label(for='confirmation_outcome_not_on_contact_list')
-      = check_box_tag 'confirmation[outcome]', Confirmation::NOT_ON_CONTACT_LIST
+  #prisoner_incorrect.group
+    %p What they see…
+
+  .group.reveal-publish-delegate{ :class => ('validation-error' if f.object.errors.include?(:visitor_incorrect)) }
+    %label.block-label(for='confirmation_visitor_incorrect')
+      = check_box_tag 'confirmation[visitor_incorrect]', 1, false, { :'data-conditional-el' => 'visitors_not_found', :class => 'js-Conditional' }
       Visitor details incorrect
 
-  .group.panel-indent
+  #visitors_not_found.group.panel-indent
     - booked_visit.visitors.each_with_index do |visitor, index|
       %label.block-label{ :for => "confirmation_visitor_not_found_#{index}" }
         = check_box_tag 'confirmation[visitor_not_found]', index
         #{visitor.first_name} #{visitor.last_name} #{visitor.date_of_birth.strftime("%d/%m/%Y")} details are incorrect
 
   .group
-    %div
-      %label.block-label(for='confirmation_outcome_visitor_banned')
-        = check_box_tag 'confirmation[outcome]', Confirmation::VISITOR_BANNED
-        Visit is banned
+    %label.block-label(for='confirmation_visitor_banned')
+      = check_box_tag 'confirmation[visitor_banned]', Confirmation::VISITOR_BANNED, false, { :'data-conditional-el' => 'visitors_banned', :class => 'js-Conditional' }
+      Visit is banned
 
-  .group.panel-indent
+  #visitors_banned.group.panel-indent
     - booked_visit.visitors.each_with_index do |visitor, index|
       %label.block-label{ :for => "confirmation_visitor_banned_#{index}" }
         = check_box_tag 'confirmation[visitor_banned]', index
