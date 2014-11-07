@@ -17,7 +17,7 @@
   = hidden_field_tag :state, params[:state]
 
   %h2 Visit date
-  
+
   .group{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
     %ul
       - booked_visit.slots.each_with_index do |slot, index|
@@ -63,19 +63,19 @@
       = check_box_tag 'confirmation[outcome]', Confirmation::NOT_ON_CONTACT_LIST
       Visitor details incorrect
 
-  .group.sub
+  .group.panel-indent
     - booked_visit.visitors.each_with_index do |visitor, index|
       %label.block-label{ :for => "confirmation_visitor_not_found_#{index}" }
         = check_box_tag 'confirmation[visitor_not_found]', index
         #{visitor.first_name} #{visitor.last_name} #{visitor.date_of_birth.strftime("%d/%m/%Y")} details are incorrect
-  
+
   .group
     %div
       %label.block-label(for='confirmation_outcome_visitor_banned')
         = check_box_tag 'confirmation[outcome]', Confirmation::VISITOR_BANNED
         Visit is banned
 
-  .group.sub
+  .group.panel-indent
     - booked_visit.visitors.each_with_index do |visitor, index|
       %label.block-label{ :for => "confirmation_visitor_banned_#{index}" }
         = check_box_tag 'confirmation[visitor_banned]', index

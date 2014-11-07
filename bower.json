@@ -2,6 +2,7 @@
   "name": "prison-visits",
   "version": "0.21.0",
   "dependencies": {
-    "moj.slot-picker": "*"
+    "moj.slot-picker": "*",
+    "govuk_elements": "alphagov/govuk_elements"
   }
 }
