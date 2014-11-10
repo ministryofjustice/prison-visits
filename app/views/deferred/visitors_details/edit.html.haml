@@ -7,7 +7,7 @@
 
     %h2 Your details
 
-    = form_for visit, url: deferred_visitors_details_path, method: :put, :html => { :autocomplete => 'off' } do |f|
+    = form_for visit, url: deferred_visitors_details_path, :html => { :autocomplete => 'off' } do |f|
 
       - if visit.errors.any? || visit.visitors.any? { |v| v.errors.any? }
         #error-summary.validation-summary.group(role="alert" tabindex="-1" aria-labelledby="error-heading")

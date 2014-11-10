@@ -7,7 +7,7 @@
       %li you need the dates of birth for all visitors coming with you
       %li your visit will be confirmed by email within 3 working days of making your request
 
-    = form_for visit.prisoner, url: prisoner_details_path, method: :put, as: :prisoner, :html => { :class => 'form validation', :autocomplete => 'off' } do |f|
+    = form_for visit.prisoner, url: prisoner_details_path, as: :prisoner, :html => { :class => 'form validation', :autocomplete => 'off' } do |f|
 
       %h2 Prisoner details
 
