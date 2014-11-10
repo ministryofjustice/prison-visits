@@ -10,10 +10,6 @@ h2
   @include core-24
   margin-top: 1em
 
-  .check_your_request &
-    @include core-27
-    margin: 0 0 .25em
-
 p
   @include core-19
 
@@ -55,6 +51,10 @@ summary
   border-top: 1px dashed $grey-2
 
 .compact
+  h2
+    @include core-27
+    margin: 0 0 .25em
+
   ul,
   p
     margin: 0
@@ -119,17 +119,17 @@ dl
 dd
   margin: 0
 
-// Summary
-.check_your_request .visit-details
-  .alt
-    margin-top: .75em
+.visits 
+  // Summary
+  .visit-details
+    .alt
+      margin-top: .75em
 
-  strong
-    display: inline-block
-    width: 12em
+    strong
+      display: inline-block
+      width: 12em
 
-// Final page
-.request_sent
+  // Final page
   .visit-times li
     @include core-24
 
