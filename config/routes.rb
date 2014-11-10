@@ -56,7 +56,7 @@ PrisonVisits2::Application.routes.draw do
 
   # Legacy URLs
   get "/prisoner-details", to: redirect("/prisoner")
-  resource :confirmation, controller: 'deferred_confirmations'
+  resource :confirmation, controller: 'deferred/confirmations'
 
   get "/", to: redirect("https://www.gov.uk/prisonvisits")
 end
