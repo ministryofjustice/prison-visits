@@ -1,4 +1,4 @@
-- content_for :header, 'Which prison are you visiting?'
+- content_for :header, 'Who are you visiting?'
 
 .Grid
   .Grid-2-3
@@ -7,65 +7,35 @@
       %li you need the dates of birth for all visitors coming with you
       %li your visit will be confirmed by email within 3 working days of making your request
 
-    = form_for visit.prisoner, url: prisoner_details_path(attempts: params[:attempts]), method: :put, as: :prisoner, :html => { :class => 'form validation', :autocomplete => 'off' } do |f|
-      %h1= @attempts
+    = form_for visit.prisoner, url: prisoner_details_path, method: :put, as: :prisoner, :html => { :class => 'form validation', :autocomplete => 'off' } do |f|
+
+      %h2 Prisoner details
+
       - if f.object.errors.any?
         - if f.object.errors.include?(:api)
-          - if params[:attempts].to_i > 1
-            #error-summary.validation-summary.group
-              %h2 Your details have not been recognised
-              %p Your booking can’t be processed because your details don’t match what we have on record.
-              %p You can either:
-              %ul 
-                %li Check your details and try again
-                %li Submit a visit request for prison staff to check manually. They’ll confirm your visit in 3 working days. 
-
-              %p= f.submit 'Submit a visit request', :class => 'button button-primary', :id => 'continue_as_email', name: 'next'
-
-          - else
-            #error-summary.validation-summary.group(role="alert" tabindex="-1" aria-labelledby="error-heading")
-              %h2#error-heading Your details need to be checked
-              %p To protect prisoners’ identity, we can’t highlight incorrect details.
-              %p Carefully check the following:
-              %ul
-                %li names should be entered exactly as they appear on official documents, eg ‘Thomas’ instead of ‘Tom’
-                %li the prisoner number should follow this format a1111aa
-              %p If you’re sure that all details are correct, contact the prisoner to check with them.
-              %p You won’t be able to book a visit to a prisoner who has moved prison or has no visit entitlement left.
+          #error-summary.validation-summary.group(role="alert" tabindex="-1" aria-labelledby="error-heading")
+            %h2#error-heading Your details need to be checked
+            %p To protect prisoners’ identity, we can’t highlight incorrect details.
+            %p Carefully check the following:
+            %ul
+              %li names should be entered exactly as they appear on official documents, eg ‘Thomas’ instead of ‘Tom’
+              %li the prisoner number should follow this format a1111aa
+            %p If you’re sure that all details are correct, contact the prisoner to check with them.
+            %p You won’t be able to book a visit to a prisoner who has moved prison or has no visit entitlement left.
 
         - else
           = render 'shared/validation'
 
-      .group{ :class => ('validation-error' if f.object.errors.include?(:prison_name)) }
-        = f.label :prison_name do
-          Name of the prison
-          %p.form-hint eg Cardiff
-          %span.validation-message= f.object.errors[:prison_name].first if f.object.errors.include?(:prison_name)
-        - if f.object.errors.include?(:prison_name_reason)
-          %p
-            - case prison_data['reason']
-              - when 'it_issues'
-                HMP #{prison_name} is unable to process online visit requests right now. You can #{prison_link visit, 'contact the prison'} directly to book a visit instead.
-              - when 'coming_soon'
-                HMP #{prison_name} isn’t able to process online visit requests yet. You can #{prison_link visit, 'contact the prison'} directly to book a visit instead.
-              - else
-                HMP #{prison_name} is unable to process online visit requests. Instead you can #{prison_link visit, 'contact the prison'} directly to book a visit.
-        = f.select :prison_name, prison_names, { prompt: 'select a prison' }, { class: 'js-autocomplete' }
-
-      #instant-booking
-        - if visit.prisoner.prison_name && visit.prisoner.prison_name != '' && !f.object.errors.include?(:api)
-          - if instant_booking? && !process_as_email?
-            .flow-note
-              %p= "You can now make an instant visit booking at HMP #{prison_name}."
-          - else
-            .flow-note
-              %p= "You can request a visit to HMP #{prison_name} and you’ll get confirmation by email within 3 working days."
-
-      %fieldset.secondary{ :class => ('hidden' unless visit.prisoner.prison_name.present?) }
-        %h2 Who are you visiting?
-        %legend.visuallyhidden Who are you visiting?
-
-        %p Enter details exactly as they appear on official documents, eg full names not nicknames.
+      %fieldset
+        %legend.visuallyhidden Prisoner details
+        #instant-booking
+          - if visit.prisoner.prison_name && visit.prisoner.prison_name != '' && !f.object.errors.include?(:api)
+            - if instant_booking? && !process_as_email?
+              .flow-note
+                %p= "You can now make an instant visit booking at HMP #{prison_name}."
+            - else
+              .flow-note
+                %p= "You can request a visit to HMP #{prison_name} and you’ll get confirmation by email within 3 working days."
 
         .group{ :class => ('validation-error' if f.object.errors.include?(:first_name)) }
           = f.label :first_name do
@@ -99,6 +69,22 @@
             %span.validation-message= f.object.errors[:number].first if f.object.errors.include?(:number)
           %p.form-hint eg a1234bc
           = f.text_field :number
+
+        .group{ :class => ('validation-error' if f.object.errors.include?(:prison_name)) }
+          = f.label :prison_name do
+            Name of the prison
+            %p.form-hint eg Cardiff
+            %span.validation-message= f.object.errors[:prison_name].first if f.object.errors.include?(:prison_name)
+          - if f.object.errors.include?(:prison_name_reason)
+            %p
+              - case prison_data['reason']
+                - when 'it_issues'
+                  HMP #{prison_name} is unable to process online visit requests right now. You can #{prison_link visit, 'contact the prison'} directly to book a visit instead.
+                - when 'coming_soon'
+                  HMP #{prison_name} isn’t able to process online visit requests yet. You can #{prison_link visit, 'contact the prison'} directly to book a visit instead.
+                - else
+                  HMP #{prison_name} is unable to process online visit requests. Instead you can #{prison_link visit, 'contact the prison'} directly to book a visit.
+          = f.select :prison_name, prison_names, { prompt: 'select a prison' }, { class: 'js-autocomplete' }
 
       .actions
         .primary-actions
