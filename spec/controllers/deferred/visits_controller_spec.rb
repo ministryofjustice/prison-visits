@@ -59,7 +59,7 @@ describe Deferred::VisitsController do
       VisitorMailer.any_instance.should_receive(:sender).and_return('test@example.com')
 
       post :update
-      response.should redirect_to(deferred_visit_path)
+      response.should redirect_to(deferred_show_visit_path)
 
       ActionMailer::Base.deliveries.map(&:subject).should == ['Visit request for Jimmy Harris on Friday  6 December',
                                                               "Not booked yet: we've received your visit request for 6 December 2013"]

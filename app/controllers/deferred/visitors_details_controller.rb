@@ -9,7 +9,7 @@ class Deferred::VisitorsDetailsController < ApplicationController
     if m = params[:next].match(/remove-(\d)/)
       index = m[1].to_i
       visit.visitors.delete_at(index)
-      redirect_to edit_deferred_visitors_details_path
+      redirect_to deferred_edit_visitors_details_path
       return
     end
 
@@ -26,12 +26,12 @@ class Deferred::VisitorsDetailsController < ApplicationController
     if params[:next] == 'Add another visitor'
       if visit.visitors.size < Visit::MAX_VISITORS
         visit.visitors << Visitor.new
-        redirect_to edit_deferred_visitors_details_path
+        redirect_to deferred_edit_visitors_details_path
       else
-        redirect_to edit_deferred_visitors_details_path, notice: "You may only have a maximum of #{Visit::MAX_VISITORS} visitors"
+        redirect_to deferred_edit_visitors_details_path, notice: "You may only have a maximum of #{Visit::MAX_VISITORS} visitors"
       end
     else
-      redirect_to go_back ? edit_deferred_visitors_details_path : edit_deferred_slots_path
+      redirect_to go_back ? deferred_edit_visitors_details_path : deferred_edit_slots_path
     end
   end
 

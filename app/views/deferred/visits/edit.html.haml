@@ -33,7 +33,7 @@
           %small.adult Adult
         - else
           %small.child Child
-  %p.edit-link= link_to 'Change visitor details', edit_deferred_visitors_details_path
+  %p.edit-link= link_to 'Change visitor details', deferred_edit_visitors_details_path
 
 .divider.compact.visit-details
   %h2 Your visit
@@ -54,7 +54,7 @@
             %strong= format_day slot.date
             = display_slot_and_duration slot.times
 
-  %p.edit-link= link_to 'Change visit details', edit_deferred_slots_path
+  %p.edit-link= link_to 'Change visit details', deferred_edit_slots_path
 
 
 .divider

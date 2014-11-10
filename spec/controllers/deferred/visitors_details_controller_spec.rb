@@ -47,12 +47,12 @@ describe Deferred::VisitorsDetailsController do
     it "adds and then removes a visitor from the session" do
       expect {
         post :update, add_visitor_hash
-        response.should redirect_to edit_deferred_visitors_details_path
+        response.should redirect_to deferred_edit_visitors_details_path
       }.to change { session[:visit].visitors.size }.by(1)
 
       expect {
         post :update, remove_visitor_hash
-        response.should redirect_to edit_deferred_visitors_details_path
+        response.should redirect_to deferred_edit_visitors_details_path
       }.to change { session[:visit].visitors.size }.by(-1)
     end
 
@@ -61,7 +61,7 @@ describe Deferred::VisitorsDetailsController do
 
       expect {
         post :update, remove_visitor_hash
-        response.should redirect_to edit_deferred_visitors_details_path
+        response.should redirect_to deferred_edit_visitors_details_path
       }.to change { session[:visit].visitors.size }.by(-1)
     end
   end
@@ -104,7 +104,7 @@ describe Deferred::VisitorsDetailsController do
     it "doesn't update visitor information and redirects back to the form" do
       expect {
         post :update, bad_visitor_hash
-        response.should redirect_to edit_deferred_visitors_details_path
+        response.should redirect_to deferred_edit_visitors_details_path
       }.not_to change { session[:visit].visitors[0].first_name }
     end
   end
@@ -129,7 +129,7 @@ describe Deferred::VisitorsDetailsController do
 
     it "rejects visitor information" do
       post :update, visitor_hash
-      response.should redirect_to(edit_deferred_visitors_details_path)
+      response.should redirect_to(deferred_edit_visitors_details_path)
     end
   end
 
@@ -153,7 +153,7 @@ describe Deferred::VisitorsDetailsController do
 
     it "rejects the submission if there are too many visitors" do
       post :update, visitor_hash
-      response.should redirect_to(edit_deferred_visitors_details_path)
+      response.should redirect_to(deferred_edit_visitors_details_path)
       session[:visit].valid?(:visitors_set).should be_false
     end
   end
@@ -187,7 +187,7 @@ describe Deferred::VisitorsDetailsController do
 
     it "rejects the submission if there are too many adult visitors" do
       post :update, visitor_hash
-      response.should redirect_to(edit_deferred_visitors_details_path)
+      response.should redirect_to(deferred_edit_visitors_details_path)
       session[:visit].valid?(:visitors_set).should be_false
     end
   end

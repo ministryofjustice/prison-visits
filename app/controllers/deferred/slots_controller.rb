@@ -19,9 +19,9 @@ class Deferred::SlotsController < ApplicationController
     go_back = !visit.valid?(:date_and_time) || go_back
 
     if go_back
-      redirect_to edit_deferred_slots_path
+      redirect_to deferred_edit_slots_path
     else
-      redirect_to edit_deferred_visit_path
+      redirect_to deferred_edit_visit_path
     end
   end
 

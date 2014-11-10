@@ -31,7 +31,7 @@ describe Deferred::SlotsController do
 
     it "permits us to select a time slot" do
       post :update, slots_hash
-      response.should redirect_to(edit_deferred_visit_path)
+      response.should redirect_to(deferred_edit_visit_path)
     end
   end
 
@@ -44,7 +44,7 @@ describe Deferred::SlotsController do
 
     it "prompts us to retry" do
       post :update, slots_hash
-      response.should redirect_to(edit_deferred_slots_path)
+      response.should redirect_to(deferred_edit_slots_path)
     end
   end
 
@@ -57,7 +57,7 @@ describe Deferred::SlotsController do
 
     it "accepts the submission" do
       post :update, slots_hash
-      response.should redirect_to(edit_deferred_visit_path)
+      response.should redirect_to(deferred_edit_visit_path)
     end
   end
 
@@ -70,7 +70,7 @@ describe Deferred::SlotsController do
 
     it "accepts the submission" do
       post :update, slots_hash
-      response.should redirect_to(edit_deferred_visit_path)
+      response.should redirect_to(deferred_edit_visit_path)
     end
   end
 
@@ -83,7 +83,7 @@ describe Deferred::SlotsController do
 
     it "prompts us to retry" do
       post :update, slots_hash
-      response.should redirect_to(edit_deferred_slots_path)
+      response.should redirect_to(deferred_edit_slots_path)
       session[:visit].errors[:slots].should_not be_nil
     end
   end

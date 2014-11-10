@@ -10,7 +10,7 @@ class PrisonerDetailsController < ApplicationController
 
   def update
     if (visit.prisoner = Prisoner.new(prisoner_params)).valid?
-      redirect_to edit_deferred_visitors_details_path
+      redirect_to deferred_edit_visitors_details_path
     else
       redirect_to edit_prisoner_details_path
     end

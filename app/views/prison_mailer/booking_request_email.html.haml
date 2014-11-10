@@ -67,9 +67,9 @@
         Phone:
         %strong #{visitor.phone}
 
-  %p= link_to("Process the booking", new_deferred_confirmation_url(state: @token), class: 'button')
+  %p= link_to("Process the booking", deferred_new_confirmation_url(state: @token), class: 'button')
 
   %p If you cannot click on the link above, copy the entire link and paste it into the address bar of your browser.
   %div.copy-paste-window
-    = new_deferred_confirmation_url(state: @token)
+    = deferred_new_confirmation_url(state: @token)
 

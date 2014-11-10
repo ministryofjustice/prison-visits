@@ -11,7 +11,7 @@ class Deferred::VisitsController < ApplicationController
     VisitorMailer.booking_receipt_email(visit).deliver
 
     metrics_logger.record_visit_request(visit)
-    redirect_to deferred_visit_path
+    redirect_to deferred_show_visit_path
   end
 
   def show

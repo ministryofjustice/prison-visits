@@ -1,13 +1,23 @@
 PrisonVisits2::Application.routes.draw do
   resource :feedback
 
-  resource :prisoner_details
+  get 'prisoner' => 'prisoner_details#edit', as: :edit_prisoner_details
+  put 'prisoner' => 'prisoner_details#update', as: :prisoner_details
 
   namespace :deferred do
-    resource :visitors_details
-    resource :slots
-    resource :visit
-    resource :confirmation
+    get 'visitors'         => 'visitors_details#edit', as: :edit_visitors_details
+    put 'visitors'         => 'visitors_details#update', as: :visitors_details
+
+    get 'slots'            => 'slots#edit', as: :edit_slots
+    put 'slots'            => 'slots#update', as: :slots
+
+    get 'visit'            => 'visits#edit', as: :edit_visit
+    put 'visit'            => 'visits#update', as: :visit
+    get 'your-visit'       => 'visits#show', as: :show_visit
+
+    get 'confirmation/new' => 'confirmations#new', as: :new_confirmation
+    get 'confirmation'     => 'confirmations#show', as: :show_confirmation
+    put 'confirmation'     => 'confirmations#create', as: :confirmation
   end
 
   scope :controller => 'visit' do
@@ -45,7 +55,7 @@ PrisonVisits2::Application.routes.draw do
   end
 
   # Legacy URLs
-  get "/prisoner-details", to: redirect("/prisoner_details/edit")
+  get "/prisoner-details", to: redirect("/prisoner")
   resource :confirmation, controller: 'deferred_confirmations'
 
   get "/", to: redirect("https://www.gov.uk/prisonvisits")
