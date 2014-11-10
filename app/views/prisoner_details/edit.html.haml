@@ -28,14 +28,6 @@
 
       %fieldset
         %legend.visuallyhidden Prisoner details
-        #instant-booking
-          - if visit.prisoner.prison_name && visit.prisoner.prison_name != '' && !f.object.errors.include?(:api)
-            - if instant_booking? && !process_as_email?
-              .flow-note
-                %p= "You can now make an instant visit booking at HMP #{prison_name}."
-            - else
-              .flow-note
-                %p= "You can request a visit to HMP #{prison_name} and you’ll get confirmation by email within 3 working days."
 
         .group{ :class => ('validation-error' if f.object.errors.include?(:first_name)) }
           = f.label :first_name do
