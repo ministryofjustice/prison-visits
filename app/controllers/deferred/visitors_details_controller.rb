@@ -3,6 +3,7 @@ class Deferred::VisitorsDetailsController < ApplicationController
   include SessionGuard
 
   def edit
+    @collect_phone_number = true
   end
 
   def update

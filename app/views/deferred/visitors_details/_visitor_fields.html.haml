@@ -51,11 +51,12 @@
       %p.form-hint#emailHint You'll receive confirmation by email.
       = f.email_field :email, :'aria-describedby' => "emailHint"
 
-    .group{ :class => ('validation-error' if f.object.errors.include?(:phone)) }
-      = f.label :phone do
-        Phone number
-        %span.validation-message= f.object.errors[:phone].first if f.object.errors.include?(:phone)
-      = f.telephone_field :phone
+    - if @collect_phone_number
+      .group{ :class => ('validation-error' if f.object.errors.include?(:phone)) }
+        = f.label :phone do
+          Phone number
+          %span.validation-message= f.object.errors[:phone].first if f.object.errors.include?(:phone)
+        = f.telephone_field :phone
 
   - unless index == 0
     %label.remove-visitor
