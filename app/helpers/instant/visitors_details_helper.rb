@@ -1,0 +1,2 @@
+module Instant::VisitorsDetailsHelper
+end

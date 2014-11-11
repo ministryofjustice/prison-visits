@@ -20,6 +20,11 @@ PrisonVisits2::Application.routes.draw do
     post 'confirmation'    => 'confirmations#create', as: :confirmation
   end
 
+  namespace :instant do
+    get 'visitors'         => 'visitors_details#edit', as: :edit_visitors_details
+    post 'visitors'        => 'visitors_details#update', as: :visitors_details
+  end
+
   scope :controller => 'visit' do
     get "/abandon", action: :abandon
     get "/unavailable", action: :unavailable
