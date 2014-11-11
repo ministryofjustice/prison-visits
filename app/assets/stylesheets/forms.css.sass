@@ -1,6 +1,9 @@
 @mixin clearfix-vertical-flow
   border-bottom: 1px solid transparent
 
+%field-spacing
+  margin: 1em 0
+
 .validation-summary,
 .validation-error
   padding: 1em
@@ -37,8 +40,14 @@ form
     @include media(mobile)
       color: $black
   
+  .panel-indent
+    @extend %field-spacing
+
   .group
-    margin: 1em 0
+    @extend %field-spacing
+
+    .panel-indent
+      float: left
 
     fieldset
       margin: 0
