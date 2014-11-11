@@ -38,7 +38,7 @@ Durham:
   enabled: true
   phone: 0191 3323417
   email: pvb.durham@maildrop.dsd.io
-  instant_booking: false
+  instant_booking: true
   address:
   - Old Elvet
   - Durham

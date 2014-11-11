@@ -10,7 +10,8 @@ class PrisonerDetailsController < ApplicationController
 
   def update
     if (visit.prisoner = Prisoner.new(prisoner_params)).valid?
-      redirect_to deferred_edit_visitors_details_path
+      instant_booking = Rails.configuration.prison_data[visit.prisoner.prison_name][:instant_booking]
+      redirect_to instant_booking ? instant_edit_visitors_details_path : deferred_edit_visitors_details_path
     else
       redirect_to edit_prisoner_details_path
     end

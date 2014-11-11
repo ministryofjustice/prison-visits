@@ -61,9 +61,16 @@ describe PrisonerDetailsController do
         get :edit
       end
 
-      it "updates prisoner details" do
+      it "updates prisoner details and redirects to the email flow" do
         post :update, prisoner_hash
         response.should redirect_to(deferred_edit_visitors_details_path)
+      end
+
+      it "updates prisoner details and redirects to the api flow" do
+        prisoner_hash[:prisoner].merge!(prison_name: 'Durham')
+
+        post :update, prisoner_hash
+        response.should redirect_to(instant_edit_visitors_details_path)
       end
 
       it "updates prisoner details with bad date and redirects back" do
