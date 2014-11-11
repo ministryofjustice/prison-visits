@@ -102,7 +102,7 @@ describe "Prison data" do
         _, s = staging_prison_data.shift
 
         p.each_key do |k|
-          next if ['email','enabled'].include? k
+          next if ['email', 'enabled', 'instant_booking'].include? k
           p[k].should == s[k]
           if k == 'unbookable'
             p[k].sort.should == p[k]
