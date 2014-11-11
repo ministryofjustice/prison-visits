@@ -4,6 +4,7 @@ class Deferred::VisitorsDetailsController < ApplicationController
 
   def edit
     @collect_phone_number = true
+    render 'shared/visitors_details/edit'
   end
 
   def update
