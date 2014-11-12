@@ -152,3 +152,18 @@ article th {
   }
 }
 /* fix radio/checkbox */
+
+
+/* BookingCalendar for IE6 */
+@include ie-lte(6) {
+  .BookingCalendar-content {
+    height: 55px;
+    zoom: 1;
+  }
+  a.BookingCalendar-dateLink {
+    height: 55px;
+    display: block;
+  }
+}
+/* BookingCalendar for IE6 */
+

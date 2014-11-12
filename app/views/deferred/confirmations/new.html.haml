@@ -50,7 +50,7 @@
 
         #details_no_vos_left.panel-indent
           %p We can tell the visitor when the prisoner will have new visiting allowance. Pick the date when the prisoner’s allowance will be renewed
-          %div [calendar]
+          = render 'booking_calendar', :name => 'confirmation[renew_vo]'
 
         %div
           %label.block-label(for='confirmation_outcome_no_pvos_left')
@@ -59,9 +59,9 @@
 
         #details_no_pvos_left.panel-indent
           %p We can tell the visitor that they can book a weekday visit before the PVO expires. Pick the date when the prisoner’s PVO will expire:
-          %div [calendar]
+          = render 'booking_calendar', :name => 'confirmation[renew_pvo]'
           %p We can also tell them when the visiting allowance (VO) will be renewed. Pick the date when the prisoner’s VO will be renewed:
-          %div [calendar]
+          = render 'booking_calendar', :name => 'confirmation[renew_vo]'
 
       %h2 Details incorrect
 
