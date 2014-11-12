@@ -6,10 +6,10 @@ Your visit at <%= @visit.prisoner.prison_name %> from <%= display_time_slot(@slo
 <% when 1 %>
 Your first choice of <%= display_time_slot(@visit.slots[0].times) %> on <%= format_date(@visit.slots[0].date) %> was not available.
 <% when 2 %>
-Your first choice of <%= display_time_slot(@visit.slots[0].times) %> on <%= format_date(@visit.slots[0].date) %> and second choice of <%= display_time_slot(@visit.slots[1].times) %> on <%= format_date(@visit.slots[1].date) %> were not available.
+Your first choice of <%= display_start_time(@visit.slots[0].times).strip %> on <%= format_date(@visit.slots[0].date) %> and second choice of <%= display_start_time(@visit.slots[1].times) %> on <%= format_date(@visit.slots[1].date) %> were not available.
 <% end %>
 
-Please arrive 45 minutes before your visit starts. 
+Please arrive 45 minutes before your visit starts.
 
 Prisoner: <%= @visit.prisoner.first_name %> <%= initial ? @visit.prisoner.last_initial : @visit.prisoner.last_name %>
 Prisoner number: <%= @visit.prisoner.number.upcase %>
@@ -29,14 +29,14 @@ Please don't reply to this email to change any details of your visit. Instead yo
 
 Add this email to your address book
 
-To stop visit confirmation emails going to your spam or junk folder please add no-reply@email.prisonvisits.service.gov.uk to your address book or safe senders list. 
+To stop visit confirmation emails going to your spam or junk folder please add no-reply@email.prisonvisits.service.gov.uk to your address book or safe senders list.
 
-What to bring when you visit 
+What to bring when you visit
 
-Please make sure you bring ID with you. This can be ONE of the following: 
+Please make sure you bring ID with you. This can be ONE of the following:
 
  * passport, including foreign passports, and expired passports where the photograph is still recognisable
- * identity card (including European identity cards) 
+ * identity card (including European identity cards)
  * driving licence
  * benefits book
  * senior citizen's public transport photo pass issued by a local authority
@@ -45,8 +45,8 @@ Please make sure you bring ID with you. This can be ONE of the following:
 If you don't have one of these forms of ID, you can bring TWO of the following:
 
  * birth or marriage certificate
- * cheque book or credit or debit card 
- * employer's pass or ID or student ID card without photo 
+ * cheque book or credit or debit card
+ * employer's pass or ID or student ID card without photo
  * young person's 'proof of age' card
  * trade union or National Students' Union membership card
  * rent book
@@ -60,10 +60,10 @@ You will be searched before entering the prison visiting room. Prison staff may 
 
 What not to bring
 
-Please do not bring anything restricted or illegal to the prison. For more information about what you are allowed to bring, please see the <%= @visit.prisoner.prison_name %> page: <%= prison_url(@visit) %> 
+Please do not bring anything restricted or illegal to the prison. For more information about what you are allowed to bring, please see the <%= @visit.prisoner.prison_name %> page: <%= prison_url(@visit) %>
 
 Your data
 
-The Ministry of Justice (HM Prison Service) uses and retains the personal data of visitors for the purposes of the safe and secure provision of Prison Services, including those related to the management and rehabilitation of offenders. Access to the establishment can only be granted by supplying the prescribed information in order to ensure and maintain a safe and secure environment for all. You have the right to request details as to the personal information we hold for you; and subsequently request that we correct any personal information if it is found to be inaccurate or out of date. We will not share your information with other organisations unless it is required for the purposes of prevention, detection of crime, apprehension, prosecution, and management of offenders; prevention of terrorism; National  Security; or required to do by law. 
+The Ministry of Justice (HM Prison Service) uses and retains the personal data of visitors for the purposes of the safe and secure provision of Prison Services, including those related to the management and rehabilitation of offenders. Access to the establishment can only be granted by supplying the prescribed information in order to ensure and maintain a safe and secure environment for all. You have the right to request details as to the personal information we hold for you; and subsequently request that we correct any personal information if it is found to be inaccurate or out of date. We will not share your information with other organisations unless it is required for the purposes of prevention, detection of crime, apprehension, prosecution, and management of offenders; prevention of terrorism; National  Security; or required to do by law.
 
 Need help? If you have a question or need any help with the online visits service, please contact us: <%= new_feedback_url %>
