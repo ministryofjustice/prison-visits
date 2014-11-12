@@ -10,4 +10,5 @@ describe Instant::VisitorsDetailsController do
 
   it_behaves_like "a browser without a session present"
   it_behaves_like "a session timed out"
+  it_behaves_like "a visitor data manipulator"
 end
