@@ -23,6 +23,9 @@ PrisonVisits2::Application.routes.draw do
   namespace :instant do
     get 'visitors'         => 'visitors_details#edit', as: :edit_visitors_details
     post 'visitors'        => 'visitors_details#update', as: :visitors_details
+
+    get 'slots'            => 'slots#edit', as: :edit_slots
+    post 'slots'           => 'slots#update', as: :slots
   end
 
   scope :controller => 'visit' do

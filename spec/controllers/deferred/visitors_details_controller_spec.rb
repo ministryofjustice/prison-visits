@@ -19,6 +19,18 @@ describe Deferred::VisitorsDetailsController do
     controller.next_path.should == deferred_edit_slots_path
   end
 
+  let :single_visitor_hash do
+    [
+     first_name: 'Sue',
+     last_name: 'Demin',
+     :'date_of_birth(3i)' => '14',
+     :'date_of_birth(2i)' => '03',
+     :'date_of_birth(1i)' => '1986',
+     email: 'sue.denim@maildrop.dsd.io',
+     phone: '07783 123 456'
+    ]
+  end
+
   context "given valid visitor information" do
     let(:visitor_hash) do
       {

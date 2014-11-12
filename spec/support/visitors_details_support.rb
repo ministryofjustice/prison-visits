@@ -78,15 +78,7 @@ shared_examples "a visitor data manipulator with invalid data" do
     let(:visitor_hash) do
       {
         visit: {
-          visitor: [
-                    first_name: 'Sue',
-                    last_name: 'Demin',
-                    :'date_of_birth(3i)' => '14',
-                    :'date_of_birth(2i)' => '03',
-                    :'date_of_birth(1i)' => '1986',
-                    email: 'sue.denim@maildrop.dsd.io',
-                    phone: '07783 123 456'
-                   ] * 7
+          visitor: single_visitor_hash * 7
         },
         next: ''
       }
@@ -104,15 +96,7 @@ shared_examples "a visitor data manipulator with invalid data" do
       {
         visit: {
           visitor: [
-                    [
-                     first_name: 'Sue',
-                     last_name: 'Demin',
-                     :'date_of_birth(3i)' => '14',
-                     :'date_of_birth(2i)' => '03',
-                     :'date_of_birth(1i)' => '1986',
-                     email: 'sue.denim@maildrop.dsd.io',
-                     phone: '07783 123 456'
-                    ],
+                    single_visitor_hash,
                     [
                      first_name: 'John',
                      last_name: 'Denver',
