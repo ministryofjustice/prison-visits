@@ -11,7 +11,7 @@ module VisitorsManipulator
 
     visit.visitors = []
     visitors_params.each_with_index do |visitor_hash, i|
-      visit.visitors << Visitor.new(visitor_hash.merge(index: i)) unless visitor_hash[:_destroy].present?
+      visit.visitors << model_class.new(visitor_hash.merge(index: i)) unless visitor_hash[:_destroy].present?
     end
     go_back = visit.visitors.select do |v|
       !v.valid?
@@ -21,7 +21,7 @@ module VisitorsManipulator
 
     if params[:next] == 'Add another visitor'
       if visit.visitors.size < Visit::MAX_VISITORS
-        visit.visitors << Visitor.new
+        visit.visitors << model_class.new
         redirect_to this_path
       else
         redirect_to this_path, notice: "You may only have a maximum of #{Visit::MAX_VISITORS} visitors"

@@ -15,4 +15,8 @@ class Deferred::VisitorsDetailsController < ApplicationController
   def next_path
     deferred_edit_slots_path
   end
+
+  def model_class
+    Deferred::Visitor
+  end
 end

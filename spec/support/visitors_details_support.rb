@@ -1,4 +1,4 @@
-shared_examples "a visitor data manipulator" do
+shared_examples "a visitor data manipulator with valid data" do
   context "given prisoner data in the session" do
     let :add_visitor_hash do
       {
@@ -35,12 +35,12 @@ shared_examples "a visitor data manipulator" do
     it "adds and then removes a visitor from the session" do
       expect {
         post :update, add_visitor_hash
-        response.should redirect_to deferred_edit_visitors_details_path
+        response.should redirect_to controller.this_path
       }.to change { session[:visit].visitors.size }.by(1)
 
       expect {
         post :update, remove_visitor_hash
-        response.should redirect_to deferred_edit_visitors_details_path
+        response.should redirect_to controller.this_path
       }.to change { session[:visit].visitors.size }.by(-1)
     end
 
@@ -49,8 +49,87 @@ shared_examples "a visitor data manipulator" do
 
       expect {
         post :update, remove_visitor_hash
-        response.should redirect_to deferred_edit_visitors_details_path
+        response.should redirect_to controller.this_path
       }.to change { session[:visit].visitors.size }.by(-1)
+    end
+  end
+end
+
+shared_examples "a visitor data manipulator with invalid data" do
+  context "given invalid visitor information" do
+    let :bad_visitor_hash do
+      {
+        visit: {
+          visitor: [{}]
+        },
+        next: ''
+      }
+    end
+    
+    it "doesn't update visitor information and redirects back to the form" do
+      expect {
+        post :update, bad_visitor_hash
+        response.should redirect_to controller.this_path
+      }.not_to change { session[:visit].visitors[0].first_name }
+    end
+  end
+
+  context "given too many visitors" do
+    let(:visitor_hash) do
+      {
+        visit: {
+          visitor: [
+                    first_name: 'Sue',
+                    last_name: 'Demin',
+                    :'date_of_birth(3i)' => '14',
+                    :'date_of_birth(2i)' => '03',
+                    :'date_of_birth(1i)' => '1986',
+                    email: 'sue.denim@maildrop.dsd.io',
+                    phone: '07783 123 456'
+                   ] * 7
+        },
+        next: ''
+      }
+    end
+
+    it "rejects the submission if there are too many visitors" do
+      post :update, visitor_hash
+      response.should redirect_to(controller.this_path)
+      session[:visit].valid?(:visitors_set).should be_false
+    end
+  end
+
+  context "given too many adult visitors" do
+    let(:visitor_hash) do
+      {
+        visit: {
+          visitor: [
+                    [
+                     first_name: 'Sue',
+                     last_name: 'Demin',
+                     :'date_of_birth(3i)' => '14',
+                     :'date_of_birth(2i)' => '03',
+                     :'date_of_birth(1i)' => '1986',
+                     email: 'sue.denim@maildrop.dsd.io',
+                     phone: '07783 123 456'
+                    ],
+                    [
+                     first_name: 'John',
+                     last_name: 'Denver',
+                     :'date_of_birth(3i)' => '31',
+                     :'date_of_birth(2i)' => '12',
+                     :'date_of_birth(1i)' => '1943'
+                    ] * 3
+                   ].flatten
+        },
+        next: ''
+      }
+    end
+
+    it "rejects the submission if there are too many adult visitors" do
+      post :update, visitor_hash
+      response.should redirect_to(controller.this_path)
+      session[:visit].valid?(:visitors_set).should be_false
     end
   end
 end

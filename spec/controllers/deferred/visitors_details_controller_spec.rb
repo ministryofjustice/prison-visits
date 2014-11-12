@@ -4,7 +4,7 @@ describe Deferred::VisitorsDetailsController do
   render_views
 
   before :each do
-    session[:visit] = Visit.new(visit_id: SecureRandom.hex, prisoner: Prisoner.new, visitors: [Visitor.new])
+    session[:visit] = Visit.new(visit_id: SecureRandom.hex, prisoner: Prisoner.new, visitors: [Deferred::Visitor.new])
     cookies['cookies-enabled'] = 1
     EmailValidator.any_instance.stub(has_mx_records: true)
   end
