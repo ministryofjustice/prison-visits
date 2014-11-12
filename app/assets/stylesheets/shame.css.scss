@@ -144,3 +144,11 @@ article th {
 }
 /* end hide live phase */
 
+
+/* fix radio/checkbox in ie6 - govuk_elements */
+@include ie-lte(6) {
+  .block-label {
+    zoom: 1;
+  }
+}
+/* fix radio/checkbox */
