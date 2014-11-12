@@ -6,7 +6,6 @@ class Visitor
   attr_accessor :first_name
   attr_accessor :last_name
   attr_accessor :email
-  attr_accessor :phone
   attr_accessor :index
   attr_accessor :number_of_adults
   attr_accessor :number_of_children
@@ -28,11 +27,9 @@ class Visitor
   def validate_user_or_additional
     if index.zero?
       EmailValidator.new.validate(self)
-      errors.add(:phone, 'must be given and include area code') unless phone.present? && phone.size > 9
       errors.add(:base, 'You must be over 18 years old to book a visit') unless date_of_birth.present? && date_of_birth < 18.years.ago
     else
       errors.add(:email, 'must not be given') if email.present?
-      errors.add(:phone, 'must not be given') if phone.present?
     end
   end
 
