@@ -13,11 +13,11 @@ feature "visitor enters visitor information" do
     it "validation messages are present" do
       click_button 'Continue'
 
-      expect(page).to have_css(".field_with_errors #first_name_0")
-      expect(page).to have_css(".field_with_errors #last_name_0")
+      expect(page).to have_css(".validation-error #first_name_0")
+      expect(page).to have_css(".validation-error #last_name_0")
       expect(page).to have_css(".js-native-date .validation-message")
-      expect(page).to have_css(".field_with_errors #visit_visitor__email")
-      expect(page).to have_css(".field_with_errors #visit_visitor__phone")
+      expect(page).to have_css(".validation-error #visit_visitor__email")
+      expect(page).to have_css(".validation-error #visit_visitor__phone")
     end
   end
 

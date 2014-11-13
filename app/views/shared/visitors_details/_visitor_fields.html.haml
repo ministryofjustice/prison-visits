@@ -15,13 +15,13 @@
     %label{ for: "first_name_#{index}" }
       = index == 0 ? 'Your first name' : 'First name'
       %span.validation-message= f.object.errors[:first_name].first if f.object.errors.include?(:first_name)
-    = f.text_field :first_name, id: "first_name_#{index}"
+    = text_field_tag 'visit[visitor][][first_name]', f.object.first_name, id: "first_name_#{index}"
 
   .group{ :class => ('validation-error' if f.object.errors.include?(:last_name)) }
     %label{ for: "last_name_#{index}" }
       = index == 0 ? 'Your last name' : 'Last name'
       %span.validation-message= f.object.errors[:last_name].first if f.object.errors.include?(:last_name)
-    = f.text_field :last_name, id: "last_name_#{index}"
+    = text_field_tag 'visit[visitor][][last_name]', f.object.last_name, id: "last_name_#{index}"
 
   .group.js-native-date{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
     %fieldset
@@ -45,18 +45,18 @@
   - if index == 0
   
     .group{ :class => ('validation-error' if f.object.errors.include?(:email)) }
-      = f.label :email do
+      %label{for: 'visit_visitor__email'}
         Email address
         %span.validation-message= f.object.errors[:email].first if f.object.errors.include?(:email)
       %p.form-hint#emailHint You'll receive confirmation by email.
-      = f.email_field :email, :'aria-describedby' => "emailHint"
+      = email_field_tag 'visit[visitor][][email]', f.object.email, :'aria-describedby' => "emailHint"
 
     - if @collect_phone_number
       .group{ :class => ('validation-error' if f.object.errors.include?(:phone)) }
-        = f.label :phone do
+        %label{for: 'visit_visitor__phone'}
           Phone number
           %span.validation-message= f.object.errors[:phone].first if f.object.errors.include?(:phone)
-        = f.telephone_field :phone
+        = telephone_field_tag 'visit[visitor][][phone]', f.object.phone
 
   - unless index == 0
     %label.remove-visitor
