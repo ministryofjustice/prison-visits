@@ -33,6 +33,7 @@ shared_examples "a visitor data manipulator with valid data" do
     end
 
     it "adds and then removes a visitor from the session" do
+      get :edit
       expect {
         post :update, add_visitor_hash
         response.should redirect_to controller.this_path
@@ -45,6 +46,7 @@ shared_examples "a visitor data manipulator with valid data" do
     end
 
     it "removes a visitor from the session using a hash value" do
+      get :edit
       session[:visit].visitors << Visitor.new
 
       expect {
@@ -67,10 +69,11 @@ shared_examples "a visitor data manipulator with invalid data" do
     end
     
     it "doesn't update visitor information and redirects back to the form" do
+      get :edit
       expect {
         post :update, bad_visitor_hash
         response.should redirect_to controller.this_path
-      }.not_to change { session[:visit].visitors[0].first_name }
+      }.not_to change { session[:visit].visitors.first.first_name }
     end
   end
 

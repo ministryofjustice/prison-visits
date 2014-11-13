@@ -30,7 +30,7 @@ describe Deferred::VisitsController do
           p.date_of_birth = Date.new(1975, 1, 1)
         end
 
-        v.visitors = [Visitor.new.tap do |vi|
+        v.visitors = [Deferred::Visitor.new.tap do |vi|
                         vi.first_name = 'Morvern'
                         vi.last_name = 'Callar'
                         vi.email = 'email@system.lol'

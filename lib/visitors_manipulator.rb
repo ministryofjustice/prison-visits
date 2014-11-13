@@ -1,6 +1,14 @@
 module VisitorsManipulator
   extend ActiveSupport::Concern
 
+  included do
+    before_filter :adjust_visitors_in_session, only: :edit
+  end
+
+  def adjust_visitors_in_session
+    visit.visitors = [model_class.new] if visit.visitors.empty?
+  end
+
   def update
     if m = params[:next].match(/remove-(\d)/)
       index = m[1].to_i

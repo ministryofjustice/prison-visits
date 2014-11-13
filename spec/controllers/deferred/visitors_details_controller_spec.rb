@@ -4,7 +4,7 @@ describe Deferred::VisitorsDetailsController do
   render_views
 
   before :each do
-    session[:visit] = Visit.new(visit_id: SecureRandom.hex, prisoner: Prisoner.new, visitors: [Deferred::Visitor.new])
+    session[:visit] = PrisonerDetailsController.new.new_session
     cookies['cookies-enabled'] = 1
     EmailValidator.any_instance.stub(has_mx_records: true)
   end
@@ -50,10 +50,11 @@ describe Deferred::VisitorsDetailsController do
     end
     
     it "updates visitor information" do
+      get :edit
       expect {
         post :update, visitor_hash
         response.should redirect_to deferred_edit_slots_path
-      }.to change { session[:visit].visitors[0].first_name }
+      }.to change { session[:visit].visitors.first.first_name }
     end
   end
 

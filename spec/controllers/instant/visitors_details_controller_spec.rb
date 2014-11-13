@@ -4,7 +4,7 @@ describe Instant::VisitorsDetailsController do
   render_views
 
   before :each do
-    session[:visit] = Visit.new(visit_id: SecureRandom.hex, prisoner: Prisoner.new, visitors: [Visitor.new])
+    session[:visit] = PrisonerDetailsController.new.new_session
     cookies['cookies-enabled'] = 1
     EmailValidator.any_instance.stub(has_mx_records: true)
   end
@@ -48,6 +48,7 @@ describe Instant::VisitorsDetailsController do
     end
     
     it "updates visitor information" do
+      get :edit
       expect {
         post :update, visitor_hash
         response.should redirect_to instant_edit_slots_path
