@@ -34,7 +34,7 @@ class PrisonerDetailsController < ApplicationController
   end
 
   def new_session
-    Visit.new(visit_id: SecureRandom.hex, prisoner: Prisoner.new, visitors: [Visitor.new], slots: [])
+    Visit.new(visit_id: SecureRandom.hex, prisoner: Prisoner.new, visitors: [], slots: [])
   end
 
   def service_domain
