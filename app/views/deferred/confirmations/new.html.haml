@@ -3,6 +3,10 @@
 .Grid
   .Grid-3-4
 
+    %ul
+      %li book the visit in NOMIS first
+      %li use this form to send a visit confirmation or visit rejection email to the visitor
+
     = form_for @confirmation, url: confirmation_path do |f|
       = hidden_field_tag :state, params[:state]
 
@@ -39,31 +43,39 @@
             %li the visit can’t take place because another prisoner is having a visit at the same time and they are incompatible
           %h3 What we’ll tell the visitor:
           %p
-            %em.email For security reasons, the visitor won’t be given any of the above information. All they will be told is that the visit can’t take place on the dates they’ve chosen.
+            %em.email We’re sorry but none of the dates and times you chose to visit #{booked_visit.prisoner.first_name} #{booked_visit.prisoner.last_name} at #{booked_visit.prisoner.prison_name} were available. Please visit http://gov.uk/prison-visits/ to choose some alternative dates.
 
-      %h2 Entitlement (VOs)
+      %h2 Visiting allowance
 
       .group{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
         %label.block-label(for='confirmation_outcome_no_vos_left')
-          = radio_button_tag 'confirmation[outcome]', Confirmation::NO_VOS_LEFT, false, { :'data-conditional-el' => 'details_no_vos_left', :class => 'js-Conditional' }
-          The prisoner does not have any visiting allowance left
+          = radio_button_tag 'confirmation[outcome]', Confirmation::NO_VOS_LEFT, false, { :'data-conditional-el' => 'no_allowance', :class => 'js-Conditional' }
+          The prisoner does not have any visiting allowance (VO)
 
-        #details_no_vos_left.panel-indent
-          %p We can tell the visitor when the prisoner will have new visiting allowance. Pick the date when the prisoner’s allowance will be renewed
-          = render 'booking_calendar', :name => 'confirmation[renew_vo]'
+        #no_allowance.panel-indent
+          .group{ :class => ('validation-error' if f.object.errors.include?(:no_vos_left)) }
+            %label.block-label(for='confirmation_no_vos_left')
+              = check_box_tag 'confirmation[no_vos_left]', Confirmation::NO_VOS_LEFT, false, { :'data-conditional-el' => 'details_no_vo_left', :class => 'js-Conditional' }
+              Visiting allowance (weekends and weekday visits) (VO) will be renewed:
 
-        %div
-          %label.block-label(for='confirmation_outcome_no_pvos_left')
-            = radio_button_tag 'confirmation[outcome]', Confirmation::NO_PVOS_LEFT, false, { :'data-conditional-el' => 'details_no_pvos_left', :class => 'js-Conditional' }
-            The prisoner does not have any weekend allowance
+          #details_no_vo_left
+            = render 'booking_calendar', :name => 'confirmation[renew_vo]'
+            %h3 What we’ll tell the visitor:
+            %p
+              %em #{booked_visit.prisoner.first_name} #{booked_visit.prisoner.last_name} will have their visiting allowance (VO) renewed on [DATE NO CHOSEN].
 
-        #details_no_pvos_left.panel-indent
-          %p We can tell the visitor that they can book a weekday visit before the PVO expires. Pick the date when the prisoner’s PVO will expire:
-          = render 'booking_calendar', :name => 'confirmation[renew_pvo]'
-          %p We can also tell them when the visiting allowance (VO) will be renewed. Pick the date when the prisoner’s VO will be renewed:
-          = render 'booking_calendar', :name => 'confirmation[renew_vo]'
+          .group{ :class => ('validation-error' if f.object.errors.include?(:no_pvos_left)) }
+            %label.block-label(for='confirmation_no_pvos_left')
+              = check_box_tag 'confirmation[no_pvos_left]', Confirmation::NO_PVOS_LEFT, false, { :'data-conditional-el' => 'details_no_pvos_left', :class => 'js-Conditional' }
+              If weekday visit (PVO) is possible instead, choose the date PVO expires:
 
-      %h2 Details incorrect
+          #details_no_pvos_left
+            = render 'booking_calendar', :name => 'confirmation[renew_pvo]'
+            %h3 What we’ll tell the visitor:
+            %p
+              %em You can book a weekday visit with allowance that is valid until [DATE NO CHOSEN].
+
+      %h2 Incorrect details or visitor banned
 
       .group{ :class => ('validation-error' if f.object.errors.include?(:prisoner_incorrect)) }
         %label.block-label(for='confirmation_prisoner_incorrect')
@@ -73,7 +85,7 @@
       #prisoner_incorrect.panel-indent
         %h3 What we’ll tell the visitor:
         %p
-          %em.email You haven’t given correct information for the prisoner, for example the prisoner’s name, number or date of birth is incorrect. Please contact the prisoner to get the correct prisoner information.
+          %em.email You haven’t given correct information for the prisoner. Eg the prisoner’s name, number or date of birth is incorrect. Contact the prisoner to get up-to-date information.
 
       .group{ :class => ('validation-error' if f.object.errors.include?(:visitor_incorrect)) }
         %label.block-label(for='confirmation_visitor_incorrect')
@@ -105,4 +117,4 @@
             = check_box_tag 'confirmation[visitor_banned]', index
             #{visitor.first_name} #{visitor.last_name} #{visitor.date_of_birth.strftime("%d/%m/%Y")} is banned
 
-      = f.button 'Send confirmation email', :class => 'button button-primary js-submit'
+      = f.button 'Send email', :class => 'button button-primary js-submit'
