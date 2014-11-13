@@ -99,7 +99,7 @@
 
         - booked_visit.visitors.each_with_index do |visitor, index|
           %label.block-label{ :for => "confirmation_visitor_not_found_#{index}" }
-            = check_box_tag 'confirmation[visitor_not_found]', index
+            = check_box_tag "confirmation[visitor_not_found_#{index}]", 1
             #{visitor.first_name} #{visitor.last_name} #{visitor.date_of_birth.strftime("%d/%m/%Y")} details are incorrect
 
       .group{ :class => ('validation-error' if f.object.errors.include?(:visitor_banned)) }
@@ -114,7 +114,7 @@
 
         - booked_visit.visitors.each_with_index do |visitor, index|
           %label.block-label{ :for => "confirmation_visitor_banned_#{index}" }
-            = check_box_tag 'confirmation[visitor_banned]', index
+            = check_box_tag "confirmation[visitor_banned_#{index}]", 1
             #{visitor.first_name} #{visitor.last_name} #{visitor.date_of_birth.strftime("%d/%m/%Y")} is banned
 
       = f.button 'Send email', :class => 'button button-primary js-submit'
