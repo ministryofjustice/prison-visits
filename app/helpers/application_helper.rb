@@ -8,7 +8,11 @@ module ApplicationHelper
     date = Date.parse(date) if date.class == String
     date.strftime("%A %e %B").strip
   end
-  
+
+  def display_start_time(times)
+    format_time_str(times.split('-')[0])
+  end
+
   def display_time_slot(times, glue=' to ')
     from, to = times.split('-')
     [format_time_str(from).strip, format_time_str(to).strip].join(glue)

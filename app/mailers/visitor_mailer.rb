@@ -16,14 +16,13 @@ class VisitorMailer < ActionMailer::Base
   def booking_confirmation_email(visit, confirmation)
     @visit = visit
     @slot = visit.slots[confirmation.slot.to_i]
-    @message_from_prison = confirmation.message
+    @confirmation = confirmation
 
     mail(from: sender, reply_to: prison_mailbox_email, to: recipient, subject: "Visit confirmed: your visit for #{Date.parse(@slot.date).strftime('%e %B %Y').gsub(/^ /,'')} has been confirmed")
   end
 
   def booking_rejection_email(visit, confirmation)
     @visit = visit
-    @message_from_prison = confirmation.message
     @confirmation = confirmation
     
     mail(from: sender, reply_to: prison_mailbox_email, to: recipient, subject: "Visit cannot take place: your visit for #{first_date.strftime('%e %B %Y').gsub(/^ /,'')} could not be booked")

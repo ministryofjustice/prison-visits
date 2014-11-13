@@ -17,6 +17,10 @@ describe ApplicationHelper do
     helper.format_day(Date.parse('2014-07-24')).should == "Thursday 24 July"
   end
 
+  it "formats a start time from a 24hr time string" do
+    helper.display_start_time('0945').should == "9:45am"
+  end
+
   it "displays a long time" do
     helper.display_time_slot("1400-1600").should == "2:00pm to 4:00pm"
     helper.display_time_slot("0945-1145").should == "9:45am to 11:45am"

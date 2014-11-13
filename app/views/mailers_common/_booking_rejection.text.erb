@@ -20,6 +20,6 @@ You have tried to book a visit but the prisoner you want to visit has not got an
 <% raise 'bad reason' %>
 <% end %>
 
-<%= @message_from_prison %>
+<%= @confirmation.message %>
 
 If you have any questions, visit the prison website: <%= prison_url(@visit) %> or call the prison on <%= prison_phone %>.

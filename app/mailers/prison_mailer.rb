@@ -30,7 +30,6 @@ class PrisonMailer < ActionMailer::Base
   def booking_receipt_email(visit, confirmation)
     @visit = visit
     @confirmation = confirmation
-    @message_from_prison = confirmation.message
 
     if confirmation.slot_selected?
       @slot = visit.slots[confirmation.slot]
