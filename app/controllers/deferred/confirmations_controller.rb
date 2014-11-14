@@ -17,7 +17,8 @@ class Deferred::ConfirmationsController < ApplicationController
   end
 
   def create
-    unless (@confirmation = Confirmation.new(confirmation_params)).valid?
+   unless params[:confirmation] && (@confirmation = Confirmation.new(confirmation_params)).valid?
+      @confirmation ||= Confirmation.new
       render :new
       return
     end
