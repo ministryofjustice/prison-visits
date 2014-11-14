@@ -34,19 +34,19 @@ describe PrisonMailer do
   end
 
   let :confirmation_with_slot do
-    Confirmation.new(message: 'A message', outcome: 'slot_0')
+    Confirmation.new(vo_number: '5551234', outcome: 'slot_0')
   end
 
   let :confirmation_without_slot do
-    Confirmation.new(message: 'A message', outcome: Confirmation::NO_SLOT_AVAILABLE)
+    Confirmation.new(vo_number: '5551234', outcome: Confirmation::NO_SLOT_AVAILABLE)
   end
 
   let :confirmation_not_on_contact_list do
-    Confirmation.new(message: 'A message', outcome: Confirmation::NOT_ON_CONTACT_LIST)
+    Confirmation.new(vo_number: '5551234', outcome: Confirmation::NOT_ON_CONTACT_LIST)
   end
 
   let :confirmation_no_vos_left do
-    Confirmation.new(message: 'A message', outcome: Confirmation::NO_VOS_LEFT)
+    Confirmation.new(vo_number: '5551234', outcome: Confirmation::NO_VOS_LEFT)
   end
 
   context "always" do
@@ -65,14 +65,13 @@ describe PrisonMailer do
       subject.booking_receipt_email(sample_visit, confirmation_with_slot).tap do |email|
         email.subject.should == "COPY of booking confirmation for Jimmy Harris"
         email.body.should include('Mark')
-        email.body.should include('A message')
+        email.body.should include('5551234')
       end
 
       [confirmation_without_slot, confirmation_not_on_contact_list, confirmation_no_vos_left].each do |confirmation|
         subject.booking_receipt_email(sample_visit, confirmation).tap do |email|
           email.subject.should == "COPY of booking rejection for Jimmy Harris"
           email.body.should include('Mark')
-          email.body.should include('A message')
         end
       end
     end
