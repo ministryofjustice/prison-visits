@@ -16,6 +16,15 @@ describe Instant::SlotsController do
   it_behaves_like "a browser without a session present"
   it_behaves_like "a session timed out"
 
+  it "sets up the flow" do
+    controller.this_path.should == instant_edit_slots_path
+    controller.next_path.should == instant_edit_visit_path
+  end
+
+  it "permits up to one slot to be selected" do
+    controller.max_slots.should == 1
+  end
+
   context "correct slot information" do
     let(:slots_hash) do
       {
@@ -31,7 +40,7 @@ describe Instant::SlotsController do
 
     it "permits us to select a time slot" do
       post :update, slots_hash
-      response.should redirect_to(instant_edit_visit_path)
+      response.should redirect_to(controller.next_path)
     end
   end
 
@@ -44,7 +53,7 @@ describe Instant::SlotsController do
 
     it "prompts us to retry" do
       post :update, slots_hash
-      response.should redirect_to(instant_edit_slots_path)
+      response.should redirect_to(controller.this_path)
     end
   end
 
@@ -57,7 +66,7 @@ describe Instant::SlotsController do
 
     it "prompts us to retry" do
       post :update, slots_hash
-      response.should redirect_to(instant_edit_slots_path)
+      response.should redirect_to(controller.this_path)
       session[:visit].errors[:slots].should_not be_nil
     end
   end

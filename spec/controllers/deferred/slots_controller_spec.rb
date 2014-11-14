@@ -16,6 +16,15 @@ describe Deferred::SlotsController do
   it_behaves_like "a browser without a session present"
   it_behaves_like "a session timed out"
 
+  it "sets up the flow" do
+    controller.this_path.should == deferred_edit_slots_path
+    controller.next_path.should == deferred_edit_visit_path
+  end
+
+  it "permits up to 3 slots to be selected" do
+    controller.max_slots.should == 3
+  end
+
   context "correct slot information" do
     let(:slots_hash) do
       {
@@ -31,7 +40,7 @@ describe Deferred::SlotsController do
 
     it "permits us to select a time slot" do
       post :update, slots_hash
-      response.should redirect_to(deferred_edit_visit_path)
+      response.should redirect_to(controller.next_path)
     end
   end
 
@@ -44,7 +53,7 @@ describe Deferred::SlotsController do
 
     it "prompts us to retry" do
       post :update, slots_hash
-      response.should redirect_to(deferred_edit_slots_path)
+      response.should redirect_to(controller.this_path)
     end
   end
 
@@ -57,7 +66,7 @@ describe Deferred::SlotsController do
 
     it "accepts the submission" do
       post :update, slots_hash
-      response.should redirect_to(deferred_edit_visit_path)
+      response.should redirect_to(controller.next_path)
     end
   end
 
@@ -70,7 +79,7 @@ describe Deferred::SlotsController do
 
     it "accepts the submission" do
       post :update, slots_hash
-      response.should redirect_to(deferred_edit_visit_path)
+      response.should redirect_to(controller.next_path)
     end
   end
 
@@ -83,7 +92,7 @@ describe Deferred::SlotsController do
 
     it "prompts us to retry" do
       post :update, slots_hash
-      response.should redirect_to(deferred_edit_slots_path)
+      response.should redirect_to(controller.this_path)
       session[:visit].errors[:slots].should_not be_nil
     end
   end
