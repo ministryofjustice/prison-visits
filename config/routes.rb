@@ -26,6 +26,10 @@ PrisonVisits2::Application.routes.draw do
 
     get 'slots'            => 'slots#edit', as: :edit_slots
     post 'slots'           => 'slots#update', as: :slots
+
+    get 'visit'            => 'visits#edit', as: :edit_visit
+    post 'visit'           => 'visits#update', as: :visit
+    get 'your-visit'       => 'visits#show', as: :show_visit
   end
 
   scope :controller => 'visit' do
