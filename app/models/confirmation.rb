@@ -1,6 +1,6 @@
 class Confirmation
   include ActiveModel::Model
-  attr_accessor :outcome, :banned_visitors
+  attr_accessor :outcome, :vo_number
 
   NO_SLOT_AVAILABLE = 'no_slot_available'
   PRISONER_INCORRECT = 'prisoner_incorrect'

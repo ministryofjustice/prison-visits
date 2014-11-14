@@ -43,7 +43,7 @@ class Deferred::ConfirmationsController < ApplicationController
   end
 
   def confirmation_params
-    params.require(:confirmation).permit(:outcome, :message)
+    params.require(:confirmation).permit(:outcome, :vo_number)
   end
   
   def encryptor
