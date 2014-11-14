@@ -12,3 +12,25 @@
 .email {
   color: $secondary-text-colour;
 }
+
+// Amends for BookingCalendar with radio buttons
+.BookingCalendar {
+  border-top: 1px solid $grey-3;
+}
+
+label.BookingCalendar-dateLink {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  color: #0b0c0c;
+  text-decoration: none;
+  cursor: pointer;
+
+  line-height: 1.5;
+  text-align: center;
+}
+
+.BookingCalendar-content .BookingCalendar-day {
+  padding-left: 3px;
+}
