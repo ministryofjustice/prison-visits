@@ -48,14 +48,14 @@
       %h2 Visiting allowance
 
       .group{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
-        %label.block-label(for='confirmation_outcome_no_vos_left')
-          = radio_button_tag 'confirmation[outcome]', Confirmation::NO_VOS_LEFT, false, { :'data-conditional-el' => 'no_allowance', :class => 'js-Conditional' }
+        %label.block-label(for='confirmation_outcome_no_allowance')
+          = radio_button_tag 'confirmation[outcome]', Confirmation::NO_ALLOWANCE, false, { :'data-conditional-el' => 'no_allowance', :class => 'js-Conditional' }
           The prisoner does not have any visiting allowance (VO)
 
         #no_allowance.panel-indent
           .group{ :class => ('validation-error' if f.object.errors.include?(:no_vos_left)) }
-            %label.block-label(for='confirmation_no_vos_left')
-              = check_box_tag 'confirmation[no_vos_left]', Confirmation::NO_VOS_LEFT, false, { :'data-conditional-el' => 'details_no_vo_left', :class => 'js-Conditional' }
+            %label.block-label(for='confirmation_outcome_no_vos_left')
+              = check_box_tag 'confirmation[outcome]', Confirmation::NO_VOS_LEFT, false, { :'data-conditional-el' => 'details_no_vo_left', :class => 'js-Conditional', :id => 'confirmation_outcome_no_vos_left' }
               Visiting allowance (weekends and weekday visits) (VO) will be renewed:
 
           #details_no_vo_left
@@ -65,8 +65,8 @@
               %em #{booked_visit.prisoner.first_name} #{booked_visit.prisoner.last_name} will have their visiting allowance (VO) renewed on [DATE NO CHOSEN].
 
           .group{ :class => ('validation-error' if f.object.errors.include?(:no_pvos_left)) }
-            %label.block-label(for='confirmation_no_pvos_left')
-              = check_box_tag 'confirmation[no_pvos_left]', Confirmation::NO_PVOS_LEFT, false, { :'data-conditional-el' => 'details_no_pvos_left', :class => 'js-Conditional' }
+            %label.block-label(for='confirmation_outcome_no_pvos_left')
+              = check_box_tag 'confirmation[outcome]', Confirmation::NO_PVOS_LEFT, false, { :'data-conditional-el' => 'details_no_pvos_left', :class => 'js-Conditional', :id => 'confirmation_outcome_no_pvos_left' }
               If weekday visit (PVO) is possible instead, choose the date PVO expires:
 
           #details_no_pvos_left
