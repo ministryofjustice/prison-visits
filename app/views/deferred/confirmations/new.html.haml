@@ -87,12 +87,12 @@
         %p
           %em.email You haven’t given correct information for the prisoner. Eg the prisoner’s name, number or date of birth is incorrect. Contact the prisoner to get up-to-date information.
 
-      .group{ :class => ('validation-error' if f.object.errors.include?(:visitor_incorrect)) }
-        %label.block-label(for='confirmation_visitor_incorrect')
-          = check_box_tag 'confirmation[visitor_incorrect]', 1, false, { :'data-conditional-el' => 'visitors_not_found', :class => 'js-Conditional' }
+      .group{ :class => ('validation-error' if f.object.errors.include?(:not_on_contact_list)) }
+        %label.block-label(for='confirmation_not_on_contact_list')
+          = check_box_tag 'confirmation[not_on_contact_list]', Confirmation::NOT_ON_CONTACT_LIST, false, { :'data-conditional-el' => 'visitors_not_listed', :class => 'js-Conditional' }
           Visitor details incorrect
 
-      #visitors_not_found.panel-indent
+      #visitors_not_listed.panel-indent
         %h3 What we’ll tell the visitor:
         %p
           %em.email The details you’ve provided don’t match what we have on our records. Please contact the prisoner and ask them to update their contact list with your details, making sure that names appear exactly the same as on your ID documents.
