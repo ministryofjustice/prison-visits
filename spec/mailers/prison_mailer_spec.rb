@@ -42,11 +42,11 @@ describe PrisonMailer do
   end
 
   let :confirmation_not_on_contact_list do
-    Confirmation.new(vo_number: '5551234', outcome: Confirmation::NOT_ON_CONTACT_LIST)
+    Confirmation.new(not_on_contact_list: 'not_on_contact_list')
   end
 
   let :confirmation_no_vos_left do
-    Confirmation.new(vo_number: '5551234', outcome: Confirmation::NO_VOS_LEFT)
+    Confirmation.new(renew_vo: '2014-09-01', outcome: Confirmation::NO_VOS_LEFT)
   end
 
   context "always" do
