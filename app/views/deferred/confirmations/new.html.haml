@@ -75,9 +75,9 @@
             %p
               %em You can book a weekday visit with allowance that is valid until [DATE NO CHOSEN].
 
-      %h2 Incorrect details or visitor banned
+      %h2 Prisoner details
 
-      .group{ :class => ('validation-error' if f.object.errors.include?(:prisoner_incorrect)) }
+      .group{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
         %label.block-label(for='confirmation_outcome_prisoner_incorrect')
           = radio_button_tag 'confirmation[outcome]', Confirmation::PRISONER_INCORRECT, false, { :'data-conditional-el' => 'prisoner_incorrect', :class => 'js-Conditional' }
           Prisoner details are incorrect
@@ -87,9 +87,21 @@
         %p
           %em.email You haven’t given correct information for the prisoner. Eg the prisoner’s name, number or date of birth is incorrect. Contact the prisoner to get up-to-date information.
 
-      .group{ :class => ('validation-error' if f.object.errors.include?(:not_on_contact_list)) }
-        %label.block-label(for='confirmation_not_on_contact_list')
-          = check_box_tag 'confirmation[not_on_contact_list]', Confirmation::NOT_ON_CONTACT_LIST, false, { :'data-conditional-el' => 'visitors_not_listed', :class => 'js-Conditional' }
+      .group{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
+        %label.block-label(for='confirmation_outcome_prisoner_not_present')
+          = radio_button_tag 'confirmation[outcome]', Confirmation::PRISONER_NOT_PRESENT, false, { :'data-conditional-el' => 'prisoner_not_present', :class => 'js-Conditional' }
+          Prisoner is not here
+
+      #prisoner_not_present.panel-indent
+        %h3 What we’ll tell the visitor
+        %p
+          %em.email Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas molestie quam nec augue porttitor elementum. Phasellus sit amet arcu eu dui convallis consequat vitae a purus. Sed consectetur gravida accumsan.
+
+      %h2 Visitor details
+
+      .group{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
+        %label.block-label(for='confirmation_outcome_not_on_contact_list')
+          = radio_button_tag 'confirmation[outcome]', Confirmation::NOT_ON_CONTACT_LIST, false, { :'data-conditional-el' => 'visitors_not_listed', :class => 'js-Conditional' }
           Visitor details incorrect
 
       #visitors_not_listed.panel-indent
@@ -102,9 +114,9 @@
             = check_box_tag "confirmation[visitor_not_found_#{index}]", 1
             #{visitor.first_name} #{visitor.last_name} #{visitor.date_of_birth.strftime("%d/%m/%Y")} details are incorrect
 
-      .group{ :class => ('validation-error' if f.object.errors.include?(:visitor_banned)) }
-        %label.block-label(for='confirmation_visitor_banned')
-          = check_box_tag 'confirmation[visitor_banned]', Confirmation::VISITOR_BANNED, false, { :'data-conditional-el' => 'visitors_banned', :class => 'js-Conditional' }
+      .group{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
+        %label.block-label(for='confirmation_outcome_visitor_banned')
+          = radio_button_tag 'confirmation[outcome]', Confirmation::VISITOR_BANNED, false, { :'data-conditional-el' => 'visitors_banned', :class => 'js-Conditional' }
           Visitor is banned
 
       #visitors_banned.panel-indent
