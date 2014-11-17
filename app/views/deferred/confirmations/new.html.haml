@@ -53,6 +53,10 @@
           The prisoner does not have any visiting allowance (VO)
 
         #no_allowance.panel-indent
+          %h3 What we’ll tell the visitor
+          %p
+            %em.email Something general here Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas molestie quam nec augue porttitor elementum. 
+
           .group{ :class => ('validation-error' if f.object.errors.include?(:no_vos_left)) }
             %label.block-label(for='confirmation_outcome_no_vos_left')
               = check_box_tag 'confirmation[outcome]', Confirmation::NO_VOS_LEFT, false, { :'data-conditional-el' => 'details_no_vo_left', :class => 'js-Conditional', :id => 'confirmation_outcome_no_vos_left' }
