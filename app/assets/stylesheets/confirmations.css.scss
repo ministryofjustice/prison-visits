@@ -34,3 +34,8 @@ label.BookingCalendar-dateLink {
 .BookingCalendar-content .BookingCalendar-day {
   padding-left: 3px;
 }
+
+.block-label.disabled {
+  text-decoration: line-through;
+  color: $grey-1;
+}

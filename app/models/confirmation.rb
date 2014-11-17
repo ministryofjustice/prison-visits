@@ -1,6 +1,6 @@
 class Confirmation
   include ActiveModel::Model
-  attr_accessor :outcome, :vo_number, :renew_vo, :renew_pvo, :prisoner_incorrect, :not_on_contact_list, :visitor_banned
+  attr_accessor :outcome, :vo_number, :renew_vo, :renew_pvo, :not_on_contact_list, :visitor_banned
 
   NO_SLOT_AVAILABLE = 'no_slot_available'
   NO_ALLOWANCE = 'no_allowance'
@@ -20,9 +20,8 @@ class Confirmation
       NO_ALLOWANCE
     ] + %w{slot_0 slot_1 slot_2}
 
-    if !outcomes.include?(outcome) && !prisoner_incorrect && !not_on_contact_list && !visitor_banned
+    if !outcomes.include?(outcome) && !not_on_contact_list && !visitor_banned
       errors.add(:outcome, 'An outcome must be chosen')
-      errors.add(:prisoner_incorrect, 'An outcome must be chosen')
       errors.add(:not_on_contact_list, 'An outcome must be chosen')
       errors.add(:visitor_banned, 'An outcome must be chosen')
     end

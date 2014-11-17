@@ -16,7 +16,7 @@
         - booked_visit.slots.each_with_index do |slot, index|
           - if slot.date.present?
             %label.block-label{ for: "confirmation_outcome_slot_#{index}" }
-              = radio_button_tag 'confirmation[outcome]', "slot_#{index}", false, { :'data-conditional-el' => "vo_number_field", :class => 'js-Conditional' }
+              = radio_button_tag 'confirmation[outcome]', "slot_#{index}", false, { :'data-conditional-el' => 'vo_number_field', :'data-disable-el' => '#confirmation_not_on_contact_list,#confirmation_visitor_banned', :class => 'js-Conditional' }
               = succeed ':' do
                 = index == 0 ? "First choice" : "Alternative #{index}"
               %strong
@@ -78,8 +78,8 @@
       %h2 Incorrect details or visitor banned
 
       .group{ :class => ('validation-error' if f.object.errors.include?(:prisoner_incorrect)) }
-        %label.block-label(for='confirmation_prisoner_incorrect')
-          = check_box_tag 'confirmation[prisoner_incorrect]', Confirmation::PRISONER_INCORRECT, false, { :'data-conditional-el' => 'prisoner_incorrect', :class => 'js-Conditional' }
+        %label.block-label(for='confirmation_outcome_prisoner_incorrect')
+          = radio_button_tag 'confirmation[outcome]', Confirmation::PRISONER_INCORRECT, false, { :'data-conditional-el' => 'prisoner_incorrect', :class => 'js-Conditional' }
           Prisoner details are incorrect
 
       #prisoner_incorrect.panel-indent
