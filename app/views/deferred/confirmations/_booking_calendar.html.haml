@@ -12,7 +12,7 @@
           %tr
             - week[1].each do |day|
               %td{ :class => (day > Date.today ? 'BookingCalendar-date--bookable' : 'BookingCalendar-date--unbookable') }
-                .BookingCalendar-content
+                .BookingCalendar-content{ :class => (tag_with_today?(day) || tag_with_month?(day) ? 'has-tag' : '') }
                   %span.BookingCalendar-day= day.strftime('%e')
                   - if tag_with_today? day
                     %span.BookingCalendar-tag.BookingCalendar-tag--today Today
