@@ -63,6 +63,14 @@ $(function () {
       dis.closest('label').removeClass('disabled');
     }
   });
+
+  $('.BookingCalendar input[type=radio]').on('click', function() {
+    var date = moj.Helpers.dateFromIso($(this).val());
+    var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+    $(this).closest('.BookingCalendar').siblings('p').find('span').text(days[date.getDay()] +' '+ date.getDate() +' '+ months[date.getMonth()]);
+  });
 });
 
 

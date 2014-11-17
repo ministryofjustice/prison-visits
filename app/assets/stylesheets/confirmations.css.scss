@@ -15,6 +15,8 @@
 
 // Amends for BookingCalendar with radio buttons
 .BookingCalendar {
+  width: 500px;
+  margin-bottom: 1em;
   border-top: 1px solid $grey-3;
 }
 
@@ -33,9 +35,4 @@ label.BookingCalendar-dateLink {
 
 .BookingCalendar-content .BookingCalendar-day {
   padding-left: 3px;
-}
-
-.block-label.disabled {
-  text-decoration: line-through;
-  color: $grey-1;
 }
