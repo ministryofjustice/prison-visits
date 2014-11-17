@@ -102,7 +102,7 @@
       .group{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
         %label.block-label(for='confirmation_outcome_not_on_contact_list')
           = radio_button_tag 'confirmation[outcome]', Confirmation::NOT_ON_CONTACT_LIST, false, { :'data-conditional-el' => 'visitors_not_listed', :class => 'js-Conditional' }
-          Visitor details incorrect
+          Visitor not on list
 
       #visitors_not_listed.panel-indent
         %h3 What we’ll tell the visitor
@@ -112,7 +112,7 @@
         - booked_visit.visitors.each_with_index do |visitor, index|
           %label.block-label{ :for => "confirmation_visitor_not_found_#{index}" }
             = check_box_tag "confirmation[visitor_not_found_#{index}]", 1
-            #{visitor.first_name} #{visitor.last_name} #{visitor.date_of_birth.strftime("%d/%m/%Y")} details are incorrect
+            #{visitor.first_name} #{visitor.last_name} #{visitor.date_of_birth.strftime("%d/%m/%Y")} is not on the list
 
       .group{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
         %label.block-label(for='confirmation_outcome_visitor_banned')
