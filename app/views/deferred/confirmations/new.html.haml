@@ -41,7 +41,7 @@
             %li the prisoner has restrictions on their visits
             %li the prisoner is due to be elsewhere, eg at court
             %li the visit can’t take place because another prisoner is having a visit at the same time and they are incompatible
-          %h3 What we’ll tell the visitor:
+          %h3 What we’ll tell the visitor
           %p
             %em.email We’re sorry but none of the dates and times you chose to visit #{booked_visit.prisoner.first_name} #{booked_visit.prisoner.last_name} at #{booked_visit.prisoner.prison_name} were available. Please visit http://gov.uk/prison-visits/ to choose some alternative dates.
 
@@ -60,7 +60,7 @@
 
           #details_no_vo_left
             = render 'booking_calendar', :name => 'confirmation[renew_vo]'
-            %h3 What we’ll tell the visitor:
+            %h3 What we’ll tell the visitor
             %p
               %em #{booked_visit.prisoner.first_name} #{booked_visit.prisoner.last_name} will have their visiting allowance (VO) renewed on [DATE NO CHOSEN].
 
@@ -71,7 +71,7 @@
 
           #details_no_pvos_left
             = render 'booking_calendar', :name => 'confirmation[renew_pvo]'
-            %h3 What we’ll tell the visitor:
+            %h3 What we’ll tell the visitor
             %p
               %em You can book a weekday visit with allowance that is valid until [DATE NO CHOSEN].
 
@@ -83,7 +83,7 @@
           Prisoner details are incorrect
 
       #prisoner_incorrect.panel-indent
-        %h3 What we’ll tell the visitor:
+        %h3 What we’ll tell the visitor
         %p
           %em.email You haven’t given correct information for the prisoner. Eg the prisoner’s name, number or date of birth is incorrect. Contact the prisoner to get up-to-date information.
 
@@ -93,7 +93,7 @@
           Visitor details incorrect
 
       #visitors_not_listed.panel-indent
-        %h3 What we’ll tell the visitor:
+        %h3 What we’ll tell the visitor
         %p
           %em.email The details you’ve provided don’t match what we have on our records. Please contact the prisoner and ask them to update their contact list with your details, making sure that names appear exactly the same as on your ID documents.
 
@@ -108,7 +108,7 @@
           Visitor is banned
 
       #visitors_banned.panel-indent
-        %h3 What we’ll tell the visitor:
+        %h3 What we’ll tell the visitor
         %p
           %em.email You should have received a letter to say that you’re banned from visiting the prison at the moment. Get in touch with the prison for more information.
 
