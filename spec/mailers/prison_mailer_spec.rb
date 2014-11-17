@@ -51,7 +51,7 @@ describe PrisonMailer do
 
   context "always" do
     it "sends an e-mail with the prisoner name in the subject" do
-      subject.booking_request_email(sample_visit, "token").subject.should == 'Visit request for Jimmy Harris on Sunday  7 July'
+      subject.booking_request_email(sample_visit, "token").subject.should == 'Visit request for Jimmy Harris on Sunday 7 July'
     end
 
     it "sends an e-mail with a long link to the confirmation page" do

@@ -61,7 +61,7 @@ describe Deferred::VisitsController do
       post :update
       response.should redirect_to(deferred_show_visit_path)
 
-      ActionMailer::Base.deliveries.map(&:subject).should == ['Visit request for Jimmy Harris on Friday  6 December',
+      ActionMailer::Base.deliveries.map(&:subject).should == ['Visit request for Jimmy Harris on Friday 6 December',
                                                               "Not booked yet: we've received your visit request for 6 December 2013"]
     end
   end

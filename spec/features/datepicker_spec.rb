@@ -51,6 +51,8 @@ feature "visitor selects a date" do
       
       # For some reason, check() can't find the checkbox.
       evaluate_script(_when.strftime("$('#slot-%Y-%m-%d-1350-1520').click()"))
+      evaluate_script(_when.strftime("$('#slot-%Y-%m-%d-1350-1450').click()"))
+      evaluate_script(_when.strftime("$('#slot-%Y-%m-%d-1450-1550').click()"))
 
       click_button 'Continue'
       page.should have_content('Check your request')
