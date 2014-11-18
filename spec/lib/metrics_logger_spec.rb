@@ -19,6 +19,7 @@ describe MetricsLogger do
       subject.record_visit_request(visit)
     }.to change { VisitMetricsEntry.count }.by 1
     VisitMetricsEntry.last.tap do |entry|
+      entry.kind.should == 'deferred'
       entry.visit_id.should == 'ABC'
       entry.requested_at.should == @time
       entry.prison_name.should == 'Rochester'
@@ -35,6 +36,7 @@ describe MetricsLogger do
       subject.record_link_click(visit)
     }.to change { VisitMetricsEntry.count }.by 0
     VisitMetricsEntry.last.tap do |entry|
+      entry.kind.should == 'deferred'
       entry.visit_id.should == 'ABC'
       entry.requested_at.should == @time
       entry.opened_at.should == @time
@@ -56,6 +58,7 @@ describe MetricsLogger do
       subject.record_booking_confirmation(visit)
     }.to change { VisitMetricsEntry.count }.by 0
     VisitMetricsEntry.last.tap do |entry|
+      entry.kind.should == 'deferred'
       entry.visit_id.should == 'ABC'
       entry.requested_at.should == @time
       entry.prison_name.should == 'Rochester'
@@ -73,6 +76,7 @@ describe MetricsLogger do
       subject.record_booking_rejection(visit, 'because')
     }.to change { VisitMetricsEntry.count }.by 0
     VisitMetricsEntry.last.tap do |entry|
+      entry.kind.should == 'deferred'
       entry.visit_id.should == 'ABC'
       entry.requested_at.should == @time
       entry.prison_name.should == 'Rochester'
@@ -81,6 +85,18 @@ describe MetricsLogger do
       entry.reason.should == 'because'
       entry.end_to_end_time.should == 0
       entry.processing_time.should == 0
+    end
+  end
+
+  it "logs when the visit was instantly booked" do
+    expect {
+      subject.record_instant_visit(visit)
+    }.to change { VisitMetricsEntry.count }.by 1
+    VisitMetricsEntry.last.tap do |entry|
+      entry.visit_id.should == 'ABC'
+      entry.kind.should == 'instant'
+      entry.requested_at.should == @time
+      entry.processed_at.should == @time
     end
   end
 

@@ -1,6 +1,6 @@
 class MetricsLogger
   def record_visit_request(visit)
-    VisitMetricsEntry.create!(visit_id: visit.visit_id, requested_at: now_in_utc, prison_name: visit.prisoner.prison_name)
+    VisitMetricsEntry.create!(visit_id: visit.visit_id, requested_at: now_in_utc, kind: 'deferred', prison_name: visit.prisoner.prison_name)
   rescue PG::ConnectionBad => e
     Raven.capture_exception(e)
   end
@@ -28,6 +28,12 @@ class MetricsLogger
       e.processing_time = e.processed_at - e.opened_at
       e.end_to_end_time = e.processed_at - e.requested_at
     end
+  end
+
+  def record_instant_visit(visit)
+    VisitMetricsEntry.create!(visit_id: visit.visit_id, requested_at: now_in_utc, processed_at: now_in_utc, kind: 'instant', prison_name: visit.prisoner.prison_name)
+  rescue PG::ConnectionBad => e
+    Raven.capture_exception(e)
   end
 
   def processed?(visit)
