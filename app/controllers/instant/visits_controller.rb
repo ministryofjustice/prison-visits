@@ -16,4 +16,8 @@ class Instant::VisitsController < ApplicationController
     render
     reset_session
   end
+
+  def metrics_logger
+    METRICS_LOGGER
+  end
 end
