@@ -1,6 +1,6 @@
 class Confirmation
   include ActiveModel::Model
-  attr_accessor :outcome, :vo_number, :renew_vo, :renew_pvo
+  attr_accessor :outcome, :vo_number, :renew_vo, :renew_pvo, :banned_visitors, :unlisted_visitors
 
   NO_SLOT_AVAILABLE = 'no_slot_available'
   NO_ALLOWANCE = 'no_allowance'

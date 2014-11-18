@@ -10,6 +10,7 @@
     = form_for @confirmation, url: confirmation_path do |f|
       = hidden_field_tag :state, params[:state]
 
+      
       %h2 Visit date
 
       .group{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
@@ -43,8 +44,9 @@
             %li the visit can’t take place because another prisoner is having a visit at the same time and they are incompatible
           %h3 What we’ll tell the visitor
           %p
-            %em.email We’re sorry but none of the dates and times you chose to visit #{booked_visit.prisoner.first_name} #{booked_visit.prisoner.last_name} at #{booked_visit.prisoner.prison_name} were available. Please visit http://gov.uk/prison-visits/ to choose some alternative dates.
+            %em.email We’re sorry but none of the dates and times you chose to visit #{booked_visit.prisoner.first_name} #{booked_visit.prisoner.last_name} at #{booked_visit.prisoner.prison_name} were available. Please visit www.gov.uk/prison-visits to choose some alternative dates.
 
+      
       %h2 Visiting allowance
 
       .group{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
@@ -86,7 +88,8 @@
                 = succeed '.' do
                   %span.date [DATE NOT CHOSEN]
 
-      %h2 Prisoner details
+      
+      %h2 Issue with the prisoner
 
       .group{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
         %label.block-label(for='confirmation_outcome_prisoner_incorrect')
@@ -101,28 +104,32 @@
       .group{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
         %label.block-label(for='confirmation_outcome_prisoner_not_present')
           = radio_button_tag 'confirmation[outcome]', Confirmation::PRISONER_NOT_PRESENT, false, { :'data-conditional-el' => 'prisoner_not_present', :class => 'js-Conditional' }
-          Prisoner is not here
+          Prisoner no longer at the prison
 
       #prisoner_not_present.panel-indent
         %h3 What we’ll tell the visitor
         %p
-          %em.email Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas molestie quam nec augue porttitor elementum. Phasellus sit amet arcu eu dui convallis consequat vitae a purus. Sed consectetur gravida accumsan.
+          %em.email The prisoner you want to visit has moved prison. They should contact you to tell you where they are now.  You can also use the find a prisoner service (www.gov.uk/find-prisoner).
 
-      %h2 Visitor details
+      
+      %h2 Issue with the visitor
 
       .group{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
         %label.block-label(for='confirmation_outcome_not_on_contact_list')
           = radio_button_tag 'confirmation[outcome]', Confirmation::NOT_ON_CONTACT_LIST, false, { :'data-conditional-el' => 'visitors_not_listed', :class => 'js-Conditional' }
-          Visitor not on list
+          Visitor isn’t on the contact list
 
       #visitors_not_listed.panel-indent
         %h3 What we’ll tell the visitor
         %p
-          %em.email The details you’ve provided don’t match what we have on our records. Please contact the prisoner and ask them to update their contact list with your details, making sure that names appear exactly the same as on your ID documents.
+          %em.email
+            The details you’ve provided for 
+            %span.visitor_names [VISITOR NAME]
+            don’t match what we have on our records. Please contact the prisoner and ask them to update their contact list with correct details for this visitor, making sure that names appear exactly the same as on your ID documents.
 
         - booked_visit.visitors.each_with_index do |visitor, index|
-          %label.block-label{ :for => "confirmation_visitor_not_found_#{index}" }
-            = check_box_tag "confirmation[visitor_not_found_#{index}]", 1
+          %label.block-label{ :for => "confirmation_unlisted_visitors_#{index}" }
+            = check_box_tag "confirmation[unlisted_visitors][]", "#{visitor.first_name} #{visitor.last_name}", false, { :id => "confirmation_unlisted_visitors_#{index}" }
             #{visitor.first_name} #{visitor.last_name} #{visitor.date_of_birth.strftime("%d/%m/%Y")} is not on the list
 
       .group{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
@@ -133,11 +140,13 @@
       #visitors_banned.panel-indent
         %h3 What we’ll tell the visitor
         %p
-          %em.email You should have received a letter to say that you’re banned from visiting the prison at the moment. Get in touch with the prison for more information.
+          %em.email
+            %span.visitor_names [VISITOR NAME]
+            should have received a letter to say that they’re banned from visiting the prison at the moment. Get in touch with the prison for more information.
 
         - booked_visit.visitors.each_with_index do |visitor, index|
-          %label.block-label{ :for => "confirmation_visitor_banned_#{index}" }
-            = check_box_tag "confirmation[visitor_banned_#{index}]", 1
+          %label.block-label{ :for => "confirmation_banned_visitors_#{index}" }
+            = check_box_tag "confirmation[banned_visitors][]", "#{visitor.first_name} #{visitor.last_name}", false, { :id => "confirmation_banned_visitors_#{index}" }
             #{visitor.first_name} #{visitor.last_name} #{visitor.date_of_birth.strftime("%d/%m/%Y")} is banned
 
       = f.button 'Send email', :class => 'button button-primary js-submit'

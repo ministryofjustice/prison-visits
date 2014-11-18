@@ -9,7 +9,7 @@ We’re sorry but none of the dates and times you chose to visit <%= @visit.pris
 <% end %>
 <% end %>
 
-Please visit http://gov.uk/prison-visits/ to choose some alternative dates.
+Please visit www.gov.uk/prison-visits to choose some alternative dates.
 <% when Confirmation::NO_ALLOWANCE %>
 The prisoner you want to visit has not got any visiting allowance left. Please contact them to find out more.
 <% when Confirmation::NO_VOS_LEFT %>
@@ -21,11 +21,11 @@ The prisoner you’re visiting doesn’t have any allowance for a weekend visit 
 <% when Confirmation::PRISONER_INCORRECT %>
 You haven’t given correct information for the prisoner. Eg, the prisoner’s name, number or date of birth is incorrect. Contact the prisoner to get up-to-date information.
 <% when Confirmation::PRISONER_NOT_PRESENT %>
-PRISONER_NOT_PRESENT_TEXT
+The prisoner you want to visit has moved prison. They should contact you to tell you where they are now.  You can also use the find a prisoner service (www.gov.uk/find-prisoner).
 <% when Confirmation::NOT_ON_CONTACT_LIST %>
-The details you’ve provided don’t match what we have on our records. Please contact the prisoner and ask them to update their contact list with your details, making sure that names appear exactly the same as on your ID documents.
+The details you’ve provided for <%= @confirmation.unlisted_visitors.join(', ') %> don’t match what we have on our records. Please contact the prisoner and ask them to update their contact list with correct details for this visitor, making sure that names appear exactly the same as on your ID documents.
 <% when Confirmation::VISITOR_BANNED %>
-You should have received a letter to say that you’re banned from visiting the prison at the moment. Get in touch with the prison for more information.
+<%= @confirmation.banned_visitors.join(', ') %> should have received a letter to say that they’re banned from visiting the prison at the moment. Get in touch with the prison for more information.
 <% else %>
 <% raise 'bad reason' %>
 <% end %>
