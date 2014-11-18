@@ -116,9 +116,10 @@
       
       %h2 Issue with the visitor
 
-      .group{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
+      .group{ :class => ('validation-error' if f.object.errors.include?(:outcome) || f.object.errors.include?(:unlisted)) }
         %label.block-label(for='confirmation_outcome_not_on_contact_list')
-          = radio_button_tag 'confirmation[outcome]', Confirmation::NOT_ON_CONTACT_LIST, false, { :'data-conditional-el' => 'visitors_not_listed', :class => 'js-Conditional' }
+          = radio_button_tag 'confirmation[outcome]', Confirmation::NOT_ON_CONTACT_LIST, f.object.outcome == Confirmation::NOT_ON_CONTACT_LIST, { :'data-conditional-el' => 'visitors_not_listed', :class => 'js-Conditional' }
+          %span.validation-message= f.object.errors[:unlisted].first if f.object.errors.include?(:unlisted)
           Visitor isn’t on the contact list
 
       #visitors_not_listed.panel-indent
@@ -134,9 +135,10 @@
             = check_box_tag "confirmation[unlisted_visitors][]", "#{visitor.first_name} #{visitor.last_name}", false, { :id => "confirmation_unlisted_visitors_#{index}" }
             #{visitor.first_name} #{visitor.last_name} #{visitor.date_of_birth.strftime("%d/%m/%Y")} is not on the list
 
-      .group{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
+      .group{ :class => ('validation-error' if f.object.errors.include?(:outcome) || f.object.errors.include?(:banned)) }
         %label.block-label(for='confirmation_outcome_visitor_banned')
-          = radio_button_tag 'confirmation[outcome]', Confirmation::VISITOR_BANNED, false, { :'data-conditional-el' => 'visitors_banned', :class => 'js-Conditional' }
+          = radio_button_tag 'confirmation[outcome]', Confirmation::VISITOR_BANNED, f.object.outcome == Confirmation::VISITOR_BANNED, { :'data-conditional-el' => 'visitors_banned', :class => 'js-Conditional' }
+          %span.validation-message= f.object.errors[:banned].first if f.object.errors.include?(:banned)
           Visitor is banned
 
       #visitors_banned.panel-indent

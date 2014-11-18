@@ -11,6 +11,8 @@ class Confirmation
 
   validate :check_outcome
   validate :renewals
+  validate :unlisted
+  validate :banned
 
   def check_outcome
     outcomes = [
@@ -33,6 +35,18 @@ class Confirmation
     end
     if no_pvo.present? && renew_pvo.nil?
       errors.add(:no_pvo, 'a renewal date must be chosen')
+    end
+  end
+
+  def banned
+    if outcome == VISITOR_BANNED && banned_visitors.nil?
+      errors.add(:banned, 'one or more visitors must be selected')
+    end
+  end
+
+  def unlisted
+    if outcome == NOT_ON_CONTACT_LIST && unlisted_visitors.nil?
+      errors.add(:unlisted, 'one or more visitors must be selected')
     end
   end
 
