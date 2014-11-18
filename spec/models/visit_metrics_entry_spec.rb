@@ -11,6 +11,12 @@ describe VisitMetricsEntry do
     subject.should_not be_valid
 
     subject.requested_at = Time.now
+    subject.should_not be_valid
+
+    subject.kind = 'instant'
+    subject.should be_valid
+
+    subject.kind = 'deferred'
     subject.should be_valid
   end
 end
