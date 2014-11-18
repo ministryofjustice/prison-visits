@@ -10,6 +10,7 @@ class Confirmation
   VISITOR_BANNED = 'visitor_banned'
 
   validate :check_outcome
+  validate :reference
   validate :renewals
   validate :unlisted
   validate :banned
@@ -26,6 +27,12 @@ class Confirmation
 
     if !outcomes.include?(outcome)
       errors.add(:outcome, 'An outcome must be chosen')
+    end
+  end
+
+  def reference
+    if %w{slot_0 slot_1 slot_2}.include?(outcome) && vo_number.blank?
+      errors.add(:vo_number, 'you must supply a reference number')
     end
   end
 

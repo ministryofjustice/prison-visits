@@ -38,7 +38,7 @@
         $el.attr('aria-control', $el.data('conditionalEl'));
 
         // if checked show/hide the extra content
-        if($el.is(':checked')){
+        if(moj.Modules.Conditional.isCurrentOrListSelected($el, $el.data('conditionalVal'))){
           $conditionalEl.show();
           $conditionalEl.attr('aria-expanded', 'true').attr('aria-hidden', 'false');
         } else {
@@ -46,6 +46,10 @@
           $conditionalEl.attr('aria-expanded', 'false').attr('aria-hidden', 'true');
         }
       }
+    },
+
+    isCurrentOrListSelected: function($el, list) {
+      return $el.is(':checked') || (list && !!~list.indexOf($('[name="' + $el.attr('name') + '"]:checked').val()));
     }
   };
 }());

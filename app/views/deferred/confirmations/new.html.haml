@@ -17,7 +17,7 @@
         - booked_visit.slots.each_with_index do |slot, index|
           - if slot.date.present?
             %label.block-label{ for: "confirmation_outcome_slot_#{index}" }
-              = radio_button_tag 'confirmation[outcome]', "slot_#{index}", false, { :'data-conditional-el' => 'vo_number_field', :'data-disable-el' => '#confirmation_not_on_contact_list,#confirmation_visitor_banned', :class => 'js-Conditional' }
+              = radio_button_tag 'confirmation[outcome]', "slot_#{index}", f.object.outcome == "slot_#{index}", { :'data-conditional-el' => 'vo_number_field', :'data-conditional-val' => 'slot_0,slot_1,slot_2', :'data-disable-el' => '#confirmation_not_on_contact_list,#confirmation_visitor_banned', :class => 'js-Conditional' }
               = succeed ':' do
                 = index == 0 ? "First choice" : "Alternative #{index}"
               %strong
@@ -26,11 +26,12 @@
                 \-
                 = format_time_str_24 slot.times.split('-')[1]
 
-        .panel-indent{ :id => 'vo_number_field', :class => ('validation-error' if f.object.errors.include?(:vo_number)) }
-          %label{ :for => 'confirmation_vo_number' }
-            VO number
-            %span.validation-message= f.object.errors[:vo_number].first if f.object.errors.include?(:vo_number)
-          = text_field_tag 'confirmation[vo_number]', nil, :maxlength => 8
+        .panel-indent{ :id => 'vo_number_field' }
+          .field{ :class => ('validation-error' if f.object.errors.include?(:vo_number)) }
+            %label{ :for => 'confirmation_vo_number' }
+              VO number
+              %span.validation-message= f.object.errors[:vo_number].first if f.object.errors.include?(:vo_number)
+            = text_field_tag 'confirmation[vo_number]', nil, :maxlength => 8
 
         %label.block-label(for='confirmation_outcome_no_slot_available' )
           = radio_button_tag 'confirmation[outcome]', Confirmation::NO_SLOT_AVAILABLE, false, { :'data-conditional-el' => 'details_no_slot_available', :class => 'js-Conditional' }
