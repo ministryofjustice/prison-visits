@@ -29,7 +29,7 @@ feature "visitor enters prisoner information" do
     it "prompts for visitor information" do
       visit '/prisoner-details'
 
-      enter_prisoner_information
+      enter_prisoner_information(:deferred)
 
       expect(page).to have_content('Visitor 1')
     end

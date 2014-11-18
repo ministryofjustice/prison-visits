@@ -6,7 +6,7 @@ feature "visitor enters visitor information" do
   before :each do
     EmailValidator.any_instance.stub(:has_mx_records).and_return(true)
     visit '/prisoner-details'
-    enter_prisoner_information
+    enter_prisoner_information(:deferred)
   end
 
   context "and leaves fields blank" do
@@ -24,7 +24,7 @@ feature "visitor enters visitor information" do
   context "and they fill out all fields" do
     context "for one visitor" do
       it "displays the calendar" do
-        enter_visitor_information
+        enter_visitor_information(:deferred)
 
         click_button 'Continue'
 
@@ -35,7 +35,7 @@ feature "visitor enters visitor information" do
     (1..5).each do |n|
       context "for #{n} additional visitors" do
         it "displays the calendar" do
-          enter_visitor_information
+          enter_visitor_information(:deferred)
 
           select n.to_s, from: 'visit[visitor][][number_of_adults]'
           (1..n).each do |m|

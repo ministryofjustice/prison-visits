@@ -7,8 +7,8 @@ feature "visitor selects a date" do
     VisitController.any_instance.stub(:metrics_logger).and_return(MockMetricsLogger.new)
     EmailValidator.any_instance.stub(:has_mx_records).and_return(true)
     visit '/prisoner-details'
-    enter_prisoner_information
-    enter_visitor_information
+    enter_prisoner_information(:deferred)
+    enter_visitor_information(:deferred)
     click_button 'Continue'
   end
 
