@@ -15,8 +15,9 @@
 
 // Amends for BookingCalendar with radio buttons
 .BookingCalendar {
+  clear: left;
   width: 500px;
-  margin-bottom: 1em;
+  margin: 1em 0;
   border-top: 1px solid $grey-3;
 
   input {
