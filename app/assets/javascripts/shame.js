@@ -76,7 +76,7 @@ $(function () {
     var visitorNames = [];
 
     $('#visitors_not_listed input:checked').each(function() {
-      visitorNames.push($(this).parent().find('.visitor_name').text());
+      visitorNames.push($(this).val());
     });
 
     $('#visitors_not_listed .visitor_names').text(visitorNames.length ? visitorNames.join(', ') : '[VISITOR NAME]');
