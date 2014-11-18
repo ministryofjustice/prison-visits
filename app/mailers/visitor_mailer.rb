@@ -34,6 +34,12 @@ class VisitorMailer < ActionMailer::Base
     mail(from: sender, reply_to: prison_mailbox_email, to: recipient, subject: "Not booked yet: we've received your visit request for #{first_date.strftime('%e %B %Y').gsub(/^ /,'')}")
   end
 
+  def instant_confirmation_email(visit)
+    @visit = visit
+
+    mail(from: sender, reply_to: prison_mailbox_email, to: recipient, subject: "Visit confirmation for #{first_date.strftime('%e %B %Y').gsub(/^ /,'')}")
+  end
+
   def sender
     noreply_address
   end

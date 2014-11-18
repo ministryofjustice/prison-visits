@@ -321,6 +321,17 @@ describe VisitorMailer do
       end
     end
 
+    context "instant visit" do
+      it "sends out an e-mail confirmation of an instant visit" do
+        email = subject.instant_confirmation_email(sample_visit)
+        email.subject.should == "Visit confirmation for 7 July 2013"
+        email[:from].should == noreply_address
+        email[:reply_to].should == prison_address
+        email[:to].should == visitor_address
+        email.body.raw_source.should_not include("Jimmy Harris")
+      end
+    end
+
     it "sends an e-mail to the person who requested a booking" do
       subject.booking_confirmation_email(sample_visit, confirmation)[:to].should == visitor_address
     end
