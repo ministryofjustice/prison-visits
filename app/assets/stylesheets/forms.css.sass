@@ -43,6 +43,16 @@ form
   .panel-indent
     @extend %field-spacing
 
+  .field:before,
+  .field:after
+    content: "\0020"
+    display: block
+    height: 0
+    overflow: hidden
+
+  .field:after
+    clear: left
+
   .group
     @extend %field-spacing
 

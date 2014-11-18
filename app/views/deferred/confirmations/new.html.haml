@@ -60,7 +60,7 @@
             %em.email The prisoner you want to visit has not got any visiting allowance left. Please contact them to find out more.
           %p You can also tell the visitor more about the VO and PVO status:
 
-          %div{ :class => ('validation-error' if f.object.errors.include?(:no_vo)) }
+          .field{ :class => ('validation-error' if f.object.errors.include?(:no_vo)) }
             %label.block-label(for='confirmation_no_vo')
               %span.validation-message= f.object.errors[:no_vo].first if f.object.errors.include?(:no_vo)
               = check_box_tag 'confirmation[no_vo]', 1, f.object.no_vo.present?, { :'data-conditional-el' => 'details_no_vo', :class => 'js-Conditional', :id => 'confirmation_no_vo' }
@@ -75,7 +75,7 @@
                 = succeed '.' do
                   %span.date [DATE NOT CHOSEN]
 
-          %div{ :class => ('validation-error' if f.object.errors.include?(:no_pvo)) }
+          .field{ :class => ('validation-error' if f.object.errors.include?(:no_pvo)) }
             %label.block-label(for='confirmation_no_pvo')
               %span.validation-message= f.object.errors[:no_pvo].first if f.object.errors.include?(:no_pvo)
               = check_box_tag 'confirmation[no_pvo]', 1, f.object.no_pvo.present?, { :'data-conditional-el' => 'details_no_pvo', :class => 'js-Conditional', :id => 'confirmation_no_pvo' }
@@ -94,7 +94,7 @@
       %h2 Issue with the prisoner
 
       .group
-        %div{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
+        .field{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
           %label.block-label(for='confirmation_outcome_prisoner_incorrect')
             = radio_button_tag 'confirmation[outcome]', Confirmation::PRISONER_INCORRECT, false, { :'data-conditional-el' => 'prisoner_incorrect', :class => 'js-Conditional' }
             Prisoner details are incorrect
@@ -104,7 +104,7 @@
           %p
             %em.email You haven’t given correct information for the prisoner. Eg the prisoner’s name, number or date of birth is incorrect. Contact the prisoner to get up-to-date information.
 
-        %div{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
+        .field{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
           %label.block-label(for='confirmation_outcome_prisoner_not_present')
             = radio_button_tag 'confirmation[outcome]', Confirmation::PRISONER_NOT_PRESENT, false, { :'data-conditional-el' => 'prisoner_not_present', :class => 'js-Conditional' }
             Prisoner no longer at the prison
@@ -118,7 +118,7 @@
       %h2 Issue with the visitor
 
       .group
-        %div{ :class => ('validation-error' if f.object.errors.include?(:outcome) || f.object.errors.include?(:unlisted)) }
+        .field{ :class => ('validation-error' if f.object.errors.include?(:outcome) || f.object.errors.include?(:unlisted)) }
           %label.block-label(for='confirmation_outcome_not_on_contact_list')
             = radio_button_tag 'confirmation[outcome]', Confirmation::NOT_ON_CONTACT_LIST, f.object.outcome == Confirmation::NOT_ON_CONTACT_LIST, { :'data-conditional-el' => 'visitors_not_listed', :class => 'js-Conditional' }
             %span.validation-message= f.object.errors[:unlisted].first if f.object.errors.include?(:unlisted)
@@ -137,7 +137,7 @@
               = check_box_tag "confirmation[unlisted_visitors][]", "#{visitor.first_name} #{visitor.last_name}", false, { :id => "confirmation_unlisted_visitors_#{index}" }
               #{visitor.first_name} #{visitor.last_name} #{visitor.date_of_birth.strftime("%d/%m/%Y")} is not on the list
 
-        %div{ :class => ('validation-error' if f.object.errors.include?(:outcome) || f.object.errors.include?(:banned)) }
+        .field{ :class => ('validation-error' if f.object.errors.include?(:outcome) || f.object.errors.include?(:banned)) }
           %label.block-label(for='confirmation_outcome_visitor_banned')
             = radio_button_tag 'confirmation[outcome]', Confirmation::VISITOR_BANNED, f.object.outcome == Confirmation::VISITOR_BANNED, { :'data-conditional-el' => 'visitors_banned', :class => 'js-Conditional' }
             %span.validation-message= f.object.errors[:banned].first if f.object.errors.include?(:banned)
