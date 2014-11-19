@@ -1,6 +1,7 @@
 class Instant::VisitsController < ApplicationController
   include CookieGuard
   include SessionGuard
+  include KillswitchGuard
 
   def edit
   end

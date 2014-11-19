@@ -11,7 +11,11 @@ class PrisonerDetailsController < ApplicationController
   def update
     if (visit.prisoner = Prisoner.new(prisoner_params)).valid?
       instant_booking = Rails.configuration.prison_data[visit.prisoner.prison_name][:instant_booking]
-      redirect_to instant_booking ? instant_edit_visitors_details_path : deferred_edit_visitors_details_path
+      if instant_booking && !killswitch_active?
+        redirect_to instant_edit_visitors_details_path
+      else
+        redirect_to deferred_edit_visitors_details_path
+      end
     else
       redirect_to edit_prisoner_details_path
     end
@@ -39,5 +43,9 @@ class PrisonerDetailsController < ApplicationController
 
   def service_domain
     SERVICE_DOMAIN
+  end
+
+  def killswitch_active?
+    ENV['API_KILLSWITCH']
   end
 end

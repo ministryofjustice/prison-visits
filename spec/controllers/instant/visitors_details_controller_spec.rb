@@ -13,6 +13,7 @@ describe Instant::VisitorsDetailsController do
   it_behaves_like "a session timed out"
   it_behaves_like "a visitor data manipulator with valid data"
   it_behaves_like "a visitor data manipulator with invalid data"
+  it_behaves_like "a killswitch-enabled controller"
 
   it "sets up the flow" do
     controller.this_path.should == instant_edit_visitors_details_path

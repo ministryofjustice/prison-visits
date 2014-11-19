@@ -1,6 +1,7 @@
 class Instant::VisitorsDetailsController < ApplicationController
   include CookieGuard
   include SessionGuard
+  include KillswitchGuard
   include VisitorsManipulator
 
   def edit

@@ -81,6 +81,12 @@ describe PrisonerDetailsController do
         response.should redirect_to(deferred_edit_visitors_details_path)
       end
 
+      it "updates prisoner details and redirects to the email flow if the killswitch is enabled" do
+        subject.stub(killswitch_enabled?: true)
+        post :update, prisoner_hash
+        response.should redirect_to(deferred_edit_visitors_details_path)
+      end
+
       it "updates prisoner details and redirects to the api flow" do
         prisoner_hash[:prisoner].merge!(prison_name: 'Durham')
 

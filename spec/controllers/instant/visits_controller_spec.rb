@@ -9,6 +9,7 @@ describe Instant::VisitsController do
 
   it_behaves_like "a browser without a session present"
   it_behaves_like "a session timed out"
+  it_behaves_like "a killswitch-enabled controller"
 
   context "given correct data" do
     let :mock_metrics_logger do

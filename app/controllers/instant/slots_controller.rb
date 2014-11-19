@@ -1,6 +1,7 @@
 class Instant::SlotsController < ApplicationController
   include CookieGuard
   include SessionGuard
+  include KillswitchGuard
   include SlotsManipulator
 
   def edit
