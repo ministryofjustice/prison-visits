@@ -21,7 +21,7 @@ By updating this file you can:
 
 * Add/remove a prison
 * Edit visiting slots
-* Edit un-bookable dates
+* Edit non-bookable dates
 * Edit booking email address
 * Edit booking phone number
 * Edit prison address
@@ -48,6 +48,12 @@ Example:
 
     2014-04-21:
       - 0930-1130 // Creates a 2 hour slot from 9:30am on Monday 21 April 2014 only
+
+## Canned responses
+
+The visit request processing form has been updated and can be enabled per prison.
+
+    canned_responses: true
 
 ## Set-up
 

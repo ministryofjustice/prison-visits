@@ -1,12 +1,14 @@
 class Confirmation
   include ActiveModel::Model
-  attr_accessor :outcome, :vo_number, :no_vo, :no_pvo, :renew_vo, :renew_pvo, :banned_visitors, :unlisted_visitors
+  attr_accessor :outcome, :message, :vo_number, :no_vo, :no_pvo, :renew_vo, :renew_pvo, :banned_visitors, :unlisted_visitors
 
+  NO_VOS_LEFT = 'no_vos_left'
   NO_SLOT_AVAILABLE = 'no_slot_available'
   NO_ALLOWANCE = 'no_allowance'
   PRISONER_INCORRECT = 'prisoner_incorrect'
   PRISONER_NOT_PRESENT = 'prisoner_not_present'
   NOT_ON_CONTACT_LIST = 'not_on_contact_list'
+  VISITOR_NOT_LISTED = 'visitor_not_listed'
   VISITOR_BANNED = 'visitor_banned'
 
   validate :check_outcome
@@ -17,11 +19,13 @@ class Confirmation
 
   def check_outcome
     outcomes = [
+      NO_VOS_LEFT,
       NO_SLOT_AVAILABLE,
       NO_ALLOWANCE,
       PRISONER_INCORRECT,
       PRISONER_NOT_PRESENT,
       NOT_ON_CONTACT_LIST,
+      VISITOR_NOT_LISTED,
       VISITOR_BANNED
     ] + %w{slot_0 slot_1 slot_2}
 
@@ -52,7 +56,7 @@ class Confirmation
   end
 
   def unlisted
-    if outcome == NOT_ON_CONTACT_LIST && unlisted_visitors.nil?
+    if outcome == VISITOR_NOT_LISTED && unlisted_visitors.nil?
       errors.add(:unlisted, 'one or more visitors must be selected')
     end
   end
