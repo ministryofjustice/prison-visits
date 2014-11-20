@@ -66,6 +66,7 @@ Durham:
       - 1345-1645
 Cardiff:
   nomis_id: CFI
+  canned_responses: true
   enabled: true
   phone: 029 20923327
   email: pvb.cardiff@maildrop.dsd.io
@@ -148,6 +149,7 @@ Gartree:
       - 1400-1600
 Brinsford:
   nomis_id: BSI
+  canned_responses: true
   enabled: true
   phone: 0300 060 6500
   email: pvb.brinsford@maildrop.dsd.io
@@ -177,6 +179,7 @@ Brinsford:
       - 1330-1600
 Drake Hall:
   nomis_id: DHI
+  canned_responses: true
   enabled: true
   phone: 0300 060 6501
   email: pvb.drakehall@maildrop.dsd.io
@@ -201,6 +204,7 @@ Drake Hall:
       - 1330-1545
 Werrington:
   nomis_id: WNI
+  canned_responses: true
   enabled: true
   phone:  0300 060 6508
   email: pvb.werrington@maildrop.dsd.io
@@ -227,6 +231,7 @@ Werrington:
       - 1430-1630
 Featherstone:
   nomis_id: FSI
+  canned_responses: true
   enabled: true
   phone: 0300 060 6502
   email: pvb.featherstone@maildrop.dsd.io
@@ -260,6 +265,7 @@ Featherstone:
       - 1400-1600
 Stoke Heath:
   nomis_id: SHI
+  canned_responses: true
   enabled: true
   phone: 0300 060 6506
   email: pvb.stokeheath@maildrop.dsd.io
@@ -289,6 +295,7 @@ Stoke Heath:
       - 1400-1600
 Swinfen Hall:
   nomis_id: SNI
+  canned_responses: true
   enabled: true
   phone: 0300 060 6507
   email: pvb.swinfenhall@maildrop.dsd.io
@@ -316,6 +323,7 @@ Swinfen Hall:
       - 1400-1600
 Hewell:
   nomis_id: HEI
+  canned_responses: true
   enabled: true
   phone: 0300 060 6503
   email: pvb.hewell@maildrop.dsd.io

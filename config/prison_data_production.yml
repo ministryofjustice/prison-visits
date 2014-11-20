@@ -62,6 +62,7 @@ Durham:
       - 1345-1645
 Cardiff:
   nomis_id: CFI
+  canned_responses: true
   enabled: true
   phone: 029 20923327
   email: socialvisits.cardiff@hmps.gsi.gov.uk
@@ -144,6 +145,7 @@ Gartree:
       - 1400-1600
 Brinsford:
   nomis_id: BSI
+  canned_responses: true
   enabled: true
   phone: 0300 060 6500
   email: visitsbooking.westmidlands@noms.gsi.gov.uk
@@ -173,6 +175,7 @@ Brinsford:
       - 1330-1600
 Drake Hall:
   nomis_id: DHI
+  canned_responses: true
   enabled: true
   phone: 0300 060 6501
   email: visitsbooking.westmidlands@noms.gsi.gov.uk
@@ -197,6 +200,7 @@ Drake Hall:
       - 1330-1545
 Werrington:
   nomis_id: WNI
+  canned_responses: true
   enabled: true
   phone: 0300 060 6508
   email: visitsbooking.westmidlands@noms.gsi.gov.uk
@@ -223,6 +227,7 @@ Werrington:
       - 1430-1630
 Featherstone:
   nomis_id: FSI
+  canned_responses: true
   enabled: true
   phone: 0300 060 6502
   email: visitsbooking.westmidlands@noms.gsi.gov.uk
@@ -256,6 +261,7 @@ Featherstone:
       - 1400-1600
 Stoke Heath:
   nomis_id: SHI
+  canned_responses: true
   enabled: true
   phone: 0300 060 6506
   email: visitsbooking.westmidlands@noms.gsi.gov.uk
@@ -285,6 +291,7 @@ Stoke Heath:
       - 1400-1600
 Swinfen Hall:
   nomis_id: SNI
+  canned_responses: true
   enabled: true
   phone: 0300 060 6507
   email: visitsbooking.westmidlands@noms.gsi.gov.uk
@@ -312,6 +319,7 @@ Swinfen Hall:
       - 1400-1600
 Hewell:
   nomis_id: HEI
+  canned_responses: true
   enabled: true
   phone: 0300 060 6503
   email: visitsbooking.westmidlands@noms.gsi.gov.uk
