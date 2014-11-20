@@ -41,11 +41,13 @@ class Confirmation
   end
 
   def renewals
-    if no_vo.present? && renew_vo.nil?
-      errors.add(:no_vo, 'a renewal date must be chosen')
-    end
-    if no_pvo.present? && renew_pvo.nil?
-      errors.add(:no_pvo, 'a renewal date must be chosen')
+    if outcome == NO_ALLOWANCE
+      if no_vo.present? && renew_vo.nil?
+        errors.add(:no_vo, 'a renewal date must be chosen')
+      end
+      if no_pvo.present? && renew_pvo.nil?
+        errors.add(:no_pvo, 'a renewal date must be chosen')
+      end
     end
   end
 

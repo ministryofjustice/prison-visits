@@ -5,7 +5,12 @@
   }
 
   form h2 {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid $black;
+
+  }
+  
+  form .validation-summary h2 {
+    border: none;
   }
 }
 
