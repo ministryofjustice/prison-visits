@@ -108,7 +108,7 @@ GEM
     mime-types (1.25.1)
     mini_portile (0.5.2)
     minitest (5.4.3)
-    moj_template (0.20.0)
+    moj_template (0.21.0)
       rails (>= 3.1)
     multi_json (1.10.1)
     multipart-post (1.2.0)
@@ -230,7 +230,7 @@ DEPENDENCIES
   haml-rails
   logstasher!
   mail
-  moj_template (= 0.20.0)
+  moj_template (= 0.21.0)
   parallel
   pg
   poltergeist

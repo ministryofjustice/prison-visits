@@ -40,8 +40,6 @@ module PrisonVisits2
     config.feedback_url = 'test@example.com'
     # Google Analytics ID (Tracking ID for the service)
     config.ga_id = ENV['GA_TRACKING_ID']
-    # Supply JavaScript to IE greater than version specified
-    config.js_gt_ie = 5
 
     config.assets.enabled = true
     config.assets.precompile += %w(
