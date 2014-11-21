@@ -3,9 +3,6 @@ class Instant::VisitsController < ApplicationController
   include SessionGuard
   include KillswitchGuard
 
-  def edit
-  end
-
   def update
     VisitorMailer.instant_confirmation_email(visit).deliver
 
