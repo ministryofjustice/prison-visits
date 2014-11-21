@@ -123,9 +123,9 @@
   %h2 Issue with the visitor
 
   .group
-    #unlisted.field{ :class => ('validation-error' if f.object.errors.include?(:outcome) || f.object.errors.include?(:unlisted)) }
-      %label.block-label(for='confirmation_outcome_visitor_not_listed')
-        = radio_button_tag 'confirmation[outcome]', Confirmation::VISITOR_NOT_LISTED, f.object.outcome == Confirmation::VISITOR_NOT_LISTED, { :'data-conditional-el' => 'visitors_not_listed', :class => 'js-Conditional' }
+    #unlisted.field{ :class => ('validation-error' if f.object.errors.include?(:visitor_not_listed) || f.object.errors.include?(:unlisted)) }
+      %label.block-label(for='confirmation_visitor_not_listed')
+        = check_box_tag 'confirmation[visitor_not_listed]', 1, f.object.visitor_not_listed == '1', { :'data-conditional-el' => 'visitors_not_listed', :class => 'js-Conditional' }
         Visitor isn’t on the contact list
         %span.validation-message= f.object.errors[:unlisted].first if f.object.errors.include?(:unlisted)
 
@@ -139,12 +139,12 @@
 
       - booked_visit.visitors.each_with_index do |visitor, index|
         %label.block-label{ :for => "confirmation_unlisted_visitors_#{index}" }
-          = check_box_tag "confirmation[unlisted_visitors][]", "#{visitor.first_name} #{visitor.last_name}", false, { :id => "confirmation_unlisted_visitors_#{index}" }
+          = check_box_tag "confirmation[unlisted_visitors][]", "#{visitor.first_name} #{visitor.last_name}", f.object.unlisted_visitors && f.object.unlisted_visitors.include?("#{visitor.first_name} #{visitor.last_name}"), { :id => "confirmation_unlisted_visitors_#{index}" }
           #{visitor.first_name} #{visitor.last_name} #{visitor.date_of_birth.strftime("%d/%m/%Y")} is not on the list
 
-    #banned.field{ :class => ('validation-error' if f.object.errors.include?(:outcome) || f.object.errors.include?(:banned)) }
-      %label.block-label(for='confirmation_outcome_visitor_banned')
-        = radio_button_tag 'confirmation[outcome]', Confirmation::VISITOR_BANNED, f.object.outcome == Confirmation::VISITOR_BANNED, { :'data-conditional-el' => 'visitors_banned', :class => 'js-Conditional' }
+    #banned.field{ :class => ('validation-error' if f.object.errors.include?(:visitor_banned) || f.object.errors.include?(:banned)) }
+      %label.block-label(for='confirmation_visitor_banned')
+        = check_box_tag 'confirmation[visitor_banned]', 1, f.object.visitor_banned == '1', { :'data-conditional-el' => 'visitors_banned', :class => 'js-Conditional' }
         Visitor is banned
         %span.validation-message= f.object.errors[:banned].first if f.object.errors.include?(:banned)
 
@@ -157,7 +157,7 @@
 
       - booked_visit.visitors.each_with_index do |visitor, index|
         %label.block-label{ :for => "confirmation_banned_visitors_#{index}" }
-          = check_box_tag "confirmation[banned_visitors][]", "#{visitor.first_name} #{visitor.last_name}", false, { :id => "confirmation_banned_visitors_#{index}" }
+          = check_box_tag "confirmation[banned_visitors][]", "#{visitor.first_name} #{visitor.last_name}", f.object.banned_visitors && f.object.banned_visitors.include?("#{visitor.first_name} #{visitor.last_name}"), { :id => "confirmation_banned_visitors_#{index}" }
           #{visitor.first_name} #{visitor.last_name} #{visitor.date_of_birth.strftime("%d/%m/%Y")} is banned
 
   = f.button 'Send email', :class => 'button button-primary'

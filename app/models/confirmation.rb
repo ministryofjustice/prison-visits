@@ -1,6 +1,6 @@
 class Confirmation
   include ActiveModel::Model
-  attr_accessor :outcome, :message, :vo_number, :no_vo, :no_pvo, :renew_vo, :renew_pvo, :banned_visitors, :unlisted_visitors
+  attr_accessor :outcome, :message, :vo_number, :no_vo, :no_pvo, :renew_vo, :renew_pvo, :banned_visitors, :unlisted_visitors, :visitor_not_listed, :visitor_banned
 
   NO_VOS_LEFT = 'no_vos_left'
   NO_SLOT_AVAILABLE = 'no_slot_available'
@@ -52,13 +52,13 @@ class Confirmation
   end
 
   def banned
-    if outcome == VISITOR_BANNED && banned_visitors.nil?
+    if visitor_banned && banned_visitors.nil?
       errors.add(:banned, 'one or more visitors must be selected')
     end
   end
 
   def unlisted
-    if outcome == VISITOR_NOT_LISTED && unlisted_visitors.nil?
+    if visitor_not_listed && unlisted_visitors.nil?
       errors.add(:unlisted, 'one or more visitors must be selected')
     end
   end
