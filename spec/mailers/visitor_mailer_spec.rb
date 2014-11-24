@@ -43,6 +43,14 @@ describe VisitorMailer do
     Confirmation.new(vo_number: '5551234', outcome: 'slot_0')
   end
 
+  let :confirmation_unlisted_visitors do
+    Confirmation.new(vo_number: '5551234', outcome: 'slot_0', visitor_not_listed: true, unlisted_visitors: ['Joan;Harris'])
+  end
+
+  let :confirmation_banned_visitors do
+    Confirmation.new(vo_number: '5551234', outcome: 'slot_0', visitor_banned: true, banned_visitors: ['Joan;Harris'])
+  end
+
   let :confirmation_no_slot_available do
     Confirmation.new(vo_number: '5551234', outcome: Confirmation::NO_SLOT_AVAILABLE)
   end
@@ -89,6 +97,36 @@ describe VisitorMailer do
         email.body.raw_source.should include("phone: 01634 803100")
         email.body.raw_source.should_not include("Jimmy Harris")
         email.body.raw_source.should include('5551234')
+      end
+
+      it "sends out an e-mail with the list of visitors not on the approved visitor list" do
+        email = subject.booking_confirmation_email(sample_visit, confirmation_unlisted_visitors)
+        email.subject.should == "Visit confirmed: your visit for 7 July 2013 has been confirmed"
+
+        email[:from].should == noreply_address
+        email[:reply_to].should == prison_address
+        email[:to].should == visitor_address
+
+        email.body.raw_source.should include("email: pvb.rochester@maildrop.dsd.io")
+        email.body.raw_source.should include("phone: 01634 803100")
+        email.body.raw_source.should_not include("Jimmy Harris")
+        email.body.raw_source.should include('5551234')
+        email.body.raw_source.should include('The following visitors cannot attend because they are not listed')
+      end
+
+      it "sends out an e-mail with the list of banned visitors" do
+        email = subject.booking_confirmation_email(sample_visit, confirmation_banned_visitors)
+        email.subject.should == "Visit confirmed: your visit for 7 July 2013 has been confirmed"
+
+        email[:from].should == noreply_address
+        email[:reply_to].should == prison_address
+        email[:to].should == visitor_address
+
+        email.body.raw_source.should include("email: pvb.rochester@maildrop.dsd.io")
+        email.body.raw_source.should include("phone: 01634 803100")
+        email.body.raw_source.should_not include("Jimmy Harris")
+        email.body.raw_source.should include('5551234')
+        email.body.raw_source.should include('The following visitors cannot attend because they are banned')
       end
 
       it "sends out an e-mail with the List-Unsubscribe header set" do
