@@ -12,8 +12,8 @@ class Visitor
   attr_accessor :number_of_children
   attr_accessor :date_of_birth
 
-  def full_name
-    [first_name, last_name].join(' ')
+  def full_name(glue=' ')
+    [first_name, last_name].join(glue)
   end
 
   def last_initial

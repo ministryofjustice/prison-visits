@@ -139,7 +139,7 @@
 
       - booked_visit.visitors.each_with_index do |visitor, index|
         %label.block-label{ :for => "confirmation_unlisted_visitors_#{index}" }
-          = check_box_tag "confirmation[unlisted_visitors][]", "#{visitor.first_name} #{visitor.last_name}", f.object.unlisted_visitors && f.object.unlisted_visitors.include?("#{visitor.first_name} #{visitor.last_name}"), { :id => "confirmation_unlisted_visitors_#{index}" }
+          = check_box_tag "confirmation[unlisted_visitors][]", "#{visitor.first_name};#{visitor.last_name}", f.object.unlisted_visitors && f.object.unlisted_visitors.include?("#{visitor.first_name};#{visitor.last_name}"), { :id => "confirmation_unlisted_visitors_#{index}" }
           #{visitor.first_name} #{visitor.last_name} #{visitor.date_of_birth.strftime("%d/%m/%Y")} is not on the list
 
     #banned.field{ :class => ('validation-error' if f.object.errors.include?(:visitor_banned) || f.object.errors.include?(:banned)) }
@@ -157,7 +157,7 @@
 
       - booked_visit.visitors.each_with_index do |visitor, index|
         %label.block-label{ :for => "confirmation_banned_visitors_#{index}" }
-          = check_box_tag "confirmation[banned_visitors][]", "#{visitor.first_name} #{visitor.last_name}", f.object.banned_visitors && f.object.banned_visitors.include?("#{visitor.first_name} #{visitor.last_name}"), { :id => "confirmation_banned_visitors_#{index}" }
+          = check_box_tag "confirmation[banned_visitors][]", "#{visitor.first_name};#{visitor.last_name}", f.object.banned_visitors && f.object.banned_visitors.include?("#{visitor.first_name};#{visitor.last_name}"), { :id => "confirmation_banned_visitors_#{index}" }
           #{visitor.first_name} #{visitor.last_name} #{visitor.date_of_birth.strftime("%d/%m/%Y")} is banned
 
   = f.button 'Send email', :class => 'button button-primary'

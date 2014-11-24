@@ -76,7 +76,7 @@ $(function () {
     var visitorNames = [];
 
     $('#visitors_not_listed input:checked').each(function() {
-      visitorNames.push($(this).val());
+      visitorNames.push($(this).val().replace(';', ' '));
     });
 
     $('#visitors_not_listed .visitor_names').text(visitorNames.length ? visitorNames.join(', ') : '[VISITOR NAME]');
@@ -86,7 +86,7 @@ $(function () {
     var visitorNames = [];
 
     $('#visitors_banned input:checked').each(function() {
-      visitorNames.push($(this).val());
+      visitorNames.push($(this).val().replace(';', ' '));
     });
 
     $('#visitors_banned .visitor_names').text(visitorNames.length ? visitorNames.join(', ') : '[VISITOR NAME]');

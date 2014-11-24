@@ -112,4 +112,22 @@ module VisitHelper
   def tag_with_month?(day)
     day.beginning_of_month == day
   end
+
+  def last_initial(name, glue=';')
+    last_name(name, glue).chars.first.upcase + '.'
+  end
+
+  def first_name(name, glue=';')
+    name.split(glue).first
+  end
+
+  def last_name(name, glue=';')
+    name.split(glue)[1]
+  end
+
+  def visitor_names(visitors)
+    visitors.inject([]) do |arr, (visitor)|
+      arr << visitor.full_name(';')
+    end
+  end
 end
