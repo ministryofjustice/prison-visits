@@ -48,7 +48,7 @@ describe VisitorMailer do
   end
 
   let :confirmation_not_on_contact_list do
-    Confirmation.new(not_on_contact_list: 'not_on_contact_list')
+    Confirmation.new(outcome: Confirmation::NOT_ON_CONTACT_LIST)
   end
 
   let :confirmation_no_vos_left do
