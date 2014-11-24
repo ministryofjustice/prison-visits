@@ -59,6 +59,7 @@ feature "visitor selects a date" do
             evaluate_script(_when.strftime("$('#slot-%Y-%m-%d-1450-1550').click()"))
           else
             evaluate_script(_when.strftime("$('#slot-%Y-%m-%d-0900-1145').click()"))
+            evaluate_script(_when.strftime("$('#slot-%Y-%m-%d-1345-1545').click()"))
             evaluate_script(_when.strftime("$('#slot-%Y-%m-%d-1345-1645').click()"))
             evaluate_script(_when.strftime("$('#slot-%Y-%m-%d-1715-1900').click()"))
           end
