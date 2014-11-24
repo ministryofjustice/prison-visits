@@ -29,6 +29,14 @@ class VisitorMailerPreview < ActionMailer::Preview
     VisitorMailer.booking_rejection_email(sample_visit, rejected_confirmation(Confirmation::NO_VOS_LEFT))
   end
 
+  def booking_rejection_prisoner_incorrect
+    VisitorMailer.booking_rejection_email(sample_visit, rejected_confirmation(Confirmation::PRISONER_INCORRECT))
+  end
+
+  def booking_rejection_prisoner_not_present
+    VisitorMailer.booking_rejection_email(sample_visit, rejected_confirmation(Confirmation::PRISONER_NOT_PRESENT))
+  end
+
   def booking_receipt
     VisitorMailer.booking_receipt_email(sample_visit)
   end

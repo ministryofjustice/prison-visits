@@ -21,10 +21,11 @@ You’ve tried to book a visit but the prisoner you want to visit has not got an
 <% if @confirmation.no_pvo %>
 
 The prisoner you’re visiting doesn’t have any allowance for a weekend visit but you can book a weekday visit with allowance (PVO) that is valid until <%= Date.parse(@confirmation.renew_pvo).strftime("%A %e %B") %>.
-<% end %><% when Confirmation::PRISONER_INCORRECT %>
+<% end %>
+<% when Confirmation::PRISONER_INCORRECT %>
 You haven’t given correct information for the prisoner. Eg, the prisoner’s name, number or date of birth is incorrect. Contact the prisoner to get up-to-date information.
 <% when Confirmation::PRISONER_NOT_PRESENT %>
-The prisoner you want to visit has moved prison. They should contact you to tell you where they are now.  You can also use the find a prisoner service (www.gov.uk/find-prisoner).
+The prisoner you want to visit has moved prison. They should contact you to tell you where they are now. You can also use the find a prisoner service (www.gov.uk/find-prisoner).
 <% when Confirmation::NOT_ON_CONTACT_LIST %>
 You have tried to book a visit but not all visitors are on the prisoner’s contact list.
 
