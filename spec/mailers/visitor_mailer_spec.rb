@@ -163,7 +163,7 @@ describe VisitorMailer do
         email.body.raw_source.should include("A message")
       end
 
-      it "because of a visitor not being on a contact list" do
+      it "because of a visitor not being on a contact list (legacy)" do
         email = subject.booking_rejection_email(sample_visit, confirmation_not_on_contact_list)
         email.subject.should == "Visit cannot take place: your visit for 7 July 2013 could not be booked"
 
@@ -205,7 +205,7 @@ describe VisitorMailer do
         email.body.raw_source.should include("Your visit cannot take place as the prisoner you want to visit has moved prison.")
       end
 
-      it "because a visitor is not on the list" do
+      it "because a visitor is not on the list (canned response)" do
         email = subject.booking_rejection_email(sample_visit, rejection_visitor_not_listed)
         email.subject.should == "Visit cannot take place: your visit for 7 July 2013 could not be booked"
 
@@ -219,7 +219,7 @@ describe VisitorMailer do
         email.body.raw_source.should include("Your visit cannot take place as details for Joan Harris don’t match our records or they aren’t on the prisoner’s contact list.")
       end
 
-      it "because a visitor is not on the list" do
+      it "because a visitor is banned" do
         email = subject.booking_rejection_email(sample_visit, rejection_visitor_banned)
         email.subject.should == "Visit cannot take place: your visit for 7 July 2013 could not be booked"
 
