@@ -52,17 +52,18 @@ $(function () {
     ga('send', 'event', 'external-link', 'ad-help');
   });
 
-  // $('[name="confirmation[outcome]"]').on('click', function() {
-  //   var dis = $('#confirmation_not_on_contact_list, #confirmation_visitor_banned');
+  $('#confirmation_no_vo').on('change', function() {
+    var dis = $('#confirmation_no_pvo');
 
-  //   if (!!~$(this).val().indexOf('slot_0') || !!~$(this).val().indexOf('slot_1') || !!~$(this).val().indexOf('slot_2')) {
-  //     dis.attr('disabled', true);
-  //     dis.closest('label').addClass('disabled')
-  //   } else {
-  //     dis.attr('disabled', false);
-  //     dis.closest('label').removeClass('disabled');
-  //   }
-  // });
+    if ($(this).is(':checked')) {
+      dis.attr('disabled', false);
+      dis.closest('label').removeClass('disabled');
+    } else {
+      if (dis.is(':checked')) dis.click();
+      dis.attr('disabled', true);
+      dis.closest('label').addClass('disabled')
+    }
+  }).change();
 
   $('.BookingCalendar input[type=radio]').on('click', function() {
     var date = moj.Helpers.dateFromIso($(this).val());
