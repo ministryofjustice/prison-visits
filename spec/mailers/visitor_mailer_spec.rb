@@ -67,6 +67,18 @@ describe VisitorMailer do
     Confirmation.new(outcome: Confirmation::PRISONER_NOT_PRESENT)
   end
 
+  let :rejection_prisoner_no_allowance do
+    Confirmation.new(outcome: Confirmation::NO_ALLOWANCE)
+  end
+
+  let :rejection_prisoner_no_allowance_vo_renew do
+    Confirmation.new(outcome: Confirmation::NO_ALLOWANCE, no_vo: true, renew_vo: '2014-11-29')
+  end
+
+  let :rejection_prisoner_no_allowance_pvo_renew do
+    Confirmation.new(outcome: Confirmation::NO_ALLOWANCE, no_vo: true, renew_vo: '2014-11-29', no_pvo: true, renew_pvo: '2014-11-17')
+  end
+
   let :rejection_visitor_not_listed do
     Confirmation.new(visitor_not_listed: true, unlisted_visitors: ['Joan;Harris'])
   end
@@ -203,6 +215,51 @@ describe VisitorMailer do
         email.body.raw_source.should include("01634 803100")
         email.body.raw_source.should_not include("Jimmy Harris")
         email.body.raw_source.should include("Your visit cannot take place as the prisoner you want to visit has moved prison.")
+      end
+
+      it "because the prisoner has no allowance" do
+        email = subject.booking_rejection_email(sample_visit, rejection_prisoner_no_allowance)
+        email.subject.should == "Visit cannot take place: your visit for 7 July 2013 could not be booked"
+
+        email[:from].should == noreply_address
+        email[:reply_to].should == prison_address
+        email[:to].should == visitor_address
+
+        email.body.raw_source.should include('http://www.justice.gov.uk/contacts/prison-finder/rochester')
+        email.body.raw_source.should include("01634 803100")
+        email.body.raw_source.should_not include("Jimmy Harris")
+        email.body.raw_source.should include("the prisoner you want to visit has not got any visiting allowance left for the dates you’ve chosen")
+      end
+
+      it "because the prisoner has no allowance and a VO renewal date is specified" do
+        email = subject.booking_rejection_email(sample_visit, rejection_prisoner_no_allowance_vo_renew)
+        email.subject.should == "Visit cannot take place: your visit for 7 July 2013 could not be booked"
+
+        email[:from].should == noreply_address
+        email[:reply_to].should == prison_address
+        email[:to].should == visitor_address
+
+        email.body.raw_source.should include('http://www.justice.gov.uk/contacts/prison-finder/rochester')
+        email.body.raw_source.should include("01634 803100")
+        email.body.raw_source.should_not include("Jimmy Harris")
+        email.body.raw_source.should include("the prisoner you want to visit has not got any visiting allowance left for the dates you’ve chosen")
+        email.body.raw_source.should include("Jimmy H will have their full visiting allowance (VO) renewed on Saturday 29 November.")
+      end
+
+      it "because the prisoner has no allowance and a PVO renewal date is specified" do
+        email = subject.booking_rejection_email(sample_visit, rejection_prisoner_no_allowance_pvo_renew)
+        email.subject.should == "Visit cannot take place: your visit for 7 July 2013 could not be booked"
+
+        email[:from].should == noreply_address
+        email[:reply_to].should == prison_address
+        email[:to].should == visitor_address
+
+        email.body.raw_source.should include('http://www.justice.gov.uk/contacts/prison-finder/rochester')
+        email.body.raw_source.should include("01634 803100")
+        email.body.raw_source.should_not include("Jimmy Harris")
+        email.body.raw_source.should include("the prisoner you want to visit has not got any visiting allowance left for the dates you’ve chosen")
+        email.body.raw_source.should include("However, you can book a weekday visit with visiting allowance valid until Monday 17 November.")
+        email.body.raw_source.should include("Jimmy H will have their full visiting allowance (VO) renewed on Saturday 29 November.")
       end
 
       it "because a visitor is not on the list (canned response)" do
