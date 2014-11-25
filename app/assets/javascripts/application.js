@@ -17,6 +17,7 @@
 //= require modules/moj.timeout-prompt
 //= require modules/moj.submit-once
 //= require modules/moj.Conditional
+//= require modules/moj.checkbox-summary
 
 // Assets without a better place
 //= require shame

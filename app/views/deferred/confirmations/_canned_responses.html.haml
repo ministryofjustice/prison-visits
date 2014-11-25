@@ -131,13 +131,13 @@
         Visitor isn’t on the contact list
         %span.validation-message= f.object.errors[:unlisted].first if f.object.errors.include?(:unlisted)
 
-    #visitors_not_listed.panel-indent
+    #visitors_not_listed.panel-indent.CheckboxSummary
       %h3 What we’ll tell the visitor
       #not_listed_rejected
         %p
           %em.email
             Your visit cannot take place as details for
-            %span.visitor_names [VISITOR NAME]
+            %span.CheckboxSummary-summary [VISITOR NAME]
             don’t match our records or they aren’t on the prisoner’s contact list.
         %p
           %em.email Please contact the prisoner and ask them to update their contact list with correct details, making sure that names appear exactly the same as on ID documents.
@@ -146,12 +146,12 @@
       #not_listed_confirmed
         %p
           %em.email
-            %span.visitor_names [VISITOR NAME]
+            %span.CheckboxSummary-summary
             cannot attend. 
         %p
           %em.email
             Details for
-            %span.visitor_names [VISITOR NAME]
+            %span.CheckboxSummary-summary
             don’t match our records or the visitor isn’t on the contact list. 
         %p
           %em.email Please contact the prisoner and ask them to update their contact list with correct details, making sure that names appear exactly the same as on ID documents.
@@ -167,23 +167,23 @@
         Visitor is banned
         %span.validation-message= f.object.errors[:banned].first if f.object.errors.include?(:banned)
 
-    #visitors_banned.panel-indent
+    #visitors_banned.panel-indent.CheckboxSummary
       %h3 What we’ll tell the visitor
       #banned_rejected
         %p
           %em.email
             Your visit cannot take place.
-            %span.visitor_names [VISITOR NAME]
+            %span.CheckboxSummary-summary [VISITOR NAME]
             should have received a letter to say that they’re banned from visiting the prison at the moment. Get in touch with the prison for more information. 
 
       #banned_confirmed
         %p
           %em.email
-            %span.visitor_names [VISITOR NAME]
+            %span.CheckboxSummary-summary
             cannot attend.
         %p
           %em.email
-            %span.visitor_names [VISITOR NAME]
+            %span.CheckboxSummary-summary
             should have received a letter to say that they’re banned from visiting the prison at the moment. Get in touch with the prison for more information. 
 
       - booked_visit.visitors.each_with_index do |visitor, index|
