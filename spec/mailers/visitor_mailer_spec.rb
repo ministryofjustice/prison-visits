@@ -185,7 +185,7 @@ describe VisitorMailer do
         email.body.raw_source.should include('http://www.justice.gov.uk/contacts/prison-finder/rochester')
         email.body.raw_source.should include("01634 803100")
         email.body.raw_source.should_not include("Jimmy Harris")
-        email.body.raw_source.should include("You haven’t given correct information for the prisoner.")
+        email.body.raw_source.should include("Your visit cannot take place as you haven’t given correct information for the prisoner.")
       end
 
       it "because the prisoner is not at the prison" do
@@ -199,7 +199,7 @@ describe VisitorMailer do
         email.body.raw_source.should include('http://www.justice.gov.uk/contacts/prison-finder/rochester')
         email.body.raw_source.should include("01634 803100")
         email.body.raw_source.should_not include("Jimmy Harris")
-        email.body.raw_source.should include("The prisoner you want to visit has moved prison.")
+        email.body.raw_source.should include("Your visit cannot take place as the prisoner you want to visit has moved prison.")
       end
 
       it "because a visitor is not on the list" do

@@ -1,6 +1,7 @@
 %ul
   %li book the visit in NOMIS first
   %li use this form to send a visit confirmation or visit rejection email to the visitor
+  %li make sure you select visitors who can’t attend under issue with visitors
 
 = form_for @confirmation, url: confirmation_path, html: { class: 'js-SubmitOnce' } do |f|
   = hidden_field_tag :state, params[:state]
@@ -62,7 +63,7 @@
     #no_allowance.panel-indent
       %h3 What we’ll tell the visitor
       %p
-        %em.email The prisoner you want to visit has not got any visiting allowance left for the dates you’ve chosen.
+        %em.email We’re sorry, but the prisoner you want to visit has not got any visiting allowance left for the dates you’ve chosen.
       %p You can also tell the visitor more about the VO and PVO status:
 
       #no_vo.field{ :class => ('validation-error' if f.object.errors.include?(:no_vo)) }
@@ -94,7 +95,7 @@
             However, you can book a weekday visit with visiting allowance valid until
             = succeed '.' do
               %span.date [DATE NOT CHOSEN]
-            The visit must be taken before the allowance expires. 
+            The visit must be taken before the allowance expires.
 
   
   %h2 Issue with the prisoner
@@ -108,7 +109,7 @@
     #prisoner_incorrect.panel-indent
       %h3 What we’ll tell the visitor
       %p
-        %em.email You haven’t given correct information for the prisoner. Eg the prisoner’s name, number or date of birth is incorrect. Contact the prisoner to get up-to-date information.
+        %em.email Your visit cannot take place as you haven’t given correct information for the prisoner. Eg, the prisoner’s name, number or date of birth is incorrect. Contact the prisoner to get up-to-date information.
 
     .field{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
       %label.block-label(for='confirmation_outcome_prisoner_not_present')
@@ -118,7 +119,7 @@
     #prisoner_not_present.panel-indent
       %h3 What we’ll tell the visitor
       %p
-        %em.email The prisoner you want to visit has moved prison. They should contact you to tell you where they are now.  You can also use the find a prisoner service (www.gov.uk/find-prisoner).
+        %em.email Your visit cannot take place as the prisoner you want to visit has moved prison. They should contact you about where they are now.  You can also use the find a prisoner service (www.gov.uk/find-prisoner).
 
   
   %h2 Issue with the visitor
