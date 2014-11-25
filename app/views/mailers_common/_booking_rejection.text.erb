@@ -33,10 +33,12 @@ You need to contact the prisoner to be added to the contact list.
 <% else %>
 <% if @confirmation.visitor_not_listed %>
 Your visit cannot take place as details for <%= @confirmation.unlisted_visitors.join(', ').gsub(';', ' ') %> don’t match our records or they aren’t on the prisoner’s contact list.
+
 Please contact the prisoner and ask them to update their contact list with correct details, making sure that names appear exactly the same as on ID documents.
+
 If this is the prisoner’s first visit (reception visit), then you need to contact the prison to book.
 <% elsif @confirmation.visitor_banned %>
-<%= @confirmation.banned_visitors.join(', ').gsub(';', ' ') %> should have received a letter to say that they’re banned from visiting the prison at the moment. Get in touch with the prison for more information.
+Your visit cannot take place. <%= @confirmation.banned_visitors.join(', ').gsub(';', ' ') %> should have received a letter to say that they’re banned from visiting the prison at the moment. Get in touch with the prison for more information.
 <% else %>
 <% raise 'bad reason' %>
 <% end %>

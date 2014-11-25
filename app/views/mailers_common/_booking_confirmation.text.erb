@@ -1,6 +1,6 @@
 Dear <%= @visit.visitors.first.first_name %>,
 
-Your visit at <%= @visit.prisoner.prison_name %> from <%= display_time_slot(@slot.times) %> on <%= format_date(@slot.date) %> is now successfully confirmed.
+Your visit to <%= @visit.prisoner.prison_name %> from <%= display_time_slot(@slot.times) %> on <%= format_date(@slot.date) %> is now successfully confirmed.
 
 <% case @confirmation.slot %>
 <% when 1 %>
@@ -37,7 +37,8 @@ Please contact the prisoner and ask them to update their contact list with corre
 
 Your reference number is: <%= @confirmation.vo_number %>
 
-Changing or cancelling your visit:
+Changing or cancelling your visit
+---------------------------------
 
 Please don't reply to this email to change any details of your visit. Instead you must contact us directly. Please do this as soon as you can.
 
@@ -45,10 +46,12 @@ Please don't reply to this email to change any details of your visit. Instead yo
 * email: <%= prison_email %>
 
 Add this email to your address book
+-----------------------------------
 
 To stop visit confirmation emails going to your spam or junk folder please add no-reply@email.prisonvisits.service.gov.uk to your address book or safe senders list.
 
 What to bring when you visit
+----------------------------
 
 <% if requirements = custom_id_requirements(visit.prisoner.prison_name) %>
 <%= requirements %>
