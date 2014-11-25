@@ -22,7 +22,7 @@
     - booked_visit.slots.each_with_index do |slot, index|
       - if slot.date.present?
         %label.block-label{ for: "confirmation_outcome_slot_#{index}" }
-          = radio_button_tag 'confirmation[outcome]', "slot_#{index}", f.object.outcome == "slot_#{index}", { :'data-conditional-el' => 'vo_number_field', :'data-conditional-val' => 'slot_0,slot_1,slot_2', :class => 'js-Conditional' }
+          = radio_button_tag 'confirmation[outcome]', "slot_#{index}", f.object.outcome == "slot_#{index}", { :class => 'js-Conditional',  :data => { :'conditional-el' => 'vo_number_field,not_listed_confirmed', :'conditional-alt' => 'not_listed_rejected', :'conditional-val' => 'slot_0,slot_1,slot_2' } }
           = succeed ':' do
             = index == 0 ? "First choice" : "Alternative #{index}"
           %strong
@@ -133,11 +133,28 @@
 
     #visitors_not_listed.panel-indent
       %h3 What we’ll tell the visitor
-      %p
-        %em.email
-          The details you’ve provided for 
-          %span.visitor_names [VISITOR NAME]
-          don’t match what we have on our records. Please contact the prisoner and ask them to update their contact list with correct details for this visitor, making sure that names appear exactly the same as on your ID documents.
+      #not_listed_rejected
+        %p
+          %em.email
+            Your visit cannot take place as details for
+            %span.visitor_names [VISITOR NAME]
+            don’t match our records or they aren’t on the prisoner’s contact list.
+        %p
+          %em.email Please contact the prisoner and ask them to update their contact list with correct details, making sure that names appear exactly the same as on ID documents.
+        %p
+          %em.email If this is the prisoner’s first visit (reception visit), then you need to contact the prison to book.
+      #not_listed_confirmed
+        %p
+          %em.email
+            %span.visitor_names [VISITOR NAME]
+            cannot attend. 
+        %p
+          %em.email
+            Details for
+            %span.visitor_names [VISITOR NAME]
+            don’t match our records or the visitor isn’t on the contact list. 
+        %p
+          %em.email Please contact the prisoner and ask them to update their contact list with correct details, making sure that names appear exactly the same as on ID documents.
 
       - booked_visit.visitors.each_with_index do |visitor, index|
         %label.block-label{ :for => "confirmation_unlisted_visitors_#{index}" }

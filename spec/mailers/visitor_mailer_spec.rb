@@ -119,7 +119,7 @@ describe VisitorMailer do
         email.body.raw_source.should include("phone: 01634 803100")
         email.body.raw_source.should_not include("Jimmy Harris")
         email.body.raw_source.should include('5551234')
-        email.body.raw_source.should include('The following visitors cannot attend because they are not listed')
+        email.body.raw_source.should include('Joan H. cannot attend.')
       end
 
       it "sends out an e-mail with the list of banned visitors" do
@@ -213,7 +213,7 @@ describe VisitorMailer do
         email.body.raw_source.should include('http://www.justice.gov.uk/contacts/prison-finder/rochester')
         email.body.raw_source.should include("01634 803100")
         email.body.raw_source.should_not include("Jimmy Harris")
-        email.body.raw_source.should include("The details you’ve provided for Joan Harris don’t match what we have on our records.")
+        email.body.raw_source.should include("Your visit cannot take place as details for Joan Harris don’t match our records or they aren’t on the prisoner’s contact list.")
       end
 
       it "because a visitor is not on the list" do

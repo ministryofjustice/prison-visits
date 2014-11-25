@@ -26,7 +26,8 @@
 
     toggle: function (e) {
       var $el = $(this),
-          $conditionalEl = $('#' + $el.data('conditionalEl'));
+          $conditionalEl = moj.Modules.Conditional.conditionals($el.data('conditionalEl')),
+          $conditionalAlt = moj.Modules.Conditional.conditionals($el.data('conditionalAlt'));
 
       // trigger a deselect event if a change event occured
       if (e.type === 'change') {
@@ -40,12 +41,18 @@
         // if checked show/hide the extra content
         if(moj.Modules.Conditional.isCurrentOrListSelected($el, $el.data('conditionalVal'))){
           $conditionalEl.show();
+          $conditionalAlt.hide();
           $conditionalEl.attr('aria-expanded', 'true').attr('aria-hidden', 'false');
         } else {
           $conditionalEl.hide();
+          $conditionalAlt.show();
           $conditionalEl.attr('aria-expanded', 'false').attr('aria-hidden', 'true');
         }
       }
+    },
+
+    conditionals: function(string) {
+      return $(string ? '#' + string.split(',').join(',#') : null);
     },
 
     isCurrentOrListSelected: function($el, list) {
