@@ -40,7 +40,7 @@ describe VisitorMailer do
   end
 
   let :confirmation do
-    Confirmation.new(vo_number: '5551234', outcome: 'slot_0')
+    Confirmation.new(message: 'A message', vo_number: '5551234', outcome: 'slot_0')
   end
 
   let :confirmation_unlisted_visitors do
@@ -52,11 +52,11 @@ describe VisitorMailer do
   end
 
   let :confirmation_no_slot_available do
-    Confirmation.new(vo_number: '5551234', outcome: Confirmation::NO_SLOT_AVAILABLE)
+    Confirmation.new(message: 'A message', outcome: Confirmation::NO_SLOT_AVAILABLE)
   end
 
   let :confirmation_not_on_contact_list do
-    Confirmation.new(outcome: Confirmation::NOT_ON_CONTACT_LIST)
+    Confirmation.new(message: 'A message', outcome: Confirmation::NOT_ON_CONTACT_LIST)
   end
 
   let :rejection_prisoner_incorrect do
@@ -76,7 +76,7 @@ describe VisitorMailer do
   end
 
   let :confirmation_no_vos_left do
-    Confirmation.new(renew_vo: '2014-09-01', outcome: Confirmation::NO_VOS_LEFT)
+    Confirmation.new(message: 'A message', outcome: Confirmation::NO_VOS_LEFT)
   end
 
   let :noreply_address do
@@ -104,6 +104,7 @@ describe VisitorMailer do
         email.body.raw_source.should include("email: pvb.rochester@maildrop.dsd.io")
         email.body.raw_source.should include("phone: 01634 803100")
         email.body.raw_source.should_not include("Jimmy Harris")
+        email.body.raw_source.should include('A message')
         email.body.raw_source.should include('5551234')
       end
 
@@ -159,6 +160,7 @@ describe VisitorMailer do
         email.body.raw_source.should include('http://www.justice.gov.uk/contacts/prison-finder/rochester')
         email.body.raw_source.should include("01634 803100")
         email.body.raw_source.should_not include("Jimmy Harris")
+        email.body.raw_source.should include("A message")
       end
 
       it "because of a visitor not being on a contact list" do
@@ -172,6 +174,7 @@ describe VisitorMailer do
         email.body.raw_source.should include('http://www.justice.gov.uk/contacts/prison-finder/rochester')
         email.body.raw_source.should include("01634 803100")
         email.body.raw_source.should_not include("Jimmy Harris")
+        email.body.raw_source.should include("A message")
       end
 
       it "because the prisoner details are incorrect" do
