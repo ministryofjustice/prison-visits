@@ -67,6 +67,14 @@ describe VisitorMailer do
     Confirmation.new(outcome: Confirmation::PRISONER_NOT_PRESENT)
   end
 
+  let :rejection_visitor_not_listed do
+    Confirmation.new(visitor_not_listed: true, unlisted_visitors: ['Joan;Harris'])
+  end
+
+  let :rejection_visitor_banned do
+    Confirmation.new(visitor_banned: true, banned_visitors: ['Joan;Harris'])
+  end
+
   let :confirmation_no_vos_left do
     Confirmation.new(renew_vo: '2014-09-01', outcome: Confirmation::NO_VOS_LEFT)
   end
@@ -192,6 +200,34 @@ describe VisitorMailer do
         email.body.raw_source.should include("01634 803100")
         email.body.raw_source.should_not include("Jimmy Harris")
         email.body.raw_source.should include("The prisoner you want to visit has moved prison.")
+      end
+
+      it "because a visitor is not on the list" do
+        email = subject.booking_rejection_email(sample_visit, rejection_visitor_not_listed)
+        email.subject.should == "Visit cannot take place: your visit for 7 July 2013 could not be booked"
+
+        email[:from].should == noreply_address
+        email[:reply_to].should == prison_address
+        email[:to].should == visitor_address
+
+        email.body.raw_source.should include('http://www.justice.gov.uk/contacts/prison-finder/rochester')
+        email.body.raw_source.should include("01634 803100")
+        email.body.raw_source.should_not include("Jimmy Harris")
+        email.body.raw_source.should include("The details you’ve provided for Joan Harris don’t match what we have on our records.")
+      end
+
+      it "because a visitor is not on the list" do
+        email = subject.booking_rejection_email(sample_visit, rejection_visitor_banned)
+        email.subject.should == "Visit cannot take place: your visit for 7 July 2013 could not be booked"
+
+        email[:from].should == noreply_address
+        email[:reply_to].should == prison_address
+        email[:to].should == visitor_address
+
+        email.body.raw_source.should include('http://www.justice.gov.uk/contacts/prison-finder/rochester')
+        email.body.raw_source.should include("01634 803100")
+        email.body.raw_source.should_not include("Jimmy Harris")
+        email.body.raw_source.should include("Joan Harris should have received a letter to say that they’re banned from visiting the prison at the moment.")
       end
     end
 

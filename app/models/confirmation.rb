@@ -8,8 +8,6 @@ class Confirmation
   PRISONER_INCORRECT = 'prisoner_incorrect'
   PRISONER_NOT_PRESENT = 'prisoner_not_present'
   NOT_ON_CONTACT_LIST = 'not_on_contact_list'
-  VISITOR_NOT_LISTED = 'visitor_not_listed'
-  VISITOR_BANNED = 'visitor_banned'
 
   validate :check_outcome
   validate :reference
@@ -24,13 +22,11 @@ class Confirmation
       NO_ALLOWANCE,
       PRISONER_INCORRECT,
       PRISONER_NOT_PRESENT,
-      NOT_ON_CONTACT_LIST,
-      VISITOR_NOT_LISTED,
-      VISITOR_BANNED
+      NOT_ON_CONTACT_LIST
     ] + %w{slot_0 slot_1 slot_2}
 
-    if !outcomes.include?(outcome)
-      errors.add(:outcome, 'An outcome must be chosen')
+    if !outcomes.include?(outcome) && !visitor_not_listed && !visitor_banned
+      errors.add(:outcome, 'an outcome must be chosen')
     end
   end
 

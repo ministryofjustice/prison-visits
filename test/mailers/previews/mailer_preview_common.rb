@@ -40,5 +40,13 @@ module MailerPreviewCommon
   def rejected_confirmation(outcome)
     Confirmation.new(outcome: outcome)
   end
+
+  def rejected_confirmation_visitor_not_listed
+    Confirmation.new(visitor_not_listed: true, unlisted_visitors: ['Emma;Jones'])
+  end
+
+  def rejected_confirmation_visitor_banned
+    Confirmation.new(visitor_banned: true, banned_visitors: ['Mark;Jones'])
+  end
 end
 

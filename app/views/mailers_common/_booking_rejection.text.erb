@@ -30,12 +30,14 @@ The prisoner you want to visit has moved prison. They should contact you to tell
 You have tried to book a visit but not all visitors are on the prisoner’s contact list.
 
 You need to contact the prisoner to be added to the contact list.
-<% when Confirmation::VISITOR_NOT_LISTED %>
-The details you’ve provided for <%= @confirmation.unlisted_visitors.join(', ') %> don’t match what we have on our records. Please contact the prisoner and ask them to update their contact list with correct details for this visitor, making sure that names appear exactly the same as on your ID documents.
-<% when Confirmation::VISITOR_BANNED %>
-<%= @confirmation.banned_visitors.join(', ') %> should have received a letter to say that they’re banned from visiting the prison at the moment. Get in touch with the prison for more information.
+<% else %>
+<% if @confirmation.visitor_not_listed %>
+The details you’ve provided for <%= @confirmation.unlisted_visitors.join(', ').gsub(';', ' ') %> don’t match what we have on our records. Please contact the prisoner and ask them to update their contact list with correct details for this visitor, making sure that names appear exactly the same as on your ID documents.
+<% elsif @confirmation.visitor_banned %>
+<%= @confirmation.banned_visitors.join(', ').gsub(';', ' ') %> should have received a letter to say that they’re banned from visiting the prison at the moment. Get in touch with the prison for more information.
 <% else %>
 <% raise 'bad reason' %>
+<% end %>
 <% end %>
 
 <%= @confirmation.message %>

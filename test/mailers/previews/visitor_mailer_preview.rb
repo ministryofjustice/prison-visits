@@ -37,6 +37,14 @@ class VisitorMailerPreview < ActionMailer::Preview
     VisitorMailer.booking_rejection_email(sample_visit, rejected_confirmation(Confirmation::PRISONER_NOT_PRESENT))
   end
 
+  def booking_rejection_visitor_not_listed
+    VisitorMailer.booking_rejection_email(sample_visit, rejected_confirmation_visitor_not_listed)
+  end
+
+  def booking_rejection_visitor_banned
+    VisitorMailer.booking_rejection_email(sample_visit, rejected_confirmation_visitor_banned)
+  end
+
   def booking_receipt
     VisitorMailer.booking_receipt_email(sample_visit)
   end
