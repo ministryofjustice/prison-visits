@@ -41,6 +41,14 @@ module MailerPreviewCommon
     Confirmation.new(outcome: outcome)
   end
 
+  def rejected_confirmation_no_vo(outcome)
+    Confirmation.new(outcome: outcome, no_vo: true, renew_vo: '2014-11-29')
+  end
+
+  def rejected_confirmation_no_pvo(outcome)
+    Confirmation.new(outcome: outcome, no_vo: true, renew_vo: '2014-11-29', no_pvo: true, renew_pvo: '2014-11-17')
+  end
+
   def rejected_confirmation_visitor_not_listed
     Confirmation.new(visitor_not_listed: true, unlisted_visitors: ['Emma;Jones'])
   end

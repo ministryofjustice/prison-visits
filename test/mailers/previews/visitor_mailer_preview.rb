@@ -21,6 +21,18 @@ class VisitorMailerPreview < ActionMailer::Preview
     VisitorMailer.booking_rejection_email(sample_visit, rejected_confirmation('no_slot_available'))
   end
 
+  def booking_rejection_no_allowance
+    VisitorMailer.booking_rejection_email(sample_visit, rejected_confirmation(Confirmation::NO_ALLOWANCE))
+  end
+
+  def booking_rejection_no_allowance_no_vo
+    VisitorMailer.booking_rejection_email(sample_visit, rejected_confirmation_no_vo(Confirmation::NO_ALLOWANCE))
+  end
+
+  def booking_rejection_no_allowance_no_pvo
+    VisitorMailer.booking_rejection_email(sample_visit, rejected_confirmation_no_pvo(Confirmation::NO_ALLOWANCE))
+  end
+
   def booking_rejection_not_on_contact_list
     VisitorMailer.booking_rejection_email(sample_visit, rejected_confirmation(Confirmation::NOT_ON_CONTACT_LIST))
   end

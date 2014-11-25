@@ -62,7 +62,7 @@
     #no_allowance.panel-indent
       %h3 What we’ll tell the visitor
       %p
-        %em.email The prisoner you want to visit has not got any visiting allowance left. Please contact them to find out more.
+        %em.email The prisoner you want to visit has not got any visiting allowance left for the dates you’ve chosen.
       %p You can also tell the visitor more about the VO and PVO status:
 
       #no_vo.field{ :class => ('validation-error' if f.object.errors.include?(:no_vo)) }
@@ -76,7 +76,7 @@
         %h3 What we’ll tell the visitor
         %p
           %em.email
-            You’ve tried to book a visit but the prisoner you want to visit has not got any visiting allowance left. #{booked_visit.prisoner.first_name} #{booked_visit.prisoner.last_name} will have their visiting allowance (VO) renewed on
+            #{booked_visit.prisoner.first_name} #{booked_visit.prisoner.last_name} will have their full visiting allowance (VO) renewed on
             = succeed '.' do
               %span.date [DATE NOT CHOSEN]
 
@@ -91,9 +91,10 @@
         %h3 What we’ll tell the visitor
         %p
           %em.email
-            The prisoner you’re visiting doesn’t have any allowance for a weekend visit but you can book a weekday visit with allowance (PVO) that is valid until
+            However, you can book a weekday visit with visiting allowance valid until
             = succeed '.' do
               %span.date [DATE NOT CHOSEN]
+            The visit must be taken before the allowance expires. 
 
   
   %h2 Issue with the prisoner

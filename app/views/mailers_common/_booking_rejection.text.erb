@@ -13,14 +13,14 @@ We’re sorry but none of the dates and times you chose to visit <%= @visit.pris
 
 Please visit www.gov.uk/prison-visits to choose some alternative dates.
 <% when Confirmation::NO_ALLOWANCE %>
-The prisoner you want to visit has not got any visiting allowance left. Please contact them to find out more.
-<% if @confirmation.no_vo %>
-
-You’ve tried to book a visit but the prisoner you want to visit has not got any visiting allowance left. <%= @visit.prisoner.first_name %> <%= initial ? @visit.prisoner.last_initial : @visit.prisoner.last_name %> will have their visiting allowance (VO) renewed on <%= Date.parse(@confirmation.renew_vo).strftime("%A %e %B") %>.
-<% end %>
+The prisoner you want to visit has not got any visiting allowance left for the dates you’ve chosen.
 <% if @confirmation.no_pvo %>
 
-The prisoner you’re visiting doesn’t have any allowance for a weekend visit but you can book a weekday visit with allowance (PVO) that is valid until <%= Date.parse(@confirmation.renew_pvo).strftime("%A %e %B") %>.
+However, you can book a weekday visit with visiting allowance valid until <%= Date.parse(@confirmation.renew_pvo).strftime("%A %e %B") %>. The visit must be taken before the allowance expires. 
+<% end %>
+<% if @confirmation.no_vo %>
+
+<%= @visit.prisoner.first_name %> <%= initial ? @visit.prisoner.last_initial : @visit.prisoner.last_name %> will have their full visiting allowance (VO) renewed on <%= Date.parse(@confirmation.renew_vo).strftime("%A %e %B") %>.
 <% end %>
 <% when Confirmation::PRISONER_INCORRECT %>
 You haven’t given correct information for the prisoner. Eg, the prisoner’s name, number or date of birth is incorrect. Contact the prisoner to get up-to-date information.
