@@ -17,7 +17,6 @@ Prisoner number: <%= @visit.prisoner.number.upcase %>
 <% visitors = visitor_names(@visit.visitors) %>
 <% visitors = visitors - @confirmation.unlisted_visitors if @confirmation.visitor_not_listed %>
 <% visitors = visitors - @confirmation.banned_visitors if @confirmation.visitor_banned %>
-
 <% visitors.each_with_index do |visitor, index| %>
 Visitor <%= index + 1 %>: <%= first_name(visitor) %> <%= initial ? last_initial(visitor) : last_name(visitor) %>
 <% end %>
@@ -30,13 +29,10 @@ Details for <%= @confirmation.unlisted_visitors.inject([]){ |array, (visitor)| a
 Please contact the prisoner and ask them to update their contact list with correct details, making sure that names appear exactly the same as on ID documents.
 
 <% end %>
-
 <% if @confirmation.visitor_banned %>
-The following visitors cannot attend because they are banned:
+<%= @confirmation.banned_visitors.inject([]){ |array, (visitor)| array << first_name(visitor) + ' ' + (initial ? last_initial(visitor) : last_name(visitor)) }.join(', ') %> cannot attend. 
 
-<% @confirmation.banned_visitors.each do |visitor| %>
-<%= first_name(visitor) %> <%= initial ? last_initial(visitor) : last_name(visitor) %>
-<% end %>
+<%= @confirmation.banned_visitors.inject([]){ |array, (visitor)| array << first_name(visitor) + ' ' + (initial ? last_initial(visitor) : last_name(visitor)) }.join(', ') %> should have received a letter to say that they’re banned from visiting the prison at the moment. Get in touch with the prison for more information. 
 <% end %>
 
 Your reference number is: <%= @confirmation.vo_number %>

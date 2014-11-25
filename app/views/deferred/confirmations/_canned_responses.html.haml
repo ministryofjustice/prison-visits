@@ -22,7 +22,7 @@
     - booked_visit.slots.each_with_index do |slot, index|
       - if slot.date.present?
         %label.block-label{ for: "confirmation_outcome_slot_#{index}" }
-          = radio_button_tag 'confirmation[outcome]', "slot_#{index}", f.object.outcome == "slot_#{index}", { :class => 'js-Conditional',  :data => { :'conditional-el' => 'vo_number_field,not_listed_confirmed', :'conditional-alt' => 'not_listed_rejected', :'conditional-val' => 'slot_0,slot_1,slot_2' } }
+          = radio_button_tag 'confirmation[outcome]', "slot_#{index}", f.object.outcome == "slot_#{index}", { :class => 'js-Conditional',  :data => { :'conditional-el' => 'vo_number_field,not_listed_confirmed,banned_confirmed', :'conditional-alt' => 'not_listed_rejected,banned_rejected', :'conditional-val' => 'slot_0,slot_1,slot_2' } }
           = succeed ':' do
             = index == 0 ? "First choice" : "Alternative #{index}"
           %strong
@@ -169,10 +169,22 @@
 
     #visitors_banned.panel-indent
       %h3 What we’ll tell the visitor
-      %p
-        %em.email
-          %span.visitor_names [VISITOR NAME]
-          should have received a letter to say that they’re banned from visiting the prison at the moment. Get in touch with the prison for more information.
+      #banned_rejected
+        %p
+          %em.email
+            Your visit cannot take place.
+            %span.visitor_names [VISITOR NAME]
+            should have received a letter to say that they’re banned from visiting the prison at the moment. Get in touch with the prison for more information. 
+
+      #banned_confirmed
+        %p
+          %em.email
+            %span.visitor_names [VISITOR NAME]
+            cannot attend.
+        %p
+          %em.email
+            %span.visitor_names [VISITOR NAME]
+            should have received a letter to say that they’re banned from visiting the prison at the moment. Get in touch with the prison for more information. 
 
       - booked_visit.visitors.each_with_index do |visitor, index|
         %label.block-label{ :for => "confirmation_banned_visitors_#{index}" }

@@ -119,7 +119,7 @@ describe VisitorMailer do
         email.body.raw_source.should include("phone: 01634 803100")
         email.body.raw_source.should_not include("Jimmy Harris")
         email.body.raw_source.should include('5551234')
-        email.body.raw_source.should include('Joan H. cannot attend.')
+        email.body.raw_source.should include('Details for Joan H. don’t match our records or the visitor isn’t on the contact list.')
       end
 
       it "sends out an e-mail with the list of banned visitors" do
@@ -134,7 +134,7 @@ describe VisitorMailer do
         email.body.raw_source.should include("phone: 01634 803100")
         email.body.raw_source.should_not include("Jimmy Harris")
         email.body.raw_source.should include('5551234')
-        email.body.raw_source.should include('The following visitors cannot attend because they are banned')
+        email.body.raw_source.should include('Joan H. should have received a letter to say that they’re banned from visiting the prison at the moment.')
       end
 
       it "sends out an e-mail with the List-Unsubscribe header set" do
