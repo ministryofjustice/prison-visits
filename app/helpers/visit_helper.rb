@@ -126,7 +126,7 @@ module VisitHelper
   end
 
   def visitor_names(visitors)
-    visitors.inject([]) do |arr, (visitor)|
+    visitors.inject([]) do |arr, visitor|
       arr << visitor.full_name(';')
     end
   end
