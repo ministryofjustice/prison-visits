@@ -35,10 +35,10 @@
       this.$checkboxes.each($.proxy(this.summarise, this));
     },
 
-    getChecked: function () {
-      return this.$checkboxes.filter(function() {
+    getChecked: function ($el) {
+      return $el.filter(function() {
         return $(this).is(':checked');
-      })
+      });
     },
 
     stripChars: function(string) {
@@ -46,21 +46,23 @@
       return string.replace(reg, this.settings.sub);
     },
 
-    summarise: function () {
-      var $el = $(this),
-          summary = [],
-          text = '',
-          checked = this.getChecked();
+    summary: function($el) {
+      return $.makeArray($el.map(function() {
+        return $(this).val();
+      }));
+    },
 
-      checked.each(function() {
-        summary.push($(this).val());
-      });
-
-      if (summary.length) {
-        text = this.stripChars(summary.join(this.settings.glue))
+    summaryText: function(array) {
+      if (array.length) {
+        return this.stripChars(array.join(this.settings.glue));
       } else {
-        text = this.settings.original
+        return this.settings.original;
       }
+    },
+
+    summarise: function () {
+      var summary = this.summary(this.getChecked(this.$checkboxes)),
+          text = this.summaryText(summary);
 
       this.$summaries.text(text);
     }
