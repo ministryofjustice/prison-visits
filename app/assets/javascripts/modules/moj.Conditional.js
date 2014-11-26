@@ -39,7 +39,7 @@
         $el.attr('aria-control', $el.data('conditionalEl'));
 
         // if checked show/hide the extra content
-        if(moj.Modules.Conditional.isCurrentOrListSelected($el, $el.data('conditionalVal'))){
+        if($el.is(':checked') || moj.Modules.Conditional.isValueSelected($el, $el.data('conditionalVal'))){
           $conditionalEl.show();
           $conditionalAlt.hide();
           $conditionalEl.attr('aria-expanded', 'true').attr('aria-hidden', 'false');
@@ -55,8 +55,9 @@
       return $(string ? '#' + string.split(',').join(',#') : null);
     },
 
-    isCurrentOrListSelected: function($el, list) {
-      return $el.is(':checked') || (list && !!~list.indexOf($('[name="' + $el.attr('name') + '"]:checked').val()));
+    isValueSelected: function($el, values) {
+      var chosenInput = $('[name="' + $el.attr('name') + '"]:checked');
+      return values && !!~values.indexOf(chosenInput.val());
     }
   };
 }());
