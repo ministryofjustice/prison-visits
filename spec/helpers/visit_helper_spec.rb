@@ -84,4 +84,28 @@ describe VisitHelper do
     helper.prison_names.class.should == Array
     helper.prison_names.first.should == "Acklington"
   end
+
+  it "should render custom id content for certain prisons" do
+    ['Wymott',
+     'Coldingley',
+     'Cardiff',
+     'Portland',
+     'Channings Wood',
+     'Dartmoor',
+     'Sudbury',
+     'Moorland Closed',
+     'Nottingham',
+     'Glen Parva',
+     'Huntercombe',
+     'Leicester',
+     'Hindley (Young People 15-18 only)',
+     'Hindley (Young Adult 18-21 only)',
+     'Norwich (A, B, C, E, M only)',
+     'Norwich (F, G, H, L only)',
+     'Norwich (Britannia House)',
+     'High Down'].each do |prison_name|
+      helper.custom_id_requirements(prison_name).should_not be_nil
+    end
+    helper.custom_id_requirements('Rochester').should be_nil
+  end
 end

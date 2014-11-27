@@ -82,4 +82,12 @@ module VisitHelper
     schedule = Schedule.new(prison_data)
     format_day(schedule.except_lead_days(today, schedule.default_booking_range(today)).first)
   end
+
+  def custom_id_requirements(prison_name)
+    nomis_id = Rails.configuration.prison_data[prison_name][:nomis_id]
+    label = "id_#{nomis_id}"
+    if lookup_context.template_exists?(label, 'content', true)
+      render File.join('content', label)
+    end
+  end
 end
