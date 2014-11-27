@@ -7,11 +7,7 @@ Follow these steps if you don't get an email to confirm your visit within 3 work
 
 ## <a name="#info-id-requirements"></a> ID you need for each visit
 
-<% if requirements = custom_id_requirements(visit.prisoner.prison_name) %>
-<%= requirements %>
-<% else %>
 <%= render partial: 'content/id_requirements' %>
-<% end %>
 
 If you have any questions about ID requirements, please contact the prison.
 

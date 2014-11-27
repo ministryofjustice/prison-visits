@@ -1,0 +1,5 @@
+<% if requirements = custom_id_requirements(visit.prisoner.prison_name) %>
+<%= requirements %>
+<% else %>
+<%= render partial: 'content/standard_id_requirements' %>
+<% end %>
