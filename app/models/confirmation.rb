@@ -1,6 +1,6 @@
 class Confirmation
   include ActiveModel::Model
-  attr_accessor :outcome, :message, :vo_number, :no_vo, :no_pvo, :renew_vo, :renew_pvo, :banned_visitors, :unlisted_visitors, :visitor_not_listed, :visitor_banned
+  attr_accessor :outcome, :message, :vo_number, :no_vo, :no_pvo, :renew_vo, :renew_pvo, :banned_visitors, :unlisted_visitors, :visitor_not_listed, :visitor_banned, :canned_response
 
   NO_VOS_LEFT = 'no_vos_left'
   NO_SLOT_AVAILABLE = 'no_slot_available'
@@ -32,7 +32,7 @@ class Confirmation
   end
 
   def reference
-    if SLOTS_RESPONSES.include?(outcome) && vo_number.blank?
+    if SLOTS_RESPONSES.include?(outcome) && vo_number.blank? && canned_response
       errors.add(:vo_number, 'you must supply a reference number')
     end
   end

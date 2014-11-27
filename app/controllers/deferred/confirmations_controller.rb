@@ -41,7 +41,7 @@ class Deferred::ConfirmationsController < ApplicationController
   end
 
   def confirmation_params
-    params.require(:confirmation).permit(:outcome, :message, :vo_number, :no_vo, :no_pvo, :renew_vo, :renew_pvo, :visitor_not_listed, :visitor_banned, banned_visitors: [], unlisted_visitors: [])
+    params.require(:confirmation).permit(:outcome, :message, :vo_number, :no_vo, :no_pvo, :renew_vo, :renew_pvo, :visitor_not_listed, :visitor_banned, :canned_response, banned_visitors: [], unlisted_visitors: [])
   end
 
   def encryptor
