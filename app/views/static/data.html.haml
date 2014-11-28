@@ -1,7 +1,7 @@
 - content_for :header, "Prison data"
 
 :css
-  dt {
+  dt, h3 {
     font-weight: bold;
   }
 
@@ -69,7 +69,11 @@
               %ul
                 - slots.each do |slot|
                   %li= display_time_slot slot
-    
+
+      - if requirements = custom_id_requirements(prison[0])
+        %h3 Custom ID requirements
+        = requirements
+
     - else
       %dt Not enabled because
       %dd
