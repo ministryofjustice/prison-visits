@@ -58,11 +58,11 @@
 
       - if prison[1]['unbookable']
         %dt Un-bookable dates
-        %dl= prison[1]['unbookable'].join('<br>').html_safe
+        %dd= prison[1]['unbookable'].join('<br>').html_safe
 
       - if prison[1]['slot_anomalies']
         %dt Slot anomalies
-        %dl
+        %dd
           %dl
             - prison[1]['slot_anomalies'].each do |date, slots|
               %dt= format_date date
