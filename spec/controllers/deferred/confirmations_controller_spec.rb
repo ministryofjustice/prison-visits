@@ -198,12 +198,54 @@ describe Deferred::ConfirmationsController do
           end
         end
 
-        context "when a form is submitted indicating the visitor is not on the contact list" do
-          it "sends out an e-mail and records a metric"
+        context "when a form is submitted with banned or unlisted visitors and a succesful slot allocation" do
+          before :each do
+            mock_metrics_logger.should_receive(:record_booking_confirmation) { |actual_visit| visit.should.eql? actual_visit }
+            VisitorMailer.should_receive(:booking_confirmation_email) { |actual_visit, confirmation| visit.should.eql? actual_visit; confirmation.should be an_instance_of(Confirmation) }.once.and_call_original
+            PrisonMailer.should_receive(:booking_receipt_email) { |actual_visit, confirmation| visit.should.eql? actual_visit; confirmation.should be an_instance_of(Confirmation) }.once.and_call_original
+          end
+
+          it "sends out an e-mail for an unlisted visitor" do
+            post :create, confirmation: { outcome: 'slot_0', vo_number: '555123345', canned_response: true, visitor_not_listed: true, unlisted_visitors: ['Mark;Harris']}, state: encrypted_visit
+          end
+
+          it "sends out an e-mail for a banned visitor" do
+            post :create, confirmation: { outcome: 'slot_0', vo_number: '555123345', canned_response: true, visitor_banned: true, banned_visitors: ['Mark;Harris']}, state: encrypted_visit
+          end
+
+          it "sends out an e-mail for both banned an unlisted visitor" do
+            post :create, confirmation: { outcome: 'slot_0', vo_number: '555123345', canned_response: true, visitor_banned: true, banned_visitors: ['Mark;Harris'], visitor_not_listed: true, unlisted_visitors: ['Joan;Harris']}, state: encrypted_visit
+          end
+
+          after :each do
+            response.should redirect_to(deferred_confirmation_path)
+            ActionMailer::Base.deliveries.map(&:subject).should == ["Visit confirmed: your visit for 7 July 2013 has been confirmed", "COPY of booking confirmation for Jimmy Harris"]
+          end
         end
 
-        context "when a form is submitted indicating the visitor is banned" do
-          it "sends out an e-mail and records a metric"
+        context "when a form is submitted with banned or unlisted visitors and no other outcome" do
+          before :each do
+            mock_metrics_logger.should_receive(:record_booking_rejection) { |actual_visit| visit.should.eql? actual_visit }
+            VisitorMailer.should_receive(:booking_rejection_email) { |actual_visit, confirmation| visit.should.eql? actual_visit; confirmation.should be an_instance_of(Confirmation) }.once.and_call_original
+            PrisonMailer.should_receive(:booking_receipt_email) { |actual_visit, confirmation| visit.should.eql? actual_visit; confirmation.should be an_instance_of(Confirmation) }.once.and_call_original
+          end
+
+          it "sends rejection e-mail for an unlisted visitor" do
+            post :create, confirmation: { canned_response: true, visitor_not_listed: true, unlisted_visitors: ['Mark;Harris']}, state: encrypted_visit
+          end
+
+          it "sends rejection e-mail for a banned visitor" do
+            post :create, confirmation: { canned_response: true, visitor_banned: true, banned_visitors: ['Mark;Harris']}, state: encrypted_visit
+          end
+
+          it "sends rejection e-mail for both banned an unlisted visitor" do
+            post :create, confirmation: { canned_response: true, visitor_banned: true, banned_visitors: ['Mark;Harris'], visitor_not_listed: true, unlisted_visitors: ['Joan;Harris']}, state: encrypted_visit
+          end
+
+          after :each do
+            response.should redirect_to(deferred_confirmation_path)
+            ActionMailer::Base.deliveries.map(&:subject).should == ["Visit cannot take place: your visit for 7 July 2013 could not be booked", "COPY of booking rejection for Jimmy Harris"]
+          end
         end
 
         context "when a form is submitted and the prisoner has no allowance remaining" do
