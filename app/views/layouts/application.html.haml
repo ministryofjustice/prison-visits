@@ -54,7 +54,7 @@
             = link_to("contact us", new_feedback_path(referrer: request.original_url))
 
       %section#content.content.inner.cf
-        - if controller.controller_name == 'visit'
+        - if controller.class < CookieGuard
           = render "shared/cookie_required"
 
         %header
