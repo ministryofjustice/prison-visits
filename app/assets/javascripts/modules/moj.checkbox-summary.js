@@ -3,6 +3,8 @@
 (function () {
   'use strict';
 
+  window.moj = window.moj || { Modules: {}, Events: $({}) };
+
   var CheckboxSummary = function($el, options) {
     this.init($el, options);
     return this;
@@ -67,6 +69,8 @@
       this.$summaries.text(text);
     }
   };
+
+  moj.Modules._CheckboxSummary = CheckboxSummary;
 
   moj.Modules.CheckboxSummary = {
     init: function() {
