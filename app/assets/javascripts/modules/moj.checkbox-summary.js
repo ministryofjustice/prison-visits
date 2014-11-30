@@ -12,14 +12,20 @@
 
   CheckboxSummary.prototype = {
     init: function ($el, options) {
+      var sum;
       this.cacheEls($el);
       this.bindEvents();
-      this.settings = $.extend({}, {
-        glue: ', ',
-        strip: ';',
-        sub: ' '
-      }, options);
-      this.settings.original = this.$summaries.first().text() || '[summary]';
+      this.settings = $.extend({}, this.defaults, options);
+      if (sum = this.$summaries.first().text()) {
+        this.settings.original = sum;
+      }
+    },
+
+    defaults: {
+      glue: ', ',
+      strip: ';',
+      sub: ' ',
+      original: '[summary]'
     },
 
     bindEvents: function () {
