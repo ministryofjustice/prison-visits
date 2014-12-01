@@ -117,7 +117,6 @@ describe VisitorMailer do
         email.body.raw_source.should include("phone: 01634 803100")
         email.body.raw_source.should_not include("Jimmy Harris")
         email.body.raw_source.should include('A message')
-        email.body.raw_source.should include('5551234')
       end
 
       it "sends out an e-mail with the list of visitors not on the approved visitor list" do
@@ -131,7 +130,6 @@ describe VisitorMailer do
         email.body.raw_source.should include("email: pvb.rochester@maildrop.dsd.io")
         email.body.raw_source.should include("phone: 01634 803100")
         email.body.raw_source.should_not include("Jimmy Harris")
-        email.body.raw_source.should include('5551234')
         email.body.raw_source.should include('Details for Joan H. don’t match our records or the visitor isn’t on the contact list.')
       end
 
@@ -146,7 +144,6 @@ describe VisitorMailer do
         email.body.raw_source.should include("email: pvb.rochester@maildrop.dsd.io")
         email.body.raw_source.should include("phone: 01634 803100")
         email.body.raw_source.should_not include("Jimmy Harris")
-        email.body.raw_source.should include('5551234')
         email.body.raw_source.should include('Joan H. should have received a letter to say that they’re banned from visiting the prison at the moment.')
       end
 

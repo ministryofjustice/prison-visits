@@ -83,11 +83,27 @@ module VisitHelper
     format_day(schedule.except_lead_days(today, schedule.default_booking_range(today)).first)
   end
 
-  def custom_id_requirements(prison_name)
+  def custom_id_requirements(prison_name, format)
     nomis_id = Rails.configuration.prison_data[prison_name][:nomis_id]
     label = "id_#{nomis_id}"
-    if lookup_context.template_exists?(label, 'content', true)
+    template = lookup_context.find_template(label, 'content', true)
+    case format
+    when :html
       render File.join('content', label)
+    when :text
+      File.read(template.identifier)
+    end
+  rescue ActionView::MissingTemplate
+    nil
+  end
+
+  def standard_id_requirements(format)
+    template = lookup_context.find_template('standard_id_requirements', 'content', true)
+    case format
+    when :html
+      template.render(nil, nil)
+    when :text
+      File.read(template.identifier)
     end
   end
 

@@ -104,9 +104,16 @@ describe VisitHelper do
      'Norwich (F, G, H, L only)',
      'Norwich (Britannia House)',
      'High Down'].each do |prison_name|
-      helper.custom_id_requirements(prison_name).should_not be_nil
+      helper.custom_id_requirements(prison_name, :html).should_not be_nil
+      helper.custom_id_requirements(prison_name, :text).should_not be_nil
     end
-    helper.custom_id_requirements('Rochester').should be_nil
+    helper.custom_id_requirements('Rochester', :html).should be_nil
+    helper.custom_id_requirements('Rochester', :text).should be_nil
+  end
+
+  it "should render standard id requirements" do
+    helper.standard_id_requirements(:html).should_not be_nil
+    helper.standard_id_requirements(:text).should_not be_nil
   end
 
   it "provides the date of Monday in the current week" do

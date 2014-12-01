@@ -57,11 +57,7 @@ To stop visit confirmation emails going to your spam or junk folder please add n
 What to bring when you visit
 ----------------------------
 
-<% if requirements = custom_id_requirements(visit.prisoner.prison_name) %>
-<%= requirements %>
-<% else %>
-<%= render partial: 'content/id_requirements' %>
-<% end %>
+<%= render partial: 'content/id_requirements', locals: { output_format: :text } %>
 
 If you have any questions about ID requirements, please contact the prison.
 
