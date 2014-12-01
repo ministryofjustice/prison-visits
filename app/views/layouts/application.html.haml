@@ -11,6 +11,7 @@
   /[if IE 8]
     = stylesheet_link_tag "application-ie8", media: "all"
   = "<!--[if gt IE 8]><!-->#{stylesheet_link_tag("application", media: "all")}<!--<![endif]-->".html_safe
+  = stylesheet_link_tag "back-office", media: "all" if controller.controller_name == 'confirmations'
 
 
 - content_for :head do
@@ -26,6 +27,9 @@
     #{yield :analytics}
     ga('set', 'anonymizeIp', true);
     ga('send', 'pageview');
+
+
+- content_for :js_gt_ie, controller.controller_name == 'confirmations' ? '5' : '6'
 
 
 - content_for :javascripts do

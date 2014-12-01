@@ -144,3 +144,26 @@ article th {
 }
 /* end hide live phase */
 
+
+/* fix radio/checkbox in ie6 - govuk_elements */
+@include ie-lte(6) {
+  .block-label {
+    zoom: 1;
+  }
+}
+/* fix radio/checkbox */
+
+
+/* BookingCalendar for IE6 */
+@include ie-lte(6) {
+  .BookingCalendar-content {
+    height: 55px;
+    zoom: 1;
+  }
+  a.BookingCalendar-dateLink {
+    height: 55px;
+    display: block;
+  }
+}
+/* BookingCalendar for IE6 */
+

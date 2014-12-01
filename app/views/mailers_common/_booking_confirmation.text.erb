@@ -1,6 +1,6 @@
 Dear <%= @visit.visitors.first.first_name %>,
 
-Your visit at <%= @visit.prisoner.prison_name %> from <%= display_time_slot(@slot.times) %> on <%= format_date(@slot.date) %> is now successfully confirmed.
+Your visit to <%= @visit.prisoner.prison_name %> from <%= display_time_slot(@slot.times) %> on <%= format_date(@slot.date) %> is now successfully confirmed.
 
 <% case @confirmation.slot %>
 <% when 1 %>
@@ -14,13 +14,35 @@ Please arrive 45 minutes before your visit starts.
 Prisoner: <%= @visit.prisoner.first_name %> <%= initial ? @visit.prisoner.last_initial : @visit.prisoner.last_name %>
 Prisoner number: <%= @visit.prisoner.number.upcase %>
 
-<% @visit.visitors.each_with_index do |visitor, index| %>
-Visitor <%= index + 1 %>: <%= visitor.first_name %> <%= initial ? visitor.last_initial : visitor.last_name %>.
+<% visitors = visitor_names(@visit.visitors) %>
+<% visitors = visitors - @confirmation.unlisted_visitors if @confirmation.visitor_not_listed %>
+<% visitors = visitors - @confirmation.banned_visitors if @confirmation.visitor_banned %>
+<% visitors.each_with_index do |visitor, index| %>
+Visitor <%= index + 1 %>: <%= first_name(visitor) %> <%= initial ? last_initial(visitor) : last_name(visitor) %>
+<% end %>
+
+<% if @confirmation.visitor_not_listed %>
+<%= @confirmation.unlisted_visitors.inject([]){ |array, (visitor)| array << first_name(visitor) + ' ' + (initial ? last_initial(visitor) : last_name(visitor)) }.join(', ') %> cannot attend.
+
+Details for <%= @confirmation.unlisted_visitors.inject([]){ |array, (visitor)| array << first_name(visitor) + ' ' + (initial ? last_initial(visitor) : last_name(visitor)) }.join(', ') %> don’t match our records or the visitor isn’t on the contact list.
+
+Please contact the prisoner and ask them to update their contact list with correct details, making sure that names appear exactly the same as on ID documents.
+
+<% end %>
+<% if @confirmation.visitor_banned %>
+<%= @confirmation.banned_visitors.inject([]){ |array, (visitor)| array << first_name(visitor) + ' ' + (initial ? last_initial(visitor) : last_name(visitor)) }.join(', ') %> cannot attend. 
+
+<%= @confirmation.banned_visitors.inject([]){ |array, (visitor)| array << first_name(visitor) + ' ' + (initial ? last_initial(visitor) : last_name(visitor)) }.join(', ') %> should have received a letter to say that they’re banned from visiting the prison at the moment. Get in touch with the prison for more information. 
+<% end %>
+<% if @confirmation.canned_response %>
+
+Your reference number is: <%= @confirmation.vo_number %>
 <% end %>
 
 <%= @confirmation.message %>
 
-Changing or cancelling your visit:
+Changing or cancelling your visit
+---------------------------------
 
 Please don't reply to this email to change any details of your visit. Instead you must contact us directly. Please do this as soon as you can.
 
@@ -28,10 +50,12 @@ Please don't reply to this email to change any details of your visit. Instead yo
 * email: <%= prison_email %>
 
 Add this email to your address book
+-----------------------------------
 
 To stop visit confirmation emails going to your spam or junk folder please add no-reply@email.prisonvisits.service.gov.uk to your address book or safe senders list.
 
 What to bring when you visit
+----------------------------
 
 <% if requirements = custom_id_requirements(visit.prisoner.prison_name) %>
 <%= requirements %>

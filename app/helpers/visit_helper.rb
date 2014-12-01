@@ -90,4 +90,44 @@ module VisitHelper
       render File.join('content', label)
     end
   end
+
+  def weeks_start
+    Date.today.beginning_of_week
+  end
+
+  def weeks_end
+    (Date.today + Slot::BOOKABLE_DAYS.days).end_of_month.end_of_week
+  end
+
+  def weeks
+    (weeks_start..weeks_end).group_by do |day|
+      day.beginning_of_week
+    end
+  end
+
+  def tag_with_today?(day)
+    day == Date.today
+  end
+
+  def tag_with_month?(day)
+    day.beginning_of_month == day
+  end
+
+  def last_initial(name, glue=';')
+    last_name(name, glue).chars.first.upcase + '.'
+  end
+
+  def first_name(name, glue=';')
+    name.split(glue).first
+  end
+
+  def last_name(name, glue=';')
+    name.split(glue)[1]
+  end
+
+  def visitor_names(visitors)
+    visitors.inject([]) do |arr, visitor|
+      arr << visitor.full_name(';')
+    end
+  end
 end

@@ -8,11 +8,16 @@
 // Project assets
 //= require visitors
 
+// GOVUK modules
+//= require govuk/selection-buttons
+
 // Candidates for re-usable components
 //= require modules/moj.autocomplete
 //= require modules/moj.hijacks
 //= require modules/moj.timeout-prompt
 //= require modules/moj.submit-once
+//= require modules/moj.Conditional
+//= require modules/moj.checkbox-summary
 
 // Assets without a better place
 //= require shame

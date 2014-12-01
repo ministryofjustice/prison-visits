@@ -1,6 +1,9 @@
 @mixin clearfix-vertical-flow
   border-bottom: 1px solid transparent
 
+%field-spacing
+  margin: 1em 0
+
 .validation-summary,
 .validation-error
   padding: 1em
@@ -37,8 +40,27 @@ form
     @include media(mobile)
       color: $black
   
+  .panel-indent
+    @extend %field-spacing
+
+  .field
+    clear: left
+
+    &:before,
+    &:after
+      content: "\0020"
+      display: block
+      height: 0
+      overflow: hidden
+
+    &:after
+      clear: left
+
   .group
-    margin: 1em 0
+    @extend %field-spacing
+
+    .panel-indent
+      float: left
 
     fieldset
       margin: 0
@@ -84,10 +106,6 @@ label
 input,
 select
   @include core-19
-  margin: 0
-
-  @include ie-lte(6)
-    width: 250px
 
   &[type=text],
   &[type=email],

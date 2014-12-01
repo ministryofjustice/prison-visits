@@ -46,6 +46,7 @@ module PrisonVisits2
       application-ie6.css
       application-ie7.css
       application-ie8.css
+      back-office.css
       *.png
     )
 

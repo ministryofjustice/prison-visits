@@ -108,4 +108,60 @@ describe VisitHelper do
     end
     helper.custom_id_requirements('Rochester').should be_nil
   end
+
+  it "provides the date of Monday in the current week" do
+    helper.weeks_start.should == Date.today.beginning_of_week
+  end
+
+  it "provides the date the Sunday at the end of the bookable range" do
+    helper.weeks_end.should == (Date.today + 28.days).end_of_month.end_of_week
+  end
+
+  it "provides the booking range grouped by the Monday of each week" do
+    range = Date.today.beginning_of_week..(Date.today + 28.days).end_of_month.end_of_week
+    grouped = range.group_by{|date| date.beginning_of_week}
+    helper.weeks.should == grouped
+  end
+
+  it "confirms when a date is today" do
+    helper.tag_with_today?(Date.today).should == true
+    helper.tag_with_today?(Date.tomorrow).should == false
+  end
+
+  it "confirms when a date is the first day of a month" do
+    helper.tag_with_month?(Date.parse('2014-01-01')).should == true
+    helper.tag_with_month?(Date.parse('2014-01-20')).should == false
+  end
+
+  it "provides a capitalised initial of the second part of a string divided by the default token" do
+    helper.last_initial('John;Smith').should == 'S.'
+  end
+
+  it "provides a capitalised initial of the second part of a string divided by a specified token" do
+    helper.last_initial('Richard Dean', ' ').should == 'D.'
+  end
+
+  it "provides the first part of a string divided by the default token" do
+    helper.first_name('John;Smith').should == 'John'
+  end
+
+  it "provides the first part of a string divided by a specified token" do
+    helper.first_name('John Smith', ' ').should == 'John'
+  end
+
+  it "provides the second part of a string divided by the default token" do
+    helper.last_name('John;Smith').should == 'Smith'
+  end
+
+  it "provides the second part of a string divided by a specified token" do
+    helper.last_name('John Smith', ' ').should == 'Smith'
+  end
+
+  it "provides a list of first & last names divided by a token from visitor objects" do
+    visitors = [
+      Visitor.new(first_name: 'John', last_name: 'Smith'),
+      Visitor.new(first_name: 'Richard', last_name: 'Dean')
+    ]
+    helper.visitor_names(visitors).should == ['John;Smith', 'Richard;Dean']
+  end
 end

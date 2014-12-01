@@ -1,0 +1,23 @@
+.BookingCalendar
+  %table.BookingCalendar-dates
+    %thead
+      %tr
+        - %w(Mon Tue Wed Thu Fri Sat Sun).each do |d|
+          %th= d
+
+  .BookingCalendar-mask
+    %table.BookingCalendar-dates
+      %tbody.BookingCalendar-datesBody
+        - weeks.each do |week|
+          %tr
+            - week[1].each do |day|
+              %td{ :class => (day > Date.today ? 'BookingCalendar-date--bookable' : 'BookingCalendar-date--unbookable') }
+                .BookingCalendar-content{ :class => (tag_with_today?(day) || tag_with_month?(day) ? 'has-tag' : '') }
+                  %span.BookingCalendar-day= day.strftime('%e')
+                  - if tag_with_today? day
+                    %span.BookingCalendar-tag.BookingCalendar-tag--today Today
+                  - if tag_with_month? day
+                    %span.BookingCalendar-tag{ :id => "month-#{day.strftime('%Y-%m')}" }(tabindex='-1')= day.strftime('%b')
+                  - if day > Date.today
+                    %label.BookingCalendar-dateLink{ :for => "#{sanitize_to_id(name)}_#{day.strftime('%Y-%m-%d')}", :href => "#date-#{day.strftime('%Y-%m-%d')}", :'data-date' => day }
+                      = radio_button_tag name, day.strftime('%Y-%m-%d')
