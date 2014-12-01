@@ -96,6 +96,15 @@ describe "Prison data" do
         p.each_key do |k|
           next if ['email','enabled'].include? k
           p[k].should == s[k]
+          if k == 'unbookable'
+            p[k].sort.should == p[k]
+            s[k].sort.should == s[k]
+          end
+
+          if k == 'slot_anomalies'
+            Hash[p[k].to_a.sort].should == p[k]
+            Hash[s[k].to_a.sort].should == s[k]
+          end
         end
       end
     end

@@ -1,69 +1,70 @@
+---
 Rochester:
   nomis_id: RCI
   enabled: true
   phone: 01634 803100
   email: pvb.rochester@maildrop.dsd.io
   address:
-    - 1 Fort Road
-    - Rochester
-    - Kent
-    - ME1 3QS
+  - 1 Fort Road
+  - Rochester
+  - Kent
+  - ME1 3QS
   lead_days: 0
   unbookable:
-    - 2013-12-25
-    - 2013-12-26
-    - 2014-12-25
-    - 2014-12-26
+  - 2013-12-25
+  - 2013-12-26
+  - 2014-12-25
+  - 2014-12-26
   slot_anomalies:
     2014-08-14:
-      - 0700-0900
+    - 0700-0900
   slots:
     mon:
-      - 1400-1600
+    - 1400-1600
     tue:
-      - 1400-1600
+    - 1400-1600
     wed:
-      - 1400-1600
+    - 1400-1600
     thu:
-      - 1400-1600
+    - 1400-1600
     sat:
-      - 0930-1130
-      - 1400-1600
+    - 0930-1130
+    - 1400-1600
     sun:
-      - 1400-1600
+    - 1400-1600
 Durham:
   nomis_id: DMI
   enabled: true
   phone: 0191 3323417
   email: pvb.durham@maildrop.dsd.io
   address:
-    - Old Elvet
-    - Durham
-    - DH1 3HU
+  - Old Elvet
+  - Durham
+  - DH1 3HU
   unbookable:
-    - 2014-04-18
-    - 2014-12-25
-    - 2014-12-26
-    - 2015-01-01
+  - 2014-04-18
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
   slots:
     mon:
-      - 1345-1545
+    - 1345-1545
     tue:
-      - 1345-1545
-      - 1715-1900
+    - 1345-1545
+    - 1715-1900
     wed:
-      - 1345-1545
-      - 1715-1900
+    - 1345-1545
+    - 1715-1900
     thu:
-      - 1345-1545
+    - 1345-1545
     fri:
-      - 1345-1545
+    - 1345-1545
     sat:
-      - 0900-1145
-      - 1345-1645
+    - 0900-1145
+    - 1345-1645
     sun:
-      - 0900-1145
-      - 1345-1645
+    - 0900-1145
+    - 1345-1645
 Cardiff:
   nomis_id: CFI
   canned_responses: true
@@ -71,88 +72,88 @@ Cardiff:
   phone: 029 20923327
   email: pvb.cardiff@maildrop.dsd.io
   address:
-    - Knox Road
-    - Cardiff
-    - CF24 0UG
+  - Knox Road
+  - Cardiff
+  - CF24 0UG
   unbookable:
-    - 2014-02-05
-    - 2014-03-05
-    - 2014-04-02
-    - 2014-04-18
-    - 2014-05-07
-    - 2014-06-04
-    - 2014-07-02
-    - 2014-08-06
-    - 2014-09-03
-    - 2014-10-01
-    - 2014-11-05
-    - 2014-12-03
-    - 2014-12-25
-    - 2014-12-26
-    - 2015-01-01
-    - 2014-10-27
-    - 2014-12-25
-    - 2014-12-26
-    - 2015-01-07
+  - 2014-02-05
+  - 2014-03-05
+  - 2014-04-02
+  - 2014-04-18
+  - 2014-05-07
+  - 2014-06-04
+  - 2014-07-02
+  - 2014-08-06
+  - 2014-09-03
+  - 2014-10-01
+  - 2014-10-27
+  - 2014-11-05
+  - 2014-12-03
+  - 2014-12-25
+  - 2014-12-25
+  - 2014-12-26
+  - 2014-12-26
+  - 2015-01-01
+  - 2015-01-07
   slots:
     mon:
-      - 1350-1450
-      - 1450-1550
+    - 1350-1450
+    - 1450-1550
     tue:
-      - 1350-1450
-      - 1450-1550
+    - 1350-1450
+    - 1450-1550
     wed:
-      - 1350-1450
-      - 1450-1550
+    - 1350-1450
+    - 1450-1550
     thu:
-      - 1350-1450
-      - 1450-1550
+    - 1350-1450
+    - 1450-1550
     fri:
-      - 1350-1450
-      - 1450-1550
+    - 1350-1450
+    - 1450-1550
     sat:
-      - 0945-1115
-      - 1350-1520
+    - 0945-1115
+    - 1350-1520
     sun:
-      - 1350-1520
+    - 1350-1520
   slot_anomalies:
     2014-04-21:
-      - 0945-1115
-      - 1350-1520
+    - 0945-1115
+    - 1350-1520
     2014-05-05:
-      - 0945-1115
-      - 1350-1520
+    - 0945-1115
+    - 1350-1520
     2014-05-26:
-      - 0945-1115
-      - 1350-1520
+    - 0945-1115
+    - 1350-1520
     2015-01-01:
-      - 0945-1115
-      - 1350-1520
+    - 0945-1115
+    - 1350-1520
 Gartree:
   nomis_id: GTI
   enabled: true
   phone: 01858 426 727
   email: pvb.gartree@maildrop.dsd.io
   address:
-    - Gallow Field Rd
-    - Market Harborough
-    - Leicestershire
-    - LE16 7RP
+  - Gallow Field Rd
+  - Market Harborough
+  - Leicestershire
+  - LE16 7RP
   unbookable:
-    - 2014-04-18
-    - 2014-04-21
-    - 2014-12-25
-    - 2014-12-26
-    - 2015-01-01
+  - 2014-04-18
+  - 2014-04-21
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
   slots:
     tue:
-      - 1400-1600
+    - 1400-1600
     thu:
-      - 1400-1600
+    - 1400-1600
     sat:
-      - 1400-1600
+    - 1400-1600
     sun:
-      - 1400-1600
+    - 1400-1600
 Brinsford:
   nomis_id: BSI
   canned_responses: true
@@ -160,29 +161,29 @@ Brinsford:
   phone: 0300 060 6500
   email: pvb.brinsford@maildrop.dsd.io
   address:
-    - New Road  
-    - Featherstone
-    - Wolverhampton
-    - WV10 7PY
+  - New Road
+  - Featherstone
+  - Wolverhampton
+  - WV10 7PY
   unbookable:
-    - 2014-04-18
-    - 2014-04-21
-    - 2014-05-05
-    - 2014-05-26
-    - 2014-12-25
-    - 2014-12-26
-    - 2015-01-01
+  - 2014-04-18
+  - 2014-04-21
+  - 2014-05-05
+  - 2014-05-26
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
   slots:
     mon:
-      - 1330-1600
+    - 1330-1600
     tue:
-      - 1330-1600
+    - 1330-1600
     thu:
-      - 1330-1600
+    - 1330-1600
     sat:
-      - 1330-1600
+    - 1330-1600
     sun:
-      - 1330-1600
+    - 1330-1600
 Drake Hall:
   nomis_id: DHI
   canned_responses: true
@@ -190,51 +191,51 @@ Drake Hall:
   phone: 0300 060 6501
   email: pvb.drakehall@maildrop.dsd.io
   address:
-    - Eccleshall  
-    - Staffordshire
-    - ST21 6LQ
+  - Eccleshall
+  - Staffordshire
+  - ST21 6LQ
   unbookable:
-    - 2014-04-18
-    - 2014-04-21
-    - 2014-05-05
-    - 2014-05-26
-    - 2014-12-25
-    - 2014-12-26
-    - 2015-01-01
+  - 2014-04-18
+  - 2014-04-21
+  - 2014-05-05
+  - 2014-05-26
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
   slots:
     tue:
-      - 1330-1545
+    - 1330-1545
     sat:
-      - 1330-1545
+    - 1330-1545
     sun:
-      - 1330-1545
+    - 1330-1545
 Werrington:
   nomis_id: WNI
   canned_responses: true
   enabled: true
-  phone:  0300 060 6508
+  phone: 0300 060 6508
   email: pvb.werrington@maildrop.dsd.io
   address:
-    - Werrington  
-    - Stoke-On-Trent
-    - ST9 0DX
+  - Werrington
+  - Stoke-On-Trent
+  - ST9 0DX
   unbookable:
-    - 2014-04-18
-    - 2014-04-21
-    - 2014-05-05
-    - 2014-05-26
-    - 2014-12-25
-    - 2014-12-26
-    - 2015-01-01
+  - 2014-04-18
+  - 2014-04-21
+  - 2014-05-05
+  - 2014-05-26
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
   slots:
     wed:
-      - 1400-1600
-    fri: 
-      - 1400-1600
+    - 1400-1600
+    fri:
+    - 1400-1600
     sat:
-      - 1430-1630
+    - 1430-1630
     sun:
-      - 1430-1630
+    - 1430-1630
 Featherstone:
   nomis_id: FSI
   canned_responses: true
@@ -242,33 +243,33 @@ Featherstone:
   phone: 0300 060 6502
   email: pvb.featherstone@maildrop.dsd.io
   address:
-    - New Road  
-    - Featherstone
-    - Wolverhampton
-    - WV10 7PU
+  - New Road
+  - Featherstone
+  - Wolverhampton
+  - WV10 7PU
   unbookable:
-    - 2014-04-18
-    - 2014-04-21
-    - 2014-05-05
-    - 2014-05-26
-    - 2014-12-25
-    - 2014-12-26
-    - 2015-01-01
+  - 2014-04-18
+  - 2014-04-21
+  - 2014-05-05
+  - 2014-05-26
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
   slots:
     mon:
-      - 1400-1630
+    - 1400-1630
     tue:
-      - 1400-1600
-    wed: 
-      - 1400-1600
-    thu: 
-      - 1400-1600
+    - 1400-1600
+    wed:
+    - 1400-1600
+    thu:
+    - 1400-1600
     fri:
-      - 1400-1600
+    - 1400-1600
     sat:
-      - 1400-1600
+    - 1400-1600
     sun:
-      - 1400-1600
+    - 1400-1600
 Stoke Heath:
   nomis_id: SHI
   canned_responses: true
@@ -276,29 +277,29 @@ Stoke Heath:
   phone: 0300 060 6506
   email: pvb.stokeheath@maildrop.dsd.io
   address:
-    - Market Drayton  
-    - Shropshire
-    - TF9 2JL
+  - Market Drayton
+  - Shropshire
+  - TF9 2JL
   unbookable:
-    - 2014-04-18
-    - 2014-04-21
-    - 2014-05-05
-    - 2014-12-25
-    - 2014-12-26
-    - 2015-01-01
+  - 2014-04-18
+  - 2014-04-21
+  - 2014-05-05
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
   slots:
     mon:
-      - 1400-1600
+    - 1400-1600
     tue:
-      - 1400-1600
+    - 1400-1600
     wed:
-      - 1400-1600
+    - 1400-1600
     thu:
-      - 1400-1600
+    - 1400-1600
     sat:
-      - 1400-1600
+    - 1400-1600
     sun:
-      - 1400-1600
+    - 1400-1600
 Swinfen Hall:
   nomis_id: SNI
   canned_responses: true
@@ -306,27 +307,27 @@ Swinfen Hall:
   phone: 0300 060 6507
   email: pvb.swinfenhall@maildrop.dsd.io
   address:
-    - Swinfen Hall  
-    - FLichfield
-    - Staffordshire
-    - WS14 9QS
+  - Swinfen Hall
+  - FLichfield
+  - Staffordshire
+  - WS14 9QS
   unbookable:
-    - 2014-04-18
-    - 2014-04-21
-    - 2014-05-05
-    - 2014-05-26
-    - 2014-12-25
-    - 2014-12-26
-    - 2015-01-01
+  - 2014-04-18
+  - 2014-04-21
+  - 2014-05-05
+  - 2014-05-26
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
   slots:
     tue:
-      - 1400-1600
+    - 1400-1600
     wed:
-      - 1400-1600
+    - 1400-1600
     sat:
-      - 1400-1600
+    - 1400-1600
     sun:
-      - 1400-1600
+    - 1400-1600
 Hewell:
   nomis_id: HEI
   canned_responses: true
@@ -334,330 +335,328 @@ Hewell:
   phone: 0300 060 6503
   email: pvb.hewell@maildrop.dsd.io
   address:
-    - Hewell Lane  
-    - Redditch
-    - Worcestershire
-    - B97 6QS
+  - Hewell Lane
+  - Redditch
+  - Worcestershire
+  - B97 6QS
   unbookable:
-    - 2014-05-05
-    - 2014-05-26
-    - 2014-12-25
-    - 2014-12-26
-    - 2015-01-01
+  - 2014-05-05
+  - 2014-05-26
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
   slots:
     mon:
-      - 1400-1630
+    - 1400-1630
     tue:
-      - 1400-1630
-    wed: 
-      - 1400-1630
+    - 1400-1630
+    wed:
+    - 1400-1630
     thu:
-      - 1400-1630
-    fri: 
-      - 1430-1630
+    - 1400-1630
+    fri:
+    - 1430-1630
     sat:
-      - 0930-1130
-      - 1430-1630
+    - 0930-1130
+    - 1430-1630
     sun:
-      - 0930-1130
-      - 1430-1630
+    - 0930-1130
+    - 1430-1630
 Foston Hall:
   nomis_id: FHI
   enabled: true
-  phone: 01283 584357 
+  phone: 01283 584357
   email: pvb.fostonhall@maildrop.dsd.io
   address:
-    - Foston Hall
-    - Derby
-    - Foston
-    - DE65 5DN
+  - Foston Hall
+  - Derby
+  - Foston
+  - DE65 5DN
   unbookable:
-    - 2015-04-03 
-    - 2014-12-25
+  - 2014-12-25
+  - 2015-04-03
   slots:
     mon:
-      - 1400-1600
-    wed: 
-      - 1400-1600
-    fri: 
-      - 1400-1600
+    - 1400-1600
+    wed:
+    - 1400-1600
+    fri:
+    - 1400-1600
     sat:
-      - 0930-1130
-      - 1400-1600
+    - 0930-1130
+    - 1400-1600
     sun:
-      - 0930-1130
-      - 1400-1600
+    - 0930-1130
+    - 1400-1600
 Holloway:
   nomis_id: HYI
   enabled: true
-  phone: 020 7979 4751 
+  phone: 020 7979 4751
   email: pvb.holloway@maildrop.dsd.io
   address:
-    - Pankhurst Road
-    - London
-    - N7 0NU
+  - Pankhurst Road
+  - London
+  - N7 0NU
   unbookable:
-    - 2014-06-14
-    - 2014-07-12
-    - 2014-08-09
-    - 2014-09-13
-    - 2014-10-11
-    - 2014-11-08
-    - 2014-12-06
-    - 2014-12-25
-    - 2014-12-26
-    - 2014-12-13
-    - 2014-12-20
-    - 2014-12-27
+  - 2014-06-14
+  - 2014-07-12
+  - 2014-08-09
+  - 2014-09-13
+  - 2014-10-11
+  - 2014-11-08
+  - 2014-12-06
+  - 2014-12-13
+  - 2014-12-20
+  - 2014-12-25
+  - 2014-12-26
+  - 2014-12-27
   slots:
     mon:
-      - 1430-1530
-    tue: 
-      - 0930-1030
-      - 1430-1530
-    wed: 
-      - 0930-1030
-      - 1430-1530
+    - 1430-1530
+    tue:
+    - 0930-1030
+    - 1430-1530
+    wed:
+    - 0930-1030
+    - 1430-1530
     thu:
-      - 0930-1030
-      - 1430-1530
-      - 1800-1900
-    fri: 
-      - 0930-1030
+    - 0930-1030
+    - 1430-1530
+    - 1800-1900
+    fri:
+    - 0930-1030
     sat:
-      - 1400-1500
-      - 1530-1630
+    - 1400-1500
+    - 1530-1630
     sun:
-      - 1400-1500
-      - 1530-1630
+    - 1400-1500
+    - 1530-1630
   slot_anomalies:
     2014-05-21:
-      - 0930-1030
-    2014-06-18:
-      - 0930-1030
-    2014-07-29:
-      - 0930-1030
-    2014-08-20:
-      - 0930-1030
-    2014-09-24:
-      - 0930-1030
-    2014-10-22:
-      - 0930-1030
-    2014-11-19:
-      - 0930-1030
-    2014-12-18:
-      - 0930-1030
+    - 0930-1030
     2014-05-29:
-      - 0930-1030
+    - 0930-1030
+    2014-06-18:
+    - 0930-1030
     2014-07-24:
-      - 0930-1030
+    - 0930-1030
+    2014-07-29:
+    - 0930-1030
+    2014-08-20:
+    - 0930-1030
     2014-08-21:
-      - 0930-1030
+    - 0930-1030
+    2014-09-24:
+    - 0930-1030
+    2014-10-22:
+    - 0930-1030
     2014-10-30:
-      - 0930-1030
+    - 0930-1030
+    2014-11-19:
+    - 0930-1030
     2014-12-18:
-      - 0930-1030
+    - 0930-1030
 Bristol:
   nomis_id: BLI
   enabled: true
-  phone: 01173723213 
+  phone: 166700683
   email: pvb.bristol@maildrop.dsd.io
   address:
-    - 19 Cambridge Road
-    - Bristol
-    - BS7 8PS
+  - 19 Cambridge Road
+  - Bristol
+  - BS7 8PS
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
-    - 2015-01-01
-    - 2015-04-03
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
+  - 2015-04-03
   slots:
     mon:
-      - 1400-1600
+    - 1400-1600
     tue:
-      - 1400-1600
-    wed: 
-      - 1400-1600
+    - 1400-1600
+    wed:
+    - 1400-1600
     thu:
-      - 1400-1600
-    fri: 
-      - 1400-1600
+    - 1400-1600
+    fri:
+    - 1400-1600
     sat:
-      - 1400-1600
+    - 1400-1600
     sun:
-      - 1400-1600
+    - 1400-1600
 Buckley Hall:
   nomis_id: BCI
   enabled: true
-  phone: 01706 514350 
+  phone: 01706 514350
   email: pvb.buckleyhall@maildrop.dsd.io
   address:
-    - Buckley Road
-    - OL12 9DP
+  - Buckley Road
+  - OL12 9DP
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
-    - 2015-04-03
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-04-03
   slots:
     mon:
-      - 1400-1600
+    - 1400-1600
     tue:
-      - 1400-1600
-    wed: 
-      - 1400-1600
-      - 1745-1845
+    - 1400-1600
+    wed:
+    - 1400-1600
+    - 1745-1845
     thu:
-      - 1400-1600
-    fri: 
-      - 1400-1600
+    - 1400-1600
+    fri:
+    - 1400-1600
     sat:
-      - 0930-1130
-      - 1400-1600 
+    - 0930-1130
+    - 1400-1600
     sun:
-      - 0930-1130
-      - 1400-1600
+    - 0930-1130
+    - 1400-1600
   slot_anomalies:
     2014-12-24:
-      - 1400-1600
+    - 1400-1600
     2014-12-31:
-      - 1400-1600
+    - 1400-1600
 Bure:
   nomis_id: BRI
   enabled: true
   phone: 01603 326252
   email: pvb.bure@maildrop.dsd.io
   address:
-    - Jaguar Drive
-    - NR10 5GB
+  - Jaguar Drive
+  - NR10 5GB
   unbookable:
-    - 2014-12-25
-    - 2015-01-01
-    - 2015-04-03
+  - 2014-12-25
+  - 2015-01-01
+  - 2015-04-03
   slots:
-    fri: 
-      - 1400-1600
+    fri:
+    - 1400-1600
     sat:
-      - 0930-1130
-      - 1400-1600 
+    - 0930-1130
+    - 1400-1600
     sun:
-      - 0930-1130
-      - 1400-1600
+    - 0930-1130
+    - 1400-1600
   slot_anomalies:
     2014-12-23:
-      - 1400-1545
+    - 1400-1545
     2014-12-24:
-      - 0915-1100
+    - 0915-1100
 Coldingley:
   nomis_id: CLI
   enabled: true
   phone: 01483 344418
   email: pvb.coldingley@maildrop.dsd.io
   address:
-    - Shaftesbury Road
-    - GU24 9EX
+  - Shaftesbury Road
+  - GU24 9EX
   unbookable:
-    - 2014-12-25
-    - 2014-07-30
-    - 2014-08-20
-    - 2014-10-29
-    - 2014-12-19
-    - 2015-01-01
-    - 2015-04-03
-    - 2014-12-26
+  - 2014-07-30
+  - 2014-08-20
+  - 2014-10-29
+  - 2014-12-19
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
+  - 2015-04-03
   slots:
-    mon: 
-      - 1400-1545
+    mon:
+    - 1400-1545
     wed:
-      - 1400-1545 
+    - 1400-1545
     thu:
-      - 1400-1545
+    - 1400-1545
     sat:
-      - 1400-1545
+    - 1400-1545
     sun:
-      - 1400-1545
+    - 1400-1545
   slot_anomalies:
     2014-12-23:
-      - 1400-1545
+    - 1400-1545
     2014-12-24:
-      - 0915-1100
+    - 0915-1100
 Cookham Wood:
   nomis_id: CKI
   enabled: true
   phone: 01634 202557
   email: pvb.cookhamwood@maildrop.dsd.io
   address:
-    - Sir Evelyn Road
-    - ME1 3LU
+  - Sir Evelyn Road
+  - ME1 3LU
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
-    - 2015-01-01
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
   slots:
     wed:
-      - 1815-1930 
+    - 1815-1930
     sat:
-      - 0930-1130
-      - 1430-1630
+    - 0930-1130
+    - 1430-1630
     sun:
-      - 0930-1130
-      - 1430-1630
+    - 0930-1130
+    - 1430-1630
   slot_anomalies:
     2014-12-24:
-      - 1430-1630
+    - 1430-1630
     2014-12-31:
-      - 1430-1630
+    - 1430-1630
 Deerbolt:
   nomis_id: DTI
   enabled: true
   phone: 01833 633349
   email: pvb.deerbolt@maildrop.dsd.io
   address:
-    - Bowes Road
-    - DL12 9BG 
+  - Bowes Road
+  - DL12 9BG
   unbookable:
-    - 2014-12-25
-    - 2015-01-01
-    - 2015-04-03
+  - 2014-12-25
+  - 2015-01-01
+  - 2015-04-03
   slots:
     thu:
-      - 1345-1545
+    - 1345-1545
     sat:
-      - 1345-1545
+    - 1345-1545
     sun:
-      - 1345-1545
+    - 1345-1545
   slot_anomalies:
     2014-12-23:
-      - 1345-1545
+    - 1345-1545
     2014-12-30:
-      - 1345-1545
+    - 1345-1545
 Exeter:
   nomis_id: EXI
   enabled: true
   phone: 01392 41 5833
   email: pvb.exeter@maildrop.dsd.io
   address:
-    - New North Road
-    - EX4 4EX 
+  - New North Road
+  - EX4 4EX
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
-    - 2014-12-22
+  - 2014-12-22
+  - 2014-12-25
+  - 2014-12-26
   slots:
     mon:
-      - 1415-1615
+    - 1415-1615
     tue:
-      - 1415-1615
+    - 1415-1615
     thu:
-      - 1415-1615
-    fri: 
-      - 1415-1615
+    - 1415-1615
+    fri:
+    - 1415-1615
     sat:
-      - 1415-1615
+    - 1415-1615
     sun:
-      - 1415-1615
+    - 1415-1615
   slot_anomalies:
     2014-12-24:
-      - 1415-1615
+    - 1415-1615
 Lewes:
   nomis_id: LWI
   enabled: true
@@ -665,30 +664,30 @@ Lewes:
   email: pvb.lewes@maildrop.dsd.io
   works_weekends: true
   address:
-    - 1 Brighton Road
-    - BN7 1EA 
+  - 1 Brighton Road
+  - BN7 1EA
   unbookable:
-    - 2014-12-25
-    - 2015-01-01
-    - 2015-04-03
+  - 2014-12-25
+  - 2015-01-01
+  - 2015-04-03
   slots:
     mon:
-      - 0930-1100
-      - 1410-1535
+    - 0930-1100
+    - 1410-1535
     tue:
-      - 1410-1535
+    - 1410-1535
     wed:
-      - 0930-1100
-      - 1410-1535
+    - 0930-1100
+    - 1410-1535
     thu:
-      - 1410-1535
-    fri: 
-      - 0930-1100
-      - 1410-1535
+    - 1410-1535
+    fri:
+    - 0930-1100
+    - 1410-1535
     sat:
-      - 1410-1535
+    - 1410-1535
     sun:
-      - 1410-1535
+    - 1410-1535
 Moorland Closed:
   nomis_id: MDI
   enabled: true
@@ -696,2448 +695,2442 @@ Moorland Closed:
   email: pvb.moorlandclosed@maildrop.dsd.io
   finder_slug: moorland
   address:
-    - Bawtry Road
-    - DN7 6BW 
+  - Bawtry Road
+  - DN7 6BW
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
-    - 2015-01-01
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
   slots:
     wed:
-      - 1340-1545
+    - 1340-1545
     thu:
-      - 1340-1545
+    - 1340-1545
     sat:
-      - 1340-1545
+    - 1340-1545
     sun:
-      - 1340-1545
+    - 1340-1545
 Onley:
   nomis_id: ONI
   enabled: true
   phone: 01788 523 402
   email: pvb.onley@maildrop.dsd.io
   address:
-    - Willoughby
-    - CV23 8AP 
+  - Willoughby
+  - CV23 8AP
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
-    - 2015-01-01
-    - 2012-12-22
+  - 2012-12-22
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
   slots:
     mon:
-      - 1345-1445
-      - 1515-1615
+    - 1345-1445
+    - 1515-1615
     tue:
-      - 1345-1445
-      - 1515-1615
+    - 1345-1445
+    - 1515-1615
     wed:
-      - 1345-1445
-      - 1515-1615
+    - 1345-1445
+    - 1515-1615
     thu:
-      - 1345-1445
-      - 1515-1615
+    - 1345-1445
+    - 1515-1615
     fri:
-      - 1430-1600
+    - 1430-1600
     sat:
-      - 1345-1500
-      - 1515-1630
+    - 1345-1500
+    - 1515-1630
     sun:
-      - 1345-1500
-      - 1515-1630
+    - 1345-1500
+    - 1515-1630
 The Mount:
   nomis_id: MTI
   enabled: true
   phone: 01442 836352
   email: pvb.themount@maildrop.dsd.io
   address:
-    - Molyneaux Avenue
-    - HP3 0NZ 
+  - Molyneaux Avenue
+  - HP3 0NZ
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
-    - 2015-01-01
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
   slots:
     thu:
-      - 1345-1545
+    - 1345-1545
     fri:
-      - 1345-1545
+    - 1345-1545
     sat:
-      - 0845-1045
-      - 1345-1545
+    - 0845-1045
+    - 1345-1545
     sun:
-      - 0845-1045
-      - 1345-1545
+    - 0845-1045
+    - 1345-1545
   slot_anomalies:
     2014-12-23:
-      - 1400-1600
+    - 1400-1600
     2014-12-24:
-      - 1400-1600
+    - 1400-1600
     2014-12-27:
-      - 0915-1115
-      - 1400-1600
+    - 0915-1115
+    - 1400-1600
     2014-12-28:
-      - 0915-1115
-      - 1400-1600
+    - 0915-1115
+    - 1400-1600
     2014-12-31:
-      - 1400-1600
+    - 1400-1600
     2015-01-02:
-      - 1400-1600
+    - 1400-1600
     2015-01-03:
-      - 0915-1115
-      - 1400-1600
+    - 0915-1115
+    - 1400-1600
     2015-01-04:
-      - 0915-1115
-      - 1400-1600
+    - 0915-1115
+    - 1400-1600
 Wayland:
   nomis_id: WLI
   enabled: true
   phone: 001953 804152
   email: pvb.wayland@maildrop.dsd.io
   address:
-    - Griston
-    - IP25 6RL 
+  - Griston
+  - IP25 6RL
   unbookable:
-    - 2014-12-25
-    - 2015-01-01
+  - 2014-12-25
+  - 2015-01-01
   slots:
     tue:
-      - 1400-1600
+    - 1400-1600
     wed:
-      - 1400-1600
+    - 1400-1600
     fri:
-      - 1400-1600
+    - 1400-1600
     sat:
-      - 1400-1600
+    - 1400-1600
     sun:
-      - 1400-1600
+    - 1400-1600
 Wealstun:
   nomis_id: WEI
   enabled: true
   phone: 01937 444599
   email: pvb.wealstun@maildrop.dsd.io
   address:
-    - Church Causeway
-    - LS23 7AZ 
+  - Church Causeway
+  - LS23 7AZ
   unbookable:
-    - 2014-12-25
+  - 2014-12-25
   slots:
     mon:
-      - 0930-1130
-      - 1330-1530
+    - 0930-1130
+    - 1330-1530
     tue:
-      - 0930-1130
-      - 1330-1530
+    - 0930-1130
+    - 1330-1530
     wed:
-      - 0930-1130
-      - 1330-1530
+    - 0930-1130
+    - 1330-1530
     thu:
-      - 0930-1130
-      - 1330-1530
+    - 0930-1130
+    - 1330-1530
     sat:
-      - 0930-1130
-      - 1345-1600
+    - 0930-1130
+    - 1345-1600
     sun:
-      - 0930-1130
-      - 1345-1600
+    - 0930-1130
+    - 1345-1600
 Bedford:
   nomis_id: BFI
   enabled: true
-  phone: '01234 373196'
+  phone: 01234 373196
   email: pvb.bedford@maildrop.dsd.io
   address:
-    - 'St. Loyes Street'
-    - 'MK40 1HG'
+  - St. Loyes Street
+  - MK40 1HG
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
+  - 2014-12-25
+  - 2014-12-26
   slots:
     mon:
-      - 1345-1445
-      - 1515-1615
+    - 1345-1445
+    - 1515-1615
     sat:
-      - 1345-1445
-      - 1515-1615
+    - 1345-1445
+    - 1515-1615
     sun:
-      - 1345-1445
-      - 1515-1615
+    - 1345-1445
+    - 1515-1615
     thu:
-      - 1345-1445
-      - 1515-1615
+    - 1345-1445
+    - 1515-1615
     tue:
-      - 1345-1445
-      - 1515-1615
+    - 1345-1445
+    - 1515-1615
     wed:
-      - 1345-1445
-      - 1515-1615
+    - 1345-1445
+    - 1515-1615
 Preston:
   nomis_id: PNI
   enabled: true
-  phone: '01772 444666'
-  email: "pvb.preston@maildrop.io"
+  phone: 01772 444666
+  email: pvb.preston@maildrop.io
   address:
-    - '2 Ribbleton Lane'
-    - 'PR1 5AB '
+  - 2 Ribbleton Lane
+  - 'PR1 5AB '
   unbookable:
-    - 2014-12-25
+  - 2014-12-25
   slots:
     fri:
-      - 1400-1600
+    - 1400-1600
     mon:
-      - 1400-1600
+    - 1400-1600
     sat:
-      - 1400-1600
+    - 1400-1600
     sun:
-      - 1400-1600
+    - 1400-1600
     thu:
-      - 1400-1600
+    - 1400-1600
     tue:
-      - 1400-1600
+    - 1400-1600
     wed:
-      - 1400-1600
+    - 1400-1600
 Maidstone:
   nomis_id: MSI
   enabled: true
-  phone: '01622 775619'
+  phone: 01622 775619
   email: pvb.maidstone@maildrop.dsd.io
   address:
-    - '36 County Road'
-    - 'ME14 1UZ '
+  - 36 County Road
+  - 'ME14 1UZ '
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
+  - 2014-12-25
+  - 2014-12-26
   slots:
     tue:
-      - 1345-1545
+    - 1345-1545
     mon:
-      - 1345-1545
+    - 1345-1545
     sat:
-      - 1345-1620
+    - 1345-1620
     sun:
-      - 1345-1620
+    - 1345-1620
     thu:
-      - 1345-1545
+    - 1345-1545
     wed:
-      - 1345-1545
-'Warren Hill':
+    - 1345-1545
+Warren Hill:
   nomis_id: WII
   enabled: true
-  phone: '020 8588 4002'
+  phone: 020 8588 4002
   email: pvb.warrenhill@maildrop.dsd.io
   address:
-    - Hollesley
-    - 'IP12 3JW '
+  - Hollesley
+  - 'IP12 3JW '
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
-    - 2014-12-31
-    - 2015-01-01
+  - 2014-12-25
+  - 2014-12-26
+  - 2014-12-31
+  - 2015-01-01
   slots:
     sat:
-      - 1400-1600
+    - 1400-1600
     sun:
-      - 1400-1600
+    - 1400-1600
     fri:
-      - 1400-1600      
+    - 1400-1600
 Wetherby:
   nomis_id: WYI
   enabled: true
-  phone: '01937 544207'
+  phone: 01937 544207
   email: pvb.wetherby@maildrop.dsd.io
   address:
-    - 'York Road'
-    - 'LS22 5ED '
+  - York Road
+  - 'LS22 5ED '
   unbookable:
-    - 2014-12-25
+  - 2014-12-25
   slots:
     sat:
-      - 0945-1145
-      - 1415-1615
+    - 0945-1145
+    - 1415-1615
     sun:
-      - 1415-1615
+    - 1415-1615
     wed:
-      - 1400-1600
+    - 1400-1600
 Erlestoke:
   nomis_id: EEI
   enabled: true
-  phone: '01380 814264'
+  phone: 01380 814264
   email: pvb.erlestoke@maildrop.dsd.io
   address:
-    - DEVIZES
-    - 'SN10 5TU'
+  - DEVIZES
+  - SN10 5TU
   unbookable:
-    - 2014-12-25
+  - 2014-12-25
   slots:
     sat:
-      - 0900-1130
-      - 1315-1600
+    - 0900-1130
+    - 1315-1600
     thu:
-      - 1315-1600
+    - 1315-1600
     fri:
-      - 1315-1600
+    - 1315-1600
 Chelmsford:
   nomis_id: CDI
   enabled: true
-  phone: '01245 552265'
+  phone: 01245 552265
   email: pvb.chelmsford@maildrop.dsd.io
   address:
-    - '200 Springfield Road'
-    - 'CM2 6LQ '
+  - 200 Springfield Road
+  - 'CM2 6LQ '
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
+  - 2014-12-25
+  - 2014-12-26
   slots:
     mon:
-      - 1415-1600
+    - 1415-1600
     sat:
-      - 0900-1100
-      - 1415-1600
+    - 0900-1100
+    - 1415-1600
     sun:
-      - 0900-1100
-      - 1415-1600
+    - 0900-1100
+    - 1415-1600
     thu:
-      - 1415-1600
+    - 1415-1600
     tue:
-      - 1415-1600
+    - 1415-1600
     wed:
-      - 1415-1600
+    - 1415-1600
 Stocken:
   nomis_id: SKI
   enabled: true
-  phone: '01780 795156'
+  phone: 01780 795156
   email: pvb.stocken@maildrop.dsd.io
   address:
-    - 'Stocken Hall Road'
-    - 'LE15 7RD'
+  - Stocken Hall Road
+  - LE15 7RD
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
-    - 2015-01-01
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
   slots:
     fri:
-      - 1345-1545
+    - 1345-1545
     sat:
-      - 0915-1115
-      - 1345-1545
+    - 0915-1115
+    - 1345-1545
     sun:
-      - 0915-1115
-      - 1345-1545
+    - 0915-1115
+    - 1345-1545
     wed:
-      - 1345-1545
+    - 1345-1545
 Dartmoor:
   nomis_id: DAI
   enabled: true
-  phone: '01822 322022'
-  email: "pvb.dartmoor@maildrop.dsd.io"
+  phone: 01822 322022
+  email: pvb.dartmoor@maildrop.dsd.io
   address:
-    - Princetown
-    - 'PL20 6RR'
-  lead_days: 4  
+  - Princetown
+  - PL20 6RR
+  lead_days: 4
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
-    - 2015-01-01
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
   slots:
     tue:
-      - 1400-1600
+    - 1400-1600
     sat:
-      - 1400-1600
+    - 1400-1600
     sun:
-      - 1400-1600
+    - 1400-1600
     thu:
-      - 1400-1600
+    - 1400-1600
     wed:
-      - 1400-1600
-'Low Newton':
+    - 1400-1600
+Low Newton:
   nomis_id: LNI
   enabled: true
-  phone: '0191 376 4147'
+  phone: 0191 376 4147
   email: pvb.lownewton@maildrop.dsd.io
   address:
-    - Brasside
-    - 'DH1 5YA'
+  - Brasside
+  - DH1 5YA
   unbookable:
-    - 2014-12-25
+  - 2014-12-25
   slots:
     fri:
-      - 1415-1545
+    - 1415-1545
     sat:
-      - 1400-1545
+    - 1400-1545
     sun:
-      - 1400-1545
+    - 1400-1545
     thu:
-      - 1415-1545
+    - 1415-1545
     tue:
-      - 1415-1545
+    - 1415-1545
 Aylesbury:
   nomis_id: AYI
   enabled: true
-  phone: '01296 444099'
+  phone: 01296 444099
   email: pvb.aylesbury@maildrop.dsd.io
   address:
-    - 'Bierton Road'
-    - 'HP20 1EH'
+  - Bierton Road
+  - HP20 1EH
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
-    - 2015-01-01
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
   slots:
     mon:
-      - 1415-1615
+    - 1415-1615
     sat:
-      - 1400-1535
+    - 1400-1535
     sun:
-      - 1400-1535
+    - 1400-1535
     thu:
-      - 1415-1615
+    - 1415-1615
     wed:
-      - 1415-1615
+    - 1415-1615
 Isle of Wight - Albany:
   nomis_id: ALI
   enabled: true
-  phone: '01983 634218'
-  email: "pvb.albany@maildrop.dsd.io"
+  phone: 01983 634218
+  email: pvb.albany@maildrop.dsd.io
   address:
-    - '55 Parkhurst Road'
-    - 'PO30 5RS'
+  - 55 Parkhurst Road
+  - PO30 5RS
   unbookable:
-    - 2014-12-25
+  - 2014-12-25
   slots:
     fri:
-      - 1400-1600
+    - 1400-1600
     mon:
-      - 1400-1600
+    - 1400-1600
     sat:
-      - 1400-1600
+    - 1400-1600
     sun:
-      - 1400-1600
-'Blantyre House':
+    - 1400-1600
+Blantyre House:
   nomis_id: BHI
   enabled: false
   reason: it_issues
-  phone: ""
+  phone: ''
   email: pvb.blantyrehouse@maildrop.dsd.io
   address:
-    - Goudhurst
-    - 'TN17 2NH'
+  - Goudhurst
+  - TN17 2NH
   unbookable:
-    - 2014-12-25
+  - 2014-12-25
   slots:
     sat:
-      - 1345-1600
+    - 1345-1600
     sun:
-      - 1345-1600
+    - 1345-1600
     wed:
-      - 1345-1600
+    - 1345-1600
 Brixton:
   nomis_id: BXI
   enabled: true
-  phone: '0208 678 1433'
+  phone: 0208 678 1433
   email: pvb.brixton@maildrop.dsd.io
   address:
-    - 'Jebb Avenue'
-    - 'SW2 5XF'
+  - Jebb Avenue
+  - SW2 5XF
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
-    - 2015-01-01
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
   slots:
     sat:
-      - 0900-1015
-      - 1045-1200
-      - 1345-1500
-      - 1530-1645
+    - 0900-1015
+    - 1045-1200
+    - 1345-1500
+    - 1530-1645
     sun:
-      - 1345-1645
+    - 1345-1645
     thu:
-      - 0830-1000
-      - 1030-1145
-      - 1315-1430
-      - 1500-1615
+    - 0830-1000
+    - 1030-1145
+    - 1315-1430
+    - 1500-1615
     tue:
-      - 0830-1000
-      - 1030-1145
-      - 1315-1430
-      - 1500-1615
+    - 0830-1000
+    - 1030-1145
+    - 1315-1430
+    - 1500-1615
   slot_anomalies:
     2014-08-12:
-      - 0830-1145
-      - 1315-1615
+    - 0830-1145
+    - 1315-1615
     2014-08-14:
-      - 0830-1145
-      - 1315-1615
+    - 0830-1145
+    - 1315-1615
     2014-08-16:
-      - 0900-1200
-      - 1345-1645
+    - 0900-1200
+    - 1345-1645
     2014-08-17:
-      - 1345-1645
+    - 1345-1645
     2014-09-09:
-      - 0830-1145
-      - 1315-1615
+    - 0830-1145
+    - 1315-1615
     2014-09-11:
-      - 0830-1145
-      - 1315-1615
+    - 0830-1145
+    - 1315-1615
     2014-09-13:
-      - 0900-1200
-      - 1345-1645
+    - 0900-1200
+    - 1345-1645
     2014-09-14:
-      - 1345-1645
+    - 1345-1645
     2014-10-07:
-      - 0830-1145
-      - 1315-1615
+    - 0830-1145
+    - 1315-1615
     2014-10-09:
-      - 0830-1145
-      - 1315-1615
+    - 0830-1145
+    - 1315-1615
     2014-10-11:
-      - 0900-1200
-      - 1345-1645
+    - 0900-1200
+    - 1345-1645
     2014-10-12:
-      - 1345-1645
+    - 1345-1645
     2014-11-04:
-      - 0830-1145
-      - 1315-1615
+    - 0830-1145
+    - 1315-1615
     2014-11-06:
-      - 0830-1145
-      - 1315-1615
+    - 0830-1145
+    - 1315-1615
     2014-11-08:
-      - 0900-1200
-      - 1345-1645
+    - 0900-1200
+    - 1345-1645
     2014-11-09:
-      - 1345-1645
+    - 1345-1645
     2014-12-02:
-      - 0830-1145
-      - 1315-1615
+    - 0830-1145
+    - 1315-1615
     2014-12-04:
-      - 0830-1145
-      - 1315-1615
+    - 0830-1145
+    - 1315-1615
     2014-12-06:
-      - 0900-1200
-      - 1345-1645
+    - 0900-1200
+    - 1345-1645
     2014-12-07:
-      - 1345-1645
+    - 1345-1645
     2014-12-30:
-      - 0830-1145
-      - 1315-1615
+    - 0830-1145
+    - 1315-1615
     2015-01-01:
-      - 0830-1145
-      - 1315-1615
+    - 0830-1145
+    - 1315-1615
     2015-01-03:
-      - 0900-1200
-      - 1345-1645
+    - 0900-1200
+    - 1345-1645
     2015-01-04:
-      - 1345-1645
+    - 1345-1645
 Downview:
   nomis_id: DWI
   enabled: false
   reason: coming_soon
-  phone: '0208 196 6359'
+  phone: 0208 196 6359
   email: pvb.downview@maildrop.dsd.io
   address:
-    - 'Sutton Lane'
-    - 'SM2 5PD'
+  - Sutton Lane
+  - SM2 5PD
   unbookable:
-    - 2014-12-25
+  - 2014-12-25
   slots:
     sat:
-      - 1330-1530
+    - 1330-1530
     sun:
-      - 1330-1530
+    - 1330-1530
     thu:
-      - 1400-1600
-'East Sutton Park':
+    - 1400-1600
+East Sutton Park:
   nomis_id: ESI
   enabled: false
   reason: coming_soon
-  phone: ""
+  phone: ''
   email: pvb.eastsuttonpark@maildrop.dsd.io
   address:
-    - 'Sutton Valence'
-    - 'ME17 3DF '
+  - Sutton Valence
+  - 'ME17 3DF '
   unbookable:
-    - 2014-12-25
+  - 2014-12-25
   slots:
     sat:
-      - 1330-1530
+    - 1330-1530
     sun:
-      - 1330-1530
+    - 1330-1530
 Elmley:
   nomis_id: EYI
   enabled: true
-  phone: '0300 060 6605'
+  phone: 0300 060 6605
   email: pvb.sheppeycluster-elmley@maildrop.dsd.io
   finder_slug: sheppey-cluster-elmley
   address:
-    - 'Church Road'
-    - 'ME12 4DZ '
+  - Church Road
+  - 'ME12 4DZ '
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
+  - 2014-12-25
+  - 2014-12-26
   slots:
     mon:
-      - 1400-1530
+    - 1400-1530
     fri:
-      - 1400-1530
+    - 1400-1530
     sat:
-      - 1400-1530
+    - 1400-1530
     sun:
-      - 1400-1530
+    - 1400-1530
     thu:
-      - 1400-1530
+    - 1400-1530
     tue:
-      - 1400-1530
+    - 1400-1530
     wed:
-      - 1400-1530
+    - 1400-1530
 Everthorpe:
   nomis_id: EVI
   enabled: true
-  phone: '01430 426505'
+  phone: 01430 426505
   email: pvb.everthorpe@maildrop.dsd.io
   address:
-    - '1a Beck Road'
-    - 'HU15 1RB'
+  - 1a Beck Road
+  - HU15 1RB
   unbookable:
-    - 2014-12-25
+  - 2014-12-25
   slots:
     fri:
-      - 1415-1615
+    - 1415-1615
     mon:
-      - 1415-1615
+    - 1415-1615
     sat:
-      - 1400-1600
+    - 1400-1600
     sun:
-      - 0930-1130
-      - 1400-1600
+    - 0930-1130
+    - 1400-1600
     thu:
-      - 1415-1615
+    - 1415-1615
 Wolds:
   nomis_id: WOI
   enabled: true
-  phone: '01430 426505'
+  phone: 01430 426505
   email: pvb.everthorpe@maildrop.dsd.io
   address:
-    - Everthorpe
-    - HU15 2JZ
+  - Everthorpe
+  - HU15 2JZ
   unbookable:
-    - 2014-12-25
+  - 2014-12-25
   slots:
     fri:
-      - 1415-1615
+    - 1415-1615
     sun:
-      - 1400-1600
+    - 1400-1600
     wed:
-      - 1415-1615
+    - 1415-1615
     thu:
-      - 1415-1615
-    sat: 
-      - 1400-1600
-'Glen Parva':
+    - 1415-1615
+    sat:
+    - 1400-1600
+Glen Parva:
   nomis_id: GPI
   enabled: true
-  phone: '0116 228 4366'
+  phone: 0116 228 4366
   email: pvb.glenparva@maildrop.dsd.io
   address:
-    - 'Tigers Road'
-    - 'LE8 4TN '
+  - Tigers Road
+  - 'LE8 4TN '
   unbookable:
-    - 2014-12-25
-    - 2015-01-01
+  - 2014-12-25
+  - 2015-01-01
   slots:
     mon:
-      - 1400-1545
+    - 1400-1545
     sat:
-      - 1400-1545
+    - 1400-1545
     sun:
-      - 1400-1545
+    - 1400-1545
     thu:
-      - 1400-1545
+    - 1400-1545
     tue:
-      - 1400-1545
+    - 1400-1545
     wed:
-      - 1400-1545
+    - 1400-1545
 Grendon:
   nomis_id: GNI
   enabled: true
-  phone: ""
+  phone: ''
   email: pvb.grendon@maildrop.dsd.io
   address:
-    - 'Grendon Underwood'
-    - 'HP18 0TL'
+  - Grendon Underwood
+  - HP18 0TL
   unbookable:
-    - 2014-12-25
+  - 2014-12-25
   slots:
     sat:
-      - 1345-1545
+    - 1345-1545
     sun:
-      - 1345-1545
+    - 1345-1545
     wed:
-      - 1400-1600
+    - 1400-1600
   slot_anomalies:
     2014-12-29:
-      - 1330-1545
-'Guys Marsh':
+    - 1330-1545
+Guys Marsh:
   nomis_id: GMI
   enabled: true
-  phone: '01747 856586'
+  phone: 01747 856586
   email: pvb.guysmarsh@maildrop.dsd.io
   address:
-    - SHAFTESBURY
-    - 'SP7 0AH '
+  - SHAFTESBURY
+  - 'SP7 0AH '
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
-    - 2014-12-31
-    - 2015-01-01
-    - 2014-12-24
+  - 2014-12-24
+  - 2014-12-25
+  - 2014-12-26
+  - 2014-12-31
+  - 2015-01-01
   slots:
     fri:
-      - 1330-1545
+    - 1330-1545
     sat:
-      - 1330-1545
+    - 1330-1545
     sun:
-      - 1330-1545
+    - 1330-1545
   slot_anomalies:
     2014-12-29:
-      - 1330-1545
+    - 1330-1545
 Hatfield Open:
   nomis_id: HDI
   enabled: true
-  phone: '01405 746611'
+  phone: 01405 746611
   email: pvb.hatfieldmoorlandopen@maildrop.dsd.io
   finder_slug: hatfield
   address:
-    - 'Thorne Road'
-    - 'DN7 6El'
+  - Thorne Road
+  - DN7 6El
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
-    - 2015-01-01
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
   slots:
     thu:
-      - 1400-1600
+    - 1400-1600
     sat:
-      - 1400-1600
+    - 1400-1600
     sun:
-      - 1400-1600
+    - 1400-1600
   slot_anomalies:
     2014-12-24:
-      - 1400-1600
+    - 1400-1600
     2014-12-31:
-      - 1400-1600
+    - 1400-1600
 Haverigg:
   nomis_id: HVI
   enabled: true
-  phone: '01229713016'
+  phone: 01229713016
   email: pvb.haverigg@maildrop.dsd.io
   address:
-    - MILLOM
-    - 'LA18 4NA '
+  - MILLOM
+  - 'LA18 4NA '
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
+  - 2014-12-25
+  - 2014-12-26
   slots:
     fri:
-      - 1400-1545
+    - 1400-1545
     mon:
-      - 1400-1545
+    - 1400-1545
     sat:
-      - 1400-1545
+    - 1400-1545
     sun:
-      - 1400-1545
+    - 1400-1545
     thu:
-      - 1400-1545
+    - 1400-1545
     wed:
-      - 1400-1545
-'High Down':
+    - 1400-1545
+High Down:
   nomis_id: HOI
   enabled: true
   phone: 020 7147 6570
   email: pvb.highdown@maildrop.dsd.io
   address:
-    - 'Sutton Lane'
-    - 'SM2 5PJ '
+  - Sutton Lane
+  - 'SM2 5PJ '
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
+  - 2014-12-25
+  - 2014-12-26
   slots:
     sat:
-      - 1400-1600
+    - 1400-1600
     sun:
-      - 1400-1600
+    - 1400-1600
     thu:
-      - 1400-1600
+    - 1400-1600
     tue:
-      - 1400-1600
+    - 1400-1600
     wed:
-      - 1400-1600
+    - 1400-1600
 Highpoint North:
   nomis_id: HPI
   enabled: true
   phone: 01440 743134
   email: pvb.highpointnorth@maildrop.dsd.io
   address:
-    - Stradishall
-    - 'CB8 9YG '
+  - Stradishall
+  - 'CB8 9YG '
   unbookable:
-    - 2014-12-25
+  - 2014-12-25
   slots:
     fri:
-      - 1430-1630
+    - 1430-1630
     sat:
-      - 1400-1600
+    - 1400-1600
     sun:
-      - 1400-1600
+    - 1400-1600
 Highpoint South:
   nomis_id: HPI
   enabled: true
   phone: 01440 743134
   email: pvb.highpointnorth@maildrop.dsd.io
   address:
-    - Stradishall
-    - 'CB8 9YG '
+  - Stradishall
+  - 'CB8 9YG '
   unbookable:
-    - 2014-12-25
+  - 2014-12-25
   slots:
     fri:
-      - 1430-1630
+    - 1430-1630
     mon:
-      - 1400-1600
+    - 1400-1600
     sat:
-      - 1400-1600
+    - 1400-1600
     sun:
-      - 0900-1100
-      - 1400-1600
-'Holme House':
+    - 0900-1100
+    - 1400-1600
+Holme House:
   nomis_id: HHI
   enabled: true
-  phone: '03000 606602'
+  phone: 03000 606602
   email: pvb.holmehouse@maildrop.dsd.io
   address:
-    - 'Holme House Road'
-    - 'S18 2QU'
+  - Holme House Road
+  - S18 2QU
   unbookable:
-    - 2014-12-25
+  - 2014-12-25
   slots:
     fri:
-      - 1345-1545
+    - 1345-1545
     sat:
-      - 0845-1130
-      - 1345-1530
+    - 0845-1130
+    - 1345-1530
     sun:
-      - 0845-1130
-      - 1345-1530
+    - 0845-1130
+    - 1345-1530
     thu:
-      - 1345-1545
+    - 1345-1545
     tue:
-      - 1340-1545
+    - 1340-1545
     wed:
-      - 1345-1545
+    - 1345-1545
     mon:
-      - 1345-1545
+    - 1345-1545
 Hull:
   nomis_id: HLI
   enabled: false
   reason: coming_soon
-  phone: '01482 282016'
+  phone: 01482 282016
   email: pvb.hull@maildrop.dsd.io
   address:
-    - 'Hedon Road'
-    - 'HU9 5LS '
+  - Hedon Road
+  - 'HU9 5LS '
   unbookable:
-    - 2014-12-25
+  - 2014-12-25
   slots:
     fri:
-      - 0930-1130
-      - 1345-1545
+    - 0930-1130
+    - 1345-1545
     mon:
-      - 0930-1130
-      - 1345-1545
+    - 0930-1130
+    - 1345-1545
     sat:
-      - 0930-1130
-      - 1345-1545
+    - 0930-1130
+    - 1345-1545
     sun:
-      - 0930-1130
-      - 1345-1545
+    - 0930-1130
+    - 1345-1545
 Huntercombe:
   nomis_id: HCI
   enabled: true
   phone: 01491 643151
   email: pvb.huntercombe@maildrop.dsd.io
   address:
-    - 'Huntercombe Place'
-    - 'RG9 5SB '
+  - Huntercombe Place
+  - 'RG9 5SB '
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
-    - 2014-12-31
+  - 2014-12-25
+  - 2014-12-26
+  - 2014-12-31
   slots:
     mon:
-      - 1345-1615
+    - 1345-1615
     sat:
-      - 1345-1615
+    - 1345-1615
     sun:
-      - 1345-1615
+    - 1345-1615
     thu:
-      - 1345-1615
+    - 1345-1615
   slot_anomalies:
     2014-12-22:
-      - 1345-1600
+    - 1345-1600
     2014-12-24:
-      - 1345-1600
+    - 1345-1600
     2014-12-29:
-      - 1345-1600
+    - 1345-1600
     2015-01-02:
-      - 1345-1600
+    - 1345-1600
 Isle of Wight - Parkhurst:
   nomis_id: IWI
   enabled: true
-  phone: '01983 634218'
+  phone: 01983 634218
   email: pvb.isleofwight-parkhurst@maildrop.dsd.io
   address:
-    - 'Clissold Road '
-    - 'PO30 5RS '
+  - 'Clissold Road '
+  - 'PO30 5RS '
   unbookable:
-    - 2014-12-25
+  - 2014-12-25
   slots:
     fri:
-      - 1400-1600
+    - 1400-1600
     mon:
-      - 1400-1600
+    - 1400-1600
     sat:
-      - 1400-1600
+    - 1400-1600
     sun:
-      - 1400-1600
+    - 1400-1600
 Leeds:
   nomis_id: LEI
   enabled: true
-  phone: '0113 203 2995'
+  phone: 0113 203 2995
   email: pvb.leeds@maildrop.dsd.io
   address:
-    - 'Gloucester Terrace'
-    - 'LS12 2TJ '
+  - Gloucester Terrace
+  - 'LS12 2TJ '
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
-    - 2015-01-01
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
   slots:
     fri:
-      - 1030-1130
-      - 1400-1500
-      - 1530-1630
+    - 1030-1130
+    - 1400-1500
+    - 1530-1630
     mon:
-      - 1030-1130
-      - 1400-1500
-      - 1530-1630
+    - 1030-1130
+    - 1400-1500
+    - 1530-1630
     sat:
-      - 0900-1000
-      - 1030-1130
-      - 1400-1500
-      - 1530-1630
+    - 0900-1000
+    - 1030-1130
+    - 1400-1500
+    - 1530-1630
     sun:
-      - 0900-1000
-      - 1030-1130
-      - 1400-1500
-      - 1530-1630
+    - 0900-1000
+    - 1030-1130
+    - 1400-1500
+    - 1530-1630
     thu:
-      - 1030-1130
-      - 1400-1500
-      - 1530-1630
+    - 1030-1130
+    - 1400-1500
+    - 1530-1630
     tue:
-      - 1030-1130
-      - 1400-1500
-      - 1530-1630
+    - 1030-1130
+    - 1400-1500
+    - 1530-1630
     wed:
-      - 1030-1130
-      - 1400-1500
-      - 1530-1630
-'New Hall':
+    - 1030-1130
+    - 1400-1500
+    - 1530-1630
+New Hall:
   nomis_id: NHI
   enabled: true
-  phone: '01924 803219'
+  phone: 01924 803219
   email: pvb.newhall@maildrop.dsd.io
   address:
-    - 'Dial Wood'
-    - 'WF4 4XX'
+  - Dial Wood
+  - WF4 4XX
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
-    - 2015-01-01
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
   slots:
     sat:
-      - 1400-1600
+    - 1400-1600
     sun:
-      - 1400-1600
+    - 1400-1600
     thu:
-      - 1400-1600
+    - 1400-1600
     tue:
-      - 1400-1600
+    - 1400-1600
     wed:
-      - 1400-1600
+    - 1400-1600
 Nottingham:
   nomis_id: NMI
   enabled: true
-  phone: '0115 962 8980'
+  phone: 0115 962 8980
   email: pvb.nottingham@maildrop.dsd.io
   address:
-    - 'Perry Road'
-    - 'NG5 3AG '
+  - Perry Road
+  - 'NG5 3AG '
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
-    - 2015-01-01
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
   slots:
     fri:
-      - 0900-1100
-      - 1400-1600
+    - 0900-1100
+    - 1400-1600
     sat:
-      - 0900-1100
-      - 1400-1600
+    - 0900-1100
+    - 1400-1600
     sun:
-      - 0900-1100
-      - 1400-1600
+    - 0900-1100
+    - 1400-1600
     thu:
-      - 0900-1100
-      - 1400-1600
+    - 0900-1100
+    - 1400-1600
     tue:
-      - 0900-1100
-      - 1400-1600
+    - 0900-1100
+    - 1400-1600
 Send:
   nomis_id: SDI
   enabled: true
-  phone: '01483 471033'
+  phone: 01483 471033
   email: pvb.send@maildrop.dsd.io
   address:
-    - 'Ripley Road'
-    - 'GU23 7LJ '
+  - Ripley Road
+  - 'GU23 7LJ '
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
-    - 2014-12-31
-    - 2015-01-01
+  - 2014-12-25
+  - 2014-12-26
+  - 2014-12-31
+  - 2015-01-01
   slots:
     sat:
-      - 1415-1615
+    - 1415-1615
     sun:
-      - 1415-1615
+    - 1415-1615
     thu:
-      - 1415-1615
+    - 1415-1615
   slot_anomalies:
     2014-12-22:
-      - 1415-1615
+    - 1415-1615
     2014-12-30:
-      - 1415-1615
+    - 1415-1615
 Styal:
   nomis_id: STI
   enabled: true
-  phone: '01625553195'
+  phone: 01625553195
   email: pvb.styal@maildrop.dsd.io
   address:
-    - WILMSLOW
-    - 'SK9 4HR '
+  - WILMSLOW
+  - 'SK9 4HR '
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
-    - 2015-01-01
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
   slots:
     mon:
-      - 1345-1545
+    - 1345-1545
     sat:
-      - 1345-1545
+    - 1345-1545
     sun:
-      - 1345-1545
+    - 1345-1545
     thu:
-      - 1345-1545
+    - 1345-1545
     tue:
-      - 1345-1545
+    - 1345-1545
     wed:
-      - 1345-1545
+    - 1345-1545
 Swaleside:
   nomis_id: SLI
   enabled: true
-  phone: '0300 060 6604'
+  phone: 0300 060 6604
   email: pvb.swaleside@maildrop.dsd.io
   address:
-    - 'Brabazon Road'
-    - 'ME12 4AX'
+  - Brabazon Road
+  - ME12 4AX
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
+  - 2014-12-25
+  - 2014-12-26
   slots:
     mon:
-      - 1400-1600
+    - 1400-1600
     sat:
-      - 1330-1530
+    - 1330-1530
     sun:
-      - 1330-1530
+    - 1330-1530
     thu:
-      - 1400-1600
+    - 1400-1600
     tue:
-      - 1400-1600
+    - 1400-1600
     wed:
-      - 1400-1600
-'Norwich (A, B, C, E, M only)':
+    - 1400-1600
+Norwich (A, B, C, E, M only):
   nomis_id: NWI
   enabled: true
-  phone: '01603 708795'
+  phone: 01603 708795
   email: pvb.norwich@maildrop.dsd.io
   finder_slug: norwich
   address:
-    - 'Knox Road'
-    - 'NR1 4LU '
+  - Knox Road
+  - 'NR1 4LU '
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
+  - 2014-12-25
+  - 2014-12-26
   slots:
     tue:
-      - 0930-1130
+    - 0930-1130
     wed:
-      - 1415-1615
+    - 1415-1615
     thu:
-      - 0930-1130
+    - 0930-1130
     sat:
-      - 1415-1615
+    - 1415-1615
     sun:
-      - 0930-1130
-'Norwich (F, G, H, L only)':
+    - 0930-1130
+Norwich (F, G, H, L only):
   nomis_id: NWI
   enabled: true
-  phone: '01603 708795'
+  phone: 01603 708795
   email: pvb.norwich@maildrop.dsd.io
   finder_slug: norwich
   address:
-    - 'Knox Road'
-    - 'NR1 4LU '
+  - Knox Road
+  - 'NR1 4LU '
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
+  - 2014-12-25
+  - 2014-12-26
   slots:
     tue:
-      - 1415-1615
+    - 1415-1615
     thu:
-      - 1415-1615
+    - 1415-1615
     sat:
-      - 0930-1130
+    - 0930-1130
     sun:
-      - 1415-1615
-'Norwich (Britannia House)':
+    - 1415-1615
+Norwich (Britannia House):
   nomis_id: NWI
   enabled: true
-  phone: '01603 708795'
+  phone: 01603 708795
   email: pvb.norwich@maildrop.dsd.io
   finder_slug: norwich
   address:
-    - 'Knox Road'
-    - 'NR1 4LU'
+  - Knox Road
+  - NR1 4LU
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
+  - 2014-12-25
+  - 2014-12-26
   slots:
     mon:
-      - 0930-1130
-      - 1400-1600
+    - 0930-1130
+    - 1400-1600
     tue:
-      - 0930-1130
-      - 1400-1600
+    - 0930-1130
+    - 1400-1600
     wed:
-      - 0930-1130
-      - 1400-1600
+    - 0930-1130
+    - 1400-1600
     thu:
-      - 0930-1130
-      - 1400-1600
-    fri: 
-      - 0930-1130
-      - 1400-1600
+    - 0930-1130
+    - 1400-1600
+    fri:
+    - 0930-1130
+    - 1400-1600
     sat:
-      - 0930-1130
-      - 1400-1600
+    - 0930-1130
+    - 1400-1600
     sun:
-      - 0930-1130
-      - 1400-1600
-'Standford Hill':
+    - 0930-1130
+    - 1400-1600
+Standford Hill:
   nomis_id: EHI
   enabled: true
-  phone: '0300 060 6603'
+  phone: 0300 060 6603
   email: pvb.standfordhill@maildrop.dsd.io
   finder_slug: sheppey-cluster-standford-hill
   address:
-    - 'Church Road'
-    - 'ME12 4AA '
+  - Church Road
+  - 'ME12 4AA '
   unbookable:
-    - 2014-12-25
+  - 2014-12-25
   slots:
     wed:
-      - 1345-1545
+    - 1345-1545
     sat:
-      - 1345-1545
+    - 1345-1545
     sun:
-      - 1345-1545
+    - 1345-1545
 Liverpool Social Visits:
   nomis_id: LPI
   enabled: true
-  phone: '0151 530 4050'
+  phone: 0151 530 4050
   email: pvb.liverpool@maildrop.dsd.io
   finder_slug: liverpool
   address:
-    - '68 Hornby Road'
-    - 'L9 3DF'
+  - 68 Hornby Road
+  - L9 3DF
   unbookable:
-    - 2014-12-25
-    - 2014-08-12
-    - 2014-09-17
-    - 2014-10-14
-    - 2014-10-23
-    - 2014-12-16
-    - 2014-11-11
-    - 2014-12-10
-    - 2014-12-25
-    - 2014-12-26
-    - 2015-01-22
-    - 2015-02-10
-    - 2015-03-16
+  - 2014-08-12
+  - 2014-09-17
+  - 2014-10-14
+  - 2014-10-23
+  - 2014-11-11
+  - 2014-12-10
+  - 2014-12-16
+  - 2014-12-25
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-22
+  - 2015-02-10
+  - 2015-03-16
   slots:
     fri:
-      - 0905-1005
-      - 1030-1130
-      - 1355-1455
-      - 1525-1625
+    - 0905-1005
+    - 1030-1130
+    - 1355-1455
+    - 1525-1625
     mon:
-      - 1355-1455
-      - 1525-1625
+    - 1355-1455
+    - 1525-1625
     sat:
-      - 0900-1000
-      - 1030-1130
-      - 1350-1450
-      - 1515-1615
+    - 0900-1000
+    - 1030-1130
+    - 1350-1450
+    - 1515-1615
     sun:
-      - 0900-1000
-      - 1030-1130
-      - 1350-1450
-      - 1515-1615
+    - 0900-1000
+    - 1030-1130
+    - 1350-1450
+    - 1515-1615
     thu:
-      - 0905-1005
-      - 1030-1130
-      - 1355-1455
-      - 1525-1625
+    - 0905-1005
+    - 1030-1130
+    - 1355-1455
+    - 1525-1625
     tue:
-      - 1355-1455
-      - 1525-1625
+    - 1355-1455
+    - 1525-1625
     wed:
-      - 0905-1005
-      - 1030-1130
-      - 1355-1455
-      - 1525-1625
+    - 0905-1005
+    - 1030-1130
+    - 1355-1455
+    - 1525-1625
 Liverpool (Closed only):
   nomis_id: LPI
   enabled: true
-  phone: '0151 530 4050'
+  phone: 0151 530 4050
   email: pvb.liverpool@maildrop.dsd.io
   finder_slug: liverpool
   address:
-    - '68 Hornby Road'
-    - 'L9 3DF'
+  - 68 Hornby Road
+  - L9 3DF
   unbookable:
-    - 2014-12-25
-    - 2014-08-12
-    - 2014-09-17
-    - 2014-10-14
-    - 2014-10-23
-    - 2014-12-16
-    - 2014-12-25
-    - 2014-12-26
-    - 2014-11-11
-    - 2014-12-10
-    - 2015-01-22
-    - 2015-02-10
-    - 2015-03-16
+  - 2014-08-12
+  - 2014-09-17
+  - 2014-10-14
+  - 2014-10-23
+  - 2014-11-11
+  - 2014-12-10
+  - 2014-12-16
+  - 2014-12-25
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-22
+  - 2015-02-10
+  - 2015-03-16
   slots:
     mon:
-      - 1025-1125
+    - 1025-1125
     tue:
-      - 1025-1125 
+    - 1025-1125
 Bullingdon (Convicted Only):
   nomis_id: BNI
   enabled: true
-  phone: '01869 353176'
+  phone: 01869 353176
   email: pvb.bullingdon@maildrop.dsd.io
   finder_slug: bullingdon
   address:
-    - Bicester
-    - 'OX25 1PZ'
+  - Bicester
+  - OX25 1PZ
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
+  - 2014-12-25
+  - 2014-12-26
   slots:
     mon:
-      - 1400-1610
+    - 1400-1610
     sat:
-      - 1400-1610
+    - 1400-1610
     sun:
-      - 1400-1610
+    - 1400-1610
     thu:
-      - 1400-1610
+    - 1400-1610
     tue:
-      - 1400-1610
+    - 1400-1610
     wed:
-      - 1400-1610
+    - 1400-1610
 Bullingdon (Remand Only):
   nomis_id: BNI
   enabled: true
-  phone: '01869 353176'
+  phone: 01869 353176
   email: pvb.bullingdon@maildrop.dsd.io
   finder_slug: bullingdon
   address:
-    - Bicester
-    - 'OX25 1PZ'
+  - Bicester
+  - OX25 1PZ
   unbookable:
-    - 2014-12-25
+  - 2014-12-25
   slots:
     mon:
-      - 1400-1610
+    - 1400-1610
     sat:
-      - 1400-1610
+    - 1400-1610
     thu:
-      - 1400-1610
+    - 1400-1610
     tue:
-      - 1400-1610
+    - 1400-1610
 Hindley (Young People 15-18 only):
   nomis_id: HII
   enabled: true
-  phone: '01942 663492'
+  phone: 01942 663492
   email: pvb.hindley@maildrop.dsd.io
   finder_slug: hindley
   address:
-    - Gibson Street
-    - WN2 5TH
+  - Gibson Street
+  - WN2 5TH
   unbookable:
-    - 2014-07-05
-    - 2014-07-19
-    - 2014-08-02
-    - 2014-08-16
-    - 2014-08-30
-    - 2014-09-13
-    - 2014-09-27
-    - 2014-10-11
-    - 2014-10-25
-    - 2014-11-08
-    - 2014-11-22
-    - 2014-12-06
-    - 2014-12-20
-    - 2015-01-03
-    - 2015-01-17
-    - 2015-01-31
-    - 2015-02-14
-    - 2015-02-28
-    - 2015-03-14
-    - 2015-03-28
-    - 2015-04-11
-    - 2015-04-25
-    - 2015-05-09
-    - 2015-05-23
-    - 2015-06-06
-    - 2014-12-25
-    - 2014-06-29
-    - 2014-07-13
-    - 2014-07-27
-    - 2014-08-10
-    - 2014-08-24
-    - 2014-09-07
-    - 2014-09-21
-    - 2014-10-05
-    - 2014-10-19
-    - 2014-11-02
-    - 2014-11-16
-    - 2014-11-30
-    - 2014-12-14
-    - 2014-12-28
-    - 2015-01-11
-    - 2015-01-25
-    - 2015-02-08
-    - 2015-02-22
-    - 2015-03-08
-    - 2015-03-22
-    - 2015-04-05
-    - 2015-04-19
-    - 2015-05-03
-    - 2015-05-17
-    - 2015-05-31
-    - 2014-12-26
-    - 2015-01-01
+  - 2014-06-29
+  - 2014-07-05
+  - 2014-07-13
+  - 2014-07-19
+  - 2014-07-27
+  - 2014-08-02
+  - 2014-08-10
+  - 2014-08-16
+  - 2014-08-24
+  - 2014-08-30
+  - 2014-09-07
+  - 2014-09-13
+  - 2014-09-21
+  - 2014-09-27
+  - 2014-10-05
+  - 2014-10-11
+  - 2014-10-19
+  - 2014-10-25
+  - 2014-11-02
+  - 2014-11-08
+  - 2014-11-16
+  - 2014-11-22
+  - 2014-11-30
+  - 2014-12-06
+  - 2014-12-14
+  - 2014-12-20
+  - 2014-12-25
+  - 2014-12-26
+  - 2014-12-28
+  - 2015-01-01
+  - 2015-01-03
+  - 2015-01-11
+  - 2015-01-17
+  - 2015-01-25
+  - 2015-01-31
+  - 2015-02-08
+  - 2015-02-14
+  - 2015-02-22
+  - 2015-02-28
+  - 2015-03-08
+  - 2015-03-14
+  - 2015-03-22
+  - 2015-03-28
+  - 2015-04-05
+  - 2015-04-11
+  - 2015-04-19
+  - 2015-04-25
+  - 2015-05-03
+  - 2015-05-09
+  - 2015-05-17
+  - 2015-05-23
+  - 2015-05-31
+  - 2015-06-06
   slots:
     mon:
-      - 1400-1600
-    wed: 
-      - 1400-1600
-    fri: 
-      - 1400-1600
+    - 1400-1600
+    wed:
+    - 1400-1600
+    fri:
+    - 1400-1600
     sat:
-      - 1430-1630
-    sun: 
-      - 1430-1630
+    - 1430-1630
+    sun:
+    - 1430-1630
 Hindley (Young Adult 18-21 only):
   nomis_id: HII
   enabled: true
-  phone: '01942 663234'
+  phone: 01942 663234
   email: pvb.hindley@maildrop.dsd.io
   finder_slug: hindley
   address:
-    - Gibson Street
-    - WN2 5TH
+  - Gibson Street
+  - WN2 5TH
   unbookable:
-    - 2014-06-28
-    - 2014-07-12
-    - 2014-07-26
-    - 2014-08-09
-    - 2014-08-23
-    - 2014-09-06
-    - 2014-09-20
-    - 2014-10-04
-    - 2014-10-18
-    - 2014-11-01
-    - 2014-11-15
-    - 2014-11-29
-    - 2014-12-13
-    - 2014-12-27
-    - 2015-01-10
-    - 2015-01-24
-    - 2015-02-07
-    - 2015-02-21
-    - 2015-03-07
-    - 2015-03-21
-    - 2015-04-04
-    - 2015-04-18
-    - 2015-05-02
-    - 2015-05-16
-    - 2015-05-30
-    - 2014-07-06
-    - 2014-07-20
-    - 2014-08-03
-    - 2014-08-17
-    - 2014-08-31
-    - 2014-09-14
-    - 2014-09-28
-    - 2014-10-12
-    - 2014-10-26
-    - 2014-11-09
-    - 2014-11-23
-    - 2014-12-07
-    - 2014-12-21
-    - 2015-01-04
-    - 2015-01-18
-    - 2015-02-01
-    - 2015-02-15
-    - 2015-03-01
-    - 2015-03-15
-    - 2015-03-29
-    - 2015-04-12
-    - 2015-04-26
-    - 2015-05-10
-    - 2015-05-24
-    - 2015-06-07
+  - 2014-06-28
+  - 2014-07-06
+  - 2014-07-12
+  - 2014-07-20
+  - 2014-07-26
+  - 2014-08-03
+  - 2014-08-09
+  - 2014-08-17
+  - 2014-08-23
+  - 2014-08-31
+  - 2014-09-06
+  - 2014-09-14
+  - 2014-09-20
+  - 2014-09-28
+  - 2014-10-04
+  - 2014-10-12
+  - 2014-10-18
+  - 2014-10-26
+  - 2014-11-01
+  - 2014-11-09
+  - 2014-11-15
+  - 2014-11-23
+  - 2014-11-29
+  - 2014-12-07
+  - 2014-12-13
+  - 2014-12-21
+  - 2014-12-27
+  - 2015-01-04
+  - 2015-01-10
+  - 2015-01-18
+  - 2015-01-24
+  - 2015-02-01
+  - 2015-02-07
+  - 2015-02-15
+  - 2015-02-21
+  - 2015-03-01
+  - 2015-03-07
+  - 2015-03-15
+  - 2015-03-21
+  - 2015-03-29
+  - 2015-04-04
+  - 2015-04-12
+  - 2015-04-18
+  - 2015-04-26
+  - 2015-05-02
+  - 2015-05-10
+  - 2015-05-16
+  - 2015-05-24
+  - 2015-05-30
+  - 2015-06-07
   slots:
     tue:
-      - 1400-1600
-    thu: 
-      - 1400-1600
+    - 1400-1600
+    thu:
+    - 1400-1600
     sat:
-      - 1430-1630
-    sun: 
-      - 1430-1630
-'Hollesley Bay Open':
+    - 1430-1630
+    sun:
+    - 1430-1630
+Hollesley Bay Open:
   nomis_id: HBI
   enabled: true
-  phone: ""
+  phone: ''
   email: pvb.hollesleybay@maildrop.dsd.io
   address:
-    - WOODBRIDGE
-    - 'IP12 3JW '
+  - WOODBRIDGE
+  - 'IP12 3JW '
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
-    - 2014-12-31
-    - 2015-01-01
-    - 2014-12-27
-    - 2014-12-28
+  - 2014-12-25
+  - 2014-12-26
+  - 2014-12-27
+  - 2014-12-28
+  - 2014-12-31
+  - 2015-01-01
   slots:
     sat:
-      - 1400-1545
+    - 1400-1545
     sun:
-      - 1400-1545
+    - 1400-1545
 Kennet:
   nomis_id: KTI
   enabled: true
-  phone: '0151 213 3179'
+  phone: 0151 213 3179
   email: pvb.kennet@maildrop.dsd.io
   address:
-    - Parkbourn
-    - 'L31 1HX '
+  - Parkbourn
+  - 'L31 1HX '
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
-    - 2015-01-01
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
   slots:
     sat:
-      - 1400-1500
-      - 1530-1630
+    - 1400-1500
+    - 1530-1630
     sun:
-      - 1400-1500
-      - 1530-1630
+    - 1400-1500
+    - 1530-1630
     thu:
-      - 1830-1930
+    - 1830-1930
     tue:
-      - 1830-1930
+    - 1830-1930
     wed:
-      - 1830-1930
+    - 1830-1930
   slot_anomalies:
     2014-12-24:
-      - 1400-1500
-      - 1530-1630
+    - 1400-1500
+    - 1530-1630
     2014-12-31:
-      - 1400-1500
-      - 1530-1630
+    - 1400-1500
+    - 1530-1630
 Kirkham:
   nomis_id: KMI
   enabled: true
-  phone:
+  phone: 
   email: pvb.kirkham@maildrop.dsd.io
   address:
-    - 'Freckleton Road'
-    - ' Kirkham'
-    - 'PR4 2RN'
+  - Freckleton Road
+  - ' Kirkham'
+  - PR4 2RN
   unbookable:
-    - 2014-12-25
+  - 2014-12-25
   slots:
     fri:
-      - 1300-1530
+    - 1300-1530
     sat:
-      - 1300-1530
+    - 1300-1530
     sun:
-      - 1300-1530
+    - 1300-1530
 Lancaster Farms:
   nomis_id: LFI
   enabled: true
-  phone: '01524 563636'
+  phone: 01524 563636
   email: pvb.lancasterfarms@maildrop.dsd.io
   address:
-    - 'Stone Row Head'
-    - 'LA1 3QZ'
+  - Stone Row Head
+  - LA1 3QZ
   unbookable:
-    - 2014-12-25
+  - 2014-12-25
   slots:
     sat:
-      - 1400-1500
-      - 1530-1630
+    - 1400-1500
+    - 1530-1630
     sun:
-      - 1400-1500
-      - 1530-1630
+    - 1400-1500
+    - 1530-1630
     wed:
-      - 1400-1500
-      - 1530-1630
+    - 1400-1500
+    - 1530-1630
 Lincoln:
   nomis_id: LII
   enabled: true
-  phone: '01522 663172'
+  phone: 01522 663172
   email: pvb.lincoln@maildrop.dsd.io
   address:
-    - 'Greetwell Road'
-    - 'LN2 4BD '
+  - Greetwell Road
+  - 'LN2 4BD '
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
-    - 2015-01-01
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
   slots:
     sat:
-      - 0900-1100
-      - 1400-1600
+    - 0900-1100
+    - 1400-1600
     sun:
-      - 0900-1100
-      - 1400-1600
+    - 0900-1100
+    - 1400-1600
     tue:
-      - 1400-1600
+    - 1400-1600
     wed:
-      - 1400-1600
+    - 1400-1600
     thu:
-      - 1400-1600
+    - 1400-1600
 Lindholme:
   nomis_id: LHI
   enabled: true
-  phone: '01302 524980'
+  phone: 01302 524980
   email: pvb.lindholme@maildrop.dsd.io
   address:
-    - 'Bawtry Road'
-    - 'DN7 6EE '
+  - Bawtry Road
+  - 'DN7 6EE '
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
-    - 2015-01-01
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
   slots:
     mon:
-      - 1730-1900
+    - 1730-1900
     sat:
-      - 1345-1600
+    - 1345-1600
     sun:
-      - 1345-1600
+    - 1345-1600
     thu:
-      - 1730-1900
+    - 1730-1900
     tue:
-      - 1730-1900
+    - 1730-1900
     wed:
-      - 1730-1900
+    - 1730-1900
     fri:
-      - 1730-1900
+    - 1730-1900
   slot_anomalies:
     2014-12-24:
-      - 1345-1600
+    - 1345-1600
     2014-12-31:
-      - 1345-1600
+    - 1345-1600
 Littlehey:
   nomis_id: LTI
   enabled: true
-  phone: '01480 335650'
+  phone: 01480 335650
   email: pvb.littlehey@maildrop.dsd.io
   address:
-    - Perry
-    - 'PE28 0SR'
+  - Perry
+  - PE28 0SR
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
-    - 2015-01-01
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
   slots:
     fri:
-      - 0845-1045
-      - 1400-1600
+    - 0845-1045
+    - 1400-1600
     sat:
-      - 0900-1100
-      - 1400-1600
+    - 0900-1100
+    - 1400-1600
     sun:
-      - 0900-1100
-      - 1400-1600
+    - 0900-1100
+    - 1400-1600
     thu:
-      - 0915-1115
-      - 1400-1600
+    - 0915-1115
+    - 1400-1600
     tue:
-      - 0915-1115
-      - 1400-1600
+    - 0915-1115
+    - 1400-1600
     wed:
-      - 0915-1115
-      - 1400-1600
-'North Sea Camp':
+    - 0915-1115
+    - 1400-1600
+North Sea Camp:
   nomis_id: NSI
   enabled: true
-  phone: '01205 769 368'
+  phone: 01205 769 368
   email: pvb.northseacamp@maildrop.dsd.io
   address:
-    - Freiston
-    - 'PE22 0QX'
+  - Freiston
+  - PE22 0QX
   unbookable:
-    - 2014-12-25
+  - 2014-12-25
   slots:
     sat:
-      - 0900-1130
-      - 1330-1545
+    - 0900-1130
+    - 1330-1545
     sun:
-      - 0900-1130
-      - 1330-1545
+    - 0900-1130
+    - 1330-1545
     wed:
-      - 1330-1545
+    - 1330-1545
 Portland:
   nomis_id: PDI
   enabled: true
   phone: 01305 715775
   email: pvb.portland@maildrop.dsd.io
   address:
-    - 104 The Grove
-    - DT5 1DL
+  - 104 The Grove
+  - DT5 1DL
   unbookable:
-    - 2014-12-25
-    - 2015-01-01
+  - 2014-12-25
+  - 2015-01-01
   slots:
     sat:
-      - 1345-1600
+    - 1345-1600
     sun:
-      - 1345-1600
+    - 1345-1600
     thu:
-      - 1345-1600
+    - 1345-1600
     tue:
-      - 1345-1600
+    - 1345-1600
   slot_anomalies:
     2014-12-24:
-      - 1400-1600
+    - 1400-1600
     2014-12-31:
-      - 1400-1600
+    - 1400-1600
 Ranby:
   nomis_id: RNI
-  enabled: true 
-  phone: '01777 862107'
+  enabled: true
+  phone: 01777 862107
   email: pvb.ranby@maildrop.dsd.io
   address:
-    - RETFORD
-    - 'DN22 8EU'
+  - RETFORD
+  - DN22 8EU
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
-    - 2015-01-01
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
   slots:
     fri:
-      - 0845-1100
-      - 1345-1600
+    - 0845-1100
+    - 1345-1600
     mon:
-      - 1345-1600
+    - 1345-1600
     sat:
-      - 0845-1100
-      - 1345-1600
+    - 0845-1100
+    - 1345-1600
     sun:
-      - 0845-1100
-      - 1345-1600
+    - 0845-1100
+    - 1345-1600
 Wandsworth:
   nomis_id: WWI
   enabled: true
   phone: 0208 588 4002
   email: pvb.wandsworth@maildrop.dsd.io
   address:
-    -  Heathfield Rd
-    - 'PO Box 757'
-    - 'SW18 3HS'
+  - Heathfield Rd
+  - PO Box 757
+  - SW18 3HS
   unbookable:
-    - 2014-12-25
+  - 2014-12-25
   slots:
     mon:
-      - 0830-0930
-      - 1000-1100
-      - 1115-1215
-      - 1345-1445
-      - 1515-1615
+    - 0830-0930
+    - 1000-1100
+    - 1115-1215
+    - 1345-1445
+    - 1515-1615
     sat:
-      - 0845-0945
-      - 1000-1100
-      - 1115-1215
-      - 1345-1445
-      - 1515-1615
+    - 0845-0945
+    - 1000-1100
+    - 1115-1215
+    - 1345-1445
+    - 1515-1615
     sun:
-      - 0845-0945
-      - 1000-1100
-      - 1115-1215
-      - 1345-1445
-      - 1515-1615
+    - 0845-0945
+    - 1000-1100
+    - 1115-1215
+    - 1345-1445
+    - 1515-1615
     thu:
-      - 0830-0930
-      - 1000-1100
-      - 1115-1215
-      - 1345-1445
-      - 1515-1615
+    - 0830-0930
+    - 1000-1100
+    - 1115-1215
+    - 1345-1445
+    - 1515-1615
     tue:
-      - 0830-0930
-      - 1000-1100
-      - 1115-1215
-      - 1345-1445
-      - 1515-1615
+    - 0830-0930
+    - 1000-1100
+    - 1115-1215
+    - 1345-1445
+    - 1515-1615
     wed:
-      - 0830-0930
-      - 1000-1100
-      - 1115-1215
-      - 1345-1445
-      - 1515-1615
+    - 0830-0930
+    - 1000-1100
+    - 1115-1215
+    - 1345-1445
+    - 1515-1615
 Winchester (Remand only):
   nomis_id: WCI
   enabled: true
-  phone: '0845 223 5514'
+  phone: 0845 223 5514
   email: pvb.winchester@maildrop.dsd.io
   finder_slug: winchester
   address:
-    - 'Romsey Road'
-    - 'SO22 5DF'
+  - Romsey Road
+  - SO22 5DF
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
+  - 2014-12-25
+  - 2014-12-26
   slots:
     fri:
-      - 1400-1500
-      - 1515-1615
+    - 1400-1500
+    - 1515-1615
     mon:
-      - 1400-1500
-      - 1515-1615
+    - 1400-1500
+    - 1515-1615
     sat:
-      - 1400-1500
-      - 1515-1615
+    - 1400-1500
+    - 1515-1615
     sun:
-      - 1400-1500
-      - 1515-1615
+    - 1400-1500
+    - 1515-1615
     thu:
-      - 1400-1500
-      - 1515-1615
+    - 1400-1500
+    - 1515-1615
     tue:
-      - 1400-1500
-      - 1515-1615
+    - 1400-1500
+    - 1515-1615
     wed:
-      - 1400-1500
-      - 1515-1615
+    - 1400-1500
+    - 1515-1615
 Winchester (Convicted only):
   nomis_id: WCI
   enabled: true
-  phone: '0845 223 5514'
+  phone: 0845 223 5514
   email: pvb.winchester@maildrop.dsd.io
   finder_slug: winchester
   address:
-    - 'Romsey Road'
-    - 'SO22 5DF'
+  - Romsey Road
+  - SO22 5DF
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
+  - 2014-12-25
+  - 2014-12-26
   slots:
     fri:
-      - 1400-1600
+    - 1400-1600
     mon:
-      - 1400-1600
+    - 1400-1600
     sat:
-      - 1400-1600
+    - 1400-1600
     sun:
-      - 1400-1600
+    - 1400-1600
     thu:
-      - 1400-1600
+    - 1400-1600
     tue:
-      - 1400-1600
+    - 1400-1600
     wed:
-      - 1400-1600
-'Wormwood Scrubs':
+    - 1400-1600
+Wormwood Scrubs:
   nomis_id: WSI
   enabled: true
-  phone: '020 8588 3564'
+  phone: 020 8588 3564
   email: pvb.wormwoodscrubs@maildrop.dsd.io
   address:
-    - 'Du Cane Road'
-    - 'W12 0AE'
+  - Du Cane Road
+  - W12 0AE
   unbookable:
-    - 2014-12-25
+  - 2014-12-25
   slots:
     mon:
-      - 0930-1100
+    - 0930-1100
     sat:
-      - 0900-1000
-      - 1030-1130
-      - 1400-1500
-      - 1545-1645
+    - 0900-1000
+    - 1030-1130
+    - 1400-1500
+    - 1545-1645
     sun:
-      - 1400-1500
-      - 1545-1645
+    - 1400-1500
+    - 1545-1645
     thu:
-      - 1400-1600
+    - 1400-1600
     tue:
-      - 0930-1100
-      - 1400-1600
+    - 0930-1100
+    - 1400-1600
     wed:
-      - 0930-1100
-      - 1400-1600
+    - 0930-1100
+    - 1400-1600
 Wymott:
   nomis_id: WMI
   enabled: true
-  phone: '01772 442234'
+  phone: 01772 442234
   email: pvb.wymott@maildrop.dsd.io
   address:
-    - 'Ulnes Walton Lane'
-    - 'PR26 8LW'
+  - Ulnes Walton Lane
+  - PR26 8LW
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
-    - 2015-01-01
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
   slots:
     mon:
-      - 1315-1600
+    - 1315-1600
     sat:
-      - 1345-1615
+    - 1345-1615
     sun:
-      - 1345-1615
+    - 1345-1615
     thu:
-      - 1315-1600
+    - 1315-1600
     tue:
-      - 1315-1600
+    - 1315-1600
     wed:
-      - 1315-1600
-'Thorn Cross':
+    - 1315-1600
+Thorn Cross:
   nomis_id: TCI
   enabled: true
-  phone: '01925805018'
+  phone: 01925805018
   email: pvb.thorncrossk@maildrop.dsd.io
   address:
-    - 'Arley Road'
-    - 'NWA4 4RL'
+  - Arley Road
+  - NWA4 4RL
   unbookable:
-    - 2014-12-25
-    - 2015-04-03
+  - 2014-12-25
+  - 2015-04-03
   slots:
     sat:
-      - 1345-1545
+    - 1345-1545
     sun:
-      - 1345-1545
+    - 1345-1545
     tue:
-      - 1745-1945
+    - 1745-1945
     wed:
-      - 1745-1945
+    - 1745-1945
 Risley:
   nomis_id: RSI
   enabled: true
-  phone: '01925 733284'
+  phone: 01925 733284
   email: pvb.risley@maildrop.dsd.io
   address:
-    - 'Warrington Road'
-    - 'WA3 6BP'
+  - Warrington Road
+  - WA3 6BP
   unbookable:
-    - 2014-08-04
-    - 2014-08-13
-    - 2014-12-25
-    - 2015-04-03
-    - 2014-08-01
-    - 2014-10-15
-    - 2014-12-17
-    - 2015-02-11
-    - 2015-04-15
-    - 2014-12-25
-    - 2014-12-26
-    - 2015-01-01
+  - 2014-08-01
+  - 2014-08-04
+  - 2014-08-13
+  - 2014-10-15
+  - 2014-12-17
+  - 2014-12-25
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
+  - 2015-02-11
+  - 2015-04-03
+  - 2015-04-15
   slots:
     sat:
-      - 1345-1545
+    - 0900-1115
+    - 1400-1600
     sun:
-      - 1345-1545
+    - 0900-1115
+    - 1400-1600
     wed:
-      - 1400-1600
+    - 1400-1600
     thu:
-      - 1400-1600
+    - 1400-1600
     mon:
-      - 1400-1600
+    - 1400-1600
     tue:
-      - 1400-1600
+    - 1400-1600
     fri:
-      - 1400-1600
-    sat:
-      - 0900-1115
-      - 1400-1600
-    sun:
-      - 0900-1115
-      - 1400-1600
+    - 1400-1600
   slot_anomalies:
     2014-07-25:
-      - 1400-1600
+    - 1400-1600
     2014-08-22:
-      - 1400-1600
-    2014-10-31:
-      - 1400-1600
+    - 1400-1600
     2014-09-26:
-      - 1400-1600
-    2014-11-28:
-      - 1400-1600
+    - 1400-1600
     2014-10-17:
-      - 0900-1115
-      - 1400-1600
+    - 0900-1115
+    - 1400-1600
     2014-10-24:
-      - 0900-1115
-      - 1400-1600
+    - 0900-1115
+    - 1400-1600
     2014-10-31:
-      - 0900-1115
-      - 1400-1600   
-Feltham (Young Adults 18-21 only): 
+    - 0900-1115
+    - 1400-1600
+    2014-11-28:
+    - 1400-1600
+Feltham (Young Adults 18-21 only):
   nomis_id: FMI
   enabled: true
-  phone:  0208 844 5400
+  phone: 0208 844 5400
   email: pvb.feltham@maildrop.dsd.io
   finder_slug: feltham
   address:
-    - Bedfont Road
-    - TW13 4ND 
+  - Bedfont Road
+  - TW13 4ND
   unbookable:
-    - 2014-06-15
-    - 2014-06-29
-    - 2014-07-13
-    - 2014-07-27
-    - 2014-08-10
-    - 2014-08-24
-    - 2014-09-07
-    - 2014-09-21
-    - 2014-10-05
-    - 2014-10-19
-    - 2014-11-02
-    - 2014-11-16
-    - 2014-11-30
-    - 2014-12-14
-    - 2014-12-28
-    - 2015-01-11
-    - 2015-01-25
-    - 2015-02-08
-    - 2015-02-22
-    - 2015-03-08
-    - 2015-03-22
-    - 2015-04-05
-    - 2015-04-19
-    - 2015-05-03
-    - 2015-05-17
-    - 2015-05-31
-    - 2015-06-14
-    - 2015-06-28
-    - 2014-12-25
+  - 2014-06-15
+  - 2014-06-29
+  - 2014-07-13
+  - 2014-07-27
+  - 2014-08-10
+  - 2014-08-24
+  - 2014-09-07
+  - 2014-09-21
+  - 2014-10-05
+  - 2014-10-19
+  - 2014-11-02
+  - 2014-11-16
+  - 2014-11-30
+  - 2014-12-14
+  - 2014-12-25
+  - 2014-12-28
+  - 2015-01-11
+  - 2015-01-25
+  - 2015-02-08
+  - 2015-02-22
+  - 2015-03-08
+  - 2015-03-22
+  - 2015-04-05
+  - 2015-04-19
+  - 2015-05-03
+  - 2015-05-17
+  - 2015-05-31
+  - 2015-06-14
+  - 2015-06-28
   slots:
     mon:
-      - 1330-1500
-      - 1500-1630
-    wed: 
-      - 1330-1500
-      - 1500-1630
-    fri: 
-      - 1330-1500
-      - 1500-1630
+    - 1330-1500
+    - 1500-1630
+    wed:
+    - 1330-1500
+    - 1500-1630
+    fri:
+    - 1330-1500
+    - 1500-1630
     sat:
-      - 0900-1000
-      - 1000-1100
-    sun: 
-      - 1330-1500
-      - 1500-1630
+    - 0900-1000
+    - 1000-1100
+    sun:
+    - 1330-1500
+    - 1500-1630
 Feltham (Young People 15-18 only):
   nomis_id: FMI
   enabled: true
-  phone:  0208 844 5400
+  phone: 0208 844 5400
   email: pvb.feltham@maildrop.dsd.io
   finder_slug: feltham
   address:
-    - Bedfont Road
-    - TW13 4ND 
+  - Bedfont Road
+  - TW13 4ND
   unbookable:
-      - 2014-06-22
-      - 2014-07-06
-      - 2014-07-20
-      - 2014-08-03
-      - 2014-08-17
-      - 2014-08-31
-      - 2014-09-14
-      - 2014-09-28
-      - 2014-10-12
-      - 2014-10-26
-      - 2014-11-09
-      - 2014-11-23
-      - 2014-12-07
-      - 2014-12-21
-      - 2015-01-04
-      - 2015-01-18
-      - 2015-02-01
-      - 2015-02-15
-      - 2015-03-01
-      - 2015-03-15
-      - 2015-03-29
-      - 2015-04-12
-      - 2015-04-26
-      - 2015-05-10
-      - 2015-05-24
-      - 2015-06-07
-      - 2015-06-21
-      - 2015-07-05
-      - 2014-12-25
-      - 2014-12-26
+  - 2014-06-22
+  - 2014-07-06
+  - 2014-07-20
+  - 2014-08-03
+  - 2014-08-17
+  - 2014-08-31
+  - 2014-09-14
+  - 2014-09-28
+  - 2014-10-12
+  - 2014-10-26
+  - 2014-11-09
+  - 2014-11-23
+  - 2014-12-07
+  - 2014-12-21
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-04
+  - 2015-01-18
+  - 2015-02-01
+  - 2015-02-15
+  - 2015-03-01
+  - 2015-03-15
+  - 2015-03-29
+  - 2015-04-12
+  - 2015-04-26
+  - 2015-05-10
+  - 2015-05-24
+  - 2015-06-07
+  - 2015-06-21
+  - 2015-07-05
   slots:
     tue:
-      - 1330-1500
-      - 1500-1630
-    thu: 
-      - 1330-1500
-      - 1500-1630
-    sat: 
-      - 1330-1500
-      - 1500-1630
-    sun: 
-      - 1330-1500
-      - 1500-1630
+    - 1330-1500
+    - 1500-1630
+    thu:
+    - 1330-1500
+    - 1500-1630
+    sat:
+    - 1330-1500
+    - 1500-1630
+    sun:
+    - 1330-1500
+    - 1500-1630
 Whatton:
   nomis_id: WTI
   enabled: true
-  phone: '01949 803564'
+  phone: 01949 803564
   email: pvb.whatton@maildrop.dsd.io
   address:
-    - 'New Lane'
-    - 'NG13 9FQ '
+  - New Lane
+  - 'NG13 9FQ '
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
-    - 2014-12-31
-    - 2015-01-01
+  - 2014-12-25
+  - 2014-12-26
+  - 2014-12-31
+  - 2015-01-01
   slots:
     fri:
-      - 1415-1615
+    - 1415-1615
     mon:
-      - 1415-1615
+    - 1415-1615
     sat:
-      - 0900-1130
-      - 1400-1600
+    - 0900-1130
+    - 1400-1600
     sun:
-      - 0900-1130
-      - 1400-1600
+    - 0900-1130
+    - 1400-1600
     thu:
-      - 1415-1615
+    - 1415-1615
 Pentonville:
   nomis_id: PVI
   enabled: true
   phone: 020 70237251
   email: pvb.pentonville@maildrop.dsd.io
   address:
-    - Caledonian Road
-    - N7 8TT 
+  - Caledonian Road
+  - N7 8TT
   unbookable:
-    - 2014-12-25
-    - 2015-04-03
+  - 2014-12-25
+  - 2015-04-03
   slots:
     mon:
-      - 0915-1115
-      - 1400-1600
+    - 0915-1115
+    - 1400-1600
     tue:
-      - 1400-1600
+    - 1400-1600
     wed:
-      - 0915-1115
-      - 1400-1600
+    - 0915-1115
+    - 1400-1600
     thu:
-      - 0915-1115
-      - 1400-1600
+    - 0915-1115
+    - 1400-1600
     fri:
-      - 1400-1600
+    - 1400-1600
     sat:
-      - 0915-1115
-      - 1400-1600
+    - 0915-1115
+    - 1400-1600
     sun:
-      - 1400-1600
+    - 1400-1600
 Eastwood Park:
   nomis_id: EWI
   enabled: true
   phone: 01454 382159
   email: pvb.eastwoodpark@maildrop.dsd.io
   address:
-    - Falfield
-    - GL12 8DB 
+  - Falfield
+  - GL12 8DB
   unbookable:
-    - 2014-12-25
+  - 2014-12-25
   slots:
     tue:
-      - 1400-1500
-      - 1530-1630
+    - 1400-1500
+    - 1530-1630
     wed:
-      - 1400-1500
-      - 1530-1630
+    - 1400-1500
+    - 1530-1630
     thu:
-      - 1400-1500
-      - 1530-1630
+    - 1400-1500
+    - 1530-1630
     fri:
-      - 1400-1500
-      - 1530-1630
+    - 1400-1500
+    - 1530-1630
     sat:
-      - 1400-1500
-      - 1530-1630
+    - 1400-1500
+    - 1530-1630
     sun:
-      - 1400-1600
+    - 1400-1600
 Leyhill:
   nomis_id: LYI
   enabled: true
   phone: 01454 264211
   email: pvb.leyhill@maildrop.dsd.io
-  address: 
-   - Wotton-under-edge
-   - GL12 8BT
+  address:
+  - Wotton-under-edge
+  - GL12 8BT
   unbookable:
-    - 2014-12-25
+  - 2014-12-25
   slots:
     tue:
-      - 1330-1530
+    - 1330-1530
     thu:
-      - 1330-1530
+    - 1330-1530
     sat:
-      - 1330-1530
+    - 1330-1530
     sun:
-      - 1330-1530
+    - 1330-1530
 Swansea:
   nomis_id: SWI
   enabled: true
   phone: 01792 48 5322
   email: pvb.swansea@maildrop.dsd.io
-  address: 
-   - 200 Oystermouth Road
-   - SA1 3SR
+  address:
+  - 200 Oystermouth Road
+  - SA1 3SR
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
+  - 2014-12-25
+  - 2014-12-26
   slots:
-    mon: 
-      - 1000-1100
-      - 1345-1445
-      - 1515-1615
+    mon:
+    - 1000-1100
+    - 1345-1445
+    - 1515-1615
     tue:
-      - 1000-1100
-      - 1345-1445
-      - 1515-1615
+    - 1000-1100
+    - 1345-1445
+    - 1515-1615
     thu:
-      - 1000-1100
-      - 1345-1445
-      - 1515-1615
-    fri: 
-      - 1000-1100
-      - 1345-1445
-      - 1515-1615
+    - 1000-1100
+    - 1345-1445
+    - 1515-1615
+    fri:
+    - 1000-1100
+    - 1345-1445
+    - 1515-1615
     sat:
-      - 1345-1445
-      - 1515-1615
+    - 1345-1445
+    - 1515-1615
     sun:
-      - 1345-1445
-      - 1515-1615
+    - 1345-1445
+    - 1515-1615
   slot_anomalies:
     2015-01-01:
-      - 1345-1445
-      - 1515-1615
+    - 1345-1445
+    - 1515-1615
 Usk:
   nomis_id: UKI
   enabled: true
   phone: 01291 671730
   email: pvb.usk@maildrop.dsd.io
   finder_slug: usk-prescoed-usk
-  address: 
-   - 47 Maryport Street
-   - NP15 1XP
+  address:
+  - 47 Maryport Street
+  - NP15 1XP
   unbookable:
-    - 2014-12-25
+  - 2014-12-25
   slots:
-    mon: 
-      - 1700-1900
+    mon:
+    - 1700-1900
     tue:
-      - 1400-1600
+    - 1400-1600
     wed:
-      - 1400-1600
-      - 1700-1900
+    - 1400-1600
+    - 1700-1900
     thu:
-      - 1400-1600
-    fri: 
-      - 1400-1600
-      - 1700-1900
+    - 1400-1600
+    fri:
+    - 1400-1600
+    - 1700-1900
     sat:
-      - 1400-1600
+    - 1400-1600
     sun:
-      - 1400-1600
+    - 1400-1600
 Ford:
   nomis_id: FDI
   enabled: true
   phone: 
   email: pvb.ford@maildrop.dsd.io
-  address: 
-   - Arundel
-   - BN18 0BX 
+  address:
+  - Arundel
+  - BN18 0BX
   unbookable:
-    - 2014-12-25
-    - 2014-12-31
+  - 2014-12-25
+  - 2014-12-31
   slots:
-    wed: 
-      - 1800-2000
+    wed:
+    - 1800-2000
     fri:
-      - 1400-1600
+    - 1400-1600
     sat:
-      - 1400-1600
+    - 1400-1600
     sun:
-      - 1400-1600
+    - 1400-1600
 Askham Grange:
   nomis_id: AGI
   enabled: true
   phone: 
   email: pvb.askhamgrange@maildrop.dsd.io
-  address: 
-   - Askham Richard
-   - YO23 3FT
+  address:
+  - Askham Richard
+  - YO23 3FT
   unbookable:
-    - 2014-12-25
+  - 2014-12-25
   slots:
     sat:
-      - 1345-1545
+    - 1345-1545
     sun:
-      - 1345-1545
+    - 1345-1545
 Spring Hill:
   nomis_id: SPI
   enabled: true
   phone: 
   email: pvb.springhill@maildrop.dsd.io
-  address: 
-   - Grendon Underwood
-   - HP18 0TL
+  address:
+  - Grendon Underwood
+  - HP18 0TL
   unbookable:
-    - 2014-12-25
+  - 2014-12-25
   slots:
     sat:
-      - 1345-1600
+    - 1345-1600
     sun:
-      - 1345-1600
+    - 1345-1600
 Leicester:
   nomis_id: LCI
   enabled: true
   phone: 0116 228 3128
   email: pvb.leicester@maildrop.dsd.io
-  address: 
-   - 116 Welford Road
-   - LE2 7AJ
+  address:
+  - 116 Welford Road
+  - LE2 7AJ
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
-    - 2014-12-31
-    - 2015-01-01
+  - 2014-12-25
+  - 2014-12-26
+  - 2014-12-31
+  - 2015-01-01
   slots:
-    mon: 
-      - 1415-1615
+    mon:
+    - 1415-1615
     tue:
-      - 1415-1615
+    - 1415-1615
     wed:
-      - 1600-1800
+    - 1600-1800
     thu:
-      - 1415-1615
-    sat:  
-      - 1415-1615
+    - 1415-1615
+    sat:
+    - 1415-1615
     sun:
-      - 1415-1615
+    - 1415-1615
   slot_anomalies:
     2014-12-24:
-      - 0900-1100
-      - 1415-1615
+    - 0900-1100
+    - 1415-1615
     2014-12-31:
-      - 0900-1100
-      - 1415-1615
+    - 0900-1100
+    - 1415-1615
 Sudbury:
   nomis_id: SUI
   enabled: true
   phone: 01283 584066
   email: pvb.sudbury@maildrop.dsd.io
   address:
-    - Ashbourne
-    - Derbyshire
-    - DE6 5HW
+  - Ashbourne
+  - Derbyshire
+  - DE6 5HW
   unbookable:
-    - 2014-12-25
-    - 2014-12-26
+  - 2014-12-25
+  - 2014-12-26
   slots:
     wed:
-      - 1345-1545
+    - 1345-1545
     thu:
-      - 1345-1545
+    - 1345-1545
     sat:
-      - 1345-1545
+    - 1345-1545
     sun:
-      - 0930-1130
-      - 1345-1545
+    - 0930-1130
+    - 1345-1545
   slot_anomalies:
     2014-12-22:
-      - 0930-1130
-      - 1345-1545
+    - 0930-1130
+    - 1345-1545
     2014-12-23:
-      - 0930-1130
+    - 0930-1130
     2014-12-24:
-      - 0930-1130
+    - 0930-1130
     2014-12-27:
-      - 0930-1130
+    - 0930-1130
     2014-12-29:
-      - 0930-1130
-      - 1345-1545
+    - 0930-1130
+    - 1345-1545
     2014-12-30:
-      - 0930-1130
-      - 1345-1545
+    - 0930-1130
+    - 1345-1545
     2014-12-31:
-      - 0930-1130
+    - 0930-1130
     2015-01-01:
-      - 0930-1130
+    - 0930-1130
     2015-01-02:
-      - 0930-1130
-      - 1345-1545
+    - 0930-1130
+    - 1345-1545
 Channings Wood:
   nomis_id: CWI
   enabled: true
   phone: 01803 812060
   email: pvb.channingswood@maildrop.dsd.io
   address:
-    - Denbury
-    - Newton Abbot
-    - TQ12 6DW 
+  - Denbury
+  - Newton Abbot
+  - TQ12 6DW
   unbookable:
-    - 2014-09-07
-    - 2014-09-21
-    - 2014-10-05
-    - 2014-10-19
-    - 2014-11-02
-    - 2014-11-16
-    - 2014-11-30
-    - 2014-12-14
-    - 2015-01-11
-    - 2015-01-25
-    - 2015-02-08
-    - 2015-02-22
-    - 2015-03-08
-    - 2015-03-22
-    - 2015-04-05
-    - 2015-04-19
-    - 2015-05-03
-    - 2015-05-17
-    - 2015-05-31
-    - 2015-06-14
-    - 2015-06-28
-    - 2015-07-12
-    - 2015-07-26
-    - 2015-08-09
-    - 2015-08-23
-    - 2015-09-06
-    - 2015-09-20
-    - 2015-10-04
-    - 2014-09-13
-    - 2014-09-20
-    - 2014-09-27
-    - 2014-10-04
-    - 2014-10-11
-    - 2014-10-18
-    - 2014-10-25
-    - 2014-11-01
-    - 2014-11-08
-    - 2014-11-15
-    - 2014-11-22
-    - 2014-11-29
-    - 2014-12-06
-    - 2014-12-13
-    - 2014-12-20
-    - 2015-01-03
-    - 2015-01-10
-    - 2015-01-17
-    - 2015-01-24
-    - 2015-01-31
-    - 2015-02-07
-    - 2015-02-14
-    - 2015-02-21
-    - 2015-02-28
-    - 2015-03-07
-    - 2015-03-14
-    - 2015-03-21
-    - 2015-03-28
-    - 2014-12-25
-    - 2014-12-26
-    - 2015-01-01
+  - 2014-09-07
+  - 2014-09-13
+  - 2014-09-20
+  - 2014-09-21
+  - 2014-09-27
+  - 2014-10-04
+  - 2014-10-05
+  - 2014-10-11
+  - 2014-10-18
+  - 2014-10-19
+  - 2014-10-25
+  - 2014-11-01
+  - 2014-11-02
+  - 2014-11-08
+  - 2014-11-15
+  - 2014-11-16
+  - 2014-11-22
+  - 2014-11-29
+  - 2014-11-30
+  - 2014-12-06
+  - 2014-12-13
+  - 2014-12-14
+  - 2014-12-20
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
+  - 2015-01-03
+  - 2015-01-10
+  - 2015-01-11
+  - 2015-01-17
+  - 2015-01-24
+  - 2015-01-25
+  - 2015-01-31
+  - 2015-02-07
+  - 2015-02-08
+  - 2015-02-14
+  - 2015-02-21
+  - 2015-02-22
+  - 2015-02-28
+  - 2015-03-07
+  - 2015-03-08
+  - 2015-03-14
+  - 2015-03-21
+  - 2015-03-22
+  - 2015-03-28
+  - 2015-04-05
+  - 2015-04-19
+  - 2015-05-03
+  - 2015-05-17
+  - 2015-05-31
+  - 2015-06-14
+  - 2015-06-28
+  - 2015-07-12
+  - 2015-07-26
+  - 2015-08-09
+  - 2015-08-23
+  - 2015-09-06
+  - 2015-09-20
+  - 2015-10-04
   slots:
     wed:
-      - 1400-1600
+    - 1400-1600
     fri:
-      - 1400-1600
+    - 1400-1600
     sat:
-      - 1400-1600
+    - 1400-1600
     sun:
-      - 1400-1600
+    - 1400-1600
   slot_anomalies:
     2014-12-22:
-      - 0930-1130
-      - 1345-1545
+    - 0930-1130
+    - 1345-1545
     2014-12-23:
-      - 0930-1130
+    - 0930-1130
     2014-12-24:
-      - 0930-1130
+    - 0930-1130
     2014-12-27:
-      - 0930-1130
+    - 0930-1130
     2014-12-29:
-      - 0930-1130
-      - 1345-1545
+    - 0930-1130
+    - 1345-1545
     2014-12-30:
-      - 0930-1130
-      - 1345-1545
+    - 0930-1130
+    - 1345-1545
     2014-12-31:
-      - 0930-1130
+    - 0930-1130
     2015-01-01:
-      - 0930-1130
+    - 0930-1130
     2015-01-02:
-      - 0930-1130
-      - 1345-1545
+    - 0930-1130
+    - 1345-1545
 Acklington:
   nomis_id: AKI
   enabled: false
@@ -3161,7 +3154,7 @@ Doncaster:
   nomis_id: DNI
   enabled: false
 Dovegate:
-  nomis_id:
+  nomis_id: 
   enabled: false
 Forest Bank:
   nomis_id: FBI
@@ -3216,7 +3209,7 @@ Stafford:
   nomis_id: SFI
   enabled: false
 Thameside:
-  nomis_id:
+  nomis_id: 
   enabled: false
 Wakefield:
   nomis_id: WDI
