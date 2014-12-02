@@ -10,6 +10,7 @@ class Visitor
   attr_accessor :number_of_adults
   attr_accessor :number_of_children
   attr_accessor :date_of_birth
+  attr_accessor :phone
 
   def full_name(glue=' ')
     [first_name, last_name].join(glue)

@@ -1,6 +1,4 @@
 class Deferred::Visitor < Visitor
-  attr_accessor :phone
-
   def validate_user_or_additional
     super
     if index.zero?

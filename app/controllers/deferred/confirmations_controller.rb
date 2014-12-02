@@ -71,4 +71,20 @@ class Deferred::ConfirmationsController < ApplicationController
       v.prisoner.prison = nil
     end
   end
+
+  def migrate_visitors(visit)
+    visit.dup.tap do |visit|
+      visit.visitors.map! do |visitor|
+        if visitor.class == Visitor
+          values = [:first_name, :last_name, :email, :index, :number_of_adults, :number_of_children, :date_of_birth, :phone].inject({}) do |h, selector|
+            h[selector] = visitor.send(selector)
+            h
+          end
+          Deferred::Visitor.new(values)
+        else
+          visitor
+        end
+      end
+    end
+  end
 end

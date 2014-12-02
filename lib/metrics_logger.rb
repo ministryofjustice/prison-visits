@@ -7,6 +7,7 @@ class MetricsLogger
 
   def record_link_click(visit)
     update_entry(visit.visit_id) do |e|
+      e.kind = 'deferred'
       e.opened_at ||= now_in_utc
     end
   end
