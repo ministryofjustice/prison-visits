@@ -40,11 +40,11 @@ describe VisitorMailer do
   end
 
   let :confirmation do
-    Confirmation.new(message: 'A message', vo_number: '5551234', outcome: 'slot_0')
+    Confirmation.new(message: 'A message', outcome: 'slot_0')
   end
 
   let :confirmation_canned_response do
-    Confirmation.new(message: 'A message', vo_number: '5551234', outcome: 'slot_0', canned_response: true)
+    Confirmation.new(message: 'A message', outcome: 'slot_0', vo_number: '5551234', canned_response: true)
   end
 
   let :confirmation_unlisted_visitors do
@@ -121,6 +121,7 @@ describe VisitorMailer do
         email.body.raw_source.should include("phone: 01634 803100")
         email.body.raw_source.should_not include("Jimmy Harris")
         email.body.raw_source.should include('A message')
+        email.body.raw_source.should_not include("Your reference number is")
       end
 
       it "sends out an e-mail with a reference number (canned responses)" do
