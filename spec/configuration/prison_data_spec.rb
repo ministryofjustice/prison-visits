@@ -43,7 +43,9 @@ describe "Prison data" do
 
     context "enabled prisons" do
       let :subject do
-        production_prison_data.select! {|p| p['enabled']}
+        production_prison_data.select do |k, v|
+          v['enabled']
+        end
       end
 
       it "each unbookable date for each prison should be a valid date" do
@@ -51,6 +53,12 @@ describe "Prison data" do
           prison['unbookable'].each do |d|
             d.should be_a(Date)
           end
+        end
+      end
+
+      it "each unbookable date for each prison should be a unique" do
+        subject.values.each do |prison|
+          prison['unbookable'].size.should == prison['unbookable'].uniq.size
         end
       end
 
