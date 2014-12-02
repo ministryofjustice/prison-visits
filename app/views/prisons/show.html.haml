@@ -1,0 +1,75 @@
+- content_for :header, "Prison page"
+
+%dl
+  %dt Enabled
+  %dd= @data['enabled'] ? 'Yes' : 'No'
+
+  %dt NOMIS ID
+  %dd= @data['nomis_id']
+
+  - if @data['enabled']
+
+    %dt Canned responses
+    %dd= @data['canned_responses'] ? 'Yes' : 'No'
+
+    %dt Booking line
+    %dd= @data['phone']
+
+    %dt Functional mailbox
+    %dd= @data['email']
+
+    - if @data['address']
+      %dt Address
+      %dd= @data['address'].join ', '
+
+    - if @data['finder_slug']
+      %dt Prison finder slug
+      %dd= @data['finder_slug']
+
+    - if @data['lead_days']
+      %dt Custom lead time
+      %dd #{@data['lead_days']} days
+
+    - if @data['works_weekends']
+      %dt Process visits on weekends
+      %dd= @data['works_weekends'] ? 'Yes' : 'No'
+
+    %dt Slots
+    %dl
+      %table
+        %tr
+          - days = [:mon, :tue, :wed, :thu, :fri, :sat, :sun]
+          - days.each do |d|
+            %th= d.to_s.humanize
+        %tr
+          - days.each do |d|
+            %td
+              - if @data['slots'] && @data['slots'].include?(d)
+                - @data['slots'][d].each do |slot|
+                  %div= display_time_slot slot
+
+    - if @data['unbookable']
+      %dt Un-bookable dates
+      - @data['unbookable'].each do |date|
+        %dd= date
+
+    - if @data['slot_anomalies']
+      %dt Slot anomalies
+      %dd
+        %dl
+          - @data['slot_anomalies'].each do |date, slots|
+            %dt= format_date date
+            %ul
+              - slots.each do |slot|
+                %li= display_time_slot slot
+
+    - if requirements = custom_id_requirements(params['prison'].titleize, 'html')
+      %h3 Custom ID requirements
+      = requirements
+
+  - else
+    %dt Not enabled because
+    %dd
+      - if @data['reason']
+        = @data['reason']
+      - else 'default'

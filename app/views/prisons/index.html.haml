@@ -6,7 +6,8 @@
   }
 
 - Rails.configuration.prison_data.each do |prison|
-  %h2{ id: prison[0].parameterize }= prison[0]
+  %h2
+    %a{ href: "/prisons/#{prison[0].parameterize}" }= prison[0]
 
   %dl
     %dt Enabled
@@ -71,7 +72,7 @@
                 - slots.each do |slot|
                   %li= display_time_slot slot
 
-      - if requirements = custom_id_requirements(prison[0])
+      - if requirements = custom_id_requirements(prison[0], 'html')
         %h3 Custom ID requirements
         = requirements
 
