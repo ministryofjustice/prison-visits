@@ -811,6 +811,7 @@ Wealstun:
   - LS23 7AZ
   unbookable:
   - 2014-12-25
+  - 2015-01-01
   slots:
     mon:
     - 0930-1130
@@ -957,6 +958,7 @@ Erlestoke:
   - SN10 5TU
   unbookable:
   - 2014-12-25
+  - 2014-12-26
   slots:
     sat:
     - 0900-1130
@@ -1048,6 +1050,8 @@ Low Newton:
   - DH1 5YA
   unbookable:
   - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
   slots:
     fri:
     - 1415-1545
@@ -2547,6 +2551,7 @@ Thorn Cross:
   - NWA4 4RL
   unbookable:
   - 2014-12-25
+  - 2014-12-26
   - 2015-04-03
   slots:
     sat:
@@ -2557,6 +2562,11 @@ Thorn Cross:
     - 1745-1945
     wed:
     - 1745-1945
+  slot_anomalies:
+    2014-12-24:
+    - 1345-1545
+    2014-12-31:
+    - 1345-1545
 Risley:
   nomis_id: RSI
   enabled: true
