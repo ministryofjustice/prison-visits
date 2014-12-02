@@ -1,84 +1,20 @@
-- content_for :header, "Prison data"
+- content_for :header, "Find a prison"
 
-:css
-  dt, h3 {
-    font-weight: bold;
-  }
+- content_for :body_end do
+  :javascript
+    $('form').on('submit', function(e) {
+      e.preventDefault();
+      window.location.href = $(this).attr('action') + '/' + $(this).find('[name=prison]').val().toLowerCase().replace(' ', '-');
+    });
 
-- Rails.configuration.prison_data.each do |prison|
-  %h2
-    %a{ href: "/prisons/#{prison[0].parameterize}" }= prison[0]
+= form_tag '/prisons' do
 
-  %dl
-    %dt Enabled
-    %dd= prison[1]['enabled'] ? 'Yes' : 'No'
+  .group
+    %label{ for: :prison }
+      Name of the prison
+      %p.form-hint eg Cardiff
+    = select_tag :prison, options_for_select(prison_names), prompt: 'select a prison', class: 'js-autocomplete'
 
-    %dt NOMIS ID
-    %dd= prison[1]['nomis_id']
-
-    - if prison[1]['enabled']
-
-      %dt Canned responses
-      %dd= prison[1]['canned_responses'] ? 'Yes' : 'No'
-
-      %dt Booking line
-      %dd= prison[1]['phone']
-
-      %dt Functional mailbox
-      %dd= prison[1]['email']
-
-      - if prison[1]['address']
-        %dt Address
-        %dd= prison[1]['address'].join ', '
-
-      - if prison[1]['finder_slug']
-        %dt Prison finder slug
-        %dd= prison[1]['finder_slug']
-
-      - if prison[1]['lead_days']
-        %dt Custom lead time
-        %dd #{prison[1]['lead_days']} days
-
-      - if prison[1]['works_weekends']
-        %dt Process visits on weekends
-        %dd= prison[1]['works_weekends'] ? 'Yes' : 'No'
-
-      %dt Slots
-      %dl
-        %table
-          %tr
-            - days = [:mon, :tue, :wed, :thu, :fri, :sat, :sun]
-            - days.each do |d|
-              %th= d.to_s.humanize
-          %tr
-            - days.each do |d|
-              %td
-                - if prison[1]['slots'] && prison[1]['slots'].include?(d)
-                  - prison[1]['slots'][d].each do |slot|
-                    %div= display_time_slot slot
-
-      - if prison[1]['unbookable']
-        %dt Un-bookable dates
-        - prison[1]['unbookable'].each do |date|
-          %dd= date
-
-      - if prison[1]['slot_anomalies']
-        %dt Slot anomalies
-        %dd
-          %dl
-            - prison[1]['slot_anomalies'].each do |date, slots|
-              %dt= format_date date
-              %ul
-                - slots.each do |slot|
-                  %li= display_time_slot slot
-
-      - if requirements = custom_id_requirements(prison[0], 'html')
-        %h3 Custom ID requirements
-        = requirements
-
-    - else
-      %dt Not enabled because
-      %dd
-        - if prison[1]['reason']
-          = prison[1]['reason']
-        - else 'default'
+  .actions
+    .primary-actions
+      = submit_tag :Continue, :class => 'button button-primary'

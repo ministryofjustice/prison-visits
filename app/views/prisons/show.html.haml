@@ -1,7 +1,7 @@
-- content_for :header, "Prison page"
+- content_for :header, params['prison'].titleize
 
 %dl
-  %dt Enabled
+  %dt Online visit requests
   %dd= @data['enabled'] ? 'Yes' : 'No'
 
   %dt NOMIS ID
@@ -9,18 +9,20 @@
 
   - if @data['enabled']
 
-    %dt Canned responses
-    %dd= @data['canned_responses'] ? 'Yes' : 'No'
-
-    %dt Booking line
-    %dd= @data['phone']
-
-    %dt Functional mailbox
-    %dd= @data['email']
-
     - if @data['address']
       %dt Address
       %dd= @data['address'].join ', '
+
+    - if @data['phone']
+      %dt Booking line
+      %dd= @data['phone']
+
+    - if @data['email']
+      %dt Functional mailbox
+      %dd= @data['email']
+
+    %dt Canned responses
+    %dd= @data['canned_responses'] ? 'Yes' : 'No'
 
     - if @data['finder_slug']
       %dt Prison finder slug
@@ -34,8 +36,8 @@
       %dt Process visits on weekends
       %dd= @data['works_weekends'] ? 'Yes' : 'No'
 
-    %dt Slots
-    %dl
+    %dt Standard visiting times
+    %dd
       %table
         %tr
           - days = [:mon, :tue, :wed, :thu, :fri, :sat, :sun]
@@ -47,25 +49,25 @@
               - if @data['slots'] && @data['slots'].include?(d)
                 - @data['slots'][d].each do |slot|
                   %div= display_time_slot slot
-
-    - if @data['unbookable']
-      %dt Un-bookable dates
-      - @data['unbookable'].each do |date|
-        %dd= date
+              - else
+                none
 
     - if @data['slot_anomalies']
-      %dt Slot anomalies
+      %dt Non-standard visiting times
       %dd
         %dl
           - @data['slot_anomalies'].each do |date, slots|
-            %dt= format_date date
-            %ul
-              - slots.each do |slot|
-                %li= display_time_slot slot
+            - if date > Date.today
+              %dt= format_date date
+              %ul
+                - slots.each do |slot|
+                  %li= display_time_slot slot
 
-    - if requirements = custom_id_requirements(params['prison'].titleize, 'html')
-      %h3 Custom ID requirements
-      = requirements
+    - if @data['unbookable']
+      %dt Scheduled non-visit days
+      - @data['unbookable'].each do |date|
+        - if date > Date.today
+          %dd= format_date date
 
   - else
     %dt Not enabled because
@@ -73,3 +75,9 @@
       - if @data['reason']
         = @data['reason']
       - else 'default'
+
+  %h2 ID requirements
+  - if requirements = custom_id_requirements(params['prison'].titleize, :html)
+    = requirements
+  - else
+    = standard_id_requirements(:html)
