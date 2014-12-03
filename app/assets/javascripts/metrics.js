@@ -8,12 +8,12 @@ function percentile(array, n) {
 }
 
 function formatSeconds(s) {
-    if (s == 0) {
+    if (s === 0) {
         return '';
     }
     
     var output = [];
-    var d = s / (24 * 3600)
+    var d = s / (24 * 3600);
     s -= parseInt(d) * 24 * 3600;
     if (d > 1) {
         output = output.concat([d.toPrecision(2), 'days']);
@@ -61,7 +61,7 @@ function displayHistogram(where, dataSource, displayLines) {
         .attr('y', -3)
         .attr('font-size', 11)
         .attr('text-anchor', 'middle')
-        .text(function(d) { var v = d.y; if (v > 0) { return v } });
+        .text(function(d) { var v = d.y; if (v > 0) { return v; } });
     var xAxis = d3.svg.axis().scale(x).orient('bottom').tickFormat(formatSeconds);
     svg.append('g')
         .attr('class', 'x axis')
@@ -114,12 +114,12 @@ function displayWeeklyBreakdown(where, rawDataSource) {
     var weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     var processedData = { columns: [], rows: [] };
 
-    for (var i = 0; i < 24; i++) { processedData.columns.push(i) };
+    for (var i = 0; i < 24; i++) { processedData.columns.push(i); }
 
     var maxZ = 0;
     rawDataSource.forEach(function(row) {
         var max = d3.max(row);
-        if (max > maxZ) { maxZ = max }
+        if (max > maxZ) { maxZ = max; }
     });
     
     var z = d3.scale.linear().domain([0, maxZ]).range([0, 1]);

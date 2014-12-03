@@ -61,7 +61,7 @@ $(function () {
     } else {
       if (dis.is(':checked')) dis.click();
       dis.attr('disabled', true);
-      dis.closest('label').addClass('disabled')
+      dis.closest('label').addClass('disabled');
     }
   }).change();
 
