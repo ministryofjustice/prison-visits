@@ -34,7 +34,7 @@ Please contact the prisoner and ask them to update their contact list with corre
 
 <%= @confirmation.banned_visitors.inject([]){ |array, (visitor)| array << first_name(visitor) + ' ' + (initial ? last_initial(visitor) : last_name(visitor)) }.join(', ') %> should have received a letter to say that they’re banned from visiting the prison at the moment. Get in touch with the prison for more information. 
 <% end %>
-<% if @confirmation.canned_response %>
+<% if @confirmation.canned_response && @confirmation.vo_number != 'none' %>
 
 Your reference number is: <%= @confirmation.vo_number %>
 <% end %>

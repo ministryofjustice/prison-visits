@@ -29,6 +29,10 @@ module MailerPreviewCommon
     Confirmation.new(outcome: 'slot_2', vo_number: '5551234', canned_response: true)
   end
 
+  def accepted_confirmation_canned_response_remand
+    Confirmation.new(outcome: 'slot_2', vo_number: 'none', canned_response: true)
+  end
+
   def accepted_confirmation_visitors_unlisted
     Confirmation.new(outcome: 'slot_2', vo_number: '5551234', canned_response: true, visitor_not_listed: true, unlisted_visitors: ['Emma;Jones'])
   end

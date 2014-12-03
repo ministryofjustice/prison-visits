@@ -36,7 +36,7 @@
       #vo_number.field{ :class => ('validation-error' if f.object.errors.include?(:vo_number)) }
         %label{ :for => 'confirmation_vo_number' }
           Reference number
-          %p.form-hint eg Last 8 digits of VO number
+          %p.form-hint eg Last 8 digits of VO number or "none" for remand
           %span.validation-message= f.object.errors[:vo_number].first if f.object.errors.include?(:vo_number)
         = text_field_tag 'confirmation[vo_number]', nil, :maxlength => 8
 
