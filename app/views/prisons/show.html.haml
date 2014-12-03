@@ -1,85 +1,94 @@
 - content_for :header, params['prison'].titleize
 
-%dl
-  %dt Online visit requests
-  %dd= @data['enabled'] ? 'Yes' : 'No'
+.Grid
+  .Grid-2-3
 
-  %dt NOMIS ID
-  %dd= @data['nomis_id']
+    %dl
+      %dt Online visit requests
+      %dd= @data['enabled'] ? 'Yes' : 'No'
 
-  - if @data['enabled']
+      %dt NOMIS ID
+      %dd= @data['nomis_id']
 
-    - if @data['address']
-      %dt Address
-      %dd= @data['address'].join ', '
+      - if @data['enabled']
 
-    - if @data['phone']
-      %dt Booking line
-      %dd= @data['phone']
+        - if @data['address']
+          %dt Address
+          %dd= @data['address'].join ', '
 
-    - if @data['email']
-      %dt Functional mailbox
-      %dd= @data['email']
+        - if @data['phone']
+          %dt Booking line
+          %dd= @data['phone']
 
-    %dt Canned responses
-    %dd= @data['canned_responses'] ? 'Yes' : 'No'
+        - if @data['email']
+          %dt Functional mailbox
+          %dd= @data['email']
 
-    - if @data['finder_slug']
-      %dt Prison finder slug
-      %dd= @data['finder_slug']
+        %dt Canned responses
+        %dd= @data['canned_responses'] ? 'Yes' : 'No'
 
-    - if @data['lead_days']
-      %dt Custom lead time
-      %dd #{@data['lead_days']} days
+        - if @data['finder_slug']
+          %dt Prison finder slug
+          %dd= @data['finder_slug']
 
-    - if @data['works_weekends']
-      %dt Process visits on weekends
-      %dd= @data['works_weekends'] ? 'Yes' : 'No'
+        - if @data['lead_days']
+          %dt Custom lead time
+          %dd #{@data['lead_days']} days
 
-    %dt Standard visiting times
-    %dd
-      %table
-        %tr
-          - days = [:mon, :tue, :wed, :thu, :fri, :sat, :sun]
-          - days.each do |d|
-            %th= d.to_s.humanize
-        %tr
-          - days.each do |d|
-            %td
-              - if @data['slots'] && @data['slots'].include?(d)
-                - @data['slots'][d].each do |slot|
-                  %div= display_time_slot slot
-              - else
-                none
+        - if @data['works_weekends']
+          %dt Process visits on weekends
+          %dd= @data['works_weekends'] ? 'Yes' : 'No'
 
-    - if @data['slot_anomalies']
-      %dt Non-standard visiting times
-      %dd
-        %dl
-          - @data['slot_anomalies'].each do |date, slots|
+        %dt Standard visiting times
+        %dd
+          %table
+            %tr
+              - days = [:mon, :tue, :wed, :thu, :fri, :sat, :sun]
+              - days.each do |d|
+                %th= d.to_s.humanize
+            %tr
+              - days.each do |d|
+                %td
+                  - if @data['slots'] && @data['slots'].include?(d)
+                    - @data['slots'][d].each do |slot|
+                      %div= display_time_slot slot
+                  - else
+                    none
+
+        - if @data['slot_anomalies']
+          %dt Non-standard visiting times
+          %dd
+            %dl
+              - @data['slot_anomalies'].each do |date, slots|
+                - if date > Date.today
+                  %dt= format_date date
+                  %ul
+                    - slots.each do |slot|
+                      %li= display_time_slot slot
+
+        - if @data['unbookable']
+          %dt Scheduled non-visit days
+          - @data['unbookable'].each do |date|
             - if date > Date.today
-              %dt= format_date date
-              %ul
-                - slots.each do |slot|
-                  %li= display_time_slot slot
+              %dd= format_date date
 
-    - if @data['unbookable']
-      %dt Scheduled non-visit days
-      - @data['unbookable'].each do |date|
-        - if date > Date.today
-          %dd= format_date date
+      - else
+        %dt Not enabled because
+        %dd
+          - if @data['reason']
+            = @data['reason']
+          - else 'default'
 
-  - else
-    %dt Not enabled because
-    %dd
-      - if @data['reason']
-        = @data['reason']
-      - else 'default'
+      %h2 ID requirements
+      - if requirements = custom_id_requirements(params['prison'].titleize, :html)
+        = requirements
+      - else
+        = standard_id_requirements(:html)
 
-  %h2 ID requirements
-  - if requirements = custom_id_requirements(params['prison'].titleize, :html)
-    = requirements
-  - else
-    = standard_id_requirements(:html)
+      = render 'content/visiting_guidance'
 
-  = render 'content/visiting_guidance'
+  .Grid-1-3
+    %aside
+
+      %h2 Related information
+      %a{ href: 'https://www.gov.uk/staying-in-touch-with-someone-in-prison/visiting-someone-in-prison' } Visiting someone in prisons
