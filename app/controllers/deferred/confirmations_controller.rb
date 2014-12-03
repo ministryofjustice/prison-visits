@@ -8,11 +8,13 @@ class Deferred::ConfirmationsController < ApplicationController
     metrics_logger.record_link_click(booked_visit)
     if metrics_logger.processed?(booked_visit)
       reset_session
+      STATSD_CLIENT.increment('pvb.app.already_booked')
       render '_already_booked'
     end
     logstasher_add_visit_id(booked_visit.visit_id)
   rescue ActiveSupport::MessageVerifier::InvalidSignature => e
     render '_bad_state', status: 400
+    STATSD_CLIENT.increment('pvb.app.bad_state')
     Raven.capture_exception(e)
   end
 
@@ -61,6 +63,7 @@ class Deferred::ConfirmationsController < ApplicationController
         'Parkhurst' => 'Isle of Wight - Parkhurst',
         'Liverpool (Open only)' => 'Liverpool Social Visits'
       }[visit.prisoner.prison_name]
+      STATSD_CLIENT.increment('pvb.app.legacy_data_fixes')
       visit.prisoner.prison_name = prison_name
     end
     visit
@@ -68,7 +71,10 @@ class Deferred::ConfirmationsController < ApplicationController
 
   def remove_prison(visit)
     visit.tap do |v|
-      v.prisoner.prison = nil
+      if v.prisoner.prison
+        STATSD_CLIENT.increment('pvb.app.remove_prison')
+        v.prisoner.prison = nil
+      end
     end
   end
 
