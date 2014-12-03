@@ -1,6 +1,7 @@
 ---
 Rochester:
   nomis_id: RCI
+  canned_responses: true
   enabled: true
   phone: 01634 803100
   email: pvb.rochester@maildrop.dsd.io
@@ -35,6 +36,7 @@ Rochester:
     - 1400-1600
 Durham:
   nomis_id: DMI
+  canned_responses: true
   enabled: true
   phone: 0191 3323417
   email: pvb.durham@maildrop.dsd.io
@@ -132,6 +134,7 @@ Cardiff:
     - 1350-1520
 Gartree:
   nomis_id: GTI
+  canned_responses: true
   enabled: true
   phone: 01858 426 727
   email: pvb.gartree@maildrop.dsd.io
@@ -400,6 +403,7 @@ Foston Hall:
     - 1400-1600
 Holloway:
   nomis_id: HYI
+  canned_responses: true
   enabled: true
   phone: 020 7979 4751
   email: pvb.holloway@maildrop.dsd.io
@@ -469,6 +473,7 @@ Holloway:
     - 0930-1030
 Bristol:
   nomis_id: BLI
+  canned_responses: true
   enabled: true
   phone: 166700683
   email: pvb.bristol@maildrop.dsd.io
@@ -499,6 +504,7 @@ Bristol:
     - 1400-1600
 Buckley Hall:
   nomis_id: BCI
+  canned_responses: true
   enabled: true
   phone: 01706 514350
   email: pvb.buckleyhall@maildrop.dsd.io
@@ -535,6 +541,7 @@ Buckley Hall:
     - 1400-1600
 Bure:
   nomis_id: BRI
+  canned_responses: true
   enabled: true
   phone: 01603 326252
   email: pvb.bure@maildrop.dsd.io
@@ -562,6 +569,7 @@ Bure:
     - 0915-1100
 Coldingley:
   nomis_id: CLI
+  canned_responses: true
   enabled: true
   phone: 01483 344418
   email: pvb.coldingley@maildrop.dsd.io
@@ -596,6 +604,7 @@ Coldingley:
     - 0915-1100
 Cookham Wood:
   nomis_id: CKI
+  canned_responses: true
   enabled: true
   phone: 01634 202557
   email: pvb.cookhamwood@maildrop.dsd.io
@@ -623,6 +632,7 @@ Cookham Wood:
     - 1430-1630
 Deerbolt:
   nomis_id: DTI
+  canned_responses: true
   enabled: true
   phone: 01833 633349
   email: pvb.deerbolt@maildrop.dsd.io
@@ -648,6 +658,7 @@ Deerbolt:
     - 1345-1545
 Exeter:
   nomis_id: EXI
+  canned_responses: true
   enabled: true
   phone: 01392 41 5833
   email: pvb.exeter@maildrop.dsd.io
@@ -677,6 +688,7 @@ Exeter:
     - 1415-1615
 Lewes:
   nomis_id: LWI
+  canned_responses: true
   enabled: true
   phone: 01273785277
   email: pvb.lewes@maildrop.dsd.io
@@ -709,6 +721,7 @@ Lewes:
     - 1410-1535
 Moorland Closed:
   nomis_id: MDI
+  canned_responses: true
   enabled: true
   phone: 01302523289
   email: pvb.moorlandclosed@maildrop.dsd.io
@@ -732,6 +745,7 @@ Moorland Closed:
     - 1340-1545
 Onley:
   nomis_id: ONI
+  canned_responses: true
   enabled: true
   phone: 01788 523 402
   email: pvb.onley@maildrop.dsd.io
@@ -767,6 +781,7 @@ Onley:
     - 1515-1630
 The Mount:
   nomis_id: MTI
+  canned_responses: true
   enabled: true
   phone: 01442 836352
   email: pvb.themount@maildrop.dsd.io
@@ -812,6 +827,7 @@ The Mount:
     - 1400-1600
 Wayland:
   nomis_id: WLI
+  canned_responses: true
   enabled: true
   phone: 001953 804152
   email: pvb.wayland@maildrop.dsd.io
@@ -835,6 +851,7 @@ Wayland:
     - 1400-1600
 Wealstun:
   nomis_id: WEI
+  canned_responses: true
   enabled: true
   phone: 01937 444599
   email: pvb.wealstun@maildrop.dsd.io
@@ -866,6 +883,7 @@ Wealstun:
     - 1345-1600
 Bedford:
   nomis_id: BFI
+  canned_responses: true
   enabled: true
   phone: 01234 373196
   email: pvb.bedford@maildrop.dsd.io
@@ -897,6 +915,7 @@ Bedford:
     - 1515-1615
 Preston:
   nomis_id: PNI
+  canned_responses: true
   enabled: true
   phone: 01772 444666
   email: pvb.preston@maildrop.io
@@ -923,6 +942,7 @@ Preston:
     - 1400-1600
 Maidstone:
   nomis_id: MSI
+  canned_responses: true
   enabled: true
   phone: 01622 775619
   email: pvb.maidstone@maildrop.dsd.io
@@ -948,6 +968,7 @@ Maidstone:
     - 1345-1545
 Warren Hill:
   nomis_id: WII
+  canned_responses: true
   enabled: true
   phone: 020 8588 4002
   email: pvb.warrenhill@maildrop.dsd.io
@@ -969,6 +990,7 @@ Warren Hill:
     - 1400-1600
 Wetherby:
   nomis_id: WYI
+  canned_responses: true
   enabled: true
   phone: 01937 544207
   email: pvb.wetherby@maildrop.dsd.io
@@ -988,6 +1010,7 @@ Wetherby:
     - 1400-1600
 Erlestoke:
   nomis_id: EEI
+  canned_responses: true
   enabled: true
   phone: 01380 814264
   email: pvb.erlestoke@maildrop.dsd.io
@@ -1008,6 +1031,7 @@ Erlestoke:
     - 1315-1600
 Chelmsford:
   nomis_id: CDI
+  canned_responses: true
   enabled: true
   phone: 01245 552265
   email: pvb.chelmsford@maildrop.dsd.io
@@ -1035,6 +1059,7 @@ Chelmsford:
     - 1415-1600
 Stocken:
   nomis_id: SKI
+  canned_responses: true
   enabled: true
   phone: 01780 795156
   email: pvb.stocken@maildrop.dsd.io
@@ -1059,6 +1084,7 @@ Stocken:
     - 1345-1545
 Dartmoor:
   nomis_id: DAI
+  canned_responses: true
   enabled: true
   phone: 01822 322022
   email: pvb.dartmoor@maildrop.dsd.io
@@ -1084,6 +1110,7 @@ Dartmoor:
     - 1400-1600
 Low Newton:
   nomis_id: LNI
+  canned_responses: true
   enabled: true
   phone: 0191 376 4147
   email: pvb.lownewton@maildrop.dsd.io
@@ -1108,6 +1135,7 @@ Low Newton:
     - 1415-1545
 Aylesbury:
   nomis_id: AYI
+  canned_responses: true
   enabled: true
   phone: 01296 444099
   email: pvb.aylesbury@maildrop.dsd.io
@@ -1132,6 +1160,7 @@ Aylesbury:
     - 1415-1615
 Isle of Wight - Albany:
   nomis_id: ALI
+  canned_responses: true
   enabled: true
   phone: 01983 634218
   email: pvb.albany@maildrop.dsd.io
@@ -1171,6 +1200,7 @@ Blantyre House:
     - 1345-1600
 Brixton:
   nomis_id: BXI
+  canned_responses: true
   enabled: true
   phone: 0208 678 1433
   email: pvb.brixton@maildrop.dsd.io
@@ -1305,6 +1335,7 @@ East Sutton Park:
     - 1330-1530
 Elmley:
   nomis_id: EYI
+  canned_responses: true
   enabled: true
   phone: 0300 060 6605
   email: pvb.sheppeycluster-elmley@maildrop.dsd.io
@@ -1333,6 +1364,7 @@ Elmley:
     - 1400-1530
 Everthorpe:
   nomis_id: EVI
+  canned_responses: true
   enabled: true
   phone: 01430 426505
   email: pvb.everthorpe@maildrop.dsd.io
@@ -1356,6 +1388,7 @@ Everthorpe:
     - 1415-1615
 Wolds:
   nomis_id: WOI
+  canned_responses: true
   enabled: true
   phone: 01430 426505
   email: pvb.everthorpe@maildrop.dsd.io
@@ -1378,6 +1411,7 @@ Wolds:
     - 1400-1600
 Glen Parva:
   nomis_id: GPI
+  canned_responses: true
   enabled: true
   phone: 0116 228 4366
   email: pvb.glenparva@maildrop.dsd.io
@@ -1403,6 +1437,7 @@ Glen Parva:
     - 1400-1545
 Grendon:
   nomis_id: GNI
+  canned_responses: true
   enabled: true
   phone: ''
   email: pvb.grendon@maildrop.dsd.io
@@ -1424,6 +1459,7 @@ Grendon:
     - 1330-1545
 Guys Marsh:
   nomis_id: GMI
+  canned_responses: true
   enabled: true
   phone: 01747 856586
   email: pvb.guysmarsh@maildrop.dsd.io
@@ -1449,6 +1485,7 @@ Guys Marsh:
     - 1330-1545
 Hatfield Open:
   nomis_id: HDI
+  canned_responses: true
   enabled: true
   phone: 01405 746611
   email: pvb.hatfieldmoorlandopen@maildrop.dsd.io
@@ -1475,6 +1512,7 @@ Hatfield Open:
     - 1400-1600
 Haverigg:
   nomis_id: HVI
+  canned_responses: true
   enabled: true
   phone: 01229713016
   email: pvb.haverigg@maildrop.dsd.io
@@ -1500,6 +1538,7 @@ Haverigg:
     - 1400-1545
 High Down:
   nomis_id: HOI
+  canned_responses: true
   enabled: true
   phone: 020 7147 6570
   email: pvb.highdown@maildrop.dsd.io
@@ -1523,6 +1562,7 @@ High Down:
     - 1400-1600
 Highpoint North:
   nomis_id: HPI
+  canned_responses: true
   enabled: true
   phone: 01440 743134
   email: pvb.highpointnorth@maildrop.dsd.io
@@ -1541,6 +1581,7 @@ Highpoint North:
     - 1400-1600
 Highpoint South:
   nomis_id: HPI
+  canned_responses: true
   enabled: true
   phone: 01440 743134
   email: pvb.highpointnorth@maildrop.dsd.io
@@ -1562,6 +1603,7 @@ Highpoint South:
     - 1400-1600
 Holme House:
   nomis_id: HHI
+  canned_responses: true
   enabled: true
   phone: 03000 606602
   email: pvb.holmehouse@maildrop.dsd.io
@@ -1615,6 +1657,7 @@ Hull:
     - 1345-1545
 Huntercombe:
   nomis_id: HCI
+  canned_responses: true
   enabled: true
   phone: 01491 643151
   email: pvb.huntercombe@maildrop.dsd.io
@@ -1646,6 +1689,7 @@ Huntercombe:
     - 1345-1600
 Isle of Wight - Parkhurst:
   nomis_id: IWI
+  canned_responses: true
   enabled: true
   phone: 01983 634218
   email: pvb.isleofwight-parkhurst@maildrop.dsd.io
@@ -1666,6 +1710,7 @@ Isle of Wight - Parkhurst:
     - 1400-1600
 Leeds:
   nomis_id: LEI
+  canned_responses: true
   enabled: true
   phone: 0113 203 2995
   email: pvb.leeds@maildrop.dsd.io
@@ -1710,6 +1755,7 @@ Leeds:
     - 1530-1630
 New Hall:
   nomis_id: NHI
+  canned_responses: true
   enabled: true
   phone: 01924 803219
   email: pvb.newhall@maildrop.dsd.io
@@ -1734,6 +1780,7 @@ New Hall:
     - 1400-1600
 Nottingham:
   nomis_id: NMI
+  canned_responses: true
   enabled: true
   phone: 0115 962 8980
   email: pvb.nottingham@maildrop.dsd.io
@@ -1763,6 +1810,7 @@ Nottingham:
     - 1400-1600
 Send:
   nomis_id: SDI
+  canned_responses: true
   enabled: true
   phone: 01483 471033
   email: pvb.send@maildrop.dsd.io
@@ -1789,6 +1837,7 @@ Send:
     - 1415-1615
 Styal:
   nomis_id: STI
+  canned_responses: true
   enabled: true
   phone: 01625553195
   email: pvb.styal@maildrop.dsd.io
@@ -1815,6 +1864,7 @@ Styal:
     - 1345-1545
 Swaleside:
   nomis_id: SLI
+  canned_responses: true
   enabled: true
   phone: 0300 060 6604
   email: pvb.swaleside@maildrop.dsd.io
@@ -1840,6 +1890,7 @@ Swaleside:
     - 1400-1600
 Norwich (A, B, C, E, M only):
   nomis_id: NWI
+  canned_responses: true
   enabled: true
   phone: 01603 708795
   email: pvb.norwich@maildrop.dsd.io
@@ -1864,6 +1915,7 @@ Norwich (A, B, C, E, M only):
     - 0930-1130
 Norwich (F, G, H, L only):
   nomis_id: NWI
+  canned_responses: true
   enabled: true
   phone: 01603 708795
   email: pvb.norwich@maildrop.dsd.io
@@ -1886,6 +1938,7 @@ Norwich (F, G, H, L only):
     - 1415-1615
 Norwich (Britannia House):
   nomis_id: NWI
+  canned_responses: true
   enabled: true
   phone: 01603 708795
   email: pvb.norwich@maildrop.dsd.io
@@ -1921,6 +1974,7 @@ Norwich (Britannia House):
     - 1400-1600
 Standford Hill:
   nomis_id: EHI
+  canned_responses: true
   enabled: true
   phone: 0300 060 6603
   email: pvb.standfordhill@maildrop.dsd.io
@@ -1940,6 +1994,7 @@ Standford Hill:
     - 1345-1545
 Liverpool Social Visits:
   nomis_id: LPI
+  canned_responses: true
   enabled: true
   phone: 0151 530 4050
   email: pvb.liverpool@maildrop.dsd.io
@@ -1995,6 +2050,7 @@ Liverpool Social Visits:
     - 1525-1625
 Liverpool (Closed only):
   nomis_id: LPI
+  canned_responses: true
   enabled: true
   phone: 0151 530 4050
   email: pvb.liverpool@maildrop.dsd.io
@@ -2023,6 +2079,7 @@ Liverpool (Closed only):
     - 1025-1125
 Bullingdon (Convicted Only):
   nomis_id: BNI
+  canned_responses: true
   enabled: true
   phone: 01869 353176
   email: pvb.bullingdon@maildrop.dsd.io
@@ -2049,6 +2106,7 @@ Bullingdon (Convicted Only):
     - 1400-1610
 Bullingdon (Remand Only):
   nomis_id: BNI
+  canned_responses: true
   enabled: true
   phone: 01869 353176
   email: pvb.bullingdon@maildrop.dsd.io
@@ -2070,6 +2128,7 @@ Bullingdon (Remand Only):
     - 1400-1610
 Hindley (Young People 15-18 only):
   nomis_id: HII
+  canned_responses: true
   enabled: true
   phone: 01942 663492
   email: pvb.hindley@maildrop.dsd.io
@@ -2145,6 +2204,7 @@ Hindley (Young People 15-18 only):
     - 1430-1630
 Hindley (Young Adult 18-21 only):
   nomis_id: HII
+  canned_responses: true
   enabled: true
   phone: 01942 663234
   email: pvb.hindley@maildrop.dsd.io
@@ -2215,6 +2275,7 @@ Hindley (Young Adult 18-21 only):
     - 1430-1630
 Hollesley Bay Open:
   nomis_id: HBI
+  canned_responses: true
   enabled: true
   phone: ''
   email: pvb.hollesleybay@maildrop.dsd.io
@@ -2236,6 +2297,7 @@ Hollesley Bay Open:
     - 1400-1545
 Kennet:
   nomis_id: KTI
+  canned_responses: true
   enabled: true
   phone: 0151 213 3179
   email: pvb.kennet@maildrop.dsd.io
@@ -2269,6 +2331,7 @@ Kennet:
     - 1530-1630
 Kirkham:
   nomis_id: KMI
+  canned_responses: true
   enabled: true
   phone: 
   email: pvb.kirkham@maildrop.dsd.io
@@ -2288,6 +2351,7 @@ Kirkham:
     - 1300-1530
 Lancaster Farms:
   nomis_id: LFI
+  canned_responses: true
   enabled: true
   phone: 01524 563636
   email: pvb.lancasterfarms@maildrop.dsd.io
@@ -2309,6 +2373,7 @@ Lancaster Farms:
     - 1530-1630
 Lincoln:
   nomis_id: LII
+  canned_responses: true
   enabled: true
   phone: 01522 663172
   email: pvb.lincoln@maildrop.dsd.io
@@ -2335,6 +2400,7 @@ Lincoln:
     - 1400-1600
 Lindholme:
   nomis_id: LHI
+  canned_responses: true
   enabled: true
   phone: 01302 524980
   email: pvb.lindholme@maildrop.dsd.io
@@ -2368,6 +2434,7 @@ Lindholme:
     - 1345-1600
 Littlehey:
   nomis_id: LTI
+  canned_responses: true
   enabled: true
   phone: 01480 335650
   email: pvb.littlehey@maildrop.dsd.io
@@ -2400,6 +2467,7 @@ Littlehey:
     - 1400-1600
 North Sea Camp:
   nomis_id: NSI
+  canned_responses: true
   enabled: true
   phone: 01205 769 368
   email: pvb.northseacamp@maildrop.dsd.io
@@ -2420,6 +2488,7 @@ North Sea Camp:
     - 1330-1545
 Portland:
   nomis_id: PDI
+  canned_responses: true
   enabled: true
   phone: 01305 715775
   email: pvb.portland@maildrop.dsd.io
@@ -2446,6 +2515,7 @@ Portland:
     - 1400-1600
 Ranby:
   nomis_id: RNI
+  canned_responses: true
   enabled: true
   phone: 01777 862107
   email: pvb.ranby@maildrop.dsd.io
@@ -2471,6 +2541,7 @@ Ranby:
     - 1345-1600
 Wandsworth:
   nomis_id: WWI
+  canned_responses: true
   enabled: true
   phone: 0208 588 4002
   email: pvb.wandsworth@maildrop.dsd.io
@@ -2520,6 +2591,7 @@ Wandsworth:
     - 1515-1615
 Winchester (Remand only):
   nomis_id: WCI
+  canned_responses: true
   enabled: true
   phone: 0845 223 5514
   email: pvb.winchester@maildrop.dsd.io
@@ -2555,6 +2627,7 @@ Winchester (Remand only):
     - 1515-1615
 Winchester (Convicted only):
   nomis_id: WCI
+  canned_responses: true
   enabled: true
   phone: 0845 223 5514
   email: pvb.winchester@maildrop.dsd.io
@@ -2583,6 +2656,7 @@ Winchester (Convicted only):
     - 1400-1600
 Wormwood Scrubs:
   nomis_id: WSI
+  canned_responses: true
   enabled: true
   phone: 020 8588 3564
   email: pvb.wormwoodscrubs@maildrop.dsd.io
@@ -2613,6 +2687,7 @@ Wormwood Scrubs:
     - 1400-1600
 Wymott:
   nomis_id: WMI
+  canned_responses: true
   enabled: true
   phone: 01772 442234
   email: pvb.wymott@maildrop.dsd.io
@@ -2639,6 +2714,7 @@ Wymott:
     - 1315-1600
 Thorn Cross:
   nomis_id: TCI
+  canned_responses: true
   enabled: true
   phone: 01925805018
   email: pvb.thorncrossk@maildrop.dsd.io
@@ -2666,6 +2742,7 @@ Thorn Cross:
     - 1345-1545
 Risley:
   nomis_id: RSI
+  canned_responses: true
   enabled: true
   phone: 01925 733284
   email: pvb.risley@maildrop.dsd.io
@@ -2722,6 +2799,7 @@ Risley:
     - 1400-1600
 Feltham (Young Adults 18-21 only):
   nomis_id: FMI
+  canned_responses: true
   enabled: true
   phone: 0208 844 5400
   email: pvb.feltham@maildrop.dsd.io
@@ -2778,6 +2856,7 @@ Feltham (Young Adults 18-21 only):
     - 1500-1630
 Feltham (Young People 15-18 only):
   nomis_id: FMI
+  canned_responses: true
   enabled: true
   phone: 0208 844 5400
   email: pvb.feltham@maildrop.dsd.io
@@ -2832,6 +2911,7 @@ Feltham (Young People 15-18 only):
     - 1500-1630
 Whatton:
   nomis_id: WTI
+  canned_responses: true
   enabled: true
   phone: 01949 803564
   email: pvb.whatton@maildrop.dsd.io
@@ -2859,6 +2939,7 @@ Whatton:
     - 1415-1615
 Pentonville:
   nomis_id: PVI
+  canned_responses: true
   enabled: true
   phone: 020 70237251
   email: pvb.pentonville@maildrop.dsd.io
@@ -2890,6 +2971,7 @@ Pentonville:
     - 1400-1600
 Eastwood Park:
   nomis_id: EWI
+  canned_responses: true
   enabled: true
   phone: 01454 382159
   email: pvb.eastwoodpark@maildrop.dsd.io
@@ -2919,6 +3001,7 @@ Eastwood Park:
     - 1400-1600
 Leyhill:
   nomis_id: LYI
+  canned_responses: true
   enabled: true
   phone: 01454 264211
   email: pvb.leyhill@maildrop.dsd.io
@@ -2939,6 +3022,7 @@ Leyhill:
     - 1330-1530
 Swansea:
   nomis_id: SWI
+  canned_responses: true
   enabled: true
   phone: 01792 48 5322
   email: pvb.swansea@maildrop.dsd.io
@@ -2978,6 +3062,7 @@ Swansea:
     - 1515-1615
 Usk:
   nomis_id: UKI
+  canned_responses: true
   enabled: true
   phone: 01291 671730
   email: pvb.usk@maildrop.dsd.io
@@ -3007,6 +3092,7 @@ Usk:
     - 1400-1600
 Ford:
   nomis_id: FDI
+  canned_responses: true
   enabled: true
   phone: 
   email: pvb.ford@maildrop.dsd.io
@@ -3028,6 +3114,7 @@ Ford:
     - 1400-1600
 Askham Grange:
   nomis_id: AGI
+  canned_responses: true
   enabled: true
   phone: 
   email: pvb.askhamgrange@maildrop.dsd.io
@@ -3044,6 +3131,7 @@ Askham Grange:
     - 1345-1545
 Spring Hill:
   nomis_id: SPI
+  canned_responses: true
   enabled: true
   phone: 
   email: pvb.springhill@maildrop.dsd.io
@@ -3060,6 +3148,7 @@ Spring Hill:
     - 1345-1600
 Leicester:
   nomis_id: LCI
+  canned_responses: true
   enabled: true
   phone: 0116 228 3128
   email: pvb.leicester@maildrop.dsd.io
@@ -3094,6 +3183,7 @@ Leicester:
     - 1415-1615
 Sudbury:
   nomis_id: SUI
+  canned_responses: true
   enabled: true
   phone: 01283 584066
   email: pvb.sudbury@maildrop.dsd.io
@@ -3140,6 +3230,7 @@ Sudbury:
     - 1345-1545
 Channings Wood:
   nomis_id: CWI
+  canned_responses: true
   enabled: true
   phone: 01803 812060
   email: pvb.channingswood@maildrop.dsd.io
