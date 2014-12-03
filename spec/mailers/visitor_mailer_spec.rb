@@ -44,15 +44,15 @@ describe VisitorMailer do
   end
 
   let :confirmation_canned_response do
-    Confirmation.new(message: 'A message', outcome: 'slot_0', vo_number: '5551234', canned_response: true)
+    Confirmation.new(canned_response: true, outcome: 'slot_0', vo_number: '5551234')
   end
 
   let :confirmation_unlisted_visitors do
-    Confirmation.new(vo_number: '5551234', outcome: 'slot_0', visitor_not_listed: true, unlisted_visitors: ['Joan;Harris'])
+    Confirmation.new(canned_response: true, vo_number: '5551234', outcome: 'slot_0', visitor_not_listed: true, unlisted_visitors: ['Joan;Harris'])
   end
 
   let :confirmation_banned_visitors do
-    Confirmation.new(vo_number: '5551234', outcome: 'slot_0', visitor_banned: true, banned_visitors: ['Joan;Harris'])
+    Confirmation.new(canned_response: true, vo_number: '5551234', outcome: 'slot_0', visitor_banned: true, banned_visitors: ['Joan;Harris'])
   end
 
   let :confirmation_no_slot_available do
@@ -135,8 +135,8 @@ describe VisitorMailer do
         email.body.raw_source.should include("email: pvb.rochester@maildrop.dsd.io")
         email.body.raw_source.should include("phone: 01634 803100")
         email.body.raw_source.should_not include("Jimmy Harris")
-        email.body.raw_source.should include('A message')
         email.body.raw_source.should include('5551234')
+        email.body.raw_source.should_not include('A message')
       end
 
       it "sends out an e-mail with the list of visitors not on the approved visitor list" do
@@ -151,6 +151,7 @@ describe VisitorMailer do
         email.body.raw_source.should include("phone: 01634 803100")
         email.body.raw_source.should_not include("Jimmy Harris")
         email.body.raw_source.should include('Details for Joan H. don’t match our records or the visitor isn’t on the contact list.')
+        email.body.raw_source.should include('5551234')
       end
 
       it "sends out an e-mail with the list of banned visitors" do
@@ -165,6 +166,7 @@ describe VisitorMailer do
         email.body.raw_source.should include("phone: 01634 803100")
         email.body.raw_source.should_not include("Jimmy Harris")
         email.body.raw_source.should include('Joan H. should have received a letter to say that they’re banned from visiting the prison at the moment.')
+        email.body.raw_source.should include('5551234')
       end
 
       it "sends out an e-mail with the List-Unsubscribe header set" do

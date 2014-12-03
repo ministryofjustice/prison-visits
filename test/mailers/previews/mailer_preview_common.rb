@@ -22,11 +22,15 @@ module MailerPreviewCommon
   end
 
   def accepted_confirmation
-    Confirmation.new(outcome: 'slot_2', vo_number: '5551234')
+    Confirmation.new(outcome: 'slot_2', message: 'A message')
+  end
+
+  def accepted_confirmation_canned_response
+    Confirmation.new(outcome: 'slot_2', vo_number: '5551234', canned_response: true)
   end
 
   def accepted_confirmation_visitors_unlisted
-    Confirmation.new(outcome: 'slot_2', vo_number: '5551234', visitor_not_listed: true, unlisted_visitors: ['Emma;Jones'])
+    Confirmation.new(outcome: 'slot_2', vo_number: '5551234', canned_response: true, visitor_not_listed: true, unlisted_visitors: ['Emma;Jones'])
   end
 
   def accepted_confirmation_visitor_banned

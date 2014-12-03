@@ -5,6 +5,10 @@ class VisitorMailerPreview < ActionMailer::Preview
     VisitorMailer.booking_confirmation_email(sample_visit, accepted_confirmation)
   end
 
+  def booking_confirmation_canned_response
+    VisitorMailer.booking_confirmation_email(sample_visit, accepted_confirmation_canned_response)
+  end
+
   def booking_confirmation_visitors_unlisted
     VisitorMailer.booking_confirmation_email(sample_visit, accepted_confirmation_visitors_unlisted)
   end
