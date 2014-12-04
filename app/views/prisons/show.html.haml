@@ -85,10 +85,13 @@
       - else
         = standard_id_requirements(:html)
 
-      = render 'content/visiting_guidance'
+      = render 'content/visiting_guidance', visit: Visit.new(prisoner: Prisoner.new(prison_name: params['prison'].titleize))
 
   .Grid-1-3
     %aside
 
       %h2 Related information
-      %a{ href: 'https://www.gov.uk/staying-in-touch-with-someone-in-prison/visiting-someone-in-prison' } Visiting someone in prisons
+      %p
+        %a{ href: 'https://www.gov.uk/staying-in-touch-with-someone-in-prison/visiting-someone-in-prison' } Visiting someone in prisons
+      %p
+        %a{ href: 'https://www.gov.uk/find-prisoner' } Find a prisoner

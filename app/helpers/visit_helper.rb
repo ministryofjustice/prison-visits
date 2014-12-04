@@ -56,8 +56,8 @@ module VisitHelper
   end
 
   def prison_link(source=visit, link_text=nil)
-    link_text = link_text ? link_text : "#{source.prisoner.prison_name.capitalize} prison"
-    link_to link_text, prison_url(visit), :rel => 'external'
+    link_text = link_text ? link_text : "#{prison_name(source)} prison"
+    link_to link_text, prison_url(source), :rel => 'external'
   end
 
   def has_anomalies?(day)
