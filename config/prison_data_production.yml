@@ -1,6 +1,7 @@
 ---
 Rochester:
   nomis_id: RCI
+  canned_responses: true
   enabled: true
   phone: 01634 803100
   email: socialvisits.rochester@hmps.gsi.gov.uk
@@ -31,6 +32,7 @@ Rochester:
     - 1400-1600
 Durham:
   nomis_id: DMI
+  canned_responses: true
   enabled: true
   phone: 0191 3323417
   email: socialvisits.durham@hmps.gsi.gov.uk
@@ -128,6 +130,7 @@ Cardiff:
     - 1350-1520
 Gartree:
   nomis_id: GTI
+  canned_responses: true
   enabled: true
   phone: 01858 426 727
   email: socialvisits.gartree@hmps.gsi.gov.uk
@@ -396,6 +399,7 @@ Foston Hall:
     - 1400-1600
 Holloway:
   nomis_id: HYI
+  canned_responses: true
   enabled: true
   phone: 020 7979 4751
   email: socialvisits.holloway@hmps.gsi.gov.uk
@@ -465,6 +469,7 @@ Holloway:
     - 0930-1030
 Bristol:
   nomis_id: BLI
+  canned_responses: true
   enabled: true
   phone: 166700683
   email: socialvisits.bristol@hmps.gsi.gov.uk
@@ -495,6 +500,7 @@ Bristol:
     - 1400-1600
 Buckley Hall:
   nomis_id: BCI
+  canned_responses: true
   enabled: true
   phone: 01706 514350
   email: socialvisits.buckleyhall@hmps.gsi.gov.uk
@@ -531,6 +537,7 @@ Buckley Hall:
     - 1400-1600
 Bure:
   nomis_id: BRI
+  canned_responses: true
   enabled: true
   phone: 01603 326252
   email: socialvisits.bure@hmps.gsi.gov.uk
@@ -553,6 +560,7 @@ Bure:
     - 1400-1600
 Coldingley:
   nomis_id: CLI
+  canned_responses: true
   enabled: true
   phone: 01483 344418
   email: socialvisits.coldingley@hmps.gsi.gov.uk
@@ -587,6 +595,7 @@ Coldingley:
     - 0915-1100
 Cookham Wood:
   nomis_id: CKI
+  canned_responses: true
   enabled: true
   phone: 01634 202557
   email: socialvisits.cookhamwood@hmps.gsi.gov.uk
@@ -614,6 +623,7 @@ Cookham Wood:
     - 1430-1630
 Deerbolt:
   nomis_id: DTI
+  canned_responses: true
   enabled: true
   phone: 01833 633349
   email: socialvisits.deerbolt@hmps.gsi.gov.uk
@@ -639,6 +649,7 @@ Deerbolt:
     - 1345-1545
 Exeter:
   nomis_id: EXI
+  canned_responses: true
   enabled: true
   phone: 01392 41 5833
   email: socialvisits.exeter@hmps.gsi.gov.uk
@@ -668,6 +679,7 @@ Exeter:
     - 1415-1615
 Lewes:
   nomis_id: LWI
+  canned_responses: true
   enabled: true
   phone: 01273785277
   email: socialvisits.lewes@hmps.gsi.gov.uk
@@ -700,6 +712,7 @@ Lewes:
     - 1410-1535
 Moorland Closed:
   nomis_id: MDI
+  canned_responses: true
   enabled: true
   phone: 01302523289
   email: socialvisits.moorlandclosed@hmps.gsi.gov.uk
@@ -723,6 +736,7 @@ Moorland Closed:
     - 1340-1545
 Onley:
   nomis_id: ONI
+  canned_responses: true
   enabled: true
   phone: 01788 523 402
   email: socialvisits.onley@hmps.gsi.gov.uk
@@ -758,6 +772,7 @@ Onley:
     - 1515-1630
 The Mount:
   nomis_id: MTI
+  canned_responses: true
   enabled: true
   phone: 01442 836352
   email: socialvisits.themount@hmps.gsi.gov.uk
@@ -803,6 +818,7 @@ The Mount:
     - 1400-1600
 Wayland:
   nomis_id: WLI
+  canned_responses: true
   enabled: true
   phone: 001953 804152
   email: socialvisits.wayland@hmps.gsi.gov.uk
@@ -826,6 +842,7 @@ Wayland:
     - 1400-1600
 Wealstun:
   nomis_id: WEI
+  canned_responses: true
   enabled: true
   phone: 01937 444599
   email: socialvisits.wealstun@hmps.gsi.gov.uk
@@ -857,6 +874,7 @@ Wealstun:
     - 1345-1600
 Bedford:
   nomis_id: BFI
+  canned_responses: true
   enabled: true
   phone: 01234 373196
   email: socialvisits.bedford@hmps.gsi.gov.uk
@@ -888,6 +906,7 @@ Bedford:
     - 1515-1615
 Preston:
   nomis_id: PNI
+  canned_responses: true
   enabled: true
   phone: 01772 444666
   email: socialvisits.preston@hmps.gsi.gov.uk
@@ -914,6 +933,7 @@ Preston:
     - 1400-1600
 Maidstone:
   nomis_id: MSI
+  canned_responses: true
   enabled: true
   phone: 01622 775619
   email: socialvisits.maidstone@hmps.gsi.gov.uk
@@ -939,6 +959,7 @@ Maidstone:
     - 1345-1545
 Warren Hill:
   nomis_id: WII
+  canned_responses: true
   enabled: true
   phone: 020 8588 4002
   email: socialvisits.warrenhill@hmps.gsi.gov.uk
@@ -960,6 +981,7 @@ Warren Hill:
     - 1400-1600
 Wetherby:
   nomis_id: WYI
+  canned_responses: true
   enabled: true
   phone: 01937 544207
   email: socialvisits.wetherby@hmps.gsi.gov.uk
@@ -979,6 +1001,7 @@ Wetherby:
     - 1400-1600
 Erlestoke:
   nomis_id: EEI
+  canned_responses: true
   enabled: true
   phone: 01380 814264
   email: eecmbookavisit@hmps.gsi.gov.uk
@@ -999,6 +1022,7 @@ Erlestoke:
     - 1315-1600
 Chelmsford:
   nomis_id: CDI
+  canned_responses: true
   enabled: true
   phone: 01245 552265
   email: socialvisits.chelmsford@hmps.gsi.gov.uk
@@ -1026,6 +1050,7 @@ Chelmsford:
     - 1415-1600
 Stocken:
   nomis_id: SKI
+  canned_responses: true
   enabled: true
   phone: 01780 795156
   email: socialvisits.stocken@hmps.gsi.gov.uk
@@ -1050,6 +1075,7 @@ Stocken:
     - 1345-1545
 Dartmoor:
   nomis_id: DAI
+  canned_responses: true
   enabled: true
   phone: 01822 322022
   email: socvisdartmoor@hmps.gsi.gov.uk
@@ -1075,6 +1101,7 @@ Dartmoor:
     - 1400-1600
 Low Newton:
   nomis_id: LNI
+  canned_responses: true
   enabled: true
   phone: 0191 376 4147
   email: socialvisits.lownewton@hmps.gsi.gov.uk
@@ -1099,6 +1126,7 @@ Low Newton:
     - 1415-1545
 Aylesbury:
   nomis_id: AYI
+  canned_responses: true
   enabled: true
   phone: 01296 444099
   email: socialvisits.aylesbury@hmps.gsi.gov.uk
@@ -1123,6 +1151,7 @@ Aylesbury:
     - 1415-1615
 Isle of Wight - Albany:
   nomis_id: ALI
+  canned_responses: true
   enabled: true
   phone: 01983 634218
   email: socialvisitsisleofwight@hmps.gsi.gov.uk
@@ -1162,6 +1191,7 @@ Blantyre House:
     - 1345-1600
 Brixton:
   nomis_id: BXI
+  canned_responses: true
   enabled: true
   phone: 0208 678 1433
   email: socialvisits.brixton@hmps.gsi.gov.uk
@@ -1296,6 +1326,7 @@ East Sutton Park:
     - 1330-1530
 Elmley:
   nomis_id: EYI
+  canned_responses: true
   enabled: true
   phone: 0300 060 6605
   email: socialvisits.elmley@hmps.gsi.gov.uk
@@ -1324,6 +1355,7 @@ Elmley:
     - 1400-1530
 Everthorpe:
   nomis_id: EVI
+  canned_responses: true
   enabled: true
   phone: 01430 426505
   email: socialvisits.everthorpe@hmps.gsi.gov.uk
@@ -1347,6 +1379,7 @@ Everthorpe:
     - 1415-1615
 Wolds:
   nomis_id: WOI
+  canned_responses: true
   enabled: true
   phone: 01430 426505
   email: socialvisits.everthorpe@hmps.gsi.gov.uk
@@ -1369,6 +1402,7 @@ Wolds:
     - 1400-1600
 Glen Parva:
   nomis_id: GPI
+  canned_responses: true
   enabled: true
   phone: 0116 228 4366
   email: socialvisits.glenparva@hmps.gsi.gov.uk
@@ -1394,6 +1428,7 @@ Glen Parva:
     - 1400-1545
 Grendon:
   nomis_id: GNI
+  canned_responses: true
   enabled: true
   phone: ''
   email: socialvisits.grendon@hmps.gsi.gov.uk
@@ -1412,6 +1447,7 @@ Grendon:
     - 1400-1600
 Guys Marsh:
   nomis_id: GMI
+  canned_responses: true
   enabled: true
   phone: 01747 856586
   email: socialvisitsguysmarsh@hmps.gsi.gov.uk
@@ -1437,6 +1473,7 @@ Guys Marsh:
     - 1330-1545
 Hatfield Open:
   nomis_id: HDI
+  canned_responses: true
   enabled: true
   phone: 01405 746611
   email: socialvisitshatfield@hmps.gsi.gov.uk
@@ -1463,6 +1500,7 @@ Hatfield Open:
     - 1400-1600
 Haverigg:
   nomis_id: HVI
+  canned_responses: true
   enabled: true
   phone: 01229713016
   email: socialvisits.haverigg@hmps.gsi.gov.uk
@@ -1488,6 +1526,7 @@ Haverigg:
     - 1400-1545
 High Down:
   nomis_id: HOI
+  canned_responses: true
   enabled: true
   phone: 020 7147 6570
   email: socialvisits.highdown@hmps.gsi.gov.uk
@@ -1511,6 +1550,7 @@ High Down:
     - 1400-1600
 Highpoint North:
   nomis_id: HPI
+  canned_responses: true
   enabled: true
   phone: 01440 743134
   email: socialvisits.highpoint@hmps.gsi.gov.uk
@@ -1529,6 +1569,7 @@ Highpoint North:
     - 1400-1600
 Highpoint South:
   nomis_id: HPI
+  canned_responses: true
   enabled: true
   phone: 01440 743134
   email: socialvisits.highpoint@hmps.gsi.gov.uk
@@ -1550,6 +1591,7 @@ Highpoint South:
     - 1400-1600
 Holme House:
   nomis_id: HHI
+  canned_responses: true
   enabled: true
   phone: 03000 606602
   email: socialvisits.holmehouse@hmps.gsi.gov.uk
@@ -1603,6 +1645,7 @@ Hull:
     - 1345-1545
 Huntercombe:
   nomis_id: HCI
+  canned_responses: true
   enabled: true
   phone: 01491 643151
   email: socialvisits.huntercombe@hmps.gsi.gov.uk
@@ -1634,6 +1677,7 @@ Huntercombe:
     - 1345-1600
 Isle of Wight - Parkhurst:
   nomis_id: IWI
+  canned_responses: true
   enabled: true
   phone: 01983 634218
   email: socialvisitsisleofwight@hmps.gsi.gov.uk
@@ -1654,6 +1698,7 @@ Isle of Wight - Parkhurst:
     - 1400-1600
 Leeds:
   nomis_id: LEI
+  canned_responses: true
   enabled: true
   phone: 0113 203 2995
   email: socialvisits.leeds@hmps.gsi.gov.uk
@@ -1698,6 +1743,7 @@ Leeds:
     - 1530-1630
 New Hall:
   nomis_id: NHI
+  canned_responses: true
   enabled: true
   phone: 01924 803219
   email: socialvisits.newhall@hmps.gsi.gov.uk
@@ -1722,6 +1768,7 @@ New Hall:
     - 1400-1600
 Nottingham:
   nomis_id: NMI
+  canned_responses: true
   enabled: true
   phone: 0115 962 8980
   email: socialvisits.nottingham@hmps.gsi.gov.uk
@@ -1751,6 +1798,7 @@ Nottingham:
     - 1400-1600
 Send:
   nomis_id: SDI
+  canned_responses: true
   enabled: true
   phone: 01483 471033
   email: socialvisits.send@hmps.gsi.gov.uk
@@ -1777,6 +1825,7 @@ Send:
     - 1415-1615
 Styal:
   nomis_id: STI
+  canned_responses: true
   enabled: true
   phone: 01625553195
   email: socialvisits.styal@hmps.gsi.gov.uk
@@ -1803,6 +1852,7 @@ Styal:
     - 1345-1545
 Swaleside:
   nomis_id: SLI
+  canned_responses: true
   enabled: true
   phone: 0300 060 6604
   email: socialvisits.swaleside@hmps.gsi.gov.uk
@@ -1828,6 +1878,7 @@ Swaleside:
     - 1400-1600
 Norwich (A, B, C, E, M only):
   nomis_id: NWI
+  canned_responses: true
   enabled: true
   phone: 01603 708795
   email: socialvisits.norwich@hmps.gsi.gov.uk
@@ -1852,6 +1903,7 @@ Norwich (A, B, C, E, M only):
     - 0930-1130
 Norwich (F, G, H, L only):
   nomis_id: NWI
+  canned_responses: true
   enabled: true
   phone: 01603 708795
   email: socialvisits.norwich@hmps.gsi.gov.uk
@@ -1874,6 +1926,7 @@ Norwich (F, G, H, L only):
     - 1415-1615
 Norwich (Britannia House):
   nomis_id: NWI
+  canned_responses: true
   enabled: true
   phone: 01603 708795
   email: socialvisits.norwich@hmps.gsi.gov.uk
@@ -1909,6 +1962,7 @@ Norwich (Britannia House):
     - 1400-1600
 Standford Hill:
   nomis_id: EHI
+  canned_responses: true
   enabled: true
   phone: 0300 060 6603
   email: socialvisits.standfordhill@hmps.gsi.gov.uk
@@ -1928,6 +1982,7 @@ Standford Hill:
     - 1345-1545
 Liverpool Social Visits:
   nomis_id: LPI
+  canned_responses: true
   enabled: true
   phone: 0151 530 4050
   email: socialvisits.liverpool@hmps.gsi.gov.uk
@@ -1983,6 +2038,7 @@ Liverpool Social Visits:
     - 1525-1625
 Liverpool (Closed only):
   nomis_id: LPI
+  canned_responses: true
   enabled: true
   phone: 0151 530 4050
   email: socialvisits.liverpool@hmps.gsi.gov.uk
@@ -2011,6 +2067,7 @@ Liverpool (Closed only):
     - 1025-1125
 Bullingdon (Convicted Only):
   nomis_id: BNI
+  canned_responses: true
   enabled: true
   phone: 01869 353176
   email: socialvisits.bullingdon@hmps.gsi.gov.uk
@@ -2037,6 +2094,7 @@ Bullingdon (Convicted Only):
     - 1400-1610
 Bullingdon (Remand Only):
   nomis_id: BNI
+  canned_responses: true
   enabled: true
   phone: 01869 353176
   email: socialvisits.bullingdon@hmps.gsi.gov.uk
@@ -2058,6 +2116,7 @@ Bullingdon (Remand Only):
     - 1400-1610
 Hindley (Young People 15-18 only):
   nomis_id: HII
+  canned_responses: true
   enabled: true
   phone: 01942 663492
   email: socialvisits.hindley@hmps.gsi.gov.uk
@@ -2133,6 +2192,7 @@ Hindley (Young People 15-18 only):
     - 1430-1630
 Hindley (Young Adult 18-21 only):
   nomis_id: HII
+  canned_responses: true
   enabled: true
   phone: 01942 663234
   email: socialvisits.hindley@hmps.gsi.gov.uk
@@ -2203,6 +2263,7 @@ Hindley (Young Adult 18-21 only):
     - 1430-1630
 Hollesley Bay Open:
   nomis_id: HBI
+  canned_responses: true
   enabled: true
   phone: ''
   email: socialvisits.hollesleybay@hmps.gsi.gov.uk
@@ -2224,6 +2285,7 @@ Hollesley Bay Open:
     - 1400-1545
 Kennet:
   nomis_id: KTI
+  canned_responses: true
   enabled: true
   phone: 0151 213 3179
   email: socialvisits.kennet@hmps.gsi.gov.uk
@@ -2257,6 +2319,7 @@ Kennet:
     - 1530-1630
 Kirkham:
   nomis_id: KMI
+  canned_responses: true
   enabled: true
   phone: 
   email: socialvisits.kirkham@hmps.gsi.gov.uk
@@ -2276,6 +2339,7 @@ Kirkham:
     - 1300-1530
 Lancaster Farms:
   nomis_id: LFI
+  canned_responses: true
   enabled: true
   phone: 01524 563636
   email: lancasterfarmsdomesticvisitsbooking@hmps.gsi.gov.uk
@@ -2297,6 +2361,7 @@ Lancaster Farms:
     - 1530-1630
 Lincoln:
   nomis_id: LII
+  canned_responses: true
   enabled: true
   phone: 01522 663172
   email: lincolnsocialvisits@hmps.gsi.gov.uk
@@ -2323,6 +2388,7 @@ Lincoln:
     - 1400-1600
 Lindholme:
   nomis_id: LHI
+  canned_responses: true
   enabled: true
   phone: 01302 524980
   email: socialvisits.lindholme@hmps.gsi.gov.uk
@@ -2356,6 +2422,7 @@ Lindholme:
     - 1345-1600
 Littlehey:
   nomis_id: LTI
+  canned_responses: true
   enabled: true
   phone: 01480 335650
   email: socialvisits.littlehey@hmps.gsi.gov.uk
@@ -2388,6 +2455,7 @@ Littlehey:
     - 1400-1600
 North Sea Camp:
   nomis_id: NSI
+  canned_responses: true
   enabled: true
   phone: 01205 769 368
   email: socialvisits.northseacamp@hmps.gsi.gov.uk
@@ -2408,6 +2476,7 @@ North Sea Camp:
     - 1330-1545
 Portland:
   nomis_id: PDI
+  canned_responses: true
   enabled: true
   phone: 01305 715775
   email: socialvisits.portland@hmps.gsi.gov.uk
@@ -2434,6 +2503,7 @@ Portland:
     - 1400-1600
 Ranby:
   nomis_id: RNI
+  canned_responses: true
   enabled: true
   phone: 01777 862107
   email: socialvisits.ranby@hmps.gsi.gov.uk
@@ -2459,6 +2529,7 @@ Ranby:
     - 1345-1600
 Wandsworth:
   nomis_id: WWI
+  canned_responses: true
   enabled: true
   phone: 0208 588 4002
   email: socialvisits.wandsworth@hmps.gsi.gov.uk
@@ -2508,6 +2579,7 @@ Wandsworth:
     - 1515-1615
 Winchester (Remand only):
   nomis_id: WCI
+  canned_responses: true
   enabled: true
   phone: 0845 223 5514
   email: socialvisits.winchester@hmps.gsi.gov.uk
@@ -2543,6 +2615,7 @@ Winchester (Remand only):
     - 1515-1615
 Winchester (Convicted only):
   nomis_id: WCI
+  canned_responses: true
   enabled: true
   phone: 0845 223 5514
   email: socialvisits.winchester@hmps.gsi.gov.uk
@@ -2571,6 +2644,7 @@ Winchester (Convicted only):
     - 1400-1600
 Wormwood Scrubs:
   nomis_id: WSI
+  canned_responses: true
   enabled: true
   phone: 020 8588 3564
   email: socialvisits.wormwoodscrubs@hmps.gsi.gov.uk
@@ -2601,6 +2675,7 @@ Wormwood Scrubs:
     - 1400-1600
 Wymott:
   nomis_id: WMI
+  canned_responses: true
   enabled: true
   phone: 01772 442234
   email: socialvisits.wymott@hmps.gsi.gov.uk
@@ -2627,6 +2702,7 @@ Wymott:
     - 1315-1600
 Thorn Cross:
   nomis_id: TCI
+  canned_responses: true
   enabled: true
   phone: 01925805018
   email: socialvisits.thorncross@hmps.gsi.gov.uk
@@ -2654,6 +2730,7 @@ Thorn Cross:
     - 1345-1545
 Risley:
   nomis_id: RSI
+  canned_responses: true
   enabled: true
   phone: 01925 733284
   email: socialvisits.risley@hmps.gsi.gov.uk
@@ -2709,6 +2786,7 @@ Risley:
     2014-11-28:
     - 1400-1600
 Feltham (Young Adults 18-21 only):
+  canned_responses: true
   enabled: true
   phone: 0208 844 5400
   email: socialvisits.feltham@hmps.gsi.gov.uk
@@ -2765,6 +2843,7 @@ Feltham (Young Adults 18-21 only):
     - 1500-1630
 Feltham (Young People 15-18 only):
   nomis_id: FMI
+  canned_responses: true
   enabled: true
   phone: 0208 844 5400
   email: socialvisits.feltham@hmps.gsi.gov.uk
@@ -2819,6 +2898,7 @@ Feltham (Young People 15-18 only):
     - 1500-1630
 Whatton:
   nomis_id: WTI
+  canned_responses: true
   enabled: true
   phone: 01949 803564
   email: socialvisits.whatton@hmps.gsi.gov.uk
@@ -2846,6 +2926,7 @@ Whatton:
     - 1415-1615
 Pentonville:
   nomis_id: PVI
+  canned_responses: true
   enabled: true
   phone: 020 70237251
   email: socialvisits.pentonville@hmps.gsi.gov.uk
@@ -2877,6 +2958,7 @@ Pentonville:
     - 1400-1600
 Eastwood Park:
   nomis_id: EWI
+  canned_responses: true
   enabled: true
   phone: 01454 382159
   email: socialvisits.eastwoodpark@hmps.gsi.gov.uk
@@ -2906,6 +2988,7 @@ Eastwood Park:
     - 1400-1600
 Leyhill:
   nomis_id: LYI
+  canned_responses: true
   enabled: true
   phone: 01454 264211
   email: socialvisits.leyhill@hmps.gsi.gov.uk
@@ -2926,6 +3009,7 @@ Leyhill:
     - 1330-1530
 Swansea:
   nomis_id: SWI
+  canned_responses: true
   enabled: true
   phone: 01792 48 5322
   email: socialvisits.swansea@hmps.gsi.gov.uk
@@ -2965,6 +3049,7 @@ Swansea:
     - 1515-1615
 Usk:
   nomis_id: UKI
+  canned_responses: true
   enabled: true
   phone: 01291 671730
   email: socialvisits.usk@hmps.gsi.gov.uk
@@ -2994,6 +3079,7 @@ Usk:
     - 1400-1600
 Ford:
   nomis_id: FDI
+  canned_responses: true
   enabled: true
   phone: 
   email: socialvisits.ford@hmps.gsi.gov.uk
@@ -3015,6 +3101,7 @@ Ford:
     - 1400-1600
 Askham Grange:
   nomis_id: AGI
+  canned_responses: true
   enabled: true
   phone: 
   email: socialvisits.askhamgrange@hmps.gsi.gov.uk
@@ -3031,6 +3118,7 @@ Askham Grange:
     - 1345-1545
 Spring Hill:
   nomis_id: SPI
+  canned_responses: true
   enabled: true
   phone: 
   email: socialvisits.springhill@hmps.gsi.gov.uk
@@ -3047,6 +3135,7 @@ Spring Hill:
     - 1345-1600
 Leicester:
   nomis_id: LCI
+  canned_responses: true
   enabled: true
   phone: 0116 228 3128
   email: socialvisitsleiceste@hmps.gsi.gov.uk
@@ -3081,6 +3170,7 @@ Leicester:
     - 1415-1615
 Sudbury:
   nomis_id: SUI
+  canned_responses: true
   enabled: true
   phone: 01283 584066
   email: socialvisitssudbury@hmps.gsi.gov.uk
@@ -3127,6 +3217,7 @@ Sudbury:
     - 1345-1545
 Channings Wood:
   nomis_id: CWI
+  canned_responses: true
   enabled: true
   phone: 01803 812060
   email: socialvisits.channingswood@hmps.gsi.gov.uk
