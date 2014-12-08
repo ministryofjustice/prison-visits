@@ -1,8 +1,19 @@
 - content_for :header, params['prison'].titleize
-
 .Grid
   .Grid-2-3
-
+    #addresses
+      #visiting{property: 'address', typeof: 'http://schema.org/PostalAddress'}
+        %h1
+          Address:
+        %span{property: 'streetAddress'}
+          = @data['address'][0]
+        %span{property: 'addressLocality'}
+          = @data['address'][1]
+        %span{property: 'postalCode'}
+          = @data['address'].last
+        %p#map-link
+          %a{href: "https://maps.google.co.uk/?q=#{@data['address'].join(', ')}", rel: 'external'}
+            Maps and directions
     %dl
       %dt Online visit requests
       %dd= @data['enabled'] ? 'Yes' : 'No'
@@ -12,17 +23,17 @@
 
       - if @data['enabled']
 
-        - if @data['address']
-          %dt Address
-          %dd= @data['address'].join ', '
-
         - if @data['phone']
           %dt Booking line
-          %dd= @data['phone']
+          %dd
+            %a{href: "tel:#{@data['phone']}"}
+              = @data['phone']
 
         - if @data['email']
           %dt Functional mailbox
-          %dd= @data['email']
+          %dd
+            %a{href: "mailto:#{@data['email']}"}
+              = @data['email']
 
         %dt Canned responses
         %dd= @data['canned_responses'] ? 'Yes' : 'No'
@@ -88,8 +99,10 @@
       = render 'content/visiting_guidance', visit: Visit.new(prisoner: Prisoner.new(prison_name: params['prison'].titleize))
 
   .Grid-1-3
+    #map-canvas
+      %a{href: "https://maps.google.co.uk/?q=#{@data['address'].join(', ')}"}
+        %img{src: "https://maps.googleapis.com/maps/api/staticmap?center=#{@data['address'].join(', ')}&zoom=13&size=280x248&key=AIzaSyAjw3AxaguxJs4SBcxsmln2wxTEgRBPU0E"}
     %aside
-
       %h2 Related information
       %p
         %a{ href: 'https://www.gov.uk/staying-in-touch-with-someone-in-prison/visiting-someone-in-prison' } Visiting someone in prisons
