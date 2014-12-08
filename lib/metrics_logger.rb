@@ -31,6 +31,12 @@ class MetricsLogger
     end
   end
 
+  def record_booking_cancellation(visit_id, type)
+    update_entry(visit_id) do |e|
+      e.outcome = type
+    end
+  end
+
   def record_instant_visit(visit)
     VisitMetricsEntry.create!(visit_id: visit.visit_id, requested_at: now_in_utc, processed_at: now_in_utc, kind: 'instant', prison_name: visit.prisoner.prison_name)
   rescue PG::ConnectionBad => e

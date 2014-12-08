@@ -1,17 +1,48 @@
-- case @visit_status
-- when :confirmed
-  %h1 Your visit has been confirmed
-  %p You should have received an email confirming the exact date and time of your visit.
-  %p If you haven't received a confirmation email, please check your spam or junk folder. You need to do this on a computer or tablet (rather than a smart phone). 
-- when :rejected
-  %h1 Your visit request cannot take place on the dates you've chosen 
-  %p There are a couple of possible reasons for this, for example there may be no space in the visiting hall, or the prisoner may not have any visiting allowance left.
-  %p If you haven't received an email to say that your visit can't take place as planned, please check your spam or junk folder. You need to do this on a computer or tablet (rather than a smart phone).
-- when :pending
-  %h1 Your visit is not booked yet
-  %p Your visit request hasn't yet been processed by visit booking staff. You should get a visit confirmation email within 3 working days of making your request.
-  %p If you don’t receive an email within 3 working days, please check your spam or junk folder. You need to do this on a computer or tablet (rather than a smart phone).
-%p
-  To stop visit confirmation emails going to your spam or junk folder please add
-  %span.no-wrap no-reply@email.prisonvisits.service.gov.uk
-  to your address book or safe senders list. 
+- content_for :header, 'Visit status'
+
+.Grid
+  .Grid-2-3
+
+    - case @visit_status
+    
+    - when :confirmed
+      %h1 Your visit has been confirmed
+      %p You should have received an email confirming the exact date and time of your visit.
+      %p If you haven't received a confirmation email, please check your spam or junk folder. You need to do this on a computer or tablet (rather than a smart phone).
+
+      = render 'spam_notice'
+
+      %h1 Cancel this visit
+      %p If you no longer want to visit on this date, you can cancel this visit. 
+
+      = render 'cancellation_form', type: :visit
+    
+    - when :rejected
+      %h1 Your visit request cannot take place on the dates you've chosen 
+      %p There are a couple of possible reasons for this, for example there may be no space in the visiting hall, or the prisoner may not have any visiting allowance left.
+      %p If you haven't received an email to say that your visit can't take place as planned, please check your spam or junk folder. You need to do this on a computer or tablet (rather than a smart phone).
+
+      = render 'spam_notice'
+    
+    - when :pending
+      %h1 Your visit is not booked yet
+      %p Your visit request hasn't yet been processed by visit booking staff. You should get a visit confirmation email within 3 working days of making your request.
+      %p If you don’t receive an email within 3 working days, please check your spam or junk folder. You need to do this on a computer or tablet (rather than a smart phone).
+
+      = render 'spam_notice'
+      
+      %h1 Cancel this visit request
+      %p If you no longer want to visit on this date, you can cancel this request.
+
+      = render 'cancellation_form', type: :request
+    
+    - when :request_cancelled
+      %h1 You cancelled this visit request
+      %p Request a #{link_to 'new visit', prisoner_details_path}.
+    
+    - when :visit_cancelled
+      %h1 You cancelled this visit
+      %p Request a #{link_to 'new visit', prisoner_details_path}.
+    
+    - else
+      %p There was a problem. Your visit request is invalid.

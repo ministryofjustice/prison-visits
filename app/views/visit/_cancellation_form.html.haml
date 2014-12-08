@@ -1,0 +1,10 @@
+= form_tag "/status/#{params[:id]}" do |f|
+
+  .group.options
+
+    %label.block-label(for="cancel_booking")
+      %input#cancel_booking{ type: "checkbox", value: "#{type}", name: "cancel" }
+      Yes, I want to cancel this visit
+
+  .actions
+    %input.button.button-primary{ type: "submit", value: "Cancel #{type}" }

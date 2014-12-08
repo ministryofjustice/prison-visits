@@ -32,10 +32,11 @@ PrisonVisits2::Application.routes.draw do
     get 'your-visit'       => 'visits#show', as: :show_visit
   end
 
-  scope :controller => 'visit' do
+  scope controller: :visit do
     get "/abandon", action: :abandon
     get "/unavailable", action: :unavailable
     get "/status/:id", action: :status, as: :visit_status
+    post "/status/:id", action: :update_status, as: :update_visit_status
     post "/webhooks/email/:auth", controller: 'webhooks', action: 'email'
   end
 
