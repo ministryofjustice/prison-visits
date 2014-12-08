@@ -103,7 +103,10 @@ describe VisitHelper do
      'Norwich (A, B, C, E, M only)',
      'Norwich (F, G, H, L only)',
      'Norwich (Britannia House)',
-     'High Down'].each do |prison_name|
+     'High Down',
+     'Highpoint North',
+     'Highpoint South'
+    ].each do |prison_name|
       helper.custom_id_requirements(prison_name, :html).should_not be_nil
       helper.custom_id_requirements(prison_name, :text).should_not be_nil
     end
