@@ -44,7 +44,14 @@ class MetricsLogger
   end
 
   def processed?(visit)
-    [:confirmed, :rejected].include?(visit_status(visit.visit_id))
+    if entry = find_entry(visit.visit_id)
+      entry.processed_at.present?
+    else
+      false
+    end
+  rescue PG::ConnectionBad => e
+    Raven.capture_exception(e)
+    :unknown
   end
 
   def request_cancelled?(visit)

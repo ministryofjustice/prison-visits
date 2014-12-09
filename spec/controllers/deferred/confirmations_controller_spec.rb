@@ -58,6 +58,17 @@ describe Deferred::ConfirmationsController do
 
       it "doesn't resurrect a visit which has already been booked" do
         sample_visit.tap do |visit|
+          mock_metrics_logger.should_receive(:request_cancelled?).and_return(true)
+          mock_metrics_logger.should_receive(:record_link_click)
+          mock_metrics_logger.should_receive(:processed?).and_return(false)
+          get :new, state: encrypted_visit
+          response.should be_success
+          response.should render_template('confirmations/_request_cancelled')
+        end
+      end
+
+      it "doesn't resurrect a visit which has been cancelled by the visitor" do
+        sample_visit.tap do |visit|
           mock_metrics_logger.should_receive(:request_cancelled?).and_return(false)
           mock_metrics_logger.should_receive(:record_link_click)
           mock_metrics_logger.should_receive(:processed?) do |v|

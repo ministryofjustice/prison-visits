@@ -100,12 +100,28 @@ describe MetricsLogger do
     end
   end
 
+  it "responds with a visit request status as cancelled" do
+    subject.record_visit_request(visit)
+    subject.record_link_click(visit)
+    subject.record_booking_cancellation(visit.visit_id, :request_cancelled)
+    subject.processed?(visit).should be_false
+    subject.visit_status(visit.visit_id).should == :request_cancelled
+  end
+
   it "responds with a visit status as confirmed" do
     subject.record_visit_request(visit)
     subject.record_link_click(visit)
     subject.record_booking_confirmation(visit)
     subject.processed?(visit).should be_true
     subject.visit_status(visit.visit_id).should == :confirmed
+  end
+
+  it "responds with a visit status as cancelled" do
+    subject.record_visit_request(visit)
+    subject.record_link_click(visit)
+    subject.record_booking_cancellation(visit.visit_id, :visit_cancelled)
+    subject.processed?(visit).should be_false
+    subject.visit_status(visit.visit_id).should == :visit_cancelled
   end
 
   it "responds with a visit status as rejected" do
