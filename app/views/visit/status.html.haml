@@ -23,6 +23,8 @@
       %p If you haven't received an email to say that your visit can't take place as planned, please check your spam or junk folder. You need to do this on a computer or tablet (rather than a smart phone).
 
       = render 'spam_notice'
+      
+      %p Request a #{link_to 'new visit', prisoner_details_path}.
     
     - when :pending
       %h1 Your visit is not booked yet
