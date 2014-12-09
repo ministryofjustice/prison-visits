@@ -49,7 +49,15 @@ Banned visitors should have received a letter to say that they’re banned from 
 Changing or cancelling your visit
 ---------------------------------
 
-Please don't reply to this email to change any details of your visit. Instead you must contact us directly. Please do this as soon as you can.
+If you no longer want to visit on this date, you can cancel this visit using the following link. 
+<%= visit_status_url(@visit.visit_id) %>
+
+If you want to change anything about your visit, like dates or visitors coming contact the prison.
+
+Questions about your visit
+--------------------------
+
+Please don't reply to this email if you have any other questions about your visit. Instead you must contact us directly.
 
 * telephone: <%= prison_phone %>
 * email: <%= prison_email %>

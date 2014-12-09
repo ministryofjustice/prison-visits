@@ -25,10 +25,21 @@ You have requested a visit to <%= @visit.prisoner.prison_name %> for <%= @visit.
 Prisoner: <%= @visit.prisoner.first_name %> <%= @visit.prisoner.last_initial %>.
 Prisoner number: <%= @visit.prisoner.number.upcase %>
 
-Changing or cancelling your visit request
 
-If you want to cancel or make a change to your request or have any special requirements, eg wheelchair access, please contact us.
+Cancel this visit request
+
+If you no longer want to visit on this date, you can cancel this request using the link below. 
+<%= visit_status_url(@visit.visit_id) %>
+
+
+Visitors with special requirements
+
+If you have any special requirements, eg wheelchair access, please contact us.
+ 
 * telephone: <%= prison_phone %>
 * email: <%= prison_email %>
+ 
+ 
+Need help or have a question? 
 
-Need help or want to make a complaint? If you have a question or need any help with the online visits service, please contact us: <%= new_feedback_url %>
+If you have a question or need any help with the online visits service, please contact us: <%= new_feedback_url %>
