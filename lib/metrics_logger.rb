@@ -47,6 +47,10 @@ class MetricsLogger
     [:confirmed, :rejected].include?(visit_status(visit.visit_id))
   end
 
+  def request_cancelled?(visit)
+    :request_cancelled == visit_status(visit.visit_id)
+  end
+
   def visit_status(visit_id)
     if entry = find_entry(visit_id)
       (entry.outcome || :pending).to_sym

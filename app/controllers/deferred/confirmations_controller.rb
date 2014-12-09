@@ -11,6 +11,10 @@ class Deferred::ConfirmationsController < ApplicationController
       STATSD_CLIENT.increment('pvb.app.already_booked')
       render '_already_booked'
     end
+    if metrics_logger.request_cancelled?(booked_visit)
+      reset_session
+      render '_request_cancelled'
+    end
     logstasher_add_visit_id(booked_visit.visit_id)
   rescue ActiveSupport::MessageVerifier::InvalidSignature => e
     render '_bad_state', status: 400
