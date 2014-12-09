@@ -44,6 +44,7 @@ describe Deferred::ConfirmationsController do
 
       it "resurrects the visit" do
         controller.should_receive(:logstasher_add_visit_id).with(visit.visit_id)
+        mock_metrics_logger.should_receive(:request_cancelled?).and_return(false)
         mock_metrics_logger.should_receive(:record_link_click)
         mock_metrics_logger.should_receive(:processed?) do |v|
           v.should.eql? visit
@@ -57,6 +58,7 @@ describe Deferred::ConfirmationsController do
 
       it "doesn't resurrect a visit which has already been booked" do
         sample_visit.tap do |visit|
+          mock_metrics_logger.should_receive(:request_cancelled?).and_return(false)
           mock_metrics_logger.should_receive(:record_link_click)
           mock_metrics_logger.should_receive(:processed?) do |v|
             v.should.eql? visit
@@ -73,6 +75,7 @@ describe Deferred::ConfirmationsController do
           sample_visit.tap do |visit|
             visit.prisoner.prison_name = prison_name
             controller.should_receive(:logstasher_add_visit_id).with(visit.visit_id)
+            mock_metrics_logger.should_receive(:request_cancelled?).and_return(false)
             mock_metrics_logger.should_receive(:record_link_click)
             mock_metrics_logger.should_receive(:processed?) do |v|
               v.should.eql? visit
@@ -101,6 +104,7 @@ describe Deferred::ConfirmationsController do
       it "migrates legacy visitor data" do
         migrated_visit = controller.migrate_visitors(legacy_visit)
         controller.should_receive(:logstasher_add_visit_id).with(migrated_visit.visit_id)
+        mock_metrics_logger.should_receive(:request_cancelled?).and_return(false)
         mock_metrics_logger.should_receive(:record_link_click)
         mock_metrics_logger.should_receive(:processed?) do |v|
           v.should.eql? legacy_visit
@@ -187,6 +191,7 @@ describe Deferred::ConfirmationsController do
 
         context "when a link is clicked" do
           it "records the metrics" do
+            mock_metrics_logger.should_receive(:request_cancelled?).and_return(false)
             mock_metrics_logger.should_receive(:record_link_click) { |actual_visit| visit.should.eql? actual_visit }
             mock_metrics_logger.should_receive(:processed?) { |actual_visit| visit.should.eql? actual_visit }
           end
