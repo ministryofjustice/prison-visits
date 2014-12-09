@@ -14,6 +14,7 @@ class Encryptor
       begin
         return e.decrypt_and_verify(value)
       rescue Zlib::DataError
+        STATSD_CLIENT.increment('pvb.app.legacy_encryptor')
         next
       end
     end
