@@ -9,6 +9,14 @@ describe ApplicationHelper do
     helper.format_date(Date.parse('2014-07-24')).should == "24 July 2014"
   end
 
+  it "formats a date to match NOMIS format from a string" do
+    helper.format_date_nomis('2014-07-24').should == "24/07/2014"
+  end
+
+  it "formats a date to match NOMIS format from a date" do
+    helper.format_date_nomis(Date.parse('2014-07-24')).should == "24/07/2014"
+  end
+
   it "formats a day from a string" do
     helper.format_day('2014-07-24').should == "Thursday 24 July"
   end

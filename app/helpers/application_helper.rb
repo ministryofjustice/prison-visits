@@ -4,6 +4,11 @@ module ApplicationHelper
     date.strftime("%e %B %Y").strip
   end
 
+  def format_date_nomis(date)
+    date = Date.parse(date) if date.class == String
+    date.strftime("%d/%m/%Y").strip
+  end
+
   def format_day(date)
     date = Date.parse(date) if date.class == String
     date.strftime("%A %e %B").strip
