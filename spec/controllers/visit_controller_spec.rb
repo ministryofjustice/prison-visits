@@ -23,8 +23,16 @@ describe VisitController do
       controller.metrics_logger.should_receive(:visit_status).with(visit_id).and_return(:pending)
     end
 
+    it "displays the status of a cancelled visit request" do
+      controller.metrics_logger.should_receive(:visit_status).with(visit_id).and_return(:request_cancelled)
+    end
+
     it "displays the status of a confirmed visit" do
       controller.metrics_logger.should_receive(:visit_status).with(visit_id).and_return(:confirmed)
+    end
+
+    it "displays the status of a cancelled visit" do
+      controller.metrics_logger.should_receive(:visit_status).with(visit_id).and_return(:visit_cancelled)
     end
 
     it "displays the status of a rejected visit" do
