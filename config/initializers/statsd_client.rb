@@ -1,1 +1,1 @@
-STATSD_CLIENT = Statsd.new('127.0.0.1')
+STATSD_CLIENT = Statsd.new(ENV['STATSD_HOST'], ENV['STATSD_PORT'].to_i)
