@@ -979,6 +979,9 @@ Warren Hill:
     - 1400-1600
     fri:
     - 1400-1600
+  slot_anomalies:
+    2014-12-24:
+    - 1400-1600
 Wetherby:
   nomis_id: WYI
   canned_responses: true
