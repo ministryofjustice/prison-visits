@@ -1,13 +1,45 @@
 - content_for :header do
-  - if prison_data(booked_visit)['canned_responses']
-    Visit request for #{booked_visit.prisoner.first_name} #{booked_visit.prisoner.last_name}
-  - else
-    Process a visit request
+  Process a visit request
 
 .Grid
-  .Grid-3-4
+  .Grid-2-3
 
     - if prison_data(booked_visit)['canned_responses']
       = render 'canned_responses'
     - else
       = render 'open_responses'
+
+  .Grid-1-3
+
+    %dl.labels
+      %dt Prisoner:
+      %dd= booked_visit.prisoner.full_name
+      
+      %dt Number:
+      %dd= booked_visit.prisoner.number
+
+      %dt Date of birth:
+      %dd= format_date_nomis booked_visit.prisoner.date_of_birth
+
+
+    %hr
+
+
+    - booked_visit.visitors.each_with_index do |visitor, index|
+      %dl.labels
+        %dt Visitor #{index + 1}:
+        %dd= visitor.full_name
+
+        %dt Age:
+        %dd= visitor.age
+
+        %dt Date of birth:
+        %dd= format_date_nomis visitor.date_of_birth
+        
+        - if visitor.email
+          %dt Email:
+          %dd= visitor.email
+        
+        - if visitor.phone
+          %dt Phone:
+          %dd= visitor.phone

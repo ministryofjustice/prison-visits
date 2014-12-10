@@ -32,7 +32,7 @@
                 = display_slot_and_duration slot.times
 
 
-.Grid(style="margin-top:1em")
+.Grid
   .Grid-1-3
     %dl
       %dt Location
@@ -46,16 +46,16 @@
 
   .Grid-1-3
     %dl
-    - if prison_phone.present?
-      %dt Tel
-      %dd.h3
-        %strong= prison_phone
-      %br
+      - if prison_phone.present?
+        %dt Tel
+        %dd.h3
+          %strong= prison_phone
+        %br
     
-    - if prison_email.present?
-      %dt Email
-      %dd
-        %strong= prison_email_link
+      - if prison_email.present?
+        %dt Email
+        %dd
+          %strong= prison_email_link
 
   .Grid-1-3
     %p.visible--js-enabled= link_to 'Print this page', '#', :class => 'print-link'

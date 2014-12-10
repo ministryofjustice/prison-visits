@@ -114,7 +114,19 @@ small.child
   background: #959595
 
 dl
-  margin-bottom: 0
+  @include core-19
+
+  dt
+    @include core-16
+
+  &.labels
+    
+    dt
+      @include core-19
+      float: left
+      margin-right: .25em
+    dd
+      font-weight: bold
 
 dd
   margin: 0
