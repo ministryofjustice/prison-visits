@@ -8,11 +8,11 @@ describe VisitController do
     request.stub(:ssl? => true)
   end
 
-  context "always" do
-    let :visit_id do
-      SecureRandom.hex
-    end
+  let :visit_id do
+    SecureRandom.hex
+  end
 
+  context "always" do
     it "displays the status of a visit not yet created" do
       controller.metrics_logger.should_receive(:visit_status).with(visit_id).twice.and_return(false)
       get :status, id: visit_id 
@@ -23,16 +23,8 @@ describe VisitController do
       controller.metrics_logger.should_receive(:visit_status).with(visit_id).and_return(:pending)
     end
 
-    it "displays the status of a cancelled visit request" do
-      controller.metrics_logger.should_receive(:visit_status).with(visit_id).and_return(:request_cancelled)
-    end
-
     it "displays the status of a confirmed visit" do
       controller.metrics_logger.should_receive(:visit_status).with(visit_id).and_return(:confirmed)
-    end
-
-    it "displays the status of a cancelled visit" do
-      controller.metrics_logger.should_receive(:visit_status).with(visit_id).and_return(:visit_cancelled)
     end
 
     it "displays the status of a rejected visit" do
@@ -42,6 +34,21 @@ describe VisitController do
     after :each do
       get :status, id: visit_id
       response.should be_success
+    end
+  end
+
+  context "cancelled visits" do
+    it "displays the status of a cancelled visit request" do
+      controller.metrics_logger.should_receive(:visit_status).with(visit_id).and_return(:request_cancelled)
+    end
+
+    it "displays the status of a cancelled visit" do
+      controller.metrics_logger.should_receive(:visit_status).with(visit_id).and_return(:visit_cancelled)
+    end
+
+    after :each do
+      get :status, id: visit_id
+      response.body.should include("cancelled")
     end
   end
 
