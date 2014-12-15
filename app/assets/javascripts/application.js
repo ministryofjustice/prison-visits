@@ -4,6 +4,7 @@
 //= require jquery-ui-autocomplete
 //= require dist/javascripts/moj.slot-picker
 //= require dist/javascripts/moj.date-slider
+//= require dest/respond.min
 
 // Project assets
 //= require visitors

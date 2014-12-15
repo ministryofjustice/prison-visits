@@ -3,44 +3,41 @@
 
 - if prison_data(booked_visit)['canned_responses']
 
-  .Grid
-    .Grid-2-3
-      = render 'canned_responses'
+  .people
 
-    .Grid-1-3
+    %dl.labels
+      %dt Prisoner:
+      %dd= booked_visit.prisoner.full_name
+      
+      %dt Number:
+      %dd= booked_visit.prisoner.number
 
+      %dt Date of birth:
+      %dd= format_date_nomis booked_visit.prisoner.date_of_birth
+
+    %hr
+
+    - booked_visit.visitors.each_with_index do |visitor, index|
       %dl.labels
-        %dt Prisoner:
-        %dd= booked_visit.prisoner.full_name
-        
-        %dt Number:
-        %dd= booked_visit.prisoner.number
+        %dt Visitor #{index + 1}:
+        %dd= visitor.full_name
+
+        %dt Age:
+        %dd= visitor.age
 
         %dt Date of birth:
-        %dd= format_date_nomis booked_visit.prisoner.date_of_birth
+        %dd= format_date_nomis visitor.date_of_birth
+        
+        - if visitor.email
+          %dt Email:
+          %dd= visitor.email
+        
+        - if visitor.phone
+          %dt Phone:
+          %dd= visitor.phone
 
-
-      %hr
-
-
-      - booked_visit.visitors.each_with_index do |visitor, index|
-        %dl.labels
-          %dt Visitor #{index + 1}:
-          %dd= visitor.full_name
-
-          %dt Age:
-          %dd= visitor.age
-
-          %dt Date of birth:
-          %dd= format_date_nomis visitor.date_of_birth
-          
-          - if visitor.email
-            %dt Email:
-            %dd= visitor.email
-          
-          - if visitor.phone
-            %dt Phone:
-            %dd= visitor.phone
+  .processing-form
+    = render 'canned_responses'
 
 - else
   = render 'open_responses'
