@@ -70,7 +70,7 @@
         = yield
 
 
-- content_for :footer_app_links do
+- content_for :footer_support_links do
   %li= link_to "Cookies", cookies_path
   %li= link_to "Terms and Conditions", terms_and_conditions_path
   %li= link_to "Contact us", new_feedback_path(referrer: request.original_url)
