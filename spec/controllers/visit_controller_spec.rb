@@ -52,6 +52,25 @@ describe VisitController do
     end
   end
 
+  context "cancel an existing visit" do
+    let :encrypted_visit do
+      MESSAGE_ENCRYPTOR.encrypt_and_sign(sample_visit)
+    end
+
+    it "cancels a pending visit request" do
+      controller.metrics_logger.should_receive(:visit_status).with(sample_visit.visit_id).and_return(:pending)
+    end
+
+    it "cancels a confirmed visit request" do
+      controller.metrics_logger.should_receive(:visit_status).with(sample_visit.visit_id).and_return(:confirmed)
+    end
+
+    after :each do
+      post :update_status, id: sample_visit.visit_id, state: encrypted_visit
+      response.should redirect_to(visit_status_path(sample_visit.visit_id))
+    end
+  end
+
   describe "abandon ship!" do
     before :each do
       session[:visit] = Visit.new(prisoner: Prisoner.new(prison_name: 'Alcatraz'))

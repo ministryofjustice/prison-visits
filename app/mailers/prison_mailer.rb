@@ -43,6 +43,12 @@ class PrisonMailer < ActionMailer::Base
     end
   end
 
+  def booking_cancellation_receipt_email(visit)
+    @visit = visit
+
+    mail(from: sender, reply_to: user, to: recipient, subject: "Visit for #{@visit.prisoner.full_name} has been cancelled")
+  end
+
   def sender
     noreply_address
   end

@@ -40,4 +40,8 @@ class PrisonMailerPreview < ActionMailer::Preview
   def booking_receipt_rejected_prisoner_not_present
     PrisonMailer.booking_receipt_email(sample_visit, rejected_confirmation(Confirmation::PRISONER_NOT_PRESENT))
   end
+
+  def booking_cancellation_receipt
+    PrisonMailer.booking_cancellation_receipt_email(sample_visit)
+  end
 end

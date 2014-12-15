@@ -30,8 +30,9 @@ class VisitorMailer < ActionMailer::Base
     mail(from: sender, reply_to: prison_mailbox_email, to: recipient, subject: "Visit cannot take place: your visit for #{first_date.strftime('%e %B %Y').gsub(/^ /,'')} could not be booked")
   end
 
-  def booking_receipt_email(visit)
+  def booking_receipt_email(visit, token)
     @visit = visit
+    @token = token
 
     mail(from: sender, reply_to: prison_mailbox_email, to: recipient, subject: "Not booked yet: we've received your visit request for #{first_date.strftime('%e %B %Y').gsub(/^ /,'')}")
   end

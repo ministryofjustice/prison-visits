@@ -5,7 +5,7 @@ class Deferred::VisitsController < ApplicationController
   def update
     @token = encryptor.encrypt_and_sign(visit)
     PrisonMailer.booking_request_email(visit, @token).deliver
-    VisitorMailer.booking_receipt_email(visit).deliver
+    VisitorMailer.booking_receipt_email(visit, @token).deliver
 
     metrics_logger.record_visit_request(visit)
     redirect_to deferred_show_visit_path

@@ -1,9 +1,4 @@
 class VisitController < ApplicationController
-  helper_method :visit
-
-  def visit
-    session[:visit]
-  end
 
   def abandon
     reset_session
@@ -11,10 +6,15 @@ class VisitController < ApplicationController
 
   def status
     @visit_status = metrics_logger.visit_status(params[:id])
+    if params[:state]
+      encryptor.decrypt_and_verify(params[:state])
+      @state = params[:state]
+    end
   end
 
   def update_status
     @visit_status = metrics_logger.visit_status(params[:id])
+    @visit = encryptor.decrypt_and_verify(params[:state])
 
     if params[:cancel]
       metrics_logger.record_booking_cancellation(params[:id], "#{params[:cancel]}_cancelled")
@@ -23,6 +23,10 @@ class VisitController < ApplicationController
     end
 
     redirect_to visit_status_path(id: params[:id])
+  end
+
+  def encryptor
+    MESSAGE_ENCRYPTOR
   end
 
   def metrics_logger

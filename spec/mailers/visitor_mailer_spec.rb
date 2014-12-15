@@ -188,7 +188,7 @@ describe VisitorMailer do
 
       it "sends out an e-mail with the List-Unsubscribe header set" do
         header_value = '<https://www.prisonvisits.service.gov.uk/unsubscribe>'
-        subject.booking_receipt_email(sample_visit)['List-Unsubscribe'].value.should ==  header_value
+        subject.booking_receipt_email(sample_visit, "token")['List-Unsubscribe'].value.should ==  header_value
         [confirmation_no_slot_available, confirmation_not_on_contact_list, confirmation_no_vos_left].each do |outcome|
           subject.booking_rejection_email(sample_visit, outcome)['List-Unsubscribe'].value.should == header_value
         end
@@ -327,7 +327,7 @@ describe VisitorMailer do
 
     context "booking receipt sent" do
       it "sends out an e-mail with a date in the subject" do
-        email = subject.booking_receipt_email(sample_visit)
+        email = subject.booking_receipt_email(sample_visit, "token")
         email.subject.should == "Not booked yet: we've received your visit request for 7 July 2013"
         email[:from].should == noreply_address
         email[:reply_to].should == prison_address

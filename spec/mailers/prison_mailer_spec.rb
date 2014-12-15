@@ -82,6 +82,8 @@ describe PrisonMailer do
       end
     end
 
+    it "sends an cancellation notification to a prison so it can be removed from NOMIS"
+
     it "sends an e-mail with a link over https" do
       subject.booking_request_email(sample_visit, "token").should match_in_html "https://localhost"
     end
