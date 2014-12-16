@@ -8,6 +8,8 @@ class VisitorMailer < ActionMailer::Base
   add_template_helper(ApplicationHelper)
   add_template_helper(VisitHelper)
 
+  layout 'email'
+
   attr_reader :visit
   helper_method :visit
 

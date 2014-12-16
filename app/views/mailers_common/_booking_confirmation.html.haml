@@ -1,0 +1,91 @@
+!!!
+%body
+  %p
+    Dear #{@visit.visitors.first.first_name},
+  %p
+    Your visit to #{@visit.prisoner.prison_name} is now successfully confirmed.
+  %h2
+    #{format_date(@slot.date)}, #{display_time_slot(@slot.times)}
+  %p
+    Prisoner:
+    %strong #{@visit.prisoner.first_name} #{initial ? @visit.prisoner.last_initial + '.' : @visit.prisoner.last_name}
+    %br
+    Prisoner number:
+    %strong #{@visit.prisoner.number.upcase}
+  %p
+    - @visit.visitors.each_with_index do |visitor, index|
+      - unless index == 0 
+        %br
+      Visitor #{index + 1}:
+      %strong #{visitor.first_name} #{initial ? visitor.last_initial + '.' : visitor.last_name}
+  %p
+    Please arrive 45 minutes before your visit starts.
+  %h1
+    Changing or cancelling your visit
+  %p
+    Please don't reply to this email to change any details of your visit. Instead you must contact us directly. Please do this as soon as you can.
+    %ul
+      %li
+        telephone:
+        %strong #{prison_phone}
+      %li
+        email:
+        %strong #{prison_email}
+  %h1
+    Add this email to your address book
+  %p
+    To stop visit confirmation emails going to your spam or junk folder please add no-reply@email.prisonvisits.service.gov.uk to your address book or safe senders list.
+  %h1
+    What to bring when you visit
+  %p
+    Please make sure you bring ID with you. This can be ONE of the following:
+    %ul
+      %li
+        passport, including foreign passports, and expired passports where the photograph is still recognisable
+      %li
+        identity card (including European identity cards) 
+      %li
+        driving licence
+      %li
+        benefits book
+      %li
+        senior citizen's public transport photo pass issued by a local authority
+      %li
+        employer's or student ID card but only if this has a photo and clearly shows your name and the issuing employer or educational establishment
+  %p
+    If you don't have one of these forms of ID, you can bring TWO of the following:
+    %ul
+      %li
+        birth or marriage certificate
+      %li
+        cheque book or credit or debit card
+      %li 
+        employer's pass or ID or student ID card without photo
+      %li 
+        young person's 'proof of age' card
+      %li
+        trade union or National Students' Union membership card
+      %li
+        rent book
+      %li
+        foreign identity or residents' card
+  %p
+    If you have any questions about ID requirements, please contact the prison.
+  %h1
+    What to expect when visiting prison
+  %p
+    You will be searched before entering the prison visiting room. Prison staff may check  your pockets, pat you down and ask you to go through a metal detector. Dogs may also be used to detect illegal substances.
+  %h1
+    What not to bring
+  %p
+    Please do not bring anything restricted or illegal to the prison. For more information about what you are allowed to bring, please see the #{@visit.prisoner.prison_name}
+    = succeed '.' do
+      %a{ :href => prison_url(@visit) } page
+  %h1
+    Your data
+  %p
+    The Ministry of Justice (HM Prison Service) uses and retains the personal data of visitors for the purposes of the safe and secure provision of Prison Services, including those related to the management and rehabilitation of offenders. Access to the establishment can only be granted by supplying the prescribed information in order to ensure and maintain a safe and secure environment for all. You have the right to request details as to the personal information we hold for you; and subsequently request that we correct any personal information if it is found to be inaccurate or out of date. We will not share your information with other organisations unless it is required for the purposes of prevention, detection of crime, apprehension, prosecution, and management of offenders; prevention of terrorism; National  Security; or required to do by law.
+  %p
+    Need help? If you have a question or need any help with the online visits service, please
+    = succeed '.' do
+      %a{ :href => new_feedback_url } contact us

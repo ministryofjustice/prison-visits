@@ -1,0 +1,52 @@
+%p
+  Dear #{@visit.visitors.first.first_name},
+%h1
+  Your visit is not booked yet
+%p
+  You can
+  = succeed '.' do
+    %a{ :href => visit_status_url(@visit.visit_id) } check the status of your request
+%p
+  We'll email you by #{when_to_expect_reply} to confirm the date and time of your visit. Please don't contact us any sooner than that, as we won't be able to comment on booking requests that are being processed.
+%p
+  If you don’t receive a confirmation email by #{when_to_expect_reply}, please check your spam or junk folder for it. You need to do this on a computer or tablet (rather than a smart phone).
+%h1
+  Add this email to your address book
+%p
+  To stop visit confirmation emails going to your spam or junk folder please add no-reply@email.prisonvisits.service.gov.uk to your address book or safe senders list.
+%h1
+  Visit request details
+%p
+  You have requested a visit to #{@visit.prisoner.prison_name} for #{@visit.visitors.size} #{@visit.visitors.size > 1 ? 'people' : 'person'}:
+%p{:style => "margin:0"}
+  - @visit.slots.each_with_index do |slot, index|
+    - unless index == 0
+      %br
+    - if slot.date.present?
+      - if index == 0
+        First choice:
+      - else 
+        Alternative #{index}:
+      %strong #{Date.parse(slot.date).strftime("%A %e %B")}, #{display_time_slot(slot.times)}
+%br      
+%p{:style => "margin:0"}
+  Prisoner:
+  %strong #{@visit.prisoner.first_name} #{@visit.prisoner.last_initial}.
+%p{:style => "margin:0"}
+  Prisoner number:
+  %strong #{@visit.prisoner.number.upcase}
+%h1
+  Changing or cancelling your visit request
+%p
+  If you want to cancel or make a change to your request or have any special requirements, eg wheelchair access, please contact us.
+%ul
+  %li
+    telephone:
+    %strong #{prison_phone}
+  %li
+    email:
+    %strong #{prison_email}
+%p
+  Need help or want to make a complaint? If you have a question or need any help with the online visits service, please 
+  = succeed '.' do
+    %a{ :href => new_feedback_url } contact us

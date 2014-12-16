@@ -1,75 +1,54 @@
-!!!
-%body
-  :css
-    .copy-paste-window {
-      word-wrap: break-word;
-      border: thin solid gray;
-      padding: 5px;
-      width: 80%;
-    }
-    .button {
-      color: white;
-      background: #00823b;
-      text-decoration: none;
-      padding: 7px 12px 5px;
-      font-family: arial;
-      font-weight: bold;
-      letter-spacing: 0.03em;
-      border-bottom: 2px solid #003518;
-      margin-top: 1em;
-      display: inline-block;
-    }
+%p
+  Prisoner:
+  %strong #{@visit.prisoner.first_name} #{@visit.prisoner.last_name}
+  %br
+  Number:
+  %strong #{@visit.prisoner.number}
+  %br
+  Date of birth:
+  %strong #{@visit.prisoner.date_of_birth.strftime("%e %B %Y")}
 
+%p
+  First choice:
+  %b
+    = Date.parse(@visit.slots.first.date).strftime('%A, %d/%m/%Y at ')
+    = format_time_str_24 @visit.slots.first.times.split('-')[0]
+    \-
+    = format_time_str_24 @visit.slots.first.times.split('-')[1]
+  - if @visit.slots.length > 1
+    - @visit.slots.each_with_index do |slot, index|
+      - unless index == 0
+        - if slot.date.present?
+          %br
+          Alternative #{index}:
+        %b
+          = Date.parse(slot.date).strftime('%A, %d/%m/%Y at ')
+          = format_time_str_24 slot.times.split('-')[0]
+          \-
+          = format_time_str_24 slot.times.split('-')[1]
+
+- @visit.visitors.each_with_index do |visitor, index|
   %p
-    Prisoner:
-    %strong #{@visit.prisoner.first_name} #{@visit.prisoner.last_name}
+    Visitor #{index + 1}:
+    %strong #{visitor.first_name} #{visitor.last_name}
     %br
-    Number:
-    %strong #{@visit.prisoner.number}
+    Age: 
+    %strong #{visitor.age}
     %br
     Date of birth:
-    %strong #{@visit.prisoner.date_of_birth.strftime("%e %B %Y")}
-
-  %p
-    First choice:
-    %b
-      = Date.parse(@visit.slots.first.date).strftime('%A, %d/%m/%Y at ')
-      = format_time_str_24 @visit.slots.first.times.split('-')[0]
-      \-
-      = format_time_str_24 @visit.slots.first.times.split('-')[1]
-    - if @visit.slots.length > 1
-      - @visit.slots.each_with_index do |slot, index|
-        - unless index == 0
-          - if slot.date.present?
-            %br
-            Alternative #{index}:
-            = Date.parse(slot.date).strftime('%A, %d/%m/%Y at ')
-            = format_time_str_24 slot.times.split('-')[0]
-            \-
-            = format_time_str_24 slot.times.split('-')[1]
-
-  - @visit.visitors.each_with_index do |visitor, index|
-    %p
-      Visitor #{index + 1}:
-      %strong #{visitor.first_name} #{visitor.last_name}
+    %strong #{visitor.date_of_birth.strftime("%d/%m/%Y")}
+    - if visitor.email
       %br
-      Age: 
-      %strong #{visitor.age}
+      Email:
+      %strong #{visitor.email}
+    - if visitor.phone
       %br
-      Date of birth:
-      %strong #{visitor.date_of_birth.strftime("%d/%m/%Y")}
-      - if visitor.email
-        %br
-        Email:
-        %strong #{visitor.email}
-      - if visitor.phone
-        %br
-        Phone:
-        %strong #{visitor.phone}
+      Phone:
+      %strong #{visitor.phone}
 
-  %p= link_to("Process the booking", deferred_new_confirmation_url(state: @token), class: 'button')
+%p= link_to("Process the booking", deferred_new_confirmation_url(state: @token), class: 'button')
 
-  %p If you cannot click on the link above, copy the entire link and paste it into the address bar of your browser.
-  %div.copy-paste-window
-    = deferred_new_confirmation_url(state: @token)
+%p If you cannot click on the link above, copy the entire link and paste it into the address bar of your browser.
+%div.copy-paste-window
+  = deferred_new_confirmation_url(state: @token)
 
