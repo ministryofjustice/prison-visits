@@ -57,3 +57,21 @@ label.BookingCalendar-dateLink {
 .BookingCalendar-content .BookingCalendar-day {
   padding-left: 3px;
 }
+
+.processing-form {
+  float: left;
+  width: 63%;
+}
+
+.people {
+  float: right;
+  width: 33%;
+}
+
+@include media(mobile) {
+  .processing-form,
+  .people {
+    float: none;
+    width: auto;
+  }
+}
