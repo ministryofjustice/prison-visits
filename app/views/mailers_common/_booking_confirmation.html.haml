@@ -78,14 +78,12 @@
   %h1
     What not to bring
   %p
-    Please do not bring anything restricted or illegal to the prison. For more information about what you are allowed to bring, please see the #{@visit.prisoner.prison_name}
-    = succeed '.' do
-      %a{ :href => prison_url(@visit) } page
+    Please don’t bring anything restricted or illegal to the prison. The #{link_to(@visit.prisoner.prison_name + ' prison page', prison_url(@visit))} has more information about what you can bring.
   %h1
     Your data
   %p
     The Ministry of Justice (HM Prison Service) uses and retains the personal data of visitors for the purposes of the safe and secure provision of Prison Services, including those related to the management and rehabilitation of offenders. Access to the establishment can only be granted by supplying the prescribed information in order to ensure and maintain a safe and secure environment for all. You have the right to request details as to the personal information we hold for you; and subsequently request that we correct any personal information if it is found to be inaccurate or out of date. We will not share your information with other organisations unless it is required for the purposes of prevention, detection of crime, apprehension, prosecution, and management of offenders; prevention of terrorism; National  Security; or required to do by law.
+  %h1
+    Need help or have a question?
   %p
-    Need help? If you have a question or need any help with the online visits service, please
-    = succeed '.' do
-      %a{ :href => new_feedback_url } contact us
+    If you have a question or need any help with the online visits service, please #{link_to('contact us', new_feedback_url)}.

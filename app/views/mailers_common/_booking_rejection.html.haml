@@ -18,8 +18,7 @@
               %br
             #{index + 1}. #{Date.parse(slot.date).strftime("%A %e %B")}, #{display_time_slot(slot.times)}
       %p
-        Please visit to choose some
-        %a{ href: "http://gov.uk/prison-visits/"} alternative dates.
+        Please visit #{link_to('www.gov.uk/prison-visits', 'http://www.gov.uk/prison-visits')} to choose some alternative dates.
     - when Confirmation::NOT_ON_CONTACT_LIST
       %p
         You have tried to book a visit but not all visitors are on the prisoner’s contact list.
