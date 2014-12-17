@@ -29,8 +29,41 @@
     - when Confirmation::NO_VOS_LEFT
       %p
         You have tried to book a visit but the prisoner you want to visit has not got any visiting allowance left. You need to contact the prisoner to find out more about their visiting allowance.
+
+    - when Confirmation::NO_ALLOWANCE
+      %p
+        We’re sorry, but the prisoner you want to visit has not got any visiting allowance left for the dates you’ve chosen.
+
+        - if @confirmation.no_pvo
+
+          %p However, you can book a weekday visit with visiting allowance valid until #{Date.parse(@confirmation.renew_pvo).strftime("%A %e %B")}. The visit must be taken before the allowance expires.
+
+        - if @confirmation.no_vo
+
+          %p #{@visit.prisoner.first_name} #{initial ? @visit.prisoner.last_initial : @visit.prisoner.last_name} will have their full visiting allowance (VO) renewed on #{Date.parse(@confirmation.renew_vo).strftime("%A %e %B")}.
+
+    - when Confirmation::PRISONER_INCORRECT
+
+      %p Your visit cannot take place as you haven’t given correct information for the prisoner. Eg, the prisoner’s name, number or date of birth is incorrect. Contact the prisoner to get up-to-date information.
+
+    - when Confirmation::PRISONER_NOT_PRESENT
+
+      %p Your visit cannot take place as the prisoner you want to visit has moved prison. They should contact you about where they are now. You can also use the #{link_to('find a prisoner service', 'http://www.gov.uk/find-prisoner')}.
+
     - else
-      #{raise 'bad reason'}
+      - if @confirmation.visitor_not_listed
+
+        %p Your visit cannot take place as details for #{@confirmation.unlisted_visitors.join(', ').gsub(';', ' ')} don’t match our records or they aren’t on the prisoner’s contact list.
+
+        %p Please contact the prisoner and ask them to update their contact list with correct details, making sure that names appear exactly the same as on ID documents.
+
+        %p If this is the prisoner’s first visit (reception visit), then you need to contact the prison to book.
+
+      - elsif @confirmation.visitor_banned
+        %p Your visit cannot take place. #{@confirmation.banned_visitors.join(', ').gsub(';', ' ')} should have received a letter to say that they’re banned from visiting the prison at the moment. Get in touch with the prison for more information.
+
+      - else 
+        - raise 'bad reason'
     %p
       #{@message_from_prison}
     %p
