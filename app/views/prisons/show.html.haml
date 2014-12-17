@@ -16,25 +16,22 @@
           %a{href: "https://maps.google.co.uk/?q=#{@data['address'].join(', ')}", rel: 'external'}
             Maps and directions
     %dl
-      %dt Online visit requests
-      %dd= @data['enabled'] ? 'Yes' : 'No'
-
-      %dt NOMIS ID
+      %dt NOMIS ID (NOMS network only)
       %dd= @data['nomis_id']
 
       - if @data['enabled']
+
+        - if @data['email']
+          %dt Functional mailbox (NOMS network only)
+          %dd
+            %a{href: "mailto:#{@data['email']}"}
+              = @data['email']
 
         - if @data['phone']
           %dt Booking line
           %dd
             %a{href: "tel:#{@data['phone']}"}
               = @data['phone']
-
-        - if @data['email']
-          %dt Functional mailbox
-          %dd
-            %a{href: "mailto:#{@data['email']}"}
-              = @data['email']
 
         - if @data['finder_slug']
           %dt Prison finder slug
