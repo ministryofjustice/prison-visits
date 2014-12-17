@@ -35,9 +35,6 @@
             %a{href: "mailto:#{@data['email']}"}
               = @data['email']
 
-        %dt Canned responses
-        %dd= @data['canned_responses'] ? 'Yes' : 'No'
-
         - if @data['finder_slug']
           %dt Prison finder slug
           %dd= @data['finder_slug']
