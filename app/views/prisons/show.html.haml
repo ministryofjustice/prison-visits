@@ -15,6 +15,10 @@
         %p#map-link
           %a{href: "https://maps.google.co.uk/?q=#{@data['address'].join(', ')}", rel: 'external'}
             Maps and directions
+
+    - if @data['enabled']
+      = link_to('Request a visit', prisoner_details_path(prison: params['prison'].titleize), class: 'button button-primary')
+
     %dl
       %dt NOMIS ID (NOMS network only)
       %dd= @data['nomis_id']

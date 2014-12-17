@@ -78,7 +78,7 @@
                   HMP #{prison_name} isn’t able to process online visit requests yet. You can #{prison_link visit, 'contact the prison'} directly to book a visit instead.
                 - else
                   HMP #{prison_name} is unable to process online visit requests. Instead you can #{prison_link visit, 'contact the prison'} directly to book a visit.
-          = f.select :prison_name, prison_names, { prompt: 'select a prison' }, { class: 'js-autocomplete' }
+          = f.select :prison_name, prison_names, { prompt: 'select a prison', selected: params[:prison] }, { class: 'js-autocomplete' }
 
       .actions
         .primary-actions
