@@ -39,7 +39,7 @@ class Deferred::ConfirmationsController < ApplicationController
   end
 
   def booked_visit
-    remove_prison(legacy_data_fixes(encryptor.decrypt_and_verify(params[:state])))
+    legacy_data_fixes(encryptor.decrypt_and_verify(params[:state]))
   end
 
   def confirmation_params
@@ -67,15 +67,6 @@ class Deferred::ConfirmationsController < ApplicationController
       visit.prisoner.prison_name = prison_name
     end
     visit
-  end
-
-  def remove_prison(visit)
-    visit.tap do |v|
-      if v.prisoner.prison
-        STATSD_CLIENT.increment('pvb.app.remove_prison')
-        v.prisoner.prison = nil
-      end
-    end
   end
 
   def migrate_visitors(visit)
