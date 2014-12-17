@@ -1,9 +1,10 @@
 - content_for :header, params['prison'].titleize
+
 .Grid
   .Grid-2-3
     #addresses
       #visiting{property: 'address', typeof: 'http://schema.org/PostalAddress'}
-        %h1
+        %h2
           Address:
         %span{property: 'streetAddress'}
           = @data['address'][0]

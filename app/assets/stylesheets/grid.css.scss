@@ -31,6 +31,7 @@ $gutter: 30px;
     }
     
     [class^='Grid-'] {
+    	margin: 0;
       padding: 0 $gutter;
       float: left;
       box-sizing: border-box;
