@@ -10,7 +10,7 @@
 
 %p
   First choice:
-  %b
+  %strong
     = Date.parse(@visit.slots.first.date).strftime('%A, %d/%m/%Y at ')
     = format_time_str_24 @visit.slots.first.times.split('-')[0]
     \-
@@ -49,6 +49,6 @@
 %p= link_to("Process the booking", deferred_new_confirmation_url(state: @token), class: 'button')
 
 %p If you cannot click on the link above, copy the entire link and paste it into the address bar of your browser.
+
 %div.copy-paste-window
   = deferred_new_confirmation_url(state: @token)
-
