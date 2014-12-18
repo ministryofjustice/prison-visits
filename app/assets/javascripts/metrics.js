@@ -68,6 +68,7 @@ function displayHistogram(where, dataSource, displayLines) {
         .attr('transform', 'translate(0,' + height + ')')
         .call(xAxis);
     if (displayLines) {
+        var medianValue = percentile(dataSource, 50);
         var percentileValue = percentile(dataSource, 95);
 
         svg.append('line')
@@ -82,6 +83,12 @@ function displayHistogram(where, dataSource, displayLines) {
             .attr('y1', y(0))
             .attr('y2', y(maxY))
             .attr('class', 'percentile');
+        svg.append('line')
+            .attr('x1', x(medianValue))
+            .attr('x2', x(medianValue))
+            .attr('y1', y(0))
+            .attr('y2', y(maxY))
+            .attr('class', 'median');
         svg.append('text')
             .attr('x', 0)
             .attr('y', 0)
@@ -94,6 +101,12 @@ function displayHistogram(where, dataSource, displayLines) {
             .attr('class', 'percentile-label')
             .attr('transform', 'translate(' + (x(percentileValue) + 4) + ',' + y(maxY) + '),rotate(90)')
             .text('95-th percentile');
+        svg.append('text')
+            .attr('x', 0)
+            .attr('y', 0)
+            .attr('class', 'median-label')
+            .attr('transform', 'translate(' + (x(medianValue) + 4) + ',' + y(maxY) + '),rotate(90)')
+            .text('median');
     }
 }
 
