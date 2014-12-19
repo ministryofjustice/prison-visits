@@ -5,9 +5,9 @@
       %h1 Thank you
       %p A confirmation email has been sent to the visitor.
 
-    - if Date.today < Date.parse('2014-12-23')
+    - if Date.today < Date.parse('2014-12-26')
       #latest-change.notice
-        %h1 Staff update: prisoner and visitor details moved to top
-        %p We have moved the prisoner and visitor details to the top of the processing form. If your browser window is large enough, it will display them in a right-hand column.
+        %h1 Staff update: new look emails for visitors and staff
+        %p We've redesigned the emails so that the information is clearer and easier to read. Take a look at the example preview in the #{link_to('staff info area', '/staff/changes')}.
         %p
           %a(href="/staff/changes") Read more about recent updates
