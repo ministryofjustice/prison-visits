@@ -166,7 +166,7 @@ describe VisitorMailer do
         email.should match_in_html("pvb.rochester@maildrop.dsd.io")
         email.should match_in_html("01634 803100")
         email.should_not match_in_html("Jimmy Harris")
-        email.should match_in_html("Details for Joan H. don’t match our records or the visitor isn’t on the contact list.")
+        email.should match_in_html("Joan H. cannot attend as they’re not on the prisoner’s contact list")
         email.should match_in_html('5551234')
       end
 
@@ -181,7 +181,7 @@ describe VisitorMailer do
         email.should match_in_html("pvb.rochester@maildrop.dsd.io")
         email.should match_in_html("01634 803100")
         email.should_not match_in_html("Jimmy Harris")
-        email.should match_in_html("Joan H. should have received a letter to say that they’re banned from visiting the prison at the moment.")
+        email.should match_in_html("Joan H. cannot attend as they’re currently banned")
         email.should match_in_html('5551234')
       end
 
