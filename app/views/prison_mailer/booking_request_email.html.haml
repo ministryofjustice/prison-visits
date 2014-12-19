@@ -21,11 +21,11 @@
         - if slot.date.present?
           %br
           Alternative #{index}:
-        %b
-          = Date.parse(slot.date).strftime('%A, %d/%m/%Y at ')
-          = format_time_str_24 slot.times.split('-')[0]
-          \-
-          = format_time_str_24 slot.times.split('-')[1]
+          %strong
+            = Date.parse(slot.date).strftime('%A, %d/%m/%Y at ')
+            = format_time_str_24 slot.times.split('-')[0]
+            \-
+            = format_time_str_24 slot.times.split('-')[1]
 
 - @visit.visitors.each_with_index do |visitor, index|
   %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
