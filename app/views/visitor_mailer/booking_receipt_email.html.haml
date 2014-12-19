@@ -1,29 +1,29 @@
-%p
+%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
   Dear #{@visit.visitors.first.first_name},
 
 
-%h1
+%h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' }
   Your visit is not booked yet
-%p
+%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
   You can check whether your visit has been booked on the #{link_to('visit status page', visit_status_url(@visit.visit_id))}.
-%p
+%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
   We'll email you by #{when_to_expect_reply} to confirm the date and time of your visit. Please don't contact us any sooner than that, as we won't be able to comment on booking requests that are being processed.
-%p
+%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
   If you don’t receive a confirmation email by #{when_to_expect_reply}, please check your spam or junk folder for it. You need to do this on a computer or tablet (rather than a smart phone).
 
 
-%h1
+%h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' }
   Add this email to your address book
-%p
+%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
   To stop visit confirmation emails going to your spam or junk folder please add no-reply@email.prisonvisits.service.gov.uk to your address book or safe senders list.
 
 
-%h1
+%h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' }
   Visit request details
-%p
+%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
   You have requested a visit to #{@visit.prisoner.prison_name} for #{@visit.visitors.size} #{@visit.visitors.size > 1 ? 'people' : 'person'}:
 
-%p
+%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
   - @visit.slots.each_with_index do |slot, index|
     - unless index == 0
       %br
@@ -34,7 +34,7 @@
         Alternative #{index}:
       %strong #{Date.parse(slot.date).strftime("%A %e %B")}, #{display_time_slot(slot.times)}
 
-%p
+%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
   Prisoner:
   %strong #{@visit.prisoner.first_name} #{@visit.prisoner.last_initial}.
   %br
@@ -42,20 +42,20 @@
   %strong #{@visit.prisoner.number.upcase}
 
 
-%h1
+%h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' }
   Changing or cancelling your visit request
-%p
+%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
   If you want to cancel or make a change to your request or have any special requirements, eg wheelchair access, please contact us.
 
 %ul
-  %li
+  %li{ style: 'font: 16px Helvetica, Arial, sans-serif' }
     telephone:
     %strong #{prison_phone}
-  %li
+  %li{ style: 'font: 16px Helvetica, Arial, sans-serif' }
     email:
     %strong #{prison_email}
 
-%p
+%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
   Need help or want to make a complaint? If you have a question or need any help with the online visits service, please 
   = succeed '.' do
     %a{ :href => new_feedback_url } contact us

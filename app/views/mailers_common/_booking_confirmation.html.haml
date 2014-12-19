@@ -2,22 +2,22 @@
 - visitors = visitors - @confirmation.unlisted_visitors if @confirmation.visitor_not_listed
 - visitors = visitors - @confirmation.banned_visitors if @confirmation.visitor_banned
 
-%p Dear #{@visit.visitors.first.first_name},
+%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } Dear #{@visit.visitors.first.first_name},
 
-%p Your visit to #{@visit.prisoner.prison_name} is now successfully confirmed.
+%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } Your visit to #{@visit.prisoner.prison_name} is now successfully confirmed.
 
-%h2 #{format_date(@slot.date)}, #{display_time_slot(@slot.times)}
+%h2{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' } #{format_date(@slot.date)}, #{display_time_slot(@slot.times)}
 
-%p Please arrive 45 minutes before your visit starts.
+%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } Please arrive 45 minutes before your visit starts.
 
-%p
+%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
   Prisoner:
   %strong #{@visit.prisoner.first_name} #{initial ? @visit.prisoner.last_initial : @visit.prisoner.last_name}
   %br
   Prisoner number:
   %strong #{@visit.prisoner.number.upcase}
 
-%p
+%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
   - visitors.each_with_index do |visitor, index|
     - unless index == 0 
       %br
@@ -27,88 +27,88 @@
 
 - if @confirmation.canned_response && @confirmation.vo_number != 'none'
 
-  %p Your reference number is: #{@confirmation.vo_number}
+  %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } Your reference number is: #{@confirmation.vo_number}
 
 
 - if @confirmation.visitor_not_listed or @confirmation.visitor_banned
 
-  %h2 Visitors unable to attend this visit
+  %h2{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' } Visitors unable to attend this visit
 
   %ul
     - if @confirmation.visitor_not_listed
-      %li #{@confirmation.unlisted_visitors.inject([]){ |array, (visitor)| array << first_name(visitor) + ' ' + (initial ? last_initial(visitor) : last_name(visitor)) }.join(', ')} cannot attend as they’re not on the prisoner’s contact list
+      %li{ style: 'font: 16px Helvetica, Arial, sans-serif' } #{@confirmation.unlisted_visitors.inject([]){ |array, (visitor)| array << first_name(visitor) + ' ' + (initial ? last_initial(visitor) : last_name(visitor)) }.join(', ')} cannot attend as they’re not on the prisoner’s contact list
     - if @confirmation.visitor_banned
-      %li #{@confirmation.banned_visitors.inject([]){ |array, (visitor)| array << first_name(visitor) + ' ' + (initial ? last_initial(visitor) : last_name(visitor)) }.join(', ')} cannot attend as they’re currently banned
+      %li{ style: 'font: 16px Helvetica, Arial, sans-serif' } #{@confirmation.banned_visitors.inject([]){ |array, (visitor)| array << first_name(visitor) + ' ' + (initial ? last_initial(visitor) : last_name(visitor)) }.join(', ')} cannot attend as they’re currently banned
 
   - if @confirmation.visitor_not_listed
 
-    %p Visitors not on contact lists need to ask prisoners to update their lists with correct details, making sure that names appear exactly the same as on ID documents.
+    %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } Visitors not on contact lists need to ask prisoners to update their lists with correct details, making sure that names appear exactly the same as on ID documents.
 
   - if @confirmation.visitor_banned
 
-    %p Banned visitors should have received a letter to say that they’re banned from visiting the prison at the moment. Get in touch with the prison for more information. 
+    %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } Banned visitors should have received a letter to say that they’re banned from visiting the prison at the moment. Get in touch with the prison for more information. 
 
 
-%h1 Changing or cancelling your visit
+%h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' } Changing or cancelling your visit
 
-%p
+%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
   Please don't reply to this email to change any details of your visit. Instead you must contact us directly. Please do this as soon as you can.
   
 %ul
-  %li
+  %li{ style: 'font: 16px Helvetica, Arial, sans-serif' }
     telephone:
     %strong #{prison_phone}
-  %li
+  %li{ style: 'font: 16px Helvetica, Arial, sans-serif' }
     email:
     %strong #{prison_email}
 
 
-%h1 Add this email to your address book
+%h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' } Add this email to your address book
 
-%p  To stop visit confirmation emails going to your spam or junk folder please add no-reply@email.prisonvisits.service.gov.uk to your address book or safe senders list.
+%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }  To stop visit confirmation emails going to your spam or junk folder please add no-reply@email.prisonvisits.service.gov.uk to your address book or safe senders list.
 
 
-%h1 What to bring when you visit
+%h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' } What to bring when you visit
 
-%p Please make sure you bring ID with you. This can be ONE of the following:
-
-%ul
-  %li passport, including foreign passports, and expired passports where the photograph is still recognisable
-  %li identity card (including European identity cards)
-  %li driving licence
-  %li benefits book
-  %li senior citizen's public transport photo pass issued by a local authority
-  %li employer's or student ID card but only if this has a photo and clearly shows your name and the issuing employer or educational establishment
-
-%p If you don't have one of these forms of ID, you can bring TWO of the following:
+%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } Please make sure you bring ID with you. This can be ONE of the following:
 
 %ul
-  %li birth or marriage certificate
-  %li cheque book or credit or debit card
-  %li employer's pass or ID or student ID card without photo
-  %li young person's 'proof of age' card
-  %li trade union or National Students' Union membership card
-  %li rent book
-  %li foreign identity or residents' card
+  %li{ style: 'font: 16px Helvetica, Arial, sans-serif' } passport, including foreign passports, and expired passports where the photograph is still recognisable
+  %li{ style: 'font: 16px Helvetica, Arial, sans-serif' } identity card (including European identity cards)
+  %li{ style: 'font: 16px Helvetica, Arial, sans-serif' } driving licence
+  %li{ style: 'font: 16px Helvetica, Arial, sans-serif' } benefits book
+  %li{ style: 'font: 16px Helvetica, Arial, sans-serif' } senior citizen's public transport photo pass issued by a local authority
+  %li{ style: 'font: 16px Helvetica, Arial, sans-serif' } employer's or student ID card but only if this has a photo and clearly shows your name and the issuing employer or educational establishment
 
-%p If you have any questions about ID requirements, please contact the prison.
+%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } If you don't have one of these forms of ID, you can bring TWO of the following:
 
+%ul
+  %li{ style: 'font: 16px Helvetica, Arial, sans-serif' } birth or marriage certificate
+  %li{ style: 'font: 16px Helvetica, Arial, sans-serif' } cheque book or credit or debit card
+  %li{ style: 'font: 16px Helvetica, Arial, sans-serif' } employer's pass or ID or student ID card without photo
+  %li{ style: 'font: 16px Helvetica, Arial, sans-serif' } young person's 'proof of age' card
+  %li{ style: 'font: 16px Helvetica, Arial, sans-serif' } trade union or National Students' Union membership card
+  %li{ style: 'font: 16px Helvetica, Arial, sans-serif' } rent book
+  %li{ style: 'font: 16px Helvetica, Arial, sans-serif' } foreign identity or residents' card
 
-%h1 What to expect when visiting prison
-
-%p You will be searched before entering the prison visiting room. Prison staff may check  your pockets, pat you down and ask you to go through a metal detector. Dogs may also be used to detect illegal substances.
-
-
-%h1 What not to bring
-
-%p Please don’t bring anything restricted or illegal to the prison. The #{link_to(@visit.prisoner.prison_name + ' prison page', prison_url(@visit))} has more information about what you can bring.
-
-
-%h1 Your data
-
-%p The Ministry of Justice (HM Prison Service) uses and retains the personal data of visitors for the purposes of the safe and secure provision of Prison Services, including those related to the management and rehabilitation of offenders. Access to the establishment can only be granted by supplying the prescribed information in order to ensure and maintain a safe and secure environment for all. You have the right to request details as to the personal information we hold for you; and subsequently request that we correct any personal information if it is found to be inaccurate or out of date. We will not share your information with other organisations unless it is required for the purposes of prevention, detection of crime, apprehension, prosecution, and management of offenders; prevention of terrorism; National  Security; or required to do by law.
+%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } If you have any questions about ID requirements, please contact the prison.
 
 
-%h1 Need help or have a question?
+%h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' } What to expect when visiting prison
 
-%p If you have a question or need any help with the online visits service, please #{link_to('contact us', new_feedback_url)}.
+%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } You will be searched before entering the prison visiting room. Prison staff may check  your pockets, pat you down and ask you to go through a metal detector. Dogs may also be used to detect illegal substances.
+
+
+%h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' } What not to bring
+
+%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } Please don’t bring anything restricted or illegal to the prison. The #{link_to(@visit.prisoner.prison_name + ' prison page', prison_url(@visit))} has more information about what you can bring.
+
+
+%h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' } Your data
+
+%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } The Ministry of Justice (HM Prison Service) uses and retains the personal data of visitors for the purposes of the safe and secure provision of Prison Services, including those related to the management and rehabilitation of offenders. Access to the establishment can only be granted by supplying the prescribed information in order to ensure and maintain a safe and secure environment for all. You have the right to request details as to the personal information we hold for you; and subsequently request that we correct any personal information if it is found to be inaccurate or out of date. We will not share your information with other organisations unless it is required for the purposes of prevention, detection of crime, apprehension, prosecution, and management of offenders; prevention of terrorism; National  Security; or required to do by law.
+
+
+%h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' } Need help or have a question?
+
+%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } If you have a question or need any help with the online visits service, please #{link_to('contact us', new_feedback_url)}.

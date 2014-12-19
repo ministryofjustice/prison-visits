@@ -1,9 +1,8 @@
 !!!
 %html
   %body
-    = render(partial:"mailers_common/email_styles")
-    .email-container
-      .banner
-        = image_tag("emailHeader.png", alt: "GOV.UK")
-      .content
+    .container{ style: 'max-width: 600px; margin: auto;' }
+      .banner{ style: 'background: #0b0c0c; vertical-align: bottom;' }
+        = image_tag("govuk-header-logo.png", alt: "GOV.UK")
+      .content{ style: 'padding: 16px 30px 0;' }
         = yield

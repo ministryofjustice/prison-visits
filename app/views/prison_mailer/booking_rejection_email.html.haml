@@ -1,4 +1,3 @@
-%p.confirmation
-  %strong This is a copy of the booking rejection email sent to the visitor
+= render(partial: 'copy_notice')
 
 = render(partial: 'mailers_common/booking_rejection', locals: {initial: false})
