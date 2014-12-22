@@ -67,6 +67,8 @@ PrisonVisits2::Application.routes.draw do
     get "metrics/:prison/fortnightly", action: :fortnightly, as: :prison_metrics_fortnightly
   end
 
+  get "/heartbeat", controller: 'heartbeat', action: 'pingdom'
+
   # Legacy URLs
   get "/prisoner-details", to: redirect("/prisoner")
   resource :confirmation, controller: 'deferred/confirmations'
