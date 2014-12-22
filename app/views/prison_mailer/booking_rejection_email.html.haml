@@ -1,3 +1,3 @@
-= render(partial: 'copy_notice')
+- content_for :copy_notice, "This is a copy of the booking rejection email sent to the visitor"
 
 = render(partial: 'mailers_common/booking_rejection', locals: {initial: false})
