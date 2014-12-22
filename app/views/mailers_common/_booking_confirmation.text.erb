@@ -20,23 +20,28 @@ Prisoner number: <%= @visit.prisoner.number.upcase %>
 <% visitors.each_with_index do |visitor, index| %>
 Visitor <%= index + 1 %>: <%= first_name(visitor) %> <%= initial ? last_initial(visitor) : last_name(visitor) %>
 <% end %>
-
-<% if @confirmation.visitor_not_listed %>
-<%= @confirmation.unlisted_visitors.inject([]){ |array, (visitor)| array << first_name(visitor) + ' ' + (initial ? last_initial(visitor) : last_name(visitor)) }.join(', ') %> cannot attend.
-
-Details for <%= @confirmation.unlisted_visitors.inject([]){ |array, (visitor)| array << first_name(visitor) + ' ' + (initial ? last_initial(visitor) : last_name(visitor)) }.join(', ') %> don’t match our records or the visitor isn’t on the contact list.
-
-Please contact the prisoner and ask them to update their contact list with correct details, making sure that names appear exactly the same as on ID documents.
-
-<% end %>
-<% if @confirmation.visitor_banned %>
-<%= @confirmation.banned_visitors.inject([]){ |array, (visitor)| array << first_name(visitor) + ' ' + (initial ? last_initial(visitor) : last_name(visitor)) }.join(', ') %> cannot attend. 
-
-<%= @confirmation.banned_visitors.inject([]){ |array, (visitor)| array << first_name(visitor) + ' ' + (initial ? last_initial(visitor) : last_name(visitor)) }.join(', ') %> should have received a letter to say that they’re banned from visiting the prison at the moment. Get in touch with the prison for more information. 
-<% end %>
 <% if @confirmation.canned_response && @confirmation.vo_number != 'none' %>
 
 Your reference number is: <%= @confirmation.vo_number %>
+<% end %>
+<% if @confirmation.visitor_not_listed or @confirmation.visitor_banned %>
+
+Visitors unable to attend this visit
+
+<% if @confirmation.visitor_not_listed %>
+* <%= @confirmation.unlisted_visitors.inject([]){ |array, (visitor)| array << first_name(visitor) + ' ' + (initial ? last_initial(visitor) : last_name(visitor)) }.join(', ') %> cannot attend as they’re not on the prisoner’s contact list
+<% end %>
+<% if @confirmation.visitor_banned %>
+* <%= @confirmation.banned_visitors.inject([]){ |array, (visitor)| array << first_name(visitor) + ' ' + (initial ? last_initial(visitor) : last_name(visitor)) }.join(', ') %> cannot attend as they’re currently banned
+<% end %>
+<% if @confirmation.visitor_not_listed %>
+
+Visitors not on contact lists need to ask prisoners to update their lists with correct details, making sure that names appear exactly the same as on ID documents.
+<% end %>
+<% if @confirmation.visitor_banned %>
+
+Banned visitors should have received a letter to say that they’re banned from visiting the prison at the moment. Get in touch with the prison for more information. 
+<% end %>
 <% end %>
 
 <%= @confirmation.message %>
@@ -62,15 +67,21 @@ What to bring when you visit
 If you have any questions about ID requirements, please contact the prison.
 
 What to expect when visiting prison
+-----------------------------------
 
 You will be searched before entering the prison visiting room. Prison staff may check  your pockets, pat you down and ask you to go through a metal detector. Dogs may also be used to detect illegal substances.
 
 What not to bring
+-----------------
 
 Please do not bring anything restricted or illegal to the prison. For more information about what you are allowed to bring, please see the <%= @visit.prisoner.prison_name %> page: <%= prison_url(@visit) %>
 
 Your data
+---------
 
 The Ministry of Justice (HM Prison Service) uses and retains the personal data of visitors for the purposes of the safe and secure provision of Prison Services, including those related to the management and rehabilitation of offenders. Access to the establishment can only be granted by supplying the prescribed information in order to ensure and maintain a safe and secure environment for all. You have the right to request details as to the personal information we hold for you; and subsequently request that we correct any personal information if it is found to be inaccurate or out of date. We will not share your information with other organisations unless it is required for the purposes of prevention, detection of crime, apprehension, prosecution, and management of offenders; prevention of terrorism; National  Security; or required to do by law.
 
-Need help? If you have a question or need any help with the online visits service, please contact us: <%= new_feedback_url %>
+Need help or have a question?
+-----------------------------
+
+If you have a question or need any help with the online visits service, please contact us: <%= new_feedback_url %>

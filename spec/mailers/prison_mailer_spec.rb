@@ -56,23 +56,20 @@ describe PrisonMailer do
 
     it "sends an e-mail with a long link to the confirmation page" do
       email = subject.booking_request_email(sample_visit, "token")
-      email.body.should =~ /confirmation\/new\?state=token/
-      email.body.should =~ /https:\/\/localhost/
-      email.content_type.should == 'text/html; charset=UTF-8'
+      email.should match_in_html "confirmation/new?state=token"
+      email.should match_in_html "https://localhost"
     end
 
     it "sends a booking receipt to a prison to create an audit trail" do
       subject.booking_receipt_email(sample_visit, confirmation_with_slot).tap do |email|
         email.subject.should == "COPY of booking confirmation for Jimmy Harris"
-        email.body.should include('Mark')
-        email.body.should include('A message')
+        email.should match_in_html('Mark')
       end
 
       [confirmation_without_slot, confirmation_not_on_contact_list, confirmation_no_vos_left].each do |confirmation|
         subject.booking_receipt_email(sample_visit, confirmation).tap do |email|
           email.subject.should == "COPY of booking rejection for Jimmy Harris"
-          email.body.should include('Mark')
-          email.body.should include('A message')
+          email.should match_in_html('Mark')
         end
       end
     end
@@ -85,7 +82,7 @@ describe PrisonMailer do
     end
 
     it "sends an e-mail with a link over https" do
-      subject.booking_request_email(sample_visit, "token").body.should =~ /https:\/\/localhost/
+      subject.booking_request_email(sample_visit, "token").should match_in_html "https://localhost"
     end
 
     it "uses its own configuration (GSI)" do

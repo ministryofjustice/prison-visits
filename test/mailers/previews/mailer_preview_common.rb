@@ -38,11 +38,11 @@ module MailerPreviewCommon
   end
 
   def accepted_confirmation_visitor_banned
-    Confirmation.new(outcome: 'slot_2', vo_number: '5551234', visitor_banned: true, banned_visitors: ['Mark;Jones'])
+    Confirmation.new(outcome: 'slot_2', vo_number: '5551234', canned_response: true, visitor_banned: true, banned_visitors: ['Mark;Jones'])
   end
 
   def accepted_confirmation_visitor_banned_and_unlisted
-    Confirmation.new(outcome: 'slot_2', vo_number: '5551234', visitor_not_listed: true, unlisted_visitors: ['Emma;Jones'], visitor_banned: true, banned_visitors: ['Mark;Jones'])
+    Confirmation.new(outcome: 'slot_2', vo_number: '5551234', canned_response: true, visitor_not_listed: true, unlisted_visitors: ['Emma;Jones'], visitor_banned: true, banned_visitors: ['Mark;Jones'])
   end
 
   def rejected_confirmation(outcome)
