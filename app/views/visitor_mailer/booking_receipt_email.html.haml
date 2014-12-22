@@ -43,9 +43,9 @@
 
 
 %h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' }
-  Changing or cancelling your visit request
+  Cancel this visit request
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
-  If you want to cancel or make a change to your request or have any special requirements, eg wheelchair access, please contact us.
+  If you no longer want to visit on this date, #{link_to('you can cancel this visit', visit_status_url(@visit.visit_id, state: @token))}.
 
 %ul
   %li{ style: 'font: 16px Helvetica, Arial, sans-serif' }

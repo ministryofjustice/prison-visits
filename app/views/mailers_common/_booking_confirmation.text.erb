@@ -50,7 +50,7 @@ Cancel or change this visit
 ---------------------------
 
 If you no longer want to visit on this date, you can cancel this visit using the following link. 
-<%= visit_status_url(@visit.visit_id) %>
+<%= visit_status_url(@visit.visit_id, state: @token) %>
 
 If you want to change anything about your visit, like dates or visitors coming, contact the prison.
 

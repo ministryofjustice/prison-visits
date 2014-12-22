@@ -49,11 +49,16 @@
     %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } Banned visitors should have received a letter to say that they’re banned from visiting the prison at the moment. Get in touch with the prison for more information. 
 
 
-%h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' } Changing or cancelling your visit
+%h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' } Cancel or change this visit
 
-%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
-  Please don't reply to this email to change any details of your visit. Instead you must contact us directly. Please do this as soon as you can.
-  
+%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } If you no longer want to visit on this date, #{link_to('you can cancel this visit', visit_status_url(@visit.visit_id, state: @token))}.
+
+%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } If you want to change anything about your visit, like dates or visitors coming, contact the prison.
+
+%h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' } Questions about your visit
+
+%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } Please don't reply to this email if you have any other questions about your visit. Instead you must contact us directly.
+
 %ul
   %li{ style: 'font: 16px Helvetica, Arial, sans-serif' }
     telephone:
