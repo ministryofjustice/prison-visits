@@ -21,6 +21,10 @@ module MailerPreviewCommon
     end
   end
 
+  def encryptor
+    MESSAGE_ENCRYPTOR
+  end
+
   def accepted_confirmation
     Confirmation.new(outcome: 'slot_2', message: 'A message')
   end

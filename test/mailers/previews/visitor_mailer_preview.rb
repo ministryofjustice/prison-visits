@@ -66,6 +66,6 @@ class VisitorMailerPreview < ActionMailer::Preview
   end
 
   def booking_receipt
-    VisitorMailer.booking_receipt_email(sample_visit)
+    VisitorMailer.booking_receipt_email(sample_visit, encryptor.encrypt_and_sign(sample_visit))
   end
 end
