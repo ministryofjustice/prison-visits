@@ -5,9 +5,9 @@
       %h1 Thank you
       %p A confirmation email has been sent to the visitor.
 
-    - if Date.today < Date.parse('2014-12-26')
+    - if Date.today < Date.parse('2015-01-07')
       #latest-change.notice
-        %h1 Staff update: new look emails for visitors and staff
-        %p We've redesigned the emails so that the information is clearer and easier to read. Take a look at the example preview in the #{link_to('staff info area', '/staff/changes')}.
+        %h1 Staff update: visitors can cancel visits online
+        %p Visitors can now cancel both confirmed visits and visit requests online. Learn more about #{link_to('online visit cancellation', '/staff/changes#on=2014-12-23')}.
         %p
           %a(href="/staff/changes") Read more about recent updates
