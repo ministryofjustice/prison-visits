@@ -139,6 +139,7 @@ describe VisitorMailer do
         email.should match_in_html("01634 803100")
         email.should_not match_in_html("Jimmy Harris")
         email.should match_in_html('5551234')
+        email.should_not match_in_html("This is a copy")
       end
 
       it "sends out an e-mail with no reference number for remand prisoners (canned responses)" do
