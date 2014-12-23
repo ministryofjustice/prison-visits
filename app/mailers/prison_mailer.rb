@@ -46,7 +46,7 @@ class PrisonMailer < ActionMailer::Base
   def booking_cancellation_receipt_email(visit)
     @visit = visit
 
-    mail(from: sender, reply_to: user, to: recipient, subject: "Visit for #{@visit.prisoner.full_name} has been cancelled")
+    mail(from: sender, to: recipient, subject: "CANCELLED: #{@visit.prisoner.full_name} on #{Date.parse(@visit.slots.first.date).strftime('%A %e %B')}")
   end
 
   def sender

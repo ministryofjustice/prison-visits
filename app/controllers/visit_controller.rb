@@ -9,6 +9,8 @@ class VisitController < ApplicationController
     if params[:state]
       encryptor.decrypt_and_verify(params[:state])
       @state = params[:state]
+    else
+      STATSD_CLIENT.increment('pvb.app.status_with_no_state')
     end
   end
 
@@ -17,6 +19,7 @@ class VisitController < ApplicationController
     @visit = encryptor.decrypt_and_verify(params[:state])
 
     if params[:cancel]
+      PrisonMailer.booking_cancellation_receipt_email(@visit).deliver
       metrics_logger.record_booking_cancellation(params[:id], "#{params[:cancel]}_cancelled")
     else
       flash[:notice] = "You need to confirm that you want to cancel this visit."

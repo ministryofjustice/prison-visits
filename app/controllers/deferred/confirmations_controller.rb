@@ -28,7 +28,8 @@ class Deferred::ConfirmationsController < ApplicationController
     end
 
     if @confirmation.slot_selected?
-      VisitorMailer.booking_confirmation_email(booked_visit, @confirmation, encryptor.encrypt_and_sign(booked_visit)).deliver
+      token = encryptor.encrypt_and_sign(remove_unused_slots(booked_visit, @confirmation.slot))
+      VisitorMailer.booking_confirmation_email(booked_visit, @confirmation, token).deliver
       metrics_logger.record_booking_confirmation(booked_visit)
     else
       VisitorMailer.booking_rejection_email(booked_visit, @confirmation).deliver
@@ -86,6 +87,13 @@ class Deferred::ConfirmationsController < ApplicationController
           visitor
         end
       end
+    end
+  end
+
+  def remove_unused_slots(visit, slot_index)
+    visit.dup.tap do |v|
+      selected_slot = visit.slots[slot_index]
+      v.slots = [selected_slot]
     end
   end
 end

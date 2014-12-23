@@ -4,6 +4,7 @@ describe VisitController do
   render_views
 
   before :each do
+    ActionMailer::Base.deliveries.clear
     controller.stub(:service_domain => 'lol.biz.info')
     request.stub(:ssl? => true)
   end
@@ -77,8 +78,9 @@ describe VisitController do
     end
 
     after :each do
-      post :update_status, id: sample_visit.visit_id, state: encrypted_visit
+      post :update_status, id: sample_visit.visit_id, state: encrypted_visit, cancel: true
       response.should redirect_to(visit_status_path(sample_visit.visit_id))
+      ActionMailer::Base.deliveries.map(&:subject).should == ["CANCELLED: Jimmy Harris on Sunday 7 July"]
     end
   end
 

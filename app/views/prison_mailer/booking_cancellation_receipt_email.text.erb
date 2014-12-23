@@ -1,6 +1,6 @@
 Dear staff, 
 
-<%= @visit.visitor.first.full_name %> has cancelled the visit to <%= @visit.prisoner.full_name %> on <%= date_of_? %>.
+<%= @visit.visitors.first.full_name %> has cancelled the visit to <%= @visit.prisoner.full_name %> on <%= visit.slots.first.date %> <%= visit.slots.first.times %>.
 
 Please delete this visit from NOMIS.
 
