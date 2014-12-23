@@ -82,7 +82,13 @@ describe PrisonMailer do
       end
     end
 
-    it "sends an cancellation notification to a prison so it can be removed from NOMIS"
+    it "sends an cancellation notification to a prison so it can be removed from NOMIS" do
+      subject.booking_cancellation_receipt_email(sample_visit).tap do |email|
+        email['X-Priority'].value.should == '1 (Highest)'
+        email['X-MSMail-Priority'].value.should == 'High'
+        email.subject.should == 'CANCELLED: Jimmy Harris on Sunday 7 July'
+      end
+    end
 
     it "sends an e-mail with a link over https" do
       subject.booking_request_email(sample_visit, "token").should match_in_html "https://localhost"
