@@ -64,6 +64,7 @@ describe PrisonMailer do
       subject.booking_receipt_email(sample_visit, confirmation_with_slot).tap do |email|
         email.subject.should == "COPY of booking confirmation for Jimmy Harris"
         email.should match_in_html('Mark')
+        email.should match_in_html('This is a copy of the booking confirmation email sent to the visitor')
       end
 
       [confirmation_without_slot, confirmation_not_on_contact_list, confirmation_no_vos_left].each do |confirmation|
