@@ -123,8 +123,7 @@
 
     _hasMatches: function (term) {
       var matched = false,
-          term = this.stripFormal(term),
-          matcher = new RegExp("^" + term + "[a-z]*", "i");
+          matcher = new RegExp("^" + this.stripFormal(term) + "[a-z]*", "i");
       
       this.$select.children("option").each(function() {
         // if a match is found, select it and change to proper case in text field
