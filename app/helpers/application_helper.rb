@@ -48,7 +48,7 @@ module ApplicationHelper
 
   def conditional_text(variable, prefix='', suffix='')
     if variable.present?
-      prefix + variable + suffix
+      prefix + variable.to_s + suffix
     end
   end
 end

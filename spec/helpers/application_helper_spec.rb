@@ -58,7 +58,12 @@ describe ApplicationHelper do
   end
 
   it "displays a prefix and suffix around a variable when it exists" do
-    phone = "12345"
+    email = "visitor@example.com"
+    helper.conditional_text(email, "email ", " or").should == "email visitor@example.com or"
+  end
+
+  it "displays a prefix and suffix around a number variables" do
+    phone = 12345
     helper.conditional_text(phone, "call ", " or").should == "call 12345 or"
   end
 end
