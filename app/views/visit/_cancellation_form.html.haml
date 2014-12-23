@@ -4,8 +4,7 @@
 
     %label.block-label(for="cancel_booking")
       %input#cancel_booking{ type: "checkbox", value: "#{type}", name: "cancel" }
-      - if @state
-        = hidden_field_tag :state, @state
+      = hidden_field_tag :state, @state
       Yes, I want to cancel this visit
 
   .actions

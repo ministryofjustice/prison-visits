@@ -15,10 +15,11 @@ class VisitorMailer < ActionMailer::Base
 
   default('List-Unsubscribe' => '<https://www.prisonvisits.service.gov.uk/unsubscribe>')
 
-  def booking_confirmation_email(visit, confirmation)
+  def booking_confirmation_email(visit, confirmation, token)
     @visit = visit
     @slot = visit.slots[confirmation.slot.to_i]
     @confirmation = confirmation
+    @token = token
 
     mail(from: sender, reply_to: prison_mailbox_email, to: recipient, subject: "Visit confirmed: your visit for #{Date.parse(@slot.date).strftime('%e %B %Y').gsub(/^ /,'')} has been confirmed")
   end

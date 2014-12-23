@@ -111,10 +111,14 @@ describe VisitorMailer do
     Mail::Field.new('reply-to', "pvb.rochester@maildrop.dsd.io")
   end
 
+  let :token do
+    MESSAGE_ENCRYPTOR.encrypt_and_sign(sample_visit)
+  end
+
   context "always" do
     context "booking is successful" do
       it "sends out an e-mail" do
-        email = subject.booking_confirmation_email(sample_visit, confirmation)
+        email = subject.booking_confirmation_email(sample_visit, confirmation, token)
         email.subject.should == "Visit confirmed: your visit for 7 July 2013 has been confirmed"
 
         email[:from].should == noreply_address
@@ -128,7 +132,7 @@ describe VisitorMailer do
       end
 
       it "sends out an e-mail with a reference number (canned responses)" do
-        email = subject.booking_confirmation_email(sample_visit, confirmation_canned_response)
+        email = subject.booking_confirmation_email(sample_visit, confirmation_canned_response, token)
         email.subject.should == "Visit confirmed: your visit for 7 July 2013 has been confirmed"
 
         email[:from].should == noreply_address
@@ -143,7 +147,7 @@ describe VisitorMailer do
       end
 
       it "sends out an e-mail with no reference number for remand prisoners (canned responses)" do
-        email = subject.booking_confirmation_email(sample_visit, confirmation_canned_response_remand)
+        email = subject.booking_confirmation_email(sample_visit, confirmation_canned_response_remand, token)
         email.subject.should == "Visit confirmed: your visit for 7 July 2013 has been confirmed"
 
         email[:from].should == noreply_address
@@ -157,7 +161,7 @@ describe VisitorMailer do
       end
 
       it "sends out an e-mail with the list of visitors not on the approved visitor list" do
-        email = subject.booking_confirmation_email(sample_visit, confirmation_unlisted_visitors)
+        email = subject.booking_confirmation_email(sample_visit, confirmation_unlisted_visitors, token)
         email.subject.should == "Visit confirmed: your visit for 7 July 2013 has been confirmed"
 
         email[:from].should == noreply_address
@@ -172,7 +176,7 @@ describe VisitorMailer do
       end
 
       it "sends out an e-mail with the list of banned visitors" do
-        email = subject.booking_confirmation_email(sample_visit, confirmation_banned_visitors)
+        email = subject.booking_confirmation_email(sample_visit, confirmation_banned_visitors, token)
         email.subject.should == "Visit confirmed: your visit for 7 July 2013 has been confirmed"
 
         email[:from].should == noreply_address
@@ -192,7 +196,7 @@ describe VisitorMailer do
         [confirmation_no_slot_available, confirmation_not_on_contact_list, confirmation_no_vos_left].each do |outcome|
           subject.booking_rejection_email(sample_visit, outcome)['List-Unsubscribe'].value.should == header_value
         end
-        subject.booking_confirmation_email(sample_visit, confirmation)['List-Unsubscribe'].value.should == header_value
+        subject.booking_confirmation_email(sample_visit, confirmation, token)['List-Unsubscribe'].value.should == header_value
       end
     end
 
@@ -350,7 +354,7 @@ describe VisitorMailer do
     end
 
     it "sends an e-mail to the person who requested a booking" do
-      subject.booking_confirmation_email(sample_visit, confirmation)[:to].should == visitor_address
+      subject.booking_confirmation_email(sample_visit, confirmation, token)[:to].should == visitor_address
     end
   end
 end

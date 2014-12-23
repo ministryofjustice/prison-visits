@@ -9,13 +9,17 @@ describe VisitController do
   end
 
   let :visit_id do
-    SecureRandom.hex
+    sample_visit.visit_id
+  end
+
+  let :token do
+    MESSAGE_ENCRYPTOR.encrypt_and_sign(sample_visit)
   end
 
   context "always" do
     it "displays the status of a visit not yet created" do
       controller.metrics_logger.should_receive(:visit_status).with(visit_id).twice.and_return(false)
-      get :status, id: visit_id 
+      get :status, id: visit_id, state: token
       response.status.should == 200
     end
 
@@ -32,8 +36,15 @@ describe VisitController do
     end
 
     after :each do
-      get :status, id: visit_id
+      get :status, id: visit_id, state: token
       response.should be_success
+    end
+  end
+
+  context "legacy email handling" do
+    it "displays the status of the visit" do
+      get :status, id: visit_id
+      response.status.should == 200
     end
   end
 

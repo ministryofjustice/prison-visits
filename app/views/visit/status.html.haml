@@ -12,10 +12,11 @@
 
       = render 'spam_notice'
 
-      %h1 Cancel this visit
-      %p If you no longer want to visit on this date, you can cancel this visit. 
+      - if @state
+        %h1 Cancel this visit
+        %p If you no longer want to visit on this date, you can cancel this visit. 
 
-      = render 'cancellation_form', type: :visit
+        = render 'cancellation_form', type: :visit
     
     - when :rejected
       %h1 Your visit request cannot take place on the dates you've chosen 
