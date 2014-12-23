@@ -3,7 +3,7 @@ Dear <%= @visit.visitors.first.first_name %>,
 YOUR VISIT IS NOT BOOKED YET
 
 You can check the status of your request here:
-<%= visit_status_url(@visit.visit_id) %>
+<%= visit_status_url(@visit.visit_id, state: @token) %>
 
 We'll email you by <%= when_to_expect_reply %> to confirm the date and time of your visit. Please don't contact us any sooner than that, as we won't be able to comment on booking requests that are being processed.
 

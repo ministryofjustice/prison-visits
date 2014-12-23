@@ -5,7 +5,7 @@
 %h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' }
   Your visit is not booked yet
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
-  You can check whether your visit has been booked on the #{link_to('visit status page', visit_status_url(@visit.visit_id))}.
+  You can check whether your visit has been booked on the #{link_to('visit status page', visit_status_url(@visit.visit_id, state: @token))}.
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
   We'll email you by #{when_to_expect_reply} to confirm the date and time of your visit. Please don't contact us any sooner than that, as we won't be able to comment on booking requests that are being processed.
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
