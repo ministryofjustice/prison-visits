@@ -2459,6 +2459,7 @@ Littlehey:
   phone: 01480 335650
   email: socialvisits.littlehey@hmps.gsi.gov.uk
   instant_booking: false
+  lead_days: 2
   address:
   - Perry
   - PE28 0SR

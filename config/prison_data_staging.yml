@@ -2470,6 +2470,7 @@ Littlehey:
   phone: 01480 335650
   email: pvb.littlehey@maildrop.dsd.io
   instant_booking: false
+  lead_days: 2
   address:
   - Perry
   - PE28 0SR
