@@ -60,6 +60,10 @@ module MailerPreviewCommon
     Confirmation.new(outcome: 'slot_2', vo_number: '5551234', canned_response: true, visitor_not_listed: true, unlisted_visitors: ['Emma;Jones'], visitor_banned: true, banned_visitors: ['Mark;Jones'])
   end
 
+  def accepted_confirmation_closed_visit
+    Confirmation.new(outcome: 'slot_2', vo_number: '5551234', canned_response: true, closed_visit: true)
+  end
+
   def rejected_confirmation(outcome)
     Confirmation.new(outcome: outcome)
   end

@@ -59,6 +59,10 @@ describe VisitorMailer do
     Confirmation.new(canned_response: true, vo_number: '5551234', outcome: 'slot_0', visitor_banned: true, banned_visitors: ['Joan;Harris'])
   end
 
+  let :confirmation_closed_visit do
+    Confirmation.new(canned_response: true, vo_number: '5551234', outcome: 'slot_0', closed_visit: true)
+  end
+
   let :confirmation_no_slot_available do
     Confirmation.new(message: 'A message', outcome: Confirmation::NO_SLOT_AVAILABLE)
   end
@@ -203,6 +207,19 @@ describe VisitorMailer do
 
         email.should match_in_html(sample_visit.visit_id)
         email.should match_in_text(sample_visit.visit_id)
+      end
+
+      it "sends out an e-mail notifying visitors that it is a closed visit" do
+        email = subject.booking_confirmation_email(sample_visit, confirmation_closed_visit, token)
+        email.subject.should == "Visit confirmed: your visit for 7 July 2013 has been confirmed"
+
+        email[:from].should == noreply_address
+        email[:reply_to].should == prison_address
+        email[:to].should == visitor_address
+
+        email.should_not match_in_html("Jimmy Harris")
+        email.should match_in_html('5551234')
+        email.should match_in_html('This is a closed visit')
       end
 
       it "sends out an e-mail with the List-Unsubscribe header set" do

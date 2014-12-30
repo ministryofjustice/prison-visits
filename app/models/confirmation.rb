@@ -1,6 +1,6 @@
 class Confirmation
   include ActiveModel::Model
-  attr_accessor :outcome, :message, :vo_number, :no_vo, :no_pvo, :renew_vo, :renew_pvo, :banned_visitors, :unlisted_visitors, :visitor_not_listed, :visitor_banned, :canned_response
+  attr_accessor :outcome, :message, :vo_number, :no_vo, :no_pvo, :renew_vo, :renew_pvo, :banned_visitors, :unlisted_visitors, :visitor_not_listed, :visitor_banned, :canned_response, :closed_visit
 
   NO_VOS_LEFT = 'no_vos_left'
   NO_SLOT_AVAILABLE = 'no_slot_available'

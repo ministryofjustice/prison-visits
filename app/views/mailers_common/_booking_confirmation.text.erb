@@ -43,6 +43,10 @@ Visitors not on contact lists need to ask prisoners to update their lists with c
 Banned visitors should have received a letter to say that they’re banned from visiting the prison at the moment. Get in touch with the prison for more information. 
 <% end %>
 <% end %>
+<% if @confirmation.closed_visit %>
+
+This is a closed visit.
+<% end %>
 
 <%= @confirmation.message %>
 

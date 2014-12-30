@@ -25,6 +25,10 @@ class VisitorMailerPreview < ActionMailer::Preview
     VisitorMailer.booking_confirmation_email(sample_visit, accepted_confirmation_visitor_banned_and_unlisted, token)
   end
 
+  def booking_confirmation_closed_visit
+    VisitorMailer.booking_confirmation_email(sample_visit, accepted_confirmation_closed_visit, token)
+  end
+
   def booking_rejection_rejected_no_slots
     VisitorMailer.booking_rejection_email(sample_visit, rejected_confirmation('no_slot_available'))
   end
