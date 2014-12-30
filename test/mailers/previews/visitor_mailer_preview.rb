@@ -2,11 +2,11 @@ class VisitorMailerPreview < ActionMailer::Preview
   include MailerPreviewCommon
 
   def booking_confirmation
-    VisitorMailer.booking_confirmation_email(sample_visit, accepted_confirmation)
+    VisitorMailer.booking_confirmation_email(sample_visit, accepted_confirmation, token)
   end
 
   def booking_confirmation_canned_response
-    VisitorMailer.booking_confirmation_email(sample_visit, accepted_confirmation_canned_response)
+    VisitorMailer.booking_confirmation_email(sample_visit, accepted_confirmation_canned_response, token)
   end
 
   def booking_confirmation_canned_response_remand
@@ -22,7 +22,7 @@ class VisitorMailerPreview < ActionMailer::Preview
   end
 
   def booking_confirmation_banned_and_unlisted_visitors
-    VisitorMailer.booking_confirmation_email(sample_visit, accepted_confirmation_visitor_banned_and_unlisted)
+    VisitorMailer.booking_confirmation_email(sample_visit, accepted_confirmation_visitor_banned_and_unlisted, token)
   end
 
   def booking_rejection_rejected_no_slots

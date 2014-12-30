@@ -25,6 +25,17 @@ module MailerPreviewCommon
     MESSAGE_ENCRYPTOR
   end
 
+  def remove_unused_slots(visit, slot_index)
+    visit.dup.tap do |v|
+      selected_slot = visit.slots[slot_index]
+      v.slots = [selected_slot]
+    end
+  end
+
+  def token
+    encryptor.encrypt_and_sign(remove_unused_slots(sample_visit, accepted_confirmation.slot))
+  end
+
   def accepted_confirmation
     Confirmation.new(outcome: 'slot_2', message: 'A message')
   end
