@@ -1,11 +1,11 @@
 !!!
 %html
   %body
-    .container{ style: 'max-width: 600px; margin: auto;' }
-      .banner{ style: 'background: #0b0c0c; vertical-align: bottom;' }
-        = image_tag("https://www.prisonvisits.service.gov.uk/mailers/govuk-header-logo.png", alt: "GOV.UK")
-      .content{ style: 'padding: 16px 30px 0;' }
+    .container{ style: "max-width:600px;margin:auto" }
+      .banner{ style: "background:#0b0c0c" }
+        = image_tag("https://www.prisonvisits.service.gov.uk/mailers/govuk-header-logo.png", alt: "GOV.UK", style: "vertical-align:bottom")
+      .content{ style: "padding:16px 30px 0" }
         - if content_for? :copy_notice
-          %p{ style: 'margin:1em 0; padding: 8px 16px; background: #dee0e2; font: 16px Helvetica, Arial, sans-serif' }
+          %p{ style: "margin:1em 0;padding:8px 16px;background:#dee0e2;font:16px Helvetica, Arial, sans-serif" }
             %strong= yield :copy_notice
         = yield
