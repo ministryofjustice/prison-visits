@@ -87,6 +87,7 @@ describe PrisonMailer do
         email['X-Priority'].value.should == '1 (Highest)'
         email['X-MSMail-Priority'].value.should == 'High'
         email.subject.should == 'CANCELLED: Jimmy Harris on Sunday 7 July'
+        email.body.raw_source.should include('a0000aa')
       end
     end
 
