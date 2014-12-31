@@ -23,7 +23,7 @@
       %span.validation-message= f.object.errors[:last_name].first if f.object.errors.include?(:last_name)
     = text_field_tag 'visit[visitor][][last_name]', f.object.last_name, id: "last_name_#{index}"
 
-  .group.js-native-date{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
+  .group{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
     %fieldset
       %legend
         = index == 0 ? 'Your date of birth' : 'Date of birth'

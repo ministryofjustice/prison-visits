@@ -41,7 +41,7 @@
             %span.validation-message= f.object.errors[:last_name].first if f.object.errors.include?(:last_name)
           = f.text_field :last_name
 
-        .group.js-native-date{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
+        .group{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
           %fieldset
             %legend
               Prisoner date of birth
