@@ -22,6 +22,7 @@ $(function () {
     return Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
   }
 
+  // Display adult/child labels against visitors when entering DOB
   $('body').on('change', '.known-date input', function() {
 
     var dob, el,
@@ -51,6 +52,10 @@ $(function () {
     ga('send', 'event', 'external-link', 'ad-help');
   });
 
+  
+  // Staff processing form
+
+  // Only enable PVO when VO is checked
   $('#confirmation_no_vo').on('change', function() {
     var dis = $('#confirmation_no_pvo');
 
@@ -64,6 +69,7 @@ $(function () {
     }
   }).change();
 
+  // Display date from ISO-8601 format
   $('.BookingCalendar input[type=radio]').on('click', function() {
     var date = moj.Helpers.dateFromIso($(this).val()),
       days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
