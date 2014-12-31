@@ -4,7 +4,7 @@
 // Dependencies: moj, jQuery
 (function () {
 
-  "use strict";
+  'use strict';
 
   moj.Modules.datePicker = {
     init: function (el) {

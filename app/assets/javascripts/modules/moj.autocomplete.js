@@ -1,10 +1,10 @@
-/*jslint browser: true, evil: false, plusplus: true, white: true, indent: 2, nomen: true */
-/*global moj, $ */
+/*jslint unparam: true */
 
 // Selectbox Autocomplete module for MOJ
 // Dependencies: moj, jQuery, jQuery UI
 
 (function (window, $) {
+  
   "use strict";
 
   var MojAutocomplete = function(el, options){
@@ -58,7 +58,7 @@
         for (i=0; i < raw_attrs.length; i++) {
           key = raw_attrs[i].nodeName;
           value = raw_attrs[i].nodeValue;
-          if ( key !== 'name' && key !== 'id' && key !== 'class' && typeof this.$select.attr(key) !== 'undefined' ) {
+          if ( key !== "name" && key !== "id" && key !== "class" && typeof this.$select.attr(key) !== "undefined" ) {
             attrs[key] = value;
           }
         }
@@ -92,8 +92,8 @@
     },
 
     _source: function(request, response){
-      var term = this.stripFormal(request.term);
-      var matcher = new RegExp("^" + term, "i");
+      var term = this.stripFormal(request.term),
+          matcher = new RegExp("^" + term, "i");
 
       if (this._hasMatches(request.term)) {
         response(
@@ -109,14 +109,14 @@
           })
         );
       } else {
-        response([{ label: 'Prison not found', value: -1}]);
+        response([{ label: "Prison not found", value: -1}]);
       }
     },
 
     stripFormal: function (term) {
       var matcher = term.match(/^(hmp?|yoi)? ?/i);
       if (matcher[0].length) {
-        term = term.replace(matcher[0], '');
+        term = term.replace(matcher[0], "");
       }
       return $.ui.autocomplete.escapeRegex(term);
     },
@@ -153,7 +153,10 @@
 
     _autocompletechange: function(event, ui) {
       var $text = $(this),
-          $select = $text.data("select");
+          $select = $text.data("select"),
+          value = $text.val(),
+          valueLowerCase = value.toLowerCase(),
+          valid = false;
 
       // Selected an item, nothing to do
       if (ui.item && ui.item.value !== -1) {
@@ -161,9 +164,6 @@
       }
 
       // Search for a match (case-insensitive)
-      var value = $text.val(),
-          valueLowerCase = value.toLowerCase(),
-          valid = false;
       $select.children("option").each(function() {
         // if a match is found, select it and change to proper case in text field
         if ($(this).text().toLowerCase() === valueLowerCase) {
@@ -187,7 +187,7 @@
     },
 
     // stop first item being selected when no value has been entered
-    _autocompletesearch: function(event, ui) {
+    _autocompletesearch: function() {
       if($(this).val() === "") {
         $(this).data("ui-autocomplete").options.autoFocus = false;
       } else {
@@ -197,9 +197,7 @@
   };
 
   $.fn.mojAutocomplete = function(options) {
-    var settings = $.extend({}, $.fn.mojAutocomplete.defaults, options);
-
-    return this.each(function(i){
+    return this.each(function(){
       new MojAutocomplete($(this), options);
     });
   };
@@ -216,7 +214,7 @@
   moj.Modules.autocomplete = {
     init: function () {
       // auto initate plugin if class is present
-      $('.js-autocomplete').mojAutocomplete($(this).data());
+      $(".js-autocomplete").mojAutocomplete($(this).data());
     }
   };
 }());

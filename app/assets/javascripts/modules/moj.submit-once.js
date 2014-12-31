@@ -1,4 +1,5 @@
 (function () {
+
   'use strict';
 
   moj.Modules.SubmitOnce = {
@@ -22,7 +23,7 @@
     },
 
     disable: function () {
-      this.$submit[this.$submit[0].tagName == 'INPUT' ? 'val' : 'text'](this.options.alt);
+      this.$submit[this.$submit[0].tagName === 'INPUT' ? 'val' : 'text'](this.options.alt);
       this.$submit.prop('disabled', true);
     }
   };

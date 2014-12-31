@@ -1,12 +1,9 @@
-/*jslint browser: true, evil: false, plusplus: true, white: true, indent: 2, nomen: true */
-/*global moj, $ */
-
 // Timeout prompt for MOJ
 // Dependencies: moj, jQuery
 
 (function () {
 
-  "use strict";
+  'use strict';
 
   moj.Modules.timeoutPrompt = {
     timeoutDuration: 1000 * 60 * 19, // ms * s * m = 19 minutes
@@ -47,7 +44,7 @@
     refreshSession: function () {
       var self = this;
       $.ajax({
-        url: "/assets/gov.uk_logotype_crown.png"
+        url: '/assets/gov.uk_logotype_crown.png'
       })
         .done(function () {
           self.initTimeout();

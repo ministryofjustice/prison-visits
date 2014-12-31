@@ -1,5 +1,7 @@
 module.exports = function(grunt) {
 
+  'use strict';
+
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -116,7 +118,10 @@ module.exports = function(grunt) {
     },
 
     jshint: {
-      all: ['Gruntfile.js', 'app/assets/javascripts/**/*.js', 'scripts/visiting_times.js']
+      all: ['Gruntfile.js', 'app/assets/javascripts/**/*.js'],
+      options: {
+        jshintrc: '.jshintrc'
+      }
     }
   });
 
