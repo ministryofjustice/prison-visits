@@ -41,11 +41,10 @@
         = text_field_tag 'confirmation[vo_number]', nil, :maxlength => 8
       
       .group
-        #closed_visit.field{ :class => ('validation-error' if f.object.errors.include?(:closed_visit)) }
+        #closed_visit.field
           %label.block-label(for='confirmation_closed_visit')
             = check_box_tag 'confirmation[closed_visit]', 1, f.object.closed_visit.present?, { :'data-conditional-el' => 'details_closed_visit', :class => 'js-Conditional' }
             This is a closed visit
-            %span.validation-message= f.object.errors[:closed_visit].first if f.object.errors.include?(:closed_visit)
 
         #details_closed_visit
           %h3 What we’ll tell the visitor
