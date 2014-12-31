@@ -8,9 +8,6 @@ $(function () {
   $blockLabels = $('.block-label input[type="radio"], .block-label input[type="checkbox"]');
   new GOVUK.SelectionButtons($blockLabels);
 
-  // Expanding details/summary polyfill
-  $('details').details();
-
   // Browser confirm dialog
   $(document).on('click', '[data-confirm]', function (e) {
     e.preventDefault();
