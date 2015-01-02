@@ -999,8 +999,6 @@ Wetherby:
     - 1415-1615
     sun:
     - 1415-1615
-    wed:
-    - 1400-1600
 Erlestoke:
   nomis_id: EEI
   canned_responses: true
