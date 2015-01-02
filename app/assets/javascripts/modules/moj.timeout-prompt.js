@@ -1,54 +1,69 @@
 // Timeout prompt for MOJ
-// Dependencies: moj, jQuery
+// Dependencies: moj, jQuery, Handlebars
 
 (function () {
 
   'use strict';
 
   moj.Modules.timeoutPrompt = {
-    timeoutDuration: 1000 * 60 * 19, // ms * s * m = 19 minutes
+    timeoutDuration: 1000 * 60 * 17, // ms * s * m = 17 minutes
+    respondDuration: 1000 * 60 * 3,
     timeout: null,
+    respond: null,
+    insertBefore: '#cookies-required',
+    template: '#tmpl-timeout',
+    exitPath: '/abandon',
 
     init: function () {
       this.initTimeout();
     },
 
-    time: function () {
-      return new Date().getTime();
-    },
-
     initTimeout: function () {
-      var startTime = this.time();
-      this.timeout = setTimeout(this.warning, this.timeoutDuration - (this.time() - startTime));
+      var self = this;
+      this.timeout = setTimeout($.proxy(self.warning, self), self.timeoutDuration);
     },
 
     warning: function () {
-      var self = moj.Modules.timeoutPrompt,
-        noscript = $('noscript')[0],
-        template = ['<div id="timeoutPrompt" role="alertdialog" aria-labelledby="timeoutTitle" aria-describedby="timeoutDesc" class="validation-summary alert-dialog">',
-                      '<h2 id="timeoutTitle">Your session will will expire in 60 seconds</h2>',
-                      '<p id="timeoutDesc">would you like to continue?</p>',
-                      '<button id="confirmTimeout" class="button button-primary">Yes</button>',
-                    '</div>'].join('');
-      $(template).insertBefore(noscript)
-        .focus()
-        .end()
-        .find('#confirmTimeout')
-        .on('click', function confirmButton() {
-          $('#timeoutPrompt').remove();
-          clearTimeout(self.timeout);
-          self.refreshSession();
-        });
+      var self = this,
+          $tmpl = $(self.template),
+          template;
+
+      if ($tmpl.length) {
+        
+        template = Handlebars.compile($tmpl.html());
+        
+        $(template({
+            respondTime: self.respondDuration / 60 / 1000
+          }))
+          .insertBefore(self.insertBefore)
+          .focus()
+          .end()
+          .find('#extend-timeout')
+          .on('click', $.proxy(self.removeWarning, self));
+
+        self.respond = setTimeout($.proxy(self.redirect, self), self.respondDuration);
+      }
+    },
+
+    redirect: function () {
+      window.location.href = this.exitPath;
+    },
+
+    removeWarning: function () {
+      $('#timeout-prompt').remove();
+      clearTimeout(this.timeout);
+      this.refreshSession();
     },
 
     refreshSession: function () {
       var self = this;
       $.ajax({
-        url: '/assets/gov.uk_logotype_crown.png'
-      })
-        .done(function () {
-          self.initTimeout();
-        });
+        url: $('#logo img').attr('src'),
+        cache: false
+      }).done(function () {
+        self.initTimeout();
+        clearTimeout(self.respond);
+      });
     }
   };
 
