@@ -75,5 +75,7 @@
   %li= link_to "Terms and Conditions", terms_and_conditions_path
   %li= link_to "Contact us", new_feedback_path(referrer: request.original_url)
 
+- content_for :body_end do
+  #version-info= link_to_commit
 
 = render template: "layouts/moj_template"
