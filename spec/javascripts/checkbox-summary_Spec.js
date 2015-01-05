@@ -56,7 +56,12 @@ describe('CheckboxSummary', function() {
     expect(subject.$checkboxes.length).toBe(2);
   });
 
-  it('render is triggered from moj.Events module');
+  it('render is triggered from moj.Events module', function() {
+    $fixture = $('<div class="CheckboxSummary"><input type="checkbox" value="Orange" id="Orange" /><input type="checkbox" value="Green" id="Green" checked="checked" /><span class="CheckboxSummary-summary"></span></div>'),
+    subject = new moj.Modules._CheckboxSummary($fixture);
+    moj.Events.trigger('render');
+    expect($fixture.find('.CheckboxSummary-summary').text()).toBe('Green');
+  });
 
   it('summaries are limited to currently checked boxes', function() {
     $fixture.find('#Orange').prop('checked', true).change();
