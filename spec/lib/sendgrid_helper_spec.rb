@@ -6,8 +6,15 @@ describe SendgridHelper do
     [Curl::Err::CurlError, JSON::ParserError].each do |exception_class|
       it "marks the email as valid if there's an error (#{exception_class})" do
         Curl::Easy.should_receive(:perform).and_raise(exception_class)
-        SendgridHelper.spam_reported?('test@irrelevant.com').should be_false
       end
+    end
+
+    it "marks the email as valid when authentication fails" do
+      JSON.stub(:parse).and_return({error: 'lol'})
+    end
+
+    after :each do
+      SendgridHelper.spam_reported?('test@irrelevant.com').should be_false
     end
   end
 
