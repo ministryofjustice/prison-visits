@@ -26,6 +26,13 @@ describe('CheckboxSummary', function() {
       expect($fixture.find('.CheckboxSummary-summary').text()).toBe('Orange, Green');
     });
 
+    it('correctly summarises checked selections between every change', function() {
+      $fixture.find('#Orange, #Green').prop('checked', true).change();
+      expect($fixture.find('.CheckboxSummary-summary').text()).toBe('Orange, Green');
+      $fixture.find('#Orange').prop('checked', false).change();
+      expect($fixture.find('.CheckboxSummary-summary').text()).toBe('Green');
+    });
+
     it('summary items are separated by optional string', function() {
       var subject = new moj.Modules._CheckboxSummary($fixture, {glue: ' - '});
       $fixture.find('#Orange, #Green').prop('checked', true).change();
