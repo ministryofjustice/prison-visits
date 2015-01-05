@@ -92,6 +92,7 @@ describe EmailValidator do
         model.email = 'test@irrelevant.com'
         subject.validate(model)
       }.to change { model.errors.empty? }
+      model.errors.first.should == [:email, "cannot receive messages from this system"]
     end
   end
 end

@@ -37,7 +37,7 @@ class EmailValidator < ActiveModel::Validator
   end
 
   def validate_spam_reporter(record, parsed)
-    maybe_set_error(record, "cannot receive e-mails from this system") do
+    maybe_set_error(record, "cannot receive messages from this system") do
       SendgridHelper.spam_reported?(parsed.address)
     end
   end
