@@ -58,6 +58,7 @@ describe EmailValidator do
 
   it "allows correct e-mail addresses" do
     subject.should_receive(:has_mx_records).and_return(true)
+    SendgridHelper.should_receive(:spam_reported?).and_return(false)
     expect {
       model.email = 'feedback@lol.biz.info'
       subject.validate(model)
@@ -67,6 +68,7 @@ describe EmailValidator do
   context "DNS checks for domain" do
     it "checks for the existence of an MX record for the domain" do
       Resolv::DNS.any_instance.should_receive(:getresource).and_raise(Resolv::ResolvError)
+      SendgridHelper.should_receive(:spam_reported?).and_return(false)
       expect {
         model.email = 'test@gmail.co.uk'
         subject.validate(model)
@@ -75,10 +77,21 @@ describe EmailValidator do
 
     it "doesn't return an error when the MX lookup timed out" do
       Resolv::DNS.any_instance.should_receive(:getresource).and_raise(Resolv::ResolvTimeout)
+      SendgridHelper.should_receive(:spam_reported?).and_return(false)
       expect {
         model.email = 'test@irrelevant.com'
         subject.validate(model)
       }.not_to change { model.errors.empty? }
+    end
+  end
+
+  context "spam reporters" do
+    it "prevents validation on an e-mail address marked as a spam reporter in sendgrid" do
+      SendgridHelper.should_receive(:spam_reported?).and_return(true)
+      expect {
+        model.email = 'test@irrelevant.com'
+        subject.validate(model)
+      }.to change { model.errors.empty? }
     end
   end
 end

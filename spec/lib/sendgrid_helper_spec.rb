@@ -1,0 +1,25 @@
+require 'spec_helper'
+require 'sendgrid_helper'
+
+describe SendgridHelper do
+  context "error handling" do
+    [Curl::Err::CurlError, JSON::ParserError].each do |exception_class|
+      it "marks the email as valid if there's an error (#{exception_class})" do
+        Curl::Easy.should_receive(:perform).and_raise(exception_class)
+        SendgridHelper.spam_reported?('test@irrelevant.com').should be_false
+      end
+    end
+  end
+
+  context "when no error" do
+    it "marks an e-mail as valid" do
+      JSON.should_receive(:parse).and_return(['dummy'])
+      SendgridHelper.spam_reported?('test@irrelevant.com')
+    end
+
+    it "marks an e-mail as invalid" do
+      JSON.should_receive(:parse).and_return([])
+      SendgridHelper.spam_reported?('test@irrelevant.com')
+    end
+  end
+end

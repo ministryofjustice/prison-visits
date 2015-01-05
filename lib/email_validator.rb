@@ -6,6 +6,9 @@ class EmailValidator < ActiveModel::Validator
     maybe_set_error(record, "is not a valid address because it ends with a dot or starts with a dot") do
       parsed.domain.present? && (parsed.domain.end_with?('.') || parsed.domain.start_with?('.'))
     end && return
+    maybe_set_error(record, "cannot receive e-mails from this system") do
+      SendgridHelper.spam_reported?(parsed.address)
+    end && return
     maybe_set_error(record, "does not appear to be valid") do
       BAD_DOMAINS.include?(parsed.domain)
     end && return

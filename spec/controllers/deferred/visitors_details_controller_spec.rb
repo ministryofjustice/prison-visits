@@ -7,6 +7,7 @@ describe Deferred::VisitorsDetailsController do
     session[:visit] = PrisonerDetailsController.new.new_session
     cookies['cookies-enabled'] = 1
     EmailValidator.any_instance.stub(has_mx_records: true)
+    SendgridHelper.stub(:spam_reported?).and_return(false)
   end
 
   it_behaves_like "a browser without a session present"
