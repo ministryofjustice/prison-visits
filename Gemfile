@@ -17,6 +17,7 @@ gem 'redcarpet'
 gem 'prison_staff_info', git: 'git@github.com:ministryofjustice/prison_staff_info.git', branch: 'master'
 gem 'pg'
 gem 'statsd-ruby', require: 'statsd'
+gem 'curb'
 
 group :test, :development do
   gem 'rspec-rails'
@@ -25,7 +26,6 @@ group :test, :development do
   gem 'rubyzip'
   gem 'selenium-webdriver'
   gem 'capybara'
-  gem 'curb'
   gem 'parallel'
   gem 'rspec_junit_formatter'
   gem 'poltergeist'
