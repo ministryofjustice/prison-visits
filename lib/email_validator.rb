@@ -3,22 +3,10 @@ class EmailValidator < ActiveModel::Validator
 
   def validate(record)
     parsed = Mail::Address.new(record.email)
-    maybe_set_error(record, "is not a valid address because it ends with a dot or starts with a dot") do
-      parsed.domain.present? && (parsed.domain.end_with?('.') || parsed.domain.start_with?('.'))
-    end && return
-    maybe_set_error(record, "cannot receive e-mails from this system") do
-      SendgridHelper.spam_reported?(parsed.address)
-    end && return
-    maybe_set_error(record, "does not appear to be valid") do
-      BAD_DOMAINS.include?(parsed.domain)
-    end && return
-    unless parsed.local &&
-        parsed.domain &&
-        parsed.address == record.email &&
-        parsed.local != record.email &&
-        has_mx_records(parsed.domain)
-      set_error(record)
-    end
+    validate_address_domain(record, parsed) ||
+      validate_spam_reporter(record, parsed) ||
+      validate_bad_domain(record, parsed) ||
+      validate_address_well_formed(record, parsed)
   rescue Mail::Field::ParseError
     set_error(record)
   end
@@ -38,6 +26,34 @@ class EmailValidator < ActiveModel::Validator
   def maybe_set_error(record, message)
     yield.tap do |value|
       record.errors.add(:email, message) if value
+    end
+  end
+
+  def validate_address_domain(record, parsed)
+    maybe_set_error(record, "is not a valid address because it ends with a dot or starts with a dot") do
+      parsed.domain.present? && (parsed.domain.end_with?('.') || parsed.domain.start_with?('.'))
+    end
+  end
+
+  def validate_spam_reporter(record, parsed)
+    maybe_set_error(record, "cannot receive e-mails from this system") do
+      SendgridHelper.spam_reported?(parsed.address)
+    end
+  end
+
+  def validate_bad_domain(record, parsed)
+    maybe_set_error(record, "does not appear to be valid") do
+      BAD_DOMAINS.include?(parsed.domain)
+    end
+  end
+
+  def validate_address_well_formed(record, parsed)
+    maybe_set_error(record, "is not a valid address") do
+      not (parsed.local &&
+           parsed.domain &&
+           parsed.address == record.email &&
+           parsed.local != record.email &&
+           has_mx_records(parsed.domain))
     end
   end
 end
