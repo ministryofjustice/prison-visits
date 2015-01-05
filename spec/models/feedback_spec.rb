@@ -2,8 +2,10 @@ require 'spec_helper'
 
 describe Feedback do
   before :each do
-    EmailValidator.any_instance.stub(:has_mx_records).with('maildrop.dsd.io').and_return(true)
-    SendgridHelper.stub(:spam_reported?).and_return(false)
+    EmailValidator.any_instance.stub(:validate_address_domain).and_return(false)
+    EmailValidator.any_instance.stub(:validate_spam_reporter).and_return(false)
+    EmailValidator.any_instance.stub(:validate_bad_domain).and_return(false)
+    EmailValidator.any_instance.stub(:validate_dns_records).and_return(false)
   end
 
   it "validates required attributes" do

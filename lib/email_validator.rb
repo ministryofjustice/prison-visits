@@ -4,9 +4,10 @@ class EmailValidator < ActiveModel::Validator
   def validate(record)
     parsed = Mail::Address.new(record.email)
     validate_address_domain(record, parsed) ||
-      validate_spam_reporter(record, parsed) ||
       validate_bad_domain(record, parsed) ||
-      validate_address_well_formed(record, parsed)
+      validate_address_well_formed(record, parsed) ||
+      validate_dns_records(record, parsed) ||
+      validate_spam_reporter(record, parsed)
   rescue Mail::Field::ParseError
     set_error(record)
   end
@@ -52,8 +53,13 @@ class EmailValidator < ActiveModel::Validator
       not (parsed.local &&
            parsed.domain &&
            parsed.address == record.email &&
-           parsed.local != record.email &&
-           has_mx_records(parsed.domain))
+           parsed.local != record.email)
+    end
+  end
+
+  def validate_dns_records(record, parsed)
+    maybe_set_error(record, "does not appear to be valid") do
+      not has_mx_records(parsed.domain)
     end
   end
 end

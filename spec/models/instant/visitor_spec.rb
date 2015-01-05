@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe Instant::Visitor do
   before :each do
-    EmailValidator.any_instance.stub(has_mx_records: true)
-    SendgridHelper.stub(:spam_reported?).and_return(false)
+    EmailValidator.any_instance.stub(:validate_dns_records)
+    EmailValidator.any_instance.stub(:validate_spam_reporter)
   end
 
   let :visitor do
