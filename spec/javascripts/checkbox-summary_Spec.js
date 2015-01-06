@@ -22,7 +22,7 @@ describe('CheckboxSummary', function() {
     expect(subject.$summaries.length).toBe(1);
   });
 
-  it('creates a summary from currently checked boxes', function() {
+  it('creates a summary from values of checked boxes', function() {
     $fixture.find('#Orange').prop('checked', true).change();
     expect($fixture.find('.CheckboxSummary-summary').text()).toBe('Orange');
     expect(subject.getChecked(subject.$checkboxes).length).toBe(1);
@@ -33,11 +33,6 @@ describe('CheckboxSummary', function() {
     expect($fixture.find('.CheckboxSummary-summary').text()).toBe('Orange, Green');
     $fixture.find('#Orange').prop('checked', false).change();
     expect($fixture.find('.CheckboxSummary-summary').text()).toBe('Green');
-  });
-
-  it('uses checkbox values as summary text', function() {
-    $fixture.find('#Orange').prop('checked', true).change();
-    expect($fixture.find('.CheckboxSummary-summary').text()).toBe('Orange');
   });
 
   describe('defaults', function() {
