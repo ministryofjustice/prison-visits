@@ -23,7 +23,7 @@
 
     defaults: {
       glue: ', ',
-      strip: ';',
+      strip: '+',
       sub: ' ',
       original: '[summary]'
     },

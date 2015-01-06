@@ -45,8 +45,8 @@ describe('CheckboxSummary', function() {
       expect($fixture.find('.CheckboxSummary-summary').text()).toBe('Orange, Green');
     });
 
-    it('should strip semicolons from summary text', function() {
-      $fixture = $('<div class="CheckboxSummary"><input type="checkbox" value="Charlie;Brown" id="Charlie" /><span class="CheckboxSummary-summary"></span></div>');
+    it('should strip underscores from summary text', function() {
+      $fixture = $('<div class="CheckboxSummary"><input type="checkbox" value="Charlie+Brown" id="Charlie" /><span class="CheckboxSummary-summary"></span></div>');
       var subject = new moj.Modules._CheckboxSummary($fixture);
       $fixture.find('#Charlie').prop('checked', true).change();
       expect($fixture.find('.CheckboxSummary-summary').text()).toBe('Charlie Brown');
