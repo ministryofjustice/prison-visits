@@ -7,7 +7,8 @@ class EmailValidator < ActiveModel::Validator
       validate_bad_domain(record, parsed) ||
       validate_address_well_formed(record, parsed) ||
       validate_dns_records(record, parsed) ||
-      validate_spam_reporter(record, parsed)
+      validate_spam_reporter(record, parsed) ||
+      validate_bounced(record, parsed)
   rescue Mail::Field::ParseError
     set_error(record)
   end
@@ -39,6 +40,12 @@ class EmailValidator < ActiveModel::Validator
   def validate_spam_reporter(record, parsed)
     maybe_set_error(record, "cannot receive messages from this system") do
       SendgridHelper.spam_reported?(parsed.address)
+    end
+  end
+
+  def validate_bounced(record, parsed)
+    maybe_set_error(record, "cannot receive messages from this system") do
+      SendgridHelper.bounced?(parsed.address)
     end
   end
 

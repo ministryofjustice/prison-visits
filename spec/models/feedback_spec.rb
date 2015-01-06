@@ -6,6 +6,7 @@ describe Feedback do
     EmailValidator.any_instance.stub(:validate_spam_reporter).and_return(false)
     EmailValidator.any_instance.stub(:validate_bad_domain).and_return(false)
     EmailValidator.any_instance.stub(:validate_dns_records).and_return(false)
+    EmailValidator.any_instance.stub(:validate_bounced).and_return(false)
   end
 
   it "validates required attributes" do

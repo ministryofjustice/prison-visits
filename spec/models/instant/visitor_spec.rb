@@ -4,6 +4,7 @@ describe Instant::Visitor do
   before :each do
     EmailValidator.any_instance.stub(:validate_dns_records)
     EmailValidator.any_instance.stub(:validate_spam_reporter)
+    EmailValidator.any_instance.stub(:validate_bounced)
   end
 
   let :visitor do

@@ -6,8 +6,7 @@ describe Deferred::VisitorsDetailsController do
   before :each do
     session[:visit] = PrisonerDetailsController.new.new_session
     cookies['cookies-enabled'] = 1
-    EmailValidator.any_instance.stub(:validate_dns_records)
-    EmailValidator.any_instance.stub(:validate_spam_reporter)
+    EmailValidator.any_instance.stub(:validate)
   end
 
   it_behaves_like "a browser without a session present"

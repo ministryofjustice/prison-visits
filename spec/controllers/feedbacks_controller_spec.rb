@@ -3,8 +3,7 @@ require 'spec_helper'
 describe FeedbacksController do
   before :each do
     ActionMailer::Base.deliveries.clear
-    EmailValidator.any_instance.stub(:validate_dns_records)
-    EmailValidator.any_instance.stub(:validate_spam_reporter)
+    EmailValidator.any_instance.stub(:validate)
   end
 
   it "displays feedback form" do

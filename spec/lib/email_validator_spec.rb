@@ -59,6 +59,7 @@ describe EmailValidator do
   it "allows correct e-mail addresses" do
     subject.should_receive(:validate_dns_records).and_return(false)
     subject.should_receive(:validate_spam_reporter).and_return(false)
+    subject.should_receive(:validate_bounced).and_return(false)
     expect {
       model.email = 'feedback@lol.biz.info'
       subject.validate(model)
@@ -77,6 +78,7 @@ describe EmailValidator do
     it "doesn't return an error when the MX lookup timed out" do
       Resolv::DNS.any_instance.should_receive(:getresource).and_raise(Resolv::ResolvTimeout)
       subject.should_receive(:validate_spam_reporter).and_return(false)
+      subject.should_receive(:validate_bounced).and_return(false)
       expect {
         model.email = 'test@irrelevant.com'
         subject.validate(model)
@@ -88,6 +90,19 @@ describe EmailValidator do
     it "prevents validation on an e-mail address marked as a spam reporter in sendgrid" do
       subject.should_receive(:validate_dns_records).and_return(false)
       SendgridHelper.should_receive(:spam_reported?).and_return(true)
+      expect {
+        model.email = 'test@irrelevant.com'
+        subject.validate(model)
+      }.to change { model.errors.empty? }
+      model.errors.first.should == [:email, "cannot receive messages from this system"]
+    end
+  end
+
+  context "bounced addresses" do
+    it "prevents validation on an e-mail address marked as bounced in sendgrid" do
+      subject.should_receive(:validate_dns_records).and_return(false)
+      subject.should_receive(:validate_spam_reporter).and_return(false)
+      SendgridHelper.should_receive(:bounced?).and_return(true)
       expect {
         model.email = 'test@irrelevant.com'
         subject.validate(model)
