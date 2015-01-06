@@ -133,7 +133,7 @@
         Visitor isn’t on the contact list
         %span.validation-message= f.object.errors[:unlisted].first if f.object.errors.include?(:unlisted)
 
-    #visitors_not_listed.panel-indent.CheckboxSummary
+    #visitors_not_listed.panel-indent.CheckboxSummary(data-strip=";")
       %h3 What we’ll tell the visitor
       #not_listed_rejected
         %p
@@ -169,7 +169,7 @@
         Visitor is banned
         %span.validation-message= f.object.errors[:banned].first if f.object.errors.include?(:banned)
 
-    #visitors_banned.panel-indent.CheckboxSummary
+    #visitors_banned.panel-indent.CheckboxSummary(data-strip=";")
       %h3 What we’ll tell the visitor
       #banned_rejected
         %p

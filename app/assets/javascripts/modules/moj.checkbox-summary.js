@@ -3,6 +3,8 @@
 (function () {
   'use strict';
 
+  window.moj = window.moj || { Modules: {}, Events: $({}) };
+
   var CheckboxSummary = function($el, options) {
     this.init($el, options);
     return this;
@@ -10,14 +12,20 @@
 
   CheckboxSummary.prototype = {
     init: function ($el, options) {
+      var sum;
       this.cacheEls($el);
       this.bindEvents();
-      this.settings = $.extend({}, {
-        glue: ', ',
-        strip: ';',
-        sub: ' '
-      }, options);
-      this.settings.original = this.$summaries.first().text() || '[summary]';
+      this.settings = $.extend({}, this.defaults, options);
+      if (sum = this.$summaries.first().text()) {
+        this.settings.original = sum;
+      }
+    },
+
+    defaults: {
+      glue: ', ',
+      strip: '+',
+      sub: ' ',
+      original: ''
     },
 
     bindEvents: function () {
@@ -67,6 +75,8 @@
       this.$summaries.text(text);
     }
   };
+
+  moj.Modules._CheckboxSummary = CheckboxSummary;
 
   moj.Modules.CheckboxSummary = {
     init: function() {

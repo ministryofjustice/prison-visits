@@ -8,6 +8,19 @@ module.exports = function(grunt) {
       banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
     },
 
+    jasmine: {
+      javascripts: {
+        src: [
+          'node_modules/jquery-browser/lib/jquery.js',
+          'app/assets/javascripts/modules/moj.checkbox-summary.js'
+        ],
+        options: {
+          specs: 'spec/javascripts/*Spec.js',
+          helpers: 'spec/javascripts/unit/*Helper.js'
+        }
+      }
+    },
+
     // Test the coffee script against JSlint
     coffee_jshint: {
       app: {
@@ -92,6 +105,10 @@ module.exports = function(grunt) {
         files: ['tests/**/*.coffee'],
         tasks: ['tests']
       },
+      specs: {
+        files: ['spec/javascripts/**/*.js'],
+        tasks: ['jasmine']
+      },
       failure: {
         files: ['tests/*.png'],
         tasks: ['notify:casperjs']
@@ -110,6 +127,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-notify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-jasmine');
 
   // Default task(s)
   grunt.registerTask('default', 'JS lint application code', ['jshint','coffeelint:app','coffee_jshint:app']);
