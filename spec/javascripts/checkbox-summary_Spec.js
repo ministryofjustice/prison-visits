@@ -55,7 +55,7 @@ describe('CheckboxSummary', function() {
     it('should display placeholder text when no items are checked', function() {
       $fixture.find('#Orange').prop('checked', true).change();
       $fixture.find('#Orange').prop('checked', false).change();
-      expect($fixture.find('.CheckboxSummary-summary').text()).toBe('[summary]');
+      expect($fixture.find('.CheckboxSummary-summary').text()).toBe('');
     });
   });
 

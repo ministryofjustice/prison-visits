@@ -25,7 +25,7 @@
       glue: ', ',
       strip: '+',
       sub: ' ',
-      original: '[summary]'
+      original: ''
     },
 
     bindEvents: function () {
