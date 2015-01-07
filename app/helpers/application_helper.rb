@@ -51,12 +51,4 @@ module ApplicationHelper
       prefix + variable.to_s + suffix
     end
   end
-
-  def link_to_commit
-    if commit = VERSION_INFO['commit']
-      [VERSION_INFO['rev'], link_to("(#{commit})", "https://github.com/ministryofjustice/prison-visits/commit/#{commit}")].join(' ').html_safe
-    else
-      "No version information"
-    end
-  end
 end
