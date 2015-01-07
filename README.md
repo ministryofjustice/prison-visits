@@ -32,13 +32,19 @@ When a disabled prison is chosen on the prisoner details page, the user is shown
 
 > HMP [PRISON_NAME] is unable to process online visit requests. Instead you can contact the prison directly to book a visit.
 	
-This message can be changed to one of two other reasons using the `reason` parameter.
+This message can be changed using the `reason` parameter.
 
     reason: 'it_issues'
-    // HMP [PRISON_NAME] is unable to process online visit requests right now. You can contact the prison directly to book a visit instead.
-    
-	reason: 'coming_soon'
-	// HMP [PRISON_NAME] isn’t able to process online visit requests yet. You can contact the prison directly to book a visit instead.
+
+Will change the message to:
+
+> HMP [PRISON_NAME] is unable to process online visit requests right now. You can contact the prison directly to book a visit instead.
+
+    reason: 'coming_soon'
+
+Will change the message to:
+
+> HMP [PRISON_NAME] isn’t able to process online visit requests yet. You can contact the prison directly to book a visit instead.
 
 ### Weekly visiting slots
 
