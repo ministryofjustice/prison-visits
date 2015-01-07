@@ -135,7 +135,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jasmine');
 
   // Default task(s)
-  grunt.registerTask('default', 'JS lint application code', ['jshint','coffeelint:app','coffee_jshint:app']);
+  grunt.registerTask('default', 'Test and lint application code', ['jshint','coffeelint:app','coffee_jshint:app', 'jasmine']);
   grunt.registerTask('tests', 'run integration tests', ['coffeelint:tests','coffee_jshint:tests','shell:tests']);
   grunt.registerTask('scrape', 'scrape web for visiting times', ['shell:scrape','shell:yaml']);
 
