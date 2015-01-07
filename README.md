@@ -1,14 +1,14 @@
-# Prison Visit Booking email
+# Visit someone in prison
 
 [![Build Status](https://travis-ci.org/ministryofjustice/prison-visits.png?branch=master)](https://travis-ci.org/ministryofjustice/prison-visits)
 [![Code Climate](https://codeclimate.com/github/ministryofjustice/prison-visits.png)](https://codeclimate.com/github/ministryofjustice/prison-visits)
 [![Code Coverage](https://codeclimate.com/github/ministryofjustice/prison-visits/coverage.png)](https://codeclimate.com/github/ministryofjustice/prison-visits)
 
-Also known as "PVBE", is the Alpha system for the Prison Visit Booking exemplar. 
+Also known as Prison Visits Booking, is one of the 25 [GOV.UK](https://www.gov.uk/) 'exemplar' [digital transformation services](https://www.gov.uk/transformation).
 
 It is a Ruby on Rails cookie based (no database) service which enables a user to pick 3 posible visiting times and submit the required details of a visit to the relevant prison. 
 
-The request is sent via secure email and prison staff will then manually enter the visit request into NOMIS and respond to the user.
+The request is sent via secure email to prison staff who manually process the request before returning to this app to respond to the user.
 
 ## Editing prison data
 
@@ -106,7 +106,7 @@ The visit request processing form has been updated and can be enabled per prison
 
 ## Set-up
 
-Clone the project into a directory on to your environment using [instructions on GitHub](https://help.github.com/categories/54/articles). 
+Clone the project into a directory on to your environment using [instructions on GitHub](https://help.github.com/categories/54/articles).
 
 Open terminal and go to the project directory and install the dependancies by running (assuming you have [Bundler](http://bundler.io/) installed):
 
@@ -122,29 +122,27 @@ Then point your favourite browser to [http://localhost:3000/](http://localhost:3
 
 ### SlotPicker
 
-Used for choose and choose-date-and-time page. 
+Used for choose and choose-date-and-time page. This is included via [Bower](http://bower.io) and commited to this code base.
 
-This is included via a [Bower package](http://bower.io). To update run `bower update`.
+**Note** SlotPicker has requires Modernizr touch and CSS animation detection.
 
-### Modernizr
+### Prison staff info
 
-Used to detect touch enabled devices and whether the device has a native date input. To keep download small, a custom build of Modernizr with only these requirements is in use.
+Currently a private Gem which contains information for booking staff.
 
 ## Automated tests
 
-This app uses [RSpec](http://rspec.info/) for Rails (server-side) tests and [CasperJS](casperjs.org) for (client-side) tests.
-
-### Server-side
+This app uses [RSpec](http://rspec.info/) for Rails tests.
 
     rake
 
-### Client-side
+### Feature tests
 
-## Locally (using firefox)
+#### Locally (using Google Chrome)
 
     rake spec:features
 
-## Remotely
+#### Remotely (using BrowserStack)
 
 You'll need to set the environment variables to tell the tests scripts that you want them to be run remotely.
 
@@ -152,8 +150,9 @@ You'll need to set the environment variables to tell the tests scripts that you 
     export BS_PASSWORD browserstack-password
     rake spec:features
 
-## In parallel
+#### In parallel
 
     rake parallel:spec
+
 
 
