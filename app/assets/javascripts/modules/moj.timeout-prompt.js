@@ -10,39 +10,50 @@
     respondDuration: 1000 * 60 * 3,
     timeout: null,
     respond: null,
-    insertBefore: '#cookies-required',
     template: '#tmpl-timeout',
     exitPath: '/abandon',
 
     init: function () {
-      this.initTimeout();
+      this.cacheEls();
+      if (this.$tmpl.length) {
+        this.startTimeout(this.timeoutDuration);
+      }
     },
 
-    initTimeout: function () {
+    cacheEls: function() {
+      this.$tmpl = $(this.template);
+      this.notice = this.getTemplate(this.$tmpl);
+    },
+
+    startTimeout: function (ms) {
       var self = this;
-      this.timeout = setTimeout($.proxy(self.warning, self), self.timeoutDuration);
+      this.timeout = setTimeout($.proxy(self.warning, self, self.respondDuration), ms);
     },
 
-    warning: function () {
+    getTemplate: function($tmpl) {
       var self = this,
-          $tmpl = $(self.template),
           template;
 
       if ($tmpl.length) {
-        
         template = Handlebars.compile($tmpl.html());
-        
-        $(template({
-            respondTime: self.respondDuration / 60 / 1000
-          }))
-          .insertBefore(self.insertBefore)
-          .focus()
-          .end()
-          .find('#extend-timeout')
-          .on('click', $.proxy(self.removeWarning, self));
 
-        self.respond = setTimeout($.proxy(self.redirect, self), self.respondDuration);
+        return template({
+          respondTime: self.respondDuration / 60 / 1000
+        });
       }
+    },
+
+    warning: function (ms) {
+      var self = this;
+
+      $(self.notice)
+        .insertBefore(self.template)
+        .focus()
+        .end()
+        .find('#extend-timeout')
+        .on('click', $.proxy(self.removeWarning, self));
+
+      self.respond = setTimeout($.proxy(self.redirect, self), ms);
     },
 
     redirect: function () {
@@ -61,7 +72,7 @@
         url: $('#logo img').attr('src'),
         cache: false
       }).done(function () {
-        self.initTimeout();
+        self.startTimeout();
         clearTimeout(self.respond);
       });
     }
