@@ -1,12 +1,9 @@
-/*jslint browser: true, evil: false, plusplus: true, white: true, indent: 2, nomen: true */
-/*global moj, $ */
-
 // General utilities for MOJ
 // Dependencies: moj, jQuery
 
 (function (document){
 
-  "use strict";
+  'use strict';
 
   moj.Modules.hijacks = {
     init: function () {

@@ -1,5 +1,7 @@
 module.exports = function(grunt) {
 
+  'use strict';
+
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -116,7 +118,10 @@ module.exports = function(grunt) {
     },
 
     jshint: {
-      all: ['Gruntfile.js', 'app/assets/javascripts/**/*.js', 'scripts/visiting_times.js']
+      all: ['Gruntfile.js', 'app/assets/javascripts/**/*.js'],
+      options: {
+        jshintrc: '.jshintrc'
+      }
     }
   });
 
@@ -130,7 +135,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jasmine');
 
   // Default task(s)
-  grunt.registerTask('default', 'JS lint application code', ['jshint','coffeelint:app','coffee_jshint:app']);
+  grunt.registerTask('default', 'Test and lint application code', ['jshint','coffeelint:app','coffee_jshint:app', 'jasmine']);
   grunt.registerTask('tests', 'run integration tests', ['coffeelint:tests','coffee_jshint:tests','shell:tests']);
   grunt.registerTask('scrape', 'scrape web for visiting times', ['shell:scrape','shell:yaml']);
 

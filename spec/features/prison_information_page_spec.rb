@@ -22,10 +22,10 @@ feature "visitor enters prisoner information" do
           find(:css, ".ui-autocomplete-input").set('Cardiff')
           click_button 'Continue'
 
-          expect(page).to have_css(".field_with_errors #prisoner_first_name")
-          expect(page).to have_css(".field_with_errors #prisoner_last_name")
-          expect(page).to have_css(".js-native-date.validation-error")
-          expect(page).to have_css(".field_with_errors #prisoner_number")
+          expect(page).to have_css(".validation-error #prisoner_first_name")
+          expect(page).to have_css(".validation-error #prisoner_last_name")
+          expect(page).to have_css(".validation-error #prisoner_date_of_birth_3i")
+          expect(page).to have_css(".validation-error #prisoner_number")
         end
       end
 
