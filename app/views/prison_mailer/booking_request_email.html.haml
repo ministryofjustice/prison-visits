@@ -52,3 +52,6 @@
 
 %div{ style: 'word-wrap: break-word; border: thin solid gray; padding: 5px;' }
   = deferred_new_confirmation_url(state: @token)
+
+%p
+  %small Visit ID: #{@visit.visit_id}

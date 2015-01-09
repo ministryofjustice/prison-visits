@@ -129,6 +129,9 @@ describe VisitorMailer do
         email.should match_in_html("01634 803100")
         email.should_not match_in_html("Jimmy Harris")
         email.should_not match_in_html("Your reference number is")
+
+        email.should match_in_html(sample_visit.visit_id)
+        email.should match_in_text(sample_visit.visit_id)
       end
 
       it "sends out an e-mail with a reference number (canned responses)" do
@@ -144,6 +147,9 @@ describe VisitorMailer do
         email.should_not match_in_html("Jimmy Harris")
         email.should match_in_html('5551234')
         email.should_not match_in_html("This is a copy")
+
+        email.should match_in_html(sample_visit.visit_id)
+        email.should match_in_text(sample_visit.visit_id)
       end
 
       it "sends out an e-mail with no reference number for remand prisoners (canned responses)" do
@@ -158,6 +164,9 @@ describe VisitorMailer do
         email.should match_in_html("01634 803100")
         email.should_not match_in_html("Jimmy Harris")
         email.should_not match_in_html('Your reference number is')
+
+        email.should match_in_html(sample_visit.visit_id)
+        email.should match_in_text(sample_visit.visit_id)
       end
 
       it "sends out an e-mail with the list of visitors not on the approved visitor list" do
@@ -173,6 +182,9 @@ describe VisitorMailer do
         email.should_not match_in_html("Jimmy Harris")
         email.should match_in_html("Joan H. cannot attend as they’re not on the prisoner’s contact list")
         email.should match_in_html('5551234')
+
+        email.should match_in_html(sample_visit.visit_id)
+        email.should match_in_text(sample_visit.visit_id)
       end
 
       it "sends out an e-mail with the list of banned visitors" do
@@ -188,6 +200,9 @@ describe VisitorMailer do
         email.should_not match_in_html("Jimmy Harris")
         email.should match_in_html("Joan H. cannot attend as they’re currently banned")
         email.should match_in_html('5551234')
+
+        email.should match_in_html(sample_visit.visit_id)
+        email.should match_in_text(sample_visit.visit_id)
       end
 
       it "sends out an e-mail with the List-Unsubscribe header set" do
@@ -212,6 +227,9 @@ describe VisitorMailer do
         email.should match_in_html('http://www.justice.gov.uk/contacts/prison-finder/rochester')
         email.should match_in_html("01634 803100")
         email.should_not match_in_html("Jimmy Harris")
+
+        email.should match_in_html(sample_visit.visit_id)
+        email.should match_in_text(sample_visit.visit_id)
       end
 
       it "because of a visitor not being on a contact list (legacy)" do
@@ -225,6 +243,9 @@ describe VisitorMailer do
         email.should match_in_html('http://www.justice.gov.uk/contacts/prison-finder/rochester')
         email.should match_in_html("01634 803100")
         email.should_not match_in_html("Jimmy Harris")
+
+        email.should match_in_html(sample_visit.visit_id)
+        email.should match_in_text(sample_visit.visit_id)
       end
 
       it "because the prisoner details are incorrect" do
@@ -239,6 +260,9 @@ describe VisitorMailer do
         email.should match_in_html("01634 803100")
         email.should_not match_in_html("Jimmy Harris")
         email.should match_in_html("Your visit cannot take place as you haven’t given correct information for the prisoner.")
+
+        email.should match_in_html(sample_visit.visit_id)
+        email.should match_in_text(sample_visit.visit_id)
       end
 
       it "because the prisoner is not at the prison" do
@@ -253,6 +277,9 @@ describe VisitorMailer do
         email.should match_in_html("01634 803100")
         email.should_not match_in_html("Jimmy Harris")
         email.should match_in_html("Your visit cannot take place as the prisoner you want to visit has moved prison.")
+
+        email.should match_in_html(sample_visit.visit_id)
+        email.should match_in_text(sample_visit.visit_id)
       end
 
       it "because the prisoner has no allowance" do
@@ -267,6 +294,9 @@ describe VisitorMailer do
         email.should match_in_html("01634 803100")
         email.should_not match_in_html("Jimmy Harris")
         email.should match_in_html("the prisoner you want to visit has not got any visiting allowance left for the dates you’ve chosen")
+
+        email.should match_in_html(sample_visit.visit_id)
+        email.should match_in_text(sample_visit.visit_id)
       end
 
       it "because the prisoner has no allowance and a VO renewal date is specified" do
@@ -282,6 +312,9 @@ describe VisitorMailer do
         email.should_not match_in_html("Jimmy Harris")
         email.should match_in_html("the prisoner you want to visit has not got any visiting allowance left for the dates you’ve chosen")
         email.should match_in_html("Jimmy H will have their full visiting allowance (VO) renewed on Saturday 29 November.")
+
+        email.should match_in_html(sample_visit.visit_id)
+        email.should match_in_text(sample_visit.visit_id)
       end
 
       it "because the prisoner has no allowance and a PVO renewal date is specified" do
@@ -298,6 +331,9 @@ describe VisitorMailer do
         email.should match_in_html("the prisoner you want to visit has not got any visiting allowance left for the dates you’ve chosen")
         email.should match_in_html("However, you can book a weekday visit with visiting allowance valid until Monday 17 November.")
         email.should match_in_html("Jimmy H will have their full visiting allowance (VO) renewed on Saturday 29 November.")
+
+        email.should match_in_html(sample_visit.visit_id)
+        email.should match_in_text(sample_visit.visit_id)
       end
 
       it "because a visitor is not on the list (canned response)" do
@@ -312,6 +348,9 @@ describe VisitorMailer do
         email.should match_in_html("01634 803100")
         email.should_not match_in_html("Jimmy Harris")
         email.should match_in_html("Your visit cannot take place as details for Joan Harris don’t match our records or they aren’t on the prisoner’s contact list.")
+
+        email.should match_in_html(sample_visit.visit_id)
+        email.should match_in_text(sample_visit.visit_id)
       end
 
       it "because a visitor is banned" do
@@ -326,6 +365,9 @@ describe VisitorMailer do
         email.should match_in_html("01634 803100")
         email.should_not match_in_html("Jimmy Harris")
         email.should match_in_html("Joan Harris should have received a letter to say that they’re banned from visiting the prison at the moment.")
+
+        email.should match_in_html(sample_visit.visit_id)
+        email.should match_in_text(sample_visit.visit_id)
       end
     end
 
@@ -339,6 +381,9 @@ describe VisitorMailer do
         email.should_not match_in_html("Jimmy Harris")
         email.should match_in_html(visit_status_url(id: sample_visit.visit_id))
         email.should match_in_html("by Friday  5 July to")
+
+        email.should match_in_html(sample_visit.visit_id)
+        email.should match_in_text(sample_visit.visit_id)
       end
     end
 
@@ -350,6 +395,8 @@ describe VisitorMailer do
         email[:reply_to].should == prison_address
         email[:to].should == visitor_address
         email.should_not match_in_html("Jimmy Harris")
+
+        email.should match_in_text(sample_visit.visit_id)
       end
     end
 

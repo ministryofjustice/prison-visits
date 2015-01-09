@@ -58,6 +58,10 @@ describe PrisonMailer do
       email = subject.booking_request_email(sample_visit, "token")
       email.should match_in_html "confirmation/new?state=token"
       email.should match_in_html "https://localhost"
+      email.should match_in_html(sample_visit.visit_id)
+      email.should match_in_text "confirmation/new?state=token"
+      email.should match_in_text "https://localhost"
+      email.should match_in_text(sample_visit.visit_id)
     end
 
     it "sends a booking receipt to a prison to create an audit trail" do
@@ -65,12 +69,19 @@ describe PrisonMailer do
         email.subject.should == "COPY of booking confirmation for Jimmy Harris"
         email.should match_in_html('Mark')
         email.should match_in_html('This is a copy of the booking confirmation email sent to the visitor')
+        email.should match_in_html(sample_visit.visit_id)
+        email.should match_in_text('Mark')
+        email.should match_in_text('THIS IS A COPY OF THE BOOKING CONFIRMATION EMAIL THAT HAS BEEN SENT TO THE VISITOR')
+        email.should match_in_text(sample_visit.visit_id)
       end
 
       [confirmation_without_slot, confirmation_not_on_contact_list, confirmation_no_vos_left].each do |confirmation|
         subject.booking_receipt_email(sample_visit, confirmation).tap do |email|
           email.subject.should == "COPY of booking rejection for Jimmy Harris"
           email.should match_in_html('Mark')
+          email.should match_in_html(sample_visit.visit_id)
+          email.should match_in_text('Mark')
+          email.should match_in_text(sample_visit.visit_id)
         end
       end
     end
@@ -87,7 +98,8 @@ describe PrisonMailer do
         email['X-Priority'].value.should == '1 (Highest)'
         email['X-MSMail-Priority'].value.should == 'High'
         email.subject.should == 'CANCELLED: Jimmy Harris on Sunday 7 July'
-        email.body.raw_source.should include('a0000aa')
+        email.should match_in_text('a0000aa')
+        email.should match_in_text(sample_visit.visit_id)
       end
     end
 
