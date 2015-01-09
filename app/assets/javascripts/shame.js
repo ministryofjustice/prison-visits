@@ -77,6 +77,12 @@ $(function () {
 
     $(this).closest('.BookingCalendar').siblings('p').find('span').text(days[date.getDay()] +' '+ date.getDate() +' '+ months[date.getMonth()]);
   });
+
+  // Temporary survey
+  $('#survey-no-thanks').on('click', function(e) {
+    e.preventDefault();
+    $('#user-satisfaction-survey-container').remove();
+  });
 });
 
 
