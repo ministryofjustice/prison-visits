@@ -47,9 +47,16 @@
   = @dataset.end_to_end_times.to_json
 #end_to_end
 
+%h2
+  Unprocessed visits by days from today
+%script#waiting_times{language: 'json'}
+  = @dataset.waiting_times.to_json
+#waiting
+
 :javascript
   // I'll move it where it belongs later.
   document.addEventListener('DOMContentLoaded', function() {
     displayHistogram('#end_to_end', JSON.parse(d3.select('#end_to_end_times').html()), true);
+    displayHistogram('#waiting', JSON.parse(d3.select('#waiting_times').html()), false);
   });
 

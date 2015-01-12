@@ -75,6 +75,17 @@ function displayHistogram(where, dataSource, displayLines) {
         .attr('class', 'x axis')
         .attr('transform', 'translate(0,' + height + ')')
         .call(xAxis);
+
+    if (n == 0) {
+        svg.append('text')
+            .attr('x', 0)
+            .attr('y', 0)
+            .attr('class', 'no-data-label')
+            .attr('transform', 'translate(' + (width - 100) / 2 + ',' + height / 2 + ')')
+            .text('No data to display');
+        return;
+    }
+
     if (displayLines) {
         medianValue = percentile(dataSource, 50);
         percentileValue = percentile(dataSource, 95);
