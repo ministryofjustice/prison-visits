@@ -1,4 +1,4 @@
-/*jslint indent: 4, maxstatements: 24, unused: false */
+/*jslint indent: 4, maxstatements: 27, unused: false */
 /*global d3 */
 //= require d3.chart.bubble-matrix
 
@@ -76,7 +76,7 @@ function displayHistogram(where, dataSource, displayLines) {
         .attr('transform', 'translate(0,' + height + ')')
         .call(xAxis);
 
-    if (n == 0) {
+    if (n === 0) {
         svg.append('text')
             .attr('x', 0)
             .attr('y', 0)
