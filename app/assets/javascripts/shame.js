@@ -79,8 +79,7 @@ $(function () {
   });
 
   // Temporary survey
-  $('#survey-no-thanks').on('click', function(e) {
-    e.preventDefault();
+  $('#survey-no-thanks').on('click', function() {
     $('#user-satisfaction-survey-container').remove();
   });
 });

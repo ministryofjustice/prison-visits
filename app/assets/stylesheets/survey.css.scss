@@ -63,3 +63,16 @@
     }
   }
 }
+
+#survey-no-thanks {
+  cursor: pointer;
+  padding: 0;
+  color: $white;
+  font-size: 14px;
+  font-weight: normal;
+  text-decoration: underline;
+  border: none;
+  background: none;
+
+  -webkit-font-smoothing: antialiased;
+}
