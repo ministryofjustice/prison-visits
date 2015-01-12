@@ -16,3 +16,16 @@ RSpec::Matchers.define :match_in_html do |actual|
     part.body.raw_source.include?(actual)
   end
 end
+
+RSpec::Matchers.define :match_in_text do |actual|
+  match do |expected|
+    if part = expected.body.parts.find do |part|
+        part.content_type.match /text\/plain/
+      end
+      part.should_not be_nil
+      part.body.raw_source.include?(actual)
+    else
+      expected.body.raw_source.include?(actual)
+    end
+  end
+end
