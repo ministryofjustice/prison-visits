@@ -39,6 +39,19 @@
           %p.form-hint eg Last 8 digits of VO number or "none" for remand
           %span.validation-message= f.object.errors[:vo_number].first if f.object.errors.include?(:vo_number)
         = text_field_tag 'confirmation[vo_number]', nil, :maxlength => 8
+      
+      .group
+        #closed_visit.field
+          %label.block-label(for='confirmation_closed_visit')
+            = check_box_tag 'confirmation[closed_visit]', 1, f.object.closed_visit.present?, { :'data-conditional-el' => 'details_closed_visit', :class => 'js-Conditional' }
+            This is a closed visit
+
+        #details_closed_visit
+          %h3 What we’ll tell the visitor
+          %p
+            %em.email
+              %strong This is a closed visit:
+              the prisoner will be behind a glass screen in a separate area rather than in the visiting hall. 
 
     %label.block-label(for='confirmation_outcome_no_slot_available' )
       = radio_button_tag 'confirmation[outcome]', Confirmation::NO_SLOT_AVAILABLE, false, { :'data-conditional-el' => 'details_no_slot_available', :class => 'js-Conditional' }

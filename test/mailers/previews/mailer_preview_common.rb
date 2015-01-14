@@ -25,6 +25,17 @@ module MailerPreviewCommon
     MESSAGE_ENCRYPTOR
   end
 
+  def remove_unused_slots(visit, slot_index)
+    visit.dup.tap do |v|
+      selected_slot = visit.slots[slot_index]
+      v.slots = [selected_slot]
+    end
+  end
+
+  def token
+    encryptor.encrypt_and_sign(remove_unused_slots(sample_visit, accepted_confirmation.slot))
+  end
+
   def accepted_confirmation
     Confirmation.new(outcome: 'slot_2', message: 'A message')
   end
@@ -47,6 +58,10 @@ module MailerPreviewCommon
 
   def accepted_confirmation_visitor_banned_and_unlisted
     Confirmation.new(outcome: 'slot_2', vo_number: '5551234', canned_response: true, visitor_not_listed: true, unlisted_visitors: ['Emma;Jones'], visitor_banned: true, banned_visitors: ['Mark;Jones'])
+  end
+
+  def accepted_confirmation_closed_visit
+    Confirmation.new(outcome: 'slot_2', vo_number: '5551234', canned_response: true, closed_visit: true)
   end
 
   def rejected_confirmation(outcome)
