@@ -56,14 +56,11 @@ feature "visitor selects a date" do
           
           # For some reason, check() can't find the checkbox.
           if flow == :deferred
-            evaluate_script(_when.strftime("$('#slot-%Y-%m-%d-1350-1520').click()"))
-            evaluate_script(_when.strftime("$('#slot-%Y-%m-%d-1350-1450').click()"))
-            evaluate_script(_when.strftime("$('#slot-%Y-%m-%d-1450-1550').click()"))
+            evaluate_script(_when.strftime("$('#slot-%Y-%m-%d-1330-1500').click()"))
+            evaluate_script(_when.strftime("$('#slot-%Y-%m-%d-1445-1545').click()"))
           else
-            evaluate_script(_when.strftime("$('#slot-%Y-%m-%d-0900-1145').click()"))
             evaluate_script(_when.strftime("$('#slot-%Y-%m-%d-1345-1545').click()"))
             evaluate_script(_when.strftime("$('#slot-%Y-%m-%d-1345-1645').click()"))
-            evaluate_script(_when.strftime("$('#slot-%Y-%m-%d-1715-1900').click()"))
           end
 
           click_button 'Continue'
