@@ -80,7 +80,7 @@ module VisitHelper
 
   def when_to_expect_reply(today=Date.today)
     schedule = Schedule.new(prison_data)
-    format_day(schedule.except_lead_days(today, schedule.default_booking_range(today)).first)
+    format_day(schedule.except_lead_days(today, schedule.booking_range(today)).first)
   end
 
   def custom_id_requirements(prison_name, format)

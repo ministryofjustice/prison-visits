@@ -72,6 +72,7 @@ Cardiff:
   phone: 029 20923327
   email: socialvisits.cardiff@hmps.gsi.gov.uk
   instant_booking: false
+  booking_window: 14
   address:
   - Knox Road
   - Cardiff

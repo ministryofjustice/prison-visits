@@ -76,6 +76,7 @@ Cardiff:
   phone: 029 20923327
   email: pvb.cardiff@maildrop.dsd.io
   instant_booking: false
+  booking_window: 14
   address:
   - Knox Road
   - Cardiff

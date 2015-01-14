@@ -196,4 +196,17 @@ describe Schedule do
       subject.dates(start_date = Date.new(2014, 12, 4)).first.should be_nil
     end
   end
+
+  context "prison that permits bookings only two weeks in advance" do
+    let :prison do
+      Rails.configuration.prison_data['Cardiff'].dup
+    end
+
+    it "returns days within 14 days, excluding the lead days" do
+      subject.dates(start_date).each do |date|
+        date.should >= start_date + 3
+        date.should <= start_date + 14
+      end
+    end
+  end
 end
