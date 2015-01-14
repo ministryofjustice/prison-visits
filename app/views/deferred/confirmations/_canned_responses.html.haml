@@ -49,7 +49,9 @@
         #details_closed_visit
           %h3 What we’ll tell the visitor
           %p
-            %em.email This is a closed visit.
+            %em.email
+              %strong This is a closed visit:
+              the prisoner will be behind a glass screen in a separate area rather than in the visiting hall. 
 
     %label.block-label(for='confirmation_outcome_no_slot_available' )
       = radio_button_tag 'confirmation[outcome]', Confirmation::NO_SLOT_AVAILABLE, false, { :'data-conditional-el' => 'details_no_slot_available', :class => 'js-Conditional' }
