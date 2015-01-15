@@ -226,6 +226,7 @@ Werrington:
   phone: 0300 060 6508
   email: pvb.werrington@maildrop.dsd.io
   instant_booking: false
+  adult_age: 16
   address:
   - Werrington
   - Stoke-On-Trent
