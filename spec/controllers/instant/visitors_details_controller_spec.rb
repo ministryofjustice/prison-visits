@@ -5,6 +5,7 @@ describe Instant::VisitorsDetailsController do
 
   before :each do
     session[:visit] = PrisonerDetailsController.new.new_session
+    controller.visit.prisoner.prison_name = 'Cardiff'
     cookies['cookies-enabled'] = 1
     EmailValidator.any_instance.stub(:validate)
   end

@@ -1,5 +1,9 @@
 shared_examples "a visitor data manipulator with valid data" do
   context "given prisoner data in the session" do
+    before :each do
+      controller.visit.prisoner.prison_name = 'Cardiff'
+    end
+
     let :add_visitor_hash do
       {
         visit: {
@@ -117,6 +121,72 @@ shared_examples "a visitor data manipulator with invalid data" do
       post :update, visitor_hash
       response.should redirect_to(controller.this_path)
       session[:visit].valid?(:visitors_set).should be_false
+    end
+  end
+  
+  context "given only a single child visitor" do
+    let :visitor_hash do
+      {
+        visit: {
+          visitor: [
+                    first_name: 'Jack',
+                    last_name: 'Bauer',
+                    :'date_of_birth(3i)' => date_of_birth.day,
+                    :'date_of_birth(2i)' => date_of_birth.month,
+                    :'date_of_birth(1i)' => date_of_birth.year,
+                    phone: '09998887777'
+                   ]
+        },
+        next: ''
+      }
+    end
+
+    context "when the prison assumes each adult to be 18 or older" do
+      let :date_of_birth do
+        Date.today - 18.years
+      end
+
+      it "validates the age of the visitor" do
+        post :update, visitor_hash
+        response.should redirect_to(controller.next_path)
+      end
+
+      context "a child applies" do
+        let :date_of_birth do
+          Date.today - 10.years
+        end
+
+        it "validates the age of the visitor" do
+          post :update, visitor_hash
+          response.should redirect_to(controller.this_path)
+        end
+      end
+    end
+
+    context "when the prison assumes each adult to be some other age" do
+      before :each do
+        controller.visit.prisoner.prison_name = 'Werrington'
+      end
+
+      let :date_of_birth do
+        Date.today - 16.years
+      end
+
+      it "validates the age of the visitor" do
+        post :update, visitor_hash
+        response.should redirect_to(controller.next_path)
+      end
+
+      context "a child applies" do
+        let :date_of_birth do
+          Date.today - 10.years
+        end
+
+        it "validates the age of the visitor" do
+          post :update, visitor_hash
+          response.should redirect_to(controller.this_path)
+        end
+      end
     end
   end
 end
