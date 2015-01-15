@@ -29,7 +29,7 @@
         %strong #{visitor.first_name} #{visitor.last_name}
         \ -
         = format_date visitor.date_of_birth
-        - if visitor.adult?
+        - if visit.adult?(visitor)
           %small.adult Adult
         - else
           %small.child Child
