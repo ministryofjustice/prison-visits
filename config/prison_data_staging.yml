@@ -575,6 +575,7 @@ Coldingley:
   phone: 01483 344418
   email: pvb.coldingley@maildrop.dsd.io
   instant_booking: false
+  adult_age: 12
   address:
   - Shaftesbury Road
   - GU24 9EX
@@ -638,6 +639,7 @@ Deerbolt:
   phone: 01833 633349
   email: pvb.deerbolt@maildrop.dsd.io
   instant_booking: false
+  adult_age: 10
   address:
   - Bowes Road
   - DL12 9BG
@@ -753,6 +755,7 @@ Onley:
   phone: 01788 523 402
   email: pvb.onley@maildrop.dsd.io
   instant_booking: false
+  adult_age: 10
   address:
   - Willoughby
   - CV23 8AP
@@ -950,6 +953,7 @@ Maidstone:
   phone: 01622 775619
   email: pvb.maidstone@maildrop.dsd.io
   instant_booking: false
+  adult_age: 12
   address:
   - 36 County Road
   - 'ME14 1UZ '
@@ -1228,6 +1232,7 @@ Brixton:
   phone: 0208 678 1433
   email: pvb.brixton@maildrop.dsd.io
   instant_booking: false
+  adult_age: 12
   address:
   - Jebb Avenue
   - SW2 5XF
@@ -1439,6 +1444,7 @@ Glen Parva:
   phone: 0116 228 4366
   email: pvb.glenparva@maildrop.dsd.io
   instant_booking: false
+  adult_age: 10
   address:
   - Tigers Road
   - 'LE8 4TN '
@@ -1760,6 +1766,7 @@ Leeds:
   phone: 0113 203 2995
   email: pvb.leeds@maildrop.dsd.io
   instant_booking: false
+  adult_age: 10
   address:
   - Gloucester Terrace
   - 'LS12 2TJ '
@@ -1830,6 +1837,7 @@ Nottingham:
   phone: 0115 962 8980
   email: pvb.nottingham@maildrop.dsd.io
   instant_booking: false
+  adult_age: 14
   address:
   - Perry Road
   - 'NG5 3AG '
@@ -1941,6 +1949,7 @@ Norwich (A, B, C, E, M only):
   email: pvb.norwich@maildrop.dsd.io
   finder_slug: norwich
   instant_booking: false
+  adult_age: 16
   address:
   - Knox Road
   - 'NR1 4LU '
@@ -2130,6 +2139,7 @@ Bullingdon (Convicted Only):
   email: pvb.bullingdon@maildrop.dsd.io
   finder_slug: bullingdon
   instant_booking: false
+  adult_age: 13
   address:
   - Bicester
   - OX25 1PZ
@@ -2179,6 +2189,7 @@ Hindley (Young People 15-18 only):
   email: pvb.hindley@maildrop.dsd.io
   finder_slug: hindley
   instant_booking: false
+  adult_age: 10
   address:
   - Gibson Street
   - WN2 5TH
@@ -2423,6 +2434,7 @@ Lincoln:
   phone: 01522 663172
   email: pvb.lincoln@maildrop.dsd.io
   instant_booking: false
+  adult_age: 16
   address:
   - Greetwell Road
   - 'LN2 4BD '
@@ -2539,6 +2551,7 @@ Portland:
   phone: 01305 715775
   email: pvb.portland@maildrop.dsd.io
   instant_booking: false
+  adult_age: 11
   address:
   - 104 The Grove
   - DT5 1DL
@@ -2850,6 +2863,7 @@ Feltham (Young Adults 18-21 only):
   phone: 0208 844 5400
   email: pvb.feltham@maildrop.dsd.io
   finder_slug: feltham
+  adult_age: 10
   instant_booking: false
   address:
   - Bedfont Road
