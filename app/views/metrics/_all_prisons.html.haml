@@ -4,7 +4,7 @@
       %th
       %th{colspan: 5}
         Number of visits
-      %th
+      %th{colspan: 2}
         End to end
       %th{colspan: 4}
         Percent rejected
@@ -22,7 +22,9 @@
       %td
         Confirmed
       %td
-        (days)
+        median days
+      %td
+        95th percentile days
       %td
         Overall
       %td
@@ -46,6 +48,8 @@
         %td.narrow
           = dataset.confirmed_visits[prison]
         %td.left-border
+          = display_interval_as_fraction(dataset.end_to_end_median_times[prison], 1.day)
+        %td.narrow
           = display_interval_as_fraction(dataset.end_to_end_times[prison], 1.day)
         %td.narrow.left-border
           = display_percent(dataset.percent_rejected(prison))
