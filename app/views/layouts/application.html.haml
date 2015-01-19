@@ -44,12 +44,6 @@
   = succeed '.' do
     = link_to "Find out more about cookies", cookies_path
 
-
-- content_for :after_header do
-  - if controller.controller_name == 'visits' && controller.action_name == 'show'
-    = render 'shared/survey'
-
-
 - content_for :content_override do
   %main#wrapper(role="main")
     .container
