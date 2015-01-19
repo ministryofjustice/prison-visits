@@ -23,6 +23,7 @@ If you need to change or cancel your visit, please contact us as soon as you can
 * two forms of ID, one with your address
 * a small amount of money for tea and coffee during the visit – you won’t be able to give the prisoner any money
 * for more information about what to bring, for example clothes, please see the <%= prison_link(visit) %> page
+* if you’re bringing someone else’s child: a letter from that child’s parents giving you permission 
 
 ## <a name="#info-what-to-expect"></a> What to expect when visiting prison
 
