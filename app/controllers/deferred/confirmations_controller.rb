@@ -28,7 +28,7 @@ class Deferred::ConfirmationsController < ApplicationController
     end
 
     if @confirmation.slot_selected?
-      token = encryptor.encrypt_and_sign(remove_unused_slots(booked_visit, @confirmation.slot))
+      token = encryptor.encrypt_and_sign(attach_vo_number(remove_unused_slots(booked_visit, @confirmation.slot), @confirmation))
       VisitorMailer.booking_confirmation_email(booked_visit, @confirmation, token).deliver
       metrics_logger.record_booking_confirmation(booked_visit)
     else
@@ -94,6 +94,12 @@ class Deferred::ConfirmationsController < ApplicationController
     visit.dup.tap do |v|
       selected_slot = visit.slots[slot_index]
       v.slots = [selected_slot]
+    end
+  end
+
+  def attach_vo_number(visit, confirmation)
+    visit.dup.tap do |v|
+      v.vo_number = confirmation.vo_number
     end
   end
 end
