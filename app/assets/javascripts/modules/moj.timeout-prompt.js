@@ -5,7 +5,7 @@
 
   'use strict';
 
-  window.moj = window.moj || { Modules: {}, Events: $({}) };
+  window.moj = window.moj || { Modules: {} };
 
   var TimeoutPrompt = function($el, options) {
     this.init($el, options);
@@ -17,7 +17,8 @@
     defaults: {
       timeoutMinutes: 17,
       respondMinutes: 3,
-      exitPath: '/abandon'
+      exitPath: '/abandon',
+      template: '.TimeoutPrompt-template'
     },
 
     timeout: null,
@@ -37,45 +38,41 @@
 
     cacheEls: function($el) {
       this.$el = $el;
-      this.notice = this.getTemplate($el);
+      this.$template = $el.find(this.settings.template);
+      this.$notice = $(this.getTemplate(this.$template));
+    },
+
+    bindEvents: function() {
+      this.$el.find('.TimeoutPrompt-extend').on('click', $.proxy(this.removeWarning, this));
     },
 
     startTimeout: function () {
-      var self = this;
       this.timeout = setTimeout(
         $.proxy(
-          self.warning,
-          self,
-          self.settings.respondDuration
+          this.warning,
+          this,
+          this.settings.respondDuration
         ),
-        self.settings.timeoutDuration
+        this.settings.timeoutDuration
       );
     },
 
     getTemplate: function($tmpl) {
-      var self = this,
-          template;
+      var template;
 
       if ($tmpl.length) {
         template = Handlebars.compile($tmpl.html());
 
         return template({
-          respondTime: self.settings.respondMinutes
+          respondTime: this.settings.respondMinutes
         });
       }
     },
 
     warning: function (ms) {
-      var self = this;
-
-      $(self.notice)
-        .insertBefore(self.$el)
-        .focus()
-        .end()
-        .find('#extend-timeout')
-        .on('click', $.proxy(self.removeWarning, self));
-
-      self.respond = setTimeout($.proxy(self.redirect, self), ms);
+      this.$notice.appendTo(this.$el).focus();
+      this.respond = setTimeout($.proxy(this.redirect, this), ms);
+      this.bindEvents();
     },
 
     redirect: function () {
@@ -83,7 +80,7 @@
     },
 
     removeWarning: function () {
-      $('#timeout-prompt').remove();
+      this.$notice.remove();
       clearTimeout(this.timeout);
       this.refreshSession();
     },

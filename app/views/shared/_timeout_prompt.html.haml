@@ -1,5 +1,6 @@
-%script#tmpl-timeout(type="text/html")
-  #timeout-prompt.validation-summary.alert-dialog(role="alertdialog" aria-labelledby="timeoutTitle" aria-describedby="timeoutDesc")
-    %h2 Your session will will expire in {{ respondTime }} minutes
-    %p Would you like to continue?
-    %button#extend-timeout.button.button-primary Yes
+.TimeoutPrompt
+  %script.TimeoutPrompt-template(type="text/html")
+    .TimeoutPrompt-prompt.validation-summary.alert-dialog(role="alertdialog" aria-labelledby="timeoutTitle" aria-describedby="timeoutDesc")
+      %h2#timeoutTitle Your session will will expire in {{ respondTime }} minutes
+      %p#timeoutDesc Would you like to continue?
+      %button#extend-timeout.TimeoutPrompt-extend.button.button-primary Yes
