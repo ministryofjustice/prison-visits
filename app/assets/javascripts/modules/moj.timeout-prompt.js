@@ -71,12 +71,12 @@
 
     warning: function (ms) {
       this.$notice.appendTo(this.$el).focus();
-      this.respond = setTimeout($.proxy(this.redirect, this), ms);
+      this.respond = setTimeout($.proxy(this.redirect, this), ms, this.settings.exitPath);
       this.bindEvents();
     },
 
-    redirect: function () {
-      window.location.href = this.settings.exitPath;
+    redirect: function (path) {
+      window.location.href = path;
     },
 
     removeWarning: function () {
@@ -96,6 +96,8 @@
       });
     }
   };
+
+  moj.Modules._TimeoutPrompt = TimeoutPrompt;
 
   moj.Modules.TimeoutPrompt = {
     init: function() {

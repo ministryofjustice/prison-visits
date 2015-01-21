@@ -10,6 +10,7 @@
     "grunt-contrib-watch": "~0.5.3",
     "grunt-notify": "~0.2.15",
     "grunt-shell": "~0.5.0",
+    "jasmine-jquery": "^2.0.6",
     "jquery-browser": "^1.10.2-1",
     "yamljs": "^0.1.5"
   }

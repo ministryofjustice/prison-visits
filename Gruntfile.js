@@ -13,12 +13,17 @@ module.exports = function(grunt) {
     jasmine: {
       javascripts: {
         src: [
-          'node_modules/jquery-browser/lib/jquery.js',
-          'app/assets/javascripts/modules/moj.checkbox-summary.js'
+          'app/assets/javascripts/modules/moj.checkbox-summary.js',
+          'app/assets/javascripts/modules/moj.timeout-prompt.js'
         ],
         options: {
+          vendor: [
+            'node_modules/jquery-browser/lib/jquery.js',
+            'node_modules/jasmine-jquery/lib/jasmine-jquery.js',
+            'vendor/assets/javascripts/handlebars-v1.3.0.js'
+          ],
           specs: 'spec/javascripts/*Spec.js',
-          helpers: 'spec/javascripts/unit/*Helper.js'
+          keepRunner: true
         }
       }
     },
