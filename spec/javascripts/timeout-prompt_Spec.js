@@ -6,7 +6,7 @@ describe('TimeoutPrompt', function() {
   };
 
   beforeEach(function() {
-    $fixture = $('<div class="TimeoutPrompt"><script type="text/html" class="TimeoutPrompt-template"><div class="TimeoutPrompt-prompt"><p>Would you like to continue?</p><button class="TimeoutPrompt-extend">Yes</button></div></script></div>');
+    $fixture = $('<div class="TimeoutPrompt"><script type="text/html" class="TimeoutPrompt-template"><div class="TimeoutPrompt-alert"><p>Would you like to continue?</p><button class="TimeoutPrompt-extend">Yes</button></div></script></div>');
     $('body').append($fixture);
 
     jasmine.clock().install();
@@ -31,17 +31,17 @@ describe('TimeoutPrompt', function() {
   });
 
   it('is not initially visible', function() {
-    expect($('.TimeoutPrompt-prompt')).not.toExist();
+    expect($('.TimeoutPrompt-alert')).not.toExist();
   });
 
   describe('alert', function() {
 
     it('should be triggered after the timeout', function() {
-      spyOn(moj.Modules._TimeoutPrompt.prototype, 'warning');
+      spyOn(moj.Modules._TimeoutPrompt.prototype, 'showAlert');
       subject = new moj.Modules._TimeoutPrompt($fixture);
-      expect(moj.Modules._TimeoutPrompt.prototype.warning).not.toHaveBeenCalled();
+      expect(moj.Modules._TimeoutPrompt.prototype.showAlert).not.toHaveBeenCalled();
       jasmine.clock().tick(minutes(17));
-      expect(moj.Modules._TimeoutPrompt.prototype.warning).toHaveBeenCalled();
+      expect(moj.Modules._TimeoutPrompt.prototype.showAlert).toHaveBeenCalled();
     });
 
     it('uses the a script element for a template', function() {
@@ -50,9 +50,9 @@ describe('TimeoutPrompt', function() {
 
     it('shows the warning message after the respond timeout', function() {
       subject = new moj.Modules._TimeoutPrompt($fixture);
-      expect($('.TimeoutPrompt-prompt')).not.toBeVisible();
+      expect($('.TimeoutPrompt-alert')).not.toBeVisible();
       jasmine.clock().tick(minutes(18));
-      expect($('.TimeoutPrompt-prompt')).toBeVisible();
+      expect($('.TimeoutPrompt-alert')).toBeVisible();
       expect($('.TimeoutPrompt')).toContainText('Would you like to continue?');
     });
 
@@ -61,7 +61,7 @@ describe('TimeoutPrompt', function() {
       jasmine.clock().tick(minutes(18));
       expect($('.TimeoutPrompt-extend')).toExist();
       $('.TimeoutPrompt-extend').click();
-      expect($('.TimeoutPrompt-prompt')).not.toExist();
+      expect($('.TimeoutPrompt-alert')).not.toExist();
     });
 
   });
@@ -76,10 +76,10 @@ describe('TimeoutPrompt', function() {
     });
 
     it('should override timeout time in minutes', function() {
-      spyOn(moj.Modules._TimeoutPrompt.prototype, 'warning');
+      spyOn(moj.Modules._TimeoutPrompt.prototype, 'showAlert');
       subject = new moj.Modules._TimeoutPrompt($fixture, {timeoutMinutes: 2});
       jasmine.clock().tick(minutes(2));
-      expect(moj.Modules._TimeoutPrompt.prototype.warning).toHaveBeenCalled();
+      expect(moj.Modules._TimeoutPrompt.prototype.showAlert).toHaveBeenCalled();
     });
 
     it('should override respond time in minutes', function() {

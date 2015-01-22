@@ -1,6 +1,6 @@
 .TimeoutPrompt
   %script.TimeoutPrompt-template(type="text/html")
-    .TimeoutPrompt-prompt.validation-summary.alert-dialog(role="alertdialog" aria-labelledby="timeoutTitle" aria-describedby="timeoutDesc" tabindex="0")
+    .TimeoutPrompt-alert.validation-summary.alert-dialog(role="alertdialog" aria-labelledby="timeoutTitle" aria-describedby="timeoutDesc" tabindex="0")
       %h2#timeoutTitle Your session will will expire in {{ respondTime }} minutes
       %p#timeoutDesc Would you like to continue?
       %button.TimeoutPrompt-extend.button.button-primary Yes

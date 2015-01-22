@@ -39,17 +39,17 @@
     cacheEls: function($el) {
       this.$el = $el;
       this.$template = $el.find(this.settings.template);
-      this.$notice = $(this.getTemplate(this.$template));
+      this.$alert = $(this.getTemplate(this.$template));
     },
 
     bindEvents: function() {
-      this.$el.find('.TimeoutPrompt-extend').on('click', $.proxy(this.removeWarning, this));
+      this.$el.find('.TimeoutPrompt-extend').on('click', $.proxy(this.removeAlert, this));
     },
 
     startTimeout: function () {
       this.timeout = setTimeout(
         $.proxy(
-          this.warning,
+          this.showAlert,
           this,
           this.settings.respondDuration
         ),
@@ -69,8 +69,8 @@
       }
     },
 
-    warning: function (ms) {
-      this.$notice.appendTo(this.$el).focus();
+    showAlert: function (ms) {
+      this.$alert.appendTo(this.$el).focus();
       this.respond = setTimeout($.proxy(this.redirect, this), ms, this.settings.exitPath);
       this.bindEvents();
     },
@@ -79,8 +79,8 @@
       window.location.href = path;
     },
 
-    removeWarning: function () {
-      this.$notice.remove();
+    removeAlert: function () {
+      this.$alert.remove();
       clearTimeout(this.timeout);
       this.refreshSession();
     },
