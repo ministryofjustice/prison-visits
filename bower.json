@@ -4,6 +4,7 @@
   "dependencies": {
     "moj.slot-picker": "*",
     "govuk_elements": "alphagov/govuk_elements",
-    "respond": "~1.4.2"
+    "respond": "~1.4.2",
+    "moj_elements": "~0.0.2"
   }
 }

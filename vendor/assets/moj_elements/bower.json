@@ -1,0 +1,37 @@
+{
+  "name": "MOJ Elements",
+  "version": "0.0.2",
+  "homepage": "https://github.com/ministryofjustice/moj_elements",
+  "authors": [
+    "Mat Harden <matharden@gmail.com>"
+  ],
+  "description": "CSS and JavaScript for MOJ Digital Serivces which are not already available in GOV.UK Elements",
+  "main": "moj.tabs.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "moj",
+    "govuk",
+    "gds",
+    "mojds",
+    "sass",
+    "css",
+    "javascript",
+    "js"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "spec",
+    "Gruntfile.js",
+    "_SpecRunner.html"
+  ],
+  "dependencies": {
+    "handlebars": "~2.0.0"
+  }
+}
