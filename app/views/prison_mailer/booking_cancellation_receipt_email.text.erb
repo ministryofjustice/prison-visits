@@ -2,6 +2,10 @@ Dear staff,
 
 <%= @visit.visitors.first.full_name %> has cancelled the visit to <%= @visit.prisoner.full_name %> (<%= @visit.prisoner.number %>) on <%= visit.slots.first.date %> <%= visit.slots.first.times %>.
 
+<% if @visit.vo_number %>
+Reference number: <%= @visit.vo_number %>
+
+<% end %>
 Please delete this visit from NOMIS.
 
 Kind regards,

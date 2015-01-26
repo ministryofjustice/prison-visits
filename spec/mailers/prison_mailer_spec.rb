@@ -34,7 +34,7 @@ describe PrisonMailer do
   end
 
   let :confirmation_with_slot do
-    Confirmation.new(message: 'A message', outcome: 'slot_0')
+    Confirmation.new(message: 'A message', outcome: 'slot_0', vo_number: '1234567')
   end
 
   let :confirmation_without_slot do
@@ -100,6 +100,7 @@ describe PrisonMailer do
         email.subject.should == 'CANCELLED: Jimmy Harris on Sunday 7 July'
         email.should match_in_text('a0000aa')
         email.should match_in_text(sample_visit.visit_id)
+        email.should match_in_text('87654321')
       end
     end
 

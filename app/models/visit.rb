@@ -9,6 +9,7 @@ class Visit
   attr_accessor :visitors
   attr_accessor :slots
   attr_accessor :visit_id
+  attr_accessor :vo_number
 
   validates_presence_of :visit_id
   validates_size_of :visitors, within: 1..MAX_VISITORS, on: :visitors_set
