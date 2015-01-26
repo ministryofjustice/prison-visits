@@ -1,5 +1,7 @@
 // Timeout prompt for MOJ
-// Dependencies: moj, jQuery, Handlebars
+// Dependencies: moj, jQuery, lodash
+
+_.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
 
 (function () {
 
@@ -61,7 +63,7 @@
       var template;
 
       if ($tmpl.length) {
-        template = Handlebars.compile($tmpl.html());
+        template = _.template($tmpl.html());
 
         return template({
           respondTime: this.settings.respondMinutes

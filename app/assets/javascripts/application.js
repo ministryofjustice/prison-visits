@@ -1,5 +1,6 @@
 // Vendor assets
 //= require handlebars
+//= require lodash
 //= require jquery-ui-autocomplete
 //= require dist/javascripts/moj.slot-picker
 //= require dist/javascripts/moj.date-slider
@@ -12,7 +13,7 @@
 //= require govuk/selection-buttons
 
 // MOJ elements
-//= require dist/javascripts/moj.TimeoutPrompt
+//= require src/moj.TimeoutPrompt
 
 // Candidates for re-usable components
 //= require modules/moj.autocomplete
