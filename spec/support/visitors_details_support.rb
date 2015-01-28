@@ -164,12 +164,12 @@ shared_examples "a visitor data manipulator with invalid data" do
     end
 
     context "when the prison assumes each adult to be some other age" do
-      before :each do
-        controller.visit.prisoner.prison_name = 'Werrington'
+      let :date_of_birth do
+        Date.today - 18.years
       end
 
-      let :date_of_birth do
-        Date.today - 16.years
+      before :each do
+        controller.visit.prisoner.prison_name = 'Deerbolt'
       end
 
       it "validates the age of the visitor" do
@@ -177,9 +177,15 @@ shared_examples "a visitor data manipulator with invalid data" do
         response.should redirect_to(controller.next_path)
       end
 
-      context "a child applies" do
-        let :date_of_birth do
-          Date.today - 10.years
+      context "an adult with three 'big' kids apply" do
+        before :each do
+          visitor_hash[:visit][:visitor] += [{
+                                               first_name: 'Mark',
+                                               last_name: 'Bauer',
+                                               :'date_of_birth(3i)' => Date.today.day,
+                                               :'date_of_birth(2i)' => Date.today.month,
+                                               :'date_of_birth(1i)' => Date.today.year - 10
+                                             }] * 3
         end
 
         it "validates the age of the visitor" do

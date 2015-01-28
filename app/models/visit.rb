@@ -16,12 +16,8 @@ class Visit
   validate :validate_amount_of_adults, on: :visitors_set
 
   def validate_amount_of_adults
-    errors.add(:base, "There must be at least one adult visitor") if adult_visitors.size < 1
-    errors.add(:base, "You can book a maximum of 3 adults per visit") if adult_visitors.size > MAX_ADULTS
-  end
-
-  def adult_visitors
-    visitors.select { |v| adult?(v) }
+    errors.add(:base, "There must be at least one adult visitor") unless visitors.any? { |v| v.age && v.age >= 18 }
+    errors.add(:base, "There can be at most three non-child visitors") if visitors.count { |v| v.age && v.age >= adult_age } > 3
   end
 
   def adult_age

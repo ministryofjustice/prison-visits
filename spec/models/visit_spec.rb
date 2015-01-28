@@ -47,6 +47,24 @@ describe Visit do
     sample_visit.valid?(:visitors_set).should be_false
   end
 
+  context "given a prison which treats a child as an adult for seating purposes" do
+    it "requires at least on real adult" do
+      sample_visit.prisoner.prison_name = 'Deerbolt'
+      sample_visit.visitors = []
+
+      [double(age: 19),
+       double(age: 10),
+       double(age: 10),
+       double(age: 9)].each do |visitor|
+        sample_visit.visitors << visitor
+        sample_visit.valid?(:visitors_set).should be_true
+      end
+
+      sample_visit.visitors << double(age: 10)
+      sample_visit.valid?(:visitors_set).should be_false
+    end
+  end
+
   it "requires a visit_id" do
     Visit.new do |visit|
       expect {
