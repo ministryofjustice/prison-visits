@@ -1,7 +1,7 @@
-- content_for :header, 'Your request has timed out'
+- content_for :header, 'Your visit request has not been made'
 
 .Grid
   .Grid-2-3
-    %p To prevent others from acquiring prisoner or visitor details, we clear all the forms if you have not loaded a page for 20 minutes.
+    %p All the details you entered have been cleared to keep your information safe. This happens when a page has been left open for over 20 minutes. 
 
     = link_to 'Start a new request', edit_prisoner_details_path, :class => 'button button-primary'
