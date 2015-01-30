@@ -52,6 +52,30 @@ feature "visitor enters visitor information" do
           end
         end
       end
+
+      context "and they are defined by age" do
+
+        it "labels them as an adult" do
+          enter_visitor_information(flow)
+
+          select '1', from: 'visit[visitor][][number_of_adults]'
+          enter_additional_visitor_information(1, :adult)
+          fill_in "Your first name", with: 'Maggie'
+
+          expect(page).to have_tag('small.adult', :text => 'Adult')
+        end
+
+        it "labels them as an child" do
+          enter_visitor_information(flow)
+
+          select '1', from: 'visit[visitor][][number_of_adults]'
+          enter_additional_visitor_information(1, :child)
+          fill_in "Your first name", with: 'Maggie'
+
+          expect(page).to have_tag('small.child', :text => 'Child')
+        end
+
+      end
     end
   end
 end
