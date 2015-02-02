@@ -10,6 +10,7 @@ addVisitorBlocks = (amount) ->
     $('.additional-visitors').append ($compiled)
     i++
   updatePositions()
+  $compiled.data 'AgeLabels', new moj.Modules.AgeLabels($compiled, $compiled.data())
 
 
 removeVisitorBlocks = (amount) ->
