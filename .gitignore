@@ -26,6 +26,7 @@ data/ait.csv
 .DS_Store
 /node_modules
 /tests/*.png
+.grunt
 
 # YARD artifacts
 **.orig

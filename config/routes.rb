@@ -34,6 +34,7 @@ PrisonVisits2::Application.routes.draw do
 
   scope controller: :visit do
     get "/abandon", action: :abandon
+    get "/timeout", action: :timeout
     get "/unavailable", action: :unavailable
     get "/status/:id", action: :status, as: :visit_status
     post "/status/:id", action: :update_status, as: :update_visit_status

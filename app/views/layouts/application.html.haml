@@ -60,6 +60,7 @@
       %section#content.content.inner.cf
         - if controller.class < CookieGuard
           = render "shared/cookie_required"
+          = render "shared/timeout_prompt"
 
         %header
           %h1= yield :header
