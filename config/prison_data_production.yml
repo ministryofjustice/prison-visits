@@ -881,6 +881,7 @@ Bedford:
   phone: 01234 373196
   email: socialvisits.bedford@hmps.gsi.gov.uk
   instant_booking: false
+  booking_window: 14
   address:
   - St. Loyes Street
   - MK40 1HG
