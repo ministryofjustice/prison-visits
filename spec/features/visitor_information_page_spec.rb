@@ -62,7 +62,7 @@ feature "visitor enters visitor information" do
           enter_additional_visitor_information(1, :adult)
           fill_in "Your first name", with: 'Maggie'
 
-          expect(page).to have_tag('small.adult', :text => 'Adult')
+          expect(page).to have_tag('.AgeLabel', :text => 'Adult')
         end
 
         it "labels them as an child" do
@@ -72,7 +72,7 @@ feature "visitor enters visitor information" do
           enter_additional_visitor_information(1, :child)
           fill_in "Your first name", with: 'Maggie'
 
-          expect(page).to have_tag('small.child', :text => 'Child')
+          expect(page).to have_tag('.AgeLabel', :text => 'Child')
         end
 
       end

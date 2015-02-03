@@ -1,5 +1,5 @@
 
-.visitor.cf{ :id => "visitor-#{index}", :class => ('additional-visitor' unless index == 0) }
+.visitor.cf.AgeLabel{ :id => "visitor-#{index}", :class => ('additional-visitor' unless index == 0), :data => { :'threshold' => adult_age, :'label-over' => (adult_age<18 ? "Over #{adult_age}" : "Adult"), :'label-under' => (adult_age<18 ? "Under #{adult_age}" : "Child") } }
 
   - unless index == 0
     %h2
@@ -10,6 +10,7 @@
       - else
         %span.js-visitor-position
           = index+1
+      %small.AgeLabel-label
   
   .group{ :class => ('validation-error' if f.object.errors.include?(:first_name)) }
     %label{ for: "first_name_#{index}" }
@@ -29,7 +30,7 @@
         = index == 0 ? 'Your date of birth' : 'Date of birth'
         %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
         %span.validation-message= 'year must be four digits' if f.object.date_of_birth && f.object.date_of_birth.year < 100
-      .known-date
+      .known-date.AgeLabel-date
         #dobHint
           - if index == 0
             %p.form-hint You must be over 18 to book a visit.

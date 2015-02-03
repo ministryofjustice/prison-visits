@@ -21,7 +21,7 @@
 //= require modules/moj.submit-once
 //= require modules/moj.Conditional
 //= require modules/moj.checkbox-summary
-//= require modules/moj.age-labels.js
+//= require modules/moj.AgeLabel.js
 
 // Assets without a better place
 //= require shame
