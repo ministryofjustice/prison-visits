@@ -13,14 +13,16 @@ module.exports = function(grunt) {
     jasmine: {
       javascripts: {
         src: [
-          'app/assets/javascripts/modules/moj.checkbox-summary.js'
+          'app/assets/javascripts/modules/moj.checkbox-summary.js',
+          'app/assets/javascripts/modules/moj.AgeLabel.js'
         ],
         options: {
           vendor: [
             'node_modules/jquery-browser/lib/jquery.js',
             'node_modules/jasmine-jquery/lib/jasmine-jquery.js'
           ],
-          specs: 'spec/javascripts/*Spec.js'
+          specs: 'spec/javascripts/*Spec.js',
+          keepRunner: true
         }
       }
     },
