@@ -17,6 +17,9 @@ class PrisonerDetailsController < ApplicationController
         redirect_to deferred_edit_visitors_details_path
       end
     else
+      if visit.prisoner.errors[:number].any?
+        STATSD_CLIENT.increment('pvb.app.invalid_prisoner_number')
+      end
       redirect_to edit_prisoner_details_path
     end
   end
