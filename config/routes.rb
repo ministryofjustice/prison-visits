@@ -66,6 +66,7 @@ PrisonVisits2::Application.routes.draw do
     get "metrics/weekly", action: :weekly
     get "metrics/other", action: :other, as: :other_metrics
     get "metrics/:prison/all_time", action: :all_time, as: :prison_metrics_all_time
+    get "metrics/:prison/fortnightly_performance", action: :fortnightly_performance, as: :prison_metrics_fortnightly_performance
     get "metrics/:prison/fortnightly", action: :fortnightly, as: :prison_metrics_fortnightly
   end
 

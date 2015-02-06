@@ -19,7 +19,7 @@ class MetricsController < ApplicationController
   end
 
   def all_time
-    @prison = params[:prison]
+    @prison = prison_param
     @dataset = DetailedMetrics.new(VisitMetricsEntry.deferred, @prison)
     respond_to do |format|
       format.html
@@ -27,7 +27,7 @@ class MetricsController < ApplicationController
   end
 
   def fortnightly
-    @prison = params[:prison]
+    @prison = prison_param
     @start_date, @end_date = Date.today - 18, Date.today - 4
     @dataset = DetailedWindowedMetrics.new(VisitMetricsEntry.deferred, @prison, @start_date..@end_date)
     respond_to do |format|
@@ -35,8 +35,21 @@ class MetricsController < ApplicationController
     end
   end
 
+  def fortnightly_performance
+    @prison = prison_param
+    @year = year_param
+
+    report = FortnightlyPerformanceReport.new(VisitMetricsEntry, @prison, @year)
+    @performance = report.performance
+    @volume = report.volume
+
+    respond_to do |format|
+      format.html
+    end
+  end
+
   def weekly
-    year = (params[:year] || Time.now.year).to_i
+    year = year_param
     # First monday of the year, most of the time.
     @start_of_year = Date.new(year, 1, 1) - Date.new(year, 1, 1).wday + 1
     @dataset = WeeklyConfirmationsReport.new(VisitMetricsEntry.deferred, year, @start_of_year).refresh
@@ -52,5 +65,13 @@ class MetricsController < ApplicationController
 
   def fortnightly_range
     (Date.today - 18)..(Date.today - 4)
+  end
+
+  def prison_param
+    (prison = params[:prison]) && Rails.configuration.prison_data.has_key?(prison) && prison
+  end
+
+  def year_param
+    (params[:year] || Time.now.year).to_i
   end
 end

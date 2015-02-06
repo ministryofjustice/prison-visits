@@ -4,6 +4,9 @@
 
 'use strict';
 
+var  margin = {top: 10, right: 100, bottom: 100, left: 100};
+
+
 function percentile(array, n) {
     array.sort(function(a, b) {
         return a - b;
@@ -41,10 +44,13 @@ function formatSeconds(s) {
     return output.join(' ');
 }
 
+function formatDate(date) {
+    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    return [date.getDate(), months[date.getMonth()]].join(' ');
+}
 function displayHistogram(where, dataSource, displayLines) {
-    var margin, width, height, x, y, n, data, maxY, svg, bars, xAxis, medianValue, percentileValue;
+    var width, height, x, y, n, data, maxY, svg, bars, xAxis, medianValue, percentileValue;
 
-    margin = {top: 10, right: 10, bottom: 30, left: 10};
     width = 960 - margin.left - margin.right;
     height = 500 - margin.top - margin.bottom;
 
@@ -155,4 +161,71 @@ function displayWeeklyBreakdown(where, rawDataSource) {
         .height(300);
     
     chart.draw(processedData);
+}
+
+function thisYear() {
+    return parseInt(d3.select('#year').html());
+}
+
+function displayPerformanceLineChart(where, performanceData, volumeData) {
+    var xRange = [new Date(thisYear() - 1, 11, 29), new Date(thisYear() + 1, 0, 1)];
+    var y1Range = [0, d3.max(performanceData, function(d) { return parseInt(d.y); })];
+    var y2Range = [0, d3.max(volumeData, function(d) { return parseInt(d.y); })];
+
+    var width = 960 - margin.left - margin.right;
+    var height = 500 - margin.top - margin.bottom;
+
+    var x = d3.time.scale().domain(xRange).range([0, width]);
+    var y1 = d3.scale.linear().domain(y1Range).range([height, 0]);
+    var y2 = d3.scale.linear().domain(y2Range).range([height, 0]);
+
+    var xAxis = d3.svg.axis().scale(x).orient('bottom').tickFormat(formatDate);
+    var y1Axis = d3.svg.axis().scale(y1).orient('left').tickFormat(formatSeconds);
+    var y2Axis = d3.svg.axis().scale(y2).orient('right');
+
+    var svg = d3.select(where)
+        .append('svg')
+        .attr('width', width + margin.left + margin.right)
+        .attr('height', height + margin.top + margin.bottom)
+        .append('g');
+
+    svg.append('g')
+        .attr('class', 'x axis')
+        .attr('transform', 'translate(' + margin.left + ',' + (height + margin.top) + ')')
+        .call(xAxis).selectAll('text')
+        .style('text-anchor', 'end')
+        .attr('dx', '-.8em')
+        .attr('dy', '.15em')
+        .attr('transform', function(d) {
+            return 'rotate(-45)' 
+        });
+
+    svg.append('g')
+        .attr('class', 'y axis')
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+        .call(y1Axis);
+
+    svg.append('g')
+        .attr('class', 'y axis')
+        .attr('transform', 'translate(' + (margin.left + width) + ',' + margin.top + ')')
+        .call(y2Axis);
+
+    svg.selectAll('bar')
+        .data(volumeData)
+        .enter().append('rect')
+        .style('fill', 'pink')
+        .attr('x', function(d) { return x(new Date(d.x)); })
+        .attr('y', function(d) { return y2(parseInt(d.y)); })
+        .attr('width', 20)
+        .attr('height', function(d) { return height - y2(d.y); })
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
+    var line = d3.svg.line()
+        .x(function(d) { return x(new Date(d.x)) })
+        .y(function(d) { return y1(parseInt(d.y)) })
+    svg.append('path')
+        .datum(performanceData)
+        .attr('class', 'line')
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+        .attr('d', line);
 }
