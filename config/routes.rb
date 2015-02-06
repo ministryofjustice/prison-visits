@@ -75,5 +75,5 @@ PrisonVisits2::Application.routes.draw do
   get "/prisoner-details", to: redirect("/prisoner")
   resource :confirmation, controller: 'deferred/confirmations'
 
-  get "/", to: redirect("https://www.gov.uk/prisonvisits")
+  get "/", to: redirect(ENV["GOVUK_START_PAGE"] || "https://www.gov.uk/prison-visits")
 end
