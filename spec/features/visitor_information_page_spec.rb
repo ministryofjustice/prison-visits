@@ -65,7 +65,7 @@ feature "visitor enters visitor information" do
           expect(page).to have_tag('.AgeLabel', :text => 'Adult')
         end
 
-        it "labels them as an child" do
+        it "labels them as a child" do
           enter_visitor_information(flow)
 
           select '1', from: 'visit[visitor][][number_of_adults]'

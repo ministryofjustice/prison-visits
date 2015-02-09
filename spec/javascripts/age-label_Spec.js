@@ -91,7 +91,7 @@ describe('AgeLabel', function() {
       expect($fixture.find('.AgeLabel-label')).toHaveText('Adult');
     });
 
-    it('allows a custom labels', function() {
+    it('allows custom labels', function() {
       subject = new moj.Modules._AgeLabel($fixture, {labelOver: 'old', labelUnder: 'young'});
       $fixture.find('input.year').val((new Date()).getFullYear() - 11).change();
       expect($fixture.find('.AgeLabel-label')).toHaveText('young');

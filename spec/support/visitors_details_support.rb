@@ -177,7 +177,7 @@ shared_examples "a visitor data manipulator with invalid data" do
         response.should redirect_to(controller.next_path)
       end
 
-      context "an adult with three 'big' kids apply" do
+      context "an adult with three children over threshold for a seat" do
         before :each do
           visitor_hash[:visit][:visitor] += [{
                                                first_name: 'Mark',

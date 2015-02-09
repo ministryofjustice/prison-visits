@@ -48,7 +48,7 @@ describe Visit do
   end
 
   context "given a prison which treats a child as an adult for seating purposes" do
-    it "requires at least on real adult" do
+    it "requires at least one real adult" do
       sample_visit.prisoner.prison_name = 'Deerbolt'
       sample_visit.visitors = []
 
