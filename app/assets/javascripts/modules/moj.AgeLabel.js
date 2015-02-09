@@ -34,7 +34,7 @@
       this.$date.on('change', 'input', $.proxy(this.updateLabel, this));
     },
 
-    isValidDate: function() {
+    getDate: function() {
       var year = this.$date.find('.year').val(),
           month = this.$date.find('.month').val(),
           day = this.$date.find('.day').val();
@@ -46,12 +46,12 @@
 
     updateLabel: function() {
       var type,
-          date = this.isValidDate();
+          date = this.getDate();
 
       if (date) {
         this.$label.hide();
 
-        type = this.getYears(date) >= this.settings.threshold ? 'Over' : 'Under';
+        type = this.getYearsBetween(date) >= this.settings.threshold ? 'Over' : 'Under';
 
         this.$label
           .show()
@@ -61,7 +61,7 @@
       }
     },
 
-    getYears: function(from, to) {
+    getYearsBetween: function(from, to) {
       var diff;
       to = to || new Date();
       diff = to.getTime() - from.getTime();
