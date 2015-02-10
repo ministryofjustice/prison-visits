@@ -55,24 +55,24 @@ feature "visitor enters visitor information" do
 
       context "and they are defined by age" do
 
-        it "labels them as an adult" do
+        it "indicates they are over the specified age for a seat" do
           enter_visitor_information(flow)
 
           select '1', from: 'visit[visitor][][number_of_adults]'
           enter_additional_visitor_information(1, :adult)
           fill_in "Your first name", with: 'Maggie'
 
-          expect(page).to have_tag('.AgeLabel', :text => 'Adult')
+          expect(page).to have_tag('.AgeLabel', :text => 'Over 18')
         end
 
-        it "labels them as a child" do
+        it "indicates they are under the specified age for a seat" do
           enter_visitor_information(flow)
 
           select '1', from: 'visit[visitor][][number_of_adults]'
           enter_additional_visitor_information(1, :child)
           fill_in "Your first name", with: 'Maggie'
 
-          expect(page).to have_tag('.AgeLabel', :text => 'Child')
+          expect(page).to have_tag('.AgeLabel', :text => 'Under 18')
         end
 
       end
