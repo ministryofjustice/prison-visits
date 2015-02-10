@@ -1,0 +1,28 @@
+%script{src: '//cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js'}
+= javascript_include_tag 'metrics'
+= stylesheet_link_tag 'metrics'
+
+%h1
+  Fortnightly performance graph for
+  = @prison
+%h2
+  Summary for the year
+  - (2014..(Date.today.year)).each do |year|
+    - if year == @year
+      %span{id: 'year'}
+        = year
+    - else
+      = link_to(year, prison_metrics_fortnightly_performance_path(@prison, year: year))
+      
+%script#end_to_end_times{languge: 'json'}
+  = @performance.to_json.html_safe
+%script#volume{language: 'json'}
+  = @volume.to_json.html_safe
+#end_to_end_graph
+
+:javascript
+  document.addEventListener('DOMContentLoaded', function() {
+    displayPerformanceLineChart('#end_to_end_graph',
+      JSON.parse(d3.select('#end_to_end_times').html()),
+      JSON.parse(d3.select('#volume').html()));
+  });
