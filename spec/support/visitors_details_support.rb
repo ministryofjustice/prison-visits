@@ -146,7 +146,7 @@ shared_examples "a visitor data manipulator with invalid data" do
         Date.today - 18.years
       end
 
-      it "validates the age of the visitor" do
+      it "allows the visitor to proceed" do
         post :update, visitor_hash
         response.should redirect_to(controller.next_path)
       end
@@ -156,7 +156,7 @@ shared_examples "a visitor data manipulator with invalid data" do
           Date.today - 10.years
         end
 
-        it "validates the age of the visitor" do
+        it "rejects the booking request" do
           post :update, visitor_hash
           response.should redirect_to(controller.this_path)
         end
@@ -172,12 +172,12 @@ shared_examples "a visitor data manipulator with invalid data" do
         controller.visit.prisoner.prison_name = 'Deerbolt'
       end
 
-      it "validates the age of the visitor" do
+      it "allows the visitor to proceed" do
         post :update, visitor_hash
         response.should redirect_to(controller.next_path)
       end
 
-      context "an adult with three children over threshold for a seat" do
+      context "an adult with three people over seat age threshold" do
         before :each do
           visitor_hash[:visit][:visitor] += [{
                                                first_name: 'Mark',
@@ -188,7 +188,7 @@ shared_examples "a visitor data manipulator with invalid data" do
                                              }] * 3
         end
 
-        it "validates the age of the visitor" do
+        it "rejects the booking request" do
           post :update, visitor_hash
           response.should redirect_to(controller.this_path)
         end
