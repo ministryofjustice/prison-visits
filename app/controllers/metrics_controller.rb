@@ -40,7 +40,8 @@ class MetricsController < ApplicationController
     @year = year_param
 
     report = FortnightlyPerformanceReport.new(VisitMetricsEntry, @prison, @year)
-    @performance = report.performance
+    @percentile95 = report.performance(0.95)
+    @percentile50 = report.performance(0.5)
     @volume = report.volume
 
     respond_to do |format|

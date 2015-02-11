@@ -5,7 +5,7 @@ class FortnightlyPerformanceReport
     @year = year
   end
 
-  def performance
+  def performance(percentile)
     @model.find_by_sql [%Q{
 WITH percentiles AS (
   SELECT requested_at,
@@ -19,9 +19,9 @@ WITH percentiles AS (
   ORDER BY fortnight)
 SELECT MIN(DATE_TRUNC('week', requested_at))::date AS x, MIN(end_to_end_time) AS y
 FROM percentiles
-WHERE cume_dist >= 0.95
+WHERE cume_dist >= ?
 GROUP BY fortnight
-ORDER BY x}, @prison_name, @year]
+ORDER BY x}, @prison_name, @year, percentile]
   end
 
   def volume

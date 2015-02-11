@@ -14,8 +14,10 @@
     - else
       = link_to(year, prison_metrics_fortnightly_performance_path(@prison, year: year))
       
-%script#end_to_end_times{languge: 'json'}
-  = @performance.to_json.html_safe
+%script#percentile95{languge: 'json'}
+  = @percentile95.to_json.html_safe
+%script#percentile50{languge: 'json'}
+  = @percentile50.to_json.html_safe
 %script#volume{language: 'json'}
   = @volume.to_json.html_safe
 #end_to_end_graph
@@ -23,6 +25,7 @@
 :javascript
   document.addEventListener('DOMContentLoaded', function() {
     displayPerformanceLineChart('#end_to_end_graph',
-      JSON.parse(d3.select('#end_to_end_times').html()),
+      JSON.parse(d3.select('#percentile95').html()),
+      JSON.parse(d3.select('#percentile50').html()),
       JSON.parse(d3.select('#volume').html()));
   });

@@ -167,10 +167,10 @@ function thisYear() {
     return parseInt(d3.select('#year').html());
 }
 
-function displayPerformanceLineChart(where, performanceData, volumeData) {
+function displayPerformanceLineChart(where, percentile95data, percentile50data, volumeData) {
     var xRange = [new Date(thisYear() - 1, 11, 29), new Date(thisYear() + 1, 0, 1)];
-    var y1Range = [0, d3.max(performanceData, function(d) { return parseInt(d.y); })];
-    var y2Range = [0, d3.max(volumeData, function(d) { return parseInt(d.y); })];
+    var y1Range = [0, 1.3 * d3.max(percentile95data, function(d) { return parseInt(d.y); })];
+    var y2Range = [0, 1.3 * d3.max(volumeData, function(d) { return parseInt(d.y); })];
 
     var width = 960 - margin.left - margin.right;
     var height = 500 - margin.top - margin.bottom;
@@ -220,12 +220,44 @@ function displayPerformanceLineChart(where, performanceData, volumeData) {
         .attr('height', function(d) { return height - y2(d.y); })
         .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
-    var line = d3.svg.line()
-        .x(function(d) { return x(new Date(d.x)) })
-        .y(function(d) { return y1(parseInt(d.y)) })
-    svg.append('path')
-        .datum(performanceData)
-        .attr('class', 'line')
-        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
-        .attr('d', line);
+    var seriesData = [
+        { label: 'time to process (95th percentile)',
+          color: 'steelblue' },
+        { label: 'time to process (median)',
+          color: 'red' },
+        { label: 'requested visit volume',
+          color: 'pink' }
+    ];
+
+    [percentile95data, percentile50data].forEach(function(data, i) {
+        var line = d3.svg.line()
+            .x(function(d) { return x(new Date(d.x)) })
+            .y(function(d) { return y1(parseInt(d.y)) })
+        svg.append('path')
+            .datum(data)
+            .attr('class', 'line')
+            .style({stroke: seriesData[i].color})
+            .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+            .attr('d', line);
+    });
+
+    var legend = svg.append('g')
+        .attr('transform', 'translate(' + (10 + margin.left) + ',' + (10 + margin.top) + ')');
+
+    legend.selectAll('rect')
+        .data(seriesData)
+        .enter()
+        .append('rect')
+        .attr('fill', function(d) { return d.color; })
+        .attr('width', 20)
+        .attr('height', 20)
+        .attr('transform', function(d, i) { return 'translate(0,' + (i * 30) + ')'; })
+    
+    legend.selectAll('text')
+        .data(seriesData)
+        .enter()
+        .append('text')
+        .attr('transform', function(d, i) { return 'translate(30,' + (15 + i * 30) + ')'; })
+        .text(function(d) { return d.label; })
+
 }
