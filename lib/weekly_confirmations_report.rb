@@ -24,14 +24,15 @@ class WeeklyConfirmationsReport
       h[k] = Array.new(52, 0)
     }
 
-    @dataset = @model.connection.execute("
+    @dataset = @model.find_by_sql([%Q{
 SELECT prison_name,
        EXTRACT(week FROM processed_at) AS weekno,
        COUNT(*)
 FROM visit_metrics_entries
-WHERE processed_at IS NOT NULL AND EXTRACT(year FROM processed_at) = 2014
+WHERE processed_at IS NOT NULL AND EXTRACT(isoyear FROM processed_at) = ?
 AND outcome = 'confirmed'
-GROUP BY prison_name, EXTRACT(week FROM processed_at) ORDER BY prison_name, weekno").inject(hash_with_default) do |h, row|
+GROUP BY prison_name, EXTRACT(week FROM processed_at) ORDER BY prison_name, weekno}, @year])
+    .inject(hash_with_default) do |h, row|
 
       weekno = row['weekno'].to_i
       prison_name = row['prison_name']
@@ -44,12 +45,12 @@ GROUP BY prison_name, EXTRACT(week FROM processed_at) ORDER BY prison_name, week
       h
     end
 
-    @total = @model.connection.execute("
+    @total = @model.find_by_sql([%Q{
 SELECT EXTRACT(week FROM processed_at) AS weekno, COUNT(*)
 FROM visit_metrics_entries
-WHERE processed_at IS NOT NULL AND EXTRACT(year FROM processed_at) = 2014
+WHERE processed_at IS NOT NULL AND EXTRACT(isoyear FROM processed_at) = ?
 AND outcome = 'confirmed'
-GROUP BY weekno ORDER BY weekno").inject(Array.new(52, 0)) do |arr, row|
+GROUP BY weekno ORDER BY weekno}, @year]).inject(Array.new(52, 0)) do |arr, row|
       arr[row['weekno'].to_i] = row['count'].to_i
       arr
     end

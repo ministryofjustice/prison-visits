@@ -7,6 +7,7 @@ class CalculatedMetrics
     @model = model
     @overdue_threshold = overdue_threshold
     @date_range = date_range
+
     refresh
   end
 
@@ -44,32 +45,39 @@ class CalculatedMetrics
     end
   end
 
-  def calculate_percentiles(column, percentile)
+  private
+  def calculate_percentiles(column, percentile) 
+    # This is a truly horrible hack. It lets us get past AR built-in value quoting, by pretending to be another object.
+    # It is needed so that we can parametrize two queries below by column, without resorting to putting the query together
+    # by hand. Don't call this method from outside this class, please.
+    column.define_singleton_method(:quoted_id) do
+      column
+    end
     (@date_range ? calculate_percentiles_with_date_range(column, percentile) : calculate_percentiles_without_date_range(column, percentile)).each_with_object({}) do |row, h|
       h[row['prison_name']] = row[column].to_i
     end
   end
 
   def calculate_percentiles_with_date_range(column, percentile)
-    @model.connection.execute(%Q{
-WITH percentiles AS (SELECT prison_name, #{column}, cume_dist() OVER (PARTITION BY prison_name ORDER BY #{column}) AS percentile
-                     FROM visit_metrics_entries WHERE #{column} IS NOT NULL
-                     AND requested_at > '#{@date_range.first}'::date
-                     AND processed_at <= '#{@date_range.last}'::date),
-     top_percentiles AS (SELECT prison_name, #{column}, rank() OVER (PARTITION BY prison_name ORDER BY #{column})
-                     FROM percentiles WHERE percentile >= #{percentile})
-SELECT prison_name, #{column} FROM top_percentiles WHERE rank = 1
-})
+    @model.find_by_sql [%Q{
+WITH percentiles AS (SELECT prison_name, ?, cume_dist() OVER (PARTITION BY prison_name ORDER BY ?) AS percentile
+                     FROM visit_metrics_entries WHERE ? IS NOT NULL
+                     AND requested_at > ?::date
+                     AND processed_at <= ?::date),
+     top_percentiles AS (SELECT prison_name, ?, rank() OVER (PARTITION BY prison_name ORDER BY ?)
+                     FROM percentiles WHERE percentile >= ?)
+SELECT prison_name, ? FROM top_percentiles WHERE rank = 1
+}, column, column, column, @date_range.first, @date_range.last, column, column, percentile, column]
   end
 
   def calculate_percentiles_without_date_range(column, percentile)
-    @model.connection.execute(%Q{
-WITH percentiles AS (SELECT prison_name, #{column}, cume_dist() OVER (PARTITION BY prison_name ORDER BY #{column}) AS percentile
-                     FROM visit_metrics_entries WHERE #{column} IS NOT NULL),
-     top_percentiles AS (SELECT prison_name, #{column}, rank() OVER (PARTITION BY prison_name ORDER BY #{column})
-                     FROM percentiles WHERE percentile >= #{percentile})
-SELECT prison_name, #{column} FROM top_percentiles WHERE rank = 1
-})
+    @model.find_by_sql [%Q{
+WITH percentiles AS (SELECT prison_name, ?, cume_dist() OVER (PARTITION BY prison_name ORDER BY ?) AS percentile
+                     FROM visit_metrics_entries WHERE ? IS NOT NULL),
+     top_percentiles AS (SELECT prison_name, ?, rank() OVER (PARTITION BY prison_name ORDER BY ?)
+                     FROM percentiles WHERE percentile >= ?)
+SELECT prison_name, ? FROM top_percentiles WHERE rank = 1
+}, column, column, column, column, column, percentile, column]
   end
 end
 

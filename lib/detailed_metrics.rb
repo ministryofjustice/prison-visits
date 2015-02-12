@@ -1,4 +1,6 @@
 class DetailedMetrics
+  include ActiveRecord::ConnectionAdapters::Quoting
+
   THREE_DAYS = 3 * 24 * 3600
 
   def initialize(model, prison_name)
@@ -18,9 +20,13 @@ class DetailedMetrics
   end
   
   def week_hour_breakdown(column)
+    column.define_singleton_method(:quoted_id) do
+      column
+    end
+
     @scoped_model.
-      group("EXTRACT(dow FROM #{column})::integer").
-      group("EXTRACT(hour FROM #{column})::integer").
+      group("EXTRACT(dow FROM #{quote(column)})::integer").
+      group("EXTRACT(hour FROM #{quote(column)})::integer").
       processed.
       count.
       inject(Array.new(7) { Array.new(24, 0) }) do |a, ((dow, hour), count)|
