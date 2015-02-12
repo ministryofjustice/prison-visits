@@ -15,7 +15,7 @@ class FeedbacksController < ApplicationController
     end
     if @feedback.valid?
       FeedbackMailer.new_feedback(@feedback).deliver
-      ZendeskHelper.send_to_zendesk(@feedback)
+      ZendeskHelper.send_to_zendesk(@feedback) unless @feedback.email.empty?
       redirect_to feedback_path
     else
       render 'new'
