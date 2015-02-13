@@ -9,6 +9,7 @@ feature "visitor enters visitor information" do
       before :each do
         EmailValidator.any_instance.stub(:validate_dns_records)
         EmailValidator.any_instance.stub(:validate_spam_reporter)
+        EmailValidator.any_instance.stub(:validate_bounced)
         visit '/prisoner-details'
         enter_prisoner_information(flow)
       end

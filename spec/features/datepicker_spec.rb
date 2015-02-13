@@ -10,6 +10,7 @@ feature "visitor selects a date" do
         VisitController.any_instance.stub(:metrics_logger).and_return(MockMetricsLogger.new)
         EmailValidator.any_instance.stub(:validate_dns_records)
         EmailValidator.any_instance.stub(:validate_spam_reporter)
+        EmailValidator.any_instance.stub(:validate_bounced)
         visit '/prisoner-details'
         enter_prisoner_information(flow)
         enter_visitor_information(flow)
@@ -67,6 +68,7 @@ feature "visitor selects a date" do
 
           click_button 'Continue'
           page.should have_content('Check your request')
+          expect(page).to have_tag('.AgeLabel-label', :text => 'Over 18')
 
           click_button 'Send request'
           page.should have_content('Your request is being processed')
