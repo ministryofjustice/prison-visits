@@ -8,6 +8,7 @@ addVisitorBlocks = (amount) ->
     compiled = Handlebars.compile $('#additional-visitor').html()
     $compiled = $(compiled({index: countVisitors() + 1}))
     $('.additional-visitors').append ($compiled)
+    $compiled.data 'AgeLabel', new moj.Modules._AgeLabel($compiled, $compiled.data())
     i++
   updatePositions()
 

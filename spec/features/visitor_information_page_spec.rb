@@ -9,6 +9,7 @@ feature "visitor enters visitor information" do
       before :each do
         EmailValidator.any_instance.stub(:validate_dns_records)
         EmailValidator.any_instance.stub(:validate_spam_reporter)
+        EmailValidator.any_instance.stub(:validate_bounced)
         visit '/prisoner-details'
         enter_prisoner_information(flow)
       end
@@ -51,6 +52,30 @@ feature "visitor enters visitor information" do
             end
           end
         end
+      end
+
+      context "and they are defined by age" do
+
+        it "indicates they are over the specified age for a seat" do
+          enter_visitor_information(flow)
+
+          select '1', from: 'visit[visitor][][number_of_adults]'
+          enter_additional_visitor_information(1, :adult)
+          fill_in "Your first name", with: 'Maggie'
+
+          expect(page).to have_tag('.AgeLabel', :text => 'Over 18')
+        end
+
+        it "indicates they are under the specified age for a seat" do
+          enter_visitor_information(flow)
+
+          select '1', from: 'visit[visitor][][number_of_adults]'
+          enter_additional_visitor_information(1, :child)
+          fill_in "Your first name", with: 'Maggie'
+
+          expect(page).to have_tag('.AgeLabel', :text => 'Under 18')
+        end
+
       end
     end
   end

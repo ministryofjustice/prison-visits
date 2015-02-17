@@ -13,7 +13,8 @@ module.exports = function(grunt) {
     jasmine: {
       javascripts: {
         src: [
-          'app/assets/javascripts/modules/moj.checkbox-summary.js'
+          'app/assets/javascripts/modules/moj.checkbox-summary.js',
+          'app/assets/javascripts/modules/moj.AgeLabel.js'
         ],
         options: {
           vendor: [

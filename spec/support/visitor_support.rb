@@ -19,15 +19,6 @@ shared_examples "a visitor" do
     visitor.full_name.should == 'Otto Fibonacci'
   end
 
-  it "knows if the visitor is an adult" do
-    visitor.should be_adult
-  end
-
-  it "knows if the visitor is a child" do
-    visitor.date_of_birth = 8.years.ago.to_s
-    visitor.should be_child
-  end
-
   it "returns the age of the visitor" do
     visitor.age.should == 30
     visitor.date_of_birth = nil

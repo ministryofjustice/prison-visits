@@ -49,6 +49,10 @@ module VisitHelper
     prison_data['address'].join(glue).html_safe
   end
 
+  def adult_age
+    prison_data['adult_age'] || 18
+  end
+
   def prison_url(visit)
     data = prison_data(visit)
     slug = data['finder_slug'] ? data['finder_slug'] : visit.prisoner.prison_name.parameterize

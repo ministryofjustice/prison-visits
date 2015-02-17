@@ -29,10 +29,10 @@
         %strong #{visitor.first_name} #{visitor.last_name}
         \ -
         = format_date visitor.date_of_birth
-        - if visitor.adult?
-          %small.adult Adult
+        - if visit.adult?(visitor)
+          %small.AgeLabel-label.over Over #{adult_age}
         - else
-          %small.child Child
+          %small.AgeLabel-label.under Under #{adult_age}
   %p.edit-link= link_to 'Change visitor details', deferred_edit_visitors_details_path
 
 .divider.compact.visit-details

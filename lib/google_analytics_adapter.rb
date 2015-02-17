@@ -28,11 +28,11 @@ class GoogleAnalyticsAdapter
   end
 
   def number_of_adult_visitors
-    @visit.visitors.count { |v| v.adult? }
+    @visit.visitors.count { |v| @visit.adult?(v) }
   end
 
   def number_of_child_visitors
-    @visit.visitors.count { |v| v.child? }
+    @visit.visitors.count { |v| !@visit.adult?(v) }
   end
 
   def nonempty_slots

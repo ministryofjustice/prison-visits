@@ -31,4 +31,5 @@ group :test, :development do
   gem 'poltergeist'
   gem 'chromedriver-helper'
   gem 'database_cleaner'
+  gem 'rspec-html-matchers'
 end
