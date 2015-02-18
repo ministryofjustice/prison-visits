@@ -15,6 +15,11 @@ feature "visitor enters visitor information" do
       end
 
       context "and leaves fields blank" do
+        before :each do
+          EmailValidator.any_instance.stub(:validate_dns_records)
+          EmailValidator.any_instance.stub(:validate_spam_reporter)
+        end
+
         it "validation messages are present" do
           click_button 'Continue'
 
@@ -27,6 +32,11 @@ feature "visitor enters visitor information" do
       end
 
       context "and they fill out all fields" do
+        before :each do
+          EmailValidator.any_instance.stub(:validate)
+          EmailValidator.any_instance.stub(:validate)
+        end
+
         context "for one visitor" do
           it "displays the calendar" do
             enter_visitor_information(flow)
