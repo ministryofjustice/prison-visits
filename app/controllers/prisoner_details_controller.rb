@@ -1,6 +1,8 @@
+require 'session_guard'
+
 class PrisonerDetailsController < ApplicationController
   include CookieGuard
-  include SessionGuard
+  include SessionGuardOnUpdateOnly
 
   def edit
     session[:visit] ||= new_session
