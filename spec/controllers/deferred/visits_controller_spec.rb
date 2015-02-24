@@ -54,15 +54,24 @@ describe Deferred::VisitsController do
 
     it "sends out emails" do
       mock_metrics_logger.should_receive(:record_visit_request).with(session[:visit])
+      state = controller.encryptor.encrypt_and_sign(session[:visit])
+      controller.encryptor.stub(:encrypt_and_sign).and_return(state)
 
       PrisonMailer.any_instance.should_receive(:sender).and_return('test@example.com')
       VisitorMailer.any_instance.should_receive(:sender).and_return('test@example.com')
 
       post :update
-      response.should redirect_to(deferred_show_visit_path)
+      response.should redirect_to(deferred_show_visit_path(state: state))
 
       ActionMailer::Base.deliveries.map(&:subject).should == ['Visit request for Jimmy Harris on Friday 6 December',
                                                               "Not booked yet: we've received your visit request for 6 December 2013"]
+    end
+
+    it "displays the final page" do
+      state = controller.encryptor.encrypt_and_sign(session[:visit])
+      session.clear
+      get :show, state: state
+      response.should be_success
     end
   end
 end

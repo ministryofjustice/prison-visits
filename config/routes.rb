@@ -13,7 +13,7 @@ PrisonVisits2::Application.routes.draw do
 
     get 'visit'            => 'visits#edit', as: :edit_visit
     post 'visit'           => 'visits#update', as: :visit
-    get 'your-visit'       => 'visits#show', as: :show_visit
+    get 'your-visit/:state' => 'visits#show', as: :show_visit
 
     get 'confirmation/new' => 'confirmations#new', as: :new_confirmation
     get 'confirmation'     => 'confirmations#show', as: :show_confirmation
@@ -29,7 +29,7 @@ PrisonVisits2::Application.routes.draw do
 
     get 'visit'            => 'visits#edit', as: :edit_visit
     post 'visit'           => 'visits#update', as: :visit
-    get 'your-visit'       => 'visits#show', as: :show_visit
+    get 'your-visit/:state' => 'visits#show', as: :show_visit
   end
 
   scope controller: :visit do
