@@ -41,7 +41,6 @@ class Deferred::ConfirmationsController < ApplicationController
   end
 
   def show
-    logstasher_add_visit_id(booked_visit.visit_id)
     reset_session
   end
 
