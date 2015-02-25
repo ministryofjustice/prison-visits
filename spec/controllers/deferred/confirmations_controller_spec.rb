@@ -114,7 +114,7 @@ describe Deferred::ConfirmationsController do
 
       it "migrates legacy visitor data" do
         migrated_visit = controller.migrate_visitors(legacy_visit)
-        controller.should_receive(:logstasher_add_visit_id).with(migrated_visit.visit_id)
+        controller.should_receive(:logstasher_add_visit_id).with(migrated_visit.visit_id).twice
         mock_metrics_logger.should_receive(:request_cancelled?).and_return(false)
         mock_metrics_logger.should_receive(:record_link_click)
         mock_metrics_logger.should_receive(:processed?) do |v|

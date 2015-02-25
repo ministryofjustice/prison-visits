@@ -42,6 +42,10 @@ class ApplicationController < ActionController::Base
     LogStasher.custom_fields << :visit_id
   end
 
+  def logstasher_add_visit_id_from_session
+    logstasher_add_visit_id(visit.visit_id)
+  end
+
   def visit
     session[:visit]
   end

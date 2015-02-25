@@ -3,6 +3,7 @@ require 'session_guard'
 class PrisonerDetailsController < ApplicationController
   include CookieGuard
   include SessionGuardOnUpdateOnly
+  before_filter :logstasher_add_visit_id_from_session, only: :update
 
   def edit
     session[:visit] ||= new_session

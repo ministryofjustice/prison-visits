@@ -1,6 +1,10 @@
 module SlotsManipulator
   extend ActiveSupport::Concern
 
+  included do
+    before_filter :logstasher_add_visit_id_from_session
+  end
+
   def update
     visit.slots = []
     slot_params.each_with_index do |slot_hash, i|
