@@ -23,7 +23,8 @@ class Deferred::ConfirmationsController < ApplicationController
   end
 
   def create
-   unless params[:confirmation] && (@confirmation = Confirmation.new(confirmation_params)).valid?
+    logstasher_add_visit_id(booked_visit.visit_id)
+    unless params[:confirmation] && (@confirmation = Confirmation.new(confirmation_params)).valid?
       return render :new
     end
 
@@ -40,6 +41,7 @@ class Deferred::ConfirmationsController < ApplicationController
   end
 
   def show
+    logstasher_add_visit_id(booked_visit.visit_id)
     reset_session
   end
 

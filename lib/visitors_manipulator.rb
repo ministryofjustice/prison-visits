@@ -3,6 +3,7 @@ module VisitorsManipulator
 
   included do
     before_filter :adjust_visitors_in_session, only: :edit
+    before_filter :logstasher_add_visit_id_from_session
   end
 
   def adjust_visitors_in_session
