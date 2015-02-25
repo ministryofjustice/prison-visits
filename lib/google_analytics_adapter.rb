@@ -36,7 +36,7 @@ class GoogleAnalyticsAdapter
   end
 
   def nonempty_slots
-    @visit.slots.reject { |s| s.date.empty? }
+    @visit.slots.reject { |s| s.date.nil? || s.date.empty? }
   end
 
   def days_to_first_slot
