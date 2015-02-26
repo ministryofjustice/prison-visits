@@ -3,7 +3,7 @@
   %li use this form to send a visit confirmation or visit rejection email to the visitor
   %li make sure you select visitors who can’t attend under 'Issue with visitors'
 
-= form_for @confirmation, url: confirmation_path, html: { class: 'js-SubmitOnce' } do |f|
+= form_for @confirmation, url: deferred_confirmation_path, html: { class: 'js-SubmitOnce' } do |f|
   = hidden_field_tag :state, params[:state]
   = hidden_field_tag 'confirmation[canned_response]', true
 

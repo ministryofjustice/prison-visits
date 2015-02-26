@@ -16,7 +16,7 @@ PrisonVisits2::Application.routes.draw do
     get 'your-visit/:state' => 'visits#show', as: :show_visit
 
     get 'confirmation/new' => 'confirmations#new', as: :new_confirmation
-    get 'confirmation'     => 'confirmations#show', as: :show_confirmation
+    get 'confirmation/:visit_id'     => 'confirmations#show', as: :show_confirmation, constraints: { visit_id: /[0-9a-f]{32}/ }
     post 'confirmation'    => 'confirmations#create', as: :confirmation
   end
 
@@ -73,7 +73,6 @@ PrisonVisits2::Application.routes.draw do
 
   # Legacy URLs
   get "/prisoner-details", to: redirect("/prisoner")
-  resource :confirmation, controller: 'deferred/confirmations'
 
   get "/", to: redirect(ENV["GOVUK_START_PAGE"] || "https://www.gov.uk/prison-visits")
 end

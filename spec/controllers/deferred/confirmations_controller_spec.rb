@@ -13,7 +13,7 @@ describe Deferred::ConfirmationsController do
 
   let :legacy_visit do
     Visit.new.tap do |v|
-      v.visit_id = 'DEF'
+      v.visit_id = SecureRandom.hex
       v.slots = [Slot.new(date: '2013-07-07', times: '1400-1600')]
       v.prisoner = Prisoner.new.tap do |p|
         p.date_of_birth = Date.new(1955, 5, 5)
@@ -129,7 +129,7 @@ describe Deferred::ConfirmationsController do
         response.should be_success
         response.should render_template('confirmations/new')
         post :create, confirmation: { outcome: 'slot_0'}, state: encrypted_legacy_visit
-        response.should redirect_to(deferred_confirmation_path)
+        response.should redirect_to(deferred_show_confirmation_path(visit_id: migrated_visit.visit_id))
       end
     end
 
@@ -153,7 +153,7 @@ describe Deferred::ConfirmationsController do
 
           after :each do
             post :create, confirmation: { outcome: 'slot_0' }, state: encrypted_visit
-            response.should redirect_to(deferred_confirmation_path)
+            response.should redirect_to(deferred_show_confirmation_path(visit_id: visit.visit_id))
             ActionMailer::Base.deliveries.map(&:subject).should == ["Visit confirmed: your visit for 7 July 2013 has been confirmed", "COPY of booking confirmation for Jimmy Harris"]
           end
         end
@@ -167,7 +167,7 @@ describe Deferred::ConfirmationsController do
 
           after :each do
             post :create, confirmation: { outcome: Confirmation::NOT_ON_CONTACT_LIST }, state: encrypted_visit
-            response.should redirect_to(deferred_confirmation_path)
+            response.should redirect_to(deferred_show_confirmation_path(visit_id: visit.visit_id))
             ActionMailer::Base.deliveries.map(&:subject).should == ["Visit cannot take place: your visit for 7 July 2013 could not be booked", "COPY of booking rejection for Jimmy Harris"]
           end
         end
@@ -181,7 +181,7 @@ describe Deferred::ConfirmationsController do
 
           after :each do
             post :create, confirmation: { outcome: Confirmation::NO_VOS_LEFT }, state: encrypted_visit
-            response.should redirect_to(deferred_confirmation_path)
+            response.should redirect_to(deferred_show_confirmation_path(visit_id: visit.visit_id))
             ActionMailer::Base.deliveries.map(&:subject).should == ["Visit cannot take place: your visit for 7 July 2013 could not be booked", "COPY of booking rejection for Jimmy Harris"]
           end
         end
@@ -195,7 +195,7 @@ describe Deferred::ConfirmationsController do
 
           after :each do
             post :create, confirmation: { outcome: Confirmation::NO_SLOT_AVAILABLE }, state: encrypted_visit
-            response.should redirect_to(deferred_confirmation_path)
+            response.should redirect_to(deferred_show_confirmation_path(visit_id: visit.visit_id))
             ActionMailer::Base.deliveries.map(&:subject).should == ["Visit cannot take place: your visit for 7 July 2013 could not be booked", "COPY of booking rejection for Jimmy Harris"]
           end
         end
@@ -222,7 +222,7 @@ describe Deferred::ConfirmationsController do
         context "when the thank you screen is accessed" do
           it "resets the session" do
             controller.should_receive(:reset_session).once
-            get :show, state: encrypted_visit
+            get :show, visit_id: visit.visit_id
             response.should render_template('confirmations/show')
           end
         end
@@ -248,7 +248,7 @@ describe Deferred::ConfirmationsController do
 
           after :each do
             post :create, confirmation: { outcome: 'slot_0', vo_number: '55512345', canned_response: true }, state: encrypted_visit
-            response.should redirect_to(deferred_confirmation_path)
+            response.should redirect_to(deferred_show_confirmation_path(visit_id: visit.visit_id))
             ActionMailer::Base.deliveries.map(&:subject).should == ["Visit confirmed: your visit for 7 July 2013 has been confirmed", "COPY of booking confirmation for Jimmy Harris"]
           end
         end
@@ -273,7 +273,7 @@ describe Deferred::ConfirmationsController do
           end
 
           after :each do
-            response.should redirect_to(deferred_confirmation_path)
+            response.should redirect_to(deferred_show_confirmation_path(visit_id: visit.visit_id))
             ActionMailer::Base.deliveries.map(&:subject).should == ["Visit confirmed: your visit for 7 July 2013 has been confirmed", "COPY of booking confirmation for Jimmy Harris"]
           end
         end
@@ -298,7 +298,7 @@ describe Deferred::ConfirmationsController do
           end
 
           after :each do
-            response.should redirect_to(deferred_confirmation_path)
+            response.should redirect_to(deferred_show_confirmation_path(visit_id: visit.visit_id))
             ActionMailer::Base.deliveries.map(&:subject).should == ["Visit cannot take place: your visit for 7 July 2013 could not be booked", "COPY of booking rejection for Jimmy Harris"]
           end
         end
@@ -323,7 +323,7 @@ describe Deferred::ConfirmationsController do
           end
 
           after :each do
-            response.should redirect_to(deferred_confirmation_path)
+            response.should redirect_to(deferred_show_confirmation_path(visit_id: visit.visit_id))
             ActionMailer::Base.deliveries.map(&:subject).should == ["Visit cannot take place: your visit for 7 July 2013 could not be booked", "COPY of booking rejection for Jimmy Harris"]
           end
         end
@@ -337,7 +337,7 @@ describe Deferred::ConfirmationsController do
 
           after :each do
             post :create, confirmation: { outcome: Confirmation::PRISONER_INCORRECT, canned_response: true }, state: encrypted_visit
-            response.should redirect_to(deferred_confirmation_path)
+            response.should redirect_to(deferred_show_confirmation_path(visit_id: visit.visit_id))
             ActionMailer::Base.deliveries.map(&:subject).should == ["Visit cannot take place: your visit for 7 July 2013 could not be booked", "COPY of booking rejection for Jimmy Harris"]
           end
         end
@@ -351,7 +351,7 @@ describe Deferred::ConfirmationsController do
 
           after :each do
             post :create, confirmation: { outcome: Confirmation::PRISONER_NOT_PRESENT, canned_response: true }, state: encrypted_visit
-            response.should redirect_to(deferred_confirmation_path)
+            response.should redirect_to(deferred_show_confirmation_path(visit_id: visit.visit_id))
             ActionMailer::Base.deliveries.map(&:subject).should == ["Visit cannot take place: your visit for 7 July 2013 could not be booked", "COPY of booking rejection for Jimmy Harris"]
           end
         end
@@ -365,7 +365,7 @@ describe Deferred::ConfirmationsController do
 
           after :each do
             post :create, confirmation: { outcome: Confirmation::NO_SLOT_AVAILABLE, canned_response: true }, state: encrypted_visit
-            response.should redirect_to(deferred_confirmation_path)
+            response.should redirect_to(deferred_show_confirmation_path(visit_id: visit.visit_id))
             ActionMailer::Base.deliveries.map(&:subject).should == ["Visit cannot take place: your visit for 7 July 2013 could not be booked", "COPY of booking rejection for Jimmy Harris"]
           end
         end
@@ -380,7 +380,7 @@ describe Deferred::ConfirmationsController do
         context "when the thank you screen is accessed" do
           it "resets the session" do
             controller.should_receive(:reset_session).once
-            get :show, state: encrypted_visit
+            get :show, visit_id: visit.visit_id
             response.should render_template('confirmations/show')
           end
         end
