@@ -2259,14 +2259,18 @@ Hindley (Young People 15-18 only):
   slots:
     mon:
     - 1400-1600
+    tues:
+    - 1400-1600
     wed:
+    - 1400-1600
+    thurs:
     - 1400-1600
     fri:
     - 1400-1600
     sat:
-    - 1430-1630
+    - 1400-1600
     sun:
-    - 1430-1630
+    - 1400-1600
 Hindley (Young Adult 18-21 only):
   nomis_id: HII
   canned_responses: true
@@ -2330,14 +2334,20 @@ Hindley (Young Adult 18-21 only):
   - 2015-05-30
   - 2015-06-07
   slots:
-    tue:
+    mon:
     - 1400-1600
-    thu:
+    tues:
+    - 1400-1600
+    wed:
+    - 1400-1600
+    thurs:
+    - 1400-1600
+    fri:
     - 1400-1600
     sat:
-    - 1430-1630
+    - 1400-1600
     sun:
-    - 1430-1630
+    - 1400-1600
 Hollesley Bay Open:
   nomis_id: HBI
   canned_responses: true
