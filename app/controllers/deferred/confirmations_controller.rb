@@ -68,7 +68,9 @@ class Deferred::ConfirmationsController < ApplicationController
         'Highpoint' => 'Highpoint North',
         'Albany' => 'Isle of Wight - Albany',
         'Parkhurst' => 'Isle of Wight - Parkhurst',
-        'Liverpool (Open only)' => 'Liverpool Social Visits'
+        'Liverpool (Open only)' => 'Liverpool Social Visits',
+        'Hindley (Young Adult 18-21 only)' => 'Hindley',
+        'Hindley (Young People 15-18 only)' => 'Hindley'
       }[visit.prisoner.prison_name]
       STATSD_CLIENT.increment('pvb.app.legacy_data_fixes')
       visit.prisoner.prison_name = prison_name
