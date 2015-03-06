@@ -92,6 +92,11 @@ describe "Prison data" do
         end
       end
 
+      it "has three character day names as keys" do
+        subject.values.each do |prison|
+          (prison['slots'].keys - %w{mon tue wed thu fri sat sun}).should be_empty
+        end
+      end
     end
   end
 
