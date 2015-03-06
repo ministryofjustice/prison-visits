@@ -69,6 +69,10 @@ PrisonVisits2::Application.routes.draw do
     get "metrics/:prison/fortnightly", action: :fortnightly, as: :prison_metrics_fortnightly
   end
 
+  scope controller: :geckoboard do
+    get "gecko/leaderboard", action: :leaderboard
+  end
+
   get "/heartbeat", controller: 'heartbeat', action: 'pingdom'
 
   # Legacy URLs
