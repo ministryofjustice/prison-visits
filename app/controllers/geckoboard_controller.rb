@@ -5,4 +5,8 @@ class GeckoboardController < ApplicationController
     order = params[:order] == 'top' ? :top : :bottom
     render json: LeaderboardReport.new(order, 0.95)
   end
+
+  def rag_status
+    render json: RagStatusReport.new(0.95)
+  end
 end
