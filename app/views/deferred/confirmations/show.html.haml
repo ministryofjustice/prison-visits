@@ -5,9 +5,11 @@
       %h1 Thank you
       %p A confirmation email has been sent to the visitor.
 
-    - if Date.today < Date.parse('2015-01-30')
+    - if Date.today < Date.parse('2015-03-25')
       #latest-change.notice
-        %h1 Staff update: letting visitors know about closed visits
-        %p You can now let visitors know if they'll be attending a 'closed visit' when you process a visit booking request.
+        %h1 Staff update: visits on Easter Bank Holiday
+
+        %p Please notify us now if your social visits slots will change due to Easter Bank Holidays. Please email changes to prison-visits-feedback@digital.justice.gov.uk.
+
         %p
-          %a(href="/staff/changes") Read more about recent updates
+          %a(href="/staff/changes") Read about recent updates
