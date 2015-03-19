@@ -743,8 +743,7 @@ Lewes:
 Moorland Closed:
   nomis_id: MDI
   canned_responses: true
-  enabled: false
-  reason: it_issues
+  enabled: true
   phone: 01302523289
   email: socialvisits.moorlandclosed@hmps.gsi.gov.uk
   finder_slug: moorland

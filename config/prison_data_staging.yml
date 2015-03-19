@@ -756,8 +756,7 @@ Lewes:
 Moorland Closed:
   nomis_id: MDI
   canned_responses: true
-  enabled: false
-  reason: it_issues
+  enabled: true
   phone: 01302523289
   email: pvb.moorlandclosed@maildrop.dsd.io
   finder_slug: moorland
