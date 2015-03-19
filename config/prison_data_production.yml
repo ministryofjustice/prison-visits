@@ -1005,6 +1005,7 @@ Warren Hill:
   - 2014-12-26
   - 2014-12-31
   - 2015-01-01
+  - 2015-04-03
   slots:
     sat:
     - 1400-1600
@@ -2619,6 +2620,7 @@ Winchester (Remand only):
   unbookable:
   - 2014-12-25
   - 2014-12-26
+  - 2015-04-03
   slots:
     fri:
     - 1400-1500
@@ -2655,6 +2657,7 @@ Winchester (Convicted only):
   unbookable:
   - 2014-12-25
   - 2014-12-26
+  - 2015-04-03
   slots:
     fri:
     - 1400-1600
