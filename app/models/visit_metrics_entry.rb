@@ -9,6 +9,7 @@ class VisitMetricsEntry < ActiveRecord::Base
   scope :before, -> (date) { where('processed_at <= ?', date) }
   scope :deferred, -> { where(kind: :deferred) }
   scope :instant, -> { where(kind: :instant) }
+  scope :confirmed, -> { where(outcome: 'confirmed') }
 
   def processed?
     if block_given?

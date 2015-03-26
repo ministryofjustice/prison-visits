@@ -74,6 +74,7 @@ PrisonVisits2::Application.routes.draw do
   scope controller: :geckoboard do
     get "gecko/leaderboard", action: :leaderboard
     get "gecko/rag_status", action: :rag_status
+    get "gecko/confirmed_bookings", action: :confirmed_bookings
   end
 
   get "/heartbeat", controller: 'heartbeat', action: 'pingdom'

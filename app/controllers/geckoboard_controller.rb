@@ -9,4 +9,15 @@ class GeckoboardController < ApplicationController
   def rag_status
     render json: RagStatusReport.new(0.95)
   end
+
+  def confirmed_bookings
+    render json: {
+      item: [
+             {
+               value: VisitMetricsEntry.deferred.confirmed.count,
+               text: "Total confirmed bookings"
+             }
+            ]
+    }
+  end
 end
