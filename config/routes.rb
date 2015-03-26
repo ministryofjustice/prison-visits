@@ -1,4 +1,6 @@
 PrisonVisits2::Application.routes.draw do
+  get 'ping' => 'ping#index'
+
   resource :feedback
 
   get 'prisoner'           => 'prisoner_details#edit', as: :edit_prisoner_details
