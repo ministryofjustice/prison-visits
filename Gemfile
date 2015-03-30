@@ -14,7 +14,7 @@ gem 'elasticsearch'
 gem 'logstasher', git: 'https://github.com/shadabahmed/logstasher.git', branch: 'master'
 gem 'sentry-raven'
 gem 'redcarpet'
-gem 'prison_staff_info', git: 'git@github.com:ministryofjustice/prison_staff_info.git', branch: 'master'
+gem 'prison_staff_info', git: 'git@github.com:ministryofjustice/prison_staff_info.git', branch: 'master' unless ENV['EXCLUDE_PRIVATE_GEM']
 gem 'pg'
 gem 'statsd-ruby', require: 'statsd'
 gem 'curb'

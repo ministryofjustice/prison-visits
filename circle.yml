@@ -1,0 +1,19 @@
+machine:
+  environment:
+    RAILS_ENV: test
+    EXCLUDE_PRIVATE_GEM: 1
+    
+dependencies:
+  post:
+    - bower install
+    
+database:
+  post:
+    - bundle exec rake db:migrate --trace
+
+test:
+  override:
+    - bundle exec rake
+    # - bundle exec rake browserstack:run:
+    #     timeout: 1800
+    # uncommnet the above when someone has fixed the browserstack tests
