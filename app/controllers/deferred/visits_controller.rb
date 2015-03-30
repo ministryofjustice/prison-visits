@@ -8,6 +8,8 @@ class Deferred::VisitsController < ApplicationController
     PrisonMailer.booking_request_email(visit, @token).deliver
     VisitorMailer.booking_receipt_email(visit, @token).deliver
 
+    STATSD_CLIENT.increment("pvb.app.visit_request_submitted")
+
     metrics_logger.record_visit_request(visit)
     redirect_to deferred_show_visit_path(state: @token)
     reset_session
