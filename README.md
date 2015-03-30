@@ -1,6 +1,6 @@
 # Visit someone in prison
 
-[![Build Status](https://travis-ci.org/ministryofjustice/prison-visits.png?branch=master)](https://travis-ci.org/ministryofjustice/prison-visits)
+[![Circle CI](https://circleci.com/gh/ministryofjustice/prison-visits.svg?style=svg)](https://circleci.com/gh/ministryofjustice/prison-visits)
 [![Code Climate](https://codeclimate.com/github/ministryofjustice/prison-visits.png)](https://codeclimate.com/github/ministryofjustice/prison-visits)
 [![Code Coverage](https://codeclimate.com/github/ministryofjustice/prison-visits/coverage.png)](https://codeclimate.com/github/ministryofjustice/prison-visits)
 
