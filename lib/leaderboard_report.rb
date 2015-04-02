@@ -1,9 +1,10 @@
 class LeaderboardReport
   # How does this fortnight's performance compare to last fortnight's?
 
-  def initialize(order, percentile)
+  def initialize(order, percentile, prison_labeling_function)
     @order = order
     @percentile = percentile
+    @prison_labeling_function = prison_labeling_function.bind(self)
   end
 
   def this_period
@@ -19,26 +20,26 @@ class LeaderboardReport
   def query(year, fortnight, percentile)
     VisitMetricsEntry.find_by_sql([%Q{
 WITH ranked_times AS (
-  SELECT prison_name, end_to_end_time, cume_dist() OVER (PARTITION BY prison_name ORDER BY end_to_end_time)
+  SELECT nomis_id, end_to_end_time, cume_dist() OVER (PARTITION BY nomis_id ORDER BY end_to_end_time)
   FROM visit_metrics_entries
   WHERE EXTRACT(isoyear FROM processed_at) = ?
   AND EXTRACT(week from processed_at) / 2 = ?
 )
-SELECT prison_name, min(end_to_end_time) as end_to_end_time, rank() OVER (ORDER BY min(end_to_end_time)) as rank
+SELECT nomis_id, min(end_to_end_time) as end_to_end_time, rank() OVER (ORDER BY min(end_to_end_time)) as rank
 FROM ranked_times
 WHERE cume_dist >= ?
-GROUP BY prison_name
+GROUP BY nomis_id
 }, year, fortnight, percentile]).inject({}) do |h, row|
-      h.merge(row.prison_name => row)
+      h.merge(row.nomis_id => row)
     end
   end
 
   def ranked_performance
-    this_period.inject([]) do |a, (prison_name, row)|
+    this_period.inject([]) do |a, (nomis_id, row)|
       a << {
-        label: prison_name,
+        label: @prison_labeling_function.call(nomis_id),
         value: row.end_to_end_time / (3600.0 * 24),
-        previous_rank: prev_period[prison_name].rank
+        previous_rank: prev_period[nomis_id].rank
       }
     end
   end

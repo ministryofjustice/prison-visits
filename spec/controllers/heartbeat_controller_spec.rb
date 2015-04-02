@@ -8,7 +8,7 @@ describe HeartbeatController do
   end
 
   it "says that everything is A-ok" do
-    VisitMetricsEntry.create!(visit_id: SecureRandom.uuid, prison_name: 'Rochester', kind: 'deferred', requested_at: Time.now)
+    VisitMetricsEntry.create!(visit_id: SecureRandom.uuid, nomis_id: 'RCI', kind: 'deferred', requested_at: Time.now)
     get :pingdom
     response.should be_success
     xml_body.xpath('/pingdom_http_custom_check/status').text.should == "OK"

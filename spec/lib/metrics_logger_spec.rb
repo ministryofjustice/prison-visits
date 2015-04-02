@@ -18,7 +18,7 @@ describe MetricsLogger do
       entry.kind.should == 'deferred'
       entry.visit_id.should == sample_visit.visit_id
       entry.requested_at.should == @time
-      entry.prison_name.should == 'Rochester'
+      entry.nomis_id.should == 'RCI'
       entry.opened_at.should be_nil
       entry.processed_at.should be_nil
       entry.processing_time.should be_nil
@@ -36,7 +36,7 @@ describe MetricsLogger do
       entry.visit_id.should == sample_visit.visit_id
       entry.requested_at.should == @time
       entry.opened_at.should == @time
-      entry.prison_name.should == 'Rochester'
+      entry.nomis_id.should == 'RCI'
       entry.processed_at.should be_nil
       entry.end_to_end_time.should be_nil
       entry.processing_time.should be_nil
@@ -57,7 +57,7 @@ describe MetricsLogger do
       entry.kind.should == 'deferred'
       entry.visit_id.should == sample_visit.visit_id
       entry.requested_at.should == @time
-      entry.prison_name.should == 'Rochester'
+      entry.nomis_id.should == 'RCI'
       entry.processed_at.should == @time
       entry.outcome.should == 'confirmed'
       entry.end_to_end_time.should == 0
@@ -75,7 +75,7 @@ describe MetricsLogger do
       entry.kind.should == 'deferred'
       entry.visit_id.should == sample_visit.visit_id
       entry.requested_at.should == @time
-      entry.prison_name.should == 'Rochester'
+      entry.nomis_id.should == 'RCI'
       entry.processed_at.should == @time
       entry.outcome.should == 'rejected'
       entry.reason.should == 'because'

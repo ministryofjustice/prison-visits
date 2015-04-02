@@ -20,12 +20,12 @@ class CalculatedMetrics
   end
 
   def refresh
-    @total_visits = scope.group(:prison_name).count
-    @waiting_visits = scope.group(:prison_name).where(processed_at: nil).count
-    @overdue_visits = scope.group(:prison_name).where("processed_at IS NULL AND ? - requested_at > INTERVAL '? seconds'", Time.now, @overdue_threshold).count
-    @confirmed_visits = scope.group(:prison_name).where(outcome: 'confirmed').count
-    @rejected_visits = scope.group(:prison_name).where(outcome: 'rejected').count
-    @rejected_for_reason = scope.group(:prison_name, :reason).where(outcome: 'rejected').count
+    @total_visits = scope.group(:nomis_id).count
+    @waiting_visits = scope.group(:nomis_id).where(processed_at: nil).count
+    @overdue_visits = scope.group(:nomis_id).where("processed_at IS NULL AND ? - requested_at > INTERVAL '? seconds'", Time.now, @overdue_threshold).count
+    @confirmed_visits = scope.group(:nomis_id).where(outcome: 'confirmed').count
+    @rejected_visits = scope.group(:nomis_id).where(outcome: 'rejected').count
+    @rejected_for_reason = scope.group(:nomis_id, :reason).where(outcome: 'rejected').count
     @end_to_end_median_times = calculate_percentiles('end_to_end_time', 0.5)
     @end_to_end_times = calculate_percentiles('end_to_end_time', 0.95)
     @processing_times = calculate_percentiles('processing_time', 0.95)
@@ -54,29 +54,29 @@ class CalculatedMetrics
       column
     end
     (@date_range ? calculate_percentiles_with_date_range(column, percentile) : calculate_percentiles_without_date_range(column, percentile)).each_with_object({}) do |row, h|
-      h[row['prison_name']] = row[column].to_i
+      h[row['nomis_id']] = row[column].to_i
     end
   end
 
   def calculate_percentiles_with_date_range(column, percentile)
     @model.find_by_sql [%Q{
-WITH percentiles AS (SELECT prison_name, ?, cume_dist() OVER (PARTITION BY prison_name ORDER BY ?) AS percentile
+WITH percentiles AS (SELECT nomis_id, ?, cume_dist() OVER (PARTITION BY nomis_id ORDER BY ?) AS percentile
                      FROM visit_metrics_entries WHERE ? IS NOT NULL
                      AND requested_at > ?::date
                      AND processed_at <= ?::date),
-     top_percentiles AS (SELECT prison_name, ?, rank() OVER (PARTITION BY prison_name ORDER BY ?)
+     top_percentiles AS (SELECT nomis_id, ?, rank() OVER (PARTITION BY nomis_id ORDER BY ?)
                      FROM percentiles WHERE percentile >= ?)
-SELECT prison_name, ? FROM top_percentiles WHERE rank = 1
+SELECT nomis_id, ? FROM top_percentiles WHERE rank = 1
 }, column, column, column, @date_range.first, @date_range.last, column, column, percentile, column]
   end
 
   def calculate_percentiles_without_date_range(column, percentile)
     @model.find_by_sql [%Q{
-WITH percentiles AS (SELECT prison_name, ?, cume_dist() OVER (PARTITION BY prison_name ORDER BY ?) AS percentile
+WITH percentiles AS (SELECT nomis_id, ?, cume_dist() OVER (PARTITION BY nomis_id ORDER BY ?) AS percentile
                      FROM visit_metrics_entries WHERE ? IS NOT NULL),
-     top_percentiles AS (SELECT prison_name, ?, rank() OVER (PARTITION BY prison_name ORDER BY ?)
+     top_percentiles AS (SELECT nomis_id, ?, rank() OVER (PARTITION BY nomis_id ORDER BY ?)
                      FROM percentiles WHERE percentile >= ?)
-SELECT prison_name, ? FROM top_percentiles WHERE rank = 1
+SELECT nomis_id, ? FROM top_percentiles WHERE rank = 1
 }, column, column, column, column, column, percentile, column]
   end
 end

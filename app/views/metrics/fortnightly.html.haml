@@ -4,9 +4,9 @@
 
 %h1
   Fortnightly performance indicators for
-  = @prison
-  = link_to('(All time)', prison_metrics_all_time_path(@prison))
-  = link_to('Performance over time', prison_metrics_fortnightly_performance_path(@prison))
+  = prison_name_for_id(@nomis_id)
+  = link_to('(All time)', prison_metrics_all_time_path(@nomis_id))
+  = link_to('Performance over time', prison_metrics_fortnightly_performance_path(@nomis_id))
 %h2
   Summary for
   = format_date(@start_date)

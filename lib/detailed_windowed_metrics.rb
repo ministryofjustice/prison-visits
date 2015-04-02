@@ -1,6 +1,6 @@
 class DetailedWindowedMetrics < DetailedMetrics
-  def initialize(model, prison_name, date_range)
-    super(model, prison_name)
+  def initialize(model, nomis_id, date_range)
+    super(model, nomis_id)
     @scoped_model_for_histograms = @scoped_model.after(date_range.last)
     @scoped_model = @scoped_model.after(date_range.first).before(date_range.last)
   end
