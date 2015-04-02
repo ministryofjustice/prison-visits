@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150331112821) do
+ActiveRecord::Schema.define(version: 20150401151513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "visit_metrics_entries", force: true do |t|
     t.string   "visit_id"
-    t.string   "prison_name"
+    t.string   "nomis_id"
     t.datetime "requested_at"
     t.datetime "opened_at"
     t.datetime "processed_at"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20150331112821) do
     t.string   "kind"
   end
 
-  add_index "visit_metrics_entries", ["prison_name"], name: "index_visit_metrics_entries_on_prison_name", using: :btree
+  add_index "visit_metrics_entries", ["nomis_id"], name: "index_visit_metrics_entries_on_nomis_id", using: :btree
   add_index "visit_metrics_entries", ["requested_at", "processed_at"], name: "index_visit_metrics_entries_on_requested_at_and_processed_at", using: :btree
   add_index "visit_metrics_entries", ["requested_at"], name: "index_visit_metrics_entries_on_requested_at", using: :btree
   add_index "visit_metrics_entries", ["visit_id"], name: "index_visit_metrics_entries_on_visit_id", unique: true, using: :btree
