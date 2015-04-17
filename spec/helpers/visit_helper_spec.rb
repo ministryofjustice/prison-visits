@@ -82,7 +82,7 @@ describe VisitHelper do
 
   it "should provide the prison name" do
     helper.prison_names.class.should == Array
-    helper.prison_names.first.should == "Aylesbury"
+    helper.prison_names.first.should == "Acklington"
   end
 
   it "should render custom id content for certain prisons" do
