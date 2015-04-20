@@ -771,6 +771,7 @@ Onley:
   phone: 01788 523 402
   email: socialvisits.onley@hmps.gsi.gov.uk
   instant_booking: false
+  adult_age: 10
   address:
   - Willoughby
   - CV23 8AP

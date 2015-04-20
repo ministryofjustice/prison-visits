@@ -130,6 +130,16 @@ The visit request processing form has been updated and can be enabled per prison
 canned_responses: true
 ```
 
+### Adult age
+
+Visit requests are limited to a maximum of 3 adults. Visiting areas have 3 seats for visitors and one for the prisoner. Children are expect to sit on the laps of adults.
+
+**default: 18**
+
+```yaml
+adult_age: 16 # allow only 3 visitors over the age of 16
+```
+
 ## Set-up
 
 Clone the project into a directory on to your environment using [instructions on GitHub](https://help.github.com/categories/54/articles).
