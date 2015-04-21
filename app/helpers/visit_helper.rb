@@ -83,7 +83,7 @@ module VisitHelper
   end
 
   def when_to_expect_reply(today=Date.today)
-    schedule = Schedule.new(prison_data)
+    schedule = Schedule.new(prison_data, Rails.configuration.bank_holidays)
     format_day(schedule.except_lead_days(today, schedule.booking_range(today)).first)
   end
 

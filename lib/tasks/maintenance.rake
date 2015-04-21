@@ -15,4 +15,8 @@ namespace :maintenance do
       end
     end
   end
+
+  task :update_bank_holidays do
+    `curl -k https://www.gov.uk/bank-holidays.json -o config/bank-holidays.json`
+  end
 end

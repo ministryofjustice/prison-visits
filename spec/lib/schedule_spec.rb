@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Schedule do
   subject do
-    Schedule.new(prison)
+    Schedule.new(prison, [Date.new(2014, 8, 25), Date.new(2015, 4, 3), Date.new(2015, 4, 6)])
   end
 
   let :start_date do
@@ -41,7 +41,7 @@ describe Schedule do
       #  3  4  5  6  7  8  9
       # 10 11 12 13 14 15 16
       # 17 18 19 20 21 22 23
-      # 24 25 26 27 28 29 30
+      # 24<25>26 27 28 29 30
       # 31
 
       start_date = Date.new(2014, 8, 18) # Monday
@@ -51,19 +51,32 @@ describe Schedule do
       subject.dates(start_date).first.should == start_date + 4 # Saturday
 
       start_date = Date.new(2014, 8, 20) # Wednesday
-      subject.dates(start_date).first.should == start_date + 6 # Tuesday
+      subject.dates(start_date).first.should == start_date + 7 # Wednesday
 
       start_date = Date.new(2014, 8, 21) # Thursday
-      subject.dates(start_date).first.should == start_date + 6 # Wednesday
+      subject.dates(start_date).first.should == start_date + 7 # Thursday
 
       start_date = Date.new(2014, 8, 22) # Friday
-      subject.dates(start_date).first.should == start_date + 6 # Thursday
+      subject.dates(start_date).first.should == start_date + 7 # Friday
 
       start_date = Date.new(2014, 8, 23) # Saturday
-      subject.dates(start_date).first.should == start_date + 5 # Thursday
+      subject.dates(start_date).first.should == start_date + 6 # Friday
 
       start_date = Date.new(2014, 8, 24) # Sunday
-      subject.dates(start_date).first.should == start_date + 4 # Thursday
+      subject.dates(start_date).first.should == start_date + 5 # Friday
+    end
+
+    it "assumes bookings are not processed on bank holidays" do
+      #      April 2015
+      # Su Mo Tu We Th Fr Sa
+      #           1  2 <3> 4
+      #  5 <6> 7  8  9 10 11
+      # 12 13 14 15 16 17 18
+      # 19 20 21 22 23 24 25
+      # 26 27 28 29 30
+
+      start_date = Date.new(2015, 4, 2)
+      subject.dates(start_date).first.should == start_date + 8
     end
   end
 
@@ -85,7 +98,7 @@ describe Schedule do
     end
 
     it "does indeed work on weekends" do
-      (Date.new(2014, 8, 18)..Date.new(2014, 8, 24)).each do |start_date|
+      (Date.new(2015, 6, 18)..Date.new(2015, 6, 24)).each do |start_date|
         subject.dates(start_date).first.should == start_date + 4
       end
     end

@@ -3,15 +3,14 @@ class Schedule
   DEFAULT_BOOKING_WINDOW = 28 # days
   DEFAULT_LEAD_DAYS = 3 # days
 
-  attr_reader :lead_days
-
-  def initialize(prison_data_for_prison)
+  def initialize(prison_data_for_prison, bank_holidays)
     @unbookable_dates = (prison_data_for_prison[:unbookable] || []).to_set
     @visiting_slots = prison_data_for_prison[:slots] || {}
     @anomalous_dates = (prison_data_for_prison[:slot_anomalies] || {}).keys
     @works_weekends = prison_data_for_prison[:works_weekends]
     @lead_days = prison_data_for_prison[:lead_days] || DEFAULT_LEAD_DAYS
     @booking_window = prison_data_for_prison[:booking_window] || DEFAULT_BOOKING_WINDOW
+    @bank_holidays = bank_holidays
   end
 
   def dates(starting_when)
@@ -35,6 +34,8 @@ class Schedule
   end
 
   def except_lead_days(start_date, enumerable)
+    lead_days = @lead_days
+
     if lead_days == 0
       offsets = {
         0 => 0,
@@ -56,12 +57,22 @@ class Schedule
         6 => lead_days + 1
       }
     end
+
+    offset = offsets[start_date.wday]
+
     Enumerator.new do |e|
       enumerable.each do |current|
+        if @bank_holidays.include? current
+          lead_days += 1
+          offset += 1
+        end
+
+        since_start_date = (current - start_date).to_i
+
         if @works_weekends
-          e.yield(current) if current - start_date > lead_days
+          e.yield(current) if since_start_date > lead_days
         else
-          e.yield(current) if current - start_date > offsets[start_date.wday]
+          e.yield(current) if since_start_date > offset
         end
       end
     end
