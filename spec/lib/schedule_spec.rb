@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Schedule do
   subject do
-    Schedule.new(prison)
+    Schedule.new(prison, [Date.new(2014, 8, 25), Date.new(2015, 4, 3), Date.new(2015, 4, 6)])
   end
 
   let :start_date do

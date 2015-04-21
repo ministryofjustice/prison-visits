@@ -52,6 +52,10 @@ module PrisonVisits2
 
     config.prison_data = YAML.load_file(ENV['PRISON_DATA_FILE'] || File.join(Rails.root, 'config', 'prison_data_staging.yml')).with_indifferent_access
 
+    config.bank_holidays = JSON.parse(File.read(File.join(Rails.root, 'config', 'bank-holidays.json')))['england-and-wales']['events'].map do |event|
+                             Date.parse(event['date'])
+                           end
+
     config.metrics_auth_key = ENV['METRICS_AUTH_KEY']
 
     config.permitted_ips_for_confirmations = (ENV['PRISON_ESTATE_IPS'] || '').split(',')

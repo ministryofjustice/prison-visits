@@ -5,6 +5,7 @@ class Deferred::SlotsController < ApplicationController
 
   def edit
     @slots = visit.slots.empty? ? [Slot.new, Slot.new, Slot.new] : visit.slots
+    @schedule = Schedule.new(Rails.configuration.prison_data, Rails.configuration.bank_holidays)
   end
 
   def max_slots
