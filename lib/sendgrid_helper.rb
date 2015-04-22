@@ -24,4 +24,15 @@ module SendgridHelper
   rescue Curl::Err::CurlError, JSON::ParserError => e
     false
   end
+
+  def self.smtp_alive?(host)
+    Net::SMTP.start(host, 587) do |smtp|
+      smtp.enable_starttls_auto
+      smtp.ehlo(Socket.gethostname)
+      smtp.finish
+    end
+    true
+  rescue
+    false
+  end
 end
