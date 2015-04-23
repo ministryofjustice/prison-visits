@@ -64,33 +64,38 @@ describe SendgridHelper do
 
   context "sendgrid connection test" do
     let :host do
-      'smtp.sengrid.net'
+      'smtp.sendgrid.net'
+    end
+
+    let :port do
+      587
     end
 
     context "when it connects" do
-      it "will return true" do
-        SendgridHelper.smtp_alive?(host).should be_true
+      it "will return true" do 
+        Net::SMTP.should_receive(:start)
+        SendgridHelper.smtp_alive?(host, port).should be_true
       end
     end
 
     context "when it times out" do
       it "will return false" do
         Net::SMTP.should_receive(:start).and_raise(Net::OpenTimeout)
-        SendgridHelper.smtp_alive?(host).should be_false
+        SendgridHelper.smtp_alive?(host, port).should be_false
       end
     end
 
     context "when the port is closed" do
       it "will return false" do
         Net::SMTP.should_receive(:start).and_raise(Errno::ECONNREFUSED)
-        SendgridHelper.smtp_alive?(host).should be_false
+        SendgridHelper.smtp_alive?(host, port).should be_false
       end
     end
 
     context "when the hostname cannot be resolved" do
       it "will return false" do
         Net::SMTP.should_receive(:start).and_raise(SocketError)
-        SendgridHelper.smtp_alive?(host).should be_false
+        SendgridHelper.smtp_alive?(host, port).should be_false
       end
     end
   end

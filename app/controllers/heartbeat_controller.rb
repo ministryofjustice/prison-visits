@@ -1,18 +1,21 @@
 class HeartbeatController < ApplicationController
-  def pingdom
-    @now = Time.now
-    @max_record_id = VisitMetricsEntry.maximum(:id)
-    @last_visit_id = VisitMetricsEntry.find(@max_record_id).visit_id
-    @later = Time.now
-  end
+  permit_only_with_key
 
   def healthcheck
     render json: {
       checks: {
-        sendgrid: true,
-        messagelabs: true,
-        database: true
+        sendgrid: sendgrid_alive?,
+        messagelabs: messagelabs_alive?,
+        database: ActiveRecord::Base.connection.active?
       }
     }
+  end
+
+  def sendgrid_alive?
+    SendgridHelper.smtp_alive?(*VisitorMailer.smtp_settings.values_at(:address, :port))
+  end
+
+  def messagelabs_alive?
+    SendgridHelper.smtp_alive?(*PrisonMailer.smtp_settings.values_at(:address, :port))
   end
 end

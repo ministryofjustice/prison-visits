@@ -25,14 +25,14 @@ module SendgridHelper
     false
   end
 
-  def self.smtp_alive?(host)
-    Net::SMTP.start(host, 587) do |smtp|
+  def self.smtp_alive?(host, port)
+    Net::SMTP.start(host, port) do |smtp|
       smtp.enable_starttls_auto
       smtp.ehlo(Socket.gethostname)
       smtp.finish
     end
     true
-  rescue
+  rescue StandardError => e
     false
   end
 end

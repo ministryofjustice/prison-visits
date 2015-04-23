@@ -10,15 +10,29 @@ class ApplicationController < ActionController::Base
     before_filter :reject_untrusted_ips_and_without_key!
   end
 
+  def self.permit_only_with_key
+    before_filter :reject_without_key!
+  end
+
+  def reject!
+    raise ActionController::RoutingError.new('Go away')
+  end
+
   def reject_untrusted_ips!
     unless Rails.configuration.permitted_ips_for_confirmations.include?(request.remote_ip)
-      raise ActionController::RoutingError.new('Go away')
+      reject!
     end
   end
 
   def reject_untrusted_ips_and_without_key!
     unless Rails.configuration.metrics_auth_key.secure_compare(params[:key])
       reject_untrusted_ips!
+    end
+  end
+
+  def reject_without_key!
+    unless Rails.configuration.metrics_auth_key.secure_compare(params[:key])
+      reject!
     end
   end
 
