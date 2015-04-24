@@ -51,4 +51,15 @@ module ApplicationHelper
       prefix + variable.to_s + suffix
     end
   end
+
+  def prison_name_for_id(nomis_id)
+    @nomis_id_to_prison ||= Rails.configuration.prison_data.inject({}) do |h, (prison_name, prison_data)|
+      if prison_data['enabled']
+        h.update(prison_data['nomis_id'] => prison_name)
+      else
+        h
+      end
+    end
+    @nomis_id_to_prison[nomis_id]
+  end
 end

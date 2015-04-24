@@ -7,7 +7,7 @@ describe VisitMetricsEntry do
     subject.visit_id = "LOL"
     subject.should_not be_valid
 
-    subject.prison_name = "Prison"
+    subject.nomis_id = "RCI"
     subject.should_not be_valid
 
     subject.requested_at = Time.now

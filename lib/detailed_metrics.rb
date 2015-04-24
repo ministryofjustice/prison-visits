@@ -3,8 +3,8 @@ class DetailedMetrics
 
   THREE_DAYS = 3 * 24 * 3600
 
-  def initialize(model, prison_name)
-    @scoped_model = model.for_prison(prison_name)
+  def initialize(model, nomis_id)
+    @scoped_model = model.for_nomis_id(nomis_id)
   end
 
   def processed_before(interval=THREE_DAYS)

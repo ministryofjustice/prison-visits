@@ -33,30 +33,30 @@
         Not on contact list
       %td
         No VOs left
-    - @prisons.each_with_index do |prison, i|
+    - @nomis_ids.each_with_index do |nomis_id, i|
       %tr{class: i.even? ? 'even' : 'odd'}
         %td.prison-name
-          = link_to(prison, prison_metrics_fortnightly_path(prison))
+          = link_to(prison_name_for_id(nomis_id), prison_metrics_fortnightly_path(nomis_id))
         %td.narrow.left-border
-          = dataset.total_visits[prison]
+          = dataset.total_visits[nomis_id]
         %td.narrow
-          = dataset.waiting_visits[prison]
+          = dataset.waiting_visits[nomis_id]
         %td.narrow
-          = dataset.overdue_visits[prison]
+          = dataset.overdue_visits[nomis_id]
         %td.narrow
-          = dataset.rejected_visits[prison]
+          = dataset.rejected_visits[nomis_id]
         %td.narrow
-          = dataset.confirmed_visits[prison]
+          = dataset.confirmed_visits[nomis_id]
         %td.left-border
-          = display_interval_as_fraction(dataset.end_to_end_median_times[prison], 1.day)
+          = display_interval_as_fraction(dataset.end_to_end_median_times[nomis_id], 1.day)
         %td.narrow
-          = display_interval_as_fraction(dataset.end_to_end_times[prison], 1.day)
+          = display_interval_as_fraction(dataset.end_to_end_times[nomis_id], 1.day)
         %td.narrow.left-border
-          = display_percent(dataset.percent_rejected(prison))
+          = display_percent(dataset.percent_rejected(nomis_id))
         %td.narrow
-          = display_percent(dataset.percent_rejected(prison, Confirmation::NO_SLOT_AVAILABLE))
+          = display_percent(dataset.percent_rejected(nomis_id, Confirmation::NO_SLOT_AVAILABLE))
         %td.narrow
-          = display_percent(dataset.percent_rejected(prison, Confirmation::NOT_ON_CONTACT_LIST))
+          = display_percent(dataset.percent_rejected(nomis_id, Confirmation::NOT_ON_CONTACT_LIST))
         %td.narrow
-          = display_percent(dataset.percent_rejected(prison, Confirmation::NO_VOS_LEFT))
+          = display_percent(dataset.percent_rejected(nomis_id, Confirmation::NO_VOS_LEFT))
 

@@ -4,7 +4,7 @@
 
 %h1
   Fortnightly performance graph for
-  = @prison
+  = prison_name_for_id(@nomis_id)
 %h2
   Summary for the year
   - (2014..(Date.today.year)).each do |year|
@@ -12,7 +12,7 @@
       %span{id: 'year'}
         = year
     - else
-      = link_to(year, prison_metrics_fortnightly_performance_path(@prison, year: year))
+      = link_to(year, prison_metrics_fortnightly_performance_path(@nomis_id, year: year))
       
 %script#percentile95{languge: 'json'}
   = @percentile95.to_json.html_safe

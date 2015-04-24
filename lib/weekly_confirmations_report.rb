@@ -3,18 +3,19 @@ require 'csv'
 class WeeklyConfirmationsReport
   attr_reader :total
   
-  def initialize(model, year, start_of_year)
+  def initialize(model, year, start_of_year, prison_labeling_function)
     @model = model
     @year = year
     @start_of_year = start_of_year
+    @prison_labeling_function = prison_labeling_function.bind(self)
   end
 
   def week_range
     @min_week..@max_week
   end
 
-  def for_prison(prison_name)
-    @dataset[prison_name]
+  def for_nomis_id(nomis_id)
+    @dataset[nomis_id]
   end
 
   def refresh
@@ -25,23 +26,23 @@ class WeeklyConfirmationsReport
     }
 
     @dataset = @model.find_by_sql([%Q{
-SELECT prison_name,
+SELECT nomis_id,
        EXTRACT(week FROM processed_at) AS weekno,
        COUNT(*)
 FROM visit_metrics_entries
 WHERE processed_at IS NOT NULL AND EXTRACT(isoyear FROM processed_at) = ?
 AND outcome = 'confirmed'
-GROUP BY prison_name, EXTRACT(week FROM processed_at) ORDER BY prison_name, weekno}, @year])
+GROUP BY nomis_id, EXTRACT(week FROM processed_at) ORDER BY nomis_id, weekno}, @year])
     .inject(hash_with_default) do |h, row|
 
       weekno = row['weekno'].to_i
-      prison_name = row['prison_name']
+      nomis_id = row['nomis_id']
       count = row['count'].to_i
 
       @min_week = weekno if weekno < @min_week
       @max_week = weekno if weekno > @max_week
 
-      h[prison_name][weekno] = count
+      h[nomis_id][weekno] = count
       h
     end
 
@@ -60,9 +61,9 @@ GROUP BY weekno ORDER BY weekno}, @year]).inject(Array.new(52, 0)) do |arr, row|
 
   def csv
     CSV.generate(headers: true) do |csv|
-      csv << ['Prison'] + week_range.map { |weekno| @start_of_year + weekno * 7 }
+      csv << ['Prison'] + week_range.map { |weekno| @start_of_year + weekno * 7 } + ['NOMIS ID']
       @dataset.keys.sort.each do |prison|
-        csv << [prison] + week_range.map { |weekno| @dataset[prison][weekno] }
+        csv << [@prison_labeling_function.call(prison)] + week_range.map { |weekno| @dataset[prison][weekno] } + [prison]
       end
     end
   end

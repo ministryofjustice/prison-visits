@@ -3,7 +3,7 @@ class GeckoboardController < ApplicationController
 
   def leaderboard
     order = params[:order] == 'top' ? :top : :bottom
-    render json: LeaderboardReport.new(order, 0.95)
+    render json: LeaderboardReport.new(order, 0.95, ApplicationHelper.instance_method(:prison_name_for_id))
   end
 
   def rag_status

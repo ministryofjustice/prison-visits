@@ -13,14 +13,14 @@ class RagStatusReport
   def query(year, fortnight, percentile)
     @rag_count ||= rag_count(VisitMetricsEntry.find_by_sql([%Q{
 WITH ranked_times AS (
-  SELECT prison_name, end_to_end_time, cume_dist() OVER (PARTITION BY prison_name ORDER BY end_to_end_time)
+  SELECT nomis_id, end_to_end_time, cume_dist() OVER (PARTITION BY nomis_id ORDER BY end_to_end_time)
   FROM visit_metrics_entries
   WHERE EXTRACT(isoyear FROM processed_at) = ?
   AND EXTRACT(week from processed_at) / 2 = ?
 )
-SELECT prison_name, min(end_to_end_time) as end_to_end_time from ranked_times
+SELECT nomis_id, min(end_to_end_time) as end_to_end_time from ranked_times
 WHERE cume_dist >= ?
-GROUP BY prison_name}, year, fortnight, percentile]))
+GROUP BY nomis_id}, year, fortnight, percentile]))
 end
 
   def rag_count(records)

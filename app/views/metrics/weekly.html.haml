@@ -37,10 +37,10 @@
     - @dataset.week_range.each do |week_no|
       %td
         = @dataset.total[week_no]
-  - @prisons.each_with_index do |prison, i|
+  - @nomis_ids.each_with_index do |nomis_id, i|
     %tr{class: i.even? ? 'even' : 'odd'}
       %td.prison-name
-        = prison
+        = prison_name_for_id(nomis_id)
       - @dataset.week_range.each do |week_no|
         %td
-          = @dataset.for_prison(prison)[week_no]
+          = @dataset.for_nomis_id(nomis_id)[week_no]
