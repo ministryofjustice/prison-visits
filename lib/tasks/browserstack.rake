@@ -14,6 +14,7 @@ namespace :browserstack do
 
       browsers = YAML.load_file('config/browsers.json')
       nodes = 5
+      exitstatus = 255
       
       # Fire up a test server in a background process.
       app_pid = spawn("rails s -e test 2>&1 > rails_browserstack.log")
@@ -27,6 +28,12 @@ namespace :browserstack do
         break if content == "Press Ctrl-C to exit\n"
       end
 
+      at_exit do
+        Process.kill("TERM", pid)
+        Process.kill("TERM", app_pid)
+        Process.waitall
+      end
+
       results = Parallel.map(browsers, in_processes: nodes) do |browser|
         # We're in a subprocess here - set the environment variable BS_BROWSER to the desired browser configuration.
         ENV['BS_BROWSER'] = browser.to_json
@@ -36,13 +43,9 @@ namespace :browserstack do
         system("rspec spec/features --format RspecJunitFormatter --out '#{test_label}.xml'")
       end
       exitstatus = results.count { |e| !e }
-    rescue Exception => e
+    rescue StandardError => e
       pp e
     ensure
-      # Regardless of what happens, terminate everything.
-      Process.kill("TERM", pid)
-      Process.kill("TERM", app_pid)
-      Process.waitall
       exit(exitstatus)
     end
   end
