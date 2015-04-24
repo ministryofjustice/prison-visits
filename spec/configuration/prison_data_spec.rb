@@ -40,11 +40,17 @@ describe "Prison data" do
       prisons_names = production_prison_data_as_text.reject{ |l| l.match(/^\s+/i) } # plain text as Yaml allows duplicates and uses latest
       prisons_names.uniq.should == prisons_names
     end
-
+    
     context "enabled prisons" do
       let :subject do
         production_prison_data.select do |k, v|
           v['enabled']
+        end
+      end
+
+      it "should each have a nomis_id" do
+        subject.values.each do |prison|
+          prison['nomis_id'].should_not be_nil
         end
       end
 

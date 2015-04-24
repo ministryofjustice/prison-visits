@@ -2830,6 +2830,7 @@ Risley:
     2014-11-28:
     - 1400-1600
 Feltham (Young Adults 18-21 only):
+  nomis_id: FMI
   canned_responses: true
   enabled: true
   phone: 0208 844 5400
