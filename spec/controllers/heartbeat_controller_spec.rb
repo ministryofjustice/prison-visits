@@ -2,22 +2,28 @@ require 'spec_helper'
 
 describe HeartbeatController do
   render_views
+  
+  context "key restrictions" do
+    context "are enabled" do
+      it "raises an error" do
+        Rails.configuration.metrics_auth_key = ""
+        controller.should_receive(:reject!)
+        get :healthcheck
+      end
+    end
+        
+    context "are disabled" do
+      before :each do
+        controller.stub(:reject_without_key!)
+      end
 
-  let :xml_body do
-    Nokogiri::XML.parse(response.body)
-  end
-
-  it "says that everything is A-ok" do
-    VisitMetricsEntry.create!(visit_id: SecureRandom.uuid, nomis_id: 'RCI', kind: 'deferred', requested_at: Time.now)
-    get :pingdom
-    response.should be_success
-    xml_body.xpath('/pingdom_http_custom_check/status').text.should == "OK"
-    xml_body.xpath('/pingdom_http_custom_check/response_time').text.to_f.should > 0
-  end
-
-  it "blows up" do
-    expect {
-      get :pingdom
-    }.to raise_error(StandardError)
+      it "talks to sendgrid and messagelabs" do
+        PrisonMailer.should_receive(:smtp_settings).and_return(address: host = double, port: port = double)
+        SendgridHelper.should_receive(:smtp_alive?).with(host, port).once
+        VisitorMailer.should_receive(:smtp_settings).and_return(address: host = double, port: port = double)
+        SendgridHelper.should_receive(:smtp_alive?).with(host, port).once
+        get :healthcheck
+      end
+    end
   end
 end

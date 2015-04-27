@@ -78,6 +78,30 @@ describe ApplicationController do
     end
   end
 
+  context "when key restriction is enabled" do
+    controller do 
+      def index
+        render text: 'OK'
+      end
+    end
+
+    before :each do
+      controller.class.permit_only_with_key
+      Rails.configuration.metrics_auth_key = "WUT"
+    end
+
+    it "accepts clients with key" do
+      get :index, key: "WUT"
+      response.should be_success
+    end
+
+    it "rejects clients without key" do
+      expect {
+        get :index, key: "LOL"
+      }.to raise_error(ActionController::RoutingError, 'Go away')
+    end
+  end
+
   context "when IP restriction hook is disabled" do
     controller do
       def index

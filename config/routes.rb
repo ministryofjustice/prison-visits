@@ -77,7 +77,7 @@ PrisonVisits2::Application.routes.draw do
     get "gecko/confirmed_bookings", action: :confirmed_bookings
   end
 
-  get "/heartbeat", controller: 'heartbeat', action: 'pingdom'
+  get "/healthcheck.json", controller: 'heartbeat', action: 'healthcheck'
 
   # Legacy URLs
   get "/prisoner-details", to: redirect("/prisoner")
