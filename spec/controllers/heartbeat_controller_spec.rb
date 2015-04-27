@@ -17,7 +17,7 @@ describe HeartbeatController do
 
   it "blows up" do
     expect {
-      get :pingdom.id
+      get :pingdom
     }.to raise_error(StandardError)
   end
 end
