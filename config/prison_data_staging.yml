@@ -1596,6 +1596,7 @@ Haverigg:
   canned_responses: true
   enabled: true
   phone: 01229713016
+  adult_age: 10
   email: pvb.haverigg@maildrop.dsd.io
   instant_booking: false
   address:
