@@ -1,7 +1,7 @@
 class MetricsLogger
   def record_visit_request(visit)
     nomis_id = Rails.configuration.prison_data[visit.prisoner.prison_name]['nomis_id']
-    VisitMetricsEntry.create!(visit_id: visit.visit_id, requested_at: now_in_utc, kind: 'deferred', nomis_id: nomis_id)
+    VisitMetricsEntry.create!(visit_id: visit.visit_id, requested_at: now_in_utc, kind: 'deferred', nomis_id: nomis_id, outcome: 'pending')
   rescue PG::ConnectionBad => e
     Raven.capture_exception(e)
   end
@@ -16,7 +16,7 @@ class MetricsLogger
   def record_booking_confirmation(visit)
     update_entry(visit.visit_id) do |e|
       e.processed_at = now_in_utc
-      e.outcome = :confirmed
+      e.outcome = 'confirmed'
       e.processing_time = e.processed_at - e.opened_at
       e.end_to_end_time = e.processed_at - e.requested_at
     end
@@ -25,7 +25,7 @@ class MetricsLogger
   def record_booking_rejection(visit, reason)
     update_entry(visit.visit_id) do |e|
       e.processed_at = now_in_utc
-      e.outcome = :rejected
+      e.outcome = 'rejected'
       e.reason = reason
       e.processing_time = e.processed_at - e.opened_at
       e.end_to_end_time = e.processed_at - e.requested_at
@@ -40,7 +40,7 @@ class MetricsLogger
 
   def record_instant_visit(visit)
     nomis_id = Rails.configuration.prison_data[visit.prisoner.prison_name]['nomis_id']
-    VisitMetricsEntry.create!(visit_id: visit.visit_id, requested_at: now_in_utc, processed_at: now_in_utc, kind: 'instant', nomis_id: nomis_id)
+    VisitMetricsEntry.create!(visit_id: visit.visit_id, requested_at: now_in_utc, processed_at: now_in_utc, kind: 'instant', nomis_id: nomis_id, outcome: 'confirmed')
   rescue PG::ConnectionBad => e
     Raven.capture_exception(e)
   end
@@ -53,22 +53,22 @@ class MetricsLogger
     end
   rescue PG::ConnectionBad => e
     Raven.capture_exception(e)
-    :unknown
+    'unknown'
   end
 
   def request_cancelled?(visit)
-    :request_cancelled == visit_status(visit.visit_id)
+    'request_cancelled' == visit_status(visit.visit_id)
   end
 
   def visit_status(visit_id)
     if entry = find_entry(visit_id)
-      (entry.outcome || :pending).to_sym
+      entry.outcome || 'pending'
     else
-      :unknown
+      'unknown'
     end
   rescue PG::ConnectionBad => e
     Raven.capture_exception(e)
-    :unknown
+    'unknown'
   end
 
   def now_in_utc
