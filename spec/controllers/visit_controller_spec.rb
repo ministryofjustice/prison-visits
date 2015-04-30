@@ -25,15 +25,15 @@ describe VisitController do
     end
 
     it "displays the status of an unprocessed visit" do
-      controller.metrics_logger.should_receive(:visit_status).with(visit_id).and_return(:pending)
+      controller.metrics_logger.should_receive(:visit_status).with(visit_id).and_return('pending')
     end
 
     it "displays the status of a confirmed visit" do
-      controller.metrics_logger.should_receive(:visit_status).with(visit_id).and_return(:confirmed)
+      controller.metrics_logger.should_receive(:visit_status).with(visit_id).and_return('confirmed')
     end
 
     it "displays the status of a rejected visit" do
-      controller.metrics_logger.should_receive(:visit_status).with(visit_id).and_return(:rejected)
+      controller.metrics_logger.should_receive(:visit_status).with(visit_id).and_return('rejected')
     end
 
     after :each do
@@ -51,11 +51,11 @@ describe VisitController do
 
   context "cancelled visits" do
     it "displays the status of a cancelled visit request" do
-      controller.metrics_logger.should_receive(:visit_status).with(visit_id).and_return(:request_cancelled)
+      controller.metrics_logger.should_receive(:visit_status).with(visit_id).and_return('request_cancelled')
     end
 
     it "displays the status of a cancelled visit" do
-      controller.metrics_logger.should_receive(:visit_status).with(visit_id).and_return(:visit_cancelled)
+      controller.metrics_logger.should_receive(:visit_status).with(visit_id).and_return('visit_cancelled')
     end
 
     after :each do
@@ -69,18 +69,24 @@ describe VisitController do
       MESSAGE_ENCRYPTOR.encrypt_and_sign(sample_visit)
     end
 
+    before :each do
+      ActionMailer::Base.deliveries.clear
+    end
+
     it "cancels a pending visit request" do
-      controller.metrics_logger.should_receive(:visit_status).with(sample_visit.visit_id).and_return(:pending)
+      controller.metrics_logger.should_receive(:visit_status).with(sample_visit.visit_id).and_return('pending')
+      post :update_status, id: sample_visit.visit_id, state: encrypted_visit, cancel: true
+      ActionMailer::Base.deliveries.should be_empty
     end
 
     it "cancels a confirmed visit request" do
-      controller.metrics_logger.should_receive(:visit_status).with(sample_visit.visit_id).and_return(:confirmed)
+      controller.metrics_logger.should_receive(:visit_status).with(sample_visit.visit_id).and_return('confirmed')
+      post :update_status, id: sample_visit.visit_id, state: encrypted_visit, cancel: true
+      ActionMailer::Base.deliveries.map(&:subject).should == ['CANCELLED: Jimmy Harris on Sunday 7 July']
     end
 
     after :each do
-      post :update_status, id: sample_visit.visit_id, state: encrypted_visit, cancel: true
-      response.should redirect_to(visit_status_path(sample_visit.visit_id))
-      ActionMailer::Base.deliveries.map(&:subject).should == ["CANCELLED: Jimmy Harris on Sunday 7 July"]
+      response.should redirect_to(visit_status_path(sample_visit.visit_id, state: encrypted_visit))
     end
   end
 

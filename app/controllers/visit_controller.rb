@@ -19,13 +19,17 @@ class VisitController < ApplicationController
     @visit = encryptor.decrypt_and_verify(params[:state])
 
     if params[:cancel]
-      PrisonMailer.booking_cancellation_receipt_email(@visit).deliver
-      metrics_logger.record_booking_cancellation(params[:id], "#{params[:cancel]}_cancelled")
+      if @visit_status == 'pending'
+        metrics_logger.record_booking_cancellation(params[:id], 'request_cancelled')
+      else
+        PrisonMailer.booking_cancellation_receipt_email(@visit).deliver
+        metrics_logger.record_booking_cancellation(params[:id], 'visit_cancelled')
+      end
     else
       flash[:notice] = "You need to confirm that you want to cancel this visit."
     end
 
-    redirect_to visit_status_path(id: params[:id])
+    redirect_to visit_status_path(id: params[:id], state: params[:state])
   end
 
   def encryptor
