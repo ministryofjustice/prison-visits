@@ -140,6 +140,20 @@ Visit requests are limited to a maximum of 3 adults. Visiting areas have 3 seats
 adult_age: 16 # allow only 3 visitors over the age of 16
 ```
 
+## Renaming a prison
+
+Follow these steps if you need to rename a prison.
+
+1. Rename the prison name `key` in the Yaml file ([see above](#prison-visibility)).
+
+2. Register the old name in the [`legacy_data_fixes` method](https://github.com/ministryofjustice/prison-visits/blob/master/app/controllers/deferred/confirmations_controller.rb#L67), using the old name as the key, and the new name as the value.
+
+3. Write a migration to rename old records ([see this example](https://github.com/ministryofjustice/prison-visits/commit/46a713811ae1875f12e9b85dab397eef2088afa8)).
+
+### Combining prisons
+
+If a two or more prisons are combined, a similar process should be followed. See [commit 7afd6a0](https://github.com/ministryofjustice/prison-visits/commit/7afd6a0ad7ce6084184be68df6ff80040f999c1e) for details.
+
 ## Set-up
 
 Clone the project into a directory on to your environment using [instructions on GitHub](https://help.github.com/categories/54/articles).
