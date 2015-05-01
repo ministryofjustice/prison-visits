@@ -1,8 +1,7 @@
 class LeaderboardReport
   # How does this fortnight's performance compare to last fortnight's?
 
-  def initialize(order, percentile, prison_labeling_function)
-    @order = order
+  def initialize(percentile, prison_labeling_function)
     @percentile = percentile
     @prison_labeling_function = prison_labeling_function.bind(self)
   end
@@ -36,25 +35,34 @@ GROUP BY nomis_id
 
   def ranked_performance
     this_period.inject([]) do |a, (nomis_id, row)|
-      a << {
+      record = {
         label: @prison_labeling_function.call(nomis_id),
         value: row.end_to_end_time / (3600.0 * 24),
-        previous_rank: prev_period[nomis_id].rank
       }
+      if rank = prev_period[nomis_id].try(:rank)
+        record[:previous_rank] = rank
+      end
+      a << record
     end
   end
 
   def top(n)
-    ranked_performance.first(n)
+    JSONPresenter.new(ranked_performance.first(n))
   end
 
   def bottom(n)
-    ranked_performance.last(n)
+    JSONPresenter.new(ranked_performance.last(n))
   end
 
-  def as_json(options={})
-    {
-      items: (@order == :top) ? top(10) : bottom(10)
-    }
+  class JSONPresenter
+    def initialize(results)
+      @results = results
+    end
+
+    def as_json(options={})
+      {
+        items: @results
+      }
+    end
   end
 end
