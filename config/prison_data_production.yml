@@ -2525,6 +2525,7 @@ Portland:
   phone: 01305 715775
   email: socialvisits.portland@hmps.gsi.gov.uk
   instant_booking: false
+  adult_age: 11
   address:
   - 104 The Grove
   - DT5 1DL
