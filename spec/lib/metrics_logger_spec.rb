@@ -23,6 +23,7 @@ describe MetricsLogger do
       entry.processed_at.should be_nil
       entry.processing_time.should be_nil
       entry.end_to_end_time.should be_nil
+      entry.outcome.should == 'pending'
     end
   end
 
@@ -91,6 +92,7 @@ describe MetricsLogger do
     VisitMetricsEntry.last.tap do |entry|
       entry.visit_id.should == sample_visit.visit_id
       entry.kind.should == 'instant'
+      entry.outcome.should == 'confirmed'
       entry.requested_at.should == @time
       entry.processed_at.should == @time
     end
@@ -99,9 +101,9 @@ describe MetricsLogger do
   it "responds with a visit request status as cancelled" do
     subject.record_visit_request(sample_visit)
     subject.record_link_click(sample_visit)
-    subject.record_booking_cancellation(sample_visit.visit_id, :request_cancelled)
+    subject.record_booking_cancellation(sample_visit.visit_id, 'request_cancelled')
     subject.processed?(sample_visit).should be_false
-    subject.visit_status(sample_visit.visit_id).should == :request_cancelled
+    subject.visit_status(sample_visit.visit_id).should == 'request_cancelled'
   end
 
   it "responds with a visit status as confirmed" do
@@ -109,15 +111,25 @@ describe MetricsLogger do
     subject.record_link_click(sample_visit)
     subject.record_booking_confirmation(sample_visit)
     subject.processed?(sample_visit).should be_true
-    subject.visit_status(sample_visit.visit_id).should == :confirmed
+    subject.visit_status(sample_visit.visit_id).should == 'confirmed'
   end
 
-  it "responds with a visit status as cancelled" do
-    subject.record_visit_request(sample_visit)
-    subject.record_link_click(sample_visit)
-    subject.record_booking_cancellation(sample_visit.visit_id, :visit_cancelled)
-    subject.processed?(sample_visit).should be_false
-    subject.visit_status(sample_visit.visit_id).should == :visit_cancelled
+  ['visit_cancelled', 'request_cancelled'].each do |reason|
+    it "responds with a visit status as cancelled when reason is #{reason}" do
+      subject.record_visit_request(sample_visit)
+      subject.record_link_click(sample_visit)
+      subject.record_booking_cancellation(sample_visit.visit_id, reason)
+      subject.processed?(sample_visit).should be_false
+      subject.visit_status(sample_visit.visit_id).should == reason
+    end
+  end
+
+  it "blows up when trying to cancel with an unknown reason" do
+    expect {
+      subject.record_visit_request(sample_visit)
+      subject.record_link_click(sample_visit)
+      subject.record_booking_cancellation(sample_visit.visit_id, 'whatever')
+    }.to raise_error(ActiveRecord::RecordInvalid)
   end
 
   it "responds with a visit status as rejected" do
@@ -125,13 +137,13 @@ describe MetricsLogger do
     subject.record_link_click(sample_visit)
     subject.record_booking_rejection(sample_visit, 'because')
     subject.processed?(sample_visit).should be_true
-    subject.visit_status(sample_visit.visit_id).should == :rejected
+    subject.visit_status(sample_visit.visit_id).should == 'rejected'
   end
 
   it "responds with a visit status as not processed" do
     subject.record_visit_request(sample_visit)
     subject.processed?(sample_visit).should be_false
-    subject.visit_status(sample_visit.visit_id).should == :pending
+    subject.visit_status(sample_visit.visit_id).should == 'pending'
   end
 
   context "the backing store is down" do

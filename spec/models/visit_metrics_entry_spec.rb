@@ -14,6 +14,9 @@ describe VisitMetricsEntry do
     subject.should_not be_valid
 
     subject.kind = 'instant'
+    subject.should_not be_valid
+
+    subject.outcome = 'pending'
     subject.should be_valid
 
     subject.kind = 'deferred'
