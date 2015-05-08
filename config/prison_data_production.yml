@@ -177,6 +177,7 @@ Brinsford:
   phone: 0300 060 6500
   email: visitsbooking.westmidlands@noms.gsi.gov.uk
   instant_booking: false
+  adult_age: 10
   address:
   - New Road
   - Featherstone
@@ -255,6 +256,7 @@ Werrington:
   phone: 0300 060 6508
   email: visitsbooking.westmidlands@noms.gsi.gov.uk
   instant_booking: false
+  adult_age: 10
   address:
   - Werrington
   - Stoke-On-Trent
@@ -316,6 +318,7 @@ Stoke Heath:
   phone: 0300 060 6506
   email: visitsbooking.westmidlands@noms.gsi.gov.uk
   instant_booking: false
+  adult_age: 10
   address:
   - Market Drayton
   - Shropshire
@@ -347,6 +350,7 @@ Swinfen Hall:
   phone: 0300 060 6507
   email: visitsbooking.westmidlands@noms.gsi.gov.uk
   instant_booking: false
+  adult_age: 10
   address:
   - Swinfen Hall
   - FLichfield
@@ -376,6 +380,7 @@ Hewell:
   phone: 0300 060 6503
   email: visitsbooking.westmidlands@noms.gsi.gov.uk
   instant_booking: false
+  adult_age: 10
   address:
   - Hewell Lane
   - Redditch
