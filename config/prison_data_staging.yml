@@ -182,6 +182,7 @@ Brinsford:
   phone: 0300 060 6500
   email: pvb.brinsford@maildrop.dsd.io
   instant_booking: false
+  adult_age: 10
   address:
   - New Road
   - Featherstone
@@ -260,7 +261,7 @@ Werrington:
   phone: 0300 060 6508
   email: pvb.werrington@maildrop.dsd.io
   instant_booking: false
-  adult_age: 16
+  adult_age: 10
   address:
   - Werrington
   - Stoke-On-Trent
@@ -322,6 +323,7 @@ Stoke Heath:
   phone: 0300 060 6506
   email: pvb.stokeheath@maildrop.dsd.io
   instant_booking: false
+  adult_age: 10
   address:
   - Market Drayton
   - Shropshire
@@ -353,6 +355,7 @@ Swinfen Hall:
   phone: 0300 060 6507
   email: pvb.swinfenhall@maildrop.dsd.io
   instant_booking: false
+  adult_age: 10
   address:
   - Swinfen Hall
   - FLichfield
@@ -382,6 +385,7 @@ Hewell:
   phone: 0300 060 6503
   email: pvb.hewell@maildrop.dsd.io
   instant_booking: false
+  adult_age: 10
   address:
   - Hewell Lane
   - Redditch
