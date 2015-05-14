@@ -13,15 +13,23 @@ describe HeartbeatController do
     end
 
     context "disabled" do
+      def set_mock_mailer_response(mailer, status)
+        mailer.should_receive(:smtp_settings).and_return(
+          address: host = double,
+          port: port = double
+        )
+        SendgridHelper.should_receive(:smtp_alive?).with(
+          host, port
+        ).once.and_return(status)
+      end
+
       before :each do
         controller.stub(:reject_without_key!)
       end
 
       it "talks to sendgrid and messagelabs" do
-        PrisonMailer.should_receive(:smtp_settings).and_return(address: host = double, port: port = double)
-        SendgridHelper.should_receive(:smtp_alive?).with(host, port).once.and_return(true)
-        VisitorMailer.should_receive(:smtp_settings).and_return(address: host = double, port: port = double)
-        SendgridHelper.should_receive(:smtp_alive?).with(host, port).once.and_return(true)
+        set_mock_mailer_response(PrisonMailer, true)
+        set_mock_mailer_response(VisitorMailer, true)
         get :healthcheck
 
         assert_response(:success, response.status)
@@ -32,10 +40,8 @@ describe HeartbeatController do
       end
 
       it "errors if messagelabs is down" do
-        PrisonMailer.should_receive(:smtp_settings).and_return(address: host = double, port: port = double)
-        SendgridHelper.should_receive(:smtp_alive?).with(host, port).once.and_return(false)
-        VisitorMailer.should_receive(:smtp_settings).and_return(address: host = double, port: port = double)
-        SendgridHelper.should_receive(:smtp_alive?).with(host, port).once.and_return(true)
+        set_mock_mailer_response(PrisonMailer, false)
+        set_mock_mailer_response(VisitorMailer, true)
         get :healthcheck
 
         assert_response(:bad_gateway, response.status)
@@ -44,10 +50,8 @@ describe HeartbeatController do
       end
 
       it "errors if sendgrid is down" do
-        PrisonMailer.should_receive(:smtp_settings).and_return(address: host = double, port: port = double)
-        SendgridHelper.should_receive(:smtp_alive?).with(host, port).once.and_return(true)
-        VisitorMailer.should_receive(:smtp_settings).and_return(address: host = double, port: port = double)
-        SendgridHelper.should_receive(:smtp_alive?).with(host, port).once.and_return(false)
+        set_mock_mailer_response(PrisonMailer, true)
+        set_mock_mailer_response(VisitorMailer, false)
         get :healthcheck
 
         assert_response(:bad_gateway, response.status)
@@ -56,10 +60,8 @@ describe HeartbeatController do
       end
 
       it "errors if the database is down" do
-        PrisonMailer.should_receive(:smtp_settings).and_return(address: host = double, port: port = double)
-        SendgridHelper.should_receive(:smtp_alive?).with(host, port).once.and_return(true)
-        VisitorMailer.should_receive(:smtp_settings).and_return(address: host = double, port: port = double)
-        SendgridHelper.should_receive(:smtp_alive?).with(host, port).once.and_return(true)
+        set_mock_mailer_response(PrisonMailer, true)
+        set_mock_mailer_response(VisitorMailer, true)
         ActiveRecord::Base.connection.should_receive(:active?).once.and_return(false)
         get :healthcheck
 
