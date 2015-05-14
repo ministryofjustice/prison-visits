@@ -2,12 +2,14 @@ class HeartbeatController < ApplicationController
   permit_only_with_key
 
   def healthcheck
-    render json: {
-      checks: {
-        sendgrid: sendgrid_alive?,
-        messagelabs: messagelabs_alive?,
-        database: ActiveRecord::Base.connection.active?
-      }
+    checks = {
+      sendgrid: sendgrid_alive?,
+      messagelabs: messagelabs_alive?,
+      database: ActiveRecord::Base.connection.active?,
+    }
+    status = :bad_gateway unless checks.values.all?
+    render status: status, json: {
+      checks: checks
     }
   end
 
