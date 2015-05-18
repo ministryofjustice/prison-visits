@@ -84,6 +84,16 @@ describe HeartbeatController do
 
         it_behaves_like "a service is broken", "database"
       end
+
+      context "when the database is off" do
+        before :each do
+          set_mock_mailer_response(PrisonMailer, true)
+          set_mock_mailer_response(VisitorMailer, true)
+          ActiveRecord::Base.connection.should_receive(:active?).once.and_raise(PG::ConnectionBad)
+        end
+
+        it_behaves_like "a service is broken", "database"
+      end
     end
   end
 end
