@@ -21,10 +21,6 @@ module VisitHelper
     Rails.configuration.prison_data.fetch(source.prisoner.prison_name.to_s)
   end
 
-  def prison_name(source=visit)
-    source.prisoner.prison_name
-  end
-
   def prison_phone
     prison_data['phone']
   end
