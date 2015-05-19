@@ -2582,7 +2582,7 @@ Wandsworth:
   canned_responses: true
   enabled: true
   phone: 0208 588 4002
-  email: visitsbooking.westmidlands@noms.gsi.gov.uk
+  email: socialvisits.wandsworth@hmps.gsi.gov.uk
   instant_booking: false
   address:
   - Heathfield Rd
