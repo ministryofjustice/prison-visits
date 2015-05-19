@@ -84,3 +84,6 @@ vendor/assets/govuk_elements/test
 vendor/assets/govuk_elements/public/images
 vendor/assets/govuk_elements/public/javascripts
 vendor/assets/govuk_elements/views
+
+# Test coverage output
+/coverage
