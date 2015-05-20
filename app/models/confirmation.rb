@@ -16,6 +16,16 @@ class Confirmation
   validate :unlisted
   validate :banned
 
+  def slot_selected?
+    [0, 1, 2].include?(slot)
+  end
+
+  def slot
+    outcome && outcome.starts_with?('slot') && outcome.gsub('slot_', '').to_i
+  end
+
+private
+
   def check_outcome
     outcomes = [
       NO_VOS_LEFT,
@@ -58,13 +68,5 @@ class Confirmation
     if visitor_not_listed && unlisted_visitors.nil?
       errors.add(:unlisted, 'one or more visitors must be selected')
     end
-  end
-
-  def slot_selected?
-    [0, 1, 2].include?(slot)
-  end
-
-  def slot
-    outcome && outcome.starts_with?('slot') && outcome.gsub('slot_', '').to_i
   end
 end
