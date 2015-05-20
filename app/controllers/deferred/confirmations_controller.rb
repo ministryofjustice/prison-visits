@@ -56,14 +56,6 @@ class Deferred::ConfirmationsController < ApplicationController
     params.require(:confirmation).permit(:outcome, :message, :vo_number, :no_vo, :no_pvo, :renew_vo, :renew_pvo, :closed_visit, :visitor_not_listed, :visitor_banned, :canned_response, banned_visitors: [], unlisted_visitors: [])
   end
 
-  def encryptor
-    MESSAGE_ENCRYPTOR
-  end
-
-  def metrics_logger
-    METRICS_LOGGER
-  end
-
   def legacy_data_fixes(visit)
     if prison_name = {
         'Hollesley Bay' => 'Hollesley Bay Open',

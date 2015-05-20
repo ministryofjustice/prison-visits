@@ -63,4 +63,12 @@ class ApplicationController < ActionController::Base
   def visit
     session[:visit]
   end
+
+  def encryptor
+    MESSAGE_ENCRYPTOR
+  end
+
+  def metrics_logger
+    METRICS_LOGGER
+  end
 end

@@ -31,12 +31,4 @@ class VisitController < ApplicationController
 
     redirect_to visit_status_path(id: params[:id], state: params[:state])
   end
-
-  def encryptor
-    MESSAGE_ENCRYPTOR
-  end
-
-  def metrics_logger
-    METRICS_LOGGER
-  end
 end
