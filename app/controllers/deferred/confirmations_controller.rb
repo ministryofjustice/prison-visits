@@ -81,22 +81,6 @@ class Deferred::ConfirmationsController < ApplicationController
     visit
   end
 
-  def migrate_visitors(visit)
-    visit.dup.tap do |visit|
-      visit.visitors.map! do |visitor|
-        if visitor.class == Visitor
-          values = [:first_name, :last_name, :email, :index, :number_of_adults, :number_of_children, :date_of_birth, :phone].inject({}) do |h, selector|
-            h[selector] = visitor.send(selector)
-            h
-          end
-          Deferred::Visitor.new(values)
-        else
-          visitor
-        end
-      end
-    end
-  end
-
   def remove_unused_slots(visit, slot_index)
     visit.dup.tap do |v|
       selected_slot = visit.slots[slot_index]

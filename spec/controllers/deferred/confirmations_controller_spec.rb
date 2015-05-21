@@ -11,28 +11,8 @@ describe Deferred::ConfirmationsController do
     sample_visit
   end
 
-  let :legacy_visit do
-    Visit.new.tap do |v|
-      v.visit_id = SecureRandom.hex
-      v.slots = [Slot.new(date: '2013-07-07', times: '1400-1600')]
-      v.prisoner = Prisoner.new.tap do |p|
-        p.date_of_birth = Date.new(1955, 5, 5)
-        p.first_name = 'Rolf'
-        p.last_name = 'Saville'
-        p.prison_name = 'Rochester'
-        p.number = 'b0000bb'
-      end
-      v.visitors = [Visitor.new(email: 'visitor@example.com', date_of_birth: Date.new(1918, 11, 11), first_name: 'Marge', last_name: 'Green'),
-                    Visitor.new(date_of_birth: Date.new(1955, 1, 1), first_name: 'Joan', last_name: 'Harris')]
-    end
-  end
-
   let :encrypted_visit do
     MESSAGE_ENCRYPTOR.encrypt_and_sign(visit)
-  end
-
-  let :encrypted_legacy_visit do
-    MESSAGE_ENCRYPTOR.encrypt_and_sign(legacy_visit)
   end
 
   context "in correct IP range" do
@@ -110,26 +90,6 @@ describe Deferred::ConfirmationsController do
         get :new, state: 'bad state'
         response.status.should == 400
         response.should render_template('confirmations/_bad_state')
-      end
-
-      it "migrates legacy visitor data" do
-        migrated_visit = controller.migrate_visitors(legacy_visit)
-        controller.should_receive(:logstasher_add_visit_id).with(migrated_visit.visit_id).twice
-        mock_metrics_logger.should_receive(:request_cancelled?).and_return(false)
-        mock_metrics_logger.should_receive(:record_link_click)
-        mock_metrics_logger.should_receive(:processed?) do |v|
-          v.should.eql? legacy_visit
-          false
-        end
-        mock_metrics_logger.should_receive(:record_booking_confirmation) do |v|
-          v.should.eql? migrated_visit
-          false
-        end
-        get :new, state: encrypted_legacy_visit
-        response.should be_success
-        response.should render_template('confirmations/new')
-        post :create, confirmation: { outcome: 'slot_0'}, state: encrypted_legacy_visit
-        response.should redirect_to(deferred_show_confirmation_path(visit_id: migrated_visit.visit_id))
       end
     end
 
