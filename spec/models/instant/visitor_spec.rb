@@ -16,6 +16,10 @@ describe Instant::Visitor do
     end
   end
 
+  it 'generates an initial from the last name' do
+    visitor.last_initial.should == 'F'
+  end
+
   it_behaves_like 'a visitor'
 
   it "validates the first visitor as a lead visitor" do
