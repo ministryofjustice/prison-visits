@@ -4,7 +4,7 @@ require "spec_helper"
 describe VisitorMailer do
   before :each do
     ActionMailer::Base.deliveries.clear
-    VisitorMailer.any_instance.stub(:smtp_domain).and_return('example.com')
+    allow_any_instance_of(VisitorMailer).to receive(:smtp_domain).and_return('example.com')
     Timecop.freeze(Time.local(2013, 7, 4))
   end
 
@@ -23,14 +23,14 @@ describe VisitorMailer do
   end
 
   it "relays e-mails via sendgrid" do
-    VisitorMailer.smtp_settings.should == ActionMailer::Base.smtp_settings
+    expect(VisitorMailer.smtp_settings).to eq(ActionMailer::Base.smtp_settings)
   end
 
   it "delivers an automated response" do
     expect {
       VisitorMailer.autorespond(email).tap do |m|
-        m[:from].should == noreply_address
-        m[:to].should == visitor_address
+        expect(m[:from]).to eq(noreply_address)
+        expect(m[:to]).to eq(visitor_address)
       end.deliver
     }.to change { ActionMailer::Base.deliveries.size }.by(1)
   end
@@ -123,302 +123,302 @@ describe VisitorMailer do
     context "booking is successful" do
       it "sends out an e-mail" do
         email = subject.booking_confirmation_email(sample_visit, confirmation, token)
-        email.subject.should == "Visit confirmed: your visit for 7 July 2013 has been confirmed"
+        expect(email.subject).to eq("Visit confirmed: your visit for 7 July 2013 has been confirmed")
 
-        email[:from].should == noreply_address
-        email[:reply_to].should == prison_address
-        email[:to].should == visitor_address
+        expect(email[:from]).to eq(noreply_address)
+        expect(email[:reply_to]).to eq(prison_address)
+        expect(email[:to]).to eq(visitor_address)
 
-        email.should match_in_html("pvb.rochester@maildrop.dsd.io")
-        email.should match_in_html("01634 803100")
-        email.should_not match_in_html("Jimmy Harris")
-        email.should_not match_in_html("Your reference number is")
+        expect(email).to match_in_html("pvb.rochester@maildrop.dsd.io")
+        expect(email).to match_in_html("01634 803100")
+        expect(email).not_to match_in_html("Jimmy Harris")
+        expect(email).not_to match_in_html("Your reference number is")
 
-        email.should match_in_html(sample_visit.visit_id)
-        email.should match_in_text(sample_visit.visit_id)
+        expect(email).to match_in_html(sample_visit.visit_id)
+        expect(email).to match_in_text(sample_visit.visit_id)
       end
 
       it "sends out an e-mail with a reference number (canned responses)" do
         email = subject.booking_confirmation_email(sample_visit, confirmation_canned_response, token)
-        email.subject.should == "Visit confirmed: your visit for 7 July 2013 has been confirmed"
+        expect(email.subject).to eq("Visit confirmed: your visit for 7 July 2013 has been confirmed")
 
-        email[:from].should == noreply_address
-        email[:reply_to].should == prison_address
-        email[:to].should == visitor_address
+        expect(email[:from]).to eq(noreply_address)
+        expect(email[:reply_to]).to eq(prison_address)
+        expect(email[:to]).to eq(visitor_address)
 
-        email.should match_in_html("pvb.rochester@maildrop.dsd.io")
-        email.should match_in_html("01634 803100")
-        email.should_not match_in_html("Jimmy Harris")
-        email.should match_in_html('5551234')
-        email.should_not match_in_html("This is a copy")
+        expect(email).to match_in_html("pvb.rochester@maildrop.dsd.io")
+        expect(email).to match_in_html("01634 803100")
+        expect(email).not_to match_in_html("Jimmy Harris")
+        expect(email).to match_in_html('5551234')
+        expect(email).not_to match_in_html("This is a copy")
 
-        email.should match_in_html(sample_visit.visit_id)
-        email.should match_in_text(sample_visit.visit_id)
+        expect(email).to match_in_html(sample_visit.visit_id)
+        expect(email).to match_in_text(sample_visit.visit_id)
       end
 
       it "sends out an e-mail with no reference number for remand prisoners (canned responses)" do
         email = subject.booking_confirmation_email(sample_visit, confirmation_canned_response_remand, token)
-        email.subject.should == "Visit confirmed: your visit for 7 July 2013 has been confirmed"
+        expect(email.subject).to eq("Visit confirmed: your visit for 7 July 2013 has been confirmed")
 
-        email[:from].should == noreply_address
-        email[:reply_to].should == prison_address
-        email[:to].should == visitor_address
+        expect(email[:from]).to eq(noreply_address)
+        expect(email[:reply_to]).to eq(prison_address)
+        expect(email[:to]).to eq(visitor_address)
 
-        email.should match_in_html("pvb.rochester@maildrop.dsd.io")
-        email.should match_in_html("01634 803100")
-        email.should_not match_in_html("Jimmy Harris")
-        email.should_not match_in_html('Your reference number is')
+        expect(email).to match_in_html("pvb.rochester@maildrop.dsd.io")
+        expect(email).to match_in_html("01634 803100")
+        expect(email).not_to match_in_html("Jimmy Harris")
+        expect(email).not_to match_in_html('Your reference number is')
 
-        email.should match_in_html(sample_visit.visit_id)
-        email.should match_in_text(sample_visit.visit_id)
+        expect(email).to match_in_html(sample_visit.visit_id)
+        expect(email).to match_in_text(sample_visit.visit_id)
       end
 
       it "sends out an e-mail with the list of visitors not on the approved visitor list" do
         email = subject.booking_confirmation_email(sample_visit, confirmation_unlisted_visitors, token)
-        email.subject.should == "Visit confirmed: your visit for 7 July 2013 has been confirmed"
+        expect(email.subject).to eq("Visit confirmed: your visit for 7 July 2013 has been confirmed")
 
-        email[:from].should == noreply_address
-        email[:reply_to].should == prison_address
-        email[:to].should == visitor_address
+        expect(email[:from]).to eq(noreply_address)
+        expect(email[:reply_to]).to eq(prison_address)
+        expect(email[:to]).to eq(visitor_address)
 
-        email.should match_in_html("pvb.rochester@maildrop.dsd.io")
-        email.should match_in_html("01634 803100")
-        email.should_not match_in_html("Jimmy Harris")
-        email.should match_in_html("Joan H. cannot attend as they’re not on the prisoner’s contact list")
-        email.should match_in_html('5551234')
+        expect(email).to match_in_html("pvb.rochester@maildrop.dsd.io")
+        expect(email).to match_in_html("01634 803100")
+        expect(email).not_to match_in_html("Jimmy Harris")
+        expect(email).to match_in_html("Joan H. cannot attend as they’re not on the prisoner’s contact list")
+        expect(email).to match_in_html('5551234')
 
-        email.should match_in_html(sample_visit.visit_id)
-        email.should match_in_text(sample_visit.visit_id)
+        expect(email).to match_in_html(sample_visit.visit_id)
+        expect(email).to match_in_text(sample_visit.visit_id)
       end
 
       it "sends out an e-mail with the list of banned visitors" do
         email = subject.booking_confirmation_email(sample_visit, confirmation_banned_visitors, token)
-        email.subject.should == "Visit confirmed: your visit for 7 July 2013 has been confirmed"
+        expect(email.subject).to eq("Visit confirmed: your visit for 7 July 2013 has been confirmed")
 
-        email[:from].should == noreply_address
-        email[:reply_to].should == prison_address
-        email[:to].should == visitor_address
+        expect(email[:from]).to eq(noreply_address)
+        expect(email[:reply_to]).to eq(prison_address)
+        expect(email[:to]).to eq(visitor_address)
 
-        email.should match_in_html("pvb.rochester@maildrop.dsd.io")
-        email.should match_in_html("01634 803100")
-        email.should_not match_in_html("Jimmy Harris")
-        email.should match_in_html("Joan H. cannot attend as they’re currently banned")
-        email.should match_in_html('5551234')
+        expect(email).to match_in_html("pvb.rochester@maildrop.dsd.io")
+        expect(email).to match_in_html("01634 803100")
+        expect(email).not_to match_in_html("Jimmy Harris")
+        expect(email).to match_in_html("Joan H. cannot attend as they’re currently banned")
+        expect(email).to match_in_html('5551234')
 
-        email.should match_in_html(sample_visit.visit_id)
-        email.should match_in_text(sample_visit.visit_id)
+        expect(email).to match_in_html(sample_visit.visit_id)
+        expect(email).to match_in_text(sample_visit.visit_id)
       end
 
       it "sends out an e-mail notifying visitors that it is a closed visit" do
         email = subject.booking_confirmation_email(sample_visit, confirmation_closed_visit, token)
-        email.subject.should == "Visit confirmed: your visit for 7 July 2013 has been confirmed"
+        expect(email.subject).to eq("Visit confirmed: your visit for 7 July 2013 has been confirmed")
 
-        email[:from].should == noreply_address
-        email[:reply_to].should == prison_address
-        email[:to].should == visitor_address
+        expect(email[:from]).to eq(noreply_address)
+        expect(email[:reply_to]).to eq(prison_address)
+        expect(email[:to]).to eq(visitor_address)
 
-        email.should_not match_in_html("Jimmy Harris")
-        email.should match_in_html('5551234')
-        email.should match_in_html('This is a closed visit')
+        expect(email).not_to match_in_html("Jimmy Harris")
+        expect(email).to match_in_html('5551234')
+        expect(email).to match_in_html('This is a closed visit')
       end
 
       it "sends out an e-mail with the List-Unsubscribe header set" do
         header_value = '<https://www.prisonvisits.service.gov.uk/unsubscribe>'
-        subject.booking_receipt_email(sample_visit, "token")['List-Unsubscribe'].value.should ==  header_value
+        expect(subject.booking_receipt_email(sample_visit, "token")['List-Unsubscribe'].value).to eq(header_value)
         [confirmation_no_slot_available, confirmation_not_on_contact_list, confirmation_no_vos_left].each do |outcome|
-          subject.booking_rejection_email(sample_visit, outcome)['List-Unsubscribe'].value.should == header_value
+          expect(subject.booking_rejection_email(sample_visit, outcome)['List-Unsubscribe'].value).to eq(header_value)
         end
-        subject.booking_confirmation_email(sample_visit, confirmation, token)['List-Unsubscribe'].value.should == header_value
+        expect(subject.booking_confirmation_email(sample_visit, confirmation, token)['List-Unsubscribe'].value).to eq(header_value)
       end
     end
 
     context "sends out an unsuccessful e-mail with a date in the subject" do
       it "because of a slot not being available" do
         email = subject.booking_rejection_email(sample_visit, confirmation_no_slot_available)
-        email.subject.should == "Visit cannot take place: your visit for 7 July 2013 could not be booked"
+        expect(email.subject).to eq("Visit cannot take place: your visit for 7 July 2013 could not be booked")
 
-        email[:from].should == noreply_address
-        email[:reply_to].should == prison_address
-        email[:to].should == visitor_address
+        expect(email[:from]).to eq(noreply_address)
+        expect(email[:reply_to]).to eq(prison_address)
+        expect(email[:to]).to eq(visitor_address)
 
-        email.should match_in_html('http://www.justice.gov.uk/contacts/prison-finder/rochester')
-        email.should match_in_html("01634 803100")
-        email.should_not match_in_html("Jimmy Harris")
+        expect(email).to match_in_html('http://www.justice.gov.uk/contacts/prison-finder/rochester')
+        expect(email).to match_in_html("01634 803100")
+        expect(email).not_to match_in_html("Jimmy Harris")
 
-        email.should match_in_html(sample_visit.visit_id)
-        email.should match_in_text(sample_visit.visit_id)
+        expect(email).to match_in_html(sample_visit.visit_id)
+        expect(email).to match_in_text(sample_visit.visit_id)
       end
 
       it "because of a visitor not being on a contact list (legacy)" do
         email = subject.booking_rejection_email(sample_visit, confirmation_not_on_contact_list)
-        email.subject.should == "Visit cannot take place: your visit for 7 July 2013 could not be booked"
+        expect(email.subject).to eq("Visit cannot take place: your visit for 7 July 2013 could not be booked")
 
-        email[:from].should == noreply_address
-        email[:reply_to].should == prison_address
-        email[:to].should == visitor_address
+        expect(email[:from]).to eq(noreply_address)
+        expect(email[:reply_to]).to eq(prison_address)
+        expect(email[:to]).to eq(visitor_address)
 
-        email.should match_in_html('http://www.justice.gov.uk/contacts/prison-finder/rochester')
-        email.should match_in_html("01634 803100")
-        email.should_not match_in_html("Jimmy Harris")
+        expect(email).to match_in_html('http://www.justice.gov.uk/contacts/prison-finder/rochester')
+        expect(email).to match_in_html("01634 803100")
+        expect(email).not_to match_in_html("Jimmy Harris")
 
-        email.should match_in_html(sample_visit.visit_id)
-        email.should match_in_text(sample_visit.visit_id)
+        expect(email).to match_in_html(sample_visit.visit_id)
+        expect(email).to match_in_text(sample_visit.visit_id)
       end
 
       it "because the prisoner details are incorrect" do
         email = subject.booking_rejection_email(sample_visit, rejection_prisoner_incorrect)
-        email.subject.should == "Visit cannot take place: your visit for 7 July 2013 could not be booked"
+        expect(email.subject).to eq("Visit cannot take place: your visit for 7 July 2013 could not be booked")
 
-        email[:from].should == noreply_address
-        email[:reply_to].should == prison_address
-        email[:to].should == visitor_address
+        expect(email[:from]).to eq(noreply_address)
+        expect(email[:reply_to]).to eq(prison_address)
+        expect(email[:to]).to eq(visitor_address)
 
-        email.should match_in_html('http://www.justice.gov.uk/contacts/prison-finder/rochester')
-        email.should match_in_html("01634 803100")
-        email.should_not match_in_html("Jimmy Harris")
-        email.should match_in_html("Your visit cannot take place as you haven’t given correct information for the prisoner.")
+        expect(email).to match_in_html('http://www.justice.gov.uk/contacts/prison-finder/rochester')
+        expect(email).to match_in_html("01634 803100")
+        expect(email).not_to match_in_html("Jimmy Harris")
+        expect(email).to match_in_html("Your visit cannot take place as you haven’t given correct information for the prisoner.")
 
-        email.should match_in_html(sample_visit.visit_id)
-        email.should match_in_text(sample_visit.visit_id)
+        expect(email).to match_in_html(sample_visit.visit_id)
+        expect(email).to match_in_text(sample_visit.visit_id)
       end
 
       it "because the prisoner is not at the prison" do
         email = subject.booking_rejection_email(sample_visit, rejection_prisoner_not_present)
-        email.subject.should == "Visit cannot take place: your visit for 7 July 2013 could not be booked"
+        expect(email.subject).to eq("Visit cannot take place: your visit for 7 July 2013 could not be booked")
 
-        email[:from].should == noreply_address
-        email[:reply_to].should == prison_address
-        email[:to].should == visitor_address
+        expect(email[:from]).to eq(noreply_address)
+        expect(email[:reply_to]).to eq(prison_address)
+        expect(email[:to]).to eq(visitor_address)
 
-        email.should match_in_html('http://www.justice.gov.uk/contacts/prison-finder/rochester')
-        email.should match_in_html("01634 803100")
-        email.should_not match_in_html("Jimmy Harris")
-        email.should match_in_html("Your visit cannot take place as the prisoner you want to visit has moved prison.")
+        expect(email).to match_in_html('http://www.justice.gov.uk/contacts/prison-finder/rochester')
+        expect(email).to match_in_html("01634 803100")
+        expect(email).not_to match_in_html("Jimmy Harris")
+        expect(email).to match_in_html("Your visit cannot take place as the prisoner you want to visit has moved prison.")
 
-        email.should match_in_html(sample_visit.visit_id)
-        email.should match_in_text(sample_visit.visit_id)
+        expect(email).to match_in_html(sample_visit.visit_id)
+        expect(email).to match_in_text(sample_visit.visit_id)
       end
 
       it "because the prisoner has no allowance" do
         email = subject.booking_rejection_email(sample_visit, rejection_prisoner_no_allowance)
-        email.subject.should == "Visit cannot take place: your visit for 7 July 2013 could not be booked"
+        expect(email.subject).to eq("Visit cannot take place: your visit for 7 July 2013 could not be booked")
 
-        email[:from].should == noreply_address
-        email[:reply_to].should == prison_address
-        email[:to].should == visitor_address
+        expect(email[:from]).to eq(noreply_address)
+        expect(email[:reply_to]).to eq(prison_address)
+        expect(email[:to]).to eq(visitor_address)
 
-        email.should match_in_html('http://www.justice.gov.uk/contacts/prison-finder/rochester')
-        email.should match_in_html("01634 803100")
-        email.should_not match_in_html("Jimmy Harris")
-        email.should match_in_html("the prisoner you want to visit has not got any visiting allowance left for the dates you’ve chosen")
+        expect(email).to match_in_html('http://www.justice.gov.uk/contacts/prison-finder/rochester')
+        expect(email).to match_in_html("01634 803100")
+        expect(email).not_to match_in_html("Jimmy Harris")
+        expect(email).to match_in_html("the prisoner you want to visit has not got any visiting allowance left for the dates you’ve chosen")
 
-        email.should match_in_html(sample_visit.visit_id)
-        email.should match_in_text(sample_visit.visit_id)
+        expect(email).to match_in_html(sample_visit.visit_id)
+        expect(email).to match_in_text(sample_visit.visit_id)
       end
 
       it "because the prisoner has no allowance and a VO renewal date is specified" do
         email = subject.booking_rejection_email(sample_visit, rejection_prisoner_no_allowance_vo_renew)
-        email.subject.should == "Visit cannot take place: your visit for 7 July 2013 could not be booked"
+        expect(email.subject).to eq("Visit cannot take place: your visit for 7 July 2013 could not be booked")
 
-        email[:from].should == noreply_address
-        email[:reply_to].should == prison_address
-        email[:to].should == visitor_address
+        expect(email[:from]).to eq(noreply_address)
+        expect(email[:reply_to]).to eq(prison_address)
+        expect(email[:to]).to eq(visitor_address)
 
-        email.should match_in_html('http://www.justice.gov.uk/contacts/prison-finder/rochester')
-        email.should match_in_html("01634 803100")
-        email.should_not match_in_html("Jimmy Harris")
-        email.should match_in_html("the prisoner you want to visit has not got any visiting allowance left for the dates you’ve chosen")
-        email.should match_in_html("Jimmy H will have their full visiting allowance (VO) renewed on Saturday 29 November.")
+        expect(email).to match_in_html('http://www.justice.gov.uk/contacts/prison-finder/rochester')
+        expect(email).to match_in_html("01634 803100")
+        expect(email).not_to match_in_html("Jimmy Harris")
+        expect(email).to match_in_html("the prisoner you want to visit has not got any visiting allowance left for the dates you’ve chosen")
+        expect(email).to match_in_html("Jimmy H will have their full visiting allowance (VO) renewed on Saturday 29 November.")
 
-        email.should match_in_html(sample_visit.visit_id)
-        email.should match_in_text(sample_visit.visit_id)
+        expect(email).to match_in_html(sample_visit.visit_id)
+        expect(email).to match_in_text(sample_visit.visit_id)
       end
 
       it "because the prisoner has no allowance and a PVO renewal date is specified" do
         email = subject.booking_rejection_email(sample_visit, rejection_prisoner_no_allowance_pvo_renew)
-        email.subject.should == "Visit cannot take place: your visit for 7 July 2013 could not be booked"
+        expect(email.subject).to eq("Visit cannot take place: your visit for 7 July 2013 could not be booked")
 
-        email[:from].should == noreply_address
-        email[:reply_to].should == prison_address
-        email[:to].should == visitor_address
+        expect(email[:from]).to eq(noreply_address)
+        expect(email[:reply_to]).to eq(prison_address)
+        expect(email[:to]).to eq(visitor_address)
 
-        email.should match_in_html('http://www.justice.gov.uk/contacts/prison-finder/rochester')
-        email.should match_in_html("01634 803100")
-        email.should_not match_in_html("Jimmy Harris")
-        email.should match_in_html("the prisoner you want to visit has not got any visiting allowance left for the dates you’ve chosen")
-        email.should match_in_html("However, you can book a weekday visit with visiting allowance valid until Monday 17 November.")
-        email.should match_in_html("Jimmy H will have their full visiting allowance (VO) renewed on Saturday 29 November.")
+        expect(email).to match_in_html('http://www.justice.gov.uk/contacts/prison-finder/rochester')
+        expect(email).to match_in_html("01634 803100")
+        expect(email).not_to match_in_html("Jimmy Harris")
+        expect(email).to match_in_html("the prisoner you want to visit has not got any visiting allowance left for the dates you’ve chosen")
+        expect(email).to match_in_html("However, you can book a weekday visit with visiting allowance valid until Monday 17 November.")
+        expect(email).to match_in_html("Jimmy H will have their full visiting allowance (VO) renewed on Saturday 29 November.")
 
-        email.should match_in_html(sample_visit.visit_id)
-        email.should match_in_text(sample_visit.visit_id)
+        expect(email).to match_in_html(sample_visit.visit_id)
+        expect(email).to match_in_text(sample_visit.visit_id)
       end
 
       it "because a visitor is not on the list (canned response)" do
         email = subject.booking_rejection_email(sample_visit, rejection_visitor_not_listed)
-        email.subject.should == "Visit cannot take place: your visit for 7 July 2013 could not be booked"
+        expect(email.subject).to eq("Visit cannot take place: your visit for 7 July 2013 could not be booked")
 
-        email[:from].should == noreply_address
-        email[:reply_to].should == prison_address
-        email[:to].should == visitor_address
+        expect(email[:from]).to eq(noreply_address)
+        expect(email[:reply_to]).to eq(prison_address)
+        expect(email[:to]).to eq(visitor_address)
 
-        email.should match_in_html('http://www.justice.gov.uk/contacts/prison-finder/rochester')
-        email.should match_in_html("01634 803100")
-        email.should_not match_in_html("Jimmy Harris")
-        email.should match_in_html("Your visit cannot take place as details for Joan Harris don’t match our records or they aren’t on the prisoner’s contact list.")
+        expect(email).to match_in_html('http://www.justice.gov.uk/contacts/prison-finder/rochester')
+        expect(email).to match_in_html("01634 803100")
+        expect(email).not_to match_in_html("Jimmy Harris")
+        expect(email).to match_in_html("Your visit cannot take place as details for Joan Harris don’t match our records or they aren’t on the prisoner’s contact list.")
 
-        email.should match_in_html(sample_visit.visit_id)
-        email.should match_in_text(sample_visit.visit_id)
+        expect(email).to match_in_html(sample_visit.visit_id)
+        expect(email).to match_in_text(sample_visit.visit_id)
       end
 
       it "because a visitor is banned" do
         email = subject.booking_rejection_email(sample_visit, rejection_visitor_banned)
-        email.subject.should == "Visit cannot take place: your visit for 7 July 2013 could not be booked"
+        expect(email.subject).to eq("Visit cannot take place: your visit for 7 July 2013 could not be booked")
 
-        email[:from].should == noreply_address
-        email[:reply_to].should == prison_address
-        email[:to].should == visitor_address
+        expect(email[:from]).to eq(noreply_address)
+        expect(email[:reply_to]).to eq(prison_address)
+        expect(email[:to]).to eq(visitor_address)
 
-        email.should match_in_html('http://www.justice.gov.uk/contacts/prison-finder/rochester')
-        email.should match_in_html("01634 803100")
-        email.should_not match_in_html("Jimmy Harris")
-        email.should match_in_html("Joan Harris should have received a letter to say that they’re banned from visiting the prison at the moment.")
+        expect(email).to match_in_html('http://www.justice.gov.uk/contacts/prison-finder/rochester')
+        expect(email).to match_in_html("01634 803100")
+        expect(email).not_to match_in_html("Jimmy Harris")
+        expect(email).to match_in_html("Joan Harris should have received a letter to say that they’re banned from visiting the prison at the moment.")
 
-        email.should match_in_html(sample_visit.visit_id)
-        email.should match_in_text(sample_visit.visit_id)
+        expect(email).to match_in_html(sample_visit.visit_id)
+        expect(email).to match_in_text(sample_visit.visit_id)
       end
     end
 
     context "booking receipt sent" do
       it "sends out an e-mail with a date in the subject" do
         email = subject.booking_receipt_email(sample_visit, "token")
-        email.subject.should == "Not booked yet: we've received your visit request for 7 July 2013"
-        email[:from].should == noreply_address
-        email[:reply_to].should == prison_address
-        email[:to].should == visitor_address
-        email.should_not match_in_html("Jimmy Harris")
-        email.should match_in_html(visit_status_url(id: sample_visit.visit_id))
-        email.should match_in_html("by Friday  5 July to")
+        expect(email.subject).to eq("Not booked yet: we've received your visit request for 7 July 2013")
+        expect(email[:from]).to eq(noreply_address)
+        expect(email[:reply_to]).to eq(prison_address)
+        expect(email[:to]).to eq(visitor_address)
+        expect(email).not_to match_in_html("Jimmy Harris")
+        expect(email).to match_in_html(visit_status_url(id: sample_visit.visit_id))
+        expect(email).to match_in_html("by Friday  5 July to")
 
-        email.should match_in_html(sample_visit.visit_id)
-        email.should match_in_text(sample_visit.visit_id)
+        expect(email).to match_in_html(sample_visit.visit_id)
+        expect(email).to match_in_text(sample_visit.visit_id)
       end
     end
 
     context "instant visit" do
       it "sends out an e-mail confirmation of an instant visit" do
         email = subject.instant_confirmation_email(sample_visit)
-        email.subject.should == "Visit confirmation for 7 July 2013"
-        email[:from].should == noreply_address
-        email[:reply_to].should == prison_address
-        email[:to].should == visitor_address
-        email.should_not match_in_html("Jimmy Harris")
+        expect(email.subject).to eq("Visit confirmation for 7 July 2013")
+        expect(email[:from]).to eq(noreply_address)
+        expect(email[:reply_to]).to eq(prison_address)
+        expect(email[:to]).to eq(visitor_address)
+        expect(email).not_to match_in_html("Jimmy Harris")
 
-        email.should match_in_text(sample_visit.visit_id)
+        expect(email).to match_in_text(sample_visit.visit_id)
       end
     end
 
     it "sends an e-mail to the person who requested a booking" do
-      subject.booking_confirmation_email(sample_visit, confirmation, token)[:to].should == visitor_address
+      expect(subject.booking_confirmation_email(sample_visit, confirmation, token)[:to]).to eq(visitor_address)
     end
   end
 end

@@ -33,19 +33,19 @@ shared_examples "a visitor data manipulator with valid data" do
 
     it "displays a form for editing visitor information" do
       get :edit
-      response.should be_success
+      expect(response).to be_success
     end
 
     it "adds and then removes a visitor from the session" do
       get :edit
       expect {
         post :update, add_visitor_hash
-        response.should redirect_to controller.this_path
+        expect(response).to redirect_to controller.this_path
       }.to change { session[:visit].visitors.size }.by(1)
 
       expect {
         post :update, remove_visitor_hash
-        response.should redirect_to controller.this_path
+        expect(response).to redirect_to controller.this_path
       }.to change { session[:visit].visitors.size }.by(-1)
     end
 
@@ -55,7 +55,7 @@ shared_examples "a visitor data manipulator with valid data" do
 
       expect {
         post :update, remove_visitor_hash
-        response.should redirect_to controller.this_path
+        expect(response).to redirect_to controller.this_path
       }.to change { session[:visit].visitors.size }.by(-1)
     end
   end
@@ -76,7 +76,7 @@ shared_examples "a visitor data manipulator with invalid data" do
       get :edit
       expect {
         post :update, bad_visitor_hash
-        response.should redirect_to controller.this_path
+        expect(response).to redirect_to controller.this_path
       }.not_to change { session[:visit].visitors.first.first_name }
     end
   end
@@ -93,8 +93,8 @@ shared_examples "a visitor data manipulator with invalid data" do
 
     it "rejects the submission if there are too many visitors" do
       post :update, visitor_hash
-      response.should redirect_to(controller.this_path)
-      session[:visit].valid?(:visitors_set).should be_false
+      expect(response).to redirect_to(controller.this_path)
+      expect(session[:visit].valid?(:visitors_set)).to be_false
     end
   end
 
@@ -119,8 +119,8 @@ shared_examples "a visitor data manipulator with invalid data" do
 
     it "rejects the submission if there are too many adult visitors" do
       post :update, visitor_hash
-      response.should redirect_to(controller.this_path)
-      session[:visit].valid?(:visitors_set).should be_false
+      expect(response).to redirect_to(controller.this_path)
+      expect(session[:visit].valid?(:visitors_set)).to be_false
     end
   end
   
@@ -148,7 +148,7 @@ shared_examples "a visitor data manipulator with invalid data" do
 
       it "allows the visitor to proceed" do
         post :update, visitor_hash
-        response.should redirect_to(controller.next_path)
+        expect(response).to redirect_to(controller.next_path)
       end
 
       context "a child applies" do
@@ -158,7 +158,7 @@ shared_examples "a visitor data manipulator with invalid data" do
 
         it "rejects the booking request" do
           post :update, visitor_hash
-          response.should redirect_to(controller.this_path)
+          expect(response).to redirect_to(controller.this_path)
         end
       end
     end
@@ -174,7 +174,7 @@ shared_examples "a visitor data manipulator with invalid data" do
 
       it "allows the visitor to proceed" do
         post :update, visitor_hash
-        response.should redirect_to(controller.next_path)
+        expect(response).to redirect_to(controller.next_path)
       end
 
       context "an adult with three people over seat age threshold" do
@@ -190,7 +190,7 @@ shared_examples "a visitor data manipulator with invalid data" do
 
         it "rejects the booking request" do
           post :update, visitor_hash
-          response.should redirect_to(controller.this_path)
+          expect(response).to redirect_to(controller.this_path)
         end
       end
     end

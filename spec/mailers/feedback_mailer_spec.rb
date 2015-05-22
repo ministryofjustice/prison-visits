@@ -10,6 +10,6 @@ describe FeedbackMailer do
   end
 
   it "responds with a referrer in a subject" do
-    subject.new_feedback(feedback).subject.should == "PVB feedback: ref"
+    expect(subject.new_feedback(feedback).subject).to eq("PVB feedback: ref")
   end
 end

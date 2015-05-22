@@ -6,27 +6,27 @@ describe SendgridHelper do
     context "error handling" do
       [Curl::Err::CurlError, JSON::ParserError].each do |exception_class|
         it "marks the email as valid if there's an error (#{exception_class})" do
-          Curl::Easy.should_receive(:perform).and_raise(exception_class)
+          expect(Curl::Easy).to receive(:perform).and_raise(exception_class)
         end
       end
 
       it "marks the email as valid when authentication fails" do
-        JSON.stub(:parse).and_return({error: 'lol'})
+        allow(JSON).to receive(:parse).and_return({error: 'lol'})
       end
 
       after :each do
-        SendgridHelper.spam_reported?('test@irrelevant.com').should be_false
+        expect(SendgridHelper.spam_reported?('test@irrelevant.com')).to be_false
       end
     end
 
     context "when no error" do
       it "marks an e-mail as valid" do
-        JSON.should_receive(:parse).and_return(['dummy'])
+        expect(JSON).to receive(:parse).and_return(['dummy'])
         SendgridHelper.spam_reported?('test@irrelevant.com')
       end
 
       it "marks an e-mail as invalid" do
-        JSON.should_receive(:parse).and_return([])
+        expect(JSON).to receive(:parse).and_return([])
         SendgridHelper.spam_reported?('test@irrelevant.com')
       end
     end
@@ -36,27 +36,27 @@ describe SendgridHelper do
     context "error handling" do
       [Curl::Err::CurlError, JSON::ParserError].each do |exception_class|
         it "marks the email as valid if there's an error (#{exception_class})" do
-          Curl::Easy.should_receive(:perform).and_raise(exception_class)
+          expect(Curl::Easy).to receive(:perform).and_raise(exception_class)
         end
       end
 
       it "marks the email as valid when authentication fails" do
-        JSON.stub(:parse).and_return({error: 'lol'})
+        allow(JSON).to receive(:parse).and_return({error: 'lol'})
       end
 
       after :each do
-        SendgridHelper.bounced?('test@irrelevant.com').should be_false
+        expect(SendgridHelper.bounced?('test@irrelevant.com')).to be_false
       end
     end
 
     context "when no error" do
       it "marks an e-mail as valid" do
-        JSON.should_receive(:parse).and_return(['dummy'])
+        expect(JSON).to receive(:parse).and_return(['dummy'])
         SendgridHelper.bounced?('test@irrelevant.com')
       end
 
       it "marks an e-mail as invalid" do
-        JSON.should_receive(:parse).and_return([])
+        expect(JSON).to receive(:parse).and_return([])
         SendgridHelper.bounced?('test@irrelevant.com')
       end
     end
@@ -73,29 +73,29 @@ describe SendgridHelper do
 
     context "when it connects" do
       it "will return true" do 
-        Net::SMTP.should_receive(:start)
-        SendgridHelper.smtp_alive?(host, port).should be_true
+        expect(Net::SMTP).to receive(:start)
+        expect(SendgridHelper.smtp_alive?(host, port)).to be_true
       end
     end
 
     context "when it times out" do
       it "will return false" do
-        Net::SMTP.should_receive(:start).and_raise(Net::OpenTimeout)
-        SendgridHelper.smtp_alive?(host, port).should be_false
+        expect(Net::SMTP).to receive(:start).and_raise(Net::OpenTimeout)
+        expect(SendgridHelper.smtp_alive?(host, port)).to be_false
       end
     end
 
     context "when the port is closed" do
       it "will return false" do
-        Net::SMTP.should_receive(:start).and_raise(Errno::ECONNREFUSED)
-        SendgridHelper.smtp_alive?(host, port).should be_false
+        expect(Net::SMTP).to receive(:start).and_raise(Errno::ECONNREFUSED)
+        expect(SendgridHelper.smtp_alive?(host, port)).to be_false
       end
     end
 
     context "when the hostname cannot be resolved" do
       it "will return false" do
-        Net::SMTP.should_receive(:start).and_raise(SocketError)
-        SendgridHelper.smtp_alive?(host, port).should be_false
+        expect(Net::SMTP).to receive(:start).and_raise(SocketError)
+        expect(SendgridHelper.smtp_alive?(host, port)).to be_false
       end
     end
   end

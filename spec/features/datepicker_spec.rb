@@ -7,10 +7,10 @@ feature "visitor selects a date" do
     context "#{flow} flow" do
 
       before :each do
-        VisitController.any_instance.stub(:metrics_logger).and_return(MockMetricsLogger.new)
-        EmailValidator.any_instance.stub(:validate_dns_records)
-        EmailValidator.any_instance.stub(:validate_spam_reporter)
-        EmailValidator.any_instance.stub(:validate_bounced)
+        allow_any_instance_of(VisitController).to receive(:metrics_logger).and_return(MockMetricsLogger.new)
+        allow_any_instance_of(EmailValidator).to receive(:validate_dns_records)
+        allow_any_instance_of(EmailValidator).to receive(:validate_spam_reporter)
+        allow_any_instance_of(EmailValidator).to receive(:validate_bounced)
         visit '/prisoner-details'
         enter_prisoner_information(flow)
         enter_visitor_information(flow)
@@ -25,16 +25,16 @@ feature "visitor selects a date" do
           # row of the calendar.
           if ![0, 7].include?(yesterday.wday)
             find(:css, yesterday.strftime("a.BookingCalendar-dateLink[data-date='%Y-%m-%d']")).click
-            page.should have_content("It is not possible to book a visit in the past.")
+            expect(page).to have_content("It is not possible to book a visit in the past.")
           end
 
           tomorrow = Time.now + 1.day
           find(:css, tomorrow.strftime("a.BookingCalendar-dateLink[data-date='%Y-%m-%d']")).click
-          page.should have_content('You can only book a visit 3 working days in advance.')
+          expect(page).to have_content('You can only book a visit 3 working days in advance.')
 
           a_month_from_now = Time.now + 29.days
           find(:css, a_month_from_now.strftime("a.BookingCalendar-dateLink[data-date='%Y-%m-%d']")).click
-          page.should have_content('You can only book a visit in the next')
+          expect(page).to have_content('You can only book a visit in the next')
         end
       end
 
@@ -51,7 +51,7 @@ feature "visitor selects a date" do
           end
 
           within(:css, _when.strftime("#date-%Y-%m-%d.is-active")) do
-            page.should have_content(_when.strftime("%A %e %B"))
+            expect(page).to have_content(_when.strftime("%A %e %B"))
           end
           
           # For some reason, check() can't find the checkbox.
@@ -64,11 +64,11 @@ feature "visitor selects a date" do
           end
 
           click_button 'Continue'
-          page.should have_content('Check your request')
+          expect(page).to have_content('Check your request')
           expect(page).to have_tag('.AgeLabel-label', :text => 'Over 18')
 
           click_button 'Send request'
-          page.should have_content('Your request is being processed')
+          expect(page).to have_content('Your request is being processed')
         end
       end
     end

@@ -2,6 +2,6 @@ require 'spec_helper'
 
 describe Time do
   it "sets the time zone to London" do
-    Time.zone.name.should == 'London'
+    expect(Time.zone.name).to eq('London')
   end
 end

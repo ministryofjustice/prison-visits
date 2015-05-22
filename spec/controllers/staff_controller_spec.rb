@@ -3,14 +3,14 @@ require 'spec_helper'
 describe StaffController do
   context "IP & key restrictions" do
     it "are enabled" do
-      controller.should_receive(:reject_untrusted_ips!)
+      expect(controller).to receive(:reject_untrusted_ips!)
       get :index
     end
   end
 
   context "when accessing the site from the right IP address" do
     before :each do
-      controller.stub(:reject_untrusted_ips!)
+      allow(controller).to receive(:reject_untrusted_ips!)
     end
 
     context "for each staff page" do
@@ -39,7 +39,7 @@ describe StaffController do
       end
 
       after :each do
-        response.should be_success
+        expect(response).to be_success
       end
     end
   end

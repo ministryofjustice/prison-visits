@@ -16,73 +16,73 @@ describe VisitHelper do
     end
 
     it "provides a hash of slots by day" do
-      helper.visiting_slots.should == {
+      expect(helper.visiting_slots).to eq({
           :mon => [["1400", "1600"]],
           :sat => [["0930", "1130"], ["1400", "1600"]],
           :sun => [["1400", "1600"]],
           :thu => [["1400", "1600"]],
           :tue => [["1400", "1600"]],
           :wed => [["1400", "1600"]]
-        }
+        })
     end
 
     it "provides current slots" do
-      helper.current_slots.should == ["2014-05-12-1045-1345"]
+      expect(helper.current_slots).to eq(["2014-05-12-1045-1345"])
     end
 
     it "provides the phone number" do
-      helper.prison_phone.should == "01634 803100"
+      expect(helper.prison_phone).to eq("01634 803100")
     end
 
     it "provides the email address" do
-      helper.prison_email.should == "pvb.rochester@maildrop.dsd.io"
+      expect(helper.prison_email).to eq("pvb.rochester@maildrop.dsd.io")
     end
 
     it "provides the email address" do
-      helper.prison_email_link.should == '<a href="mailto:pvb.rochester@maildrop.dsd.io">pvb.rochester@maildrop.dsd.io</a>'
+      expect(helper.prison_email_link).to eq('<a href="mailto:pvb.rochester@maildrop.dsd.io">pvb.rochester@maildrop.dsd.io</a>')
     end
 
     it "provides the postcode" do
-      helper.prison_postcode.should == "ME1 3QS"
+      expect(helper.prison_postcode).to eq("ME1 3QS")
     end
 
     it "provides the address" do
-      helper.prison_address.should start_with "1 Fort Road"
+      expect(helper.prison_address).to start_with "1 Fort Road"
     end
 
     it "provides the URL" do
-      helper.prison_url(visit).should include "www.justice.gov.uk/contacts/prison-finder/rochester"
+      expect(helper.prison_url(visit)).to include "www.justice.gov.uk/contacts/prison-finder/rochester"
     end
 
     it "provides the link" do
-      helper.prison_link(visit).should == '<a href="http://www.justice.gov.uk/contacts/prison-finder/rochester" rel="external">Rochester prison</a>'
+      expect(helper.prison_link(visit)).to eq('<a href="http://www.justice.gov.uk/contacts/prison-finder/rochester" rel="external">Rochester prison</a>')
     end
 
     it "provides the slot anomalies" do
-      helper.prison_slot_anomalies.should == { Date.parse("2014-08-14") => ["0700-0900"] }
+      expect(helper.prison_slot_anomalies).to eq({ Date.parse("2014-08-14") => ["0700-0900"] })
     end
 
     it "informs when slot anomalies exist" do
       helper.has_anomalies?(Date.today).is_a? TrueClass
-      helper.has_anomalies?(Date.parse("2014-08-14")).should == true
+      expect(helper.has_anomalies?(Date.parse("2014-08-14"))).to eq(true)
     end
 
     it "informs when slot anomalies exist for a particular day" do
-      helper.slots_for_day(Date.parse("2014-08-13")).should == [["1400", "1600"]]
+      expect(helper.slots_for_day(Date.parse("2014-08-13"))).to eq([["1400", "1600"]])
     end
 
     it "provides all the slots for a particular day" do
-      helper.anomalies_for_day(Date.parse("2014-08-14")).should == [["0700", "0900"]]
+      expect(helper.anomalies_for_day(Date.parse("2014-08-14"))).to eq([["0700", "0900"]])
     end
 
     it "provides a formatted date for when a response may be sent out" do
-      helper.when_to_expect_reply(Date.parse("2014-10-03")).should == "Monday  6 October"
+      expect(helper.when_to_expect_reply(Date.parse("2014-10-03"))).to eq("Monday  6 October")
     end
   end
 
   it "should provide the prison name" do
-    helper.prison_names.class.should == Array
-    helper.prison_names.first.should == "Acklington"
+    expect(helper.prison_names.class).to eq(Array)
+    expect(helper.prison_names.first).to eq("Acklington")
   end
 
   describe 'prison_specific_id_requirements' do
@@ -99,51 +99,51 @@ describe VisitHelper do
   end
 
   it "provides the date of Monday in the current week" do
-    helper.weeks_start.should == Date.today.beginning_of_week
+    expect(helper.weeks_start).to eq(Date.today.beginning_of_week)
   end
 
   it "provides the date the Sunday at the end of the bookable range" do
-    helper.weeks_end.should == (Date.today + 28.days).end_of_month.end_of_week
+    expect(helper.weeks_end).to eq((Date.today + 28.days).end_of_month.end_of_week)
   end
 
   it "provides the booking range grouped by the Monday of each week" do
     range = Date.today.beginning_of_week..(Date.today + 28.days).end_of_month.end_of_week
     grouped = range.group_by{|date| date.beginning_of_week}
-    helper.weeks.should == grouped
+    expect(helper.weeks).to eq(grouped)
   end
 
   it "confirms when a date is today" do
-    helper.tag_with_today?(Date.today).should == true
-    helper.tag_with_today?(Date.tomorrow).should == false
+    expect(helper.tag_with_today?(Date.today)).to eq(true)
+    expect(helper.tag_with_today?(Date.tomorrow)).to eq(false)
   end
 
   it "confirms when a date is the first day of a month" do
-    helper.tag_with_month?(Date.parse('2014-01-01')).should == true
-    helper.tag_with_month?(Date.parse('2014-01-20')).should == false
+    expect(helper.tag_with_month?(Date.parse('2014-01-01'))).to eq(true)
+    expect(helper.tag_with_month?(Date.parse('2014-01-20'))).to eq(false)
   end
 
   it "provides a capitalised initial of the second part of a string divided by the default token" do
-    helper.last_initial('John;Smith').should == 'S.'
+    expect(helper.last_initial('John;Smith')).to eq('S.')
   end
 
   it "provides a capitalised initial of the second part of a string divided by a specified token" do
-    helper.last_initial('Richard Dean', ' ').should == 'D.'
+    expect(helper.last_initial('Richard Dean', ' ')).to eq('D.')
   end
 
   it "provides the first part of a string divided by the default token" do
-    helper.first_name('John;Smith').should == 'John'
+    expect(helper.first_name('John;Smith')).to eq('John')
   end
 
   it "provides the first part of a string divided by a specified token" do
-    helper.first_name('John Smith', ' ').should == 'John'
+    expect(helper.first_name('John Smith', ' ')).to eq('John')
   end
 
   it "provides the second part of a string divided by the default token" do
-    helper.last_name('John;Smith').should == 'Smith'
+    expect(helper.last_name('John;Smith')).to eq('Smith')
   end
 
   it "provides the second part of a string divided by a specified token" do
-    helper.last_name('John Smith', ' ').should == 'Smith'
+    expect(helper.last_name('John Smith', ' ')).to eq('Smith')
   end
 
   it "provides a list of first & last names divided by a token from visitor objects" do
@@ -151,6 +151,6 @@ describe VisitHelper do
       Visitor.new(first_name: 'John', last_name: 'Smith'),
       Visitor.new(first_name: 'Richard', last_name: 'Dean')
     ]
-    helper.visitor_names(visitors).should == ['John;Smith', 'Richard;Dean']
+    expect(helper.visitor_names(visitors)).to eq(['John;Smith', 'Richard;Dean'])
   end
 end

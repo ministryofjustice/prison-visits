@@ -3,14 +3,14 @@ require 'spec_helper'
 describe MetricsController do
   context "IP & key restrictions" do
     it "are enabled" do
-      controller.should_receive(:reject_untrusted_ips_and_without_key!)
+      expect(controller).to receive(:reject_untrusted_ips_and_without_key!)
       get :index
     end
   end
 
   context "when accessing the site from the right IP address" do
     before :each do
-      controller.stub(:reject_untrusted_ips_and_without_key!)
+      allow(controller).to receive(:reject_untrusted_ips_and_without_key!)
     end
 
     context "for all prisons" do
@@ -19,12 +19,12 @@ describe MetricsController do
       end
 
       it "renders a csv view" do
-        CSVFormatter.any_instance.should_receive(:generate).once
+        expect_any_instance_of(CSVFormatter).to receive(:generate).once
         get :index, format: :csv
       end
 
       after :each do
-        response.should be_success
+        expect(response).to be_success
       end
     end
   end

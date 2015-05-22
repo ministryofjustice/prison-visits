@@ -5,24 +5,24 @@ shared_examples "a visitor" do
       v.date_of_birth = Date.parse "1986-04-20"
 
       v.first_name = "<Jeremy"
-      v.should_not be_valid
+      expect(v).not_to be_valid
 
       v.first_name = "Jeremy>"
-      v.should_not be_valid
+      expect(v).not_to be_valid
 
       v.first_name = "Manfred"
-      v.should be_valid
+      expect(v).to be_valid
     end
   end
 
   it "displays a full_name" do
-    visitor.full_name.should == 'Otto Fibonacci'
+    expect(visitor.full_name).to eq('Otto Fibonacci')
   end
 
   it "returns the age of the visitor" do
-    visitor.age.should == 30
+    expect(visitor.age).to eq(30)
     visitor.date_of_birth = nil
-    visitor.age.should be_nil
+    expect(visitor.age).to be_nil
   end
 
   (1..5).each do |i|
@@ -31,16 +31,16 @@ shared_examples "a visitor" do
         v.index = i
         
         v.first_name = 'Jimmy'
-        v.should_not be_valid
+        expect(v).not_to be_valid
 
         v.last_name = 'Harris'
-        v.should_not be_valid
+        expect(v).not_to be_valid
         
         v.date_of_birth = Date.parse "1986-04-20"
-        v.should be_valid
+        expect(v).to be_valid
         
         v.email = 'anything'
-        v.should_not be_valid
+        expect(v).not_to be_valid
       end
     end
   end

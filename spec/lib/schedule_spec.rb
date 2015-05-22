@@ -16,15 +16,15 @@ describe Schedule do
     
     it "returns days within 28 days, excluding the lead days" do
       subject.dates(start_date).each do |date|
-        date.should >= start_date + 3
-        date.should <= start_date + 28
+        expect(date).to be >= start_date + 3
+        expect(date).to be <= start_date + 28
       end
     end
 
     it "rejects unbookable dates" do
       subject.dates(start_date).each do |date|
-        date.should_not == Date.parse('2014-12-25')
-        date.should_not == Date.parse('2014-12-26')
+        expect(date).not_to eq(Date.parse('2014-12-25'))
+        expect(date).not_to eq(Date.parse('2014-12-26'))
       end
     end
 
@@ -45,25 +45,25 @@ describe Schedule do
       # 31
 
       start_date = Date.new(2014, 8, 18) # Monday
-      subject.dates(start_date).first.should == start_date + 4 # Friday
+      expect(subject.dates(start_date).first).to eq(start_date + 4) # Friday
 
       start_date = Date.new(2014, 8, 19) # Tuesday
-      subject.dates(start_date).first.should == start_date + 4 # Saturday
+      expect(subject.dates(start_date).first).to eq(start_date + 4) # Saturday
 
       start_date = Date.new(2014, 8, 20) # Wednesday
-      subject.dates(start_date).first.should == start_date + 7 # Wednesday
+      expect(subject.dates(start_date).first).to eq(start_date + 7) # Wednesday
 
       start_date = Date.new(2014, 8, 21) # Thursday
-      subject.dates(start_date).first.should == start_date + 7 # Thursday
+      expect(subject.dates(start_date).first).to eq(start_date + 7) # Thursday
 
       start_date = Date.new(2014, 8, 22) # Friday
-      subject.dates(start_date).first.should == start_date + 7 # Friday
+      expect(subject.dates(start_date).first).to eq(start_date + 7) # Friday
 
       start_date = Date.new(2014, 8, 23) # Saturday
-      subject.dates(start_date).first.should == start_date + 6 # Friday
+      expect(subject.dates(start_date).first).to eq(start_date + 6) # Friday
 
       start_date = Date.new(2014, 8, 24) # Sunday
-      subject.dates(start_date).first.should == start_date + 5 # Friday
+      expect(subject.dates(start_date).first).to eq(start_date + 5) # Friday
     end
 
     it "assumes bookings are not processed on bank holidays" do
@@ -76,7 +76,7 @@ describe Schedule do
       # 26 27 28 29 30
 
       start_date = Date.new(2015, 4, 2)
-      subject.dates(start_date).first.should == start_date + 8
+      expect(subject.dates(start_date).first).to eq(start_date + 8)
     end
   end
 
@@ -87,7 +87,7 @@ describe Schedule do
 
     it "rejects days without slots" do
       subject.dates(start_date).each do |date|
-        date.wday.should_not == 5
+        expect(date.wday).not_to eq(5)
       end
     end
   end
@@ -99,7 +99,7 @@ describe Schedule do
 
     it "does indeed work on weekends" do
       (Date.new(2015, 6, 18)..Date.new(2015, 6, 24)).each do |start_date|
-        subject.dates(start_date).first.should == start_date + 4
+        expect(subject.dates(start_date).first).to eq(start_date + 4)
       end
     end
   end
@@ -114,7 +114,7 @@ describe Schedule do
         date.wday == 3
       end
       prison[:slot_anomalies] = {anomalous_date => ['0945-1300']}
-      subject.dates(Date.new(2014, 1, 1)).to_a.should include anomalous_date
+      expect(subject.dates(Date.new(2014, 1, 1)).to_a).to include anomalous_date
     end
   end
 
@@ -134,7 +134,7 @@ describe Schedule do
     it "allows earlier bookings" do
       prison[:lead_days] = 0
 
-      subject.dates(start_date).first.should == start_date + 2
+      expect(subject.dates(start_date).first).to eq(start_date + 2)
     end
 
     context "which works on weekends" do
@@ -145,7 +145,7 @@ describe Schedule do
       it "allows earlier bookings" do
         prison[:lead_days] = 0
 
-        subject.dates(start_date).first.should == start_date + 1
+        expect(subject.dates(start_date).first).to eq(start_date + 1)
       end
     end
   end
@@ -170,33 +170,33 @@ describe Schedule do
 
       # Monday
       start_date = Date.new(2014, 12, 1)
-      subject.except_lead_days(start_date, date_range).first.should == start_date + 1
+      expect(subject.except_lead_days(start_date, date_range).first).to eq(start_date + 1)
 
       # Tuesday
       start_date = Date.new(2014, 12, 2)
-      subject.except_lead_days(start_date, date_range).first.should == start_date + 1
+      expect(subject.except_lead_days(start_date, date_range).first).to eq(start_date + 1)
 
       # Wednesday
       start_date = Date.new(2014, 12, 3)
-      subject.except_lead_days(start_date, date_range).first.should == start_date + 1
+      expect(subject.except_lead_days(start_date, date_range).first).to eq(start_date + 1)
 
       # Thursday
       start_date = Date.new(2014, 12, 4)
-      subject.except_lead_days(start_date, date_range).first.should == start_date + 1
+      expect(subject.except_lead_days(start_date, date_range).first).to eq(start_date + 1)
 
       # Friday
       start_date = Date.new(2014, 12, 5)
-      subject.except_lead_days(start_date, date_range).first.should == start_date + 3
+      expect(subject.except_lead_days(start_date, date_range).first).to eq(start_date + 3)
 
       # Saturday
       start_date = Date.new(2014, 12, 6)
-      subject.except_lead_days(start_date, date_range).first.should == start_date + 2
+      expect(subject.except_lead_days(start_date, date_range).first).to eq(start_date + 2)
 
       # Sunday
       start_date = Date.new(2014, 12, 7)
-      subject.except_lead_days(start_date, date_range).first.should == start_date + 1
+      expect(subject.except_lead_days(start_date, date_range).first).to eq(start_date + 1)
 
-      subject.dates(start_date = Date.new(2014, 12, 4)).first.should == start_date + 1
+      expect(subject.dates(start_date = Date.new(2014, 12, 4)).first).to eq(start_date + 1)
     end
   end
 
@@ -206,7 +206,7 @@ describe Schedule do
     end
 
     it "should return a list of dates" do
-      subject.dates(start_date = Date.new(2014, 12, 4)).first.should be_nil
+      expect(subject.dates(start_date = Date.new(2014, 12, 4)).first).to be_nil
     end
   end
 
@@ -217,8 +217,8 @@ describe Schedule do
 
     it "returns days within 14 days, excluding the lead days" do
       subject.dates(start_date).each do |date|
-        date.should >= start_date + 3
-        date.should <= start_date + 14
+        expect(date).to be >= start_date + 3
+        expect(date).to be <= start_date + 14
       end
     end
   end

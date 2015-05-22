@@ -16,9 +16,9 @@ describe AgeValidator do
 
     it "considers an 18-year old person to be an adult" do
       subject.validate(adult)
-      adult.errors[:date_of_birth].should be_empty
+      expect(adult.errors[:date_of_birth]).to be_empty
       subject.validate(young_adult)
-      young_adult.errors[:date_of_birth].should_not be_empty
+      expect(young_adult.errors[:date_of_birth]).not_to be_empty
     end
   end
 
@@ -29,9 +29,9 @@ describe AgeValidator do
 
     it "considers a 16-year old to be an adult" do
       subject.validate(adult)
-      adult.errors[:date_of_birth].should be_empty
+      expect(adult.errors[:date_of_birth]).to be_empty
       subject.validate(young_adult)
-      young_adult.errors[:date_of_birth].should be_empty
+      expect(young_adult.errors[:date_of_birth]).to be_empty
     end
   end
 end

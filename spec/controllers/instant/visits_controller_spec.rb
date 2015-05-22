@@ -19,7 +19,7 @@ describe Instant::VisitsController do
     before :each do
       Timecop.freeze(Time.local(2013, 12, 1, 12, 0))
       ActionMailer::Base.deliveries.clear
-      subject.stub(:metrics_logger).and_return(mock_metrics_logger)
+      allow(subject).to receive(:metrics_logger).and_return(mock_metrics_logger)
 
       session[:visit] = Visit.new.tap do |v|
         v.visit_id = SecureRandom.hex
@@ -49,27 +49,27 @@ describe Instant::VisitsController do
 
     it "displays a summary" do
       get :edit
-      response.should be_success
+      expect(response).to be_success
     end
 
     it "sends out emails" do
-      mock_metrics_logger.should_receive(:record_instant_visit).with(session[:visit]) 
+      expect(mock_metrics_logger).to receive(:record_instant_visit).with(session[:visit])
       state = controller.encryptor.encrypt_and_sign(session[:visit])
-      controller.encryptor.stub(:encrypt_and_sign).and_return(state)
+      allow(controller.encryptor).to receive(:encrypt_and_sign).and_return(state)
 
-      VisitorMailer.any_instance.should_receive(:sender).and_return('test@example.com')
+      expect_any_instance_of(VisitorMailer).to receive(:sender).and_return('test@example.com')
 
       post :update
-      response.should redirect_to(instant_show_visit_path(state: state))
+      expect(response).to redirect_to(instant_show_visit_path(state: state))
 
-      ActionMailer::Base.deliveries.map(&:subject).should == ['Visit confirmation for 6 December 2013']
+      expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(['Visit confirmation for 6 December 2013'])
     end
 
     it "displays the final page" do
       state = controller.encryptor.encrypt_and_sign(session[:visit])
       session.clear
       get :show, state: state
-      response.should be_success
+      expect(response).to be_success
     end
   end
 end

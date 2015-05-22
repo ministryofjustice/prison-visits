@@ -15,36 +15,36 @@ describe Visit do
 
   it "restricts the number of visitors" do
     sample_visit.visitors = []
-    sample_visit.valid?(:visitors_set).should be_false
+    expect(sample_visit.valid?(:visitors_set)).to be_false
     
     sample_visit.visitors = [child_visitor] * 7
-    sample_visit.valid?(:visitors_set).should be_false
+    expect(sample_visit.valid?(:visitors_set)).to be_false
     
     sample_visit.visitors = [adult_visitor] * 1 + [child_visitor] * 5
-    sample_visit.valid?(:visitors_set).should be_true
+    expect(sample_visit.valid?(:visitors_set)).to be_true
   end
 
   it "restricts the number of slots" do
     sample_visit.slots = []
     sample_visit.visitors = [adult_visitor]
-    sample_visit.valid?(:date_and_time).should be_false
+    expect(sample_visit.valid?(:date_and_time)).to be_false
 
     (1..3).each do |t|
       sample_visit.slots = [Slot.new] * t
-      sample_visit.valid?(:date_and_time).should be_true
+      expect(sample_visit.valid?(:date_and_time)).to be_true
     end
 
     sample_visit.slots = [Slot.new] * 4
-    sample_visit.valid?(:date_and_time).should be_false
+    expect(sample_visit.valid?(:date_and_time)).to be_false
   end
 
   it "ensures that at most three adults can book a visit" do
     (1..3).each do |n|
       sample_visit.visitors = [double(age: 19)] * n
-      sample_visit.valid?(:visitors_set).should be_true
+      expect(sample_visit.valid?(:visitors_set)).to be_true
     end
     sample_visit.visitors = [double(age: 19)] * 4
-    sample_visit.valid?(:visitors_set).should be_false
+    expect(sample_visit.valid?(:visitors_set)).to be_false
   end
 
   context "given a prison which treats a child as an adult for seating purposes" do
@@ -57,11 +57,11 @@ describe Visit do
        double(age: 10),
        double(age: 9)].each do |visitor|
         sample_visit.visitors << visitor
-        sample_visit.valid?(:visitors_set).should be_true
+        expect(sample_visit.valid?(:visitors_set)).to be_true
       end
 
       sample_visit.visitors << double(age: 10)
-      sample_visit.valid?(:visitors_set).should be_false
+      expect(sample_visit.valid?(:visitors_set)).to be_false
     end
   end
 
@@ -74,7 +74,7 @@ describe Visit do
   end
 
   it "knows if a visitor is an adult or not" do
-    sample_visit.adult?(adult_visitor).should be_true
-    sample_visit.adult?(child_visitor).should be_false
+    expect(sample_visit.adult?(adult_visitor)).to be_true
+    expect(sample_visit.adult?(child_visitor)).to be_false
   end
 end

@@ -7,6 +7,6 @@ shared_examples "a service is broken" do |service|
   it "reports #{service} as inaccessible" do
     get :healthcheck
     parsed_body = JSON.parse(response.body)
-    parsed_body['checks'][service].should be_false
+    expect(parsed_body['checks'][service]).to be_false
   end
 end

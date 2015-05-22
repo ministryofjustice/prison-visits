@@ -7,7 +7,7 @@ describe Instant::VisitorsDetailsController do
     session[:visit] = PrisonerDetailsController.new.new_session
     controller.visit.prisoner.prison_name = 'Cardiff'
     cookies['cookies-enabled'] = 1
-    EmailValidator.any_instance.stub(:validate)
+    allow_any_instance_of(EmailValidator).to receive(:validate)
   end
 
   it_behaves_like "a browser without a session present"
@@ -17,8 +17,8 @@ describe Instant::VisitorsDetailsController do
   it_behaves_like "a killswitch-enabled controller"
 
   it "sets up the flow" do
-    controller.this_path.should == instant_edit_visitors_details_path
-    controller.next_path.should == instant_edit_slots_path
+    expect(controller.this_path).to eq(instant_edit_visitors_details_path)
+    expect(controller.next_path).to eq(instant_edit_slots_path)
   end
 
   let :single_visitor_hash do
@@ -53,7 +53,7 @@ describe Instant::VisitorsDetailsController do
       get :edit
       expect {
         post :update, visitor_hash
-        response.should redirect_to instant_edit_slots_path
+        expect(response).to redirect_to instant_edit_slots_path
       }.to change { session[:visit].visitors[0].first_name }
     end
   end
@@ -77,7 +77,7 @@ describe Instant::VisitorsDetailsController do
 
     it "rejects visitor information" do
       post :update, visitor_hash
-      response.should redirect_to(instant_edit_visitors_details_path)
+      expect(response).to redirect_to(instant_edit_visitors_details_path)
     end
   end
 end
