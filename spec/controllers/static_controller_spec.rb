@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe StaticController do
+RSpec.describe StaticController, type: :controller do
   context "CSV" do
     before :each do
       get :prison_emails, format: :csv

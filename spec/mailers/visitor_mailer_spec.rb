@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
-require "spec_helper"
+require 'rails_helper'
 
-describe VisitorMailer do
+RSpec.describe VisitorMailer do
   before :each do
     ActionMailer::Base.deliveries.clear
     allow_any_instance_of(VisitorMailer).to receive(:smtp_domain).and_return('example.com')

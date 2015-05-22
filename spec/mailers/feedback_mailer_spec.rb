@@ -1,6 +1,6 @@
-require "spec_helper"
+require 'rails_helper'
 
-describe FeedbackMailer do
+RSpec.describe FeedbackMailer do
   let :subject do
     FeedbackMailer
   end

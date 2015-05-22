@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Instant::SlotsController do
+RSpec.describe Instant::SlotsController, type: :controller do
   render_views
 
   before :each do

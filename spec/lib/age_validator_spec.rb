@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe AgeValidator do
+RSpec.describe AgeValidator do
   let :adult do
     Visitor.new(date_of_birth: (Date.today - 18.years))
   end

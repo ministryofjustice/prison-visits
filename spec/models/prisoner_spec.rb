@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Prisoner do
+RSpec.describe Prisoner do
   let :prisoner do
     Prisoner.new.tap do |p|
       p.first_name = 'Jimmy'

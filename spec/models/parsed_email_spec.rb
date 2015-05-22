@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
-require 'spec_helper'
+require 'rails_helper'
 
-describe ParsedEmail do
+RSpec.describe ParsedEmail do
   context "given valid data" do
     let :data do
       {

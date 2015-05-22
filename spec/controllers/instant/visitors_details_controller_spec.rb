@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Instant::VisitorsDetailsController do
+RSpec.describe Instant::VisitorsDetailsController, type: :controller do
   render_views
 
   before :each do

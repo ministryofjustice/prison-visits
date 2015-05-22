@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe MetricsHelper do
+RSpec.describe MetricsHelper do
   it "displays zero" do
     expect(helper.display_interval(0)).to eq("0s")
   end

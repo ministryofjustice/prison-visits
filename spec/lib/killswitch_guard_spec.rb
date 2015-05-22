@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe KillswitchGuard, type: :controller do
+RSpec.describe KillswitchGuard, type: :controller do
   controller do
     include KillswitchGuard
 

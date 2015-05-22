@@ -1,7 +1,7 @@
-require 'spec_helper'
+require 'rails_helper'
 require 'zendesk_helper'
 
-describe ZendeskHelper do
+RSpec.describe ZendeskHelper do
   let :subject do
     ZendeskHelper
   end

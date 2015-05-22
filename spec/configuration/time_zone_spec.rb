@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Time do
+RSpec.describe Time do
   it "sets the time zone to London" do
     expect(Time.zone.name).to eq('London')
   end

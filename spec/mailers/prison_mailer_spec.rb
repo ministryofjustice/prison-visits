@@ -1,6 +1,6 @@
-require "spec_helper"
+require 'rails_helper'
 
-describe PrisonMailer do
+RSpec.describe PrisonMailer do
   before :each do
     ActionMailer::Base.deliveries.clear
     allow_any_instance_of(PrisonMailer).to receive(:smtp_domain).and_return('example.com')

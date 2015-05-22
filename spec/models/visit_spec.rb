@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Visit do
+RSpec.describe Visit do
   let :adult_visitor do
     Visitor.new(date_of_birth: (Date.today - 19.years))
   end

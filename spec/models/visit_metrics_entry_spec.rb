@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe VisitMetricsEntry do
+RSpec.describe VisitMetricsEntry do
   it "requires mandatory fields" do
     expect(subject).not_to be_valid
 

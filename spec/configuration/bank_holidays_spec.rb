@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe 'Bank holidays' do
+RSpec.describe 'Bank holidays' do
   describe 'bundled database' do
     subject do
       JSON.parse(File.read('config/bank-holidays.json'))['england-and-wales']['events']

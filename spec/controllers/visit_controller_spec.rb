@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe VisitController do
+RSpec.describe VisitController, type: :controller do
   render_views
 
   before :each do

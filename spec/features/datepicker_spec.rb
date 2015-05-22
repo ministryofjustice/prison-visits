@@ -1,6 +1,6 @@
 require 'browserstack_helper'
 
-feature "visitor selects a date" do
+RSpec.feature "visitor selects a date" do
   include_examples "feature helper"
 
   [:deferred, :instant].each do |flow|

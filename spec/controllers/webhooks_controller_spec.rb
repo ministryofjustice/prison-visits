@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe WebhooksController do
+RSpec.describe WebhooksController, type: :controller do
   let :charsets do
     { from: 'utf-8', to: 'utf-8', subject: 'utf-8', text: 'utf-8' }.to_json
   end

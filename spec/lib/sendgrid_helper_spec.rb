@@ -1,7 +1,7 @@
-require 'spec_helper'
+require 'rails_helper'
 require 'sendgrid_helper'
 
-describe SendgridHelper do
+RSpec.describe SendgridHelper do
   context "spam reports" do
     context "error handling" do
       [Curl::Err::CurlError, JSON::ParserError].each do |exception_class|

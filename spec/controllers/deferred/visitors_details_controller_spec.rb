@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Deferred::VisitorsDetailsController do
+RSpec.describe Deferred::VisitorsDetailsController, type: :controller do
   render_views
 
   before :each do

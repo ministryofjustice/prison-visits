@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe VisitHelper do
+RSpec.describe VisitHelper do
   context "for the current prison" do
 
     let :slot do

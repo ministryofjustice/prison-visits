@@ -1,7 +1,7 @@
-require 'spec_helper'
+require 'rails_helper'
 require 'name_validator'
 
-describe NameValidator do
+RSpec.describe NameValidator do
   subject do
     NameValidator.new(attributes: [:first_name])
   end

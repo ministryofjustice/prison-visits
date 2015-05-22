@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Feedback do
+RSpec.describe Feedback do
   before :each do
     allow_any_instance_of(EmailValidator).to receive(:validate_address_domain).and_return(false)
     allow_any_instance_of(EmailValidator).to receive(:validate_spam_reporter).and_return(false)

@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe "Prison data" do
+RSpec.describe "Prison data" do
   let :production_prison_data do
     YAML.load_file(File.join(Rails.root, "config", "prison_data_production.yml"))
   end

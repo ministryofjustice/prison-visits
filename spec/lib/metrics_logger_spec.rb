@@ -1,7 +1,7 @@
-require 'spec_helper'
+require 'rails_helper'
 require 'metrics_logger'
 
-describe MetricsLogger do
+RSpec.describe MetricsLogger do
   before :each do
     Timecop.freeze(@time = Time.utc(2013, 12, 12, 0, 0, 0))
   end

@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe GeckoboardController do
+RSpec.describe GeckoboardController, type: :controller do
   context "IP & key restrictions" do
     it "are enabled" do
       expect(controller).to receive(:reject_untrusted_ips_and_without_key!)

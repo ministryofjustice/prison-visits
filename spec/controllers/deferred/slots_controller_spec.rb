@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Deferred::SlotsController do
+RSpec.describe Deferred::SlotsController, type: :controller do
   render_views
 
   before :each do

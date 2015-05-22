@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-require 'spec_helper'
+require 'rails_helper'
 require 'selenium/webdriver'
 
 ENV['SMTP_SENDER'] = 'test@example.com'

@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe PrisonerDetailsController do
+RSpec.describe PrisonerDetailsController, type: :controller do
   render_views
 
   let(:prisoner_hash) do

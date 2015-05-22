@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe ApplicationHelper do
+RSpec.describe ApplicationHelper do
   it "formats a date from a string" do
     expect(helper.format_date('2014-07-24')).to eq("24 July 2014")
   end

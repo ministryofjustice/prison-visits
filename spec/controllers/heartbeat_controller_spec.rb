@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe HeartbeatController do
+RSpec.describe HeartbeatController, type: :controller do
   render_views
 
   context "with key restrictions" do

@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Deferred::ConfirmationsController do
+RSpec.describe Deferred::ConfirmationsController, type: :controller do
   render_views
 
   let :mock_metrics_logger do

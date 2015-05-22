@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe PrisonVisits2::Application.config do
+RSpec.describe PrisonVisits2::Application.config do
   it "sets a cookie with the right parameters" do
     expect(subject.session_store).to eq(ActionDispatch::Session::CookieStore)
     # secure: false -> true gets set by the initializer.

@@ -1,7 +1,7 @@
-require 'spec_helper'
+require 'rails_helper'
 require 'email_validator'
 
-describe EmailValidator do
+RSpec.describe EmailValidator do
   let :subject do
     EmailValidator.new
   end

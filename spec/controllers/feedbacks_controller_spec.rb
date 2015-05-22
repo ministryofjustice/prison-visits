@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe FeedbacksController do
+RSpec.describe FeedbacksController, type: :controller do
   before :each do
     ActionMailer::Base.deliveries.clear
     allow_any_instance_of(EmailValidator).to receive(:validate)

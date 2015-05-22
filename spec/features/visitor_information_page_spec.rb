@@ -1,6 +1,6 @@
 require 'browserstack_helper'
 
-feature "visitor enters visitor information" do
+RSpec.feature "visitor enters visitor information" do
   include_examples "feature helper"
 
   [:deferred, :instant].each do |flow|

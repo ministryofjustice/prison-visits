@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Deferred::Visitor do
+RSpec.describe Deferred::Visitor do
   before :each do
     allow_any_instance_of(EmailValidator).to receive(:validate)
   end
