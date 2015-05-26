@@ -56,14 +56,6 @@ class Deferred::ConfirmationsController < ApplicationController
     params.require(:confirmation).permit(:outcome, :message, :vo_number, :no_vo, :no_pvo, :renew_vo, :renew_pvo, :closed_visit, :visitor_not_listed, :visitor_banned, :canned_response, banned_visitors: [], unlisted_visitors: [])
   end
 
-  def encryptor
-    MESSAGE_ENCRYPTOR
-  end
-
-  def metrics_logger
-    METRICS_LOGGER
-  end
-
   def legacy_data_fixes(visit)
     if prison_name = {
         'Hollesley Bay' => 'Hollesley Bay Open',
@@ -79,22 +71,6 @@ class Deferred::ConfirmationsController < ApplicationController
       visit.prisoner.prison_name = prison_name
     end
     visit
-  end
-
-  def migrate_visitors(visit)
-    visit.dup.tap do |visit|
-      visit.visitors.map! do |visitor|
-        if visitor.class == Visitor
-          values = [:first_name, :last_name, :email, :index, :number_of_adults, :number_of_children, :date_of_birth, :phone].inject({}) do |h, selector|
-            h[selector] = visitor.send(selector)
-            h
-          end
-          Deferred::Visitor.new(values)
-        else
-          visitor
-        end
-      end
-    end
   end
 
   def remove_unused_slots(visit, slot_index)

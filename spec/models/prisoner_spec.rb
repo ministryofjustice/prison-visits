@@ -61,4 +61,8 @@ describe Prisoner do
     prisoner.date_of_birth = nil
     prisoner.age.should be_nil
   end
+
+  it 'generates an initial from the last name' do
+    prisoner.last_initial.should == 'H'
+  end
 end

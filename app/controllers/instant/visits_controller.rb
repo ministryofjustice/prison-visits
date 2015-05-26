@@ -19,12 +19,4 @@ class Instant::VisitsController < ApplicationController
     render
     reset_session
   end
-
-  def encryptor
-    MESSAGE_ENCRYPTOR
-  end
-
-  def metrics_logger
-    METRICS_LOGGER
-  end
 end
