@@ -85,37 +85,17 @@ describe VisitHelper do
     helper.prison_names.first.should == "Acklington"
   end
 
-  it "should render custom id content for certain prisons" do
-    ['Wymott',
-     'Coldingley',
-     'Cardiff',
-     'Portland',
-     'Channings Wood',
-     'Dartmoor',
-     'Sudbury',
-     'Moorland Closed',
-     'Nottingham',
-     'Glen Parva',
-     'Huntercombe',
-     'Leicester',
-     'Hindley',
-     'Norwich (A, B, C, E, M only)',
-     'Norwich (F, G, H, L only)',
-     'Norwich (Britannia House)',
-     'High Down',
-     'Highpoint North',
-     'Highpoint South'
-    ].each do |prison_name|
-      helper.custom_id_requirements(prison_name, :html).should_not be_nil
-      helper.custom_id_requirements(prison_name, :text).should_not be_nil
+  describe 'prison_specific_id_requirements' do
+    it 'should render custom id content for prisons that have it' do
+      requirements = helper.prison_specific_id_requirements('Wymott')
+      expect(requirements).to match(/tenancy agreement/)
     end
-    helper.custom_id_requirements('Rochester', :html).should be_nil
-    helper.custom_id_requirements('Rochester', :text).should be_nil
-  end
 
-  it "should render standard id requirements" do
-    helper.standard_id_requirements(:html).should_not be_nil
-    helper.standard_id_requirements(:text).should_not be_nil
+    it 'should render standard id content for prisons that do not have custom content' do
+      requirements = helper.prison_specific_id_requirements('Rochester')
+      expect(requirements).not_to match(/tenancy agreement/)
+      expect(requirements).to match(/driving licence/)
+    end
   end
 
   it "provides the date of Monday in the current week" do
