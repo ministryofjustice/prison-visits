@@ -5,7 +5,6 @@ RSpec.describe VisitController, type: :controller do
 
   before :each do
     ActionMailer::Base.deliveries.clear
-    allow(controller).to receive(:service_domain).and_return('lol.biz.info')
     allow(request).to receive(:ssl?).and_return(true)
   end
 
