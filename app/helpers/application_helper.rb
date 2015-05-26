@@ -62,4 +62,10 @@ module ApplicationHelper
     end
     @nomis_id_to_prison[nomis_id]
   end
+
+  def markdown(source)
+    renderer = ::Redcarpet::Render::HTML.new(hard_wrap: true, filter_html: true)
+    options = Rails.application.config.redcarpet_markdown_options
+    ::Redcarpet::Markdown.new(renderer, options).render(source).html_safe
+  end
 end

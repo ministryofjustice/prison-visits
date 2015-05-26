@@ -7,7 +7,7 @@ Follow these steps if you don't get an email to confirm your visit within 3 work
 
 ## <a name="#info-id-requirements"></a> ID you need for each visit
 
-<%= render partial: 'content/id_requirements', locals: { output_format: :html } %>
+<%= render partial: 'content/id_requirements' %>
 
 If you have any questions about ID requirements, please contact the prison.
 

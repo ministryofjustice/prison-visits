@@ -4,14 +4,7 @@ class MarkdownTemplateHandler
     source = erb.call(template)
     <<-SOURCE
     renderer = ::Redcarpet::Render::HTML.new(hard_wrap: true)
-    options = {
-      autolink: true,
-      no_intra_emphasis: true,
-      fenced_code_blocks: true,
-      lax_html_blocks: true,
-      strikethrough: true,
-      superscript: true
-    }
+    options = Rails.application.config.redcarpet_markdown_options
     ::Redcarpet::Markdown.new(renderer, options).render(begin;#{source};end).html_safe
     SOURCE
   end

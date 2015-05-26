@@ -87,28 +87,14 @@ module VisitHelper
     format_day(schedule.except_lead_days(today, schedule.booking_range(today)).first)
   end
 
-  def custom_id_requirements(prison_name, format)
-    nomis_id = Rails.configuration.prison_data[prison_name][:nomis_id]
-    label = "id_#{nomis_id}"
-    template = lookup_context.find_template(label, 'content', true)
-    case format
-    when :html
-      render File.join('content', label)
-    when :text
-      File.read(template.identifier)
-    end
-  rescue ActionView::MissingTemplate
-    nil
-  end
-
-  def standard_id_requirements(format)
-    template = lookup_context.find_template('standard_id_requirements', 'content', true)
-    case format
-    when :html
-      template.render(nil, nil)
-    when :text
-      File.read(template.identifier)
-    end
+  def prison_specific_id_requirements(prison_name)
+    nomis_id = Rails.configuration.prison_data.fetch(prison_name).fetch(:nomis_id)
+    template_path = Rails.root.join('app', 'views', 'content')
+    candidates = [
+      "_id_#{nomis_id}.md",
+      '_standard_id_requirements.md'
+    ].map { |filename| template_path.join(filename) }
+    File.read(candidates.find { |path| File.exist?(path) })
   end
 
   def weeks_start
