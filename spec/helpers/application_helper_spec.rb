@@ -66,4 +66,26 @@ describe ApplicationHelper do
     phone = 12345
     helper.conditional_text(phone, "call ", " or").should == "call 12345 or"
   end
+
+  describe 'markdown' do
+    it 'changes markdown to HTML' do
+      source = <<-END.strip_heredoc
+        para
+
+        * list
+        * item
+      END
+      expect(markdown(source)).to match(
+        %r{\A
+          <p>\s*para\s*</p>\s*
+          <ul>\s*<li>\s*list\s*</li>\s*<li>\s*item\s*</li>\s*</ul>\s*
+        \z}x
+      )
+    end
+
+    it 'strips arbitrary HTML from input' do
+      source = "<blink>It's alive!</blink>"
+      expect(markdown(source)).not_to match(/<blink/)
+    end
+  end
 end

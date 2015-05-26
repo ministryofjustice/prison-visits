@@ -62,4 +62,17 @@ module ApplicationHelper
     end
     @nomis_id_to_prison[nomis_id]
   end
+
+  def markdown(source)
+    renderer = ::Redcarpet::Render::HTML.new(hard_wrap: true, filter_html: true)
+    options = {
+      autolink: true,
+      no_intra_emphasis: true,
+      fenced_code_blocks: true,
+      lax_html_blocks: true,
+      strikethrough: true,
+      superscript: true
+    }
+    ::Redcarpet::Markdown.new(renderer, options).render(source).html_safe
+  end
 end
