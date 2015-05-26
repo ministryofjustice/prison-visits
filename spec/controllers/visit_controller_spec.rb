@@ -5,8 +5,8 @@ describe VisitController do
 
   before :each do
     ActionMailer::Base.deliveries.clear
-    controller.stub(:service_domain => 'lol.biz.info')
-    request.stub(:ssl? => true)
+    allow(controller).to receive(:service_domain).and_return('lol.biz.info')
+    allow(request).to receive(:ssl?).and_return(true)
   end
 
   let :visit_id do

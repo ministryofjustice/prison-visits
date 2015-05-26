@@ -11,7 +11,7 @@ describe KillswitchGuard, type: :controller do
 
   context "killswitch enabled" do
     it "resets the session and redirects to step one" do
-      controller.stub(killswitch_active?: true)
+      allow(subject).to receive(:killswitch_active?).and_return(true)
       expect(controller).to receive(:reset_session)
       get :index
       expect(response).to redirect_to edit_prisoner_details_path
@@ -20,7 +20,7 @@ describe KillswitchGuard, type: :controller do
 
   context "killswitch disabled" do
     it "doesn't do anything" do
-      controller.stub(killswitch_active?: false)
+      allow(subject).to receive(:killswitch_active?).and_return(false)
       expect(controller).to receive(:reset_session).never
       get :index
       expect(response).to be_success

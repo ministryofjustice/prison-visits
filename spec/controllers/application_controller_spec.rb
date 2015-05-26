@@ -11,7 +11,7 @@ describe ApplicationController do
     it "sets additional metadata for sentry" do
       @request = ActionController::TestRequest.new
       session[:visit] = Visit.new(prisoner: Prisoner.new(prison_name: 'Rochester'), visit_id: 'visit-id')
-      controller.stub(request_id: 'request_id')
+      allow(controller).to receive(:request_id).and_return('request_id')
       get :index
       expect(Raven.extra_context).to eq({request_id: 'request_id', visit_id: 'visit-id', prison: 'Rochester'})
       expect(response['X-Request-Id']).to eq('request_id')

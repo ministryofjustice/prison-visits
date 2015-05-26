@@ -12,7 +12,7 @@ describe VisitHelper do
     end
 
     before :each do
-      helper.stub(visit: visit)
+      allow(helper).to receive(:visit).and_return(visit)
     end
 
     it "provides a hash of slots by day" do

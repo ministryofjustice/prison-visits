@@ -61,7 +61,7 @@ describe PrisonerDetailsController do
     end
 
     it "sets the 'cookies-enabled' cookie" do
-      controller.stub(service_domain: 'lol.biz.info')
+      allow(controller).to receive(:service_domain).and_return('lol.biz.info')
       get :edit
       expect(response).to be_success
       response['Set-Cookie'].tap do |c|
@@ -82,7 +82,7 @@ describe PrisonerDetailsController do
       end
 
       it "updates prisoner details and redirects to the email flow if the killswitch is enabled" do
-        subject.stub(killswitch_enabled?: true)
+        allow(subject).to receive(:killswitch_enabled?).and_return(true)
         post :update, prisoner_hash
         expect(response).to redirect_to(deferred_edit_visitors_details_path)
       end
