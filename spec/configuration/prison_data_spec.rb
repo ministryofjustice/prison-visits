@@ -20,19 +20,19 @@ RSpec.describe "Prison data" do
 
     it "should contain an entry for Rochester" do
       expect(subject).to have_key('Rochester')
-      expect(subject['Rochester']['enabled']).to be_true
+      expect(subject['Rochester']['enabled']).to be_truthy
       expect(Rails.configuration.prison_data).to have_key('Rochester')
     end
 
     it "should contain an entry for Durham" do
       expect(subject).to have_key('Durham')
-      expect(subject['Durham']['enabled']).to be_true
+      expect(subject['Durham']['enabled']).to be_truthy
       expect(Rails.configuration.prison_data).to have_key('Durham')
     end
 
     it "should contain an entry for Cardiff" do
       expect(subject).to have_key('Cardiff')
-      expect(subject['Cardiff']['enabled']).to be_true
+      expect(subject['Cardiff']['enabled']).to be_truthy
       expect(Rails.configuration.prison_data).to have_key('Cardiff')
     end
 

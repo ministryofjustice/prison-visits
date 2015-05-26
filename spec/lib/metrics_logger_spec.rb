@@ -102,7 +102,7 @@ RSpec.describe MetricsLogger do
     subject.record_visit_request(sample_visit)
     subject.record_link_click(sample_visit)
     subject.record_booking_cancellation(sample_visit.visit_id, 'request_cancelled')
-    expect(subject.processed?(sample_visit)).to be_false
+    expect(subject.processed?(sample_visit)).to be_falsey
     expect(subject.visit_status(sample_visit.visit_id)).to eq('request_cancelled')
   end
 
@@ -110,7 +110,7 @@ RSpec.describe MetricsLogger do
     subject.record_visit_request(sample_visit)
     subject.record_link_click(sample_visit)
     subject.record_booking_confirmation(sample_visit)
-    expect(subject.processed?(sample_visit)).to be_true
+    expect(subject.processed?(sample_visit)).to be_truthy
     expect(subject.visit_status(sample_visit.visit_id)).to eq('confirmed')
   end
 
@@ -119,7 +119,7 @@ RSpec.describe MetricsLogger do
       subject.record_visit_request(sample_visit)
       subject.record_link_click(sample_visit)
       subject.record_booking_cancellation(sample_visit.visit_id, reason)
-      expect(subject.processed?(sample_visit)).to be_false
+      expect(subject.processed?(sample_visit)).to be_falsey
       expect(subject.visit_status(sample_visit.visit_id)).to eq(reason)
     end
   end
@@ -136,13 +136,13 @@ RSpec.describe MetricsLogger do
     subject.record_visit_request(sample_visit)
     subject.record_link_click(sample_visit)
     subject.record_booking_rejection(sample_visit, 'because')
-    expect(subject.processed?(sample_visit)).to be_true
+    expect(subject.processed?(sample_visit)).to be_truthy
     expect(subject.visit_status(sample_visit.visit_id)).to eq('rejected')
   end
 
   it "responds with a visit status as not processed" do
     subject.record_visit_request(sample_visit)
-    expect(subject.processed?(sample_visit)).to be_false
+    expect(subject.processed?(sample_visit)).to be_falsey
     expect(subject.visit_status(sample_visit.visit_id)).to eq('pending')
   end
 
@@ -193,7 +193,7 @@ RSpec.describe MetricsLogger do
     end
 
     it "returns status as unknown" do
-      expect(subject.processed?(sample_visit)).to be_false
+      expect(subject.processed?(sample_visit)).to be_falsey
     end
   end
 end

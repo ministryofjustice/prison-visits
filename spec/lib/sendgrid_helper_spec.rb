@@ -15,7 +15,7 @@ RSpec.describe SendgridHelper do
       end
 
       after :each do
-        expect(SendgridHelper.spam_reported?('test@irrelevant.com')).to be_false
+        expect(SendgridHelper.spam_reported?('test@irrelevant.com')).to be_falsey
       end
     end
 
@@ -45,7 +45,7 @@ RSpec.describe SendgridHelper do
       end
 
       after :each do
-        expect(SendgridHelper.bounced?('test@irrelevant.com')).to be_false
+        expect(SendgridHelper.bounced?('test@irrelevant.com')).to be_falsey
       end
     end
 
@@ -74,28 +74,28 @@ RSpec.describe SendgridHelper do
     context "when it connects" do
       it "will return true" do 
         expect(Net::SMTP).to receive(:start)
-        expect(SendgridHelper.smtp_alive?(host, port)).to be_true
+        expect(SendgridHelper.smtp_alive?(host, port)).to be_truthy
       end
     end
 
     context "when it times out" do
       it "will return false" do
         expect(Net::SMTP).to receive(:start).and_raise(Net::OpenTimeout)
-        expect(SendgridHelper.smtp_alive?(host, port)).to be_false
+        expect(SendgridHelper.smtp_alive?(host, port)).to be_falsey
       end
     end
 
     context "when the port is closed" do
       it "will return false" do
         expect(Net::SMTP).to receive(:start).and_raise(Errno::ECONNREFUSED)
-        expect(SendgridHelper.smtp_alive?(host, port)).to be_false
+        expect(SendgridHelper.smtp_alive?(host, port)).to be_falsey
       end
     end
 
     context "when the hostname cannot be resolved" do
       it "will return false" do
         expect(Net::SMTP).to receive(:start).and_raise(SocketError)
-        expect(SendgridHelper.smtp_alive?(host, port)).to be_false
+        expect(SendgridHelper.smtp_alive?(host, port)).to be_falsey
       end
     end
   end

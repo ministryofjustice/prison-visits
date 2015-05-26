@@ -41,7 +41,7 @@ RSpec.describe HeartbeatController, type: :controller do
         it "reports all services as OK" do
           get :healthcheck
           parsed_body = JSON.parse(response.body)
-          expect(parsed_body['checks'].values.all?).to be_true
+          expect(parsed_body['checks'].values.all?).to be_truthy
         end
 
         [
@@ -52,7 +52,7 @@ RSpec.describe HeartbeatController, type: :controller do
           it "contains a check for #{service}" do
             get :healthcheck
             parsed_body = JSON.parse(response.body)
-            expect(parsed_body['checks'].has_key?(service)).to be_true
+            expect(parsed_body['checks'].has_key?(service)).to be_truthy
           end
         end
       end

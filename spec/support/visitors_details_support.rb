@@ -94,7 +94,7 @@ shared_examples "a visitor data manipulator with invalid data" do
     it "rejects the submission if there are too many visitors" do
       post :update, visitor_hash
       expect(response).to redirect_to(controller.this_path)
-      expect(session[:visit].valid?(:visitors_set)).to be_false
+      expect(session[:visit].valid?(:visitors_set)).to be_falsey
     end
   end
 
@@ -120,7 +120,7 @@ shared_examples "a visitor data manipulator with invalid data" do
     it "rejects the submission if there are too many adult visitors" do
       post :update, visitor_hash
       expect(response).to redirect_to(controller.this_path)
-      expect(session[:visit].valid?(:visitors_set)).to be_false
+      expect(session[:visit].valid?(:visitors_set)).to be_falsey
     end
   end
   
