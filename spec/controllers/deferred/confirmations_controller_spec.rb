@@ -27,11 +27,11 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
         expect(mock_metrics_logger).to receive(:request_cancelled?).and_return(false)
         expect(mock_metrics_logger).to receive(:record_link_click)
         expect(mock_metrics_logger).to receive(:processed?) do |v|
-          expect(v).to.eql? visit
+          expect(v).to be_same_visit(visit)
           false
         end
         get :new, state: encrypted_visit
-        expect(subject.booked_visit).to.equal? visit
+        expect(subject.booked_visit).to be_same_visit(visit)
         expect(response).to be_success
         expect(response).to render_template('confirmations/new')
       end
@@ -52,7 +52,7 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
           expect(mock_metrics_logger).to receive(:request_cancelled?).and_return(false)
           expect(mock_metrics_logger).to receive(:record_link_click)
           expect(mock_metrics_logger).to receive(:processed?) do |v|
-            expect(v).to.eql? visit
+            expect(v).to be_same_visit(visit)
             true
           end
           get :new, state: encrypted_visit
@@ -69,7 +69,7 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
             expect(mock_metrics_logger).to receive(:request_cancelled?).and_return(false)
             expect(mock_metrics_logger).to receive(:record_link_click)
             expect(mock_metrics_logger).to receive(:processed?) do |v|
-              expect(v).to.eql? visit
+              expect(v).to be_same_visit(visit)
               false
             end
             get :new, state: encrypted_visit
@@ -106,9 +106,9 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
 
         context "when a form is submitted with a slot selected" do
           it "sends out an e-mail and records a metric" do
-            expect(mock_metrics_logger).to receive(:record_booking_confirmation) { |actual_visit| expect(visit).to.eql? actual_visit }
-            expect(VisitorMailer).to receive(:booking_confirmation_email) { |actual_visit, confirmation| expect(visit).to.eql? actual_visit; expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
-            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation| expect(visit).to.eql? actual_visit; expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
+            expect(mock_metrics_logger).to receive(:record_booking_confirmation) { |actual_visit| expect(visit).to be_same_visit(actual_visit) }
+            expect(VisitorMailer).to receive(:booking_confirmation_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
+            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
           end
 
           after :each do
@@ -120,9 +120,9 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
 
         context "when a form is submitted indicating the visitor is not on the contact list" do
           it "sends out an e-mail and records a metric" do
-            expect(mock_metrics_logger).to receive(:record_booking_rejection) { |actual_visit, reason| expect(visit).to.eql? actual_visit; expect(reason).to eq(Confirmation::NOT_ON_CONTACT_LIST) }
-            expect(VisitorMailer).to receive(:booking_rejection_email) { |actual_visit, confirmation| expect(visit).to.eql? actual_visit; expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
-            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation| expect(visit).to.eql? actual_visit; expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
+            expect(mock_metrics_logger).to receive(:record_booking_rejection) { |actual_visit, reason| expect(visit).to be_same_visit(actual_visit); expect(reason).to eq(Confirmation::NOT_ON_CONTACT_LIST) }
+            expect(VisitorMailer).to receive(:booking_rejection_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
+            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
           end
 
           after :each do
@@ -134,9 +134,9 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
 
         context "when a form is submitted and no VOs are available" do
           it "sends out an e-mail and records a metric" do
-            expect(mock_metrics_logger).to receive(:record_booking_rejection) { |actual_visit, reason| expect(visit).to.eql? actual_visit; expect(reason).to eq(Confirmation::NO_VOS_LEFT) }
-            expect(VisitorMailer).to receive(:booking_rejection_email) { |actual_visit, confirmation| expect(visit).to.eql? actual_visit; expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
-            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation| expect(visit).to.eql? actual_visit; expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
+            expect(mock_metrics_logger).to receive(:record_booking_rejection) { |actual_visit, reason| expect(visit).to be_same_visit(actual_visit); expect(reason).to eq(Confirmation::NO_VOS_LEFT) }
+            expect(VisitorMailer).to receive(:booking_rejection_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
+            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
           end
 
           after :each do
@@ -148,9 +148,9 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
 
         context "when a form is submitted without a slot" do
           it "sends out an e-mail and records a metric" do
-            expect(mock_metrics_logger).to receive(:record_booking_rejection) { |actual_visit, reason| expect(actual_visit).to.eql? visit; expect(reason).to eq(Confirmation::NO_SLOT_AVAILABLE) }
-            expect(VisitorMailer).to receive(:booking_rejection_email) { |actual_visit, confirmation| expect(visit).to.eql? actual_visit; expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
-            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation| expect(visit).to.eql? actual_visit; expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
+            expect(mock_metrics_logger).to receive(:record_booking_rejection) { |actual_visit, reason| expect(actual_visit).to be_same_visit(visit); expect(reason).to eq(Confirmation::NO_SLOT_AVAILABLE) }
+            expect(VisitorMailer).to receive(:booking_rejection_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
+            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
           end
 
           after :each do
@@ -163,8 +163,8 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
         context "when a link is clicked" do
           it "records the metrics" do
             expect(mock_metrics_logger).to receive(:request_cancelled?).and_return(false)
-            expect(mock_metrics_logger).to receive(:record_link_click) { |actual_visit| expect(visit).to.eql? actual_visit }
-            expect(mock_metrics_logger).to receive(:processed?) { |actual_visit| expect(visit).to.eql? actual_visit }
+            expect(mock_metrics_logger).to receive(:record_link_click) { |actual_visit| expect(visit).to be_same_visit(actual_visit) }
+            expect(mock_metrics_logger).to receive(:processed?) { |actual_visit| expect(visit).to be_same_visit(actual_visit) }
           end
 
           after :each do
@@ -201,9 +201,9 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
 
         context "when a form is submitted with a slot selected" do
           it "sends out an e-mail and records a metric" do
-            expect(mock_metrics_logger).to receive(:record_booking_confirmation) { |actual_visit| expect(visit).to.eql? actual_visit }
-            expect(VisitorMailer).to receive(:booking_confirmation_email) { |actual_visit, confirmation| expect(visit).to.eql? actual_visit; expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
-            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation| expect(visit).to.eql? actual_visit; expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
+            expect(mock_metrics_logger).to receive(:record_booking_confirmation) { |actual_visit| expect(visit).to be_same_visit(actual_visit) }
+            expect(VisitorMailer).to receive(:booking_confirmation_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
+            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
           end
 
           after :each do
@@ -215,9 +215,9 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
 
         context "when a form is submitted with banned or unlisted visitors and a succesful slot allocation" do
           before :each do
-            expect(mock_metrics_logger).to receive(:record_booking_confirmation) { |actual_visit| expect(visit).to.eql? actual_visit }
-            expect(VisitorMailer).to receive(:booking_confirmation_email) { |actual_visit, confirmation| expect(visit).to.eql? actual_visit; expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
-            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation| expect(visit).to.eql? actual_visit; expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
+            expect(mock_metrics_logger).to receive(:record_booking_confirmation) { |actual_visit| expect(visit).to be_same_visit(actual_visit) }
+            expect(VisitorMailer).to receive(:booking_confirmation_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
+            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
           end
 
           it "sends out an e-mail for an unlisted visitor" do
@@ -240,9 +240,9 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
 
         context "when a form is submitted with banned or unlisted visitors and no other outcome" do
           before :each do
-            expect(mock_metrics_logger).to receive(:record_booking_rejection) { |actual_visit| expect(visit).to.eql? actual_visit }
-            expect(VisitorMailer).to receive(:booking_rejection_email) { |actual_visit, confirmation| expect(visit).to.eql? actual_visit; expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
-            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation| expect(visit).to.eql? actual_visit; expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
+            expect(mock_metrics_logger).to receive(:record_booking_rejection) { |actual_visit| expect(visit).to be_same_visit(actual_visit) }
+            expect(VisitorMailer).to receive(:booking_rejection_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
+            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
           end
 
           it "sends rejection e-mail for an unlisted visitor" do
@@ -265,9 +265,9 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
 
         context "when a form is submitted and the prisoner has no allowance remaining" do
           before :each do
-            expect(mock_metrics_logger).to receive(:record_booking_rejection) { |actual_visit, reason| expect(visit).to.eql? actual_visit; expect(reason).to eq(Confirmation::NO_ALLOWANCE) }
-            expect(VisitorMailer).to receive(:booking_rejection_email) { |actual_visit, confirmation| expect(visit).to.eql? actual_visit; expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
-            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation| expect(visit).to.eql? actual_visit; expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
+            expect(mock_metrics_logger).to receive(:record_booking_rejection) { |actual_visit, reason| expect(visit).to be_same_visit(actual_visit); expect(reason).to eq(Confirmation::NO_ALLOWANCE) }
+            expect(VisitorMailer).to receive(:booking_rejection_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
+            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
           end
 
           it "sends out an e-mail and records a metric" do
@@ -290,9 +290,9 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
 
         context "when a form is submitted and the prisoner details are incorrect" do
           it "sends out an e-mail and records a metric" do
-            expect(mock_metrics_logger).to receive(:record_booking_rejection) { |actual_visit, reason| expect(actual_visit).to.eql? visit; expect(reason).to eq(Confirmation::PRISONER_INCORRECT) }
-            expect(VisitorMailer).to receive(:booking_rejection_email) { |actual_visit, confirmation| expect(visit).to.eql? actual_visit; expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
-            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation| expect(visit).to.eql? actual_visit; expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
+            expect(mock_metrics_logger).to receive(:record_booking_rejection) { |actual_visit, reason| expect(actual_visit).to be_same_visit(visit); expect(reason).to eq(Confirmation::PRISONER_INCORRECT) }
+            expect(VisitorMailer).to receive(:booking_rejection_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
+            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
           end
 
           after :each do
@@ -304,9 +304,9 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
 
         context "when a form is submitted and the prisoner is not at the prison" do
           it "sends out an e-mail and records a metric" do
-            expect(mock_metrics_logger).to receive(:record_booking_rejection) { |actual_visit, reason| expect(actual_visit).to.eql? visit; expect(reason).to eq(Confirmation::PRISONER_NOT_PRESENT) }
-            expect(VisitorMailer).to receive(:booking_rejection_email) { |actual_visit, confirmation| expect(visit).to.eql? actual_visit; expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
-            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation| expect(visit).to.eql? actual_visit; expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
+            expect(mock_metrics_logger).to receive(:record_booking_rejection) { |actual_visit, reason| expect(actual_visit).to be_same_visit(visit); expect(reason).to eq(Confirmation::PRISONER_NOT_PRESENT) }
+            expect(VisitorMailer).to receive(:booking_rejection_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
+            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
           end
 
           after :each do
@@ -318,9 +318,9 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
 
         context "when a form is submitted without a slot" do
           it "sends out an e-mail and records a metric" do
-            expect(mock_metrics_logger).to receive(:record_booking_rejection) { |actual_visit, reason| expect(actual_visit).to.eql? visit; expect(reason).to eq(Confirmation::NO_SLOT_AVAILABLE) }
-            expect(VisitorMailer).to receive(:booking_rejection_email) { |actual_visit, confirmation| expect(visit).to.eql? actual_visit; expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
-            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation| expect(visit).to.eql? actual_visit; expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
+            expect(mock_metrics_logger).to receive(:record_booking_rejection) { |actual_visit, reason| expect(actual_visit).to be_same_visit(visit); expect(reason).to eq(Confirmation::NO_SLOT_AVAILABLE) }
+            expect(VisitorMailer).to receive(:booking_rejection_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
+            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
           end
 
           after :each do

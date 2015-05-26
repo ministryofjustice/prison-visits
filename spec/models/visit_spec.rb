@@ -77,4 +77,20 @@ RSpec.describe Visit do
     expect(sample_visit.adult?(adult_visitor)).to be_truthy
     expect(sample_visit.adult?(child_visitor)).to be_falsey
   end
+
+  describe 'same_visit?' do
+    it 'is true if two different visits have the same visit_id' do
+      a = sample_visit
+      b = sample_visit.dup
+      expect(a).not_to eq(b)
+      expect(a).to be_same_visit(b)
+    end
+
+    it 'is false if two different visits have a different visit_id' do
+      a = sample_visit
+      b = sample_visit.dup
+      b.visit_id = SecureRandom.hex
+      expect(a).not_to be_same_visit(b)
+    end
+  end
 end

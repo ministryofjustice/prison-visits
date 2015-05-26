@@ -27,4 +27,8 @@ class Visit
   def adult?(visitor)
     visitor.age && visitor.age >= adult_age
   end
+
+  def same_visit?(other)
+    other.visit_id == self.visit_id
+  end
 end
