@@ -30,7 +30,7 @@ RSpec.describe VisitorMailer do
       VisitorMailer.autorespond(email).tap do |m|
         expect(m[:from]).to eq(noreply_address)
         expect(m[:to]).to eq(visitor_address)
-      end.deliver
+      end.deliver_now
     }.to change { ActionMailer::Base.deliveries.size }.by(1)
   end
 

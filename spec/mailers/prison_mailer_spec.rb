@@ -25,7 +25,7 @@ RSpec.describe PrisonMailer do
       PrisonMailer.autorespond(email).tap do |m|
         expect(m.from).to eq(['no-reply@example.com'])
         expect(m.to).to eq(['nonexistent@hmps.gsi.gov.uk'])
-      end.deliver
+      end.deliver_now
     }.to change { ActionMailer::Base.deliveries.size }.by(1)
   end
 
