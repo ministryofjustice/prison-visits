@@ -65,7 +65,7 @@ RSpec.feature "visitor selects a date" do
 
           click_button 'Continue'
           expect(page).to have_content('Check your request')
-          expect(page).to have_tag('.AgeLabel-label', :text => 'Over 18')
+          expect(page).to have_selector('.AgeLabel-label', :text => 'Over 18')
 
           click_button 'Send request'
           expect(page).to have_content('Your request is being processed')

@@ -73,7 +73,7 @@ RSpec.feature "visitor enters visitor information" do
           enter_additional_visitor_information(1, :adult)
           fill_in "Your first name", with: 'Maggie'
 
-          expect(page).to have_tag('.AgeLabel', :text => 'Over 18')
+          expect(page).to have_selector('.AgeLabel', :text => 'Over 18')
         end
 
         it "indicates they are under the specified age for a seat" do
@@ -83,7 +83,7 @@ RSpec.feature "visitor enters visitor information" do
           enter_additional_visitor_information(1, :child)
           fill_in "Your first name", with: 'Maggie'
 
-          expect(page).to have_tag('.AgeLabel', :text => 'Under 18')
+          expect(page).to have_selector('.AgeLabel', :text => 'Under 18')
         end
 
       end
