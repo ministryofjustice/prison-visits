@@ -29,3 +29,7 @@ RSpec::Matchers.define :match_in_text do |actual|
     end
   end
 end
+
+RSpec::Matchers.define :same_visit do |v|
+  match { |actual| v.same_visit?(actual) }
+end
