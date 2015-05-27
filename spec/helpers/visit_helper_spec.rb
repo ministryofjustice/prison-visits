@@ -1,6 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe VisitHelper do
+RSpec.describe VisitHelper, type: :helper do
+  module ControllerContext
+    def visit
+    end
+  end
+
   context "for the current prison" do
 
     let :slot do
@@ -12,6 +17,7 @@ RSpec.describe VisitHelper do
     end
 
     before :each do
+      helper.extend ControllerContext
       allow(helper).to receive(:visit).and_return(visit)
     end
 
