@@ -106,51 +106,101 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
 
         context "when a form is submitted with a slot selected" do
           it "sends out an e-mail and records a metric" do
-            expect(mock_metrics_logger).to receive(:record_booking_confirmation) { |actual_visit| expect(visit).to be_same_visit(actual_visit) }
-            expect(VisitorMailer).to receive(:booking_confirmation_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
-            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
+            expect(mock_metrics_logger).to receive(:record_booking_confirmation) { |actual_visit|
+              expect(visit).to be_same_visit(actual_visit)
+            }
+            expect(VisitorMailer).to receive(:booking_confirmation_email) { |actual_visit, confirmation|
+              expect(visit).to be_same_visit(actual_visit)
+              expect(confirmation).to be an_instance_of(Confirmation)
+            }.once.and_call_original
+            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation|
+              expect(visit).to be_same_visit(actual_visit)
+              expect(confirmation).to be an_instance_of(Confirmation)
+            }.once.and_call_original
           end
 
           after :each do
             post :create, confirmation: { outcome: 'slot_0' }, state: encrypted_visit
             expect(response).to redirect_to(deferred_show_confirmation_path(visit_id: visit.visit_id))
-            expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(["Visit confirmed: your visit for 7 July 2013 has been confirmed", "COPY of booking confirmation for Jimmy Harris"])
+            expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(
+              [
+                "Visit confirmed: your visit for 7 July 2013 has been confirmed",
+                "COPY of booking confirmation for Jimmy Harris"
+              ]
+            )
           end
         end
 
         context "when a form is submitted indicating the visitor is not on the contact list" do
           it "sends out an e-mail and records a metric" do
-            expect(mock_metrics_logger).to receive(:record_booking_rejection) { |actual_visit, reason| expect(visit).to be_same_visit(actual_visit); expect(reason).to eq(Confirmation::NOT_ON_CONTACT_LIST) }
-            expect(VisitorMailer).to receive(:booking_rejection_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
-            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
+            expect(mock_metrics_logger).to receive(:record_booking_rejection) { |actual_visit, reason|
+              expect(visit).to be_same_visit(actual_visit)
+              expect(reason).to eq(Confirmation::NOT_ON_CONTACT_LIST)
+            }
+            expect(VisitorMailer).to receive(:booking_rejection_email) { |actual_visit, confirmation|
+              expect(visit).to be_same_visit(actual_visit)
+              expect(confirmation).to be an_instance_of(Confirmation)
+            }.once.and_call_original
+            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation|
+              expect(visit).to be_same_visit(actual_visit)
+              expect(confirmation).to be an_instance_of(Confirmation)
+            }.once.and_call_original
           end
 
           after :each do
             post :create, confirmation: { outcome: Confirmation::NOT_ON_CONTACT_LIST }, state: encrypted_visit
             expect(response).to redirect_to(deferred_show_confirmation_path(visit_id: visit.visit_id))
-            expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(["Visit cannot take place: your visit for 7 July 2013 could not be booked", "COPY of booking rejection for Jimmy Harris"])
+            expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(
+              [
+                "Visit cannot take place: your visit for 7 July 2013 could not be booked",
+                "COPY of booking rejection for Jimmy Harris"
+              ]
+            )
           end
         end
 
         context "when a form is submitted and no VOs are available" do
           it "sends out an e-mail and records a metric" do
-            expect(mock_metrics_logger).to receive(:record_booking_rejection) { |actual_visit, reason| expect(visit).to be_same_visit(actual_visit); expect(reason).to eq(Confirmation::NO_VOS_LEFT) }
-            expect(VisitorMailer).to receive(:booking_rejection_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
-            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
+            expect(mock_metrics_logger).to receive(:record_booking_rejection) { |actual_visit, reason|
+              expect(visit).to be_same_visit(actual_visit)
+              expect(reason).to eq(Confirmation::NO_VOS_LEFT)
+            }
+            expect(VisitorMailer).to receive(:booking_rejection_email) { |actual_visit, confirmation|
+              expect(visit).to be_same_visit(actual_visit)
+              expect(confirmation).to be an_instance_of(Confirmation)
+            }.once.and_call_original
+            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation|
+              expect(visit).to be_same_visit(actual_visit)
+              expect(confirmation).to be an_instance_of(Confirmation)
+            }.once.and_call_original
           end
 
           after :each do
             post :create, confirmation: { outcome: Confirmation::NO_VOS_LEFT }, state: encrypted_visit
             expect(response).to redirect_to(deferred_show_confirmation_path(visit_id: visit.visit_id))
-            expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(["Visit cannot take place: your visit for 7 July 2013 could not be booked", "COPY of booking rejection for Jimmy Harris"])
+            expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(
+              [
+                "Visit cannot take place: your visit for 7 July 2013 could not be booked",
+                "COPY of booking rejection for Jimmy Harris"
+              ]
+            )
           end
         end
 
         context "when a form is submitted without a slot" do
           it "sends out an e-mail and records a metric" do
-            expect(mock_metrics_logger).to receive(:record_booking_rejection) { |actual_visit, reason| expect(actual_visit).to be_same_visit(visit); expect(reason).to eq(Confirmation::NO_SLOT_AVAILABLE) }
-            expect(VisitorMailer).to receive(:booking_rejection_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
-            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
+            expect(mock_metrics_logger).to receive(:record_booking_rejection) { |actual_visit, reason|
+              expect(actual_visit).to be_same_visit(visit)
+              expect(reason).to eq(Confirmation::NO_SLOT_AVAILABLE)
+            }
+            expect(VisitorMailer).to receive(:booking_rejection_email) { |actual_visit, confirmation|
+              expect(visit).to be_same_visit(actual_visit)
+              expect(confirmation).to be an_instance_of(Confirmation)
+            }.once.and_call_original
+            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation|
+              expect(visit).to be_same_visit(actual_visit)
+              expect(confirmation).to be an_instance_of(Confirmation)
+            }.once.and_call_original
           end
 
           after :each do
@@ -163,8 +213,12 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
         context "when a link is clicked" do
           it "records the metrics" do
             expect(mock_metrics_logger).to receive(:request_cancelled?).and_return(false)
-            expect(mock_metrics_logger).to receive(:record_link_click) { |actual_visit| expect(visit).to be_same_visit(actual_visit) }
-            expect(mock_metrics_logger).to receive(:processed?) { |actual_visit| expect(visit).to be_same_visit(actual_visit) }
+            expect(mock_metrics_logger).to receive(:record_link_click) { |actual_visit|
+              expect(visit).to be_same_visit(actual_visit)
+            }
+            expect(mock_metrics_logger).to receive(:processed?) { |actual_visit|
+              expect(visit).to be_same_visit(actual_visit)
+            }
           end
 
           after :each do
@@ -201,138 +255,302 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
 
         context "when a form is submitted with a slot selected" do
           it "sends out an e-mail and records a metric" do
-            expect(mock_metrics_logger).to receive(:record_booking_confirmation) { |actual_visit| expect(visit).to be_same_visit(actual_visit) }
-            expect(VisitorMailer).to receive(:booking_confirmation_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
-            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
+            expect(mock_metrics_logger).to receive(:record_booking_confirmation) { |actual_visit|
+              expect(visit).to be_same_visit(actual_visit)
+            }
+            expect(VisitorMailer).to receive(:booking_confirmation_email) { |actual_visit, confirmation|
+              expect(visit).to be_same_visit(actual_visit)
+              expect(confirmation).to be an_instance_of(Confirmation)
+            }.once.and_call_original
+            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation|
+              expect(visit).to be_same_visit(actual_visit)
+              expect(confirmation).to be an_instance_of(Confirmation)
+            }.once.and_call_original
           end
 
           after :each do
             post :create, confirmation: { outcome: 'slot_0', vo_number: '55512345', canned_response: true }, state: encrypted_visit
             expect(response).to redirect_to(deferred_show_confirmation_path(visit_id: visit.visit_id))
-            expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(["Visit confirmed: your visit for 7 July 2013 has been confirmed", "COPY of booking confirmation for Jimmy Harris"])
+            expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(
+              [
+                "Visit confirmed: your visit for 7 July 2013 has been confirmed",
+                "COPY of booking confirmation for Jimmy Harris"
+              ]
+            )
           end
         end
 
         context "when a form is submitted with banned or unlisted visitors and a succesful slot allocation" do
           before :each do
-            expect(mock_metrics_logger).to receive(:record_booking_confirmation) { |actual_visit| expect(visit).to be_same_visit(actual_visit) }
-            expect(VisitorMailer).to receive(:booking_confirmation_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
-            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
+            expect(mock_metrics_logger).to receive(:record_booking_confirmation) { |actual_visit|
+              expect(visit).to be_same_visit(actual_visit)
+            }
+            expect(VisitorMailer).to receive(:booking_confirmation_email) { |actual_visit, confirmation|
+              expect(visit).to be_same_visit(actual_visit)
+              expect(confirmation).to be an_instance_of(Confirmation)
+            }.once.and_call_original
+            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation|
+              expect(visit).to be_same_visit(actual_visit)
+              expect(confirmation).to be an_instance_of(Confirmation)
+            }.once.and_call_original
           end
 
           it "sends out an e-mail for an unlisted visitor" do
-            post :create, confirmation: { outcome: 'slot_0', vo_number: '555123345', canned_response: true, visitor_not_listed: true, unlisted_visitors: ['Mark;Harris']}, state: encrypted_visit
+            post :create,
+              confirmation: {
+                outcome: 'slot_0', vo_number: '555123345',
+                canned_response: true, visitor_not_listed: true,
+                unlisted_visitors: ['Mark;Harris']
+              },
+              state: encrypted_visit
           end
 
           it "sends out an e-mail for a banned visitor" do
-            post :create, confirmation: { outcome: 'slot_0', vo_number: '555123345', canned_response: true, visitor_banned: true, banned_visitors: ['Mark;Harris']}, state: encrypted_visit
+            post :create,
+              confirmation: {
+                outcome: 'slot_0', vo_number: '555123345',
+                canned_response: true, visitor_banned: true,
+                banned_visitors: ['Mark;Harris']
+              },
+              state: encrypted_visit
           end
 
           it "sends out an e-mail for both banned an unlisted visitor" do
-            post :create, confirmation: { outcome: 'slot_0', vo_number: '555123345', canned_response: true, visitor_banned: true, banned_visitors: ['Mark;Harris'], visitor_not_listed: true, unlisted_visitors: ['Joan;Harris']}, state: encrypted_visit
+            post :create,
+              confirmation: {
+                outcome: 'slot_0', vo_number: '555123345',
+                canned_response: true, visitor_banned: true,
+                banned_visitors: ['Mark;Harris'], visitor_not_listed: true,
+                unlisted_visitors: ['Joan;Harris']
+              },
+              state: encrypted_visit
           end
 
           after :each do
             expect(response).to redirect_to(deferred_show_confirmation_path(visit_id: visit.visit_id))
-            expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(["Visit confirmed: your visit for 7 July 2013 has been confirmed", "COPY of booking confirmation for Jimmy Harris"])
+            expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(
+              [
+                "Visit confirmed: your visit for 7 July 2013 has been confirmed",
+                "COPY of booking confirmation for Jimmy Harris"
+              ]
+            )
           end
         end
 
         context "when a form is submitted with banned or unlisted visitors and no other outcome" do
           before :each do
-            expect(mock_metrics_logger).to receive(:record_booking_rejection) { |actual_visit| expect(visit).to be_same_visit(actual_visit) }
-            expect(VisitorMailer).to receive(:booking_rejection_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
-            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
+            expect(mock_metrics_logger).to receive(:record_booking_rejection) { |actual_visit|
+              expect(visit).to be_same_visit(actual_visit)
+            }
+            expect(VisitorMailer).to receive(:booking_rejection_email) { |actual_visit, confirmation|
+              expect(visit).to be_same_visit(actual_visit)
+              expect(confirmation).to be an_instance_of(Confirmation)
+            }.once.and_call_original
+            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation|
+              expect(visit).to be_same_visit(actual_visit)
+              expect(confirmation).to be an_instance_of(Confirmation)
+            }.once.and_call_original
           end
 
           it "sends rejection e-mail for an unlisted visitor" do
-            post :create, confirmation: { canned_response: true, visitor_not_listed: true, unlisted_visitors: ['Mark;Harris']}, state: encrypted_visit
+            post :create,
+              confirmation: {
+                canned_response: true, visitor_not_listed: true,
+                unlisted_visitors: ['Mark;Harris']
+              },
+              state: encrypted_visit
           end
 
           it "sends rejection e-mail for a banned visitor" do
-            post :create, confirmation: { canned_response: true, visitor_banned: true, banned_visitors: ['Mark;Harris']}, state: encrypted_visit
+            post :create,
+              confirmation: {
+                canned_response: true, visitor_banned: true,
+                banned_visitors: ['Mark;Harris']
+              },
+              state: encrypted_visit
           end
 
           it "sends rejection e-mail for both banned an unlisted visitor" do
-            post :create, confirmation: { canned_response: true, visitor_banned: true, banned_visitors: ['Mark;Harris'], visitor_not_listed: true, unlisted_visitors: ['Joan;Harris']}, state: encrypted_visit
+            post :create,
+              confirmation: {
+                canned_response: true, visitor_banned: true,
+                banned_visitors: ['Mark;Harris'], visitor_not_listed: true,
+                unlisted_visitors: ['Joan;Harris']
+              },
+              state: encrypted_visit
           end
 
           after :each do
             expect(response).to redirect_to(deferred_show_confirmation_path(visit_id: visit.visit_id))
-            expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(["Visit cannot take place: your visit for 7 July 2013 could not be booked", "COPY of booking rejection for Jimmy Harris"])
+            expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(
+              [
+                "Visit cannot take place: your visit for 7 July 2013 could not be booked",
+                "COPY of booking rejection for Jimmy Harris"
+              ]
+            )
           end
         end
 
         context "when a form is submitted and the prisoner has no allowance remaining" do
           before :each do
-            expect(mock_metrics_logger).to receive(:record_booking_rejection) { |actual_visit, reason| expect(visit).to be_same_visit(actual_visit); expect(reason).to eq(Confirmation::NO_ALLOWANCE) }
-            expect(VisitorMailer).to receive(:booking_rejection_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
-            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
+            expect(mock_metrics_logger).to receive(:record_booking_rejection) { |actual_visit, reason|
+              expect(visit).to be_same_visit(actual_visit)
+              expect(reason).to eq(Confirmation::NO_ALLOWANCE)
+            }
+            expect(VisitorMailer).to receive(:booking_rejection_email) { |actual_visit, confirmation|
+              expect(visit).to be_same_visit(actual_visit)
+              expect(confirmation).to be an_instance_of(Confirmation)
+            }.once.and_call_original
+            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation|
+              expect(visit).to be_same_visit(actual_visit)
+              expect(confirmation).to be an_instance_of(Confirmation)
+            }.once.and_call_original
           end
 
           it "sends out an e-mail and records a metric" do
-            post :create, confirmation: { outcome: Confirmation::NO_ALLOWANCE, canned_response: true }, state: encrypted_visit
+            post :create,
+              confirmation: {
+                outcome: Confirmation::NO_ALLOWANCE, canned_response: true
+              },
+              state: encrypted_visit
           end
 
           it "sends out an e-mail with VO renewal date and records a metric" do
-            post :create, confirmation: { outcome: Confirmation::NO_ALLOWANCE, canned_response: true, no_vo: true, renew_vo: '2014-11-28' }, state: encrypted_visit
+            post :create,
+              confirmation: {
+                outcome: Confirmation::NO_ALLOWANCE, canned_response: true,
+                no_vo: true, renew_vo: '2014-11-28'
+              },
+              state: encrypted_visit
           end
 
           it "sends out an e-mail with VO & PVO renewal dates and records a metric" do
-            post :create, confirmation: { outcome: Confirmation::NO_ALLOWANCE, canned_response: true, no_vo: true, renew_vo: '2014-11-28', no_pvo: true, renew_pvo: '2014-12-10' }, state: encrypted_visit
+            post :create,
+              confirmation: {
+                outcome: Confirmation::NO_ALLOWANCE, canned_response: true,
+                no_vo: true, renew_vo: '2014-11-28', no_pvo: true,
+                renew_pvo: '2014-12-10'
+              },
+              state: encrypted_visit
           end
 
           after :each do
             expect(response).to redirect_to(deferred_show_confirmation_path(visit_id: visit.visit_id))
-            expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(["Visit cannot take place: your visit for 7 July 2013 could not be booked", "COPY of booking rejection for Jimmy Harris"])
+            expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(
+              [
+                "Visit cannot take place: your visit for 7 July 2013 could not be booked",
+                "COPY of booking rejection for Jimmy Harris"
+              ]
+            )
           end
         end
 
         context "when a form is submitted and the prisoner details are incorrect" do
           it "sends out an e-mail and records a metric" do
-            expect(mock_metrics_logger).to receive(:record_booking_rejection) { |actual_visit, reason| expect(actual_visit).to be_same_visit(visit); expect(reason).to eq(Confirmation::PRISONER_INCORRECT) }
-            expect(VisitorMailer).to receive(:booking_rejection_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
-            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
+            expect(mock_metrics_logger).to receive(:record_booking_rejection) { |actual_visit, reason|
+              expect(actual_visit).to be_same_visit(visit)
+              expect(reason).to eq(Confirmation::PRISONER_INCORRECT)
+            }
+            expect(VisitorMailer).to receive(:booking_rejection_email) { |actual_visit, confirmation|
+              expect(visit).to be_same_visit(actual_visit)
+              expect(confirmation).to be an_instance_of(Confirmation)
+            }.once.and_call_original
+            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation|
+              expect(visit).to be_same_visit(actual_visit)
+              expect(confirmation).to be an_instance_of(Confirmation)
+            }.once.and_call_original
           end
 
           after :each do
-            post :create, confirmation: { outcome: Confirmation::PRISONER_INCORRECT, canned_response: true }, state: encrypted_visit
+            post :create,
+              confirmation: {
+                outcome: Confirmation::PRISONER_INCORRECT,
+                canned_response: true
+              },
+              state: encrypted_visit
             expect(response).to redirect_to(deferred_show_confirmation_path(visit_id: visit.visit_id))
-            expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(["Visit cannot take place: your visit for 7 July 2013 could not be booked", "COPY of booking rejection for Jimmy Harris"])
+            expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(
+              [
+                "Visit cannot take place: your visit for 7 July 2013 could not be booked",
+                "COPY of booking rejection for Jimmy Harris"
+              ]
+            )
           end
         end
 
         context "when a form is submitted and the prisoner is not at the prison" do
           it "sends out an e-mail and records a metric" do
-            expect(mock_metrics_logger).to receive(:record_booking_rejection) { |actual_visit, reason| expect(actual_visit).to be_same_visit(visit); expect(reason).to eq(Confirmation::PRISONER_NOT_PRESENT) }
-            expect(VisitorMailer).to receive(:booking_rejection_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
-            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
+            expect(mock_metrics_logger).to receive(:record_booking_rejection) { |actual_visit, reason|
+              expect(actual_visit).to be_same_visit(visit)
+              expect(reason).to eq(Confirmation::PRISONER_NOT_PRESENT)
+            }
+            expect(VisitorMailer).to receive(:booking_rejection_email) { |actual_visit, confirmation|
+              expect(visit).to be_same_visit(actual_visit)
+              expect(confirmation).to be an_instance_of(Confirmation)
+            }.once.and_call_original
+            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation|
+              expect(visit).to be_same_visit(actual_visit)
+              expect(confirmation).to be an_instance_of(Confirmation)
+            }.once.and_call_original
           end
 
           after :each do
-            post :create, confirmation: { outcome: Confirmation::PRISONER_NOT_PRESENT, canned_response: true }, state: encrypted_visit
+            post :create,
+              confirmation: {
+                outcome: Confirmation::PRISONER_NOT_PRESENT,
+                canned_response: true
+              },
+              state: encrypted_visit
             expect(response).to redirect_to(deferred_show_confirmation_path(visit_id: visit.visit_id))
-            expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(["Visit cannot take place: your visit for 7 July 2013 could not be booked", "COPY of booking rejection for Jimmy Harris"])
+            expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(
+              [
+                "Visit cannot take place: your visit for 7 July 2013 could not be booked",
+                "COPY of booking rejection for Jimmy Harris"
+              ]
+            )
           end
         end
 
         context "when a form is submitted without a slot" do
           it "sends out an e-mail and records a metric" do
-            expect(mock_metrics_logger).to receive(:record_booking_rejection) { |actual_visit, reason| expect(actual_visit).to be_same_visit(visit); expect(reason).to eq(Confirmation::NO_SLOT_AVAILABLE) }
-            expect(VisitorMailer).to receive(:booking_rejection_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
-            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation| expect(visit).to be_same_visit(actual_visit); expect(confirmation).to be an_instance_of(Confirmation) }.once.and_call_original
+            expect(mock_metrics_logger).to receive(:record_booking_rejection) { |actual_visit, reason|
+              expect(actual_visit).to be_same_visit(visit)
+              expect(reason).to eq(Confirmation::NO_SLOT_AVAILABLE)
+            }
+            expect(VisitorMailer).to receive(:booking_rejection_email) { |actual_visit, confirmation|
+              expect(visit).to be_same_visit(actual_visit)
+              expect(confirmation).to be an_instance_of(Confirmation)
+            }.once.and_call_original
+            expect(PrisonMailer).to receive(:booking_receipt_email) { |actual_visit, confirmation|
+              expect(visit).to be_same_visit(actual_visit)
+              expect(confirmation).to be an_instance_of(Confirmation)
+            }.once.and_call_original
           end
 
           after :each do
-            post :create, confirmation: { outcome: Confirmation::NO_SLOT_AVAILABLE, canned_response: true }, state: encrypted_visit
+            post :create,
+              confirmation: {
+                outcome: Confirmation::NO_SLOT_AVAILABLE,
+                canned_response: true
+              },
+              state: encrypted_visit
             expect(response).to redirect_to(deferred_show_confirmation_path(visit_id: visit.visit_id))
-            expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(["Visit cannot take place: your visit for 7 July 2013 could not be booked", "COPY of booking rejection for Jimmy Harris"])
+            expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(
+              [
+                "Visit cannot take place: your visit for 7 July 2013 could not be booked",
+                "COPY of booking rejection for Jimmy Harris"
+              ]
+            )
           end
         end
 
         context "when an incomplete form is submitted" do
           it "redirects back to the new action" do
-            post :create, confirmation: { outcome: 'lol', canned_response: true }, state: encrypted_visit
+            post :create,
+              confirmation: {
+                outcome: 'lol', canned_response: true
+              },
+              state: encrypted_visit
             expect(response).to render_template('confirmations/new')
           end
         end
