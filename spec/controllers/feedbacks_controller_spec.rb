@@ -42,13 +42,11 @@ describe FeedbacksController do
     end
 
     it "extracts the prison name from the session" do
-      expect(ZendeskHelper).to receive(:send_to_zendesk).once.with { |feedback|
+      expect(ZendeskHelper).to receive(:send_to_zendesk).once { |feedback|
         expect(feedback.prison).to eq('Rochester')
       }
-      expect {
-        post :create, feedback: { email: 'test@maildrop.dsd.io', text: 'feedback', referrer: 'ref', prison: 'Rochester' }
-        expect(response).to redirect_to feedback_path
-      }.to change { ActionMailer::Base.deliveries.size }.by(1)
+      post :create, feedback: { email: 'test@maildrop.dsd.io', text: 'feedback', referrer: 'ref', prison: 'Rochester' }
+      expect(response).to redirect_to feedback_path
     end
   end
 end
