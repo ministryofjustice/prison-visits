@@ -61,7 +61,9 @@ RSpec.describe VisitHelper, type: :helper do
     end
 
     it "provides the link" do
-      expect(helper.prison_link(visit)).to eq('<a href="http://www.justice.gov.uk/contacts/prison-finder/rochester" rel="external">Rochester prison</a>')
+      link = helper.prison_link(visit)
+      expect(link).to match(%r{<a[^>]+>Rochester prison</a>})
+      expect(link).to match(%r{href="http://www\.justice\.gov\.uk/contacts/prison-finder/rochester"})
     end
 
     it "provides the slot anomalies" do
