@@ -168,7 +168,7 @@ Run the server by running:
 
 Then point your favourite browser to [http://localhost:3000/prisoner](http://localhost:3000/prisoner).
 
-Note: as services on GOV.UK should not be accessed directly, the root of this app redirects to www.gov.uk/prison-visits.
+**Note** as services on GOV.UK should not be accessed directly, the root of this app redirects to www.gov.uk/prison-visits.
 
 ## Dependencies
 
