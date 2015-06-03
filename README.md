@@ -166,7 +166,9 @@ Run the server by running:
 
     rails server
 
-Then point your favourite browser to [http://localhost:3000/](http://localhost:3000/).
+Then point your favourite browser to [http://localhost:3000/prisoner](http://localhost:3000/prisoner).
+
+Note: as services on GOV.UK should not be accessed directly, the root of this app redirects to www.gov.uk/prison-visits.
 
 ## Dependencies
 
