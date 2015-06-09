@@ -1,8 +1,8 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Deferred::Visitor do
+RSpec.describe Deferred::Visitor do
   before :each do
-    EmailValidator.any_instance.stub(:validate)
+    allow_any_instance_of(EmailValidator).to receive(:validate)
   end
 
   let :visitor do
@@ -22,19 +22,19 @@ describe Deferred::Visitor do
       v.index = 0
 
       v.first_name = 'Jimmy'
-      v.should_not be_valid
+      expect(v).not_to be_valid
 
       v.last_name = 'Harris'
-      v.should_not be_valid
+      expect(v).not_to be_valid
 
       v.date_of_birth = Date.parse "1986-04-20"
-      v.should_not be_valid
+      expect(v).not_to be_valid
 
       v.email = 'jimmy@maildrop.dsd.io'
-      v.should_not be_valid
+      expect(v).not_to be_valid
       
       v.phone = '01344 123456'
-      v.should be_valid
+      expect(v).to be_valid
     end
   end
 end

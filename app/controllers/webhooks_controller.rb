@@ -12,10 +12,10 @@ class WebhooksController < ApplicationController
       case p.source
       when :prison
         STATSD_CLIENT.increment('pvb.app.email.autorespond_to_prison')
-        PrisonMailer.autorespond(p).deliver
+        PrisonMailer.autorespond(p).deliver_now
       when :visitor
         STATSD_CLIENT.increment('pvb.app.email.autorespon_to_visitor')
-        VisitorMailer.autorespond(p).deliver
+        VisitorMailer.autorespond(p).deliver_now
       end
       
       render text: "Accepted."

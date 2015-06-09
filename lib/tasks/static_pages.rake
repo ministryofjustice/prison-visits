@@ -2,9 +2,9 @@ namespace :static_pages do
   desc "Generates static pages"
   task generate: 'assets:precompile' do
     pages = {
-      'static/404' => '404.html',
-      'static/500' => '500.html',
-      'static/503' => '503.html',
+      '/static/404' => '404.html',
+      '/static/500' => '500.html',
+      '/static/503' => '503.html',
       '/cookies' => 'cookies.html',
       '/cookies-disabled' => 'cookies-disabled.html',
       '/terms-and-conditions' => 'terms-and-conditions.html',

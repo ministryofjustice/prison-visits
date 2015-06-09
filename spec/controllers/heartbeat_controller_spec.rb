@@ -1,30 +1,30 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe HeartbeatController do
+RSpec.describe HeartbeatController, type: :controller do
   render_views
 
   context "with key restrictions" do
     context "enabled" do
       it "raises an error" do
         Rails.configuration.metrics_auth_key = ""
-        controller.should_receive(:reject!)
+        expect(controller).to receive(:reject!)
         get :healthcheck
       end
     end
 
     context "disabled" do
       def set_mock_mailer_response(mailer, status)
-        mailer.should_receive(:smtp_settings).and_return(
+        expect(mailer).to receive(:smtp_settings).and_return(
           address: host = double,
           port: port = double
         )
-        SendgridHelper.should_receive(:smtp_alive?).with(
+        expect(SendgridHelper).to receive(:smtp_alive?).with(
           host, port
         ).once.and_return(status)
       end
 
       before :each do
-        controller.stub(:reject_without_key!)
+        allow(controller).to receive(:reject_without_key!)
       end
 
       context "when everything is OK" do
@@ -41,7 +41,7 @@ describe HeartbeatController do
         it "reports all services as OK" do
           get :healthcheck
           parsed_body = JSON.parse(response.body)
-          parsed_body['checks'].values.all?.should be_true
+          expect(parsed_body['checks'].values.all?).to be_truthy
         end
 
         [
@@ -52,7 +52,7 @@ describe HeartbeatController do
           it "contains a check for #{service}" do
             get :healthcheck
             parsed_body = JSON.parse(response.body)
-            parsed_body['checks'].has_key?(service).should be_true
+            expect(parsed_body['checks'].has_key?(service)).to be_truthy
           end
         end
       end
@@ -79,7 +79,7 @@ describe HeartbeatController do
         before :each do
           set_mock_mailer_response(PrisonMailer, true)
           set_mock_mailer_response(VisitorMailer, true)
-          ActiveRecord::Base.connection.should_receive(:active?).once.and_return(false)
+          expect(ActiveRecord::Base.connection).to receive(:active?).once.and_return(false)
         end
 
         it_behaves_like "a service is broken", "database"
@@ -89,7 +89,7 @@ describe HeartbeatController do
         before :each do
           set_mock_mailer_response(PrisonMailer, true)
           set_mock_mailer_response(VisitorMailer, true)
-          ActiveRecord::Base.connection.should_receive(:active?).once.and_raise(PG::ConnectionBad)
+          expect(ActiveRecord::Base.connection).to receive(:active?).once.and_raise(PG::ConnectionBad)
         end
 
         it_behaves_like "a service is broken", "database"

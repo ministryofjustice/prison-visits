@@ -1,7 +1,7 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Rails.application.config.filter_parameters do
+RSpec.describe Rails.application.config.filter_parameters do
   it "filters out sensitive information" do
-    subject.should == [:password, :first_name, :last_name, :number, :'date_of_birth(3i)', :'date_of_birth(2i)', :'date_of_birth(1i)', :email]
+    expect(subject).to eq([:password, :first_name, :last_name, :number, :'date_of_birth(3i)', :'date_of_birth(2i)', :'date_of_birth(1i)', :email])
   end
 end

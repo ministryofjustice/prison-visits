@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe ApplicationController do
+RSpec.describe ApplicationController, type: :controller do
   context "always" do
     controller do
       def index
@@ -11,16 +11,16 @@ describe ApplicationController do
     it "sets additional metadata for sentry" do
       @request = ActionController::TestRequest.new
       session[:visit] = Visit.new(prisoner: Prisoner.new(prison_name: 'Rochester'), visit_id: 'visit-id')
-      controller.stub(request_id: 'request_id')
+      allow(controller).to receive(:request_id).and_return('request_id')
       get :index
-      Raven.extra_context.should == {request_id: 'request_id', visit_id: 'visit-id', prison: 'Rochester'}
-      response['X-Request-Id'].should == 'request_id'
+      expect(Raven.extra_context).to eq({request_id: 'request_id', visit_id: 'visit-id', prison: 'Rochester'})
+      expect(response['X-Request-Id']).to eq('request_id')
     end
 
     it "sets additional metadata for logstasher" do
       visit_id = "LOL"
-      LogStasher.request_context.should_receive(:[]=).with(:visit_id, visit_id)
-      LogStasher.custom_fields.should_receive(:<<).with(:visit_id)
+      expect(LogStasher.request_context).to receive(:[]=).with(:visit_id, visit_id)
+      expect(LogStasher.custom_fields).to receive(:<<).with(:visit_id)
       controller.logstasher_add_visit_id(visit_id)
     end
   end
@@ -33,19 +33,19 @@ describe ApplicationController do
     end
 
     before :each do
-      Rails.configuration.stub(:metrics_auth_key).and_return('lulz')
+      allow(Rails.configuration).to receive(:metrics_auth_key).and_return('lulz')
       controller.class.permit_only_from_prisons_or_with_key
     end
 
     it "rejects untrusted IPs" do
-      Rails.configuration.permitted_ips_for_confirmations.stub(:include?).and_return(false)
+      allow(Rails.configuration.permitted_ips_for_confirmations).to receive(:include?).and_return(false)
       expect {
         get :index
       }.to raise_error(ActionController::RoutingError, 'Go away')
     end
 
     it "accepts trusted IPs" do
-      Rails.configuration.permitted_ips_for_confirmations.stub(:include?).and_return(true)
+      allow(Rails.configuration.permitted_ips_for_confirmations).to receive(:include?).and_return(true)
       get :index
     end
 
@@ -66,14 +66,14 @@ describe ApplicationController do
     end
 
     it "rejects untrusted IPs" do
-      Rails.configuration.permitted_ips_for_confirmations.stub(:include?).and_return(false)
+      allow(Rails.configuration.permitted_ips_for_confirmations).to receive(:include?).and_return(false)
       expect {
         get :index
       }.to raise_error(ActionController::RoutingError, 'Go away')
     end
 
     it "accepts trusted IPs" do
-      Rails.configuration.permitted_ips_for_confirmations.stub(:include?).and_return(true)
+      allow(Rails.configuration.permitted_ips_for_confirmations).to receive(:include?).and_return(true)
       get :index
     end
   end
@@ -92,7 +92,7 @@ describe ApplicationController do
 
     it "accepts clients with key" do
       get :index, key: "WUT"
-      response.should be_success
+      expect(response).to be_success
     end
 
     it "rejects clients without key" do
@@ -110,7 +110,7 @@ describe ApplicationController do
     end
 
     it "accepts all IPs" do
-      controller.should_receive(:reject_untrusted_ips!).never
+      expect(controller).to receive(:reject_untrusted_ips!).never
       get :index
     end
   end

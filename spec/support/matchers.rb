@@ -12,7 +12,7 @@ RSpec::Matchers.define :match_in_html do |actual|
     part = expected.body.parts.find do |part|
       part.content_type.match /text\/html/
     end
-    part.should_not be_nil
+    expect(part).not_to be_nil
     part.body.raw_source.include?(actual)
   end
 end
@@ -22,10 +22,14 @@ RSpec::Matchers.define :match_in_text do |actual|
     if part = expected.body.parts.find do |part|
         part.content_type.match /text\/plain/
       end
-      part.should_not be_nil
+      expect(part).not_to be_nil
       part.body.raw_source.include?(actual)
     else
       expected.body.raw_source.include?(actual)
     end
   end
+end
+
+RSpec::Matchers.define :same_visit do |v|
+  match { |actual| v.same_visit?(actual) }
 end

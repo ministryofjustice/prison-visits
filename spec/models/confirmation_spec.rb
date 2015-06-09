@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Confirmation do
+RSpec.describe Confirmation do
 
   context 'errors' do
     subject { described_class.new }

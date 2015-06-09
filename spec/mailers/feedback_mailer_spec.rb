@@ -1,6 +1,6 @@
-require "spec_helper"
+require 'rails_helper'
 
-describe FeedbackMailer do
+RSpec.describe FeedbackMailer do
   let :subject do
     FeedbackMailer
   end
@@ -10,6 +10,6 @@ describe FeedbackMailer do
   end
 
   it "responds with a referrer in a subject" do
-    subject.new_feedback(feedback).subject.should == "PVB feedback: ref"
+    expect(subject.new_feedback(feedback).subject).to eq("PVB feedback: ref")
   end
 end

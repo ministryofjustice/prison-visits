@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Instant::SlotsController do
+RSpec.describe Instant::SlotsController, type: :controller do
   render_views
 
   before :each do
@@ -18,12 +18,12 @@ describe Instant::SlotsController do
   it_behaves_like "a killswitch-enabled controller"
 
   it "sets up the flow" do
-    controller.this_path.should == instant_edit_slots_path
-    controller.next_path.should == instant_edit_visit_path
+    expect(controller.this_path).to eq(instant_edit_slots_path)
+    expect(controller.next_path).to eq(instant_edit_visit_path)
   end
 
   it "permits up to one slot to be selected" do
-    controller.max_slots.should == 1
+    expect(controller.max_slots).to eq(1)
   end
 
   context "correct slot information" do
@@ -41,7 +41,7 @@ describe Instant::SlotsController do
 
     it "permits us to select a time slot" do
       post :update, slots_hash
-      response.should redirect_to(controller.next_path)
+      expect(response).to redirect_to(controller.next_path)
     end
   end
 
@@ -54,7 +54,7 @@ describe Instant::SlotsController do
 
     it "prompts us to retry" do
       post :update, slots_hash
-      response.should redirect_to(controller.this_path)
+      expect(response).to redirect_to(controller.this_path)
     end
   end
 
@@ -67,8 +67,8 @@ describe Instant::SlotsController do
 
     it "prompts us to retry" do
       post :update, slots_hash
-      response.should redirect_to(controller.this_path)
-      session[:visit].errors[:slots].should_not be_nil
+      expect(response).to redirect_to(controller.this_path)
+      expect(session[:visit].errors[:slots]).not_to be_nil
     end
   end
 end

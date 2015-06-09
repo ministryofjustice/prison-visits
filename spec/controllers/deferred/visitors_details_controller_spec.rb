@@ -1,13 +1,13 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Deferred::VisitorsDetailsController do
+RSpec.describe Deferred::VisitorsDetailsController, type: :controller do
   render_views
 
   before :each do
     session[:visit] = PrisonerDetailsController.new.new_session
     controller.visit.prisoner.prison_name = 'Cardiff'
     cookies['cookies-enabled'] = 1
-    EmailValidator.any_instance.stub(:validate)
+    allow_any_instance_of(EmailValidator).to receive(:validate)
   end
 
   it_behaves_like "a browser without a session present"
@@ -16,8 +16,8 @@ describe Deferred::VisitorsDetailsController do
   it_behaves_like "a visitor data manipulator with invalid data"
 
   it "sets up the flow" do
-    controller.this_path.should == deferred_edit_visitors_details_path
-    controller.next_path.should == deferred_edit_slots_path
+    expect(controller.this_path).to eq(deferred_edit_visitors_details_path)
+    expect(controller.next_path).to eq(deferred_edit_slots_path)
   end
 
   let :single_visitor_hash do
@@ -54,7 +54,7 @@ describe Deferred::VisitorsDetailsController do
       get :edit
       expect {
         post :update, visitor_hash
-        response.should redirect_to deferred_edit_slots_path
+        expect(response).to redirect_to deferred_edit_slots_path
       }.to change { session[:visit].visitors.first.first_name }
     end
   end
@@ -79,7 +79,7 @@ describe Deferred::VisitorsDetailsController do
 
     it "rejects visitor information" do
       post :update, visitor_hash
-      response.should redirect_to(deferred_edit_visitors_details_path)
+      expect(response).to redirect_to(deferred_edit_visitors_details_path)
     end
   end
 

@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
-require 'spec_helper'
+require 'rails_helper'
 
-describe ParsedEmail do
+RSpec.describe ParsedEmail do
   context "given valid data" do
     let :data do
       {
@@ -14,11 +13,11 @@ describe ParsedEmail do
     end
     
     it "parses the email" do
-      ParsedEmail.parse(data).should be_valid
+      expect(ParsedEmail.parse(data)).to be_valid
     end
 
     it "reports the source as coming in from a visitor" do
-      ParsedEmail.parse(data).source.should == :visitor
+      expect(ParsedEmail.parse(data).source).to eq(:visitor)
     end
   end
 
@@ -35,11 +34,11 @@ describe ParsedEmail do
 
     it "parses the email" do
       email = ParsedEmail.parse(data)
-      email.should be_valid
+      expect(email).to be_valid
 
-      email.from.display_name.should == "Keld Jørn Simonsen"
-      email.subject.should == "Wøt up?"
-      email.text.should == "æ"
+      expect(email.from.display_name).to eq("Keld Jørn Simonsen")
+      expect(email.subject).to eq("Wøt up?")
+      expect(email.text).to eq("æ")
     end
   end
 
@@ -55,7 +54,7 @@ describe ParsedEmail do
     end
 
     it "reports the source as 'prison'" do
-      ParsedEmail.parse(data).source.should == :prison
+      expect(ParsedEmail.parse(data).source).to eq(:prison)
     end
   end
 end

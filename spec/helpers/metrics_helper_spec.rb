@@ -1,21 +1,21 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe MetricsHelper do
+RSpec.describe MetricsHelper do
   it "displays zero" do
-    helper.display_interval(0).should == "0s"
+    expect(helper.display_interval(0)).to eq("0s")
   end
 
   it "displays a long time" do
-    helper.display_interval(229418).should == "2d15h43m38s"
+    expect(helper.display_interval(229418)).to eq("2d15h43m38s")
   end
 
   it "passes through nil" do
-    helper.display_interval(nil).should be_nil
+    expect(helper.display_interval(nil)).to be_nil
   end
 
   it "displays percentages" do
-    helper.display_percent(1.0/3).should == "33.3"
-    helper.display_percent(0.1).should == "10.0"
-    helper.display_percent(0.0).should == "0.0"
+    expect(helper.display_percent(1.0/3)).to eq("33.3")
+    expect(helper.display_percent(0.1)).to eq("10.0")
+    expect(helper.display_percent(0.0)).to eq("0.0")
   end
 end

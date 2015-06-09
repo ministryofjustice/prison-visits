@@ -1,17 +1,17 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe 'Bank holidays' do
+RSpec.describe 'Bank holidays' do
   describe 'bundled database' do
     subject do
       JSON.parse(File.read('config/bank-holidays.json'))['england-and-wales']['events']
     end
 
     it 'contains at least one bank holiday after today' do
-      subject.map do |entry|
+      expect(subject.map do |entry|
         Date.parse(entry['date'])
       end.find do |date|
         date > Date.today
-      end.should_not be_nil
+      end).not_to be_nil
     end
   end
 

@@ -1,23 +1,23 @@
 require 'browserstack_helper'
 
-feature "visitor enters visitor information" do
+RSpec.feature "visitor enters visitor information" do
   include_examples "feature helper"
 
   [:deferred, :instant].each do |flow|
     context "#{flow} flow" do
 
       before :each do
-        EmailValidator.any_instance.stub(:validate_dns_records)
-        EmailValidator.any_instance.stub(:validate_spam_reporter)
-        EmailValidator.any_instance.stub(:validate_bounced)
+        allow_any_instance_of(EmailValidator).to receive(:validate_dns_records)
+        allow_any_instance_of(EmailValidator).to receive(:validate_spam_reporter)
+        allow_any_instance_of(EmailValidator).to receive(:validate_bounced)
         visit '/prisoner-details'
         enter_prisoner_information(flow)
       end
 
       context "and leaves fields blank" do
         before :each do
-          EmailValidator.any_instance.stub(:validate_dns_records)
-          EmailValidator.any_instance.stub(:validate_spam_reporter)
+          allow_any_instance_of(EmailValidator).to receive(:validate_dns_records)
+          allow_any_instance_of(EmailValidator).to receive(:validate_spam_reporter)
         end
 
         it "validation messages are present" do
@@ -33,8 +33,8 @@ feature "visitor enters visitor information" do
 
       context "and they fill out all fields" do
         before :each do
-          EmailValidator.any_instance.stub(:validate)
-          EmailValidator.any_instance.stub(:validate)
+          allow_any_instance_of(EmailValidator).to receive(:validate)
+          allow_any_instance_of(EmailValidator).to receive(:validate)
         end
 
         context "for one visitor" do
@@ -73,7 +73,7 @@ feature "visitor enters visitor information" do
           enter_additional_visitor_information(1, :adult)
           fill_in "Your first name", with: 'Maggie'
 
-          expect(page).to have_tag('.AgeLabel', :text => 'Over 18')
+          expect(page).to have_selector('.AgeLabel', :text => 'Over 18')
         end
 
         it "indicates they are under the specified age for a seat" do
@@ -83,7 +83,7 @@ feature "visitor enters visitor information" do
           enter_additional_visitor_information(1, :child)
           fill_in "Your first name", with: 'Maggie'
 
-          expect(page).to have_tag('.AgeLabel', :text => 'Under 18')
+          expect(page).to have_selector('.AgeLabel', :text => 'Under 18')
         end
 
       end

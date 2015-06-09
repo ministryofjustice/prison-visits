@@ -34,6 +34,9 @@
     #{yield :analytics}
     ga('set', 'anonymizeIp', true);
     ga('send', 'pageview');
+  - if Rails.env == 'test'
+    :javascript
+      moj.log = function(){}; // Silence hiring banner
 
 
 - content_for :body_classes, "#{config_item(:phase).to_s.downcase} #{config_item(:product_type).to_s.downcase} #{controller.controller_name} #{controller.action_name}"

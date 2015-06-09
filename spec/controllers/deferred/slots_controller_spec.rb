@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Deferred::SlotsController do
+RSpec.describe Deferred::SlotsController, type: :controller do
   render_views
 
   before :each do
@@ -17,12 +17,12 @@ describe Deferred::SlotsController do
   it_behaves_like "a session timed out"
 
   it "sets up the flow" do
-    controller.this_path.should == deferred_edit_slots_path
-    controller.next_path.should == deferred_edit_visit_path
+    expect(controller.this_path).to eq(deferred_edit_slots_path)
+    expect(controller.next_path).to eq(deferred_edit_visit_path)
   end
 
   it "permits up to 3 slots to be selected" do
-    controller.max_slots.should == 3
+    expect(controller.max_slots).to eq(3)
   end
 
   context "correct slot information" do
@@ -40,7 +40,7 @@ describe Deferred::SlotsController do
 
     it "permits us to select a time slot" do
       post :update, slots_hash
-      response.should redirect_to(controller.next_path)
+      expect(response).to redirect_to(controller.next_path)
     end
   end
 
@@ -53,7 +53,7 @@ describe Deferred::SlotsController do
 
     it "prompts us to retry" do
       post :update, slots_hash
-      response.should redirect_to(controller.this_path)
+      expect(response).to redirect_to(controller.this_path)
     end
   end
 
@@ -66,7 +66,7 @@ describe Deferred::SlotsController do
 
     it "accepts the submission" do
       post :update, slots_hash
-      response.should redirect_to(controller.next_path)
+      expect(response).to redirect_to(controller.next_path)
     end
   end
 
@@ -79,7 +79,7 @@ describe Deferred::SlotsController do
 
     it "accepts the submission" do
       post :update, slots_hash
-      response.should redirect_to(controller.next_path)
+      expect(response).to redirect_to(controller.next_path)
     end
   end
 
@@ -92,8 +92,8 @@ describe Deferred::SlotsController do
 
     it "prompts us to retry" do
       post :update, slots_hash
-      response.should redirect_to(controller.this_path)
-      session[:visit].errors[:slots].should_not be_nil
+      expect(response).to redirect_to(controller.this_path)
+      expect(session[:visit].errors[:slots]).not_to be_nil
     end
   end
 end
