@@ -21,8 +21,6 @@ RSpec.feature "visitor selects a date" do
         it "and displays a message saying booking is not possible" do
           yesterday = Time.now - 1.day
 
-          # If the week starts on Monday, don't run this test - "yesterday" will be beyond the first
-          # row of the calendar.
           if ![0, 7].include?(yesterday.wday)
             find(:css, yesterday.strftime("a.BookingCalendar-dateLink[data-date='%Y-%m-%d']")).click
             expect(page).to have_content("It is not possible to book a visit in the past.")
@@ -32,8 +30,7 @@ RSpec.feature "visitor selects a date" do
           find(:css, tomorrow.strftime("a.BookingCalendar-dateLink[data-date='%Y-%m-%d']")).click
           expect(page).to have_content('You can only book a visit 3 working days in advance.')
 
-          a_month_from_now = Time.now + 29.days
-          find(:css, a_month_from_now.strftime("a.BookingCalendar-dateLink[data-date='%Y-%m-%d']")).click
+          all(:css, "a.BookingCalendar-dateLink").last.click
           expect(page).to have_content('You can only book a visit in the next')
         end
       end
