@@ -3,74 +3,122 @@ require 'browserstack_helper'
 RSpec.feature "visitor selects a date" do
   include_examples "feature helper"
 
-  [:deferred, :instant].each do |flow|
-    context "#{flow} flow" do
+  before :each do
+    allow_any_instance_of(VisitController).to receive(:metrics_logger).and_return(MockMetricsLogger.new)
+    allow_any_instance_of(EmailValidator).to receive(:validate_dns_records)
+    allow_any_instance_of(EmailValidator).to receive(:validate_spam_reporter)
+    allow_any_instance_of(EmailValidator).to receive(:validate_bounced)
+  end
 
-      before :each do
-        allow_any_instance_of(VisitController).to receive(:metrics_logger).and_return(MockMetricsLogger.new)
-        allow_any_instance_of(EmailValidator).to receive(:validate_dns_records)
-        allow_any_instance_of(EmailValidator).to receive(:validate_spam_reporter)
-        allow_any_instance_of(EmailValidator).to receive(:validate_bounced)
-        visit '/prisoner-details'
-        enter_prisoner_information(flow)
-        enter_visitor_information(flow)
-        click_button 'Continue'
+  context "deferred flow" do
+    before :each do
+      visit '/prisoner-details'
+      enter_prisoner_information(:deferred)
+      enter_visitor_information(:deferred)
+      click_button 'Continue'
+    end
+
+    scenario 'Choosing a date in the past' do
+      # A Tuesday, so that yesterday is a working day
+      Timecop.travel(Time.new(2015, 6, 9, 12))
+      yesterday = Time.now - 1.day
+      find(:css, yesterday.strftime("a.BookingCalendar-dateLink[data-date='%Y-%m-%d']")).click
+      expect(page).to have_content("It is not possible to book a visit in the past.")
+      Timecop.return
+    end
+
+    scenario 'Choosing a date more than 3 working days from now' do
+      tomorrow = Time.now + 1.day
+      find(:css, tomorrow.strftime("a.BookingCalendar-dateLink[data-date='%Y-%m-%d']")).click
+      expect(page).to have_content('You can only book a visit 3 working days in advance.')
+    end
+
+    scenario 'Choosing a date more than 14 days from now' do
+      all(:css, "a.BookingCalendar-dateLink").last.click
+      expect(page).to have_content('You can only book a visit in the next 14 days')
+    end
+
+    scenario 'Booking a valid slot' do
+      _when = Time.now + 3.days
+      begin
+        find(:css, _when.strftime("a.BookingCalendar-dateLink[data-date='%Y-%m-%d']")).click
+        # Some dates are not bookable, ignore those.
+        find(:css, _when.strftime("#date-%Y-%m-%d.is-active"))
+      rescue Capybara::ElementNotFound => e
+        _when += 1.day
+        retry unless _when > Time.now + 30.days
       end
 
-      context "that is unbookable" do
-        it "and displays a message saying booking is not possible" do
-          yesterday = Time.now - 1.day
-
-          # If the week starts on Monday, don't run this test - "yesterday" will be beyond the first
-          # row of the calendar.
-          if ![0, 7].include?(yesterday.wday)
-            find(:css, yesterday.strftime("a.BookingCalendar-dateLink[data-date='%Y-%m-%d']")).click
-            expect(page).to have_content("It is not possible to book a visit in the past.")
-          end
-
-          tomorrow = Time.now + 1.day
-          find(:css, tomorrow.strftime("a.BookingCalendar-dateLink[data-date='%Y-%m-%d']")).click
-          expect(page).to have_content('You can only book a visit 3 working days in advance.')
-
-          a_month_from_now = Time.now + 29.days
-          find(:css, a_month_from_now.strftime("a.BookingCalendar-dateLink[data-date='%Y-%m-%d']")).click
-          expect(page).to have_content('You can only book a visit in the next')
-        end
+      within(:css, _when.strftime("#date-%Y-%m-%d.is-active")) do
+        expect(page).to have_content(_when.strftime("%A %e %B"))
       end
 
-      context "that is bookable" do
-        it "displays booking slots" do
-          _when = Time.now + 3.days
-          begin
-            find(:css, _when.strftime("a.BookingCalendar-dateLink[data-date='%Y-%m-%d']")).click
-            # Some dates are not bookable, ignore those.
-            find(:css, _when.strftime("#date-%Y-%m-%d.is-active"))
-          rescue Capybara::ElementNotFound => e
-            _when += 1.day
-            retry unless _when > Time.now + 30.days
-          end
+      # For some reason, check() can't find the checkbox.
+      evaluate_script(_when.strftime("$('#slot-%Y-%m-%d-1330-1500').click()"))
+      evaluate_script(_when.strftime("$('#slot-%Y-%m-%d-1445-1545').click()"))
 
-          within(:css, _when.strftime("#date-%Y-%m-%d.is-active")) do
-            expect(page).to have_content(_when.strftime("%A %e %B"))
-          end
-          
-          # For some reason, check() can't find the checkbox.
-          if flow == :deferred
-            evaluate_script(_when.strftime("$('#slot-%Y-%m-%d-1330-1500').click()"))
-            evaluate_script(_when.strftime("$('#slot-%Y-%m-%d-1445-1545').click()"))
-          else
-            evaluate_script(_when.strftime("$('#slot-%Y-%m-%d-1345-1545').click()"))
-            evaluate_script(_when.strftime("$('#slot-%Y-%m-%d-1345-1645').click()"))
-          end
+      click_button 'Continue'
+      expect(page).to have_content('Check your request')
+      expect(page).to have_selector('.AgeLabel-label', :text => 'Over 18')
 
-          click_button 'Continue'
-          expect(page).to have_content('Check your request')
-          expect(page).to have_selector('.AgeLabel-label', :text => 'Over 18')
+      click_button 'Send request'
+      expect(page).to have_content('Your request is being processed')
+    end
+  end
 
-          click_button 'Send request'
-          expect(page).to have_content('Your request is being processed')
-        end
+  context "instant flow" do
+    before :each do
+      visit '/prisoner-details'
+      enter_prisoner_information(:instant)
+      enter_visitor_information(:instant)
+      click_button 'Continue'
+    end
+
+    scenario 'Choosing a date in the past' do
+      # A Tuesday, so that yesterday is a working day
+      Timecop.travel(Time.new(2015, 6, 9, 12))
+      yesterday = Time.now - 1.day
+      find(:css, yesterday.strftime("a.BookingCalendar-dateLink[data-date='%Y-%m-%d']")).click
+      expect(page).to have_content("It is not possible to book a visit in the past.")
+      Timecop.return
+    end
+
+    scenario 'Choosing a date more than 3 working days from now' do
+      tomorrow = Time.now + 1.day
+      find(:css, tomorrow.strftime("a.BookingCalendar-dateLink[data-date='%Y-%m-%d']")).click
+      expect(page).to have_content('You can only book a visit 3 working days in advance.')
+    end
+
+    scenario 'Choosing a date more than 28 days from now' do
+      all(:css, "a.BookingCalendar-dateLink").last.click
+      expect(page).to have_content('You can only book a visit in the next 28 days')
+    end
+
+    scenario 'Booking a valid slot' do
+      _when = Time.now + 3.days
+      begin
+        find(:css, _when.strftime("a.BookingCalendar-dateLink[data-date='%Y-%m-%d']")).click
+        # Some dates are not bookable, ignore those.
+        find(:css, _when.strftime("#date-%Y-%m-%d.is-active"))
+      rescue Capybara::ElementNotFound => e
+        _when += 1.day
+        retry unless _when > Time.now + 30.days
       end
+
+      within(:css, _when.strftime("#date-%Y-%m-%d.is-active")) do
+        expect(page).to have_content(_when.strftime("%A %e %B"))
+      end
+
+      # For some reason, check() can't find the checkbox.
+      evaluate_script(_when.strftime("$('#slot-%Y-%m-%d-1345-1545').click()"))
+      evaluate_script(_when.strftime("$('#slot-%Y-%m-%d-1345-1645').click()"))
+
+      click_button 'Continue'
+      expect(page).to have_content('Check your request')
+      expect(page).to have_selector('.AgeLabel-label', :text => 'Over 18')
+
+      click_button 'Send request'
+      expect(page).to have_content('Your request is being processed')
     end
   end
 end
