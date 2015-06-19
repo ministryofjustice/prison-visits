@@ -3,6 +3,14 @@ require 'browserstack_helper'
 RSpec.feature "visitor selects a date" do
   include_examples "feature helper"
 
+  before :all do
+    Timecop.travel(Time.now.next_week(:tuesday).at_noon)
+  end
+
+  after :all do
+    Timecop.return
+  end
+
   before :each do
     allow_any_instance_of(VisitController).to receive(:metrics_logger).and_return(MockMetricsLogger.new)
     allow_any_instance_of(EmailValidator).to receive(:validate_dns_records)
@@ -19,12 +27,9 @@ RSpec.feature "visitor selects a date" do
     end
 
     scenario 'Choosing a date in the past' do
-      # A Tuesday, so that yesterday is a working day
-      Timecop.travel(Time.new(2015, 6, 9, 12))
       yesterday = Time.now - 1.day
       find(:css, yesterday.strftime("a.BookingCalendar-dateLink[data-date='%Y-%m-%d']")).click
       expect(page).to have_content("It is not possible to book a visit in the past.")
-      Timecop.return
     end
 
     scenario 'Choosing a date more than 3 working days from now' do
@@ -75,12 +80,9 @@ RSpec.feature "visitor selects a date" do
     end
 
     scenario 'Choosing a date in the past' do
-      # A Tuesday, so that yesterday is a working day
-      Timecop.travel(Time.new(2015, 6, 9, 12))
       yesterday = Time.now - 1.day
       find(:css, yesterday.strftime("a.BookingCalendar-dateLink[data-date='%Y-%m-%d']")).click
       expect(page).to have_content("It is not possible to book a visit in the past.")
-      Timecop.return
     end
 
     scenario 'Choosing a date more than 3 working days from now' do
