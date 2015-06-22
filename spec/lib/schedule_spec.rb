@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Schedule do
   subject do
-    Schedule.new(prison, [Date.new(2014, 8, 25), Date.new(2015, 4, 3), Date.new(2015, 4, 6)])
+    bank_holidays = [Date.new(2014, 8, 25), Date.new(2015, 4, 3), Date.new(2015, 4, 6)]
+    Schedule.new(prison, bank_holidays)
   end
 
   let :start_date do
@@ -13,7 +14,7 @@ RSpec.describe Schedule do
     let :prison do
       Rails.configuration.prison_data['Durham']
     end
-    
+
     it "returns days within 28 days, excluding the lead days" do
       subject.dates(start_date).each do |date|
         expect(date).to be >= start_date + 3
@@ -21,10 +22,10 @@ RSpec.describe Schedule do
       end
     end
 
-    it "rejects unbookable dates" do
+    it "doesn't offer unbookable dates" do
       subject.dates(start_date).each do |date|
-        expect(date).not_to eq(Date.parse('2014-12-25'))
-        expect(date).not_to eq(Date.parse('2014-12-26'))
+        expect(date).not_to eq(Date.new(2014, 12, 25))
+        expect(date).not_to eq(Date.new(2014, 12, 26))
       end
     end
 
@@ -44,26 +45,21 @@ RSpec.describe Schedule do
       # 24<25>26 27 28 29 30
       # 31
 
-      start_date = Date.new(2014, 8, 18) # Monday
-      expect(subject.dates(start_date).first).to eq(start_date + 4) # Friday
+      week_start = monday = Date.new(2014, 8, 18)
+      first_bookable_visits = {
+        :monday => week_start.next_day(Date::DAYS_INTO_WEEK[:friday]),
+        :tuesday => week_start.next_day(Date::DAYS_INTO_WEEK[:saturday]),
+        :wednesday => week_start.next_week(:wednesday),
+        :thursday => week_start.next_week(:thursday),
+        :friday => week_start.next_week(:friday),
+        :saturday => week_start.next_week(:friday),
+        :sunday => week_start.next_week(:friday),
+      }
 
-      start_date = Date.new(2014, 8, 19) # Tuesday
-      expect(subject.dates(start_date).first).to eq(start_date + 4) # Saturday
-
-      start_date = Date.new(2014, 8, 20) # Wednesday
-      expect(subject.dates(start_date).first).to eq(start_date + 7) # Wednesday
-
-      start_date = Date.new(2014, 8, 21) # Thursday
-      expect(subject.dates(start_date).first).to eq(start_date + 7) # Thursday
-
-      start_date = Date.new(2014, 8, 22) # Friday
-      expect(subject.dates(start_date).first).to eq(start_date + 7) # Friday
-
-      start_date = Date.new(2014, 8, 23) # Saturday
-      expect(subject.dates(start_date).first).to eq(start_date + 6) # Friday
-
-      start_date = Date.new(2014, 8, 24) # Sunday
-      expect(subject.dates(start_date).first).to eq(start_date + 5) # Friday
+      first_bookable_visits.each do |request_day, visit_on|
+        request_date = week_start.next_day(Date::DAYS_INTO_WEEK[request_day])
+        expect(subject.dates(request_date).first).to eq(visit_on)
+      end
     end
 
     it "assumes bookings are not processed on bank holidays" do
@@ -76,7 +72,7 @@ RSpec.describe Schedule do
       # 26 27 28 29 30
 
       start_date = Date.new(2015, 4, 2)
-      expect(subject.dates(start_date).first).to eq(start_date + 8)
+      expect(subject.dates(start_date).first).to eq(start_date.next_week(:friday))
     end
   end
 
@@ -87,7 +83,7 @@ RSpec.describe Schedule do
 
     it "rejects days without slots" do
       subject.dates(start_date).each do |date|
-        expect(date.wday).not_to eq(5)
+        expect(date.friday?).to be false
       end
     end
   end
@@ -111,7 +107,7 @@ RSpec.describe Schedule do
 
     it "applies anomalous slots" do
       anomalous_date = (Date.new(2014, 1, 4)..Date.new(2014, 2, 1)).find do |date|
-        date.wday == 3
+        date.wednesday?
       end
       prison[:slot_anomalies] = {anomalous_date => ['0945-1300']}
       expect(subject.dates(Date.new(2014, 1, 1)).to_a).to include anomalous_date
@@ -168,33 +164,21 @@ RSpec.describe Schedule do
 
       date_range = (Date.new(2014, 12, 1)..Date.new(2014, 12, 28))
 
-      # Monday
-      start_date = Date.new(2014, 12, 1)
-      expect(subject.except_lead_days(start_date, date_range).first).to eq(start_date + 1)
+      week_start = Date.new(2014, 12, 1)
+      first_bookable_visits = {
+        :monday => week_start.next_day(Date::DAYS_INTO_WEEK[:tuesday]),
+        :tuesday => week_start.next_day(Date::DAYS_INTO_WEEK[:wednesday]),
+        :wednesday => week_start.next_day(Date::DAYS_INTO_WEEK[:thursday]),
+        :thursday => week_start.next_day(Date::DAYS_INTO_WEEK[:friday]),
+        :friday => week_start.next_week(:monday),
+        :saturday => week_start.next_week(:monday),
+        :sunday => week_start.next_week(:monday),
+      }
 
-      # Tuesday
-      start_date = Date.new(2014, 12, 2)
-      expect(subject.except_lead_days(start_date, date_range).first).to eq(start_date + 1)
-
-      # Wednesday
-      start_date = Date.new(2014, 12, 3)
-      expect(subject.except_lead_days(start_date, date_range).first).to eq(start_date + 1)
-
-      # Thursday
-      start_date = Date.new(2014, 12, 4)
-      expect(subject.except_lead_days(start_date, date_range).first).to eq(start_date + 1)
-
-      # Friday
-      start_date = Date.new(2014, 12, 5)
-      expect(subject.except_lead_days(start_date, date_range).first).to eq(start_date + 3)
-
-      # Saturday
-      start_date = Date.new(2014, 12, 6)
-      expect(subject.except_lead_days(start_date, date_range).first).to eq(start_date + 2)
-
-      # Sunday
-      start_date = Date.new(2014, 12, 7)
-      expect(subject.except_lead_days(start_date, date_range).first).to eq(start_date + 1)
+      first_bookable_visits.each do |request_day, visit_on|
+        request_date = week_start.next_day(Date::DAYS_INTO_WEEK[request_day])
+        expect(subject.except_lead_days(request_date, date_range).first).to eq(visit_on)
+      end
 
       expect(subject.dates(start_date = Date.new(2014, 12, 4)).first).to eq(start_date + 1)
     end
