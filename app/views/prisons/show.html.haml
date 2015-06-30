@@ -31,6 +31,10 @@
             %a{href: "mailto:#{@data['email']}"}
               = @data['email']
 
+        - if @data['email']
+          %dt Booking staff work on weekends (NOMS network only)
+          %dd= @data['works_weekends'] ? 'Yes' : 'No'
+
         - if @data['phone']
           %dt Booking line
           %dd
@@ -41,9 +45,8 @@
           %dt Prison finder slug
           %dd= @data['finder_slug']
 
-        - if @data['lead_days']
-          %dt Custom lead time
-          %dd #{@data['lead_days']} days
+        %dt Booking response
+        %dd= @data['lead_days'] ? @data['lead_days'] : Schedule::DEFAULT_LEAD_DAYS.to_s + ' days'
 
         - if @data['works_weekends']
           %dt Process visits on weekends
