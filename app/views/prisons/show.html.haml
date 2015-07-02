@@ -10,8 +10,9 @@
           = @data['address'][0]
         %span{property: 'addressLocality'}
           = @data['address'][1]
-        %span{property: 'postalCode'}
-          = @data['address'].last
+        - if @data['address'].length > 2
+          %span{property: 'postalCode'}
+            = @data['address'].last
         %p#map-link
           %a{href: "https://maps.google.co.uk/?q=#{@data['address'].join(', ')}", rel: 'external'}
             Maps and directions
