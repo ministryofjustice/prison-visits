@@ -10,7 +10,6 @@ Stafford:
   - 54 Gaol Road
   - Stafford
   - ST16 3AW
-  lead_days: 3
   unbookable:
   - 2015-12-25
   slots:
@@ -3492,9 +3491,6 @@ Prescoed:
   finder_slug: usk-prescoed-prescoed
 Rye Hill:
   nomis_id: RHI
-  enabled: false
-Stafford:
-  nomis_id: SFI
   enabled: false
 Thameside:
   nomis_id: 
