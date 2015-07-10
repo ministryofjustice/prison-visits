@@ -1,25 +1,18 @@
 ---
 Stafford:
-  nomis_id: 
+  nomis_id: SFI
   canned_responses: true
   enabled: true
-  phone: 
+  phone: 01785 773 000
   email: pvb.stafford@maildrop.dsd.io
   instant_booking: false
   address:
-  -
-  - 
-  -
-  -
+  - 54 Gaol Road
+  - Stafford
+  - ST16 3AW
   lead_days: 3
   unbookable:
-  - 
-  - 
-  - 
-  - 
-  slot_anomalies:
-    
-    
+  - 2015-12-25
   slots:
     wed:
     - 1400-1600
