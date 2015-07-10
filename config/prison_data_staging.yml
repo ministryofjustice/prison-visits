@@ -1,4 +1,34 @@
 ---
+Stafford:
+  nomis_id: 
+  canned_responses: true
+  enabled: true
+  phone: 
+  email: pvb.stafford@maildrop.dsd.io
+  instant_booking: false
+  address:
+  -
+  - 
+  -
+  -
+  lead_days: 3
+  unbookable:
+  - 
+  - 
+  - 
+  - 
+  slot_anomalies:
+    
+    
+  slots:
+    wed:
+    - 1400-1600
+    thu:
+    - 1400-1600
+    sat:
+    - 1400-1600
+    sun:
+    - 1400-1600
 Rochester:
   nomis_id: RCI
   canned_responses: true
