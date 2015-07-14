@@ -21,7 +21,8 @@ gem 'curb'
 
 group :test, :development do
   gem 'rspec-rails'
-  gem 'byebug'
+  gem 'pry-byebug'
+  gem 'pry-rails'
   gem 'timecop'
   gem 'rubyzip'
   gem 'selenium-webdriver'
