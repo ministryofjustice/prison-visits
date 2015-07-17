@@ -6,9 +6,14 @@ class PrisonDay < Struct.new(:date, :prison)
     non_holiday? && working_day?
   end
 
+  def visiting_day?
+    non_blocked_day? && non_holiday? && available_day?
+  end
+
   private
 
-  delegate :works_everyday?, to: :prison
+  delegate :works_everyday?, :anomalous_dates,
+    :visiting_slot_days, :unbookable_dates, to: :prison
 
   def working_day?
     works_everyday? ? true : weekday?
@@ -20,6 +25,22 @@ class PrisonDay < Struct.new(:date, :prison)
 
   def non_holiday?
     BANK_HOLIDAYS.exclude? date
+  end
+
+  def anomalous_day?
+    anomalous_dates.include? date
+  end
+
+  def visiting_slot?
+    visiting_slot_days.include? abbreviated_day_name
+  end
+
+  def available_day?
+    visiting_slot? || anomalous_day?
+  end
+
+  def non_blocked_day?
+    unbookable_dates.exclude? date
   end
 
   def abbreviated_day_name
