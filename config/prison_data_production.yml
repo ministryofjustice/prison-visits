@@ -147,8 +147,8 @@ Cardiff:
     - 1330-1430
     2015-05-25:
     - 1330-1430
-    2015-08-31
-    -1330-1430
+    2015-08-31:
+    - 1330-1430
 Gartree:
   nomis_id: GTI
   canned_responses: true
