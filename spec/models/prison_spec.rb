@@ -90,9 +90,20 @@ RSpec.describe Prison, type: :model do
   end
 
   describe '.visiting_slot_days' do
-    let(:expected_slot_days) { %w<mon tue wed thu fri sat sun> }
-    it 'returns the abbreviated day names of available visiting days' do
-      expect(subject.visiting_slot_days).to eq expected_slot_days
+    let(:prison_with_everyday_visits) { subject }
+    let(:expected_slot_days_for_everyday_visits) { %w<mon tue wed thu fri sat sun> }
+
+    let(:weekend_slots_data) {  { "sat"=>["0930-1130"], "sun"=>["1400-1600"] } }
+    let(:expected_slot_days_for_weekend_only_visits) { %w<sat sun> }
+    let(:prison_with_weekend_only_visists) {
+      constructor_for mock_prison_data.replace('slots' => weekend_slots_data)
+    }
+
+    it 'returns the abbreviated day names of available visiting days for the prison' do
+      expect(prison_with_everyday_visits.visiting_slot_days).
+        to eq expected_slot_days_for_everyday_visits
+      expect(prison_with_weekend_only_visists.visiting_slot_days).
+        to eq expected_slot_days_for_weekend_only_visits
     end
   end
 
@@ -148,13 +159,13 @@ RSpec.describe Prison, type: :model do
   describe '.works_weekends?' do
     context 'when a prison has a works weekends boolean flag set' do
       it 'returns that boolean' do
-        expect(subject.works_weekends?).to be_truthy
+        expect(subject.works_weekends?).to be true
       end
     end
     context 'when no works weekends boolean flag has been set' do
       subject { constructor_for mock_prison_data.except 'works_weekends' }
 
-      specify { expect(subject.works_weekends?).to be_falsey }
+      specify { expect(subject.works_weekends?).to be false }
     end
   end
 
