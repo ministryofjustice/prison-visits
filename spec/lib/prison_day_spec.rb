@@ -51,7 +51,7 @@ RSpec.describe PrisonDay do
     end
   end
 
-  describe '.staff_working_day?' do
+  describe '#staff_working_day?' do
     context 'on a regular weekday' do
       WEEKDAYS.each do |day_name, date|
         subject { described_class.new(date, prison_from(prison_data)) }
@@ -86,7 +86,7 @@ RSpec.describe PrisonDay do
     end
   end
 
-  describe '.visiting_day?' do
+  describe '#visiting_day?' do
     let(:prison_with_visits_except_thursday) do
       prison_from prison_data.replace(slots: slots_for_everyday.except("thu"))
     end
@@ -98,7 +98,7 @@ RSpec.describe PrisonDay do
 
     let(:unbookable_monday) { DAYS.fetch :monday }
 
-    context 'a day registered as available for visitation for a given prison' do
+    context 'on a day registered as available for visitation for a given prison' do
       specify do
         DAYS.except(:thursday).each do |day_name, date|
           described_class.new(date, prison_with_visits_except_thursday).tap do |prison_day|
@@ -109,7 +109,7 @@ RSpec.describe PrisonDay do
 
       let(:monday_booking_slot) { slots_for_everyday.slice "mon" }
 
-      context 'has an anomalous slot' do
+      context 'and has an anomalous booking slot' do
         let(:anomalous_monday) { DAYS.fetch :monday }
         let(:prison_with_anomalous_date_on_visiting_day) do
           prison_from prison_data.
@@ -122,14 +122,14 @@ RSpec.describe PrisonDay do
         specify { expect(subject.visiting_day?).to be true }
       end
 
-      context 'a public holiday' do
+      context 'and is a public holiday' do
         before { stub_bank_holidays }
         subject { described_class.new bank_holiday_friday, prison_from(prison_data) }
 
         specify { expect(subject.visiting_day?).to be false }
       end
 
-      context 'an unbookable date' do
+      context 'and is an unbookable date' do
         let(:prison_with_unbookable_date_on_visiting_date) do
           prison_from prison_data.
             merge(unbookable: [unbookable_monday]).
@@ -140,7 +140,7 @@ RSpec.describe PrisonDay do
 
         specify { expect(subject.visiting_day?).to be false }
 
-        context 'also a day with an anomalous booking slot' do
+        context 'and has an anomalous booking slot' do
           let(:prison_with_unbookable_date_and_anomalous_slot_on_visiting_date) do
             prison_from prison_data.
               merge(unbookable: [unbookable_monday]).
@@ -158,13 +158,13 @@ RSpec.describe PrisonDay do
       end
     end
 
-    context 'a day not registered for visitation for a given prison' do
+    context 'on a day not registered for visitation for a given prison' do
       let(:non_available_visiting_day) { DAYS.fetch :thursday }
       subject { described_class.new non_available_visiting_day, prison_with_visits_except_thursday }
 
       specify { expect(subject.visiting_day?).to be false }
 
-      context 'is a public holiday' do
+      context 'and is a public holiday' do
         let(:prison_with_no_friday_visit) do
           prison_from prison_data.merge(slots: slots_for_everyday.except("fri"))
         end
@@ -175,7 +175,7 @@ RSpec.describe PrisonDay do
         specify { expect(subject.visiting_day?).to be false }
       end
 
-      context 'has an anomalous slot' do
+      context 'and has an anomalous booking slot' do
         let(:anomalous_friday) { DAYS.fetch :friday }
         let(:prison_with_no_friday_visit_but_anomalous_friday_slot) do
           prison_from prison_data.
@@ -191,7 +191,7 @@ RSpec.describe PrisonDay do
         specify { expect(subject.visiting_day?).to be true }
       end
 
-      context 'is an unbookable date' do
+      context 'and has an unbookable date' do
         let(:prison_with_unbookable_monday_and_no_monday_visit) do
           prison_from prison_data.
             merge(unbookable: [unbookable_monday]).
@@ -205,7 +205,7 @@ RSpec.describe PrisonDay do
 
         specify { expect(subject.visiting_day?).to be false }
 
-        context 'with an anomalous date slot' do
+        context 'and has an anomalous booking slot' do
           let(:prison_with_unbookable_monday_and_no_monday_visit_but_anomalous_monday_slot) do
             prison_from prison_data.
               merge(unbookable: [unbookable_monday]).

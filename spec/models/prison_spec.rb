@@ -31,7 +31,7 @@ RSpec.describe Prison, type: :model do
     }
   end
 
-  describe '#find' do
+  describe '.find' do
     context 'when a prison exists' do
       it 'returns a prison instance' do
         expect(described_class::PRISONS_DATA).to receive(:[]).
@@ -57,13 +57,13 @@ RSpec.describe Prison, type: :model do
 
   subject { constructor_for mock_prison_data }
 
-  describe '.name' do
+  describe '#name' do
     it 'returns the name of the prison' do
       expect(subject.name).to eq 'Example Prison'
     end
   end
 
-  describe '.unbookable_dates' do
+  describe '#unbookable_dates' do
     context 'when a prison has unbookable dates' do
       let(:expected_dates) { Set.new [Date.new(2015, 7, 29), Date.new(2015, 12, 25)] }
 
@@ -83,13 +83,13 @@ RSpec.describe Prison, type: :model do
     end
   end
 
-  describe '.visiting_slots' do
+  describe '#visiting_slots' do
     it 'returns the prisons slots as a hash' do
       expect(subject.visiting_slots).to eq mock_slots_data
     end
   end
 
-  describe '.visiting_slot_days' do
+  describe '#visiting_slot_days' do
     let(:prison_with_everyday_visits) { subject }
     let(:expected_slot_days_for_everyday_visits) { %w<mon tue wed thu fri sat sun> }
 
@@ -107,7 +107,7 @@ RSpec.describe Prison, type: :model do
     end
   end
 
-  describe '.anomalous_dates' do
+  describe '#anomalous_dates' do
     context 'when a prison has days for visitation that are different from the regular slots' do
       let(:expected_anomalous_dates) { Set.new [Date.new(2015, 8, 14)] }
       it 'returns the day' do
@@ -126,7 +126,7 @@ RSpec.describe Prison, type: :model do
     end
   end
 
-  describe '.days_lead_time' do
+  describe '#days_lead_time' do
     context 'when a prison has a lead time explicitly set' do
       it 'returns the value set by the prison config' do
         expect(subject.days_lead_time).to eq 4
@@ -141,7 +141,7 @@ RSpec.describe Prison, type: :model do
     end
   end
 
-  describe '.booking_window' do
+  describe '#booking_window' do
     context 'when a prison has a booking window explicitly set' do
       it 'returns the value set by the prison config' do
         expect(subject.booking_window).to eq 14
@@ -156,7 +156,7 @@ RSpec.describe Prison, type: :model do
     end
   end
 
-  describe '.works_weekends?' do
+  describe '#works_weekends?' do
     context 'when a prison has a works weekends boolean flag set' do
       it 'returns that boolean' do
         expect(subject.works_weekends?).to be true
@@ -169,7 +169,7 @@ RSpec.describe Prison, type: :model do
     end
   end
 
-  describe '.works_everyday?' do
+  describe '#works_everyday?' do
     it 'acts as an alias for .works_weekends?' do
       expect(subject.method(:works_everyday?)).to eq subject.method(:works_weekends?)
     end
