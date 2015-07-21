@@ -3,7 +3,7 @@ class PrisonSchedule < Struct.new(:prison)
   delegate :days_lead_time, :booking_window, to: :prison
 
   def confirmation_email_date
-    staff_working_days.take(days_lead_time).last
+    @confirmation_email_date = staff_working_days.take(days_lead_time).last
   end
 
   def available_visitation_dates
@@ -17,24 +17,27 @@ class PrisonSchedule < Struct.new(:prison)
   private
 
   def staff_working_days
-    confirmation_email_range.lazy.each do |day|
-      day if PrisonDay.new(day, prison).staff_working_day?
+    Enumerator.new do |y|
+      confirmation_email_range.each do |day|
+        y << day if PrisonDay.new(day, prison).staff_working_day?
+      end
     end
   end
 
   def confirmation_email_range
-    Date.tomorrow..prison_booking_window_in_days
+    # Use an arbitary number of days to apply the filter on
+    Date.tomorrow..booking_window.days.from_now
   end
 
   def available_visitation_range
-    day_after_confirmation_email..prison_booking_window_in_days
+    day_after_confirmation_email..booking_window_days_later
   end
 
   def day_after_confirmation_email
-     confirmation_email_date.tomorrow
+    confirmation_email_date.tomorrow
   end
 
-  def prison_booking_window_in_days
-    booking_window.days.from_now
+  def booking_window_days_later
+    day_after_confirmation_email + booking_window.days
   end
 end
