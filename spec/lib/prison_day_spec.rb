@@ -1,19 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe PrisonDay do
-  DAYS = {
-    monday:     Date.parse('Mon 13 July 2015'),
-    tuesday:    Date.parse('Tue 14 July 2015'),
-    wednesday:  Date.parse('Wed 15 July 2015'),
-    thursday:   Date.parse('Thu 16 July 2015'),
-    friday:     Date.parse('Fri 17 July 2015'),
-    saturday:   Date.parse('Sat 18 July 2015'),
-    sunday:     Date.parse('Sun 19 July 2015')
-  }.freeze
-
-  WEEKDAYS = DAYS.except(:saturday, :sunday).freeze
-  WEEKEND_DAYS = DAYS.slice(:saturday, :sunday).freeze
-
   let(:slots_for_everyday) do
     {
       "mon"=>["1400-1600"],
@@ -41,10 +28,6 @@ RSpec.describe PrisonDay do
     }
   end
 
-  def prison_from(prison_data)
-    Prison.new 'Example Prison', prison_data
-  end
-
   describe '::BANK_HOLIDAYS' do
     it 'contains a duplicate array of the data found in the Rails configuration' do
       expect(described_class::BANK_HOLIDAYS).to match_array Rails.configuration.bank_holidays
@@ -53,7 +36,7 @@ RSpec.describe PrisonDay do
 
   describe '#staff_working_day?' do
     context 'on a regular weekday' do
-      WEEKDAYS.each do |day_name, date|
+      Utilities::WEEKDAYS.each do |day_name, date|
         subject { described_class.new(date, prison_from(prison_data)) }
         context "like a #{day_name}" do
           specify { expect(subject.staff_working_day?).to be true }
@@ -70,7 +53,7 @@ RSpec.describe PrisonDay do
     end
 
     context 'on a weekend day' do
-      WEEKEND_DAYS.each do |day_name, date|
+      Utilities::WEEKEND_DAYS.each do |day_name, date|
         context "like a #{day_name}" do
           context 'for a prison that works weekends' do
             subject { described_class.new(date, prison_from(prison_data.merge works_weekends: true)) }
@@ -91,16 +74,16 @@ RSpec.describe PrisonDay do
       prison_from prison_data.replace(slots: slots_for_everyday.except("thu"))
     end
 
-    let(:bank_holiday_friday) { DAYS.fetch :friday }
+    let(:bank_holiday_friday) { Utilities::DAYS.fetch :friday }
     let(:stub_bank_holidays) do
       stub_const("#{described_class.name}::BANK_HOLIDAYS", [bank_holiday_friday])
     end
 
-    let(:unbookable_monday) { DAYS.fetch :monday }
+    let(:unbookable_monday) { Utilities::DAYS.fetch :monday }
 
     context 'on a day registered as available for visitation for a given prison' do
       specify do
-        DAYS.except(:thursday).each do |day_name, date|
+        Utilities::DAYS.except(:thursday).each do |day_name, date|
           described_class.new(date, prison_with_visits_except_thursday).tap do |prison_day|
             expect(prison_day.visiting_day?).to be true
           end
@@ -110,7 +93,7 @@ RSpec.describe PrisonDay do
       let(:monday_booking_slot) { slots_for_everyday.slice "mon" }
 
       context 'and has an anomalous booking slot' do
-        let(:anomalous_monday) { DAYS.fetch :monday }
+        let(:anomalous_monday) { Utilities::DAYS.fetch :monday }
         let(:prison_with_anomalous_date_on_visiting_day) do
           prison_from prison_data.
             merge(slot_anomalies: { anomalous_monday => ["1000-1200"] }).
@@ -159,7 +142,7 @@ RSpec.describe PrisonDay do
     end
 
     context 'on a day not registered for visitation for a given prison' do
-      let(:non_available_visiting_day) { DAYS.fetch :thursday }
+      let(:non_available_visiting_day) { Utilities::DAYS.fetch :thursday }
       subject { described_class.new non_available_visiting_day, prison_with_visits_except_thursday }
 
       specify { expect(subject.visiting_day?).to be false }
@@ -176,7 +159,7 @@ RSpec.describe PrisonDay do
       end
 
       context 'and has an anomalous booking slot' do
-        let(:anomalous_friday) { DAYS.fetch :friday }
+        let(:anomalous_friday) { Utilities::DAYS.fetch :friday }
         let(:prison_with_no_friday_visit_but_anomalous_friday_slot) do
           prison_from prison_data.
             merge(slot_anomalies: { anomalous_friday => ["1000-1200"] }).
