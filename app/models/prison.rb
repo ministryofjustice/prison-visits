@@ -1,12 +1,11 @@
 class Prison
-  PRISONS_DATA = Rails.configuration.prison_data.dup
   DEFAULT_LEAD_DAYS = 3.freeze
   DEFAULT_BOOKING_WINDOW = 28.freeze
 
   class PrisonNotFound < StandardError; end
 
   def self.find(prison_name)
-    prison_hash = PRISONS_DATA[prison_name]
+    prison_hash = Rails.configuration.prison_data[prison_name]
     raise PrisonNotFound if prison_hash.nil?
     new(prison_name, prison_hash)
   end

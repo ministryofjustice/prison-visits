@@ -83,7 +83,9 @@ RSpec.describe PrisonSchedule do
       let(:friday) { Utilities::DAYS.fetch :friday }
       let(:the_following_wednesday) { thursday + 6.days }
 
-      before { stub_const("PrisonDay::BANK_HOLIDAYS", [friday]) }
+      before do
+        allow(Rails.configuration).to receive(:bank_holidays).and_return([friday])
+      end
 
       subject { described_class.new prison_not_working_weekends_with_three_lead_days }
 
@@ -126,7 +128,9 @@ RSpec.describe PrisonSchedule do
         [public_holiday, unbookable_monday, unbookable_saturday]
     end
 
-    before { stub_const("PrisonDay::BANK_HOLIDAYS", [public_holiday]) }
+    before do
+      allow(Rails.configuration).to receive(:bank_holidays).and_return([public_holiday])
+    end
 
     around { |example| Timecop.travel(monday_june_01_2015) { example.run } }
 

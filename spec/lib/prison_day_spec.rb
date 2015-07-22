@@ -28,12 +28,6 @@ RSpec.describe PrisonDay do
     }
   end
 
-  describe '::BANK_HOLIDAYS' do
-    it 'contains a duplicate array of the data found in the Rails configuration' do
-      expect(described_class::BANK_HOLIDAYS).to match_array Rails.configuration.bank_holidays
-    end
-  end
-
   describe '#staff_working_day?' do
     context 'on a regular weekday' do
       Utilities::WEEKDAYS.each do |day_name, date|
@@ -76,9 +70,8 @@ RSpec.describe PrisonDay do
 
     let(:bank_holiday_friday) { Utilities::DAYS.fetch :friday }
     let(:stub_bank_holidays) do
-      stub_const("#{described_class.name}::BANK_HOLIDAYS", [bank_holiday_friday])
+      allow(Rails.configuration).to receive(:bank_holidays).and_return([bank_holiday_friday])
     end
-
     let(:unbookable_monday) { Utilities::DAYS.fetch :monday }
 
     context 'on a day registered as available for visitation for a given prison' do
@@ -153,6 +146,7 @@ RSpec.describe PrisonDay do
         end
 
         before { stub_bank_holidays }
+
         subject { described_class.new bank_holiday_friday, prison_with_no_friday_visit }
 
         specify { expect(subject.visiting_day?).to be false }

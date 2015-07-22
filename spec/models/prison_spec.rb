@@ -34,7 +34,7 @@ RSpec.describe Prison, type: :model do
   describe '.find' do
     context 'when a prison exists' do
       it 'returns a prison instance' do
-        expect(described_class::PRISONS_DATA).to receive(:[]).
+        expect(Rails.configuration.prison_data).to receive(:[]).
           with('Example Prison') { mock_prison_data }
 
         prison = described_class.find 'Example Prison'
@@ -43,7 +43,7 @@ RSpec.describe Prison, type: :model do
     end
     context 'when a prison does not exist' do
       it 'raises a PrisonNotFound error' do
-        allow(described_class::PRISONS_DATA).to receive(:[]) { nil }
+        allow(Rails.configuration.prison_data).to receive(:[]) { nil }
 
         expect { described_class.find('nothing') }.
           to raise_error(described_class::PrisonNotFound)

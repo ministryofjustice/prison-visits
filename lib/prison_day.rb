@@ -1,5 +1,4 @@
 class PrisonDay < Struct.new(:date, :prison)
-  BANK_HOLIDAYS = Rails.configuration.bank_holidays.dup
   WEEKEND_DAYS = %w<sat sun>.freeze
 
   def staff_working_day?
@@ -24,7 +23,7 @@ class PrisonDay < Struct.new(:date, :prison)
   end
 
   def non_holiday?
-    BANK_HOLIDAYS.exclude? date
+    Rails.configuration.bank_holidays.exclude? date
   end
 
   def anomalous_day?
