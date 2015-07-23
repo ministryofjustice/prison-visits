@@ -26,18 +26,14 @@ class PrisonSchedule < Struct.new(:prison)
 
   def confirmation_email_range
     # Use an arbitary number of days to apply the filter on
-    Date.tomorrow..booking_window.days.from_now
+    Date.tomorrow..last_bookable_day
   end
 
   def available_visitation_range
-    day_after_confirmation_email..booking_window_days_later
+    confirmation_email_date.next_day..last_bookable_day
   end
 
-  def day_after_confirmation_email
-    confirmation_email_date.tomorrow
-  end
-
-  def booking_window_days_later
-    day_after_confirmation_email + booking_window.days
+  def last_bookable_day
+    booking_window.days.from_now.to_date
   end
 end

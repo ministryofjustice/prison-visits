@@ -116,15 +116,16 @@ RSpec.describe PrisonSchedule do
         merge(slots: slots_for_everyday.except('wed')).
         merge(slot_anomalies: { one_off_anomalous_wednesday => "1000-1200" }).
         merge(unbookable: [unbookable_monday, unbookable_saturday]).
-        merge(lead_days: 3)
+        merge(lead_days: 3).
+        merge(booking_window: 28)
     end
 
     let(:monday_june_01_2015) { Date.parse 'Mon 1st June 2015' }
 
-    let(:expected_date_range) { Date.parse('Fri 5th June 2015')..Date.parse('Fri 3rd July 2015') }
+    let(:expected_available_date_range) { Date.parse('Fri 5th June 2015')..Date.parse('Mon 29th June 2015') }
 
     let(:expected_dates) do
-      expected_date_range.to_a.delete_if(&:wednesday?).append(one_off_anomalous_wednesday) -
+      expected_available_date_range.to_a.delete_if(&:wednesday?).append(one_off_anomalous_wednesday) -
         [public_holiday, unbookable_monday, unbookable_saturday]
     end
 
@@ -146,16 +147,15 @@ RSpec.describe PrisonSchedule do
     end
 
     describe 'the range of dates covered' do
-      let(:the_day_after_the_conformation_email) { subject.confirmation_email_date.tomorrow }
+      let(:the_day_after_the_conformation_email) { subject.confirmation_email_date.next_day }
       let(:booking_window_days) { 28.days }
-      let(:the_last_bookable_day) { the_day_after_the_conformation_email + booking_window_days }
 
       it 'starts from the day after the confirmation email' do
         expect(subject.available_visitation_dates.first).to eq the_day_after_the_conformation_email
       end
 
-      it 'the end date is equivalent to the number of booking window days for the prison plus the confirmation email date' do
-        expect(subject.available_visitation_dates.last).to eq the_last_bookable_day
+      it 'doesnt offer dates beyond the number of booking window days from today' do
+        expect(subject.available_visitation_dates.last).to eq booking_window_days.from_now.to_date
       end
     end
   end
