@@ -95,6 +95,25 @@ RSpec.describe PrisonSchedule do
         end
       end
     end
+
+    context 'when the prison has zero lead days' do
+      # Currently no prisons implement a 0 day turn around time
+      # if they did we would also have to consider the working hours
+      # of the prison.
+      # If the user attempts to book for a prison with zero lead days outside
+      # of working hours they would receive a booking receipt stating a
+      # confirmation is expected on the same day.
+
+      let(:prison_with_zero_lead_days) { prison_from prison_data.merge(lead_days: 0) }
+
+      subject { described_class.new prison_with_zero_lead_days }
+
+      it 'returns todays date' do
+        Timecop.travel(thursday) do
+          expect(subject.confirmation_email_date).to eq thursday
+        end
+      end
+    end
   end
 
   describe '#available_visitation_dates' do
