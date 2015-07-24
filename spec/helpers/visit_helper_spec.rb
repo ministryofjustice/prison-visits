@@ -36,6 +36,10 @@ RSpec.describe VisitHelper, type: :helper do
       expect(helper.current_slots).to eq(["2014-05-12-1045-1345"])
     end
 
+    it 'provides the prisons name' do
+      expect(helper.prison_name).to eq('Rochester')
+    end
+
     it "provides the phone number" do
       expect(helper.prison_phone).to eq("01634 803100")
     end

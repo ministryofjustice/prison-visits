@@ -13,6 +13,10 @@ module VisitHelper
     end
   end
 
+  def prison_name
+    visit.prisoner.prison_name
+  end
+
   def prison_names
     Rails.configuration.prison_data.keys.sort
   end
