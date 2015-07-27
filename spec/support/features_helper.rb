@@ -47,6 +47,10 @@ module FeaturesHelper
       end
     end
   end
+
+  def set_prison_to(prison_name)
+    find(:css, ".ui-autocomplete-input").set(prison_name)
+  end
 end
 
 shared_examples "feature helper" do
