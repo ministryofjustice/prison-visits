@@ -26,7 +26,7 @@ class PrisonSchedule < Struct.new(:prison)
 
   def confirmation_email_range
     # Use an arbitary number of days to apply the filter on
-    Time.zone.today..last_bookable_day
+    Time.zone.tomorrow..last_bookable_day
   end
 
   def available_visitation_range
