@@ -88,7 +88,7 @@ RSpec.describe VisitHelper, type: :helper do
     end
 
     it "provides a formatted date for when a response may be sent out" do
-      expect(helper.when_to_expect_reply(Date.parse("2014-10-03"))).to eq("Monday  6 October")
+      expect(helper.when_to_expect_reply(Date.parse("2014-10-03"))).to eq("Monday 6 October")
     end
   end
 
