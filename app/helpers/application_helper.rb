@@ -11,7 +11,7 @@ module ApplicationHelper
 
   def format_day(date)
     date = Date.parse(date) if date.class == String
-    date.strftime("%A %e %B").strip
+    date.strftime("%A %-e %B")
   end
 
   def display_start_time(times)
