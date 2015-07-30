@@ -397,7 +397,6 @@ RSpec.describe VisitorMailer do
         expect(email).not_to match_in_html("Jimmy Harris")
         expect(email).to match_in_html(visit_status_url(id: sample_visit.visit_id))
         expect(email).to match_in_html("by Friday 5 July to")
-
         expect(email).to match_in_html(sample_visit.visit_id)
         expect(email).to match_in_text(sample_visit.visit_id)
       end

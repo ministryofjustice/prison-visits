@@ -82,9 +82,10 @@ module VisitHelper
     end
   end
 
-  def when_to_expect_reply(today=Date.today)
-    schedule = Schedule.new(prison_data, Rails.configuration.bank_holidays)
-    format_day(schedule.except_lead_days(today, schedule.booking_range(today)).first)
+  def when_to_expect_reply
+    prison = Prison.find(visit.prisoner.prison_name)
+    schedule = PrisonSchedule.new(prison)
+    format_day(schedule.confirmation_email_date)
   end
 
   def prison_specific_id_requirements(prison_name)
