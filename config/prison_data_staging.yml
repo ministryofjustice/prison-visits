@@ -21,6 +21,40 @@ Stafford:
     - 1400-1600
     sun:
     - 1400-1600
+Belmarsh:
+  nomis_id: BAI
+  canned_responses: true
+  enabled: true
+  phone: 0208 3314768
+  email: belmarsh.visits@hmps.gsi.gov.uk
+  instant_booking: false
+  address:
+  - Western Way
+  - Thamesmead
+  - London
+  - SE28 0EB
+  lead_days: 3
+  unbookable:
+  - 2015-12-25
+  - 2015-12-26
+  - 2015-12-31
+  - 2016-01-01
+  slots:
+    tue:
+    - 0930-1100
+    - 1430-1600
+    wed:
+    - 0930-1100
+    - 1430-1600
+    thu:
+    - 0930-1100
+    - 1430-1600
+    fri:
+    - 0900-1030
+    sat:
+    - 1430-1600
+    sun:
+    - 1430-1600
 Rochester:
   nomis_id: RCI
   canned_responses: true
@@ -3454,9 +3488,6 @@ Altcourse:
   enabled: false
 Ashfield:
   nomis_id: ASI
-  enabled: false
-Belmarsh:
-  nomis_id: BAI
   enabled: false
 Birmingham:
   nomis_id: BMI
