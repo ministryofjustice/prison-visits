@@ -51,7 +51,7 @@ GROUP BY nomis_id
   end
 
   def bottom(n)
-    JSONPresenter.new(ranked_performance.last(n))
+    JSONPresenter.new(ranked_performance.last(n).reverse)
   end
 
   class JSONPresenter
