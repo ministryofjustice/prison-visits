@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:ministryofjustice/prison_staff_info.git
-  revision: fa521e907b3befc4f7608bc0392be46622487a92
+  revision: 155d662e61d531cd3fa05221644adf9b64b9e774
   branch: master
   specs:
     prison_staff_info (0.0.2)
@@ -303,6 +303,3 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   unicorn
   zendesk_api
-
-BUNDLED WITH
-   1.10.5
