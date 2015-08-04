@@ -3,8 +3,8 @@ Stafford:
   nomis_id: SFI
   canned_responses: true
   enabled: true
-  phone: 0300 063 2105
-  email: pvb.stafford@maildrop.dsd.io
+  phone: 0300 060 6505
+  email: visitsbooking.westmidlands@noms.gsi.gov.uk
   instant_booking: false
   address:
   - 54 Gaol Road
