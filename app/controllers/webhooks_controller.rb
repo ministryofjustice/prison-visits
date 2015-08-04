@@ -9,7 +9,7 @@ class WebhooksController < ApplicationController
         return
       end
 
-      if p.from == 'postmaster@hmps.gsi.gov.uk'
+      if p.from.address == 'postmaster@hmps.gsi.gov.uk'
         logger.error "Sender ( postmaster@hmps.gsi.gov.uk ) detected. Skipping message.\n #{p.inspect}"
         render text: 'Sender postmaster@hmps.gsi.gov.uk'
         return
