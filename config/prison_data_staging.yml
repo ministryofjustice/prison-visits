@@ -1,4 +1,26 @@
 ---
+Stafford:
+  nomis_id: SFI
+  canned_responses: true
+  enabled: true
+  phone: 0300 060 6505
+  email: pvb.stafford@maildrop.dsd.io
+  instant_booking: false
+  address:
+  - 54 Gaol Road
+  - Stafford
+  - ST16 3AW
+  unbookable:
+  - 2015-12-25
+  slots:
+    wed:
+    - 1400-1600
+    thu:
+    - 1400-1600
+    sat:
+    - 1400-1600
+    sun:
+    - 1400-1600
 Rochester:
   nomis_id: RCI
   canned_responses: true
@@ -3473,9 +3495,6 @@ Prescoed:
   finder_slug: usk-prescoed-prescoed
 Rye Hill:
   nomis_id: RHI
-  enabled: false
-Stafford:
-  nomis_id: SFI
   enabled: false
 Thameside:
   nomis_id: 
