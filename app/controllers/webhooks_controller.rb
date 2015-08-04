@@ -9,9 +9,11 @@ class WebhooksController < ApplicationController
         return
       end
 
-      if p.from.address == 'postmaster@hmps.gsi.gov.uk'
-        logger.error "Sender ( postmaster@hmps.gsi.gov.uk ) detected. Skipping message.\n #{p.inspect}"
-        render text: 'Sender postmaster@hmps.gsi.gov.uk'
+      blacklist = %w(postmaster sendmaster webmaster no-reply noreply root)
+
+      if blacklist.include? p.from.local
+        logger.error "Blacklisted sender detected. Skipping message.\n #{p.inspect}"
+        render text: 'Sender blacklisted'
         return
       end
 
