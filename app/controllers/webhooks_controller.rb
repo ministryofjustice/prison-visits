@@ -9,9 +9,9 @@ class WebhooksController < ApplicationController
         return
       end
 
-      blacklist = %w(postmaster sendmaster webmaster no-reply noreply root)
+      blacklist = %w(postmaster sendmaster no-reply noreply)
 
-      if blacklist.include? p.from.local
+      if blacklist.include? p.from.local.downcase
         logger.error "Blacklisted sender detected. Skipping message.\n #{p.inspect}"
         render text: 'Sender blacklisted'
         return
