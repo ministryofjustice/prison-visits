@@ -103,6 +103,17 @@ RSpec.describe PrisonDay do
         subject { described_class.new bank_holiday_friday, prison_from(prison_data) }
 
         specify { expect(subject.visiting_day?).to be false }
+
+        context 'and has an anomalous booking slot' do
+          subject { described_class.new(
+            bank_holiday_friday,
+            prison_from(prison_data.merge(
+              slot_anomalies: {bank_holiday_friday => ["0930-1000"]}
+            ))
+          )}
+
+          specify { expect(subject.visiting_day?).to be true }
+        end
       end
 
       context 'and is an unbookable date' do
