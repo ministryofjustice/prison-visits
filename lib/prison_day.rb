@@ -6,7 +6,7 @@ class PrisonDay < Struct.new(:date, :prison)
   end
 
   def visiting_day?
-    non_blocked_day? && non_holiday? && available_day?
+    non_blocked_day? && available_day?
   end
 
   private
@@ -31,7 +31,7 @@ class PrisonDay < Struct.new(:date, :prison)
   end
 
   def visiting_slot?
-    visiting_slot_days.include? abbreviated_day_name
+    non_holiday? && visiting_slot_days.include?(abbreviated_day_name)
   end
 
   def available_day?
