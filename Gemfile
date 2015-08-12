@@ -18,6 +18,7 @@ gem 'prison_staff_info', git: 'git@github.com:ministryofjustice/prison_staff_inf
 gem 'pg'
 gem 'statsd-ruby', require: 'statsd'
 gem 'curb'
+gem 'string_scrubber', '>= 0.2.0'
 
 group :test, :development do
   gem 'rspec-rails'
