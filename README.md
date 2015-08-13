@@ -98,7 +98,7 @@ unbookable:
 
 Set the amount of full working days which booking staff have to respond to each request. The default is 3 days.
 
-Eg One Monday, requests can be made for Friday. Set to `2` and it will be possible to make requests for Thursday.
+Eg On a Monday, requests can be made for Friday. Set to `2` and it will be possible to make requests for Thursday.
 
 ```yaml
 lead_days: 2 # two full working days after current day
