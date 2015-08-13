@@ -1,0 +1,17 @@
+prisoner_details:
+  first_name: Arnold
+  last_name: Prisoner
+  birth_day: 10
+  birth_month: 12
+  birth_year: 1987
+  prison_number: a1234bc
+  prison_name: Cardiff
+
+visitor_details:
+  first_name: Joe
+  last_name: Visitor
+  birth_day: 29
+  birth_month: 7
+  birth_year: 1982
+  email_address: <%= ENV.fetch 'SMOKE_TEST_EMAIL_ADDRESS' %>
+  phone_number: 12345678911
