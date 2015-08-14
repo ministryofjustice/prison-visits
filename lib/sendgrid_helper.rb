@@ -8,11 +8,11 @@ module SendgridHelper
   end
 
   def self.spam_reported_url(email)
-    "https://sendgrid.com/api/spamreports.get.json?api_user=#{ENV['SMTP_USERNAME']}&api_key=#{ENV['SMTP_PASSWORD']}&email=#{email}"
+    "https://sendgrid.com/api/spamreports.get.json?#{query_string(email)}"
   end
 
   def self.bounced_url(email)
-    "https://sendgrid.com/api/bounces.get.json?api_user=#{ENV['SMTP_USERNAME']}&api_key=#{ENV['SMTP_PASSWORD']}&email=#{email}"
+    "https://sendgrid.com/api/bounces.get.json#{query_string(email)}"
   end
 
   def self.handle_response(url)
@@ -34,5 +34,15 @@ module SendgridHelper
     true
   rescue StandardError => e
     false
+  end
+
+  private
+
+  def self.query_string(email)
+    {
+      api_user: ENV['SMTP_USERNAME'],
+      api_key: ENV['SMTP_PASSWORD'],
+      email: email,
+    }.to_query
   end
 end
