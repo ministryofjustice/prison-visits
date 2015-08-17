@@ -21,13 +21,14 @@ module SendgridHelper
   private
 
   def self.can_access_sendgrid?
-    ENV['SMTP_USERNAME'] and ENV['SMTP_PASSWORD']
+    Rails.configuration.action_mailer.smtp_settings[:user_name] &&
+      Rails.configuration.action_mailer.smtp_settings[:password]
   end
 
   def self.query_string(email)
     {
-      api_user: ENV['SMTP_USERNAME'],
-      api_key: ENV['SMTP_PASSWORD'],
+      api_user: Rails.configuration.action_mailer.smtp_settings[:user_name],
+      api_key: Rails.configuration.action_mailer.smtp_settings[:password],
       email: email,
     }.to_query
   end

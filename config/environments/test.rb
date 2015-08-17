@@ -1,8 +1,10 @@
 PrisonVisits2::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  ENV['SMTP_USERNAME'] = 'Test'
-  ENV['SMTP_PASSWORD'] = '12345678'
+  config.action_mailer.smtp_settings = {
+    user_name: 'test_smtp_username',
+    password: 'test_smtp_password'
+  }
 
   # The test environment is used exclusively to run your application's
   # test suite. You never need to work with it otherwise. Remember that
