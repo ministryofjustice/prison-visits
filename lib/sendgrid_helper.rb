@@ -1,10 +1,10 @@
 module SendgridHelper
   def self.spam_reported?(email)
-    handle_response(spam_reported_url(email))
+    handle_response(spam_reported_url(email)) if can_access_sendgrid?
   end
 
   def self.bounced?(email)
-    handle_response(bounced_url(email))
+    handle_response(bounced_url(email)) if can_access_sendgrid?
   end
 
   def self.smtp_alive?(host, port)
@@ -19,6 +19,10 @@ module SendgridHelper
   end
 
   private
+
+  def self.can_access_sendgrid?
+    ENV['SMTP_USERNAME'] and ENV['SMTP_PASSWORD']
+  end
 
   def self.query_string(email)
     {
