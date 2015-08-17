@@ -6,15 +6,13 @@ RSpec.describe SendgridHelper do
     context "error handling" do
       [Curl::Err::CurlError, JSON::ParserError].each do |exception_class|
         it "marks the email as valid if there's an error (#{exception_class})" do
-          expect(Curl::Easy).to receive(:perform).and_raise(exception_class)
+          allow(Curl::Easy).to receive(:perform).and_raise(exception_class)
+          expect(SendgridHelper.spam_reported?('test@irrelevant.com')).to be_falsey
         end
       end
 
       it "marks the email as valid when authentication fails" do
         allow(JSON).to receive(:parse).and_return({error: 'lol'})
-      end
-
-      after :each do
         expect(SendgridHelper.spam_reported?('test@irrelevant.com')).to be_falsey
       end
     end
@@ -36,15 +34,13 @@ RSpec.describe SendgridHelper do
     context "error handling" do
       [Curl::Err::CurlError, JSON::ParserError].each do |exception_class|
         it "marks the email as valid if there's an error (#{exception_class})" do
-          expect(Curl::Easy).to receive(:perform).and_raise(exception_class)
+          allow(Curl::Easy).to receive(:perform).and_raise(exception_class)
+          expect(SendgridHelper.bounced?('test@irrelevant.com')).to be_falsey
         end
       end
 
       it "marks the email as valid when authentication fails" do
         allow(JSON).to receive(:parse).and_return({error: 'lol'})
-      end
-
-      after :each do
         expect(SendgridHelper.bounced?('test@irrelevant.com')).to be_falsey
       end
     end
