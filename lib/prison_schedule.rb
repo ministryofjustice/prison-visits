@@ -3,7 +3,11 @@ class PrisonSchedule < Struct.new(:prison)
   delegate :days_lead_time, :booking_window, to: :prison
 
   def confirmation_email_date
-    staff_working_days.take(prison_processing_days).last
+    if days_lead_time.zero?
+      staff_working_days.first
+    else
+      staff_working_days.take(days_lead_time).last
+    end
   end
 
   def available_visitation_dates
@@ -31,10 +35,5 @@ class PrisonSchedule < Struct.new(:prison)
 
   def last_bookable_day
     booking_window.days.from_now.to_date
-  end
-
-  def prison_processing_days
-    # increment the value as `#take` on a range is not zero based
-    days_lead_time.next
   end
 end
