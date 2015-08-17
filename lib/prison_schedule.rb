@@ -7,21 +7,17 @@ class PrisonSchedule < Struct.new(:prison)
   end
 
   def available_visitation_dates
-    available_visitation_range.reduce([]) do |valid_dates, day|
-      valid_dates.tap do |dates|
-        dates << day if PrisonDay.new(day, prison).visiting_day?
-      end
-    end
+    available_visitation_range.select { |day|
+      PrisonDay.new(day, prison).visiting_day?
+    }
   end
 
   private
 
   def staff_working_days
-    Enumerator.new do |y|
-      confirmation_email_range.each do |day|
-        y << day if PrisonDay.new(day, prison).staff_working_day?
-      end
-    end
+    confirmation_email_range.select { |day|
+      PrisonDay.new(day, prison).staff_working_day?
+    }
   end
 
   def confirmation_email_range
