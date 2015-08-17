@@ -29,6 +29,12 @@ RSpec.describe PrisonSchedule do
   end
 
   describe '#confirmation_email_date' do
+    let(:thursday) { Utilities::DAYS.fetch :thursday }
+
+    let(:prison_not_working_weekends_with_three_lead_days) do
+      prison_from prison_data.merge(works_weekends: false, lead_days: 3)
+    end
+
     context 'when the lead days are not broken up by a holiday or weekend' do
       let(:monday) { Utilities::DAYS.fetch :monday }
       let(:three_days_excluding_monday) { monday + 4.days }
@@ -36,21 +42,15 @@ RSpec.describe PrisonSchedule do
 
       subject { described_class.new prison_with_three_lead_days }
 
-      it 'returns a date equal to the number of the prisons lead days from now, excluding the current day' do
+      it 'returns a date [lead days] days from now' do
         Timecop.travel(monday) do
           expect(subject.confirmation_email_date).to eq three_days_excluding_monday
         end
       end
     end
 
-    let(:thursday) { Utilities::DAYS.fetch :thursday }
-
-    let(:prison_not_working_weekends_with_three_lead_days) do
-      prison_from prison_data.merge(works_weekends: false, lead_days: 3)
-    end
-
-    context 'when the consecutive lead days are broken up by the weekend' do
-      context 'when a prison doesnt work weekends' do
+    context 'when the lead days are broken up by the weekend' do
+      context 'when a prison doesn’t work weekends' do
         let(:the_following_wednesday) { thursday + 6.days }
 
         subject { described_class.new prison_not_working_weekends_with_three_lead_days }
@@ -62,7 +62,7 @@ RSpec.describe PrisonSchedule do
         end
       end
 
-      context 'when a prison does work weekends' do
+      context 'when a prison works weekends' do
         let(:prison_working_weekends_with_three_lead_days) do
           prison_from prison_data.merge(works_weekends: true, lead_days: 3)
         end
@@ -80,7 +80,7 @@ RSpec.describe PrisonSchedule do
       end
     end
 
-    context 'when the consecutive lead days are broken up by a public holiday' do
+    context 'when the lead days are broken up by a public holiday' do
       let(:friday) { Utilities::DAYS.fetch :friday }
       let(:the_following_thursday) { thursday + 1.week }
 
@@ -142,22 +142,29 @@ RSpec.describe PrisonSchedule do
 
     let(:monday_june_01_2015) { Date.parse 'Mon 1st June 2015' }
 
-    let(:expected_available_date_range) { Date.parse('Sat 6th June 2015')..Date.parse('Mon 29th June 2015') }
+    let(:expected_available_date_range) {
+      Date.parse('Sat 6th June 2015')..Date.parse('Mon 29th June 2015')
+    }
 
     let(:expected_dates) do
-      expected_available_date_range.to_a.delete_if(&:wednesday?).append(one_off_anomalous_wednesday) -
+      expected_available_date_range.to_a.
+        delete_if(&:wednesday?).
+        append(one_off_anomalous_wednesday) -
         [public_holiday, unbookable_monday, unbookable_saturday]
     end
 
     before do
-      allow(Rails.configuration).to receive(:bank_holidays).and_return([public_holiday])
+      allow(Rails.configuration).to receive(:bank_holidays).
+        and_return([public_holiday])
     end
 
     around { |example| Timecop.travel(monday_june_01_2015) { example.run } }
 
-    subject { described_class.new prison_with_everyday_slots_except_wednesdays }
+    subject {
+      described_class.new(prison_with_everyday_slots_except_wednesdays)
+    }
 
-    it 'returns a list of days the prison can accept visitors excluding unbookable dates & public holidays' do
+    it 'excludes unbookable dates & public holidays' do
       expect(subject.available_visitation_dates).to match_array expected_dates
     end
 
@@ -167,15 +174,19 @@ RSpec.describe PrisonSchedule do
     end
 
     describe 'the range of dates covered' do
-      let(:the_day_after_the_conformation_email) { subject.confirmation_email_date.next_day }
+      let(:the_day_after_the_conformation_email) {
+        subject.confirmation_email_date.next_day
+      }
       let(:booking_window_days) { 28.days }
 
       it 'starts from the day after the confirmation email' do
-        expect(subject.available_visitation_dates.first).to eq the_day_after_the_conformation_email
+        expect(subject.available_visitation_dates.first).
+          to eq(the_day_after_the_conformation_email)
       end
 
-      it 'doesnt offer dates beyond the number of booking window days from today' do
-        expect(subject.available_visitation_dates.last).to eq booking_window_days.from_now.to_date
+      it 'doesn’t offer dates beyond the number of booking window days from today' do
+        expect(subject.available_visitation_dates.last).
+          to eq(booking_window_days.from_now.to_date)
       end
     end
   end
