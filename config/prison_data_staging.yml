@@ -2806,6 +2806,9 @@ Wymott:
     - 1400-1550
     sun:
     - 1400-1550
+  slot_anomalies:
+    2015-08-31:
+    - 1400-1550
 Thorn Cross:
   nomis_id: TCI
   canned_responses: true
