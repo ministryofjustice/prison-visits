@@ -1,12 +1,12 @@
 class Slot
-  include ActiveModel::Model
+  include NonPersistedModel
 
   BOOKABLE_DAYS = 28
 
-  attr_accessor :date
-  attr_accessor :times
-  attr_accessor :slot
-  attr_accessor :index
+  attribute :date, String
+  attribute :times, String
+  attribute :slot, String
+  attribute :index, Integer
 
   validate do
     if index == 0

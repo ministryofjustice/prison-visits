@@ -1,15 +1,15 @@
 class Visit
-  include ActiveModel::Model
+  include NonPersistedModel
 
   MAX_VISITORS = 6
   MAX_ADULTS = 3
   MAX_SLOTS = 3
 
-  attr_accessor :prisoner
-  attr_accessor :visitors
-  attr_accessor :slots
-  attr_accessor :visit_id
-  attr_accessor :vo_number
+  attribute :prisoner, Prisoner
+  attribute :visitors, Array[Visitor]
+  attribute :slots, Array[Slot]
+  attribute :visit_id, String
+  attribute :vo_number, String
 
   validates_presence_of :visit_id
   validates_size_of :slots, within: 1..MAX_SLOTS, on: :date_and_time, message: 'must be at least one and at most three'
