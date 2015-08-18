@@ -8,7 +8,7 @@ RSpec.describe WebhooksController, type: :controller do
   let :noreply_address do
     'no-reply@example.com'
   end
-  
+
   let :email_from_prison do
     {
       from: "HMP Hull <hull@hmps.gsi.gov.uk>",

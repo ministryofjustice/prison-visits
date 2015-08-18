@@ -55,21 +55,21 @@ describe('AgeLabel', function() {
     it('sets the threshold at 18 years', function() {
       var seventeen_years_ago = (new Date()).getFullYear() - 17,
         eighteen_years_ago = (new Date()).getFullYear() - 18;
-      
+
       $fixture.find('input.year').val(seventeen_years_ago).change();
       expect($fixture.find('.AgeLabel-label')).toHaveText('Child');
-      
+
       $fixture.find('input.year').val(eighteen_years_ago);
       $fixture.find('input.month').val(1);
       $fixture.find('input.day').val(1).change();
       expect($fixture.find('.AgeLabel-label')).toHaveText('Adult');
     });
-    
+
     it('shows "Adult" label when over year threshold', function() {
       $fixture.find('input.year').val('1990').change();
       expect($fixture.find('.AgeLabel-label')).toHaveText('Adult');
     });
-    
+
     it('shows "Child" label when over year threshold', function() {
       $fixture.find('input.year').val((new Date()).getFullYear() - 1).change();
       expect($fixture.find('.AgeLabel-label')).toHaveText('Child');

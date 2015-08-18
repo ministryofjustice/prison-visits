@@ -10,5 +10,3 @@ else
     ActiveSupport::MessageEncryptor.new("TROLOLOLOLO" * 10, serializer: ZMarshal)
   end
 end
-
-

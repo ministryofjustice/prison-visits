@@ -4,7 +4,7 @@ Date of birth:<%= @visit.prisoner.date_of_birth.strftime("%e %B %Y") %>
 
 First choice:
 <%= Date.parse(@visit.slots.first.date).strftime('%A, %d/%m/%Y at ') %><%= format_time_str_24 @visit.slots.first.times.split('-')[0] %> - <%= format_time_str_24 @visit.slots.first.times.split('-')[1] %>
-    
+
 <% if @visit.slots.length > 1 %>
 <% @visit.slots.each_with_index do |slot, index| %>
 <% unless index == 0 %>
@@ -15,14 +15,14 @@ Alternative <%= index %>:
 <% end %>
 <% end %>
 <% end %>
-<% @visit.visitors.each_with_index do |visitor, index| %> 
+<% @visit.visitors.each_with_index do |visitor, index| %>
 
 Visitor <%= index + 1 %>
-<%= visitor.first_name %> <%= visitor.last_name %>      
+<%= visitor.first_name %> <%= visitor.last_name %>
 Age: <%= visitor.age %>
 Date of birth: <%= visitor.date_of_birth.strftime("%d/%m/%Y") %>
-<% if visitor.email %>   
-Email: <%= visitor.email %>     
+<% if visitor.email %>
+Email: <%= visitor.email %>
 <% if visitor.phone %>
 Phone: <%= visitor.phone %>
 <% end %>

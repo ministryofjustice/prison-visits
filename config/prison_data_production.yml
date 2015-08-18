@@ -2405,7 +2405,7 @@ Kirkham:
   nomis_id: KMI
   canned_responses: true
   enabled: true
-  phone: 
+  phone:
   email: socialvisits.kirkham@hmps.gsi.gov.uk
   instant_booking: false
   address:
@@ -3097,7 +3097,7 @@ Leyhill:
   phone: 01454 264211
   email: socialvisits.leyhill@hmps.gsi.gov.uk
   instant_booking: false
-  address: 
+  address:
    - Wotton-under-edge
    - GL12 8BT
   unbookable:
@@ -3118,7 +3118,7 @@ Swansea:
   phone: 01792 48 5322
   email: socialvisits.swansea@hmps.gsi.gov.uk
   instant_booking: false
-  address: 
+  address:
    - 200 Oystermouth Road
    - SA1 3SR
   unbookable:
@@ -3185,7 +3185,7 @@ Ford:
   nomis_id: FDI
   canned_responses: true
   enabled: true
-  phone: 
+  phone:
   email: socialvisits.ford@hmps.gsi.gov.uk
   address:
   - Arundel
@@ -3207,7 +3207,7 @@ Askham Grange:
   nomis_id: AGI
   canned_responses: true
   enabled: true
-  phone: 
+  phone:
   email: socialvisits.askhamgrange@hmps.gsi.gov.uk
   address:
   - Askham Richard
@@ -3224,7 +3224,7 @@ Spring Hill:
   nomis_id: SPI
   canned_responses: true
   enabled: true
-  phone: 
+  phone:
   email: socialvisits.springhill@hmps.gsi.gov.uk
   address:
   - Grendon Underwood
@@ -3422,7 +3422,7 @@ Doncaster:
   nomis_id: DNI
   enabled: false
 Dovegate:
-  nomis_id: 
+  nomis_id:
   enabled: false
 Forest Bank:
   nomis_id: FBI
@@ -3474,7 +3474,7 @@ Rye Hill:
   nomis_id: RHI
   enabled: false
 Thameside:
-  nomis_id: 
+  nomis_id:
   enabled: false
 Wakefield:
   nomis_id: WDI

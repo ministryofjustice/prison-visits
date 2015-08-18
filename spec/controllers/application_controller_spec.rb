@@ -79,7 +79,7 @@ RSpec.describe ApplicationController, type: :controller do
   end
 
   context "when key restriction is enabled" do
-    controller do 
+    controller do
       def index
         render text: 'OK'
       end

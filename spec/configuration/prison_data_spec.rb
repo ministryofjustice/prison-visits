@@ -40,7 +40,7 @@ RSpec.describe "Prison data" do
       prisons_names = production_prison_data_as_text.reject{ |l| l.match(/^\s+/i) } # plain text as Yaml allows duplicates and uses latest
       expect(prisons_names.uniq).to eq(prisons_names)
     end
-    
+
     context "enabled prisons" do
       let :subject do
         production_prison_data.select do |k, v|

@@ -1,4 +1,4 @@
-Dear staff, 
+Dear staff,
 
 <%= @visit.visitors.first.full_name %> has cancelled the visit to <%= @visit.prisoner.full_name %> (<%= @visit.prisoner.number %>) on <%= visit.slots.first.date %> <%= visit.slots.first.times %>.
 
@@ -11,5 +11,5 @@ Please delete this visit from NOMIS.
 Kind regards,
 
 Prison visits booking team
-	
+
 Visit ID: <%= @visit.visit_id %>

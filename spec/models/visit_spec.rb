@@ -16,10 +16,10 @@ RSpec.describe Visit do
   it "restricts the number of visitors" do
     sample_visit.visitors = []
     expect(sample_visit.valid?(:visitors_set)).to be_falsey
-    
+
     sample_visit.visitors = [child_visitor] * 7
     expect(sample_visit.valid?(:visitors_set)).to be_falsey
-    
+
     sample_visit.visitors = [adult_visitor] * 1 + [child_visitor] * 5
     expect(sample_visit.valid?(:visitors_set)).to be_truthy
   end

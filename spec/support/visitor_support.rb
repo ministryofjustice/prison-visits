@@ -29,16 +29,16 @@ shared_examples "a visitor" do
     it "validates every #{i}-th visitor as an additional visitor" do
       subject.tap do |v|
         v.index = i
-        
+
         v.first_name = 'Jimmy'
         expect(v).not_to be_valid
 
         v.last_name = 'Harris'
         expect(v).not_to be_valid
-        
+
         v.date_of_birth = Date.parse "1986-04-20"
         expect(v).to be_valid
-        
+
         v.email = 'anything'
         expect(v).not_to be_valid
       end

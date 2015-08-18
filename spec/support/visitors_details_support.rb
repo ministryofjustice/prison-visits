@@ -71,7 +71,7 @@ shared_examples "a visitor data manipulator with invalid data" do
         next: ''
       }
     end
-    
+
     it "doesn't update visitor information and redirects back to the form" do
       get :edit
       expect {
@@ -123,7 +123,7 @@ shared_examples "a visitor data manipulator with invalid data" do
       expect(session[:visit].valid?(:visitors_set)).to be_falsey
     end
   end
-  
+
   context "given only a single child visitor" do
     let :visitor_hash do
       {

@@ -48,7 +48,7 @@ RSpec.describe Instant::VisitorsDetailsController, type: :controller do
         next: ''
       }
     end
-    
+
     it "updates visitor information" do
       get :edit
       expect {

@@ -85,7 +85,7 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
         expect(response.status).to eq(400)
         expect(response).to render_template('confirmations/_bad_state')
       end
-      
+
       it "bails out if the state is corrupt" do
         get :new, state: 'bad state'
         expect(response.status).to eq(400)

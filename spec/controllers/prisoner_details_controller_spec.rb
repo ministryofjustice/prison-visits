@@ -119,4 +119,3 @@ RSpec.describe PrisonerDetailsController, type: :controller do
     end
   end
 end
-

@@ -160,15 +160,15 @@ RSpec.describe MetricsLogger do
         expect(VisitMetricsEntry).to receive(:where).and_raise(e = PG::ConnectionBad.new)
         expect(Raven).to receive(:capture_exception).with(e)
       end
-      
+
       it "silently discards a link click" do
         subject.record_link_click(sample_visit)
       end
-      
+
       it "silently discards a booking confirmation" do
         subject.record_booking_confirmation(sample_visit)
       end
-      
+
       it "silently discards a booking rejection" do
         subject.record_booking_rejection(sample_visit, 'reason')
       end
@@ -183,11 +183,11 @@ RSpec.describe MetricsLogger do
     it "silently discards a link click" do
       expect(subject.record_link_click(sample_visit)).to be_nil
     end
-      
+
     it "silently discards a booking confirmation" do
       expect(subject.record_booking_confirmation(sample_visit)).to be_nil
     end
-    
+
     it "silently discards a booking rejection" do
       expect(subject.record_booking_rejection(sample_visit, 'reason')).to be_nil
     end

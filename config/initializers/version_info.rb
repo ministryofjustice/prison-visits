@@ -4,4 +4,3 @@ begin
 rescue Errno::ENOENT
   {}
 end
-

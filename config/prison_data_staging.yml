@@ -2426,7 +2426,7 @@ Kirkham:
   nomis_id: KMI
   canned_responses: true
   enabled: true
-  phone: 
+  phone:
   email: pvb.kirkham@maildrop.dsd.io
   instant_booking: false
   address:
@@ -3208,7 +3208,7 @@ Ford:
   nomis_id: FDI
   canned_responses: true
   enabled: true
-  phone: 
+  phone:
   email: pvb.ford@maildrop.dsd.io
   address:
   - Arundel
@@ -3230,7 +3230,7 @@ Askham Grange:
   nomis_id: AGI
   canned_responses: true
   enabled: true
-  phone: 
+  phone:
   email: pvb.askhamgrange@maildrop.dsd.io
   address:
   - Askham Richard
@@ -3247,7 +3247,7 @@ Spring Hill:
   nomis_id: SPI
   canned_responses: true
   enabled: true
-  phone: 
+  phone:
   email: pvb.springhill@maildrop.dsd.io
   address:
   - Grendon Underwood
@@ -3468,7 +3468,7 @@ Doncaster:
   nomis_id: DNI
   enabled: false
 Dovegate:
-  nomis_id: 
+  nomis_id:
   enabled: false
 Forest Bank:
   nomis_id: FBI
@@ -3520,7 +3520,7 @@ Rye Hill:
   nomis_id: RHI
   enabled: false
 Thameside:
-  nomis_id: 
+  nomis_id:
   enabled: false
 Wakefield:
   nomis_id: WDI

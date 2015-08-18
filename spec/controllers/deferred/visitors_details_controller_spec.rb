@@ -49,7 +49,7 @@ RSpec.describe Deferred::VisitorsDetailsController, type: :controller do
         next: ''
       }
     end
-    
+
     it "updates visitor information" do
       get :edit
       expect {

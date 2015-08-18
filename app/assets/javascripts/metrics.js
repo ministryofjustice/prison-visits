@@ -21,7 +21,7 @@ function formatSeconds(s) {
     if (s === 0) {
         return '';
     }
-    
+
     d = s / (24 * 3600);
     s -= parseInt(d) * 24 * 3600;
     if (d > 1) {
@@ -148,7 +148,7 @@ function displayWeeklyBreakdown(where, rawDataSource) {
         var max = d3.max(row);
         if (max > maxZ) { maxZ = max; }
     });
-    
+
     z = d3.scale.linear().domain([0, maxZ]).range([0, 1]);
 
     rawDataSource.forEach(function(row, i) {
@@ -159,7 +159,7 @@ function displayWeeklyBreakdown(where, rawDataSource) {
         .chart('BubbleMatrix')
         .width(960)
         .height(300);
-    
+
     chart.draw(processedData);
 }
 
@@ -197,7 +197,7 @@ function displayPerformanceLineChart(where, percentile95data, percentile50data, 
         .attr('dx', '-.8em')
         .attr('dy', '.15em')
         .attr('transform', function(d) {
-            return 'rotate(-45)' 
+            return 'rotate(-45)'
         });
 
     svg.append('g')
@@ -252,7 +252,7 @@ function displayPerformanceLineChart(where, percentile95data, percentile50data, 
         .attr('width', 20)
         .attr('height', 20)
         .attr('transform', function(d, i) { return 'translate(0,' + (i * 30) + ')'; })
-    
+
     legend.selectAll('text')
         .data(seriesData)
         .enter()
