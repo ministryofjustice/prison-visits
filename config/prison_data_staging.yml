@@ -755,6 +755,8 @@ Exeter:
   slot_anomalies:
     2014-12-24:
     - 1415-1615
+    2015-08-31:
+    - 1415-1615
 Lewes:
   nomis_id: LWI
   canned_responses: true
