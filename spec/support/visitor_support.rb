@@ -1,4 +1,4 @@
-shared_examples "a visitor" do
+RSpec.shared_examples "a visitor" do
   it "validates names" do
     visitor.tap do |v|
       v.index = 0

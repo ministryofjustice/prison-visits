@@ -1,4 +1,4 @@
-shared_examples "a visitor data manipulator with valid data" do
+RSpec.shared_examples "a visitor data manipulator with valid data" do
   context "given prisoner data in the session" do
     before :each do
       controller.visit.prisoner.prison_name = 'Cardiff'
@@ -61,7 +61,7 @@ shared_examples "a visitor data manipulator with valid data" do
   end
 end
 
-shared_examples "a visitor data manipulator with invalid data" do
+RSpec.shared_examples "a visitor data manipulator with invalid data" do
   context "given invalid visitor information" do
     let :bad_visitor_hash do
       {

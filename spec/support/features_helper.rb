@@ -53,6 +53,6 @@ module FeaturesHelper
   end
 end
 
-shared_examples "feature helper" do
+RSpec.shared_examples "feature helper" do
   include FeaturesHelper
 end

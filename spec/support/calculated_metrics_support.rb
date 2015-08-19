@@ -1,4 +1,4 @@
-shared_examples "a CalculatedMetrics instance" do
+RSpec.shared_examples "a CalculatedMetrics instance" do
   it "calculates total visits" do
     expect(subject.total_visits).to eq(247)
   end
