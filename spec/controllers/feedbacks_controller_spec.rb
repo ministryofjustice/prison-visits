@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe FeedbacksController, type: :controller do
+  include ActiveJobHelper
+
   before do
     ActionMailer::Base.deliveries.clear
     allow_any_instance_of(EmailValidator).to receive(:validate)

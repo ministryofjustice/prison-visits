@@ -35,4 +35,6 @@ PrisonVisits2::Application.configure do
   config.active_support.deprecation = :stderr
 
   config.action_mailer.default_url_options = { host: "localhost", protocol: "https", port: "3000" }
+
+  config.active_job.queue_adapter = :test
 end

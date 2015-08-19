@@ -7,7 +7,7 @@ class Instant::VisitsController < ApplicationController
 
   def update
     token = encryptor.encrypt_and_sign(visit)
-    VisitorMailer.instant_confirmation_email(visit).deliver_now
+    VisitorMailer.instant_confirmation_email(visit).deliver_later
 
     metrics_logger.record_instant_visit(visit)
     redirect_to instant_show_visit_path(state: token)

@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Deferred::ConfirmationsController, type: :controller do
+  include ActiveJobHelper
+
   render_views
 
   let(:mock_metrics_logger) { double('metrics_logger') }

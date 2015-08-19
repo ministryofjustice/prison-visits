@@ -13,7 +13,7 @@ class FeedbacksController < ApplicationController
       @feedback.prison = visit.prisoner.prison_name
     end
     if @feedback.valid?
-      FeedbackMailer.new_feedback(@feedback).deliver_now
+      FeedbackMailer.new_feedback(@feedback).deliver_later
       ZendeskHelper.send_to_zendesk(@feedback) unless @feedback.email.empty?
       redirect_to feedback_path
     else

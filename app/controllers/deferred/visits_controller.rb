@@ -6,8 +6,8 @@ class Deferred::VisitsController < ApplicationController
 
   def update
     @token = encryptor.encrypt_and_sign(visit)
-    PrisonMailer.booking_request_email(visit, @token).deliver_now
-    VisitorMailer.booking_receipt_email(visit, @token).deliver_now
+    PrisonMailer.booking_request_email(visit, @token).deliver_later
+    VisitorMailer.booking_receipt_email(visit, @token).deliver_later
 
     STATSD_CLIENT.increment("pvb.app.visit_request_submitted")
 

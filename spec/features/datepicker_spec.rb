@@ -1,6 +1,8 @@
 require 'browserstack_helper'
 
 RSpec.feature "visitor selects a date" do
+  include ActiveJobHelper
+
   include_examples "feature helper"
 
   before :all do

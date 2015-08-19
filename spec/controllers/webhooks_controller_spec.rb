@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe WebhooksController, type: :controller do
+  include ActiveJobHelper
+
   let :charsets do
     { from: 'utf-8', to: 'utf-8', subject: 'utf-8', text: 'utf-8' }.to_json
   end

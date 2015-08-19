@@ -30,15 +30,15 @@ class Deferred::ConfirmationsController < ApplicationController
 
     if @confirmation.slot_selected?
       token = encryptor.encrypt_and_sign(attach_vo_number(remove_unused_slots(booked_visit, @confirmation.slot), @confirmation))
-      VisitorMailer.booking_confirmation_email(booked_visit, @confirmation, token).deliver_now
+      VisitorMailer.booking_confirmation_email(booked_visit, @confirmation, token).deliver_later
       STATSD_CLIENT.increment("pvb.app.visit_confirmed")
       metrics_logger.record_booking_confirmation(booked_visit)
     else
-      VisitorMailer.booking_rejection_email(booked_visit, @confirmation).deliver_now
+      VisitorMailer.booking_rejection_email(booked_visit, @confirmation).deliver_later
       STATSD_CLIENT.increment("pvb.app.visit_rejected")
       metrics_logger.record_booking_rejection(booked_visit, @confirmation.outcome)
     end
-    PrisonMailer.booking_receipt_email(booked_visit, @confirmation).deliver_now
+    PrisonMailer.booking_receipt_email(booked_visit, @confirmation).deliver_later
     STATSD_CLIENT.increment("pvb.app.visit_processed")
     redirect_to deferred_show_confirmation_path(visit_id: booked_visit.visit_id)
   end
