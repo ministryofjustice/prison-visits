@@ -45,8 +45,8 @@ module VisitHelper
     prison_data['slot_anomalies']
   end
 
-  def prison_address(glue='<br>')
-    prison_data['address'].join(glue).html_safe
+  def prison_address(glue='<br>'.html_safe)
+    safe_join(prison_data['address'], glue)
   end
 
   def adult_age

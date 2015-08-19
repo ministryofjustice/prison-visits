@@ -60,6 +60,20 @@ RSpec.describe VisitHelper, type: :helper do
       expect(helper.prison_address).to start_with "1 Fort Road"
     end
 
+    it "escapes html in the address" do
+      allow(Rails.configuration.prison_data['Rochester']).
+        to receive(:[]).with('address') { ['Danger<script>ous']}
+
+      expect(helper.prison_address).not_to match(/<script/)
+    end
+
+    it "joins address lines with br" do
+      allow(Rails.configuration.prison_data['Rochester']).
+        to receive(:[]).with('address') { ['hello', 'hey'] }
+
+      expect(helper.prison_address).to eq('hello<br>hey')
+    end
+
     it "provides the URL" do
       expect(helper.prison_url(visit)).to include "www.justice.gov.uk/contacts/prison-finder/rochester"
     end
