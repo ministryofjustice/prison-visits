@@ -1721,6 +1721,9 @@ Highpoint South:
     sun:
     - 0900-1100
     - 1400-1600
+  slot_anomalies:
+    2015-08-31:
+    - 1400-1600
 Holme House:
   nomis_id: HHI
   canned_responses: true
