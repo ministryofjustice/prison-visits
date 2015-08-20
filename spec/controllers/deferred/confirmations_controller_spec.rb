@@ -95,12 +95,6 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
             expect(mock_metrics_logger).
               to receive(:record_booking_confirmation).
               with(same_visit(visit))
-            expect(VisitorMailer).
-              to receive(:booking_confirmation_email).
-              and_call_original
-            expect(PrisonMailer).
-              to receive(:booking_receipt_email).
-              and_call_original
           end
 
           after do
@@ -120,12 +114,6 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
             expect(mock_metrics_logger).
               to receive(:record_booking_rejection).
               with(same_visit(visit), Confirmation::NOT_ON_CONTACT_LIST)
-            expect(VisitorMailer).
-              to receive(:booking_rejection_email).
-              and_call_original
-            expect(PrisonMailer).
-              to receive(:booking_receipt_email).
-              and_call_original
           end
 
           after do
@@ -145,12 +133,6 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
             expect(mock_metrics_logger).
               to receive(:record_booking_rejection).
               with(same_visit(visit), Confirmation::NO_VOS_LEFT)
-            expect(VisitorMailer).
-              to receive(:booking_rejection_email).
-              and_call_original
-            expect(PrisonMailer).
-              to receive(:booking_receipt_email).
-              and_call_original
           end
 
           after do
@@ -170,12 +152,6 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
             expect(mock_metrics_logger).
               to receive(:record_booking_rejection).
               with(same_visit(visit), Confirmation::NO_SLOT_AVAILABLE)
-            expect(VisitorMailer).
-              to receive(:booking_rejection_email).
-              and_call_original
-            expect(PrisonMailer).
-              to receive(:booking_receipt_email).
-              and_call_original
           end
 
           after do
@@ -233,12 +209,6 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
             expect(mock_metrics_logger).
               to receive(:record_booking_confirmation).
               with(same_visit(visit))
-            expect(VisitorMailer).
-              to receive(:booking_confirmation_email).
-              and_call_original
-            expect(PrisonMailer).
-              to receive(:booking_receipt_email).
-              and_call_original
           end
 
           after do
@@ -258,12 +228,6 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
             expect(mock_metrics_logger).
               to receive(:record_booking_confirmation).
               with(same_visit(visit))
-            expect(VisitorMailer).
-              to receive(:booking_confirmation_email).
-              and_call_original
-            expect(PrisonMailer).
-              to receive(:booking_receipt_email).
-              and_call_original
           end
 
           it "sends out an e-mail for an unlisted visitor" do
@@ -313,12 +277,6 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
             expect(mock_metrics_logger).
               to receive(:record_booking_rejection).
               with(same_visit(visit), nil)
-            expect(VisitorMailer).
-              to receive(:booking_rejection_email).
-              and_call_original
-            expect(PrisonMailer).
-              to receive(:booking_receipt_email).
-              and_call_original
           end
 
           it "sends rejection e-mail for an unlisted visitor" do
@@ -365,12 +323,6 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
             expect(mock_metrics_logger).
               to receive(:record_booking_rejection).
               with(same_visit(visit), Confirmation::NO_ALLOWANCE)
-            expect(VisitorMailer).
-              to receive(:booking_rejection_email).
-              and_call_original
-            expect(PrisonMailer).
-              to receive(:booking_receipt_email).
-              and_call_original
           end
 
           it "sends out an e-mail and records a metric" do
@@ -416,12 +368,6 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
             expect(mock_metrics_logger).
               to receive(:record_booking_rejection).
               with(same_visit(visit), Confirmation::PRISONER_INCORRECT)
-            expect(VisitorMailer).
-              to receive(:booking_rejection_email).
-              and_call_original
-            expect(PrisonMailer).
-              to receive(:booking_receipt_email).
-              and_call_original
           end
 
           after do
@@ -446,12 +392,6 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
             expect(mock_metrics_logger).
               to receive(:record_booking_rejection).
               with(same_visit(visit), Confirmation::PRISONER_NOT_PRESENT)
-            expect(VisitorMailer).
-              to receive(:booking_rejection_email).
-              and_call_original
-            expect(PrisonMailer).
-              to receive(:booking_receipt_email).
-              and_call_original
           end
 
           after do
@@ -476,12 +416,6 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
             expect(mock_metrics_logger).
               to receive(:record_booking_rejection).
               with(same_visit(visit), Confirmation::NO_SLOT_AVAILABLE)
-            expect(VisitorMailer).
-              to receive(:booking_rejection_email).
-              and_call_original
-            expect(PrisonMailer).
-              to receive(:booking_receipt_email).
-              and_call_original
           end
 
           after do
