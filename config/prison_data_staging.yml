@@ -1085,14 +1085,14 @@ Wetherby:
   unbookable:
   - 2014-12-25
   slots:
+    wed:
+    - 1830-2000
     sat:
     - 0930-1130
     - 1430-1630
     sun:
     - 0930-1130
     - 1430-1630
-    wed:
-    - 1830-2000
 Erlestoke:
   nomis_id: EEI
   canned_responses: true
