@@ -6,7 +6,7 @@ RSpec.describe FeedbacksController, type: :controller do
   before do
     ActionMailer::Base.deliveries.clear
     allow_any_instance_of(EmailValidator).to receive(:validate)
-    allow(ZendeskHelper).to receive(:send_to_zendesk)
+    allow(ZendeskTicketsJob).to receive(:perform_later)
   end
 
   context 'new' do
@@ -33,7 +33,7 @@ RSpec.describe FeedbacksController, type: :controller do
       end
 
       it 'sends to ZenDesk' do
-        expect(ZendeskHelper).to receive(:send_to_zendesk).once do |feedback|
+        expect(ZendeskTicketsJob).to receive(:perform_later).once do |feedback|
           expect(feedback.email).to eq('test@maildrop.dsd.io')
           expect(feedback.text).to eq('feedback')
         end
@@ -58,7 +58,7 @@ RSpec.describe FeedbacksController, type: :controller do
       end
 
       it 'does not send to ZenDesk' do
-        expect(ZendeskHelper).to receive(:send_to_zendesk).never
+        expect(ZendeskTicketsJob).to receive(:perform_later).never
         post :create, feedback: feedback_params
       end
 
@@ -80,7 +80,7 @@ RSpec.describe FeedbacksController, type: :controller do
       end
 
       it 'does not send to ZenDesk' do
-        expect(ZendeskHelper).to receive(:send_to_zendesk).never
+        expect(ZendeskTicketsJob).to receive(:perform_later).never
         post :create, feedback: feedback_params
       end
 
@@ -111,7 +111,7 @@ RSpec.describe FeedbacksController, type: :controller do
       end
 
       it 'extracts the prison name from the session' do
-        expect(ZendeskHelper).to receive(:send_to_zendesk) do |feedback|
+        expect(ZendeskTicketsJob).to receive(:perform_later) do |feedback|
           expect(feedback.prison).to eq('Rochester')
         end
         post :create, feedback: feedback_params

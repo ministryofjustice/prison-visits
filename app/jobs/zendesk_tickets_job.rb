@@ -1,7 +1,9 @@
-module ZendeskHelper
-  def self.send_to_zendesk(feedback, client = ZENDESK_CLIENT)
+class ZendeskTicketsJob < ActiveJob::Base
+  queue_as :zendesk
+
+  def perform(feedback)
     ZendeskAPI::Ticket.create!(
-      client,
+      ZENDESK_CLIENT,
       description: feedback.text,
       requester: {
         email: feedback.email,
@@ -16,4 +18,3 @@ module ZendeskHelper
     )
   end
 end
-
