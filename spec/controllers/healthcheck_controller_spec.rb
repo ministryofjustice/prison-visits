@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe HeartbeatController, type: :controller do
+RSpec.describe HealthcheckController, type: :controller do
   render_views
 
   context "with key restrictions" do
@@ -8,7 +8,7 @@ RSpec.describe HeartbeatController, type: :controller do
       it "raises an error" do
         Rails.configuration.metrics_auth_key = ""
         expect(controller).to receive(:reject!)
-        get :healthcheck
+        get :index
       end
     end
 
@@ -34,12 +34,12 @@ RSpec.describe HeartbeatController, type: :controller do
         end
 
         it "returns a HTTP Success status" do
-          get :healthcheck
+          get :index
           assert_response(:success, response.status)
         end
 
         it "reports all services as OK" do
-          get :healthcheck
+          get :index
           parsed_body = JSON.parse(response.body)
           expect(parsed_body['checks'].values.all?).to be_truthy
         end
@@ -50,7 +50,7 @@ RSpec.describe HeartbeatController, type: :controller do
           'database',
         ].each do |service|
           it "contains a check for #{service}" do
-            get :healthcheck
+            get :index
             parsed_body = JSON.parse(response.body)
             expect(parsed_body['checks'].has_key?(service)).to be_truthy
           end

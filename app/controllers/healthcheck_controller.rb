@@ -1,7 +1,7 @@
-class HeartbeatController < ApplicationController
+class HealthcheckController < ApplicationController
   permit_only_with_key
 
-  def healthcheck
+  def index
     checks = {
       sendgrid: sendgrid_alive?,
       messagelabs: messagelabs_alive?,
