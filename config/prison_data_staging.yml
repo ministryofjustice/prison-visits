@@ -1689,15 +1689,15 @@ High Down:
     - 1400-1600
     wed:
     - 1400-1600
-  slot anomalies:
+  slot_anomalies:
     2015-09-16:
-      1400-1600
+    - 1400-1600
     2015-10-14:
-      1400-1600
+    - 1400-1600
     2015-11-18:
-      1400-1600
+    - 1400-1600
     2015-12-16:
-      1400-1600  
+    - 1400-1600
 Highpoint North:
   nomis_id: HPI
   canned_responses: true
