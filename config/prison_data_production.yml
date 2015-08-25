@@ -792,6 +792,7 @@ Moorland Closed:
   address:
   - Bawtry Road
   - DN7 6BW
+  lead_days: 1
   unbookable:
   - 2014-12-25
   - 2014-12-26
