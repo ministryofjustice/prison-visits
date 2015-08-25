@@ -6,6 +6,7 @@ class HealthcheckController < ApplicationController
       sendgrid: sendgrid_alive?,
       messagelabs: messagelabs_alive?,
       database: database_active?,
+      zendesk: zendesk_alive?
     }
     status = :bad_gateway unless checks.values.all?
     render status: status, json: { checks: checks }
@@ -25,5 +26,9 @@ class HealthcheckController < ApplicationController
     ActiveRecord::Base.connection.active?
   rescue PG::ConnectionBad
     false
+  end
+
+  def zendesk_alive?
+    ZENDESK_CLIENT.tickets.count >= 0
   end
 end

@@ -23,6 +23,7 @@ RSpec.describe HealthcheckController, type: :controller do
 
   before do
     allow(SendgridHelper).to receive(:smtp_alive?).and_return(true)
+    allow(ZENDESK_CLIENT).to receive(:tickets).and_return(double(count: 0))
   end
 
   shared_examples 'a service is broken' do |service|
@@ -66,6 +67,10 @@ RSpec.describe HealthcheckController, type: :controller do
 
     it 'reports database as OK' do
       expect(parsed_body).to include('checks' => include('database' => true))
+    end
+
+    it 'reports zendesk as OK' do
+      expect(parsed_body).to include('checks' => include('zendesk' => true))
     end
   end
 
@@ -119,5 +124,13 @@ RSpec.describe HealthcheckController, type: :controller do
     end
 
     it_behaves_like 'a service is broken', 'database'
+  end
+
+  context 'when Zendesk is inaccessible' do
+    before do
+      allow(ZENDESK_CLIENT).to receive(:tickets).and_return(double(count: -1))
+    end
+
+    it_behaves_like 'a service is broken', 'zendesk'
   end
 end
