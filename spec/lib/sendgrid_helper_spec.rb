@@ -20,13 +20,20 @@ RSpec.describe SendgridHelper do
 
       context "when no error" do
         it "marks an e-mail as valid" do
-          expect(JSON).to receive(:parse).and_return(['dummy'])
-          SendgridHelper.spam_reported?('test@irrelevant.com')
+          allow(JSON).to receive(:parse).and_return([])
+          expect(SendgridHelper.spam_reported?('test@irrelevant.com')).to be_falsey
         end
 
         it "marks an e-mail as invalid" do
-          expect(JSON).to receive(:parse).and_return([])
-          SendgridHelper.spam_reported?('test@irrelevant.com')
+          api_response = [
+            {
+              'ip' => '174.36.80.219',
+              'email' => 'test@irrelevant.com',
+              'created' => '2009-12-06 15:45:08'
+            }
+          ]
+          allow(JSON).to receive(:parse).and_return(api_response)
+          expect(SendgridHelper.spam_reported?('test@irrelevant.com')).to be_truthy
         end
       end
     end
@@ -48,13 +55,21 @@ RSpec.describe SendgridHelper do
 
       context "when no error" do
         it "marks an e-mail as valid" do
-          expect(JSON).to receive(:parse).and_return(['dummy'])
-          SendgridHelper.bounced?('test@irrelevant.com')
+          allow(JSON).to receive(:parse).and_return([])
+          expect(SendgridHelper.bounced?('test@irrelevant.com')).to be_falsey
         end
 
         it "marks an e-mail as invalid" do
-          expect(JSON).to receive(:parse).and_return([])
-          SendgridHelper.bounced?('test@irrelevant.com')
+          api_response = [
+            {
+              'status' => '4.0.0',
+              'created' => '2011-09-16 22:02:19',
+              'reason' => 'Unable to resolve MX host irrelevant.com',
+              'email' => 'test@irrelevant.com'
+            }
+          ]
+          allow(JSON).to receive(:parse).and_return(api_response)
+          expect(SendgridHelper.bounced?('test@irrelevant.com')).to be_truthy
         end
       end
     end
