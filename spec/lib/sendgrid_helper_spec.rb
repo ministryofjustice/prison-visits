@@ -8,32 +8,32 @@ RSpec.describe SendgridHelper do
         [Curl::Err::CurlError, JSON::ParserError].each do |exception_class|
           it "marks the email as valid if there's an error (#{exception_class})" do
             allow(Curl::Easy).to receive(:perform).and_raise(exception_class)
-            expect(SendgridHelper.spam_reported?('test@irrelevant.com')).to be_falsey
+            expect(SendgridHelper.spam_reported?('test@example.com')).to be_falsey
           end
         end
 
         it "marks the email as valid when authentication fails" do
           allow(JSON).to receive(:parse).and_return({error: 'lol'})
-          expect(SendgridHelper.spam_reported?('test@irrelevant.com')).to be_falsey
+          expect(SendgridHelper.spam_reported?('test@example.com')).to be_falsey
         end
       end
 
       context "when no error" do
         it "marks an e-mail as valid" do
           allow(JSON).to receive(:parse).and_return([])
-          expect(SendgridHelper.spam_reported?('test@irrelevant.com')).to be_falsey
+          expect(SendgridHelper.spam_reported?('test@example.com')).to be_falsey
         end
 
         it "marks an e-mail as invalid" do
           api_response = [
             {
               'ip' => '174.36.80.219',
-              'email' => 'test@irrelevant.com',
+              'email' => 'test@example.com',
               'created' => '2009-12-06 15:45:08'
             }
           ]
           allow(JSON).to receive(:parse).and_return(api_response)
-          expect(SendgridHelper.spam_reported?('test@irrelevant.com')).to be_truthy
+          expect(SendgridHelper.spam_reported?('test@example.com')).to be_truthy
         end
       end
     end
@@ -43,20 +43,20 @@ RSpec.describe SendgridHelper do
         [Curl::Err::CurlError, JSON::ParserError].each do |exception_class|
           it "marks the email as valid if there's an error (#{exception_class})" do
             allow(Curl::Easy).to receive(:perform).and_raise(exception_class)
-            expect(SendgridHelper.bounced?('test@irrelevant.com')).to be_falsey
+            expect(SendgridHelper.bounced?('test@example.com')).to be_falsey
           end
         end
 
         it "marks the email as valid when authentication fails" do
           allow(JSON).to receive(:parse).and_return({error: 'lol'})
-          expect(SendgridHelper.bounced?('test@irrelevant.com')).to be_falsey
+          expect(SendgridHelper.bounced?('test@example.com')).to be_falsey
         end
       end
 
       context "when no error" do
         it "marks an e-mail as valid" do
           allow(JSON).to receive(:parse).and_return([])
-          expect(SendgridHelper.bounced?('test@irrelevant.com')).to be_falsey
+          expect(SendgridHelper.bounced?('test@example.com')).to be_falsey
         end
 
         it "marks an e-mail as invalid" do
@@ -64,12 +64,12 @@ RSpec.describe SendgridHelper do
             {
               'status' => '4.0.0',
               'created' => '2011-09-16 22:02:19',
-              'reason' => 'Unable to resolve MX host irrelevant.com',
-              'email' => 'test@irrelevant.com'
+              'reason' => 'Unable to resolve MX host example.com',
+              'email' => 'test@example.com'
             }
           ]
           allow(JSON).to receive(:parse).and_return(api_response)
-          expect(SendgridHelper.bounced?('test@irrelevant.com')).to be_truthy
+          expect(SendgridHelper.bounced?('test@example.com')).to be_truthy
         end
       end
     end
@@ -85,23 +85,23 @@ RSpec.describe SendgridHelper do
 
     context 'bounced?' do
       it 'never says that the email has bounced' do
-        expect(SendgridHelper.bounced?('test@irrelevant.com')).to be_falsey
+        expect(SendgridHelper.bounced?('test@example.com')).to be_falsey
       end
 
       it 'does not talk to sendgrid' do
         expect(Curl::Easy).to receive(:perform).never
-        SendgridHelper.bounced?('test@irrelevant.com')
+        SendgridHelper.bounced?('test@example.com')
       end
     end
 
     context 'spam_reported?' do
       it 'never says that the email address has been reported for spam' do
-        expect(SendgridHelper.spam_reported?('test@irrelevant.com')).to be_falsey
+        expect(SendgridHelper.spam_reported?('test@example.com')).to be_falsey
       end
 
       it 'does not talk to sendgrid' do
         expect(Curl::Easy).to receive(:perform).never
-        SendgridHelper.spam_reported?('test@irrelevant.com')
+        SendgridHelper.spam_reported?('test@example.com')
       end
     end
   end
