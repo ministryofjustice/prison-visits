@@ -6,7 +6,9 @@ class Prison
 
   def self.find(prison_name)
     prison_hash = Rails.configuration.prison_data[prison_name]
-    raise PrisonNotFound if prison_hash.nil?
+    if prison_hash.nil?
+      raise PrisonNotFound, "Can't find prison #{prison_name.inspect}"
+    end
     new(prison_name, prison_hash)
   end
 
