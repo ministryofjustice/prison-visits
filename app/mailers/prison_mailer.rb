@@ -4,6 +4,10 @@ class PrisonMailer < ActionMailer::Base
   include Addresses
   include EnsureQuotedPrintable
 
+  SMOKE_TEST_EMAIL_ADDRESS = ENV.fetch('SMOKE_TEST_EMAIL_ADDRESS')
+
+  after_action :do_not_send_to_prison, if: :smoke_test?
+
   add_template_helper(ApplicationHelper)
   add_template_helper(VisitHelper)
 
@@ -56,5 +60,15 @@ class PrisonMailer < ActionMailer::Base
 
   def recipient
     prison_mailbox_email
+  end
+
+  private
+
+  def do_not_send_to_prison
+    message.to = SMOKE_TEST_EMAIL_ADDRESS
+  end
+
+  def smoke_test?
+    visit && visit.visitors.first.email == SMOKE_TEST_EMAIL_ADDRESS
   end
 end
