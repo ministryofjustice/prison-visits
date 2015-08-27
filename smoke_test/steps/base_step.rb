@@ -23,6 +23,10 @@ module SmokeTest
       def step_name
         self.class.name.split('::').last.gsub(/(?=[A-Z])/, ' ')
       end
+
+      def mail_lookup
+        MailLookup.new(state[:started_at])
+      end
     end
   end
 end
