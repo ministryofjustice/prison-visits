@@ -27,6 +27,19 @@ module SmokeTest
       def mail_lookup
         MailLookup.new(state[:started_at])
       end
+
+      def with_retries(attempts: 5, initial_delay: 2, max_delay: 30)
+        delay = initial_delay
+        result = nil
+        attempts.times do
+          result = yield
+          break if result
+          puts "waiting #{delay}s .."
+          sleep delay
+          delay = [max_delay, delay * 2].min
+        end
+        result
+      end
     end
   end
 end
