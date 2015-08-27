@@ -66,6 +66,8 @@ class PrisonMailer < ActionMailer::Base
 
   def do_not_send_to_prison
     message.to = SMOKE_TEST_EMAIL_ADDRESS
+    message.delivery_method.settings.
+      merge(Rails.configuration.action_mailer.smtp_settings)
   end
 
   def smoke_test?
