@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   helper_method :visit
   before_filter :add_extra_sentry_metadata
+  protect_from_forgery with: :exception
 
   def self.permit_only_from_prisons
     before_filter :reject_untrusted_ips!
