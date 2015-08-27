@@ -59,7 +59,7 @@ module SmokeTest
 
   def complete(step)
     current_step = step.new state
-    current_step.assert_validity!
+    current_step.validate!
     current_step.complete_step
   end
 

@@ -4,7 +4,7 @@ module SmokeTest
 
       PAGE_PATH = '/deferred/slots'
 
-      def assert_validity!
+      def validate!
         if page.current_path != PAGE_PATH
           fail "expected #{PAGE_PATH}, got #{page.current_path}"
         end

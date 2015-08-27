@@ -10,7 +10,7 @@ module SmokeTest
         @state = state
       end
 
-      def assert_validity!
+      def validate!
         true
       end
 

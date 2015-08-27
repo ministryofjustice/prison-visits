@@ -2,7 +2,7 @@ module SmokeTest
   module Steps
     class VisitorBookingConfirmation < BaseStep
 
-      def assert_validity!
+      def validate!
         fail 'Could not find visitor booking confirmation email' if email.nil?
       end
 

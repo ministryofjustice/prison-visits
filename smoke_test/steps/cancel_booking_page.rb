@@ -4,7 +4,7 @@ module SmokeTest
 
       PAGE_PATH = /\A\/status\//
 
-      def assert_validity!
+      def validate!
         unless PAGE_PATH.match page.current_path
           fail "expected #{PAGE_PATH}, got #{page.current_path}"
         end

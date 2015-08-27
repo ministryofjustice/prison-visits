@@ -2,7 +2,7 @@ module SmokeTest
   module Steps
     class PrisonBookingCancelled < BaseStep
 
-      def assert_validity!
+      def validate!
         fail 'Could not find prison booking cancelled email' if email.nil?
       end
 
