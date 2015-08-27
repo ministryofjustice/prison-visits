@@ -15,3 +15,6 @@ visitor_details:
   birth_year: 1982
   email_address: <%= ENV.fetch 'SMOKE_TEST_EMAIL_ADDRESS' %>
   phone_number: 12345678911
+
+process_data:
+  vo_digits: 12345678
