@@ -122,6 +122,7 @@ RSpec.feature 'unexpected journeys through the application' do
 
         expect(status).to eq(200)
         expect(current_path).to eq(start_page)
+        expect(page).to have_text('You need to complete missing information')
         expect(page).to have_title('Who are you visiting?')
       end
 
@@ -130,6 +131,7 @@ RSpec.feature 'unexpected journeys through the application' do
 
         expect(status).to eq(200)
         expect(current_path).to eq(start_page)
+        expect(page).to have_text('You need to complete missing information')
         expect(page).to have_title('Who are you visiting?')
       end
 
@@ -138,6 +140,7 @@ RSpec.feature 'unexpected journeys through the application' do
 
         expect(status).to eq(200)
         expect(current_path).to eq(start_page)
+        expect(page).to have_text('You need to complete missing information')
         expect(page).to have_title('Who are you visiting?')
       end
     end
