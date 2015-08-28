@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.feature 'unexpected journeys through the application' do
+  before do
+    Capybara.current_driver = :rack_test
+  end
+
   def complete_prisoner_details
     fill_in 'Prisoner first name', with: 'Arthur'
     fill_in 'Prisoner last name', with: 'Raffles'
