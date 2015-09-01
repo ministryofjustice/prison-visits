@@ -2,6 +2,7 @@ class Visitor
   include NonPersistedModel
 
   USER_MIN_AGE = 18
+  USER_MAX_AGE = 120
 
   attribute :first_name, String
   attribute :last_name, String
@@ -23,7 +24,7 @@ class Visitor
   validates :first_name, presence: true, name: true
   validates :last_name, presence: true, name: true
   validates_inclusion_of :date_of_birth,
-    in: ->(_) { 100.years.ago.beginning_of_year.to_date..Date.today },
+    in: ->(_) { USER_MAX_AGE.years.ago.beginning_of_year.to_date..Date.today },
     message: 'must be a valid date'
   validate :validate_user_or_additional
 
