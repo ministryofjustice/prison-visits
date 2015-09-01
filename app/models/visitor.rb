@@ -22,7 +22,9 @@ class Visitor
 
   validates :first_name, presence: true, name: true
   validates :last_name, presence: true, name: true
-  validates_inclusion_of :date_of_birth, in: ->(_) { 100.years.ago.beginning_of_year.to_date..Date.today }, message: 'must be a valid date'
+  validates_inclusion_of :date_of_birth,
+    in: ->(_) { 100.years.ago.beginning_of_year.to_date..Date.today },
+    message: 'must be a valid date'
   validate :validate_user_or_additional
 
   def validate_user_or_additional
