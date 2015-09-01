@@ -8,5 +8,12 @@ class Feedback
   attribute :prison, String
 
   validates_presence_of :text
-  validates :email, email: true, if: ->(f) { f.email.present? }
+  validate :validate_email, if: ->(f) { f.email.present? }
+
+  private
+
+  def validate_email
+    validator = EmailValidator.new(email)
+    errors.add :email, validator.message unless validator.valid?
+  end
 end

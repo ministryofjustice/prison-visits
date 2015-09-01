@@ -11,13 +11,10 @@ class Visitor
   attribute :phone, String
 
   validates :email, absence: true, if: :additional?
+  validates :email, presence: true, if: :primary?
   validate :validate_email, if: :primary?
   validates :phone, absence: true, if: :additional?
   validates :phone, presence: true, length: { minimum: 9 }, if: :primary?
-
-  def validate_email
-    EmailValidator.new.validate(self)
-  end
 
   def primary?
     index == 0
@@ -25,5 +22,12 @@ class Visitor
 
   def additional?
     index > 0
+  end
+
+  private
+
+  def validate_email
+    validator = EmailValidator.new(email)
+    errors.add :email, validator.message unless validator.valid?
   end
 end

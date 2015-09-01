@@ -2,104 +2,116 @@ require 'rails_helper'
 require 'email_validator'
 
 RSpec.describe EmailValidator do
-  let :subject do
-    EmailValidator.new
+  subject { described_class.new(address) }
+
+  before do
+    allow_any_instance_of(Resolv::DNS).
+      to receive(:getresource).and_return(true)
   end
 
-  let! :model do
-    Visitor.new
+  shared_examples 'a valid address' do
+    it { is_expected.to be_valid }
+
+    it 'has no error' do
+      expect(subject.error).to be_nil
+    end
   end
 
-  context "with bad e-mail address" do
-    it "doesn't allow for a borked e-mail address" do
-      expect {
-        model.email = '@bad-email'
-        subject.validate(model)
-      }.to change { model.errors.empty? }
+  shared_examples 'an invalid address' do |sym|
+    it { is_expected.not_to be_valid }
+
+    it "has the #{sym} error" do
+      expect(subject.error).to eq(sym)
+    end
+  end
+
+  context 'with invalid address' do
+    context 'with empty string' do
+      let(:address) { '' }
+      it_behaves_like 'an invalid address', :malformed
     end
 
-    it "doesn't allow an empty e-mail address" do
-      expect {
-        model.email = ''
-        subject.validate(model)
-      }.to change { model.errors.empty? }
+    context 'with domain only' do
+      let(:address) { '@test.example.com' }
+      it_behaves_like 'an invalid address', :unparseable
     end
 
-    it "doesn't allow an address with a local part only" do
-      expect {
-        model.email = 'jimmy.harris'
-        subject.validate(model)
-      }.to change { model.errors.empty? }
+    context 'with local part only' do
+      let(:address) { 'jimmy.harris' }
+      it_behaves_like 'an invalid address', :malformed
     end
 
-    it "doesn't allow domains with a dot at the end" do
-      expect {
-        model.email = 'feedback@domain.com.'
-        subject.validate(model)
-      }.to change { model.errors.empty? }
+    context 'with dot at start of domain' do
+      let(:address) { 'user@.test.example.com' }
+      it_behaves_like 'an invalid address', :domain_dot
     end
 
-    it "doesn't allow domains with a dot at the beginning" do
-      expect {
-        model.email = 'feedback@.domain.com'
-        subject.validate(model)
-      }.to change { model.errors.empty? }
+    context 'with dot at end of domain' do
+      let(:address) { 'user@test.example.com.' }
+      it_behaves_like 'an invalid address', :unparseable
     end
 
-    EmailValidator::BAD_DOMAINS.each do |domain|
-      it "doesn't allow domains that are known to be bad: #{domain}" do
-        expect {
-          model.email = "feedback@#{domain}"
-          subject.validate(model)
-        }.to change { model.errors.empty? }
+    context 'with known bad domain' do
+      let(:address) { 'user@hitmail.com' }
+      it_behaves_like 'an invalid address', :bad_domain
+    end
+  end
+
+  context 'with valid address' do
+    let(:address) { 'user@test.example.com' }
+
+    it_behaves_like 'a valid address'
+
+    it 'checks MX record only once' do
+      expect_any_instance_of(Resolv::DNS).
+        to receive(:getresource).once.and_return(true)
+
+      2.times do
+        subject.valid?
       end
     end
-  end
 
-  it "allows correct e-mail addresses" do
-    expect {
-      model.email = 'feedback@lol.biz.info'
-      subject.validate(model)
-    }.not_to change { model.errors.empty? }
-  end
+    it 'checks Sendgrid only once' do
+      expect(SendgridHelper).to receive(:spam_reported?).once.and_return(false)
+      expect(SendgridHelper).to receive(:bounced?).once.and_return(false)
 
-  context "DNS checks for domain" do
-    it "checks for the existence of an MX record for the domain" do
-      expect_any_instance_of(Resolv::DNS).to receive(:getresource).and_raise(Resolv::ResolvError)
-      expect {
-        model.email = 'test@gmail.co.uk'
-        subject.validate(model)
-      }.to change { model.errors.empty? }
+      2.times do
+        subject.valid?
+      end
     end
 
-    it "doesn't return an error when the MX lookup timed out" do
-      expect_any_instance_of(Resolv::DNS).to receive(:getresource).and_raise(Resolv::ResolvTimeout)
-      expect {
-        model.email = 'test@irrelevant.com'
-        subject.validate(model)
-      }.not_to change { model.errors.empty? }
-    end
-  end
+    context 'with no MX record' do
+      before do
+        allow_any_instance_of(Resolv::DNS).
+          to receive(:getresource).and_raise(Resolv::ResolvError)
+      end
 
-  context "spam reporters" do
-    it "prevents validation on an e-mail address marked as a spam reporter in sendgrid" do
-      expect(SendgridApi).to receive(:spam_reported?).and_return(true)
-      expect {
-        model.email = 'test@irrelevant.com'
-        subject.validate(model)
-      }.to change { model.errors.empty? }
-      expect(model.errors.first).to eq([:email, "cannot receive messages from this system"])
+      it_behaves_like 'an invalid address', :no_mx_record
     end
-  end
 
-  context "bounced addresses" do
-    it "prevents validation on an e-mail address marked as bounced in sendgrid" do
-      expect(SendgridApi).to receive(:bounced?).and_return(true)
-      expect {
-        model.email = 'test@irrelevant.com'
-        subject.validate(model)
-      }.to change { model.errors.empty? }
-      expect(model.errors.first).to eq([:email, "cannot receive messages from this system"])
+    context 'when MX lookup times out' do
+      before do
+        allow_any_instance_of(Resolv::DNS).
+          to receive(:getresource).and_raise(Resolv::ResolvTimeout)
+      end
+
+      it_behaves_like 'a valid address'
+    end
+
+    context 'when spam is reported' do
+      before do
+        allow(SendgridHelper).to receive(:spam_reported?).and_return(true)
+      end
+
+      it_behaves_like 'an invalid address', :spam_reported
+    end
+
+    context 'when bounce is reported' do
+      before do
+        allow(SendgridHelper).to receive(:bounced?).and_return(true)
+      end
+
+      it_behaves_like 'an invalid address', :bounced
     end
   end
 end
