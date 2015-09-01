@@ -134,6 +134,7 @@ RSpec.shared_examples "a visitor data manipulator with invalid data" do
             :'date_of_birth(3i)' => date_of_birth.day,
             :'date_of_birth(2i)' => date_of_birth.month,
             :'date_of_birth(1i)' => date_of_birth.year,
+            email: 'user@test.example.com',
             phone: '09998887777'
           ]
         },

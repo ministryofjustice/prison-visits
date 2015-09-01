@@ -1,12 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Instant::Visitor do
-  before :each do
-    allow_any_instance_of(EmailValidator).to receive(:validate_dns_records)
-    allow_any_instance_of(EmailValidator).to receive(:validate_spam_reporter)
-    allow_any_instance_of(EmailValidator).to receive(:validate_bounced)
-  end
-
   let :visitor do
     subject.tap do |v|
       v.first_name = 'Otto'

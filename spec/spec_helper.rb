@@ -23,4 +23,8 @@ RSpec.configure do |config|
   config.profile_examples = 10
   config.order = :random
   Kernel.srand config.seed
+
+  config.before do
+    allow_any_instance_of(Resolv::DNS).to receive(:getresource).and_return(true)
+  end
 end

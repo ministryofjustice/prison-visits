@@ -7,19 +7,11 @@ RSpec.feature "visitor enters visitor information" do
     context "#{flow} flow" do
 
       before :each do
-        allow_any_instance_of(EmailValidator).to receive(:validate_dns_records)
-        allow_any_instance_of(EmailValidator).to receive(:validate_spam_reporter)
-        allow_any_instance_of(EmailValidator).to receive(:validate_bounced)
         visit '/prisoner-details'
         enter_prisoner_information(flow)
       end
 
       context "and leaves fields blank" do
-        before :each do
-          allow_any_instance_of(EmailValidator).to receive(:validate_dns_records)
-          allow_any_instance_of(EmailValidator).to receive(:validate_spam_reporter)
-        end
-
         it "validation messages are present" do
           click_button 'Continue'
 
@@ -32,11 +24,6 @@ RSpec.feature "visitor enters visitor information" do
       end
 
       context "and they fill out all fields" do
-        before :each do
-          allow_any_instance_of(EmailValidator).to receive(:validate)
-          allow_any_instance_of(EmailValidator).to receive(:validate)
-        end
-
         context "for one visitor" do
           it "displays the calendar" do
             enter_visitor_information(flow)
