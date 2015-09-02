@@ -37,14 +37,14 @@ RSpec.describe Deferred::VisitorsDetailsController, type: :controller do
       {
         visit: {
           visitor: [
-                    first_name: 'Sue',
-                    last_name: 'Demin',
-                    :'date_of_birth(3i)' => '14',
-                    :'date_of_birth(2i)' => '03',
-                    :'date_of_birth(1i)' => '1986',
-                    email: 'sue.denim@maildrop.dsd.io',
-                    phone: '07783 123 456'
-                   ]
+            first_name: 'Sue',
+            last_name: 'Demin',
+            :'date_of_birth(3i)' => '14',
+            :'date_of_birth(2i)' => '03',
+            :'date_of_birth(1i)' => '1986',
+            email: 'sue.denim@maildrop.dsd.io',
+            phone: '07783 123 456'
+          ]
         },
         next: ''
       }
@@ -64,14 +64,14 @@ RSpec.describe Deferred::VisitorsDetailsController, type: :controller do
       {
         visit: {
           visitor: [
-                    first_name: 'James',
-                    last_name: 'Harris',
-                    :'date_of_birth(3i)' => '5',
-                    :'date_of_birth(2i)' => '3',
-                    :'date_of_birth(1i)' => '12',
-                    email: 'sue.denim@maildrop.dsd.io',
-                    phone: '07783 123 456'
-                   ]
+            first_name: 'James',
+            last_name: 'Harris',
+            :'date_of_birth(3i)' => '5',
+            :'date_of_birth(2i)' => '3',
+            :'date_of_birth(1i)' => '12',
+            email: 'sue.denim@maildrop.dsd.io',
+            phone: '07783 123 456'
+          ]
         },
         next: ''
       }
