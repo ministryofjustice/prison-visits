@@ -24,16 +24,20 @@ class Visitor
   validates :first_name, presence: true, name: true
   validates :last_name, presence: true, name: true
   validates_inclusion_of :date_of_birth,
-    in: ->(_) { USER_MAX_AGE.years.ago.beginning_of_year.to_date..Date.today },
-    message: 'must be a valid date'
-  validate :validate_user_or_additional
+    in: ->(_) { USER_MAX_AGE.years.ago.beginning_of_year.to_date..Date.today }
+  validates :email, absence: true, if: :additional?
+  validate :validate_email, if: :primary?
 
-  def validate_user_or_additional
-    if index.zero?
-      EmailValidator.new.validate(self)
-    else
-      errors.add(:email, 'must not be given') if email.present?
-    end
+  def validate_email
+    EmailValidator.new.validate(self)
+  end
+
+  def primary?
+    index == 0
+  end
+
+  def additional?
+    index > 0
   end
 
   def age

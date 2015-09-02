@@ -27,3 +27,11 @@ en:
     attributes:
       feedback:
         text: Your comments
+    errors:
+      models:
+        visitor:
+          attributes:
+            date_of_birth:
+              inclusion: 'must be a valid date'
+            phone:
+              too_short: 'must include area code'

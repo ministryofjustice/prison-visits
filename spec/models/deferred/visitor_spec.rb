@@ -19,7 +19,7 @@ RSpec.describe Deferred::Visitor do
         subject.phone = '4960123'
         subject.validate
         expect(subject.errors[:phone]).
-          to eq(['must be given and include area code'])
+          to eq(['must include area code'])
       end
 
       it 'is valid if present and correct' do
