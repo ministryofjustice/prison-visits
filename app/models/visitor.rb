@@ -37,8 +37,7 @@ class Visitor
   end
 
   def age
-    if date_of_birth
-      (Date.today - date_of_birth.to_date).to_i / 365
-    end
+    return nil unless date_of_birth
+    AgeCalculator.new.age(date_of_birth)
   end
 end
