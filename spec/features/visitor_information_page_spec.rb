@@ -71,4 +71,19 @@ RSpec.feature "visitor enters visitor information" do
     end
 
   end
+
+  scenario 'overriding spam report' do
+    allow(SendgridHelper).to receive(:spam_reported?).and_return(true)
+
+    visit '/prisoner-details'
+    enter_prisoner_information
+    enter_visitor_information
+    click_button 'Continue'
+
+    expect(page).to have_text('marked as spam')
+    check 'Tick this box to confirm you’d like us to try sending messages to you again'
+    click_button 'Continue'
+
+    expect(page).to have_content('When do you want to visit?')
+  end
 end

@@ -2,7 +2,8 @@ require 'rails_helper'
 require 'email_validator'
 
 RSpec.describe EmailValidator do
-  subject { described_class.new(address) }
+  subject { described_class.new(address, override) }
+  let(:override) { false }
 
   before do
     allow_any_instance_of(Resolv::DNS).
@@ -29,31 +30,37 @@ RSpec.describe EmailValidator do
     context 'with empty string' do
       let(:address) { '' }
       it_behaves_like 'an invalid address', :malformed
+      it { is_expected.not_to be_overrideable }
     end
 
     context 'with domain only' do
       let(:address) { '@test.example.com' }
       it_behaves_like 'an invalid address', :unparseable
+      it { is_expected.not_to be_overrideable }
     end
 
     context 'with local part only' do
       let(:address) { 'jimmy.harris' }
       it_behaves_like 'an invalid address', :malformed
+      it { is_expected.not_to be_overrideable }
     end
 
     context 'with dot at start of domain' do
       let(:address) { 'user@.test.example.com' }
       it_behaves_like 'an invalid address', :domain_dot
+      it { is_expected.not_to be_overrideable }
     end
 
     context 'with dot at end of domain' do
       let(:address) { 'user@test.example.com.' }
       it_behaves_like 'an invalid address', :unparseable
+      it { is_expected.not_to be_overrideable }
     end
 
     context 'with known bad domain' do
       let(:address) { 'user@hitmail.com' }
       it_behaves_like 'an invalid address', :bad_domain
+      it { is_expected.not_to be_overrideable }
     end
   end
 
@@ -87,6 +94,7 @@ RSpec.describe EmailValidator do
       end
 
       it_behaves_like 'an invalid address', :no_mx_record
+      it { is_expected.not_to be_overrideable }
     end
 
     context 'when MX lookup times out' do
@@ -104,6 +112,12 @@ RSpec.describe EmailValidator do
       end
 
       it_behaves_like 'an invalid address', :spam_reported
+      it { is_expected.to be_overrideable }
+
+      context 'but override is set' do
+        let(:override) { true }
+        it_behaves_like 'a valid address'
+      end
     end
 
     context 'when bounce is reported' do
@@ -112,6 +126,12 @@ RSpec.describe EmailValidator do
       end
 
       it_behaves_like 'an invalid address', :bounced
+      it { is_expected.to be_overrideable }
+
+      context 'but override is set' do
+        let(:override) { true }
+        it_behaves_like 'a valid address'
+      end
     end
   end
 end

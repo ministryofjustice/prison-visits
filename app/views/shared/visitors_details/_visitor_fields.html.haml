@@ -45,8 +45,12 @@
     =group_container(f, :email) do
       %label{for: 'visit_visitor__email'}
         Email address
+        %p.form-hint#emailHint You'll receive confirmation by email.
         =field_error(f, :email)
-      %p.form-hint#emailHint You'll receive confirmation by email.
+        - if f.object.email_overrideable?
+          %label.validation-message
+            = check_box_tag 'visit[visitor][][override_email_checks]', 1, false
+            Tick this box to confirm you’d like us to try sending messages to you again.
       = email_field_tag 'visit[visitor][][email]', f.object.email, :'aria-describedby' => "emailHint"
 
     - if @collect_phone_number

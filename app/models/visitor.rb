@@ -5,6 +5,7 @@ class Visitor
   USER_MIN_AGE = 18
 
   attribute :email, String
+  attribute :override_email_checks, Boolean
   attribute :index, Integer
   attribute :number_of_adults, Integer
   attribute :number_of_children, Integer
@@ -24,10 +25,17 @@ class Visitor
     index > 0
   end
 
+  def email_overrideable?
+    @email_overrideable
+  end
+
   private
 
   def validate_email
-    validator = EmailValidator.new(email)
-    errors.add :email, validator.message unless validator.valid?
+    validator = EmailValidator.new(email, override_email_checks)
+    unless validator.valid?
+      errors.add :email, validator.message
+      @email_overrideable = true
+    end
   end
 end

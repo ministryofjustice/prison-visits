@@ -4,8 +4,9 @@ class EmailValidator
   extend Forwardable
   def_delegators :SendgridApi, :bounced?, :spam_reported?
 
-  def initialize(original_address)
+  def initialize(original_address, override_sendgrid = false)
     @original_address = original_address
+    @override_sendgrid = override_sendgrid
   end
 
   def error
@@ -24,6 +25,10 @@ class EmailValidator
     error.nil?
   end
 
+  def overrideable?
+    [:spam_reported, :bounced].include?(error)
+  end
+
   private
 
   attr_reader :original_address
@@ -35,8 +40,10 @@ class EmailValidator
     return :bad_domain if bad_domain?
     return :malformed unless well_formed_address?
     return :no_mx_record unless has_mx_records?
-    return :spam_reported if spam_reported?(parsed.address)
-    return :bounced if bounced?(parsed.address)
+    unless @override_sendgrid
+      return :spam_reported if spam_reported?(parsed.address)
+      return :bounced if bounced?(parsed.address)
+    end
     return nil
   end
 
