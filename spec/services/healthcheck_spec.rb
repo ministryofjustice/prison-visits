@@ -132,5 +132,39 @@ RSpec.describe Healthcheck do
         expect(subject.checks).to include(database: false)
       end
     end
+
+    context 'with another database exception' do
+      before do
+        allow(ActiveRecord::Base.connection).
+          to receive(:active?).
+          and_raise(Exception)
+      end
+
+      it { is_expected.not_to be_ok }
+
+      it 'reports the database check as false' do
+        expect(subject.checks).to include(database: false)
+      end
+    end
+
+    context 'with the Sidekiq API' do
+      before do
+        allow(Sidekiq::Queue).to receive(:new).and_raise('queue problem')
+      end
+
+      it 'reports the queue checks as false' do
+        expect(subject.checks).to include(
+          mailers: false,
+          zendesk: false
+        )
+      end
+
+      it 'reports the queue status' do
+        expect(subject.queues).to eq(
+          mailers: { oldest: nil, count: 0 },
+          zendesk: { oldest: nil, count: 0 }
+        )
+      end
+    end
   end
 end
