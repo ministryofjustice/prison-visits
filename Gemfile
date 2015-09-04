@@ -21,6 +21,7 @@ gem 'statsd-ruby', require: 'statsd'
 gem 'curb'
 gem 'string_scrubber', '>= 0.2.0'
 gem 'virtus'
+gem 'sinatra'
 
 group :test, :development do
   gem 'rspec-rails'
