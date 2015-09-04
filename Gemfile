@@ -16,6 +16,7 @@ gem 'sentry-raven'
 gem 'redcarpet'
 gem 'prison_staff_info', git: 'git@github.com:ministryofjustice/prison_staff_info.git', branch: 'master' unless ENV['EXCLUDE_PRIVATE_GEM']
 gem 'pg'
+gem 'sidekiq'
 gem 'statsd-ruby', require: 'statsd'
 gem 'curb'
 gem 'string_scrubber', '>= 0.2.0'
