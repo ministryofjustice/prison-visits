@@ -17,22 +17,46 @@ RSpec.describe Healthcheck do
       and_return zendesk_queue
   end
 
-  context 'when everything is OK' do
-    context 'with empty queues' do
-      it { is_expected.to be_ok }
+  shared_examples 'everything is OK' do
+    it { is_expected.to be_ok }
 
-      it 'reports all checks as true' do
-        expect(subject.checks).to eq(
-          database: true,
-          mailers: true,
-          zendesk: true
+    it 'reports the overall status as OK' do
+      expect(subject.checks).to include(ok: true)
+    end
+  end
+
+  shared_examples 'everything is not OK' do
+    it { is_expected.not_to be_ok }
+
+    it 'reports the overall status as not OK' do
+      expect(subject.checks).to include(ok: false)
+    end
+  end
+
+  context 'when everything is OK' do
+    it 'describes each service' do
+      expect(subject.checks).to include(
+        database: include(description: 'Postgres database'),
+        mailers: include(description: 'Email queue'),
+        zendesk: include(description: 'Zendesk queue')
+      )
+    end
+
+    context 'with empty queues' do
+      it_behaves_like 'everything is OK'
+
+      it 'reports all services as OK' do
+        expect(subject.checks).to include(
+          database: include(ok: true),
+          mailers: include(ok: true),
+          zendesk: include(ok: true)
         )
       end
 
       it 'reports the queue status' do
-        expect(subject.queues).to eq(
-          mailers: { oldest: nil, count: 0 },
-          zendesk: { oldest: nil, count: 0 }
+        expect(subject.checks).to include(
+          mailers: include(oldest: nil, count: 0),
+          zendesk: include(oldest: nil, count: 0)
         )
       end
     end
@@ -47,20 +71,20 @@ RSpec.describe Healthcheck do
         [double(Sidekiq::Job, created_at: zq_created_at)]
       }
 
-      it { is_expected.to be_ok }
+      it_behaves_like 'everything is OK'
 
-      it 'reports all checks as true' do
-        expect(subject.checks).to eq(
-          database: true,
-          mailers: true,
-          zendesk: true
+      it 'reports all services as OK' do
+        expect(subject.checks).to include(
+          database: include(ok: true),
+          mailers: include(ok: true),
+          zendesk: include(ok: true)
         )
       end
 
       it 'reports the queue status' do
-        expect(subject.queues).to eq(
-          mailers: { oldest: mq_created_at, count: 1 },
-          zendesk: { oldest: zq_created_at, count: 1 }
+        expect(subject.checks).to include(
+          mailers: include(oldest: mq_created_at, count: 1),
+          zendesk: include(oldest: zq_created_at, count: 1)
         )
       end
     end
@@ -73,15 +97,15 @@ RSpec.describe Healthcheck do
         [double(Sidekiq::Job, created_at: mq_created_at)]
       }
 
-      it { is_expected.not_to be_ok }
+      it_behaves_like 'everything is not OK'
 
       it 'reports the mailers check as false' do
-        expect(subject.checks).to include(mailers: false)
+        expect(subject.checks).to include(mailers: include(ok: false))
       end
 
       it 'reports the mailers queue status' do
-        expect(subject.queues).to include(
-          mailers: { oldest: mq_created_at, count: 1 }
+        expect(subject.checks).to include(
+          mailers: include(oldest: mq_created_at, count: 1)
         )
       end
     end
@@ -92,15 +116,15 @@ RSpec.describe Healthcheck do
         [double(Sidekiq::Job, created_at: zq_created_at)]
       }
 
-      it { is_expected.not_to be_ok }
+      it_behaves_like 'everything is not OK'
 
       it 'reports the zendesk check as false' do
-        expect(subject.checks).to include(zendesk: false)
+        expect(subject.checks).to include(zendesk: include(ok: false))
       end
 
       it 'reports the zendesk queue status' do
-        expect(subject.queues).to include(
-          zendesk: { oldest: zq_created_at, count: 1 }
+        expect(subject.checks).to include(
+          zendesk: include(oldest: zq_created_at, count: 1)
         )
       end
     end
@@ -112,10 +136,10 @@ RSpec.describe Healthcheck do
           and_return(false)
       end
 
-      it { is_expected.not_to be_ok }
+      it_behaves_like 'everything is not OK'
 
       it 'reports the database check as false' do
-        expect(subject.checks).to include(database: false)
+        expect(subject.checks).to include(database: include(ok: false))
       end
     end
 
@@ -126,10 +150,10 @@ RSpec.describe Healthcheck do
           and_raise(PG::ConnectionBad)
       end
 
-      it { is_expected.not_to be_ok }
+      it_behaves_like 'everything is not OK'
 
       it 'reports the database check as false' do
-        expect(subject.checks).to include(database: false)
+        expect(subject.checks).to include(database: include(ok: false))
       end
     end
 
@@ -140,10 +164,10 @@ RSpec.describe Healthcheck do
           and_raise(Exception)
       end
 
-      it { is_expected.not_to be_ok }
+      it_behaves_like 'everything is not OK'
 
       it 'reports the database check as false' do
-        expect(subject.checks).to include(database: false)
+        expect(subject.checks).to include(database: include(ok: false))
       end
     end
 
@@ -154,15 +178,15 @@ RSpec.describe Healthcheck do
 
       it 'reports the queue checks as false' do
         expect(subject.checks).to include(
-          mailers: false,
-          zendesk: false
+          mailers: include(ok: false),
+          zendesk: include(ok: false)
         )
       end
 
       it 'reports the queue status' do
-        expect(subject.queues).to eq(
-          mailers: { oldest: nil, count: 0 },
-          zendesk: { oldest: nil, count: 0 }
+        expect(subject.checks).to include(
+          mailers: include(oldest: nil, count: 0),
+          zendesk: include(oldest: nil, count: 0)
         )
       end
     end

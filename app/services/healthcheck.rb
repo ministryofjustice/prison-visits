@@ -8,54 +8,54 @@ class Healthcheck
   end
 
   def ok?
-    checks.values.all?
+    checks.fetch(:ok)
   end
 
   def checks
-    {
-      database: database_active?,
-      mailers: fresh?('mailers'),
-      zendesk: fresh?('zendesk')
+    components = {
+      database: database,
+      mailers: mailers,
+      zendesk: zendesk
     }
-  end
-
-  def queues
-    {
-      mailers: queue_info('mailers'),
-      zendesk: queue_info('zendesk'),
-    }
+    components.merge(ok: components.values.map { |h| h.fetch(:ok) }.all?)
   end
 
   private
 
-  def queue(name)
-    @queues[name] ||= Sidekiq::Queue.new(name)
+  def database
+    {
+      description: 'Postgres database',
+      ok: database_active?
+    }
   end
 
-  def queue_info(queue_name)
-    q = queue(queue_name)
+  def mailers
+    queue_info('mailers', 'Email queue')
+  end
+
+  def zendesk
+    queue_info('zendesk', 'Zendesk queue')
+  end
+
+  def queue_info(name, description)
+    q = Sidekiq::Queue.new(name)
     {
-      oldest: oldest_item_created_at(q),
+      description: description,
+      ok: fresh?(q),
+      oldest: oldest(q),
       count: q.count
     }
   rescue Exception
-    { oldest: nil, count: 0 }
+    { description: description, ok: false, oldest: nil, count: 0 }
   end
 
-  def oldest_item_created_at(q)
+  def fresh?(q)
+    return true unless q.any?
+    q.first.created_at > STALENESS_THRESHOLD.ago
+  end
+
+  def oldest(q)
     q.any? ? q.first.created_at : nil
-  end
-
-  def fresh?(queue_name)
-    q = queue(queue_name)
-    created_at = oldest_item_created_at(q)
-    if created_at
-      created_at > STALENESS_THRESHOLD.ago
-    else
-      true
-    end
-  rescue Exception
-    false
   end
 
   def database_active?

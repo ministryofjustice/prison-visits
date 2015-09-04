@@ -21,13 +21,18 @@ RSpec.describe HealthcheckController, type: :controller do
       Healthcheck,
       ok?: true,
       checks: {
-        database: true,
-        mailers: true,
-        zendesk: true
-      },
-      queues: {
-        mailers: { oldest: nil, count: 0 },
-        zendesk: { oldest: nil, count: 0 }
+        database: {
+          description: "Postgres database", ok: true
+        },
+        mailers: {
+          description: "Email queue", ok: true,
+          oldest: nil, count: 0
+        },
+        zendesk: {
+          description: "Zendesk queue", ok: true,
+          oldest: nil, count: 0
+        },
+        ok: true
       }
     )
   }
@@ -53,13 +58,25 @@ RSpec.describe HealthcheckController, type: :controller do
       expect(response).to be_success
     end
 
-    it 'reports services as OK' do
-      expect(parsed_body).to include(
-        'checks' => {
-          'mailers' => true,
-          'database' => true,
-          'zendesk' => true
-        }
+    it 'returns the healthcheck data as JSON' do
+      expect(parsed_body).to eq(
+        'database' => {
+          'description' => "Postgres database",
+          'ok' => true
+        },
+        'mailers' => {
+          'description' => "Email queue",
+          'ok' => true,
+          'oldest' => nil,
+          'count' => 0
+        },
+        'zendesk' => {
+          'description' => "Zendesk queue",
+          'ok' => true,
+          'oldest' => nil,
+          'count' => 0
+        },
+        'ok' => true
       )
     end
   end
@@ -82,10 +99,8 @@ RSpec.describe HealthcheckController, type: :controller do
 
     it 'reports empty queue statuses' do
       expect(parsed_body).to include(
-        'queues' => {
-          'mailers' => { 'oldest' => nil, 'count' => 0 },
-          'zendesk' => { 'oldest' => nil, 'count' => 0 }
-        }
+        'mailers' => include('oldest' => nil, 'count' => 0),
+        'zendesk' => include('oldest' => nil, 'count' => 0)
       )
     end
   end
@@ -95,25 +110,27 @@ RSpec.describe HealthcheckController, type: :controller do
     let(:zq_created_at) { Time.at(1440685724).utc }
 
     before do
-      allow(healthcheck).to receive(:queues).and_return(
-        mailers: { oldest: mq_created_at, count: 1 },
-        zendesk: { oldest: zq_created_at, count: 2 }
+      allow(healthcheck).to receive(:checks).and_return(
+        database: {
+          description: "Postgres database", ok: true
+        },
+        mailers: {
+          description: "Email queue", ok: true,
+          oldest: mq_created_at, count: 1
+        },
+        zendesk: {
+          description: "Zendesk queue", ok: true,
+          oldest: zq_created_at, count: 2
+        },
+        ok: true
       )
       get :index, key: key
     end
 
-    it 'reports empty queue statuses' do
+    it 'reports timestamps in RFC 3339 format' do
       expect(parsed_body).to include(
-        'queues' => {
-          'mailers' => {
-            'oldest' => '2015-08-27T14:27:27.000Z',
-            'count' => 1
-          },
-          'zendesk' => {
-            'oldest' => '2015-08-27T14:28:44.000Z',
-            'count' => 2
-          }
-        }
+        'mailers' => include('oldest' => '2015-08-27T14:27:27.000Z'),
+        'zendesk' => include('oldest' => '2015-08-27T14:28:44.000Z')
       )
     end
   end
