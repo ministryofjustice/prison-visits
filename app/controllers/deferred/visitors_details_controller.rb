@@ -2,6 +2,7 @@ class Deferred::VisitorsDetailsController < ApplicationController
   include CookieGuard
   include SessionGuard
   include VisitorsManipulator
+  before_action :ensure_visit_integrity, only: [:edit, :update]
 
   def edit
     @collect_phone_number = true

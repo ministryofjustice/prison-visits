@@ -36,4 +36,5 @@ group :test, :development do
   gem 'rspec-html-matchers'
   gem 'simplecov', '~> 0.7.1', require: false
   gem 'simplecov-rcov', require: false
+  gem 'launchy'
 end

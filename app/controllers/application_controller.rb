@@ -72,4 +72,11 @@ class ApplicationController < ActionController::Base
   def metrics_logger
     METRICS_LOGGER
   end
+
+  def ensure_visit_integrity
+    unless visit && visit.prisoner && visit.prisoner.prison_name.present?
+      redirect_to edit_prisoner_details_path,
+        notice: 'You need to complete missing information to start or continue your visit request'
+    end
+  end
 end

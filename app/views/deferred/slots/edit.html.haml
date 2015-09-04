@@ -82,9 +82,9 @@
         = f.fields_for :slots, slot do
 
           .group
-            %label Option #{index+1}
+            %label{ for: "visit_slot_#{index+1}" } Option #{index+1}
 
-            %select.SlotPicker-input(name='visit[slots][][slot]')
+            %select.SlotPicker-input(name='visit[slots][][slot]'){ id: "visit_slot_#{index+1}" }
               %option(value='') none
               - @schedule.available_visitation_dates.each do |date|
                 - slots_for_day(date).each do |slot|

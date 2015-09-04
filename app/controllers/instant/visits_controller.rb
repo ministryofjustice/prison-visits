@@ -2,6 +2,7 @@ class Instant::VisitsController < ApplicationController
   include CookieGuard
   include SessionGuard
   include KillswitchGuard
+  before_action :ensure_visit_integrity, only: [:edit, :update]
   before_filter :logstasher_add_visit_id_from_session, only: :update
 
   def update

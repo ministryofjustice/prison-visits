@@ -3,6 +3,7 @@ class Instant::SlotsController < ApplicationController
   include SessionGuard
   include KillswitchGuard
   include SlotsManipulator
+  before_action :ensure_visit_integrity, only: [:edit, :update]
 
   def edit
     @slots = visit.slots.empty? ? [Slot.new] : visit.slots

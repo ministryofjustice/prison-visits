@@ -33,7 +33,7 @@ module SendgridHelper
   end
 
   def self.smtp_settings
-    Rails.configuration.action_mailer.smtp_settings
+    Rails.configuration.action_mailer.smtp_settings || {}
   end
 
   def self.spam_reported_url(email)

@@ -3,6 +3,7 @@ class Instant::VisitorsDetailsController < ApplicationController
   include SessionGuard
   include KillswitchGuard
   include VisitorsManipulator
+  before_action :ensure_visit_integrity, only: [:edit, :update]
 
   def edit
     @collect_phone_number = false

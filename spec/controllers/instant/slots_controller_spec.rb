@@ -5,7 +5,12 @@ RSpec.describe Instant::SlotsController, type: :controller do
 
   before :each do
     Timecop.freeze(Time.local(2013, 12, 1, 12, 0))
-    session[:visit] = Visit.new(visit_id: SecureRandom.hex, prisoner: Prisoner.new, visitors: [Visitor.new], slots: [])
+    session[:visit] = Visit.new(
+      visit_id: SecureRandom.hex,
+      prisoner: Prisoner.new(prison_name: 'Durham'),
+      visitors: [Visitor.new],
+      slots: []
+    )
     cookies['cookies-enabled'] = 1
   end
 
