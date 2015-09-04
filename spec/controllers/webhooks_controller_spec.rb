@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe WebhooksController, type: :controller do
+  include ActiveJobHelper
+
   let :charsets do
     { from: 'utf-8', to: 'utf-8', subject: 'utf-8', text: 'utf-8' }.to_json
   end
@@ -8,7 +10,7 @@ RSpec.describe WebhooksController, type: :controller do
   let :noreply_address do
     'no-reply@example.com'
   end
-  
+
   let :email_from_prison do
     {
       from: "HMP Hull <hull@hmps.gsi.gov.uk>",

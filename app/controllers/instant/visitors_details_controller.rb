@@ -1,6 +1,6 @@
 class Instant::VisitorsDetailsController < ApplicationController
   include CookieGuard
-  include SessionGuard
+  include SessionGuard::OnEditAndUpdate
   include KillswitchGuard
   include VisitorsManipulator
   before_action :ensure_visit_integrity, only: [:edit, :update]

@@ -1,11 +1,11 @@
 class Feedback
-  include ActiveModel::Model
+  include NonPersistedModel
 
-  attr_accessor :text
-  attr_accessor :email
-  attr_accessor :referrer
-  attr_accessor :user_agent
-  attr_accessor :prison
+  attribute :text, String
+  attribute :email, String
+  attribute :referrer, String
+  attribute :user_agent, String
+  attribute :prison, String
 
   validates_presence_of :text
   validates :email, email: true, if: ->(f) { f.email.present? }

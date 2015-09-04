@@ -1,11 +1,11 @@
 class Prisoner
-  include ActiveModel::Model
+  include NonPersistedModel
 
-  attr_accessor :first_name
-  attr_accessor :last_name
-  attr_accessor :number
-  attr_accessor :prison_name
-  attr_accessor :date_of_birth
+  attribute :first_name, String
+  attribute :last_name, String
+  attribute :number, String
+  attribute :prison_name, String
+  attribute :date_of_birth, Date
 
   validates :first_name, presence: true, name: true
   validates :last_name, presence: true, name: true

@@ -126,7 +126,7 @@ RSpec.describe SendgridHelper do
     end
 
     context "when it connects" do
-      it "will return true" do 
+      it "will return true" do
         expect(Net::SMTP).to receive(:start)
         expect(SendgridHelper.smtp_alive?(host, port)).to be_truthy
       end

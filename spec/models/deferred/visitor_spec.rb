@@ -32,7 +32,7 @@ RSpec.describe Deferred::Visitor do
 
       v.email = 'jimmy@maildrop.dsd.io'
       expect(v).not_to be_valid
-      
+
       v.phone = '01344 123456'
       expect(v).to be_valid
     end

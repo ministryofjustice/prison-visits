@@ -9,7 +9,7 @@
     init: function () {
 
       $(document)
-      
+
         // Open browser print dialog
         .on('click', '.print-link', function (e) {
           e.preventDefault();

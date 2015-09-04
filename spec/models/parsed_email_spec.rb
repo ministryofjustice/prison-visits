@@ -11,7 +11,7 @@ RSpec.describe ParsedEmail do
         subject: "important email",
       }
     end
-    
+
     it "parses the email" do
       expect(ParsedEmail.parse(data)).to be_valid
     end

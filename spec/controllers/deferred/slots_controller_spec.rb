@@ -17,7 +17,7 @@ RSpec.describe Deferred::SlotsController, type: :controller do
   after :each do
     Timecop.return
   end
-  
+
   it_behaves_like "a browser without a session present"
   it_behaves_like "a session timed out"
 

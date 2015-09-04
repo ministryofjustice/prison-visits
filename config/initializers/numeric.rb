@@ -11,7 +11,7 @@ class Numeric
       hr = 'hr'.pluralize(hours)
       duration << "#{hours} #{hr}"
     end
-    
+
     if mins % 60 > 0
       m = 'min'.pluralize(mins)
       duration << "#{mins % 60} #{m}"

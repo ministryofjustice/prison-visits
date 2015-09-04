@@ -4,7 +4,7 @@
 // Dependencies: moj, jQuery, jQuery UI
 
 (function (window, $) {
-  
+
   'use strict';
 
   var MojAutocomplete = function(el, options){
@@ -124,14 +124,14 @@
     _hasMatches: function (term) {
       var matched = false,
           matcher = new RegExp('^' + this.stripFormal(term) + '[a-z]*', 'i');
-      
+
       this.$select.children('option').each(function() {
         // if a match is found, select it and change to proper case in text field
         if (matcher.test($(this).text().toLowerCase())) {
           matched = true;
         }
       });
-      
+
       return matched;
     },
 

@@ -1,13 +1,13 @@
 class Instant::VisitsController < ApplicationController
   include CookieGuard
-  include SessionGuard
+  include SessionGuard::OnEditAndUpdate
   include KillswitchGuard
   before_action :ensure_visit_integrity, only: [:edit, :update]
   before_filter :logstasher_add_visit_id_from_session, only: :update
 
   def update
     token = encryptor.encrypt_and_sign(visit)
-    VisitorMailer.instant_confirmation_email(visit).deliver_now
+    VisitorMailer.instant_confirmation_email(visit).deliver_later
 
     metrics_logger.record_instant_visit(visit)
     redirect_to instant_show_visit_path(state: token)

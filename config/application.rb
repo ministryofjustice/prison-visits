@@ -67,7 +67,7 @@ module PrisonVisits2
     config.permitted_ips_for_confirmations = (ENV['PRISON_ESTATE_IPS'] || '').split(',')
 
     config.autoload_paths << 'lib'
-    
+
     config.assets.paths << Rails.root.join('vendor', 'assets', 'moj.slot-picker', 'dist', 'stylesheets')
 
     config.middleware.delete 'ActiveRecord::QueryCache'

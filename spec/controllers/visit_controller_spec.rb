@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe VisitController, type: :controller do
+  include ActiveJobHelper
+
   render_views
 
   before :each do

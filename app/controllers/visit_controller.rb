@@ -22,7 +22,7 @@ class VisitController < ApplicationController
       if @visit_status == 'pending'
         metrics_logger.record_booking_cancellation(params[:id], 'request_cancelled')
       else
-        PrisonMailer.booking_cancellation_receipt_email(@visit).deliver_now
+        PrisonMailer.booking_cancellation_receipt_email(@visit).deliver_later
         metrics_logger.record_booking_cancellation(params[:id], 'visit_cancelled')
       end
     else

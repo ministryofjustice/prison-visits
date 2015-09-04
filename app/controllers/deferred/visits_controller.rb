@@ -1,13 +1,13 @@
 class Deferred::VisitsController < ApplicationController
   include CookieGuard
-  include SessionGuard
+  include SessionGuard::OnEditAndUpdate
   before_action :ensure_visit_integrity, only: [:edit, :update]
   before_filter :logstasher_add_visit_id_from_session, only: :update
 
   def update
     @token = encryptor.encrypt_and_sign(visit)
-    PrisonMailer.booking_request_email(visit, @token).deliver_now
-    VisitorMailer.booking_receipt_email(visit, @token).deliver_now
+    PrisonMailer.booking_request_email(visit, @token).deliver_later
+    VisitorMailer.booking_receipt_email(visit, @token).deliver_later
 
     STATSD_CLIENT.increment("pvb.app.visit_request_submitted")
 

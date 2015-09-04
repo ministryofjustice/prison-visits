@@ -1,8 +1,19 @@
 class Confirmation
-  include ActiveModel::Model
-  attr_accessor :outcome, :message, :vo_number, :no_vo, :no_pvo, :renew_vo,
-    :renew_pvo, :banned_visitors, :unlisted_visitors, :visitor_not_listed,
-    :visitor_banned, :canned_response, :closed_visit
+  include NonPersistedModel
+
+  attribute :outcome, String
+  attribute :message, String
+  attribute :vo_number, String
+  attribute :no_vo, Boolean
+  attribute :no_pvo, Boolean
+  attribute :renew_vo, String
+  attribute :renew_pvo, String
+  attribute :banned_visitors, Array[String]
+  attribute :unlisted_visitors, Array[String]
+  attribute :visitor_not_listed, Boolean
+  attribute :visitor_banned, Boolean
+  attribute :canned_response, Boolean
+  attribute :closed_visit, Boolean
 
   NO_VOS_LEFT = 'no_vos_left'
   NO_SLOT_AVAILABLE = 'no_slot_available'

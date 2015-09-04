@@ -7,7 +7,7 @@ module FeaturesHelper
       find(:css, ".ui-autocomplete-input").set('Durham')
     end
     click_button 'Continue'
-    
+
     fill_in 'Prisoner first name', with: 'Jimmy'
     fill_in 'Prisoner last name', with: 'Harris'
     fill_in 'prisoner[date_of_birth(3i)]', with: '1'
@@ -53,6 +53,6 @@ module FeaturesHelper
   end
 end
 
-shared_examples "feature helper" do
+RSpec.shared_examples "feature helper" do
   include FeaturesHelper
 end

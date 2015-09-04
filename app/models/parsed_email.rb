@@ -1,9 +1,12 @@
 class ParsedEmail
-  include ActiveModel::Model
+  include NonPersistedModel
 
   ParseError = Class.new(StandardError)
 
-  attr_accessor :from, :to, :subject, :text
+  attribute :from, String
+  attribute :to, String
+  attribute :subject, String
+  attribute :text, String
 
   def self.parse(hash)
     hash = hash.dup

@@ -16,10 +16,10 @@ RSpec.describe Visit do
   it "restricts the number of visitors" do
     sample_visit.visitors = []
     expect(sample_visit.valid?(:visitors_set)).to be_falsey
-    
+
     sample_visit.visitors = [child_visitor] * 7
     expect(sample_visit.valid?(:visitors_set)).to be_falsey
-    
+
     sample_visit.visitors = [adult_visitor] * 1 + [child_visitor] * 5
     expect(sample_visit.valid?(:visitors_set)).to be_truthy
   end
@@ -38,12 +38,17 @@ RSpec.describe Visit do
     expect(sample_visit.valid?(:date_and_time)).to be_falsey
   end
 
-  it "ensures that at most three adults can book a visit" do
-    (1..3).each do |n|
-      sample_visit.visitors = [double(age: 19)] * n
-      expect(sample_visit.valid?(:visitors_set)).to be_truthy
+  it 'is valid with three or fewer adult visitors' do
+    3.times do
+      sample_visit.visitors << double(age: 19)
     end
-    sample_visit.visitors = [double(age: 19)] * 4
+    expect(sample_visit.valid?(:visitors_set)).to be_truthy
+  end
+
+  it 'is invalid with more than three adult visitors' do
+    4.times do
+      sample_visit.visitors << double(age: 19)
+    end
     expect(sample_visit.valid?(:visitors_set)).to be_falsey
   end
 

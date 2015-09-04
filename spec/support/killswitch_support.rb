@@ -1,4 +1,4 @@
-shared_examples "a killswitch-enabled controller" do
+RSpec.shared_examples "a killswitch-enabled controller" do
   context "killswitch enabled" do
     it "resets an instant booking visit" do
       allow(subject).to receive(:killswitch_active?).and_return(true)

@@ -21,7 +21,7 @@ class WebhooksController < ApplicationController
       when :prison
         begin
           STATSD_CLIENT.increment('pvb.app.email.autorespond_to_prison')
-          PrisonMailer.autorespond(p).deliver_now
+          PrisonMailer.autorespond(p).deliver_later
         rescue Exception => e
           logger.error "Issue with e-mail detected ( PrisonMailer ): #{p.inspect}\nexception: #{e}"
           raise
@@ -29,7 +29,7 @@ class WebhooksController < ApplicationController
       when :visitor
         begin
           STATSD_CLIENT.increment('pvb.app.email.autorespon_to_visitor')
-          VisitorMailer.autorespond(p).deliver_now
+          VisitorMailer.autorespond(p).deliver_later
         rescue Exception => e
           logger.error "Issue with e-mail detected ( VisitorMailer ): #{p.inspect}\nexception: #{e}"
           raise

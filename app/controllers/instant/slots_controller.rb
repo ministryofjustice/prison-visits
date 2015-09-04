@@ -1,6 +1,6 @@
 class Instant::SlotsController < ApplicationController
   include CookieGuard
-  include SessionGuard
+  include SessionGuard::OnEditAndUpdate
   include KillswitchGuard
   include SlotsManipulator
   before_action :ensure_visit_integrity, only: [:edit, :update]

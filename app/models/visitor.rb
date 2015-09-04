@@ -1,16 +1,16 @@
 class Visitor
-  include ActiveModel::Model
+  include NonPersistedModel
 
   USER_MIN_AGE = 18
 
-  attr_accessor :first_name
-  attr_accessor :last_name
-  attr_accessor :email
-  attr_accessor :index
-  attr_accessor :number_of_adults
-  attr_accessor :number_of_children
-  attr_accessor :date_of_birth
-  attr_accessor :phone
+  attribute :first_name, String
+  attribute :last_name, String
+  attribute :email, String
+  attribute :index, Integer
+  attribute :number_of_adults, Integer
+  attribute :number_of_children, Integer
+  attribute :date_of_birth, Date
+  attribute :phone, String
 
   def full_name(glue=' ')
     [first_name, last_name].join(glue)

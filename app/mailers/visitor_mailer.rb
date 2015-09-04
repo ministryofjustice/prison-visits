@@ -27,7 +27,7 @@ class VisitorMailer < ActionMailer::Base
   def booking_rejection_email(visit, confirmation)
     @visit = visit
     @confirmation = confirmation
-    
+
     mail(from: sender, reply_to: prison_mailbox_email, to: recipient, subject: "Visit cannot take place: your visit for #{first_date.strftime('%e %B %Y').gsub(/^ /,'')} could not be booked")
   end
 

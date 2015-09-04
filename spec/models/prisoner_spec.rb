@@ -9,13 +9,13 @@ RSpec.describe Prisoner do
       p.number = 'c2341em'
       p.prison_name = 'Rochester'
     end
-  end 
+  end
 
   it "must be valid" do
     expect(prisoner).to be_valid
   end
 
-  [:first_name, :last_name, :date_of_birth, :prison_name, :number].each do |field| 
+  [:first_name, :last_name, :date_of_birth, :prison_name, :number].each do |field|
     it "must fail if #{field} is not valid" do
       prisoner.send("#{field}=", '')
       expect(prisoner).not_to be_valid
