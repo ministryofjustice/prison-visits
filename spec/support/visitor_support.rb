@@ -50,16 +50,58 @@ RSpec.shared_examples 'a visitor' do
           subject.index = 0
         end
 
-        it 'is invalid without an email' do
-          subject.email = nil
-          subject.validate
-          expect(subject.errors[:email]).not_to be_empty
+        context 'when it is valid' do
+          before do
+            subject.email = 'user@test.example.com'
+            subject.validate
+          end
+
+          it 'has no email error' do
+            expect(subject.errors[:email]).to be_empty
+          end
+
+          it { is_expected.not_to be_email_overrideable }
         end
 
-        it 'is valid with an email' do
-          subject.email = 'user@test.example.com'
-          subject.validate
-          expect(subject.errors[:email]).to be_empty
+        context 'when it is missing' do
+          before do
+            subject.email = nil
+            subject.validate
+          end
+
+          it 'has an email error' do
+            expect(subject.errors[:email]).not_to be_empty
+          end
+
+          it { is_expected.not_to be_email_overrideable }
+        end
+
+        context 'when it was marked as spam' do
+          before do
+            allow(SendgridHelper).to receive(:spam_reported?).and_return(true)
+            subject.email = 'user@test.example.com'
+            subject.validate
+          end
+
+          it 'has an email error' do
+            expect(subject.errors[:email]).not_to be_empty
+          end
+
+          it { is_expected.to be_email_overrideable }
+        end
+
+        context 'when it bounced' do
+          before do
+            allow(SendgridHelper).to receive(:bounced?).and_return(true)
+            subject.email = 'user@test.example.com'
+            subject.validate
+          end
+
+          it 'has an email error' do
+            expect(subject.errors[:email]).not_to be_empty
+          end
+
+          it { is_expected.to be_email_overrideable }
         end
       end
 

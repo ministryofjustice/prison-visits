@@ -35,7 +35,7 @@ class Visitor
     validator = EmailValidator.new(email, override_email_checks)
     unless validator.valid?
       errors.add :email, validator.message
-      @email_overrideable = true
+      @email_overrideable = validator.overrideable?
     end
   end
 end
