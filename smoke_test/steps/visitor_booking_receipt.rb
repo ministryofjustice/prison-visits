@@ -20,11 +20,11 @@ module SmokeTest
       end
 
       def expected_email_subject
-        "Not booked yet: we've received your visit request for#{first_slot_date}"
+        "Not booked yet: we've received your visit request for #{first_slot_date}"
       end
 
       def first_slot_date
-        Date.parse(state[:slot_data].first[:date]).strftime('%e %B %Y')
+        Date.parse(state[:slot_data].first[:date]).strftime('%-e %B %Y')
       end
     end
   end
