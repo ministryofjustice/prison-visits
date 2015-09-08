@@ -28,6 +28,7 @@ Belmarsh:
   phone: 0208 3314768
   email: belmarsh.visits@hmps.gsi.gov.uk
   instant_booking: false
+  booking_window: 21
   address:
   - Western Way
   - Thamesmead
