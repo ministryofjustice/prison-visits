@@ -29,6 +29,16 @@ class EmailValidator
     [:spam_reported, :bounced].include?(error)
   end
 
+  def reset_bounce?
+    return false unless parsed
+    override_sendgrid? && bounced?(parsed.address)
+  end
+
+  def reset_spam_report?
+    return false unless parsed
+    override_sendgrid? && spam_reported?(parsed.address)
+  end
+
   private
 
   attr_reader :original_address
@@ -40,11 +50,15 @@ class EmailValidator
     return :bad_domain if bad_domain?
     return :malformed unless well_formed_address?
     return :no_mx_record unless has_mx_records?
-    unless @override_sendgrid
+    unless override_sendgrid?
       return :spam_reported if spam_reported?(parsed.address)
       return :bounced if bounced?(parsed.address)
     end
     return nil
+  end
+
+  def override_sendgrid?
+    @override_sendgrid
   end
 
   def domain

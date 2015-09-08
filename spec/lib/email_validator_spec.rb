@@ -31,6 +31,8 @@ RSpec.describe EmailValidator do
       let(:address) { '' }
       it_behaves_like 'an invalid address', :malformed
       it { is_expected.not_to be_overrideable }
+      it { is_expected.not_to be_reset_spam_report }
+      it { is_expected.not_to be_reset_bounce }
     end
 
     context 'with domain only' do
@@ -111,12 +113,17 @@ RSpec.describe EmailValidator do
         allow(SendgridHelper).to receive(:spam_reported?).and_return(true)
       end
 
-      it_behaves_like 'an invalid address', :spam_reported
       it { is_expected.to be_overrideable }
+
+      context 'and override is not set' do
+        it_behaves_like 'an invalid address', :spam_reported
+        it { is_expected.not_to be_reset_spam_report }
+      end
 
       context 'but override is set' do
         let(:override) { true }
         it_behaves_like 'a valid address'
+        it { is_expected.to be_reset_spam_report }
       end
     end
 
@@ -125,12 +132,17 @@ RSpec.describe EmailValidator do
         allow(SendgridHelper).to receive(:bounced?).and_return(true)
       end
 
-      it_behaves_like 'an invalid address', :bounced
       it { is_expected.to be_overrideable }
+
+      context 'and override is not set' do
+        it_behaves_like 'an invalid address', :bounced
+        it { is_expected.not_to be_reset_bounce }
+      end
 
       context 'but override is set' do
         let(:override) { true }
         it_behaves_like 'a valid address'
+        it { is_expected.to be_reset_bounce }
       end
     end
   end
