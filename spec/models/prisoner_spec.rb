@@ -5,7 +5,7 @@ RSpec.describe Prisoner do
     Prisoner.new.tap do |p|
       p.first_name = 'Jimmy'
       p.last_name = 'Harris'
-      p.date_of_birth = 30.years.ago
+      p.date_of_birth = 30.years.ago.to_date
       p.number = 'c2341em'
       p.prison_name = 'Rochester'
     end

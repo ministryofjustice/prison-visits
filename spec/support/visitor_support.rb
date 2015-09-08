@@ -98,7 +98,7 @@ RSpec.shared_examples 'a visitor' do
       it 'is invalid when missing' do
         subject.date_of_birth = nil
         subject.validate
-        expect(subject.errors[:date_of_birth]).to eq(['must be a valid date'])
+        expect(subject.errors[:date_of_birth]).not_to be_empty
       end
     end
   end

@@ -1,30 +1,15 @@
 class Visitor
   include NonPersistedModel
+  include Person
 
   USER_MIN_AGE = 18
-  USER_MAX_AGE = 120
 
-  attribute :first_name, String
-  attribute :last_name, String
   attribute :email, String
   attribute :index, Integer
   attribute :number_of_adults, Integer
   attribute :number_of_children, Integer
-  attribute :date_of_birth, Date
   attribute :phone, String
 
-  def full_name(glue=' ')
-    [first_name, last_name].join(glue)
-  end
-
-  def last_initial
-    @last_name.chars.first.upcase
-  end
-
-  validates :first_name, presence: true, name: true
-  validates :last_name, presence: true, name: true
-  validates_inclusion_of :date_of_birth,
-    in: ->(_) { USER_MAX_AGE.years.ago.beginning_of_year.to_date..Date.today }
   validates :email, absence: true, if: :additional?
   validate :validate_email, if: :primary?
 
@@ -38,10 +23,5 @@ class Visitor
 
   def additional?
     index > 0
-  end
-
-  def age
-    return nil unless date_of_birth
-    AgeCalculator.new.age(date_of_birth)
   end
 end
