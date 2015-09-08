@@ -50,7 +50,7 @@ module SmokeTest
   def run
     puts 'Beginning Smoke Test..'
     Capybara.reset_sessions!
-    start_form
+    visit '/prisoner'
     STEPS.map(&method(:complete))
     puts 'Smoke Test Completed'
   end
@@ -65,11 +65,6 @@ module SmokeTest
 
   def state
     @state ||= State.new
-  end
-
-  def start_form
-    visit '/'
-    click_link 'Start now'
   end
 
   class State < DelegateClass(Hash)
