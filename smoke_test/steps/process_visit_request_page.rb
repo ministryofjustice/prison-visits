@@ -11,7 +11,6 @@ module SmokeTest
       end
 
       def complete_step
-        save_screenshot 'test.png'
         choose "First choice"
         fill_in "Reference number", with: process_data[:vo_digits]
         click_button 'Send email'
