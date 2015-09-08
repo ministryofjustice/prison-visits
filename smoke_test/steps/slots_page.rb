@@ -12,7 +12,7 @@ module SmokeTest
 
       def complete_step
         select_three_visiting_slots
-        state[:slot_data] = selected_dates_and_times
+        state.slot_data = selected_dates_and_times
         click_button 'Continue'
       end
 

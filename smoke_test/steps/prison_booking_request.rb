@@ -18,16 +18,12 @@ module SmokeTest
       end
 
       def expected_email_subject
-        "Visit request for #{prisoner_name} on #{first_slot_date}"
+        "Visit request for #{prisoner_name} on #{state.first_slot_date_prison_format}"
       end
 
       def prisoner_name
         prisoner = SmokeTest::TEST_DATA.fetch :prisoner_details
         "#{prisoner[:first_name]} #{prisoner[:last_name]}"
-      end
-
-      def first_slot_date
-        state[:slot_data].first[:date]
       end
 
       def booking_processing_url

@@ -25,7 +25,7 @@ module SmokeTest
       end
 
       def mail_lookup
-        MailLookup.new(state[:started_at])
+        MailLookup.new(state.started_at)
       end
 
       def with_retries(attempts: 5, initial_delay: 2, max_delay: 30)

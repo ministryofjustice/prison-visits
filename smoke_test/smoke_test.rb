@@ -67,10 +67,21 @@ module SmokeTest
     @state ||= State.new
   end
 
-  class State < DelegateClass(Hash)
+  class State
+    attr_reader :started_at
+    attr_accessor :slot_data
+
     def initialize
-      super({})
-      self[:started_at] = Time.now.utc
+      @started_at = Time.now.utc
+    end
+
+    def first_slot_date
+      slot_data.first[:date]
+    end
+    alias_method :first_slot_date_prison_format, :first_slot_date
+
+    def first_slot_date_visitor_format
+      Date.parse(first_slot_date).strftime('%-e %B %Y')
     end
   end
 

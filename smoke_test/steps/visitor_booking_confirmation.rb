@@ -20,11 +20,7 @@ module SmokeTest
       end
 
       def expected_email_subject
-        "Visit confirmed: your visit for #{first_slot_date} has been confirmed"
-      end
-
-      def first_slot_date
-        Date.parse(state[:slot_data].first[:date]).strftime('%-e %B %Y')
+        "Visit confirmed: your visit for #{state.first_slot_date_visitor_format} has been confirmed"
       end
 
       def cancel_booking_url
