@@ -28,8 +28,7 @@ en:
       malformed: "is not a valid address"
       no_mx_record: "does not appear to be valid"
       spam_reported: >
-        We’ve tried to send messages to this email address in the past and
-        believe they were marked as spam.
+        needs to be checked as past messages were marked as spam.
+        Check your spam folder too
       bounced: >
-        We’ve tried to send messages to this email address in the past and
-        the address was found to be incorrect.
+        needs to be checked as messages have been returned in the past
