@@ -1,11 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe SmokeTestEmailCheck do
-  let(:visit_session) {
-    double(visitors: [double('visitor', email: email_address)])
-  }
-
-  subject { described_class.new visit_session }
+  subject { described_class.new email_address }
 
   describe '#matches?' do
     context 'a smoke test email address with a uuid' do

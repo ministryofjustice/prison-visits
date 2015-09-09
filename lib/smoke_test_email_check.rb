@@ -1,4 +1,4 @@
-class SmokeTestEmailCheck < Struct.new(:visit_session)
+class SmokeTestEmailCheck < Struct.new(:email_address)
   SMOKE_TEST_EMAIL_REGEX = %r{
     \A              # match from the start of the string
     #{Regexp.escape ENV.fetch('SMOKE_TEST_EMAIL_LOCAL_PART')}
@@ -10,12 +10,6 @@ class SmokeTestEmailCheck < Struct.new(:visit_session)
   }x
 
   def matches?
-    SMOKE_TEST_EMAIL_REGEX.match(visitor_email_address)
-  end
-
-  private
-
-  def visitor_email_address
-    visit_session.visitors.first.email
+    SMOKE_TEST_EMAIL_REGEX.match(email_address)
   end
 end
