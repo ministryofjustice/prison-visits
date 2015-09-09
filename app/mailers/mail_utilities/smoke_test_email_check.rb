@@ -1,5 +1,6 @@
-class SmokeTestEmailCheck < Struct.new(:email_address)
-  SMOKE_TEST_EMAIL_REGEX = %r{
+module MailUtilities
+  class SmokeTestEmailCheck < Struct.new(:email_address)
+    SMOKE_TEST_EMAIL_REGEX = %r{
     \A              # match from the start of the string
     #{Regexp.escape ENV.fetch('SMOKE_TEST_EMAIL_LOCAL_PART')}
     \+              # enable google address aliases see: https://support.google.com/mail/answer/12096
@@ -7,9 +8,11 @@ class SmokeTestEmailCheck < Struct.new(:email_address)
     @               # its an email!
     #{Regexp.escape ENV.fetch('SMOKE_TEST_EMAIL_DOMAIN')}
     \z              # match until the end of the string
-  }x
+    }x
 
-  def matches?
-    SMOKE_TEST_EMAIL_REGEX.match(email_address)
+    def matches?
+      SMOKE_TEST_EMAIL_REGEX.match(email_address)
+    end
   end
 end
+

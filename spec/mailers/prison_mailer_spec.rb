@@ -61,7 +61,7 @@ RSpec.describe PrisonMailer do
     end
 
     before do
-      allow_any_instance_of(SmokeTestEmailCheck).
+      allow_any_instance_of(MailUtilities::SmokeTestEmailCheck).
         to receive(:matches?).and_return true
     end
 

@@ -69,7 +69,7 @@ class PrisonMailer < ActionMailer::Base
   end
 
   def smoke_test?
-    visit && SmokeTestEmailCheck.new(visitors_email_address).matches?
+    visit && MailUtilities::SmokeTestEmailCheck.new(visitors_email_address).matches?
   end
 
   def visitors_email_address
