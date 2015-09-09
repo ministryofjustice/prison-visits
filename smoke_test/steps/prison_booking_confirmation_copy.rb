@@ -20,12 +20,7 @@ module SmokeTest
       end
 
       def expected_email_subject
-        "COPY of booking confirmation for #{prisoner_name}"
-      end
-
-      def prisoner_name
-        prisoner = SmokeTest::TEST_DATA.fetch :prisoner_details
-        "#{prisoner[:first_name]} #{prisoner[:last_name]}"
+        "COPY of booking confirmation for #{state.prisoner.full_name}"
       end
     end
   end

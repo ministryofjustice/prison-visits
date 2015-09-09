@@ -12,14 +12,14 @@ module SmokeTest
 
       def complete_step
         choose "First choice"
-        fill_in "Reference number", with: process_data[:vo_digits]
+        fill_in "Reference number", with: process_data.vo_digits
         click_button 'Send email'
       end
 
       private
 
       def process_data
-        SmokeTest::TEST_DATA.fetch :process_data
+        state.process_data
       end
     end
   end

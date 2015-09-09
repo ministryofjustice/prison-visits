@@ -11,20 +11,20 @@ module SmokeTest
       end
 
       def complete_step
-        fill_in 'Your first name', with: visitor[:first_name]
-        fill_in 'Your last name', with: visitor[:last_name]
-        fill_in 'Day', with: visitor[:birth_day]
-        fill_in 'Month', with: visitor[:birth_month]
-        fill_in 'Year', with: visitor[:birth_year]
-        fill_in 'Email address', with: visitor[:email_address]
-        fill_in 'Phone number', with: visitor[:phone_number]
+        fill_in 'Your first name', with: visitor.first_name
+        fill_in 'Your last name', with: visitor.last_name
+        fill_in 'Day', with: visitor.birth_day
+        fill_in 'Month', with: visitor.birth_month
+        fill_in 'Year', with: visitor.birth_year
+        fill_in 'Email address', with: visitor.email_address
+        fill_in 'Phone number', with: visitor.phone_number
         click_button 'Continue'
       end
 
       private
 
       def visitor
-        SmokeTest::TEST_DATA.fetch :visitor_details
+        state.visitor
       end
     end
   end

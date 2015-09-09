@@ -13,7 +13,6 @@ visitor_details:
   birth_day: 29
   birth_month: 7
   birth_year: 1982
-  email_address: <%= ENV.fetch 'SMOKE_TEST_EMAIL_ADDRESS' %>
   phone_number: 12345678911
 
 process_data:

@@ -1,11 +1,9 @@
 require 'capybara'
 require 'capybara/dsl'
 require 'capybara/poltergeist'
-require 'yaml'
-require 'erb'
-require 'active_support/core_ext/hash/indifferent_access'
 
 require_relative 'mail_lookup'
+require_relative 'state'
 require_relative 'steps/base_step'
 require_relative 'steps/prisoner_page'
 require_relative 'steps/visitors_page'
@@ -45,8 +43,6 @@ module SmokeTest
     Steps::PrisonBookingCancelled
   ]
 
-  TEST_DATA = YAML.load(ERB.new(File.read('test_data.yml')).result).with_indifferent_access
-
   def run
     puts 'Beginning Smoke Test..'
     Capybara.reset_sessions!
@@ -65,24 +61,6 @@ module SmokeTest
 
   def state
     @state ||= State.new
-  end
-
-  class State
-    attr_reader :started_at
-    attr_accessor :slot_data
-
-    def initialize
-      @started_at = Time.now.utc
-    end
-
-    def first_slot_date
-      slot_data.first[:date]
-    end
-    alias_method :first_slot_date_prison_format, :first_slot_date
-
-    def first_slot_date_visitor_format
-      Date.parse(first_slot_date).strftime('%-e %B %Y')
-    end
   end
 
   extend self
