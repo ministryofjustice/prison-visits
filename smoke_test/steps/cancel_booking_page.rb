@@ -11,7 +11,7 @@ module SmokeTest
       end
 
       def complete_step
-        check "Yes, I want to cancel this visit"
+        check 'Yes, I want to cancel this visit'
         click_button 'Cancel visit'
       end
     end
