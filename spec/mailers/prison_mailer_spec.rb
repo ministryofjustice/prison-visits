@@ -61,7 +61,8 @@ RSpec.describe PrisonMailer do
     end
 
     before do
-      stub_const 'PrisonMailer::SMOKE_TEST_EMAIL_ADDRESS', smoke_test_email
+      allow_any_instance_of(SmokeTestEmailCheck).
+        to receive(:matches?).and_return true
     end
 
     it 'alters the mail settings to not send to the prison' do

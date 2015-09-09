@@ -4,8 +4,6 @@ class PrisonMailer < ActionMailer::Base
   include Addresses
   include EnsureQuotedPrintable
 
-  SMOKE_TEST_EMAIL_ADDRESS = ENV.fetch('SMOKE_TEST_EMAIL_ADDRESS')
-
   after_action :do_not_send_to_prison, if: :smoke_test?
 
   add_template_helper(ApplicationHelper)
@@ -65,12 +63,16 @@ class PrisonMailer < ActionMailer::Base
   private
 
   def do_not_send_to_prison
-    message.to = SMOKE_TEST_EMAIL_ADDRESS
+    message.to = visitors_email_address
     message.delivery_method.settings.
-      merge(Rails.configuration.action_mailer.smtp_settings)
+      merge!(Rails.configuration.action_mailer.smtp_settings)
   end
 
   def smoke_test?
-    visit && visit.visitors.first.email == SMOKE_TEST_EMAIL_ADDRESS
+    visit && SmokeTestEmailCheck.new(visitors_email_address).matches?
+  end
+
+  def visitors_email_address
+    visit.visitors.first.email
   end
 end
