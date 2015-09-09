@@ -24,10 +24,6 @@ module SmokeTest
         self.class.name.split('::').last.gsub(/(?=[A-Z])/, ' ')
       end
 
-      def mail_lookup
-        MailLookup.new(state.started_at)
-      end
-
       def with_retries(attempts: 5, initial_delay: 2, max_delay: 30)
         delay = initial_delay
         result = nil

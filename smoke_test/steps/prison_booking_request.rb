@@ -3,7 +3,7 @@ module SmokeTest
     class PrisonBookingRequest < BaseStep
 
       def validate!
-        fail 'Could not find prison booking request email' if email.nil?
+        fail 'Could not find prison booking request email' unless email
       end
 
       def complete_step
@@ -14,7 +14,9 @@ module SmokeTest
 
       def email
         @email ||=
-          with_retries { mail_lookup.last_email_matching expected_email_subject }
+          with_retries do
+            MailBox.find_email state.unique_email_address, expected_email_subject
+          end
       end
 
       def expected_email_subject

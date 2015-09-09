@@ -2,8 +2,8 @@ require 'capybara'
 require 'capybara/dsl'
 require 'capybara/poltergeist'
 
-require_relative 'mail_lookup'
 require_relative 'state'
+require_relative 'mail_box'
 require_relative 'steps/base_step'
 require_relative 'steps/prisoner_page'
 require_relative 'steps/visitors_page'
@@ -28,6 +28,9 @@ Capybara.app_host = ENV.fetch('SMOKE_TEST_APP_HOST')
 
 module SmokeTest
   extend Capybara::DSL
+
+  SMOKE_TEST_EMAIL_LOCAL_PART = ENV.fetch 'SMOKE_TEST_EMAIL_LOCAL_PART'
+  SMOKE_TEST_EMAIL_DOMAIN = ENV.fetch 'SMOKE_TEST_EMAIL_DOMAIN'
 
   STEPS = [
     Steps::PrisonerPage,
