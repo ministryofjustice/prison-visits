@@ -7,7 +7,6 @@ RSpec.describe Instant::VisitorsDetailsController, type: :controller do
     session[:visit] = PrisonerDetailsController.new.new_session
     controller.visit.prisoner.prison_name = 'Cardiff'
     cookies['cookies-enabled'] = 1
-    allow_any_instance_of(EmailValidator).to receive(:validate)
   end
 
   it_behaves_like "a browser without a session present"

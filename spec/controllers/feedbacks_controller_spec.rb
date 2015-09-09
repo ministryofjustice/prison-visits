@@ -5,7 +5,6 @@ RSpec.describe FeedbacksController, type: :controller do
 
   before do
     ActionMailer::Base.deliveries.clear
-    allow_any_instance_of(EmailValidator).to receive(:validate)
     allow(ZendeskTicketsJob).to receive(:perform_later)
   end
 

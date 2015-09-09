@@ -103,15 +103,15 @@ RSpec.shared_examples "a visitor data manipulator with invalid data" do
       {
         visit: {
           visitor: [
-                    single_visitor_hash,
-                    [
-                     first_name: 'John',
-                     last_name: 'Denver',
-                     :'date_of_birth(3i)' => '31',
-                     :'date_of_birth(2i)' => '12',
-                     :'date_of_birth(1i)' => '1943'
-                    ] * 3
-                   ].flatten
+            single_visitor_hash,
+            [
+              first_name: 'John',
+              last_name: 'Denver',
+              :'date_of_birth(3i)' => '31',
+              :'date_of_birth(2i)' => '12',
+              :'date_of_birth(1i)' => '1943'
+            ] * 3
+          ].flatten
         },
         next: ''
       }
@@ -129,13 +129,14 @@ RSpec.shared_examples "a visitor data manipulator with invalid data" do
       {
         visit: {
           visitor: [
-                    first_name: 'Jack',
-                    last_name: 'Bauer',
-                    :'date_of_birth(3i)' => date_of_birth.day,
-                    :'date_of_birth(2i)' => date_of_birth.month,
-                    :'date_of_birth(1i)' => date_of_birth.year,
-                    phone: '09998887777'
-                   ]
+            first_name: 'Jack',
+            last_name: 'Bauer',
+            :'date_of_birth(3i)' => date_of_birth.day,
+            :'date_of_birth(2i)' => date_of_birth.month,
+            :'date_of_birth(1i)' => date_of_birth.year,
+            email: 'user@test.example.com',
+            phone: '09998887777'
+          ]
         },
         next: ''
       }
@@ -179,13 +180,16 @@ RSpec.shared_examples "a visitor data manipulator with invalid data" do
 
       context "an adult with three people over seat age threshold" do
         before :each do
-          visitor_hash[:visit][:visitor] += [{
-                                               first_name: 'Mark',
-                                               last_name: 'Bauer',
-                                               :'date_of_birth(3i)' => Date.today.day,
-                                               :'date_of_birth(2i)' => Date.today.month,
-                                               :'date_of_birth(1i)' => Date.today.year - 10
-                                             }] * 3
+          visitor_hash[:visit][:visitor] +=
+            [
+              {
+                first_name: 'Mark',
+                last_name: 'Bauer',
+                :'date_of_birth(3i)' => Date.today.day,
+                :'date_of_birth(2i)' => Date.today.month,
+                :'date_of_birth(1i)' => Date.today.year - 10
+              }
+            ] * 3
         end
 
         it "rejects the booking request" do

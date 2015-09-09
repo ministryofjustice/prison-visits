@@ -1,40 +1,50 @@
 require 'rails_helper'
 
 RSpec.describe Deferred::Visitor do
-  before :each do
-    allow_any_instance_of(EmailValidator).to receive(:validate)
-  end
-
-  let :visitor do
-    subject.tap do |v|
-      v.first_name = 'Otto'
-      v.last_name = 'Fibonacci'
-      v.email = 'test@maildrop.dsd.io'
-      v.date_of_birth = 30.years.ago
-      v.phone = '09998887777'
-    end
-  end
-
   it_behaves_like 'a visitor'
 
-  it "validates the first visitor as a lead visitor" do
-    subject.tap do |v|
-      v.index = 0
+  context 'phone' do
+    context 'for the first visitor' do
+      before do
+        subject.index = 0
+      end
 
-      v.first_name = 'Jimmy'
-      expect(v).not_to be_valid
+      it 'is invalid if missing' do
+        subject.phone = nil
+        subject.validate
+        expect(subject.errors[:phone]).not_to be_empty
+      end
 
-      v.last_name = 'Harris'
-      expect(v).not_to be_valid
+      it 'is invalid if area code is missing' do
+        subject.phone = '4960123'
+        subject.validate
+        expect(subject.errors[:phone]).
+          to eq(['must include area code'])
+      end
 
-      v.date_of_birth = Date.parse "1986-04-20"
-      expect(v).not_to be_valid
+      it 'is valid if present and correct' do
+        subject.phone = '01154960123'
+        subject.validate
+        expect(subject.errors[:phone]).to be_empty
+      end
+    end
 
-      v.email = 'jimmy@maildrop.dsd.io'
-      expect(v).not_to be_valid
+    context 'for an additional visitor' do
+      before do
+        subject.index = 1
+      end
 
-      v.phone = '01344 123456'
-      expect(v).to be_valid
+      it 'is valid if absent' do
+        subject.phone = nil
+        subject.validate
+        expect(subject.errors[:phone]).to be_empty
+      end
+
+      it 'is invalid if present' do
+        subject.phone = '01154960123'
+        subject.validate
+        expect(subject.errors[:phone]).not_to be_empty
+      end
     end
   end
 end

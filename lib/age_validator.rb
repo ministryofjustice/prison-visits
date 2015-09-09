@@ -7,9 +7,11 @@ class AgeValidator < ActiveModel::Validator
   end
 
   def validate(record)
-    if date_of_birth = record.date_of_birth.try(:to_date)
-      subject_age = (Date.today - date_of_birth).to_i / 365
-      record.errors.add(:date_of_birth, "You must be #{adult_age} or older to book a visit") if subject_age < adult_age
+    return unless record.date_of_birth
+    age = AgeCalculator.new.age(record.date_of_birth)
+    if age < adult_age
+      record.errors.add :date_of_birth,
+        "You must be #{adult_age} or older to book a visit"
     end
   end
 

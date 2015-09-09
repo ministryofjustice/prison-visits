@@ -15,9 +15,6 @@ RSpec.feature "visitor selects a date" do
 
   before :each do
     allow_any_instance_of(VisitController).to receive(:metrics_logger).and_return(MockMetricsLogger.new)
-    allow_any_instance_of(EmailValidator).to receive(:validate_dns_records)
-    allow_any_instance_of(EmailValidator).to receive(:validate_spam_reporter)
-    allow_any_instance_of(EmailValidator).to receive(:validate_bounced)
   end
 
   context "deferred flow" do
