@@ -6,6 +6,7 @@ class EmailValidator
 
   def initialize(original_address, override_sendgrid = false)
     @original_address = original_address
+    @parsed = parse_address(original_address)
     @override_sendgrid = override_sendgrid
   end
 
@@ -41,7 +42,7 @@ class EmailValidator
 
   private
 
-  attr_reader :original_address
+  attr_reader :original_address, :parsed
 
   # rubocop:disable Metrics/CyclomaticComplexity
   def compute_error
@@ -62,15 +63,11 @@ class EmailValidator
   end
 
   def domain
-    parsed && parsed.domain
+    parsed.domain
   end
 
-  def parsed
-    @parsed ||= parse_address
-  end
-
-  def parse_address
-    Mail::Address.new(original_address)
+  def parse_address(addr)
+    Mail::Address.new(addr)
   rescue Mail::Field::ParseError
     nil
   end
