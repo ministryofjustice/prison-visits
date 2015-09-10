@@ -1,3 +1,6 @@
+require 'webmock/rspec'
+WebMock.disable_net_connect!(allow: 'codeclimate.com', allow_localhost: true)
+
 if ENV.key?('CODECLIMATE_REPO_TOKEN')
   require "codeclimate-test-reporter"
   CodeClimate::TestReporter.start

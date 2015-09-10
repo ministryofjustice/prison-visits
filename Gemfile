@@ -39,6 +39,7 @@ group :test do
   gem 'database_cleaner'
   gem 'rspec-html-matchers'
   gem 'launchy'
+  gem 'webmock'
 end
 
 group :test, :development do
