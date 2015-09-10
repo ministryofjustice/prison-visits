@@ -7,11 +7,9 @@ RSpec.describe 'Bank holidays' do
     end
 
     it 'contains at least one bank holiday after today' do
-      expect(subject.map do |entry|
-        Date.parse(entry['date'])
-      end.find do |date|
-        date > Date.today
-      end).not_to be_nil
+      expect(
+        subject.select { |day| Date.parse(day['date']) > Date.today }
+      ).not_to be_empty
     end
 
     describe 'a bank holiday object' do
