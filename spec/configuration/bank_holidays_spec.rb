@@ -13,16 +13,15 @@ RSpec.describe 'Bank holidays' do
         date > Date.today
       end).not_to be_nil
     end
-  end
 
-  describe 'remote data source' do
-    subject do
-      JSON.parse(Curl::Easy.perform('https://www.gov.uk/bank-holidays.json').body_str)
-    end
+    describe 'a bank holiday object' do
+      expected_keys = %w( bunting date notes title )
 
-    it 'contains a list of holidays' do
-      first_entry = subject['england-and-wales']['events'].first
-      first_entry.keys.to_set > Set['bunting', 'date', 'notes', 'title']
+      it "contains the keys: #{expected_keys.to_sentence}" do
+        subject.each do |hash|
+          expect(hash.keys).to include *expected_keys
+        end
+      end
     end
   end
 end
