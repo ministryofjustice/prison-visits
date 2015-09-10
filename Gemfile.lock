@@ -76,6 +76,8 @@ GEM
       nokogiri (~> 1.6)
       version_sorter (~> 1.1)
     cliver (0.3.2)
+    codeclimate-test-reporter (0.4.8)
+      simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.0)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
@@ -314,6 +316,7 @@ PLATFORMS
 DEPENDENCIES
   capybara
   chromedriver-helper
+  codeclimate-test-reporter
   coffee-rails
   curb
   database_cleaner
@@ -350,3 +353,6 @@ DEPENDENCIES
   unicorn
   virtus
   zendesk_api
+
+BUNDLED WITH
+   1.10.6

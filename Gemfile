@@ -23,6 +23,8 @@ gem 'string_scrubber', '>= 0.2.0'
 gem 'virtus'
 gem 'sinatra'
 
+gem 'codeclimate-test-reporter', group: :test
+
 group :test, :development do
   gem 'rspec-rails'
   gem 'pry-byebug'

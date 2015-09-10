@@ -1,8 +1,13 @@
-require 'simplecov'
-require 'simplecov-rcov'
-SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter
-SimpleCov.start 'rails' do
-  add_filter '/gem/'
+if ENV.key?('CODECLIMATE_REPO_TOKEN')
+  require "codeclimate-test-reporter"
+  CodeClimate::TestReporter.start
+else
+  require 'simplecov'
+  require 'simplecov-rcov'
+  SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter
+  SimpleCov.start 'rails' do
+    add_filter '/gem/'
+  end
 end
 
 RSpec.configure do |config|
