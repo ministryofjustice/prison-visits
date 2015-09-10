@@ -45,4 +45,5 @@ end
 group :test, :development do
   gem 'pry-byebug'
   gem 'pry-rails'
+  gem 'rubocop'
 end
