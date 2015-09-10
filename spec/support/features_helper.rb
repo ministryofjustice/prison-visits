@@ -50,7 +50,3 @@ module FeaturesHelper
     find(:css, ".ui-autocomplete-input").set(prison_name)
   end
 end
-
-RSpec.shared_examples "feature helper" do
-  include FeaturesHelper
-end

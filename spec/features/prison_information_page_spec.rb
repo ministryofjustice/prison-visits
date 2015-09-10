@@ -1,7 +1,7 @@
 require 'poltergeist_helper'
 
 RSpec.feature 'visitor entering prisoner information' do
-  include_examples 'feature helper'
+  include FeaturesHelper
 
   before(:each) { visit edit_prisoner_details_path }
 

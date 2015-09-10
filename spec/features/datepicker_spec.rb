@@ -2,8 +2,7 @@ require 'poltergeist_helper'
 
 RSpec.feature "visitor selects a date" do
   include ActiveJobHelper
-
-  include_examples "feature helper"
+  include FeaturesHelper
 
   before :all do
     Timecop.travel(Time.now.next_week(:tuesday).at_noon)
