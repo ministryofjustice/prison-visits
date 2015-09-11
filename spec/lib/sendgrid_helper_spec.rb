@@ -14,6 +14,16 @@ RSpec.describe SendgridHelper do
     end
 
     context "spam reports" do
+
+      before do
+        stub_request(:get,"https://sendgrid.com/api/spamreports.get.json").
+          with(query: hash_including({
+                "api_key"   => "test_smtp_password",
+                "api_user"  => "test_smtp_username",
+                "email"     => "test@example.com"})
+          ).to_return(status: 200, body: "", headers: {})
+      end
+
       context "error handling" do
         [Curl::Err::CurlError, JSON::ParserError].each do |exception_class|
           it "marks the email as valid if there's an error (#{exception_class})" do
@@ -49,6 +59,16 @@ RSpec.describe SendgridHelper do
     end
 
     context "bounced" do
+
+      before do
+        stub_request(:get,"https://sendgrid.com/api/bounces.get.json").
+          with(query: hash_including({
+                "api_key"   => "test_smtp_password",
+                "api_user"  => "test_smtp_username",
+                "email"     => "test@example.com"})
+          ).to_return(status: 200, body: "", headers: {})
+      end
+
       context "error handling" do
         [Curl::Err::CurlError, JSON::ParserError].each do |exception_class|
           it "marks the email as valid if there's an error (#{exception_class})" do

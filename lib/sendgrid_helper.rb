@@ -41,7 +41,7 @@ module SendgridHelper
   end
 
   def self.bounced_url(email)
-    "https://sendgrid.com/api/bounces.get.json#{query_string(email)}"
+    "https://sendgrid.com/api/bounces.get.json?#{query_string(email)}"
   end
 
   def self.handle_response(url)

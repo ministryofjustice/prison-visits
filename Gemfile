@@ -23,12 +23,11 @@ gem 'string_scrubber', '>= 0.2.0'
 gem 'virtus'
 gem 'sinatra'
 
-gem 'codeclimate-test-reporter', group: :test
-
-group :test, :development do
+group :test do
   gem 'rspec-rails'
-  gem 'pry-byebug'
-  gem 'pry-rails'
+  gem 'codeclimate-test-reporter'
+  gem 'simplecov', '~> 0.7.1', require: false
+  gem 'simplecov-rcov', require: false
   gem 'timecop'
   gem 'rubyzip'
   gem 'selenium-webdriver'
@@ -39,7 +38,11 @@ group :test, :development do
   gem 'chromedriver-helper'
   gem 'database_cleaner'
   gem 'rspec-html-matchers'
-  gem 'simplecov', '~> 0.7.1', require: false
-  gem 'simplecov-rcov', require: false
   gem 'launchy'
+  gem 'webmock'
+end
+
+group :test, :development do
+  gem 'pry-byebug'
+  gem 'pry-rails'
 end
