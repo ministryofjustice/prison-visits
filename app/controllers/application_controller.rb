@@ -37,15 +37,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  delegate :prison_name, :visit_id, to: :visit, allow_nil: true
+
   def add_extra_sentry_metadata
     response['X-Request-Id'] = request_id
-    Raven.extra_context(request_id: request_id)
-    if visit = session[:visit]
-      Raven.extra_context(visit_id: visit.visit_id)
-      if prison = visit.prisoner.prison_name
-        Raven.extra_context(prison: prison)
-      end
-    end
+    {
+      request_id: request_id,
+      visit_id: visit_id,
+      prison: prison_name
+    }.map { |key, value| Raven.extra_context(key => value) if value }
   end
 
   def request_id

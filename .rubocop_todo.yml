@@ -20,12 +20,6 @@ Lint/AmbiguousRegexpLiteral:
 # Configuration parameters: AllowSafeAssignment.
 Lint/AssignmentInCondition:
   Exclude:
-    - 'app/controllers/application_controller.rb'
-    - 'app/controllers/deferred/confirmations_controller.rb'
-    - 'app/controllers/feedbacks_controller.rb'
-    - 'app/models/parsed_email.rb'
-    - 'config/initializers/encryptor.rb'
-    - 'config/initializers/logstasher.rb'
     - 'lib/google_analytics_adapter.rb'
     - 'lib/leaderboard_report.rb'
     - 'lib/metrics_logger.rb'
@@ -34,6 +28,8 @@ Lint/AssignmentInCondition:
     - 'lib/tasks/maintenance.rake'
     - 'lib/visitors_manipulator.rb'
     - 'spec/support/matchers.rb'
+    # legacy prison name replacement might be uneccesary??
+    - 'app/controllers/deferred/confirmations_controller.rb'
 
 # Offense count: 2
 # Cop supports --auto-correct.

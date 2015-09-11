@@ -15,6 +15,8 @@ class Visit
   validates_size_of :slots, within: 1..MAX_SLOTS, on: :date_and_time, message: 'must be at least one and at most three'
   validate :validate_amount_of_adults, on: :visitors_set
 
+  delegate :prison_name, to: :prisoner, allow_nil: true
+
   def validate_amount_of_adults
     if visitors.none? { |v| v.age && v.age >= 18 }
       errors.add :base, "There must be at least one adult visitor"
