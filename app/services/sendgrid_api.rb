@@ -6,14 +6,14 @@ class SendgridApi
   def spam_reported?(email)
     return false unless can_access_sendgrid?
     spam_reports.retrieve(email: email).any?
-  rescue SendgridToolkit::APIError
+  rescue JSON::ParserError, SendgridToolkit::APIError
     false
   end
 
   def bounced?(email)
     return false unless can_access_sendgrid?
     bounces.retrieve(email: email).any?
-  rescue SendgridToolkit::APIError
+  rescue JSON::ParserError, SendgridToolkit::APIError
     false
   end
 

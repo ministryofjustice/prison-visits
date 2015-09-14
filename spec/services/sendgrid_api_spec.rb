@@ -45,6 +45,14 @@ RSpec.describe SendgridApi do
             expect(subject.spam_reported?('test@example.com')).to be_falsey
           end
         end
+
+        context 'when the API returns non-JSON' do
+          let(:body) { 'Oopsy daisy' }
+
+          it 'has no spam report' do
+            expect(subject.spam_reported?('test@example.com')).to be_falsey
+          end
+        end
       end
 
       context 'when no error' do
@@ -100,6 +108,14 @@ RSpec.describe SendgridApi do
 
         context 'when the API reports an error' do
           let(:body) { '{"error":"LOL"}' }
+
+          it 'has no bounce' do
+            expect(subject.bounced?('test@example.com')).to be_falsey
+          end
+        end
+
+        context 'when the API returns non-JSON' do
+          let(:body) { 'Oopsy daisy' }
 
           it 'has no bounce' do
             expect(subject.bounced?('test@example.com')).to be_falsey
