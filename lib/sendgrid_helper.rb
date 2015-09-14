@@ -47,7 +47,7 @@ module SendgridHelper
   def self.handle_response(url)
     body = Curl::Easy.perform(url).body_str
     if response = JSON.parse(body)
-      return false if response.is_a?(Hash) && response[:error]
+      return false if response.is_a?(Hash) && response['error']
       response.size > 0
     end
   rescue Curl::Err::CurlError, JSON::ParserError => e
