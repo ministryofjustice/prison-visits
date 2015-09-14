@@ -2,7 +2,7 @@ class EmailValidator < ActiveModel::Validator
   BAD_DOMAINS = File.readlines("data/bad_domains.txt").map(&:chomp)
 
   extend Forwardable
-  def_delegators :SendgridHelper, :bounced?, :spam_reported?
+  def_delegators :SendgridApi, :bounced?, :spam_reported?
 
   def validate(record)
     key = error_key(record)

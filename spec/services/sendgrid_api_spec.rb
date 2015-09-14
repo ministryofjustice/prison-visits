@@ -1,8 +1,7 @@
 require 'rails_helper'
-require 'sendgrid_helper'
 
-RSpec.describe SendgridHelper do
-  subject { described_class }
+RSpec.describe SendgridApi do
+  subject { described_class.new }
 
   context 'with sendgrid configured' do
     around do |example|
@@ -20,11 +19,11 @@ RSpec.describe SendgridHelper do
 
       before do
         stub_request(:post, 'https://api.sendgrid.com/api/spamreports.get.json').
-          with(query: hash_including({
-                'api_key'   => 'test_smtp_password',
-                'api_user'  => 'test_smtp_username',
-                'email'     => 'test@example.com'})
-          ).to_return(status: 200, body: body, headers: {})
+          with(query: hash_including(
+            'api_key'   => 'test_smtp_password',
+            'api_user'  => 'test_smtp_username',
+            'email'     => 'test@example.com')).
+          to_return(status: 200, body: body, headers: {})
       end
 
       context 'error handling' do
@@ -59,13 +58,13 @@ RSpec.describe SendgridHelper do
 
         context 'when there is a spam report' do
           let(:body) {
-            %<[
+            %([
               {
                 "ip": "174.36.80.219",
                 "email": "test@example.com",
                 "created": "2009-12-06 15:45:08"
               }
-            ]>
+            ])
           }
 
           it 'has a spam report' do
@@ -79,12 +78,12 @@ RSpec.describe SendgridHelper do
       let(:body) { '[]' }
 
       before do
-        stub_request(:post,'https://api.sendgrid.com/api/bounces.get.json').
-          with(query: hash_including({
-                'api_key'   => 'test_smtp_password',
-                'api_user'  => 'test_smtp_username',
-                'email'     => 'test@example.com'})
-          ).to_return(status: 200, body: body, headers: {})
+        stub_request(:post, 'https://api.sendgrid.com/api/bounces.get.json').
+          with(query: hash_including(
+            'api_key'   => 'test_smtp_password',
+            'api_user'  => 'test_smtp_username',
+            'email'     => 'test@example.com')).
+          to_return(status: 200, body: body, headers: {})
       end
 
       context 'error handling' do
@@ -119,14 +118,14 @@ RSpec.describe SendgridHelper do
 
         context 'when there is a bounce' do
           let(:body) {
-            %<[
+            %([
               {
                 "status": "4.0.0",
                 "created": "2011-09-16 22:02:19",
                 "reason": "Unable to resolve MX host example.com",
                 "email": "test@example.com"
               }
-            ]>
+            ])
           }
 
           it 'has a bounce' do

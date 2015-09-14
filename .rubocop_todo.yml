@@ -30,7 +30,6 @@ Lint/AssignmentInCondition:
     - 'lib/google_analytics_adapter.rb'
     - 'lib/leaderboard_report.rb'
     - 'lib/metrics_logger.rb'
-    - 'lib/sendgrid_helper.rb'
     - 'lib/tasks/browserstack.rake'
     - 'lib/tasks/maintenance.rake'
     - 'lib/visitors_manipulator.rb'
@@ -102,7 +101,6 @@ Lint/UnusedMethodArgument:
 Lint/UselessAssignment:
   Exclude:
     - 'config/initializers/numeric.rb'
-    - 'lib/sendgrid_helper.rb'
     - 'spec/features/datepicker_spec.rb'
 
 # Offense count: 1
@@ -206,7 +204,6 @@ RSpec/DescribedClass:
     - 'spec/lib/age_validator_spec.rb'
     - 'spec/lib/email_validator_spec.rb'
     - 'spec/lib/name_validator.rb'
-    - 'spec/lib/sendgrid_helper_spec.rb'
     - 'spec/lib/zmarshal_spec.rb'
     - 'spec/mailers/feedback_mailer_spec.rb'
     - 'spec/mailers/prison_mailer_spec.rb'
@@ -344,15 +341,8 @@ Style/BracesAroundHashParameters:
     - 'spec/controllers/prisoner_details_controller_spec.rb'
     - 'spec/helpers/application_helper_spec.rb'
     - 'spec/helpers/visit_helper_spec.rb'
-    - 'spec/lib/sendgrid_helper_spec.rb'
     - 'spec/mailers/prison_mailer_spec.rb'
     - 'spec/mailers/visitor_mailer_spec.rb'
-
-# Offense count: 2
-# Cop supports --auto-correct.
-Style/ClosingParenthesisIndentation:
-  Exclude:
-    - 'spec/lib/sendgrid_helper_spec.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -393,7 +383,6 @@ Style/EmptyLinesAroundBlockBody:
     - 'spec/controllers/deferred/visitors_details_controller_spec.rb'
     - 'spec/features/visitor_information_page_spec.rb'
     - 'spec/helpers/visit_helper_spec.rb'
-    - 'spec/lib/sendgrid_helper_spec.rb'
     - 'spec/models/confirmation_spec.rb'
 
 # Offense count: 5
@@ -599,7 +588,6 @@ Style/SpaceAfterColon:
 Style/SpaceAfterComma:
   Exclude:
     - 'app/mailers/visitor_mailer.rb'
-    - 'spec/lib/sendgrid_helper_spec.rb'
 
 # Offense count: 20
 # Cop supports --auto-correct.
@@ -691,7 +679,6 @@ Style/TrailingComma:
     - 'app/models/confirmation.rb'
     - 'config/environments/development.rb'
     - 'lib/leaderboard_report.rb'
-    - 'lib/sendgrid_helper.rb'
     - 'spec/controllers/deferred/slots_controller_spec.rb'
     - 'spec/controllers/instant/slots_controller_spec.rb'
     - 'spec/controllers/instant/visitors_details_controller_spec.rb'
