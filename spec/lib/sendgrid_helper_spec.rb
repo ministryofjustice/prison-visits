@@ -19,7 +19,7 @@ RSpec.describe SendgridHelper do
       let(:body) { '[]' }
 
       before do
-        stub_request(:get,'https://sendgrid.com/api/spamreports.get.json').
+        stub_request(:post, 'https://api.sendgrid.com/api/spamreports.get.json').
           with(query: hash_including({
                 'api_key'   => 'test_smtp_password',
                 'api_user'  => 'test_smtp_username',
@@ -30,7 +30,8 @@ RSpec.describe SendgridHelper do
       context 'error handling' do
         context 'when the API raises an exception' do
           before do
-            allow(Curl::Easy).to receive(:perform).and_raise(Curl::Err::CurlError)
+            stub_request(:post, 'https://api.sendgrid.com/api/spamreports.get.json').
+              to_raise(StandardError)
           end
 
           it 'has no spam report' do
@@ -78,7 +79,7 @@ RSpec.describe SendgridHelper do
       let(:body) { '[]' }
 
       before do
-        stub_request(:get,'https://sendgrid.com/api/bounces.get.json').
+        stub_request(:post,'https://api.sendgrid.com/api/bounces.get.json').
           with(query: hash_including({
                 'api_key'   => 'test_smtp_password',
                 'api_user'  => 'test_smtp_username',
@@ -89,7 +90,8 @@ RSpec.describe SendgridHelper do
       context 'error handling' do
         context 'when the API raises an exception' do
           before do
-            allow(Curl::Easy).to receive(:perform).and_raise(Curl::Err::CurlError)
+            stub_request(:post, 'https://api.sendgrid.com/api/bounces.get.json').
+              to_raise(StandardError)
           end
 
           it 'has no bounce' do
@@ -149,7 +151,7 @@ RSpec.describe SendgridHelper do
       end
 
       it 'does not talk to sendgrid' do
-        expect(Curl::Easy).to receive(:perform).never
+        expect(HTTParty).to receive(:post).never
         subject.bounced?('test@example.com')
       end
     end
@@ -160,7 +162,7 @@ RSpec.describe SendgridHelper do
       end
 
       it 'does not talk to sendgrid' do
-        expect(Curl::Easy).to receive(:perform).never
+        expect(HTTParty).to receive(:post).never
         subject.spam_reported?('test@example.com')
       end
     end
