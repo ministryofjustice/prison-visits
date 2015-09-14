@@ -1,0 +1,23 @@
+# This is the configuration used to check the rubocop source code.
+
+require: rubocop-rspec
+
+inherit_from:
+  - .default_rubocop.yml
+  - .rubocop_todo.yml
+
+AllCops:
+  Exclude:
+    - 'vendor/**/*'
+    - 'spec/fixtures/**/*'
+    - 'node_modules/**/*'
+    - 'db/**/*'
+    - 'bin/**/*'
+    - '**/*.gemspec'
+    - '**/Rakefile'
+    - '**/Vagrantfile'
+    - '**/Gemfile'
+    - '**/Guardfile'
+    - 'spec/rails_helper.rb'
+
+  RunRailsCops: true

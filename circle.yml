@@ -15,7 +15,7 @@ database:
 
 test:
   override:
-    - bundle exec rake
+    - bundle exec rake SPEC_OPTS="--color --format documentation"
     # - bundle exec rake browserstack:run:
     #     timeout: 1800
     # uncommnet the above when someone has fixed the browserstack tests
