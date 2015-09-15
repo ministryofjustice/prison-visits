@@ -46,7 +46,8 @@ class MetricsLogger
   end
 
   def processed?(visit)
-    if entry = find_entry(visit.visit_id)
+    entry = find_entry(visit.visit_id)
+    if entry
       entry.processed_at.present?
     else
       false
@@ -61,7 +62,8 @@ class MetricsLogger
   end
 
   def visit_status(visit_id)
-    if entry = find_entry(visit_id)
+    entry = find_entry(visit_id)
+    if entry
       entry.outcome || 'pending'
     else
       'unknown'
@@ -76,7 +78,8 @@ class MetricsLogger
   end
 
   def update_entry(visit_id)
-    if entry = find_entry(visit_id)
+    entry = find_entry(visit_id)
+    if entry
       yield entry
       entry.save! if entry.changed?
     end

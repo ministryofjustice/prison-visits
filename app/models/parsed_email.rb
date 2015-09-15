@@ -16,11 +16,11 @@ class ParsedEmail
 
     [:subject, :text].each do |field|
       # Fields can have different encodings, normalize everything to UTF-8
+      encoding = charsets[field]
 
-      if encoding = charsets[field]
-        hash[field] = hash[field].force_encoding(encoding).encode('UTF-8')
-      end
+      hash[field].force_encoding(encoding).encode!('UTF-8') if encoding
     end
+
     new({
           to: Mail::Address.new(hash[:to]),
           from: Mail::Address.new(hash[:from]),

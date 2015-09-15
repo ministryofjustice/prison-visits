@@ -6,25 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 18
-# Configuration parameters: AllowSafeAssignment.
-Lint/AssignmentInCondition:
-  Exclude:
-    - 'app/controllers/application_controller.rb'
-    - 'app/controllers/deferred/confirmations_controller.rb'
-    - 'app/controllers/feedbacks_controller.rb'
-    - 'app/models/parsed_email.rb'
-    - 'config/initializers/encryptor.rb'
-    - 'config/initializers/logstasher.rb'
-    - 'config/initializers/session_store.rb'
-    - 'lib/google_analytics_adapter.rb'
-    - 'lib/leaderboard_report.rb'
-    - 'lib/metrics_logger.rb'
-    - 'lib/tasks/browserstack.rake'
-    - 'lib/tasks/maintenance.rake'
-    - 'lib/visitors_manipulator.rb'
-    - 'spec/support/matchers.rb'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 Lint/BlockAlignment:

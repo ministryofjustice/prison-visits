@@ -19,9 +19,11 @@ end
 
 RSpec::Matchers.define :match_in_text do |actual|
   match do |expected|
-    if part = expected.body.parts.find do |part|
-        part.content_type.match(/text\/plain/)
-      end
+    part = expected.body.parts.find do |part|
+      part.content_type.match(/text\/plain/)
+    end
+
+    if part
       expect(part).not_to be_nil
       part.body.raw_source.include?(actual)
     else

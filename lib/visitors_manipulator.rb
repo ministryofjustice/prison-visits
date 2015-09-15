@@ -11,7 +11,8 @@ module VisitorsManipulator
   end
 
   def update
-    if m = params[:next].match(/remove-(\d)/)
+    m = params[:next].match(/remove-(\d)/)
+    if m
       index = m[1].to_i
       visit.visitors.delete_at(index)
       redirect_to this_path

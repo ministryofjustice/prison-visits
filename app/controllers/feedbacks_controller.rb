@@ -9,9 +9,8 @@ class FeedbacksController < ApplicationController
 
   def create
     @feedback = Feedback.new(feedback_params)
-    if visit = session[:visit]
-      @feedback.prison = visit.prisoner.prison_name
-    end
+    @feedback.prison = prison_name if visit
+
     if @feedback.valid?
       FeedbackMailer.new_feedback(@feedback).deliver_later
       ZendeskTicketsJob.perform_later(@feedback) unless @feedback.email.empty?
@@ -22,6 +21,7 @@ class FeedbacksController < ApplicationController
   end
 
   private
+
   def feedback_params
     params.require(:feedback).permit(:referrer, :text, :email, :user_agent, :prison)
   end

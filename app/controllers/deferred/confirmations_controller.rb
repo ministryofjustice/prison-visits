@@ -56,19 +56,21 @@ class Deferred::ConfirmationsController < ApplicationController
     params.require(:confirmation).permit(:outcome, :message, :vo_number, :no_vo, :no_pvo, :renew_vo, :renew_pvo, :closed_visit, :visitor_not_listed, :visitor_banned, :canned_response, banned_visitors: [], unlisted_visitors: [])
   end
 
+  LEGACY_PRISON_NAMES = {
+    'Hollesley Bay'                     => 'Hollesley Bay Open',
+    'Hatfield (moorland Open)'          => 'Hatfield Open',
+    'Highpoint'                         => 'Highpoint North',
+    'Albany'                            => 'Isle of Wight - Albany',
+    'Parkhurst'                         => 'Isle of Wight - Parkhurst',
+    'Liverpool (Open only)'             => 'Liverpool Social Visits',
+    'Hindley (Young Adult 18-21 only)'  => 'Hindley',
+    'Hindley (Young People 15-18 only)' => 'Hindley'
+  }
+
   def legacy_data_fixes(visit)
-    if prison_name = {
-        'Hollesley Bay' => 'Hollesley Bay Open',
-        'Hatfield (moorland Open)' => 'Hatfield Open',
-        'Highpoint' => 'Highpoint North',
-        'Albany' => 'Isle of Wight - Albany',
-        'Parkhurst' => 'Isle of Wight - Parkhurst',
-        'Liverpool (Open only)' => 'Liverpool Social Visits',
-        'Hindley (Young Adult 18-21 only)' => 'Hindley',
-        'Hindley (Young People 15-18 only)' => 'Hindley'
-      }[visit.prisoner.prison_name]
+    if LEGACY_PRISON_NAMES.key?(visit.prison_name)
       STATSD_CLIENT.increment('pvb.app.legacy_data_fixes')
-      visit.prisoner.prison_name = prison_name
+      visit.prison_name = LEGACY_PRISON_NAMES[visit.prison_name]
     end
     visit
   end
