@@ -21,6 +21,8 @@ RSpec.describe VisitorMailer do
     })
   end
 
+  it_behaves_like 'a mailer that ensures content transfer encoding is quoted printable'
+
   it "relays e-mails via sendgrid" do
     expect(VisitorMailer.smtp_settings).to eq(ActionMailer::Base.smtp_settings)
   end

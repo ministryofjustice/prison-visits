@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 class VisitorMailer < ActionMailer::Base
-
   include MailerHelper::NoReply
   include MailerHelper::Autoresponder
   include MailerHelper::Addresses
+  include EnsureQuotedPrintable
 
   add_template_helper(ApplicationHelper)
   add_template_helper(VisitHelper)
