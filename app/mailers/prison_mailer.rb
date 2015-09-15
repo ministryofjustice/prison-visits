@@ -1,7 +1,7 @@
 class PrisonMailer < ActionMailer::Base
-  include MailerHelper::NoReply
-  include MailerHelper::Autoresponder
-  include MailerHelper::Addresses
+  include NoReply
+  include Autoresponder
+  include Addresses
   include EnsureQuotedPrintable
 
   add_template_helper(ApplicationHelper)
