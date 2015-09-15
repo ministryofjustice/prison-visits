@@ -10,7 +10,7 @@ end
 RSpec::Matchers.define :match_in_html do |actual|
   match do |expected|
     part = expected.body.parts.find do |part|
-      part.content_type.match /text\/html/
+      part.content_type.match(/text\/html/)
     end
     expect(part).not_to be_nil
     part.body.raw_source.include?(actual)
@@ -20,7 +20,7 @@ end
 RSpec::Matchers.define :match_in_text do |actual|
   match do |expected|
     if part = expected.body.parts.find do |part|
-        part.content_type.match /text\/plain/
+        part.content_type.match(/text\/plain/)
       end
       expect(part).not_to be_nil
       part.body.raw_source.include?(actual)

@@ -11,11 +11,6 @@ Lint/AmbiguousOperator:
   Exclude:
     - 'spec/configuration/bank_holidays_spec.rb'
 
-# Offense count: 2
-Lint/AmbiguousRegexpLiteral:
-  Exclude:
-    - 'spec/support/matchers.rb'
-
 # Offense count: 18
 # Configuration parameters: AllowSafeAssignment.
 Lint/AssignmentInCondition:
