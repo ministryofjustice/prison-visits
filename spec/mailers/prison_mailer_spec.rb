@@ -16,6 +16,8 @@ RSpec.describe PrisonMailer do
     })
   end
 
+  it_behaves_like 'a mailer that ensures content transfer encoding is quoted printable'
+
   it "relays e-mails via GSI" do
     expect(PrisonMailer.smtp_settings).not_to eq(ActionMailer::Base.smtp_settings)
   end
