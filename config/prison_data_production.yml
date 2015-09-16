@@ -11,6 +11,7 @@ Stafford:
   - Stafford
   - ST16 3AW
   unbookable:
+  - 2015-10-14
   - 2015-12-25
   slots:
     wed:
@@ -20,6 +21,9 @@ Stafford:
     sat:
     - 1400-1600
     sun:
+    - 1400-1600
+  slot_anomalies:
+    2014-10-13:
     - 1400-1600
 Belmarsh:
   nomis_id: BAI
