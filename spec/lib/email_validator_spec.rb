@@ -83,7 +83,7 @@ RSpec.describe EmailValidator do
 
   context "spam reporters" do
     it "prevents validation on an e-mail address marked as a spam reporter in sendgrid" do
-      expect(SendgridHelper).to receive(:spam_reported?).and_return(true)
+      expect(SendgridApi).to receive(:spam_reported?).and_return(true)
       expect {
         model.email = 'test@irrelevant.com'
         subject.validate(model)
@@ -94,7 +94,7 @@ RSpec.describe EmailValidator do
 
   context "bounced addresses" do
     it "prevents validation on an e-mail address marked as bounced in sendgrid" do
-      expect(SendgridHelper).to receive(:bounced?).and_return(true)
+      expect(SendgridApi).to receive(:bounced?).and_return(true)
       expect {
         model.email = 'test@irrelevant.com'
         subject.validate(model)

@@ -15,11 +15,11 @@ class HealthcheckController < ApplicationController
   private
 
   def sendgrid_alive?
-    SendgridHelper.smtp_alive?(*VisitorMailer.smtp_settings.values_at(:address, :port))
+    SendgridApi.smtp_alive?(*VisitorMailer.smtp_settings.values_at(:address, :port))
   end
 
   def messagelabs_alive?
-    SendgridHelper.smtp_alive?(*PrisonMailer.smtp_settings.values_at(:address, :port))
+    SendgridApi.smtp_alive?(*PrisonMailer.smtp_settings.values_at(:address, :port))
   end
 
   def database_active?

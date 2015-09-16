@@ -22,7 +22,7 @@ RSpec.describe HealthcheckController, type: :controller do
   let(:sendgrid_port) { double }
 
   before do
-    allow(SendgridHelper).to receive(:smtp_alive?).and_return(true)
+    allow(SendgridApi).to receive(:smtp_alive?).and_return(true)
     allow(ZENDESK_CLIENT).to receive(:tickets).and_return(double(count: 0))
   end
 
@@ -81,7 +81,7 @@ RSpec.describe HealthcheckController, type: :controller do
       allow(PrisonMailer).
         to receive(:smtp_settings).
         and_return(address: address, port: port)
-      allow(SendgridHelper).
+      allow(SendgridApi).
         to receive(:smtp_alive?).
         with(address, port).
         and_return(false)
@@ -97,7 +97,7 @@ RSpec.describe HealthcheckController, type: :controller do
       allow(VisitorMailer).
         to receive(:smtp_settings).
         and_return(address: address, port: port)
-      allow(SendgridHelper).
+      allow(SendgridApi).
         to receive(:smtp_alive?).
         with(address, port).
         and_return(false)
