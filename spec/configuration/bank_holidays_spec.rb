@@ -17,7 +17,7 @@ RSpec.describe 'Bank holidays' do
 
       it "contains the keys: #{expected_keys.to_sentence}" do
         subject.each do |hash|
-          expect(hash.keys).to include *expected_keys
+          expect(hash.keys).to include(*expected_keys)
         end
       end
     end
