@@ -55,7 +55,7 @@ class EmailValidator
       return :spam_reported if spam_reported?(parsed.address)
       return :bounced if bounced?(parsed.address)
     end
-    return nil
+    nil
   end
 
   def override_sendgrid?
