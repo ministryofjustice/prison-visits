@@ -11,6 +11,7 @@ PrisonVisits2::Application.configure do
   config.assets.debug = true
   config.action_mailer.default_url_options = { host: "localhost", protocol: "http", port: "3000" }
   config.action_mailer.preview_path = "#{Rails.root}/test/mailers/previews"
-
-  Rails.application.config.active_job.queue_adapter = :sidekiq
+  config.active_job.queue_adapter = :sidekiq
+  config.smoke_test_email_local_part = ENV['SMOKE_TEST_EMAIL_LOCAL_PART']
+  config.smoke_test_email_domain = ENV['SMOKE_TEST_EMAIL_DOMAIN']
 end

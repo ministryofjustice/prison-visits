@@ -27,6 +27,7 @@ PrisonVisits2::Application.configure do
   config.logstasher.log_controller_parameters = true
   config.logstasher.logger_path = File.join(Rails.root, "log", "logstash_production.json")
   config.action_mailer.default_url_options = { host: ENV["SERVICE_URL"] || (raise "Missing SERVICE_URL"), protocol: "https" }
-
-  Rails.application.config.active_job.queue_adapter = :sidekiq
+  config.active_job.queue_adapter = :sidekiq
+  config.smoke_test_email_local_part = ENV['SMOKE_TEST_EMAIL_LOCAL_PART']
+  config.smoke_test_email_domain = ENV['SMOKE_TEST_EMAIL_DOMAIN']
 end

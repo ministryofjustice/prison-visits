@@ -5,9 +5,7 @@ RSpec.describe MailUtilities::SmokeTestEmailCheck do
 
   describe '#matches?' do
     context 'a smoke test email address with a uuid' do
-      let(:email_address) do
-        "prison-visits-smoke-test+#{SecureRandom.uuid}@digital.justice.gov.uk"
-      end
+      let(:email_address) { "user+#{SecureRandom.uuid}@example.com" }
 
       specify { expect(subject.matches?).to be_truthy }
     end
