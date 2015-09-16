@@ -71,3 +71,5 @@ module SmokeTest
     end
   end
 end
+
+SmokeTest::Runner.new.run
