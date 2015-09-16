@@ -1,7 +1,6 @@
 module SmokeTest
   module Steps
     class ProcessVisitRequestPage < BaseStep
-
       PAGE_PATH = '/deferred/confirmation/new'
 
       def validate!

@@ -1,7 +1,6 @@
 module SmokeTest
   module Steps
     class PrisonerPage < BaseStep
-
       PAGE_PATH = '/prisoner'
 
       def validate!

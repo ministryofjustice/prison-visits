@@ -1,8 +1,7 @@
 module SmokeTest
   module Steps
     class CancelBookingPage < BaseStep
-
-      PAGE_PATH = /\A\/status\//
+      PAGE_PATH = %r{\A\/status\/}
 
       def validate!
         unless PAGE_PATH.match page.current_path

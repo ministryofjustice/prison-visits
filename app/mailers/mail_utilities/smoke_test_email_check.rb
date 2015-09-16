@@ -1,5 +1,5 @@
 module MailUtilities
-  class SmokeTestEmailCheck < Struct.new(:email_address)
+  SmokeTestEmailCheck = Struct.new(:email_address) do
     def matches?
       smoke_test_email_regex.match(email_address)
     end
@@ -27,4 +27,3 @@ module MailUtilities
     end
   end
 end
-

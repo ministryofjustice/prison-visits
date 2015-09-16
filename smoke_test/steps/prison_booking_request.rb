@@ -1,7 +1,6 @@
 module SmokeTest
   module Steps
     class PrisonBookingRequest < BaseStep
-
       def validate!
         fail 'Could not find prison booking request email' unless email
       end
@@ -13,14 +12,16 @@ module SmokeTest
       private
 
       def email
-        @email ||=
-          with_retries do
-            MailBox.find_email state.unique_email_address, expected_email_subject
-          end
+        @email ||= with_retries do
+          MailBox.find_email state.unique_email_address, expected_email_subject
+        end
       end
 
       def expected_email_subject
-        "Visit request for #{state.prisoner.full_name} on #{state.first_slot_date_prison_format}"
+        "Visit request for %s on %s" % [
+          state.prisoner.full_name,
+          state.first_slot_date_prison_format
+        ]
       end
 
       def booking_processing_url

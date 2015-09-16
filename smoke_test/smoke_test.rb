@@ -19,7 +19,8 @@ require_relative 'steps/prison_booking_cancelled'
 
 module SuprressJsConsoleLogging; end
 Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, phantomjs_logger: SuprressJsConsoleLogging)
+  Capybara::Poltergeist::Driver.new \
+    app, phantomjs_logger: SuprressJsConsoleLogging
 end
 
 Capybara.run_server = false
@@ -27,10 +28,10 @@ Capybara.current_driver = :poltergeist
 Capybara.app_host = ENV.fetch('SMOKE_TEST_APP_HOST')
 
 module SmokeTest
-  extend Capybara::DSL
-
   SMOKE_TEST_EMAIL_LOCAL_PART = ENV.fetch 'SMOKE_TEST_EMAIL_LOCAL_PART'
   SMOKE_TEST_EMAIL_DOMAIN = ENV.fetch 'SMOKE_TEST_EMAIL_DOMAIN'
+  SMOKE_TEST_EMAIL_PASSWORD = ENV.fetch 'SMOKE_TEST_EMAIL_PASSWORD'
+  SMOKE_TEST_EMAIL_HOST = ENV.fetch 'SMOKE_TEST_EMAIL_HOST'
 
   STEPS = [
     Steps::PrisonerPage,
@@ -46,25 +47,27 @@ module SmokeTest
     Steps::PrisonBookingCancelled
   ]
 
-  def run
-    puts 'Beginning Smoke Test..'
-    Capybara.reset_sessions!
-    visit '/prisoner'
-    STEPS.map(&method(:complete))
-    puts 'Smoke Test Completed'
+  class Runner
+    include Capybara::DSL
+
+    def run
+      puts 'Beginning Smoke Test..'
+      Capybara.reset_sessions!
+      visit '/prisoner'
+      STEPS.map(&method(:complete))
+      puts 'Smoke Test Completed'
+    end
+
+    private
+
+    def complete(step)
+      current_step = step.new state
+      current_step.validate!
+      current_step.complete_step
+    end
+
+    def state
+      @state ||= State.new
+    end
   end
-
-  private
-
-  def complete(step)
-    current_step = step.new state
-    current_step.validate!
-    current_step.complete_step
-  end
-
-  def state
-    @state ||= State.new
-  end
-
-  extend self
 end

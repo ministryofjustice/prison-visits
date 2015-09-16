@@ -3,8 +3,7 @@ require 'net/imap'
 
 module SmokeTest
   module MailBox
-    SMOKE_TEST_EMAIL_PASSWORD = ENV.fetch 'SMOKE_TEST_EMAIL_PASSWORD'
-    SMOKE_TEST_EMAIL_HOST = ENV.fetch 'SMOKE_TEST_EMAIL_HOST'
+    module_function
 
     def find_email(unique_address, subject)
       client = Net::IMAP.new(SMOKE_TEST_EMAIL_HOST, port: 993, ssl: true)
@@ -20,8 +19,6 @@ module SmokeTest
       client.disconnect
     end
 
-    private
-
     def parse_email(msg)
       Mail.read_from_string(msg.attr['RFC822'])
     end
@@ -30,6 +27,6 @@ module SmokeTest
       "#{SMOKE_TEST_EMAIL_LOCAL_PART}@#{SMOKE_TEST_EMAIL_DOMAIN}"
     end
 
-    extend self
+    private_class_method :parse_email, :imap_username
   end
 end

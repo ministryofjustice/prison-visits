@@ -15,7 +15,7 @@ module SmokeTest
       end
 
       def complete_step
-        raise NotImplementedError
+        fail NotImplementedError
       end
 
       protected

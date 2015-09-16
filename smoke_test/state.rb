@@ -34,15 +34,13 @@ module SmokeTest
       Date.parse(first_slot_date).strftime('%-e %B %Y')
     end
 
-    private
-
     class Prisoner < SimpleDelegator
       def initialize
         super(OpenStruct.new State::TEST_DATA.fetch('prisoner_details'))
       end
 
       def full_name
-        "#{self.first_name} #{self.last_name}"
+        "#{first_name} #{last_name}"
       end
     end
 
@@ -55,12 +53,12 @@ module SmokeTest
         @email_address ||= UniqueEmailAddress.new
       end
 
-      private
-
       class UniqueEmailAddress < String
         def initialize(*)
           uuid = SecureRandom.uuid
-          super("#{SMOKE_TEST_EMAIL_LOCAL_PART}+#{uuid}@#{SMOKE_TEST_EMAIL_DOMAIN}")
+          super \
+            "#{SMOKE_TEST_EMAIL_LOCAL_PART}+#{uuid}@#{SMOKE_TEST_EMAIL_DOMAIN}"
+
           freeze
         end
       end

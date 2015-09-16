@@ -1,7 +1,6 @@
 module SmokeTest
   module Steps
     class VisitorBookingReceipt < BaseStep
-
       def validate!
         fail 'Could not find visitor booking receipt email' unless email
       end
@@ -13,14 +12,15 @@ module SmokeTest
       private
 
       def email
-        @email ||=
-          with_retries do
-            MailBox.find_email state.unique_email_address, expected_email_subject
-          end
+        @email ||= with_retries do
+          MailBox.find_email state.unique_email_address, expected_email_subject
+        end
       end
 
       def expected_email_subject
-        "Not booked yet: we've received your visit request for #{state.first_slot_date_visitor_format}"
+        "Not booked yet: we've received your visit request for %s" % [
+          state.first_slot_date_visitor_format
+        ]
       end
     end
   end

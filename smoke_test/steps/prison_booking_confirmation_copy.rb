@@ -1,9 +1,10 @@
 module SmokeTest
   module Steps
     class PrisonBookingConfirmationCopy < BaseStep
-
       def validate!
-        fail 'Could not find prison booking confirmation copy email' unless email
+        unless email
+          fail 'Could not find prison booking confirmation copy email'
+        end
       end
 
       def complete_step
@@ -13,14 +14,13 @@ module SmokeTest
       private
 
       def email
-        @email ||=
-          with_retries do
-            MailBox.find_email state.unique_email_address, expected_email_subject
-          end
+        @email ||= with_retries do
+          MailBox.find_email state.unique_email_address, expected_email_subject
+        end
       end
 
       def expected_email_subject
-        "COPY of booking confirmation for #{state.prisoner.full_name}"
+        "COPY of booking confirmation for %s" % [state.prisoner.full_name]
       end
     end
   end
