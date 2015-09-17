@@ -20,7 +20,7 @@ namespace :static_pages do
       outpath = File.join ([Rails.root, 'public', output])
       resp = app.get(route)
       if resp == 200
-        File.delete(outpath) unless not File.exists?(outpath)
+        File.delete(outpath) unless not File.exist?(outpath)
         File.open(outpath, 'w') do |f|
           f.write(app.response.body)
         end
