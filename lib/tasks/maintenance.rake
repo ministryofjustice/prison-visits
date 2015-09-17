@@ -3,11 +3,13 @@ namespace :maintenance do
     ['config/prison_data_production.yml', 'config/prison_data_staging.yml'].each do |filename|
       YAML.load_file(filename).tap do |yaml|
         yaml.each_pair do |prison, data|
-          if array = data['unbookable']
+          array = data['unbookable']
+          if array
             array.sort!
           end
 
-          if hash = data['slot_anomalies']
+          hash = data['slot_anomalies']
+          if hash
             data['slot_anomalies'] = Hash[hash.to_a.sort]
           end
         end

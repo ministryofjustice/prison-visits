@@ -15,7 +15,7 @@ class LeaderboardReport
     prev_fortnight = Date.today.cweek / 2 - 1
     @prev_period ||= query(Date.today.year, prev_fortnight, @percentile)
   end
-  
+
   def query(year, fortnight, percentile)
     VisitMetricsEntry.find_by_sql([%Q{
 WITH ranked_times AS (
@@ -34,15 +34,16 @@ GROUP BY nomis_id
   end
 
   def ranked_performance
-    this_period.inject([]) do |a, (nomis_id, row)|
+    this_period.inject([]) do |acc, (nomis_id, row)|
       record = {
         label: @prison_labeling_function.call(nomis_id),
         value: row.end_to_end_time / (3600.0 * 24),
       }
-      if rank = prev_period[nomis_id].try(:rank)
+      rank = prev_period[nomis_id].try(:rank)
+      if rank
         record[:previous_rank] = rank
       end
-      a << record
+      acc << record
     end
   end
 

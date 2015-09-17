@@ -15,7 +15,7 @@ namespace :browserstack do
       browsers = YAML.load_file('config/browsers.json')
       nodes = 5
       exitstatus = 255
-      
+
       # Fire up a test server in a background process.
       app_pid = spawn("rails s -e test 2>&1 > rails_browserstack.log")
 
@@ -24,8 +24,11 @@ namespace :browserstack do
       # Fire up a tunnel in the background and wait until it is ready.
       r, w = IO.pipe
       pid = spawn("java -jar vendor/BrowserStackTunnel.jar -skipCheck #{ENV['BS_PASSWORD']} localhost,3000,0", out: w)
-      while content = r.readline
-        break if content == "Press Ctrl-C to exit\n"
+      content = r.readline
+
+      loop do
+        content = r.readline
+        break if content.nil? || content == "Press Ctrl-C to exit\n"
       end
 
       at_exit do
