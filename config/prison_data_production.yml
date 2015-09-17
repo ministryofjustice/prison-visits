@@ -23,7 +23,7 @@ Stafford:
     sun:
     - 1400-1600
   slot_anomalies:
-    2014-10-13:
+    2015-10-13:
     - 1400-1600
 Belmarsh:
   nomis_id: BAI
