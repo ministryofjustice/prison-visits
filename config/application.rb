@@ -58,9 +58,13 @@ module PrisonVisits2
       set
     end
 
-    config.bank_holidays = JSON.parse(File.read(File.join(Rails.root, 'config', 'bank-holidays.json')))['england-and-wales']['events'].map do |event|
-                             Date.parse(event['date'])
-                           end
+    config.bank_holidays = \
+      JSON.parse(
+        File.read(
+          File.join(Rails.root, 'config', 'bank-holidays.json'))).
+            fetch('england-and-wales').
+            fetch('events').
+            map { |event| Date.parse(event['date']) }
 
     config.metrics_auth_key = ENV['METRICS_AUTH_KEY']
 
