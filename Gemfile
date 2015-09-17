@@ -25,7 +25,6 @@ gem 'virtus'
 gem 'sinatra'
 
 group :test do
-  gem 'rspec-rails'
   gem 'codeclimate-test-reporter'
   gem 'simplecov', '~> 0.7.1', require: false
   gem 'simplecov-rcov', require: false
@@ -33,7 +32,6 @@ group :test do
   gem 'rubyzip'
   gem 'selenium-webdriver'
   gem 'capybara'
-  gem 'parallel'
   gem 'rspec_junit_formatter'
   gem 'poltergeist'
   gem 'chromedriver-helper'
@@ -48,4 +46,6 @@ group :test, :development do
   gem 'pry-rails'
   gem 'rubocop'
   gem 'rubocop-rspec'
+  gem 'parallel'
+  gem 'rspec-rails'
 end
