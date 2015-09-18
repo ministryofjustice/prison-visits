@@ -1,7 +1,8 @@
 class SendgridApi
   extend SingleForwardable
 
-  def_single_delegators :new, :spam_reported?, :bounced?
+  def_single_delegators :new, :spam_reported?, :bounced?,
+    :smtp_alive?, :remove_from_bounce_list, :remove_from_spam_list
 
   def spam_reported?(email)
     return false unless can_access_sendgrid?
@@ -14,6 +15,31 @@ class SendgridApi
     return false unless can_access_sendgrid?
     bounces.retrieve(email: email).any?
   rescue JSON::ParserError, SendgridToolkit::APIError
+    false
+  end
+
+  def remove_from_bounce_list(email)
+    return false unless can_access_sendgrid?
+    bounces.delete(email: email)
+  rescue SendgridToolkit::EmailDoesNotExist
+    false
+  end
+
+  def remove_from_spam_list(email)
+    return false unless can_access_sendgrid?
+    spam_reports.delete(email: email)
+  rescue SendgridToolkit::EmailDoesNotExist
+    false
+  end
+
+  def smtp_alive?(host, port)
+    Net::SMTP.start(host, port) do |smtp|
+      smtp.enable_starttls_auto
+      smtp.ehlo(Socket.gethostname)
+      smtp.finish
+    end
+    true
+  rescue StandardError
     false
   end
 
