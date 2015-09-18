@@ -203,7 +203,7 @@ RSpec.describe SendgridApi do
         let(:body) { '{"message": "Email does not exist"}' }
 
         specify do
-          expect(subject.remove_from_bounce_list('test@example.com')).to be false
+          expect(subject.remove_from_bounce_list('test@example.com')).to be_falsey
         end
       end
 
@@ -268,7 +268,7 @@ RSpec.describe SendgridApi do
         let(:body) { '{"message": "Email does not exist"}' }
 
         specify do
-          expect(subject.remove_from_spam_list('test@example.com')).to be false
+          expect(subject.remove_from_spam_list('test@example.com')).to be_falsey
         end
       end
 
@@ -314,7 +314,7 @@ RSpec.describe SendgridApi do
 
     describe '.remove_from_bounce_list' do
       specify do
-        expect(subject.remove_from_bounce_list('test@example.com')).to be false
+        expect(subject.remove_from_bounce_list('test@example.com')).to be_falsey
       end
 
       it 'does not talk to sendgrid' do
@@ -325,7 +325,7 @@ RSpec.describe SendgridApi do
 
     describe '.remove_from_spam_list' do
       specify do
-        expect(subject.remove_from_spam_list('test@example.com')).to be false
+        expect(subject.remove_from_spam_list('test@example.com')).to be_falsey
       end
 
       it 'does not talk to sendgrid' do
