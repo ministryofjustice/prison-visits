@@ -78,7 +78,7 @@ RSpec.shared_examples 'a visitor' do
 
         context 'when it was marked as spam' do
           before do
-            allow(SendgridHelper).to receive(:spam_reported?).and_return(true)
+            allow(SendgridApi).to receive(:spam_reported?).and_return(true)
             subject.email = 'user@test.example.com'
             subject.validate
           end
@@ -92,7 +92,7 @@ RSpec.shared_examples 'a visitor' do
 
         context 'when it bounced' do
           before do
-            allow(SendgridHelper).to receive(:bounced?).and_return(true)
+            allow(SendgridApi).to receive(:bounced?).and_return(true)
             subject.email = 'user@test.example.com'
             subject.validate
           end

@@ -81,8 +81,8 @@ RSpec.describe EmailValidator do
     end
 
     it 'checks Sendgrid only once' do
-      expect(SendgridHelper).to receive(:spam_reported?).once.and_return(false)
-      expect(SendgridHelper).to receive(:bounced?).once.and_return(false)
+      expect(SendgridApi).to receive(:spam_reported?).once.and_return(false)
+      expect(SendgridApi).to receive(:bounced?).once.and_return(false)
 
       2.times do
         subject.valid?
@@ -110,7 +110,7 @@ RSpec.describe EmailValidator do
 
     context 'when spam is reported' do
       before do
-        allow(SendgridHelper).to receive(:spam_reported?).and_return(true)
+        allow(SendgridApi).to receive(:spam_reported?).and_return(true)
       end
 
       it { is_expected.to be_overrideable }
@@ -129,7 +129,7 @@ RSpec.describe EmailValidator do
 
     context 'when bounce is reported' do
       before do
-        allow(SendgridHelper).to receive(:bounced?).and_return(true)
+        allow(SendgridApi).to receive(:bounced?).and_return(true)
       end
 
       it { is_expected.to be_overrideable }

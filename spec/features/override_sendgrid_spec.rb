@@ -9,7 +9,7 @@ RSpec.feature "overriding Sendgrid" do
   end
 
   scenario 'overriding spam report' do
-    allow(SendgridHelper).to receive(:spam_reported?).and_return(true)
+    allow(SendgridApi).to receive(:spam_reported?).and_return(true)
 
     visit '/prisoner-details'
     enter_prisoner_information
@@ -31,7 +31,7 @@ RSpec.feature "overriding Sendgrid" do
   end
 
   scenario 'overriding bounce' do
-    allow(SendgridHelper).to receive(:bounced?).and_return(true)
+    allow(SendgridApi).to receive(:bounced?).and_return(true)
 
     visit '/prisoner-details'
     enter_prisoner_information
