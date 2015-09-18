@@ -17,11 +17,6 @@ Lint/ParenthesesAsGroupedExpression:
     - 'lib/tasks/static_pages.rake'
 
 # Offense count: 2
-Lint/ShadowingOuterLocalVariable:
-  Exclude:
-    - 'spec/support/matchers.rb'
-
-# Offense count: 2
 Lint/UnderscorePrefixedVariableName:
   Exclude:
     - 'spec/features/datepicker_spec.rb'
