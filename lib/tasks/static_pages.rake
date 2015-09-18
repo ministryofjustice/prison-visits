@@ -17,7 +17,7 @@ namespace :static_pages do
 
     pages.each do |route, output|
       puts "Generating #{output}..."
-      outpath = File.join ([Rails.root, 'public', output])
+      outpath = File.join([Rails.root, 'public', output])
       resp = app.get(route)
       if resp == 200
         File.delete(outpath) unless not File.exist?(outpath)

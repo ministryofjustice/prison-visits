@@ -11,11 +11,6 @@ Lint/HandleExceptions:
   Exclude:
     - 'lib/visitors_manipulator.rb'
 
-# Offense count: 1
-Lint/ParenthesesAsGroupedExpression:
-  Exclude:
-    - 'lib/tasks/static_pages.rake'
-
 # Offense count: 2
 Lint/UnderscorePrefixedVariableName:
   Exclude:
