@@ -12,11 +12,6 @@ Lint/HandleExceptions:
     - 'lib/visitors_manipulator.rb'
 
 # Offense count: 2
-Lint/UnderscorePrefixedVariableName:
-  Exclude:
-    - 'spec/features/datepicker_spec.rb'
-
-# Offense count: 2
 # Cop supports --auto-correct.
 Lint/UnusedMethodArgument:
   Exclude:

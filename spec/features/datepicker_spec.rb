@@ -43,23 +43,23 @@ RSpec.feature "visitor selects a date" do
     end
 
     scenario 'Booking a valid slot' do
-      _when = Time.now + 3.days
+      three_days_from_now = Time.now + 3.days
       begin
-        find(:css, _when.strftime("a.BookingCalendar-dateLink[data-date='%Y-%m-%d']")).click
+        find(:css, three_days_from_now.strftime("a.BookingCalendar-dateLink[data-date='%Y-%m-%d']")).click
         # Some dates are not bookable, ignore those.
-        find(:css, _when.strftime("#date-%Y-%m-%d.is-active"))
+        find(:css, three_days_from_now.strftime("#date-%Y-%m-%d.is-active"))
       rescue Capybara::ElementNotFound
-        _when += 1.day
-        retry unless _when > Time.now + 30.days
+        three_days_from_now += 1.day
+        retry unless three_days_from_now > Time.now + 30.days
       end
 
-      within(:css, _when.strftime("#date-%Y-%m-%d.is-active")) do
-        expect(page).to have_content(_when.strftime("%A %e %B"))
+      within(:css, three_days_from_now.strftime("#date-%Y-%m-%d.is-active")) do
+        expect(page).to have_content(three_days_from_now.strftime("%A %e %B"))
       end
 
       # For some reason, check() can't find the checkbox.
-      evaluate_script(_when.strftime("$('#slot-%Y-%m-%d-1330-1500').click()"))
-      evaluate_script(_when.strftime("$('#slot-%Y-%m-%d-1445-1545').click()"))
+      evaluate_script(three_days_from_now.strftime("$('#slot-%Y-%m-%d-1330-1500').click()"))
+      evaluate_script(three_days_from_now.strftime("$('#slot-%Y-%m-%d-1445-1545').click()"))
 
       click_button 'Continue'
       expect(page).to have_content('Check your request')
@@ -96,23 +96,23 @@ RSpec.feature "visitor selects a date" do
     end
 
     scenario 'Booking a valid slot' do
-      _when = Time.now + 3.days
+      three_days_from_now = Time.now + 3.days
       begin
-        find(:css, _when.strftime("a.BookingCalendar-dateLink[data-date='%Y-%m-%d']")).click
+        find(:css, three_days_from_now.strftime("a.BookingCalendar-dateLink[data-date='%Y-%m-%d']")).click
         # Some dates are not bookable, ignore those.
-        find(:css, _when.strftime("#date-%Y-%m-%d.is-active"))
+        find(:css, three_days_from_now.strftime("#date-%Y-%m-%d.is-active"))
       rescue Capybara::ElementNotFound
-        _when += 1.day
-        retry unless _when > Time.now + 30.days
+        three_days_from_now += 1.day
+        retry unless three_days_from_now > Time.now + 30.days
       end
 
-      within(:css, _when.strftime("#date-%Y-%m-%d.is-active")) do
-        expect(page).to have_content(_when.strftime("%A %e %B"))
+      within(:css, three_days_from_now.strftime("#date-%Y-%m-%d.is-active")) do
+        expect(page).to have_content(three_days_from_now.strftime("%A %e %B"))
       end
 
       # For some reason, check() can't find the checkbox.
-      evaluate_script(_when.strftime("$('#slot-%Y-%m-%d-1345-1545').click()"))
-      evaluate_script(_when.strftime("$('#slot-%Y-%m-%d-1345-1645').click()"))
+      evaluate_script(three_days_from_now.strftime("$('#slot-%Y-%m-%d-1345-1545').click()"))
+      evaluate_script(three_days_from_now.strftime("$('#slot-%Y-%m-%d-1345-1645').click()"))
 
       click_button 'Continue'
       expect(page).to have_content('Check your request')
