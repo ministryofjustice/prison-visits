@@ -3,8 +3,6 @@ class Numeric
     secs  = self.to_int
     mins  = secs / 60
     hours = mins / 60
-    days  = hours / 24
-
     duration = []
 
     if hours > 0

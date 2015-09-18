@@ -48,7 +48,7 @@ RSpec.feature "visitor selects a date" do
         find(:css, _when.strftime("a.BookingCalendar-dateLink[data-date='%Y-%m-%d']")).click
         # Some dates are not bookable, ignore those.
         find(:css, _when.strftime("#date-%Y-%m-%d.is-active"))
-      rescue Capybara::ElementNotFound => e
+      rescue Capybara::ElementNotFound
         _when += 1.day
         retry unless _when > Time.now + 30.days
       end
@@ -101,7 +101,7 @@ RSpec.feature "visitor selects a date" do
         find(:css, _when.strftime("a.BookingCalendar-dateLink[data-date='%Y-%m-%d']")).click
         # Some dates are not bookable, ignore those.
         find(:css, _when.strftime("#date-%Y-%m-%d.is-active"))
-      rescue Capybara::ElementNotFound => e
+      rescue Capybara::ElementNotFound
         _when += 1.day
         retry unless _when > Time.now + 30.days
       end
