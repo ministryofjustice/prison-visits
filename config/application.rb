@@ -51,9 +51,9 @@ module PrisonVisits2
     )
 
     config.prison_data = YAML.load_file(ENV['PRISON_DATA_FILE'] || File.join(Rails.root, 'config', 'prison_data_staging.yml')).with_indifferent_access
-    config.nomis_ids = config.prison_data.sort_by do |prison_name, prison_data|
+    config.nomis_ids = config.prison_data.sort_by do |prison_name, _prison_data|
       prison_name
-    end.inject(Set[]) do |set, (prison_name, prison_data)|
+    end.inject(Set[]) do |set, (_prison_name, prison_data)|
       set << prison_data['nomis_id'] if prison_data['enabled']
       set
     end

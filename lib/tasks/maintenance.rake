@@ -2,7 +2,7 @@ namespace :maintenance do
   task :sort_yaml do
     ['config/prison_data_production.yml', 'config/prison_data_staging.yml'].each do |filename|
       YAML.load_file(filename).tap do |yaml|
-        yaml.each_pair do |prison, data|
+        yaml.each_pair do |_prison, data|
           array = data['unbookable']
           if array
             array.sort!

@@ -43,7 +43,7 @@ RSpec.describe "Prison data" do
 
     context "enabled prisons" do
       let :subject do
-        production_prison_data.select do |k, v|
+        production_prison_data.select do |_k, v|
           v['enabled']
         end
       end
@@ -90,7 +90,7 @@ RSpec.describe "Prison data" do
 
       it "should contain slots which are 9 chars long for all prisons" do
         subject.values.each do |prison|
-          prison['slots'].each do |day, times|
+          prison['slots'].each do |_day, times|
             times.each do |time|
               expect(time).to match(/^[0-9-]{9}$/)
             end
