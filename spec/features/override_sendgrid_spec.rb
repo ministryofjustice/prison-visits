@@ -8,6 +8,9 @@ RSpec.feature "overriding Sendgrid" do
     ActionMailer::Base.deliveries.clear
   end
 
+  let(:expected_email_address) { 'test@maildrop.dsd.io' }
+  let(:irrelevant_response) { {'message' => 'success'} }
+
   scenario 'overriding spam report' do
     allow(SendgridApi).to receive(:spam_reported?).and_return(true)
 
@@ -25,6 +28,13 @@ RSpec.feature "overriding Sendgrid" do
     click_button 'Continue'
 
     expect(page).to have_content('Check your request')
+
+    expect(SendgridApi).to receive(:remove_from_spam_list).
+      with(expected_email_address).
+      and_return(irrelevant_response)
+
+    expect(SendgridApi).to_not receive(:remove_from_bounce_list)
+
     click_button 'Send request'
 
     expect(page).to have_content('Your request is being processed')
@@ -47,6 +57,13 @@ RSpec.feature "overriding Sendgrid" do
     click_button 'Continue'
 
     expect(page).to have_content('Check your request')
+
+    expect(SendgridApi).to receive(:remove_from_bounce_list).
+      with(expected_email_address).
+      and_return(irrelevant_response)
+
+    expect(SendgridApi).to_not receive(:remove_from_spam_list)
+
     click_button 'Send request'
 
     expect(page).to have_content('Your request is being processed')

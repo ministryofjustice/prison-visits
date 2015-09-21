@@ -29,13 +29,22 @@ class Visitor
     @email_overrideable
   end
 
+  def override_email_checks?
+    @override_email_checks
+  end
+
+  delegate :reset_bounce?, :reset_spam_report?, to: :email_validator
+
   private
 
   def validate_email
-    validator = EmailValidator.new(email, override_email_checks)
-    unless validator.valid?
-      errors.add :email, validator.message
-      @email_overrideable = validator.overrideable?
+    unless email_validator.valid?
+      errors.add :email, email_validator.message
+      @email_overrideable = email_validator.overrideable?
     end
+  end
+
+  def email_validator
+    @email_validator ||= EmailValidator.new(email, override_email_checks)
   end
 end

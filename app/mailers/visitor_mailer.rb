@@ -41,6 +41,8 @@ class VisitorMailer < ActionMailer::Base
     @visit = visit
     @token = token
 
+    perform_sendgrid_resets
+
     mail(from: sender,
          reply_to: prison_mailbox_email,
          to: recipient,
@@ -67,5 +69,21 @@ class VisitorMailer < ActionMailer::Base
 
   def confirmation_date
     Date.parse(@slot.date).strftime('%e %B %Y').gsub(/^ /,'')
+  end
+
+  def first_visitor
+    @visit.visitors.first
+  end
+
+  delegate :email, :reset_bounce?, :reset_spam_report?,
+    :override_email_checks?, to: :first_visitor
+
+  delegate :remove_from_bounce_list, :remove_from_spam_list,
+    to: :SendgridApi
+
+  def perform_sendgrid_resets
+    return unless override_email_checks?
+    remove_from_bounce_list(email) if reset_bounce?
+    remove_from_spam_list(email) if reset_spam_report?
   end
 end
