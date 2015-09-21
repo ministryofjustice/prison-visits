@@ -17,7 +17,7 @@ class LeaderboardReport
   end
 
   def query(year, fortnight, percentile)
-    VisitMetricsEntry.find_by_sql([%Q{
+    VisitMetricsEntry.find_by_sql(['
 WITH ranked_times AS (
   SELECT nomis_id, end_to_end_time, cume_dist() OVER (PARTITION BY nomis_id ORDER BY end_to_end_time)
   FROM visit_metrics_entries
@@ -28,7 +28,7 @@ SELECT nomis_id, min(end_to_end_time) as end_to_end_time, rank() OVER (ORDER BY 
 FROM ranked_times
 WHERE cume_dist >= ?
 GROUP BY nomis_id
-}, year, fortnight, percentile]).inject({}) do |h, row|
+', year, fortnight, percentile]).inject({}) do |h, row|
       h.merge(row.nomis_id => row)
     end
   end

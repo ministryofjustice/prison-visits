@@ -6,7 +6,7 @@ class FortnightlyPerformanceReport
   end
 
   def performance(percentile)
-    @model.find_by_sql [%Q{
+    @model.find_by_sql ["
 WITH percentiles AS (
   SELECT requested_at,
   EXTRACT(week FROM requested_at)::integer / 2 AS fortnight,
@@ -21,15 +21,15 @@ SELECT MIN(DATE_TRUNC('week', requested_at))::date AS x, MIN(end_to_end_time) AS
 FROM percentiles
 WHERE cume_dist >= ?
 GROUP BY fortnight
-ORDER BY x}, @nomis_id, @year, percentile]
+ORDER BY x", @nomis_id, @year, percentile]
   end
 
   def volume
-    @model.find_by_sql [%Q{
+    @model.find_by_sql ["
 SELECT MIN(DATE_TRUNC('week', requested_at))::date AS x, COUNT(*) AS y FROM visit_metrics_entries
 WHERE nomis_id = ? AND EXTRACT(isoyear FROM requested_at) = ?
 GROUP BY EXTRACT(week FROM requested_at)::integer / 2
 ORDER BY x
-}, @nomis_id, @year]
+", @nomis_id, @year]
   end
 end

@@ -2,7 +2,7 @@ require 'csv'
 
 class WeeklyConfirmationsReport
   attr_reader :total
-  
+
   def initialize(model, year, start_of_year, prison_labeling_function)
     @model = model
     @year = year
@@ -25,14 +25,14 @@ class WeeklyConfirmationsReport
       h[k] = Array.new(52, 0)
     }
 
-    @dataset = @model.find_by_sql([%Q{
+    @dataset = @model.find_by_sql(["
 SELECT nomis_id,
        EXTRACT(week FROM processed_at) AS weekno,
        COUNT(*)
 FROM visit_metrics_entries
 WHERE processed_at IS NOT NULL AND EXTRACT(isoyear FROM processed_at) = ?
 AND outcome = 'confirmed'
-GROUP BY nomis_id, EXTRACT(week FROM processed_at) ORDER BY nomis_id, weekno}, @year])
+GROUP BY nomis_id, EXTRACT(week FROM processed_at) ORDER BY nomis_id, weekno", @year])
     .inject(hash_with_default) do |h, row|
 
       weekno = row['weekno'].to_i
@@ -46,12 +46,12 @@ GROUP BY nomis_id, EXTRACT(week FROM processed_at) ORDER BY nomis_id, weekno}, @
       h
     end
 
-    @total = @model.find_by_sql([%Q{
+    @total = @model.find_by_sql(["
 SELECT EXTRACT(week FROM processed_at) AS weekno, COUNT(*)
 FROM visit_metrics_entries
 WHERE processed_at IS NOT NULL AND EXTRACT(isoyear FROM processed_at) = ?
 AND outcome = 'confirmed'
-GROUP BY weekno ORDER BY weekno}, @year]).inject(Array.new(52, 0)) do |arr, row|
+GROUP BY weekno ORDER BY weekno", @year]).inject(Array.new(52, 0)) do |arr, row|
       arr[row['weekno'].to_i] = row['count'].to_i
       arr
     end
