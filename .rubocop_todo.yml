@@ -33,12 +33,6 @@ Lint/UnusedMethodArgument:
     - 'lib/leaderboard_report.rb'
     - 'lib/rag_status_report.rb'
 
-# Offense count: 5
-Lint/UselessAssignment:
-  Exclude:
-    - 'config/initializers/numeric.rb'
-    - 'spec/features/datepicker_spec.rb'
-
 # Offense count: 1
 Lint/Void:
   Exclude:
