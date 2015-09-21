@@ -76,7 +76,7 @@ RSpec.describe PrisonDay do
 
     context 'on a day registered as available for visitation for a given prison' do
       specify do
-        Utilities::DAYS.except(:thursday).each do |day_name, date|
+        Utilities::DAYS.except(:thursday).each do |_day_name, date|
           described_class.new(date, prison_with_visits_except_thursday).tap do |prison_day|
             expect(prison_day.visiting_day?).to be true
           end

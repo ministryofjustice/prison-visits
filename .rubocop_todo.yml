@@ -16,16 +16,6 @@ Lint/UnderscorePrefixedVariableName:
   Exclude:
     - 'spec/features/datepicker_spec.rb'
 
-# Offense count: 7
-# Cop supports --auto-correct.
-Lint/UnusedBlockArgument:
-  Exclude:
-    - 'config/application.rb'
-    - 'lib/tasks/browserstack.rake'
-    - 'lib/tasks/maintenance.rake'
-    - 'spec/configuration/prison_data_spec.rb'
-    - 'spec/lib/prison_day_spec.rb'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 Lint/UnusedMethodArgument:

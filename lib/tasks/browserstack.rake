@@ -5,7 +5,7 @@ namespace :browserstack do
     end
   end
 
-  task :run, :browser do |t, args|
+  task :run, :browser do |_t, args|
     begin
       unless ENV['BS_USERNAME'] && ENV['BS_PASSWORD']
         puts "The BS_USERNAME and BS_PASSWORD environment variables must be set prior to running this task."
