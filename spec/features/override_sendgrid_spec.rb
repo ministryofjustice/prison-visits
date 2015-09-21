@@ -68,4 +68,24 @@ RSpec.feature "overriding Sendgrid" do
 
     expect(page).to have_content('Your request is being processed')
   end
+
+  scenario 'when no overrides are present' do
+    visit '/prisoner-details'
+    enter_prisoner_information
+    enter_visitor_information
+    click_button 'Continue'
+
+    expect(page).to have_content('When do you want to visit?')
+    select_a_slot
+    click_button 'Continue'
+
+    expect(page).to have_content('Check your request')
+
+    expect(SendgridApi).to_not receive(:remove_from_bounce_list)
+    expect(SendgridApi).to_not receive(:remove_from_spam_list)
+
+    click_button 'Send request'
+
+    expect(page).to have_content('Your request is being processed')
+  end
 end
