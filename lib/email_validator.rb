@@ -14,6 +14,7 @@ class EmailValidator < ActiveModel::Validator
 
   private
 
+  # rubocop:disable Metrics/CyclomaticComplexity
   def error_key(record)
     parsed = Mail::Address.new(record.email)
     return :domain_dot if domain_dot_error?(parsed.domain)
