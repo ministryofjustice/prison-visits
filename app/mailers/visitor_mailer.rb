@@ -21,21 +21,30 @@ class VisitorMailer < ActionMailer::Base
     @confirmation = confirmation
     @token = token
 
-    mail(from: sender, reply_to: prison_mailbox_email, to: recipient, subject: "Visit confirmed: your visit for #{Date.parse(@slot.date).strftime('%e %B %Y').gsub(/^ /,'')} has been confirmed")
+    mail(from: sender,
+         reply_to: prison_mailbox_email,
+         to: recipient,
+         subject: "Visit confirmed: your visit for #{confirmation_date} has been confirmed")
   end
 
   def booking_rejection_email(visit, confirmation)
     @visit = visit
     @confirmation = confirmation
 
-    mail(from: sender, reply_to: prison_mailbox_email, to: recipient, subject: "Visit cannot take place: your visit for #{first_date.strftime('%e %B %Y').gsub(/^ /,'')} could not be booked")
+    mail(from: sender,
+         reply_to: prison_mailbox_email,
+         to: recipient,
+         subject: "Visit cannot take place: your visit for #{rejection_date} could not be booked")
   end
 
   def booking_receipt_email(visit, token)
     @visit = visit
     @token = token
 
-    mail(from: sender, reply_to: prison_mailbox_email, to: recipient, subject: "Not booked yet: we've received your visit request for #{first_date.strftime('%e %B %Y').gsub(/^ /,'')}")
+    mail(from: sender,
+         reply_to: prison_mailbox_email,
+         to: recipient,
+         subject: "Not booked yet: we've received your visit request for #{receipt_date}")
   end
 
   def sender
@@ -48,5 +57,15 @@ class VisitorMailer < ActionMailer::Base
 
   def first_date
     Date.parse(@visit.slots.first.date)
+  end
+
+  def receipt_date
+    first_date.strftime('%e %B %Y').gsub(/^ /,'')
+  end
+
+  alias_method :rejection_date, :receipt_date
+
+  def confirmation_date
+    Date.parse(@slot.date).strftime('%e %B %Y').gsub(/^ /,'')
   end
 end
