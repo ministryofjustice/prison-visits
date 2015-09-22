@@ -84,4 +84,3 @@ module MailerPreviewCommon
     Confirmation.new(visitor_banned: true, banned_visitors: ['Mark;Jones'])
   end
 end
-
