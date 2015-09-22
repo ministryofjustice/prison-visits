@@ -18,7 +18,7 @@ class DetailedMetrics
   def time_since_last_unprocessed
     @scoped_model.waiting.minimum('EXTRACT(EPOCH FROM NOW() - requested_at)').to_i
   end
-  
+
   def week_hour_breakdown(column)
     column.define_singleton_method(:quoted_id) do
       column

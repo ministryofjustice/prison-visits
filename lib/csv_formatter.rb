@@ -10,7 +10,7 @@ class CSVFormatter
     CSV.generate(headers: true) do |csv|
       csv << HEADER
       @nomis_ids.each do |nomis_id|
-        csv << 
+        csv <<
           [
            @prison_labeling_function.call(nomis_id),
            dataset.total_visits[nomis_id],
