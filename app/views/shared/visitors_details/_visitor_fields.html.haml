@@ -50,6 +50,7 @@
         - if f.object.email_overrideable?
           %label.validation-message
             = check_box_tag 'visit[visitor][][override_email_checks]', 1, false
+            = hidden_field_tag 'visit[visitor][][email_override]', f.object.email_override
             Tick this box to confirm you’d like us to try sending messages to you again.
       = email_field_tag 'visit[visitor][][email]', f.object.email, :'aria-describedby' => "emailHint"
 
