@@ -14,6 +14,19 @@ Metrics/AbcSize:
 # Configuration parameters: AllowURI, URISchemes.
 Metrics/LineLength:
   Exclude:
+    - 'app/controllers/prisoner_details_controller.rb'
+    - 'app/controllers/visit_controller.rb'
+    - 'app/controllers/webhooks_controller.rb'
+    - 'app/helpers/application_helper.rb'
+    - 'app/helpers/visit_helper.rb'
+    - 'app/mailers/feedback_mailer.rb'
+    - 'app/mailers/prison_mailer.rb'
+    - 'app/mailers/visitor_mailer.rb'
+    - 'app/models/concerns/person.rb'
+    - 'app/models/prisoner.rb'
+    - 'app/models/slot.rb'
+    - 'app/models/visit_metrics_entry.rb'
+    - 'app/models/visit.rb'
     - 'config/application.rb'
     - 'config/environments/development.rb'
     - 'config/environments/production.rb'
