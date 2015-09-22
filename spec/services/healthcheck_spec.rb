@@ -161,7 +161,7 @@ RSpec.describe Healthcheck do
       before do
         allow(ActiveRecord::Base.connection).
           to receive(:active?).
-          and_raise(Exception)
+          and_raise(StandardError)
       end
 
       it_behaves_like 'everything is not OK'

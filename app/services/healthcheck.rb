@@ -45,7 +45,7 @@ class Healthcheck
       oldest: oldest(q),
       count: q.count
     }
-  rescue Exception
+  rescue StandardError
     { description: description, ok: false, oldest: nil, count: 0 }
   end
 
@@ -60,7 +60,7 @@ class Healthcheck
 
   def database_active?
     ActiveRecord::Base.connection.active?
-  rescue Exception
+  rescue StandardError
     false
   end
 end
