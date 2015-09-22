@@ -11,7 +11,7 @@ class RagStatusReport
   end
 
   def query(year, fortnight, percentile)
-    @rag_count ||= rag_count(VisitMetricsEntry.find_by_sql([%Q{
+    @rag_count ||= rag_count(VisitMetricsEntry.find_by_sql(['
       WITH ranked_times AS (
         SELECT nomis_id, end_to_end_time, cume_dist()
         OVER (PARTITION BY nomis_id ORDER BY end_to_end_time)
@@ -22,7 +22,7 @@ class RagStatusReport
       SELECT nomis_id, min(end_to_end_time) as end_to_end_time
       FROM ranked_times
       WHERE cume_dist >= ?
-      GROUP BY nomis_id}, year, fortnight, percentile]))
+      GROUP BY nomis_id', year, fortnight, percentile]))
   end
 
   def rag_count(records)

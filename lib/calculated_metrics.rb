@@ -33,7 +33,7 @@ class CalculatedMetrics
     [@total_visits, @waiting_visits, @overdue_visits, @confirmed_visits, @rejected_visits, @rejected_for_reason].each do |hash|
       hash.default = 0
     end
-    
+
     self
   end
 
@@ -46,7 +46,7 @@ class CalculatedMetrics
   end
 
   private
-  def calculate_percentiles(column, percentile) 
+  def calculate_percentiles(column, percentile)
     # This is a truly horrible hack. It lets us get past AR built-in value quoting, by pretending to be another object.
     # It is needed so that we can parametrize two queries below by column, without resorting to putting the query together
     # by hand. Don't call this method from outside this class, please.
@@ -59,7 +59,7 @@ class CalculatedMetrics
   end
 
   def calculate_percentiles_with_date_range(column, percentile)
-    @model.find_by_sql [%Q{
+    @model.find_by_sql ['
 WITH percentiles AS (SELECT nomis_id, ?, cume_dist() OVER (PARTITION BY nomis_id ORDER BY ?) AS percentile
                      FROM visit_metrics_entries WHERE ? IS NOT NULL
                      AND requested_at > ?::date
@@ -67,17 +67,17 @@ WITH percentiles AS (SELECT nomis_id, ?, cume_dist() OVER (PARTITION BY nomis_id
      top_percentiles AS (SELECT nomis_id, ?, rank() OVER (PARTITION BY nomis_id ORDER BY ?)
                      FROM percentiles WHERE percentile >= ?)
 SELECT nomis_id, ? FROM top_percentiles WHERE rank = 1
-}, column, column, column, @date_range.first, @date_range.last, column, column, percentile, column]
+', column, column, column, @date_range.first, @date_range.last, column, column, percentile, column]
   end
 
   def calculate_percentiles_without_date_range(column, percentile)
-    @model.find_by_sql [%Q{
+    @model.find_by_sql ['
 WITH percentiles AS (SELECT nomis_id, ?, cume_dist() OVER (PARTITION BY nomis_id ORDER BY ?) AS percentile
                      FROM visit_metrics_entries WHERE ? IS NOT NULL),
      top_percentiles AS (SELECT nomis_id, ?, rank() OVER (PARTITION BY nomis_id ORDER BY ?)
                      FROM percentiles WHERE percentile >= ?)
 SELECT nomis_id, ? FROM top_percentiles WHERE rank = 1
-}, column, column, column, column, column, percentile, column]
+', column, column, column, column, column, percentile, column]
   end
 end
 
