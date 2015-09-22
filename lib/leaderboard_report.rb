@@ -60,7 +60,7 @@ GROUP BY nomis_id
       @results = results
     end
 
-    def as_json(options={})
+    def as_json(*)
       {
         items: @results
       }
