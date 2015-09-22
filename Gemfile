@@ -39,6 +39,7 @@ group :test do
   gem 'rspec-html-matchers'
   gem 'launchy'
   gem 'webmock'
+  gem 'fuubar'
 end
 
 group :test, :development do
