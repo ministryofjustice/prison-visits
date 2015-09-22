@@ -8,9 +8,7 @@ module VisitHelper
   end
 
   def current_slots
-    visit.slots.map do |slot|
-      slot.date + '-' + slot.times
-    end
+    visit.slots.map { |slot| slot.date + '-' + slot.times }
   end
 
   def prison_name
@@ -55,12 +53,12 @@ module VisitHelper
 
   def prison_url(visit)
     data = prison_data(visit)
-    slug = data['finder_slug'] ? data['finder_slug'] : visit.prisoner.prison_name.parameterize
+    slug = data.fetch('finder_slug') { visit.prisoner.prison_name.parameterize }
     ['http://www.justice.gov.uk/contacts/prison-finder', slug].join('/')
   end
 
   def prison_link(source=visit, link_text=nil)
-    link_text = link_text ? link_text : "#{source.prisoner.prison_name.capitalize} prison"
+    link_text ||= "#{source.prisoner.prison_name.capitalize} prison"
     link_to link_text, prison_url(visit), :rel => 'external'
   end
 
@@ -89,7 +87,8 @@ module VisitHelper
   end
 
   def prison_specific_id_requirements(prison_name)
-    nomis_id = Rails.configuration.prison_data.fetch(prison_name).fetch(:nomis_id)
+    nomis_id =
+      Rails.configuration.prison_data.fetch(prison_name).fetch(:nomis_id)
     template_path = Rails.root.join('app', 'views', 'content')
     candidates = [
       "_id_#{nomis_id}.md",
