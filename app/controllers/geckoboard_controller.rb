@@ -2,7 +2,7 @@ class GeckoboardController < ApplicationController
   permit_only_from_prisons_or_with_key
 
   def leaderboard
-    report = LeaderboardReport.new(0.95, ApplicationHelper.instance_method(:prison_name_for_id))
+    report = leaderboard_report
     if params[:order] == 'bottom'
       render json: report.bottom(10)
     else
@@ -23,5 +23,14 @@ class GeckoboardController < ApplicationController
              }
             ]
     }
+  end
+
+  private
+
+  def leaderboard_report
+    LeaderboardReport.new(
+      0.95,
+      ApplicationHelper.instance_method(:prison_name_for_id)
+    )
   end
 end
