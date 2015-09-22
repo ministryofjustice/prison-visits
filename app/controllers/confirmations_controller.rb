@@ -27,7 +27,7 @@ class ConfirmationsController < ApplicationController
 
   def create
     logstasher_add_visit_id(booked_visit.visit_id)
-    unless params[:confirmation] && (@confirmation = Confirmation.new(confirmation_params)).valid?
+    unless set_confirmation_params
       return render :new
     end
 
@@ -75,6 +75,16 @@ class ConfirmationsController < ApplicationController
       legacy_data_fixes(encryptor.decrypt_and_verify(params[:state]))
   end
 
+  private
+
+  def set_confirmation_params
+    params[:confirmation] && (set_new_confirmation_params).valid?
+  end
+
+  def set_new_confirmation_params
+    @confirmation = Confirmation.new(confirmation_params)
+  end
+
   def confirmation_params
     params.require(:confirmation).permit(
       :outcome, :message, :vo_number, :no_vo, :no_pvo, :renew_vo,
@@ -109,8 +119,6 @@ class ConfirmationsController < ApplicationController
   end
 
   def attach_vo_number(visit, confirmation)
-    visit.dup.tap do |v|
-      v.vo_number = confirmation.vo_number
-    end
+    visit.dup.tap { |v| v.vo_number = confirmation.vo_number }
   end
 end
