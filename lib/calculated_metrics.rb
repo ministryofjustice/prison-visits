@@ -80,4 +80,3 @@ SELECT nomis_id, ? FROM top_percentiles WHERE rank = 1
 ', column, column, column, column, column, percentile, column]
   end
 end
-
