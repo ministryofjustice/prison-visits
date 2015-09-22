@@ -25,7 +25,10 @@ module ApplicationHelper
 
   def display_slot_and_duration(times, glue = ', ')
     from, to = times.split('-')
-    [format_time_str(from).strip, (time_from_str(to) - time_from_str(from)).duration].join(glue)
+    [
+      format_time_str(from).strip,
+      (time_from_str(to)-time_from_str(from)).duration
+    ].join(glue)
   end
 
   def format_time_str(time)
@@ -53,13 +56,11 @@ module ApplicationHelper
   end
 
   def prison_name_for_id(nomis_id)
-    @nomis_id_to_prison ||= Rails.configuration.prison_data.inject({}) do |h, (prison_name, prison_data)|
-      if prison_data['enabled']
-        h.update(prison_data['nomis_id'] => prison_name)
-      else
-        h
-      end
-    end
+    @nomis_id_to_prison ||= Hash[
+      Rails.configuration.prison_data.
+        select { |_, data| data['enabled'] }.
+        map { |name, data| [data['nomis_id'], name] }
+    ]
     @nomis_id_to_prison[nomis_id]
   end
 
