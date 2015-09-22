@@ -14,7 +14,6 @@ Metrics/AbcSize:
 # Configuration parameters: AllowURI, URISchemes.
 Metrics/LineLength:
   Exclude:
-    - 'app/controllers/webhooks_controller.rb'
     - 'app/helpers/application_helper.rb'
     - 'app/helpers/visit_helper.rb'
     - 'app/mailers/feedback_mailer.rb'
