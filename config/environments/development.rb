@@ -1,7 +1,7 @@
 PrisonVisits2::Application.configure do
   config.action_mailer.smtp_settings = {
     user_name: ENV['SMTP_USERNAME'],
-    password: ENV['SMTP_PASSWORD'],
+    password: ENV['SMTP_PASSWORD']
   }
   config.cache_classes = false
   config.eager_load = false

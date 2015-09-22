@@ -30,9 +30,9 @@ RSpec.describe VisitHelper, type: :helper do
             thu: ['1400-1600'],
             sat:[
               '0930-1130',
-              '1400-1600',
+              '1400-1600'
             ],
-            sun: ['1400-1600'],
+            sun: ['1400-1600']
         } }
       expect(helper.visiting_slots).to eq({
           :mon => [["1400", "1600"]],
@@ -41,9 +41,9 @@ RSpec.describe VisitHelper, type: :helper do
           :thu => [["1400", "1600"]],
           :sat => [
             ["0930", "1130"],
-            ["1400", "1600"],
+            ["1400", "1600"]
           ],
-          :sun => [["1400", "1600"]],
+          :sun => [["1400", "1600"]]
         })
     end
 

@@ -17,7 +17,7 @@ RSpec.describe VisitorMailer do
         to: 'test@example.com',
         text: "some text",
         charsets: {to: "UTF-8", html: "utf-8", subject: "UTF-8", from: "UTF-8", text: "utf-8"}.to_json,
-        subject: "important email",
+        subject: "important email"
     })
   end
 

@@ -37,7 +37,7 @@ GROUP BY nomis_id
     this_period.inject([]) do |acc, (nomis_id, row)|
       record = {
         label: @prison_labeling_function.call(nomis_id),
-        value: row.end_to_end_time / (3600.0 * 24),
+        value: row.end_to_end_time / (3600.0 * 24)
       }
       rank = prev_period[nomis_id].try(:rank)
       if rank
