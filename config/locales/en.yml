@@ -32,3 +32,7 @@ en:
         Check your spam folder too
       bounced: >
         needs to be checked as messages have been returned in the past
+  controllers:
+    shared:
+      ensure_visit_integrity: You need to complete missing information to start or continue your visit request
+      session_timed_out: Your session timed out because no information was entered for more than 20 minutes.

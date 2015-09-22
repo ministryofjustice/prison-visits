@@ -20,7 +20,8 @@ class ApplicationController < ActionController::Base
   end
 
   def reject_untrusted_ips!
-    unless Rails.configuration.permitted_ips_for_confirmations.include?(request.remote_ip)
+    unless Rails.configuration.permitted_ips_for_confirmations.
+      include?(request.remote_ip)
       reject!
     end
   end
@@ -74,9 +75,12 @@ class ApplicationController < ActionController::Base
   end
 
   def ensure_visit_integrity
-    unless visit && visit.prisoner && visit.prisoner.prison_name.present?
-      redirect_to edit_prisoner_details_path,
-        notice: 'You need to complete missing information to start or continue your visit request'
+    unless visit && visit.prisoner && visit.prison_name.present?
+      flash[:notice] = I18n.t(
+        :ensure_visit_integrity,
+        scope: 'controllers.shared'
+      )
+      redirect_to edit_prisoner_details_path
     end
   end
 
@@ -89,11 +93,11 @@ class ApplicationController < ActionController::Base
     flash[type] = I18n.t(full_key, options)
   end
 
-  def notice(*partial_key, **options)
+  def set_notice(*partial_key, **options)
     i18n_flash :notice, partial_key, options
   end
 
-  def error(*partial_key, **options)
+  def set_error(*partial_key, **options)
     i18n_flash :error, partial_key, options
   end
 end

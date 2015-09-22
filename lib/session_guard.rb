@@ -2,7 +2,8 @@ module SessionGuard
   module Shared
     def check_if_session_timed_out
       unless visit
-        redirect_to(edit_prisoner_details_path, notice: 'Your session timed out because no information was entered for more than 20 minutes.')
+        flash[:notice] = I18n.t(:session_timed_out, scope: 'controllers.shared')
+        redirect_to edit_prisoner_details_path
         return
       end
       verify_authenticity_token
