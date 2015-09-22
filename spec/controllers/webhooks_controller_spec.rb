@@ -52,7 +52,6 @@ RSpec.describe WebhooksController, type: :controller do
 
   def bad_encoding(email)
     email.merge(charsets: { from: 'utf-8', to: 'utf-8', subject: 'utf-8', text: 'unicode-1-1-utf-7' }.to_json)
-
   end
 
   before :each do
@@ -87,7 +86,7 @@ RSpec.describe WebhooksController, type: :controller do
     end
 
     after :each do
-      expect(ActionMailer::Base.deliveries).to eq([])
+      expect(ActionMailer::Base.deliveries).to be_empty
     end
 
     context "on bad encoding" do
@@ -122,13 +121,13 @@ RSpec.describe WebhooksController, type: :controller do
   end
 
   context "when an unauthenticated webhook comes in" do
-    before :each do
+    before do
       expect(controller).to receive(:authorized?).and_return(false)
     end
 
-    it "returns a 403 unauthorized status" do
+    specify do
       post :email, authorized(email_from_prison)
-      expect(response.status).to eq(403)
+      expect(response).to have_http_status(:forbidden)
     end
   end
 end

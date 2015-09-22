@@ -1,48 +1,67 @@
 class WebhooksController < ApplicationController
+  CONDITIONS_PIPELINE = [
+    :handle_unauthorized!,
+    :handle_unknown_recipient!,
+    :handle_blacklisted!,
+    :handle_prison_email!,
+    :handle_visitor_email!
+  ]
+
+  BLACKLISTED_SENDERS = %w(postmaster sendmaster no-reply noreply)
+
   def email
-    if authorized?
-      p = ParsedEmail.parse(email_params)
+    handle_conditions { return if performed? }
+  rescue ParsedEmail::ParseError, ArgumentError
+    render text: "Discarded."
+  end
 
-      unless p.to.local == 'no-reply'
-        STATSD_CLIENT.increment('pvb.app.email.unknown_recipient')
-        render text: 'Unknown recipient'
-        return
-      end
+  private
 
-      blacklist = %w(postmaster sendmaster no-reply noreply)
-
-      if blacklist.include? p.from.local.downcase
-        logger.error "Blacklisted sender detected. Skipping message.\n #{p.inspect}"
-        render text: 'Sender blacklisted'
-        return
-      end
-
-      case p.source
-      when :prison
-        begin
-          STATSD_CLIENT.increment('pvb.app.email.autorespond_to_prison')
-          PrisonMailer.autorespond(p).deliver_later
-        rescue StandardError => e
-          logger.error "Issue with e-mail detected ( PrisonMailer ): #{p.inspect}\nexception: #{e}"
-          raise
-        end
-      when :visitor
-        begin
-          STATSD_CLIENT.increment('pvb.app.email.autorespon_to_visitor')
-          VisitorMailer.autorespond(p).deliver_later
-        rescue StandardError => e
-          logger.error "Issue with e-mail detected ( VisitorMailer ): #{p.inspect}\nexception: #{e}"
-          raise
-        end
-      end
-
-      render text: "Accepted."
-    else
+  def handle_unauthorized!
+    unless authorized?
       STATSD_CLIENT.increment('pvb.app.email.unauthorized')
       render text: "Unauthorized.", status: 403
     end
-  rescue ParsedEmail::ParseError, ArgumentError
-    render text: "Discarded."
+  end
+
+  def handle_unknown_recipient!
+    unless parsed_email.to.local == 'no-reply'
+      STATSD_CLIENT.increment('pvb.app.email.unknown_recipient')
+      render text: 'Unknown recipient'
+    end
+  end
+
+  def handle_blacklisted!
+    if BLACKLISTED_SENDERS.include? parsed_email.from.local.downcase
+      logger.error "Blacklisted sender detected. Skipping message.\n #{parsed_email.inspect}"
+      render text: 'Sender blacklisted'
+    end
+  end
+
+  def handle_prison_email!
+    if parsed_email.source == :prison
+      STATSD_CLIENT.increment('pvb.app.email.autorespond_to_prison')
+      PrisonMailer.autorespond(parsed_email).deliver_later
+      render text: "Accepted."
+    end
+  rescue StandardError => e
+    logger.error "Issue with e-mail detected ( PrisonMailer ): #{parsed_email.inspect}\nexception: #{e}"
+    raise
+  end
+
+  def handle_visitor_email!
+    if parsed_email.source == :visitor
+      STATSD_CLIENT.increment('pvb.app.email.autorespon_to_visitor')
+      VisitorMailer.autorespond(parsed_email).deliver_later
+      render text: "Accepted."
+    end
+  rescue StandardError => e
+    logger.error "Issue with e-mail detected ( VisitorMailer ): #{parsed_email.inspect}\nexception: #{e}"
+    raise
+  end
+
+  def parsed_email
+    @parsed_email ||= ParsedEmail.parse(email_params)
   end
 
   def email_params
@@ -50,6 +69,10 @@ class WebhooksController < ApplicationController
   end
 
   def authorized?
-    !params[:auth].empty? && params[:auth].secure_compare(ENV['WEBHOOK_AUTH_KEY'])
+    params[:auth].present? && params[:auth].secure_compare(ENV['WEBHOOK_AUTH_KEY'])
+  end
+
+  def handle_conditions(&_return_if_performed)
+    CONDITIONS_PIPELINE.each { |condition| send(condition) && yield }
   end
 end
