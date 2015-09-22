@@ -14,7 +14,6 @@ Metrics/AbcSize:
 # Configuration parameters: AllowURI, URISchemes.
 Metrics/LineLength:
   Exclude:
-    - 'app/controllers/prisoner_details_controller.rb'
     - 'app/controllers/visit_controller.rb'
     - 'app/controllers/webhooks_controller.rb'
     - 'app/helpers/application_helper.rb'
