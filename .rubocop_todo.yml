@@ -14,7 +14,6 @@ Metrics/AbcSize:
 # Configuration parameters: AllowURI, URISchemes.
 Metrics/LineLength:
   Exclude:
-    - 'app/models/slot.rb'
     - 'app/models/visit_metrics_entry.rb'
     - 'app/models/visit.rb'
     - 'config/application.rb'
