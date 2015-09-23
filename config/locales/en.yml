@@ -36,8 +36,17 @@ en:
     shared:
       ensure_visit_integrity: You need to complete missing information to start or continue your visit request
       session_timed_out: Your session timed out because no information was entered for more than 20 minutes.
+      max_visitors: "You may only have a maximum of #{Visit::MAX_VISITORS} visitors"
     visit:
       update: "You need to confirm that you want to cancel this visit."
   feedback_mailer:
     new_feedback:
       subject: "PVB feedback: %{referrer}"
+  prison_mailer:
+    booking_request_email:
+      subject: "Visit request for %{full_name} on %{date}"
+    booking_receipt_email:
+      subject_confirmation: "COPY of booking confirmation for %{full_name}"
+      subject_rejection: "COPY of booking rejection for %{full_name}"
+    booking_cancellation_receipt_email:
+      subject: "CANCELLED: %{full_name} on %{date}"

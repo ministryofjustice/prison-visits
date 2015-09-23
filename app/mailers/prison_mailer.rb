@@ -28,7 +28,15 @@ class PrisonMailer < ActionMailer::Base
     user = visit.visitors.find(&:email).email
     @token = token
 
-    mail(from: sender, reply_to: user, to: recipient, subject: "Visit request for #{@visit.prisoner.full_name} on #{Date.parse(@visit.slots.first.date).strftime('%A %e %B')}")
+    mail(
+      from: sender,
+      reply_to: user,
+      to: recipient,
+      subject: default_i18n_subject(
+        full_name: @visit.prisoner.full_name,
+        date: Date.parse(@visit.slots.first.date).strftime('%A %e %B')
+      )
+    )
   end
 
   def booking_receipt_email(visit, confirmation)
@@ -37,11 +45,27 @@ class PrisonMailer < ActionMailer::Base
 
     if confirmation.slot_selected?
       @slot = visit.slots[confirmation.slot]
-      mail(from: sender, to: recipient, subject: "COPY of booking confirmation for #{@visit.prisoner.full_name}",
-           template_name: "booking_confirmation_email")
+      mail(
+        from: sender,
+        to: recipient,
+        subject: I18n.t(
+          :subject_confirmation,
+          scope: 'prison_mailer.booking_receipt_email',
+          full_name: @visit.prisoner.full_name
+        ),
+        template_name: "booking_confirmation_email"
+      )
     else
-      mail(from: sender, to: recipient, subject: "COPY of booking rejection for #{@visit.prisoner.full_name}",
-           template_name: "booking_rejection_email")
+      mail(
+        from: sender,
+        to: recipient,
+        subject: I18n.t(
+          :subject_rejection,
+          scope: 'prison_mailer.booking_receipt_email',
+          full_name: @visit.prisoner.full_name
+        ),
+        template_name: "booking_rejection_email"
+      )
     end
   end
 
@@ -49,7 +73,14 @@ class PrisonMailer < ActionMailer::Base
     @visit = visit
 
     headers('X-Priority' => '1 (Highest)', 'X-MSMail-Priority' => 'High')
-    mail(from: sender, to: recipient, subject: "CANCELLED: #{@visit.prisoner.full_name} on #{Date.parse(@visit.slots.first.date).strftime('%A %e %B')}")
+    mail(
+      from: sender,
+      to: recipient,
+      subject: default_i18n_subject(
+        full_name: @visit.prisoner.full_name,
+        date: Date.parse(@visit.slots.first.date).strftime('%A %e %B')
+      )
+    )
   end
 
   def sender
@@ -69,7 +100,8 @@ class PrisonMailer < ActionMailer::Base
   end
 
   def smoke_test?
-    visit && MailUtilities::SmokeTestEmailCheck.new(visitors_email_address).matches?
+    visit && MailUtilities::SmokeTestEmailCheck.new(visitors_email_address).
+      matches?
   end
 
   def visitors_email_address
