@@ -14,11 +14,6 @@ Metrics/AbcSize:
 # Configuration parameters: AllowURI, URISchemes.
 Metrics/LineLength:
   Exclude:
-    - 'config/initializers/backtrace_silencers.rb'
-    - 'config/initializers/encryptor.rb'
-    - 'config/initializers/wrap_parameters.rb'
-    - 'config/routes.rb'
-    - 'lib/calculated_metrics.rb'
     - 'lib/csv_formatter.rb'
     - 'lib/detailed_metrics.rb'
     - 'lib/detailed_windowed_metrics.rb'
@@ -38,7 +33,7 @@ Metrics/LineLength:
     - 'test/mailers/previews/visitor_mailer_preview.rb'
     - 'spec/**/*'
 
-# Offense count: 26
+# Offense count: 27
 # Configuration parameters: CountComments.
 Metrics/MethodLength:
   Max: 32
