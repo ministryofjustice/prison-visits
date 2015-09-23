@@ -14,7 +14,6 @@ Metrics/AbcSize:
 # Configuration parameters: AllowURI, URISchemes.
 Metrics/LineLength:
   Exclude:
-    - 'app/mailers/visitor_mailer.rb'
     - 'app/models/concerns/person.rb'
     - 'app/models/prisoner.rb'
     - 'app/models/slot.rb'

@@ -50,3 +50,10 @@ en:
       subject_rejection: "COPY of booking rejection for %{full_name}"
     booking_cancellation_receipt_email:
       subject: "CANCELLED: %{full_name} on %{date}"
+  visitor_mailer:
+    booking_confirmation_email:
+      subject: "Visit confirmed: your visit for %{slot_date} has been confirmed"
+    booking_rejection_email:
+      subject: "Visit cannot take place: your visit for %{first_date} could not be booked"
+    booking_receipt_email:
+      subject: "Not booked yet: we've received your visit request for %{first_date}"

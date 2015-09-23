@@ -14,6 +14,7 @@ module PrisonVisits2
     config.phase = 'live'
     config.product_type = 'service'
     config.feedback_url = 'test@example.com'
+    config.unsubscribe_url = '<https://www.prisonvisits.service.gov.uk/unsubscribe>'
     config.ga_id = ENV['GA_TRACKING_ID']
     config.assets.enabled = true
     config.assets.precompile += %w(
