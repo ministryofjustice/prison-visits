@@ -21,9 +21,7 @@ class WeeklyConfirmationsReport
   def refresh
     @min_week = 55
     @max_week = 0
-    hash_with_default = Hash.new { |h, k|
-      h[k] = Array.new(52, 0)
-    }
+    hash_with_default = Hash.new { |h, k| h[k] = Array.new(52, 0) }
 
     @dataset = @model.find_by_sql(["
 SELECT nomis_id,
@@ -32,7 +30,8 @@ SELECT nomis_id,
 FROM visit_metrics_entries
 WHERE processed_at IS NOT NULL AND EXTRACT(isoyear FROM processed_at) = ?
 AND outcome = 'confirmed'
-GROUP BY nomis_id, EXTRACT(week FROM processed_at) ORDER BY nomis_id, weekno", @year])
+GROUP BY nomis_id, EXTRACT(week FROM processed_at)
+ORDER BY nomis_id, weekno", @year])
     .inject(hash_with_default) do |h, row|
 
       weekno = row['weekno'].to_i
@@ -61,9 +60,11 @@ GROUP BY weekno ORDER BY weekno", @year]).inject(Array.new(52, 0)) do |arr, row|
 
   def csv
     CSV.generate(headers: true) do |csv|
-      csv << ['Prison'] + week_range.map { |weekno| @start_of_year + weekno * 7 } + ['NOMIS ID']
+      csv << ['Prison'] + week_range.
+        map { |weekno| @start_of_year + weekno * 7 } + ['NOMIS ID']
       @dataset.keys.sort.each do |prison|
-        csv << [@prison_labeling_function.call(prison)] + week_range.map { |weekno| @dataset[prison][weekno] } + [prison]
+        csv << [@prison_labeling_function.call(prison)] +
+          week_range.map { |weekno| @dataset[prison][weekno] } + [prison]
       end
     end
   end
