@@ -45,6 +45,7 @@ class EmailValidator
   attr_reader :original_address, :parsed
 
   # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable Metrics/PerceivedComplexity
   def compute_error
     return :unparseable unless parsed
     return :domain_dot if domain_dot_error?
