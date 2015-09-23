@@ -12,6 +12,13 @@ en:
         text: Your comments
     errors:
       models:
+        prisoner:
+          attributes:
+            number:
+              message: "must be a valid prisoner number" # eg a1234aa
+            prison_name:
+              inclusion:
+                message: "must be chosen"
         visitor:
           attributes:
             date_of_birth:
