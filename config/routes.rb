@@ -1,4 +1,5 @@
 PrisonVisits2::Application.routes.draw do
+  # rubocop:disable Metrics/LineLength
   get 'ping' => 'ping#index'
 
   resource :feedback
