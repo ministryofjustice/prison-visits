@@ -14,8 +14,6 @@ Metrics/AbcSize:
 # Configuration parameters: AllowURI, URISchemes.
 Metrics/LineLength:
   Exclude:
-    - 'lib/rag_status_report.rb'
-    - 'lib/session_guard.rb'
     - 'lib/slots_manipulator.rb'
     - 'lib/tasks/browserstack.rake'
     - 'lib/tasks/maintenance.rake'
