@@ -14,7 +14,6 @@ Metrics/AbcSize:
 # Configuration parameters: AllowURI, URISchemes.
 Metrics/LineLength:
   Exclude:
-    - 'app/models/visit.rb'
     - 'config/application.rb'
     - 'config/environments/development.rb'
     - 'config/environments/production.rb'

@@ -27,6 +27,14 @@ en:
               too_short: 'must include area code'
       messages:
         four_digit_year: 'year must be four digits'
+        visit:
+          attributes:
+            slots:
+              too_short: 'must be at least one'
+              too_long: 'must be at most three'
+            visitors:
+              at_least_one_adult: "There must be at least one adult visitor"
+              max_3_adults: 'You can book a maximum of 3 visitors over the age of %{adult_age} on this visit'
   email_validator:
     errors:
       unparseable: "is not a valid address"
