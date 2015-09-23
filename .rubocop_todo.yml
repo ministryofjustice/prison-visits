@@ -16,7 +16,6 @@ Metrics/LineLength:
   Exclude:
     - 'config/initializers/backtrace_silencers.rb'
     - 'config/initializers/encryptor.rb'
-    - 'config/initializers/filter_parameter_logging.rb'
     - 'config/initializers/markdown_handler.rb'
     - 'config/initializers/wrap_parameters.rb'
     - 'config/routes.rb'
