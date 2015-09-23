@@ -14,7 +14,6 @@ Metrics/AbcSize:
 # Configuration parameters: AllowURI, URISchemes.
 Metrics/LineLength:
   Exclude:
-    - 'lib/detailed_metrics.rb'
     - 'lib/detailed_windowed_metrics.rb'
     - 'lib/fortnightly_performance_report.rb'
     - 'lib/leaderboard_report.rb'
