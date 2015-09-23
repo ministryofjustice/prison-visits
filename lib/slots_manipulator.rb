@@ -8,7 +8,8 @@ module SlotsManipulator
   def update
     visit.slots = []
     slot_params.each_with_index do |slot_hash, i|
-      visit.slots << Slot.new(slot_hash_from_string(slot_hash[:slot]).merge(index: i))
+      visit.slots << Slot.new(slot_hash_from_string(slot_hash[:slot]).
+        merge(index: i))
     end
 
     go_back = visit.slots.select do |slot|

@@ -14,7 +14,6 @@ Metrics/AbcSize:
 # Configuration parameters: AllowURI, URISchemes.
 Metrics/LineLength:
   Exclude:
-    - 'lib/slots_manipulator.rb'
     - 'lib/tasks/browserstack.rake'
     - 'lib/tasks/maintenance.rake'
     - 'lib/visitors_manipulator.rb'
