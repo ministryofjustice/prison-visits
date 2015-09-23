@@ -15,57 +15,57 @@
     margin-bottom: 1em;
   }
 
-%h2 You received a request to visit #{booked_visit.prisoner.prison_name} for:
+%h2= t("deferred.you_received_a_request_to_visit_a_for", a: (booked_visit.prisoner.prison_name))
 
 %p
-  Prisoner:
-  %strong #{booked_visit.prisoner.first_name} #{booked_visit.prisoner.last_name}
+  = t("deferred.prisoner")
+  %strong= t("deferred.a_b", a: (booked_visit.prisoner.first_name), b: (booked_visit.prisoner.last_name))
   %br
-  Number:
+  = t("deferred.number")
   %strong #{booked_visit.prisoner.number}
   %br
-  Date of birth:
+  = t("deferred.date_of_birth")
   %strong #{booked_visit.prisoner.date_of_birth.strftime("%d/%m/%Y")}
 
 
 %hr
 
 
-%h2 The visitors are:
+%h2= t("deferred.the_visitors_are")
 
 - booked_visit.visitors.each_with_index do |visitor, index|
   %p
-    Visitor #{index + 1}:
-    %strong #{visitor.first_name} #{visitor.last_name}
+    = t("deferred.visitor_a", a: (index + 1))
+    %strong= t("deferred.a_b", a: (visitor.first_name), b: (visitor.last_name))
     %br
-    Age:
+    = t("deferred.age")
     %strong #{visitor.age}
     %br
-    Date of birth:
+    = t("deferred.date_of_birth")
     %strong #{visitor.date_of_birth.strftime("%d/%m/%Y")}
     - if visitor.email
       %br
-      Email:
+      = t("deferred.email_1")
       %strong #{visitor.email}
     - if visitor.phone
       %br
-      Phone:
+      = t("deferred.phone")
       %strong #{visitor.phone}
 
 
 %hr
 
 
-%h2 Confirm the visit, or ask the visitor to choose new visit times
+%h2= t("deferred.confirm_the_visit_or_ask_the_visitor_to")
 
 = form_for @confirmation, url: deferred_confirmation_path do |f|
   = hidden_field_tag :state, params[:state]
   %p
-    1. If one of the visit times is available and the visitor(s) are on the prisoner’s contact list, then enter the visit on Prison NOMIS.
+    = t("deferred.1_if_one_of_the_visit_times_is_available")
   
   .group{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
     %p
-      2. Choose the available date below to send a confirmation email to the visitor.
+      = t("deferred.2_choose_the_available_date_below_to_sen")
 
     %ul
       - booked_visit.slots.each_with_index do |slot, index|
@@ -77,44 +77,44 @@
                 = index == 0 ? "First choice" : "Alternative #{index}"
               = Date.parse(slot.date).strftime('%A, %d/%m/%Y from ')
               = format_time_str_24 slot.times.split('-')[0]
-              \-
+              = t("deferred.unknown_3")
               = format_time_str_24 slot.times.split('-')[1]
   
   %p
-    3. If the visitor is not on the prisoner’s contact list they will need to contact the prisoner before booking a visit.
-    Select the option below.
+    = t("deferred.3_if_the_visitor_is_not_on_the_prisoner")
+    = t("deferred.select_the_option_below")
 
   .group{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
     %p
       %strong
         %label(for='confirmation_outcome_not_on_contact_list')
           = radio_button_tag 'confirmation[outcome]', Confirmation::NOT_ON_CONTACT_LIST
-          The visitor is not on the prisoner’s contact list
+          = t("deferred.the_visitor_is_not_on_the_prisoner_s_con")
 
   %p
-    4. If no dates are available select the option below. This will send an email to the visitor asking them to choose new dates on the
-    prison visits booking website.
+    = t("deferred.4_if_no_dates_are_available_select_the_o")
+    = t("deferred.prison_visits_booking_website")
 
   .group{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
     %p
       %strong
         %label(for='confirmation_outcome_no_slot_available')
           = radio_button_tag 'confirmation[outcome]', Confirmation::NO_SLOT_AVAILABLE
-          None of the chosen times are available
+          = t("deferred.none_of_the_chosen_times_are_available")
 
   %p
-    5. If the prisoner does not have any VOs to cover this visit, select the option below.
+    = t("deferred.5_if_the_prisoner_does_not_have_any_vos")
 
   .group{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
     %p
       %strong
         %label(for='confirmation_outcome_no_vos_left')
           = radio_button_tag 'confirmation[outcome]', Confirmation::NO_VOS_LEFT
-          The prisoner does not have any visiting allowance left
+          = t("deferred.the_prisoner_does_not_have_any_visiting")
 
     .group
   
-  %p 6. Enter the VO number here (except for visits to prisoners on remand). You can also add any additional information.
+  %p= t("deferred.6_enter_the_vo_number_here_except_for_vi")
   = f.text_area :message
 
   = f.button 'Send confirmation email', :class => 'button button-primary js-submit'

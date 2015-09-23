@@ -2,41 +2,41 @@
   td.prison-name {
   }
 
-  .even {
-    background-color: LightGray;
-  }
+  .even= t("metrics.unknown_1")
+    = t("metrics.background_color_lightgray")
+  = t("metrics.unknown_2")
 
-  table {
-    border-collapse: collapse;
-    background: white;
-  }
+  = t("metrics.table")
+    = t("metrics.border_collapse_collapse")
+    = t("metrics.background_white")
+  = t("metrics.unknown_2")
 
-  table td {
-    padding-right: 0.5em;
-    vertical-align: bottom;
-    text-align: right;
-  }
+  = t("metrics.table_td")
+    = t("metrics.padding_right_0_5em")
+    = t("metrics.vertical_align_bottom")
+    = t("metrics.text_align_right")
+  = t("metrics.unknown_2")
 
-  table .narrow {
-    width: 3em;
-  }
+  = t("metrics.table_narrow")
+    = t("metrics.width_3em")
+  = t("metrics.unknown_2")
 
-  table .left-border {
-    border-left: thin solid grey;
-  }
+  = t("metrics.table_left_border")
+    = t("metrics.border_left_thin_solid_grey")
+  = t("metrics.unknown_2")
   
 - if @start_date
   %h1
-    From
+    = t("metrics.from")
     = format_date(@start_date)
-    to
+    = t("metrics.to")
     = format_date(@end_date)
   %h3
     = link_to('View this data for all time', range: 'all')
     = link_to('Download this view as CSV', format: :csv, range: '')
 - else
   %h1
-    All time
+    = t("metrics.all_time")
   %h3
     = link_to('View this data for the past two weeks', range: '')
     = link_to('Download this view as CSV', format: :csv, range: 'all')

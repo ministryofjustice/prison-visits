@@ -3,6 +3,6 @@
 .Grid
   .Grid-2-3
 
-    %p This service saves your information over the 3 steps of the form using a cookie. The cookie is deleted after you have sent your request, or if your session times out after 20 minutes.
+    %p= t("static.this_service_saves_your_information_over")
 
-    %p Please #{link_to('enable cookies', 'http://www.aboutcookies.org/Default.aspx?page=1')} and return to the #{link_to('prisoner details page', prisoner_details_path)}.
+    %p= t("static.please_a_and_return_to_the_b", a: (link_to('enable cookies', 'http://www.aboutcookies.org/Default.aspx?page=1')), b: (link_to('prisoner details page', prisoner_details_path)))

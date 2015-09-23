@@ -1,6 +1,6 @@
 .TimeoutPrompt(data-exit-path="/timeout")
   %script.TimeoutPrompt-template(type="text/html")
     .TimeoutPrompt-alert.validation-summary.alert-dialog(role="alertdialog" aria-labelledby="timeoutTitle" aria-describedby="timeoutDesc" tabindex="0")
-      %h2#timeoutTitle Your session will expire in {{ respondTime }} minutes
-      %p#timeoutDesc Would you like to continue?
-      %button.TimeoutPrompt-extend.button.button-primary Yes
+      %h2#timeoutTitle= t("shared.your_session_will_expire_in_respondtime")
+      %p#timeoutDesc= t("shared.would_you_like_to_continue")
+      %button.TimeoutPrompt-extend.button.button-primary= t("shared.yes")

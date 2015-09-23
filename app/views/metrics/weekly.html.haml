@@ -3,37 +3,37 @@
     border-collapse: collapse;
   }
 
-  td {
-    text-align: right;
-    min-width: 2em;
-  }
+  = t("metrics.td")
+    = t("metrics.text_align_right")
+    = t("metrics.min_width_2em")
+  = t("metrics.unknown_2")
 
-  .prison-name {
-    text-align: left;
-  }
+  .prison-name= t("metrics.unknown_1")
+    = t("metrics.text_align_left")
+  = t("metrics.unknown_2")
 
-  .even {
-    background-color: LightGray;
-  }
+  .even= t("metrics.unknown_1")
+    = t("metrics.background_color_lightgray")
+  = t("metrics.unknown_2")
 
-  .total td {
-    border: thin solid black;
-  }
+  .total= t("metrics.td")
+    = t("metrics.border_thin_solid_black")
+  = t("metrics.unknown_2")
 
 %h1
-  Visits confirmed by week
+  = t("metrics.visits_confirmed_by_week")
   = link_to('CSV', format: :csv)
 
 %table
   %tr
     %th
-      Prison
+      = t("metrics.prison")
     - @dataset.week_range.each do |week_no|
       %th
         = @start_of_year + week_no * 7
   %tr.total
     %td.prison-name
-      TOTAL
+      = t("metrics.total_1")
     - @dataset.week_range.each do |week_no|
       %td
         = @dataset.total[week_no]

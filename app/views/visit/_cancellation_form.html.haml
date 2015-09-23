@@ -5,7 +5,7 @@
     %label.block-label(for="cancel_booking")
       %input#cancel_booking{ type: "checkbox", value: true, name: "cancel" }
       = hidden_field_tag :state, @state
-      Yes, I want to cancel this visit
+      = t("visit.yes_i_want_to_cancel_this_visit")
 
   .actions
     %input.button.button-primary{ type: "submit", value: "Cancel #{type}" }

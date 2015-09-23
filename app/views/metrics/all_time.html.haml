@@ -3,19 +3,19 @@
 = stylesheet_link_tag 'metrics'
 
 %h1
-  Performance indicators for
+  = t("metrics.performance_indicators_for")
   = prison_name_for_id(@nomis_id)
   = link_to('(Fortnightly)', prison_metrics_fortnightly_path(@nomis_id))
 %h2
-  Summary
+  = t("metrics.summary")
 %table#overall-performance
   %tr
     %th
-      Under 3 days
+      = t("metrics.under_3_days")
     %th
-      Over 3 days
+      = t("metrics.over_3_days")
     %th
-      Status
+      = t("metrics.status")
   %tr
     %td
       = @dataset.processed_before
@@ -25,35 +25,35 @@
       = image_for_performance_score(@dataset.percentile(@dataset.end_to_end_times))
 
 %h2
-  End to end processing time
+  = t("metrics.end_to_end_processing_time")
 %script#end_to_end_times{language: 'json'}
   = @dataset.end_to_end_times.to_json
 #end_to_end
 
 %h2
-  Processing time
+  = t("metrics.processing_time")
 %script#processing_times{language: 'json'}
   = @dataset.processing_times.to_json
 #processing
 
 %h2
-  Unconfirmed visits by time from today
+  = t("metrics.unconfirmed_visits_by_time_from_today")
 %script#waiting_times{language: 'json'}
   = @dataset.waiting_times.to_json
 #waiting
 
 %h2
-  Time since last unconfirmed visit
+  = t("metrics.time_since_last_unconfirmed_visit")
 = display_interval(@dataset.time_since_last_unprocessed)
 
 %h2
-  When are visits processed?
+  = t("metrics.when_are_visits_processed")
 %script#weekly_processed_breakdown_json
   = @dataset.week_hour_breakdown('processed_at').to_json
 #weekly_processed_breakdown
 
 %h2
-  When are visits requested?
+  = t("metrics.when_are_visits_requested")
 %script#weekly_requested_breakdown_json
   = @dataset.week_hour_breakdown('requested_at').to_json
 #weekly_requested_breakdown

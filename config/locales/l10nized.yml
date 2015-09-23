@@ -1,0 +1,745 @@
+---
+en:
+  visitor_mailer:
+    dear_a: Dear %{a},
+    your_visit_is_not_booked_yet: Your visit is not booked yet
+    you_can_check_whether_your_visit_has_bee: You can check whether your visit has
+      been booked on the %{a}.
+    we_ll_email_you_by_a_to_confirm_the_date: We'll email you by %{a} to confirm the
+      date and time of your visit. Please don't contact us any sooner than that, as
+      we won't be able to comment on booking requests that are being processed.
+    if_you_don_t_receive_a_confirmation_emai: If you don’t receive a confirmation
+      email by %{a}, please check your spam or junk folder for it. You need to do
+      this on a computer or tablet (rather than a smart phone).
+    add_this_email_to_your_address_book: Add this email to your address book
+    to_stop_visit_confirmation_emails_going: To stop visit confirmation emails going
+      to your spam or junk folder please add no-reply@email.prisonvisits.service.gov.uk
+      to your address book or safe senders list.
+    visit_request_details: Visit request details
+    you_have_requested_a_visit_to_a_for_b_c: 'You have requested a visit to %{a} for
+      %{b} %{c}:'
+    first_choice: 'First choice:'
+    alternative_a: 'Alternative %{a}:'
+    a_b: '%{a}, %{b}'
+    prisoner: 'Prisoner:'
+    a_b_1: '%{a} %{b}.'
+    prisoner_number: 'Prisoner number:'
+    cancel_this_visit_request: Cancel this visit request
+    if_you_no_longer_want_to_visit_on_this_d: If you no longer want to visit on this
+      date, %{a}.
+    telephone: 'telephone:'
+    email: 'email:'
+    need_help_or_want_to_make_a_complaint_if: 'Need help or want to make a complaint?
+      If you have a question or need any help with the online visits service, please '
+    contact_us: contact us
+    visit_id_a: 'Visit ID: %{a}'
+  metrics:
+    fortnightly_performance_graph_for: Fortnightly performance graph for
+    summary_for_the_year: Summary for the year
+    javascript: ':javascript'
+    document_addeventlistener_domcontentload: document.addEventListener('DOMContentLoaded',
+      function() {
+    displayperformancelinechart_end_to_end_g: displayPerformanceLineChart('#end_to_end_graph',
+    json_parse_d3_select_percentile95_html: JSON.parse(d3.select('#percentile95').html()),
+    json_parse_d3_select_percentile50_html: JSON.parse(d3.select('#percentile50').html()),
+    json_parse_d3_select_volume_html: JSON.parse(d3.select('#volume').html()));
+    unknown: '});'
+    unknown_1: '{'
+    background_color_lightgray: 'background-color: LightGray;'
+    unknown_2: '}'
+    table: table {
+    border_collapse_collapse: 'border-collapse: collapse;'
+    background_white: 'background: white;'
+    table_td: table td {
+    padding_right_0_5em: 'padding-right: 0.5em;'
+    vertical_align_bottom: 'vertical-align: bottom;'
+    text_align_right: 'text-align: right;'
+    table_narrow: table .narrow {
+    width_3em: 'width: 3em;'
+    table_left_border: table .left-border {
+    border_left_thin_solid_grey: 'border-left: thin solid grey;'
+    from: From
+    to: to
+    all_time: All time
+    fortnightly_performance_indicators_for: Fortnightly performance indicators for
+    summary_for: Summary for
+    under_3_days: Under 3 days
+    over_3_days: Over 3 days
+    status: Status
+    median: Median
+    total: Total
+    waiting: Waiting
+    end_to_end_processing_time: End to end processing time
+    unprocessed_visits_by_days_from_today: Unprocessed visits by days from today
+    number_of_visits: Number of visits
+    end_to_end: End to end
+    percent_rejected: Percent rejected
+    prison_name: Prison name
+    overdue: Overdue
+    rejected: Rejected
+    confirmed: Confirmed
+    median_days: median days
+    95th_percentile_days: 95th percentile days
+    overall: Overall
+    no_slot: No slot
+    not_on_contact_list: Not on contact list
+    no_vos_left: No VOs left
+    td: td {
+    min_width_2em: 'min-width: 2em;'
+    text_align_left: 'text-align: left;'
+    border_thin_solid_black: 'border: thin solid black;'
+    visits_confirmed_by_week: Visits confirmed by week
+    prison: Prison
+    total_1: TOTAL
+    performance_indicators_for: Performance indicators for
+    summary: Summary
+    processing_time: Processing time
+    unconfirmed_visits_by_time_from_today: Unconfirmed visits by time from today
+    time_since_last_unconfirmed_visit: Time since last unconfirmed visit
+    when_are_visits_processed: When are visits processed?
+    when_are_visits_requested: When are visits requested?
+  visit:
+    to_stop_visit_confirmation_emails_going: To stop visit confirmation emails going
+      to your spam or junk folder please add
+    no_reply_email_prisonvisits_service_gov: no-reply@email.prisonvisits.service.gov.uk
+    to_your_address_book_or_safe_senders_lis: to your address book or safe senders
+      list.
+    all_the_details_you_entered_have_been_cl: 'All the details you entered have been
+      cleared to keep your information safe. This happens when a page has been left
+      open for over 20 minutes. '
+    your_visit_has_been_confirmed: Your visit has been confirmed
+    you_should_have_received_an_email_confir: You should have received an email confirming
+      the exact date and time of your visit.
+    if_you_haven_t_received_a_confirmation_e: If you haven't received a confirmation
+      email, please check your spam or junk folder. You need to do this on a computer
+      or tablet (rather than a smart phone).
+    cancel_this_visit: Cancel this visit
+    if_you_no_longer_want_to_visit_on_this_d: 'If you no longer want to visit on this
+      date, you can cancel this visit. '
+    your_visit_request_cannot_take_place_on: 'Your visit request cannot take place
+      on the dates you''ve chosen '
+    there_are_a_couple_of_possible_reasons_f: There are a couple of possible reasons
+      for this, for example there may be no space in the visiting hall, or the prisoner
+      may not have any visiting allowance left.
+    if_you_haven_t_received_an_email_to_say: If you haven't received an email to say
+      that your visit can't take place as planned, please check your spam or junk
+      folder. You need to do this on a computer or tablet (rather than a smart phone).
+    request_a_a: Request a %{a}.
+    your_visit_is_not_booked_yet: Your visit is not booked yet
+    your_visit_request_hasn_t_yet_been_proce: Your visit request hasn't yet been processed
+      by visit booking staff. You should get a visit confirmation email within 3 working
+      days of making your request.
+    if_you_don_t_receive_an_email_within_3_w: If you don’t receive an email within
+      3 working days, please check your spam or junk folder. You need to do this on
+      a computer or tablet (rather than a smart phone).
+    cancel_this_visit_request: Cancel this visit request
+    if_you_no_longer_want_to_visit_on_this_d_1: If you no longer want to visit on
+      this date, you can cancel this request.
+    you_cancelled_this_visit_request: You cancelled this visit request
+    you_cancelled_this_visit: You cancelled this visit
+    there_was_a_problem_your_visit_request_i: There was a problem. Your visit request
+      is invalid.
+    yes_i_want_to_cancel_this_visit: Yes, I want to cancel this visit
+  application:
+    contact_the_prison: Contact the prison
+    if_you_can_t_request_a_visit_using_this: if you can’t request a visit using this
+      service.
+  shared:
+    you_need_to_enable_cookies_before_contin: You need to enable cookies before continuing.
+    this_service_saves_your_information_over: This service saves your information
+      over the 3 steps of the form using a cookie. The cookie is deleted after you
+      have sent your request, or if your session times out after 20 minutes.
+    you_have_not_enabled_javascript_you_don: You have not enabled JavaScript. You
+      don’t need JavaScript to use this service, but it does make it easier.
+    visitor: Visitor
+    index: ${index}
+    you_must_be_over_18_to_book_a_visit: You must be over 18 to book a visit.
+    eg_28_04_1996: eg 28 04 1996
+    email_address: Email address
+    you_ll_receive_confirmation_by_email: You'll receive confirmation by email.
+    phone_number: Phone number
+    remove: remove
+    remove_visitor: Remove visitor
+    your_session_will_expire_in_respondtime: Your session will expire in {{ respondTime
+      }} minutes
+    would_you_like_to_continue: Would you like to continue?
+    'yes': 'Yes'
+    help_us_design_new_ways_of_sending_money: Help us design new ways of sending money
+      to prisoners
+    no_thanks: No thanks
+    take_a_short_survey_now: Take a short survey now
+    the_survey_will_open_in_a_new_window: The survey will open in a new window
+    you_need_to_fix_the_errors_on_this_page: You need to fix the errors on this page
+      before continuing.
+    see_highlighted_errors_below: See highlighted errors below.
+  prisoner_details:
+    you_don_t_need_a_visiting_order_vo_numbe: you don’t need a Visiting Order (VO)
+      number to request a visit
+    you_need_the_dates_of_birth_for_all_visi: you need the dates of birth for all
+      visitors coming with you
+    your_visit_will_be_confirmed_by_email_wi: your visit will be confirmed by email
+      within 3 working days of making your request
+    prisoner_details: Prisoner details
+    your_details_need_to_be_checked: Your details need to be checked
+    to_protect_prisoners_identity_we_can_t_h: To protect prisoners’ identity, we can’t
+      highlight incorrect details.
+    carefully_check_the_following: 'Carefully check the following:'
+    names_should_be_entered_exactly_as_they: names should be entered exactly as they
+      appear on official documents, eg ‘Thomas’ instead of ‘Tom’
+    the_prisoner_number_should_follow_this_f: the prisoner number should follow this
+      format a1111aa
+    if_you_re_sure_that_all_details_are_corr: If you’re sure that all details are
+      correct, contact the prisoner to check with them.
+    you_won_t_be_able_to_book_a_visit_to_a_p: You won’t be able to book a visit to
+      a prisoner who has moved prison or has no visit entitlement left.
+    prisoner_first_name: Prisoner first name
+    prisoner_last_name: Prisoner last name
+    prisoner_date_of_birth: Prisoner date of birth
+    eg_28_04_1996: eg 28 04 1996
+    prisoner_number: Prisoner number
+    eg_a1234bc: eg a1234bc
+    name_of_the_prison: Name of the prison
+    eg_cardiff: eg Cardiff
+    hmp_a_is_unable_to_process_online_visit: HMP %{a} is unable to process online
+      visit requests right now. You can %{b} directly to book a visit instead.
+    hmp_a_isn_t_able_to_process_online_visit: HMP %{a} isn’t able to process online
+      visit requests yet. You can %{b} directly to book a visit instead.
+    hmp_a_is_unable_to_process_online_visit_1: HMP %{a} is unable to process online
+      visit requests. Instead you can %{b} directly to book a visit.
+    please_note: Please note
+    if_you_don_t_enter_any_information_for_m: If you don't enter any information for
+      more than 20 minutes, then your session will time out and you'll need to start
+      again.
+  feedbacks:
+    you_can_use_this_form_to_tell_us_about_a: You can use this form to tell us about
+      a problem you're having with the website. You must
+    contact_the_prison: contact the prison
+    if_your_question_is_about: 'if your question is about:'
+    whether_your_visit_has_been_booked: whether your visit has been booked
+    cancelling_or_changing_visit_details_eg: cancelling or changing visit details
+      eg names of visitors, dates or times
+    what_you_can_bring_when_you_visit_eg_clo: what you can bring when you visit, eg
+      clothes or money
+    prisoner_s_contact_lists_or_visiting_all: prisoner's contact lists or visiting
+      allowance
+    we_re_not_able_to_help_with_questions_ab: We’re not able to help with questions
+      about the above.
+    unknown: /
+    you_need_to_fix_the_errors_on_this_page: You need to fix the errors on this page
+      before continuing.
+    see_highlighted_errors_below: See highlighted errors below.
+    please_don_t_include_any_sensitive_perso: Please don't include any sensitive personal
+      information (eg. prisoner numbers).
+    feedback_form: Feedback form
+    your_question: Your question
+    do_you_want_a_reply: Do you want a reply?
+    if_you_d_like_us_to_get_back_to_you_plea: If you'd like us to get back to you,
+      please leave your details below.
+    your_email_address: Your email address
+    we_ll_only_use_this_to_reply_to_your_mes: We'll only use this to reply to your
+      message.
+  instant:
+    speak_to_the_prisoner_to_check_you_re_on: Speak to the prisoner to check you’re
+      on their visitor list (visitor identities will be checked)
+    your_details: Your details
+    you_need_to_fix_the_errors_on_this_page: You need to fix the errors on this page
+      before continuing.
+    other_visitors: Other visitors
+    you_can_have_up_to_3_adults_over_18_and: You can have up to 3 adults (over 18)
+      and 3 children visiting at the same time. Seats are provided only for adults,
+      so children may have to sit on your lap.
+    how_many_other_visitors: How many other visitors?
+    prisoner_details: Prisoner details
+    a_b: '%{a} %{b}'
+    date_of_birth: 'Date of birth:'
+    prisoner_number: 'Prisoner number:'
+    prison: 'Prison:'
+    visitor_details: Visitor details
+    confirmation_email: 'Confirmation email:'
+    visitor_a: 'Visitor %{a}:'
+    unknown: \ -
+    over_a: Over %{a}
+    under_a: Under %{a}
+    your_visit: Your visit
+    you_can_choose_up_to_2_alternative_dates: You can choose up to 2 alternative dates
+      if your first choice isn’t available.
+    first_choice: 'First choice:'
+    your_visit_is_not_booked_yet: 'Your visit is not booked yet:'
+    you_ll_get_an_email_to: 'you''ll get an email to '
+    by: by
+    to_confirm_the_date_and_time_of_your_vis: 'to confirm the date and time of your
+      visit. '
+    if_you_don_t_get_a_confirmation_email_pl: If you don't get a confirmation email,
+      please
+    email_us_at_a: email us at %{a}.
+    alternative_a: 'Alternative %{a}:'
+    location: Location
+    tel: Tel
+    email: Email
+    take_a_moment_to_a: Take a moment to %{a}.
+    haml_io_ga_set: haml_io << "ga('set', {"
+    haml_io_dimension1_visitmetadata_prison: 'haml_io << "''dimension1'': visitMetadata.prison_name,"'
+    haml_io_dimension2_visitmetadata_slot_we: 'haml_io << "''dimension2'': visitMetadata.slot_weekdays[0],"'
+    haml_io_dimension3_visitmetadata_slot_ti: 'haml_io << "''dimension3'': visitMetadata.slot_times[0],"'
+    haml_io_dimension4_visitmetadata_complet: 'haml_io << "''dimension4'': visitMetadata.completed_at,"'
+    haml_io_metric1_visitmetadata_prisoner_a: 'haml_io << "''metric1'': visitMetadata.prisoner_age,"'
+    haml_io_metric2_visitmetadata_visitor_ag: 'haml_io << "''metric2'': visitMetadata.visitor_age,"'
+    haml_io_metric3_visitmetadata_number_of: 'haml_io << "''metric3'': visitMetadata.number_of_slots,"'
+    haml_io_metric4_visitmetadata_number_of: 'haml_io << "''metric4'': visitMetadata.number_of_adult_visitors,"'
+    haml_io_metric5_visitmetadata_number_of: 'haml_io << "''metric5'': visitMetadata.number_of_child_visitors"'
+    haml_io: haml_io << "});"
+    haml_io_if_visitmetadata_days_to_first_s: haml_io << "if (visitMetadata.days_to_first_slot)
+      {"
+    haml_io_ga_set_metric6_visitmetadata_day: haml_io << "ga('set', 'metric6', visitMetadata.days_to_first_slot);"
+    haml_io_1: haml_io << "}"
+    you_need_to_select_a_date_and_time_for_y: You need to select a date and time for
+      your visit.
+    mon: Mon
+    tue: Tue
+    wed: Wed
+    thu: Thu
+    fri: Fri
+    sat: Sat
+    sun: Sun
+    unknown_1: ❮
+    unknown_2: ❯
+    visit_days: Visit days
+    non_visit_days: Non-visit days
+    it_is_not_possible_to_book_a_visit_in_th: It is not possible to book a visit in
+      the past.
+    it_is_not_possible_to_book_a_visit_on_th: It is not possible to book a visit on
+      this day.
+    you_can_only_book_a_visit_in_the_next_da: You can only book a visit in the next
+      {{ daysInRange }} days.
+    you_can_only_book_a_visit_3_working_days: You can only book a visit 3 working
+      days in advance.
+    use_the_arrows_to_put_your_visit_choices: Use the arrows to put your visit choices
+      in the order that suits you best.
+    option_a: Option %{a}
+    none: none
+  prison_mailer:
+    prisoner: 'Prisoner:'
+    a_b: '%{a} %{b}'
+    number: 'Number:'
+    date_of_birth: 'Date of birth:'
+    first_choice: 'First choice:'
+    unknown: \-
+    alternative_a: 'Alternative %{a}:'
+    visitor_a: 'Visitor %{a}:'
+    age: 'Age: '
+    email: 'Email:'
+    phone: 'Phone:'
+    if_you_cannot_click_on_the_link_above_co: If you cannot click on the link above,
+      copy the entire link and paste it into the address bar of your browser.
+    visit_id_a: 'Visit ID: %{a}'
+  layouts:
+    unknown: '!!!'
+    gov_uk_uses_cookies_to_make_the_site_sim: 'GOV.UK uses cookies to make the site
+      simpler. '
+    this_is_a_new_service_if_you_need_any_he: 'This is a new service. If you need
+      any help with using it, please '
+  static:
+    you_ve_received_an_email_from: You've received an email from
+    no_reply_email_prisonvisits_service_gov: no-reply@email.prisonvisits.service.gov.uk
+    this_is_probably_because_you_requested_a: 'This is probably because you requested
+      a prison visit. '
+    we_ll_confirm_your_visit_by_email_so_mak: 'We’ll confirm your visit by email,
+      so make sure you add this email address to your address book or safe senders
+      list. '
+    you_can_start_a_new_prison_visit_request: You can <a href="/">start a new prison
+      visit request</a> or book your visit by phone instead. See the <a href="http://www.justice.gov.uk/contacts/prison-finder">prison
+      finder</a> for contact details.
+    prison_visits_booking_pvb_puts_small_fil: Prison Visits Booking (PVB) puts small
+      files (known as ‘cookies’) onto your computer to collect information about how
+      you browse the site.
+    cookies_are_used_to: 'Cookies are used to:'
+    measure_how_you_use_the_website_so_it_ca: measure how you use the website so it
+      can be updated and improved based on your needs
+    remember_the_notifications_you_ve_seen_s: remember the notifications you’ve seen
+      so that we don’t show them to you again
+    pvb_cookies_aren_t_used_to_identify_you: PVB cookies aren’t used to identify you
+      personally.
+    you_ll_normally_see_a_message_on_the_sit: You’ll normally see a message on the
+      site before we store a cookie on your computer.
+    find_out_more_about: Find out more about
+    how_to_manage_cookies: how to manage cookies.
+    how_cookies_are_used_on_pvb: How cookies are used on PVB
+    measuring_website_usage_google_analytics: Measuring website usage (Google Analytics)
+    we_use_google_analytics_software_to_coll: We use Google Analytics software to
+      collect information about how you use PVB. We do this to help make sure the
+      site is meeting the needs of its users and to help us make improvements.
+    google_analytics_stores_information_abou: 'Google Analytics stores information
+      about:'
+    the_pages_you_visit_on_pvb: the pages you visit on PVB
+    how_long_you_spend_on_each_pvb_page: '       - how long you spend on each PVB page '
+    how_you_got_to_the_site: "how you got to the site \L"
+    what_you_click_on_while_you_re_visiting: what you click on while you’re visiting
+      the site
+    we_don_t_collect_or_store_your_personal: We don’t collect or store your personal
+      information (eg your name or address) so this information can’t be used to identify
+      who you are.
+    we_don_t_allow_google_to_use_or_share_ou: We don’t allow Google to use or share
+      our analytics data.
+    google_analytics_sets_the_following_cook: 'Google Analytics sets the following
+      cookies:'
+    name: Name
+    purpose: Purpose
+    expires: Expires
+    ga: _ga
+    determines_the_number_of_unique_visitors: Determines the number of unique visitors
+      to the site
+    2_years: 2 years
+    you_can: You can
+    opt_out_of_google_analytics_cookies: opt out of Google Analytics cookies.
+    our_introductory_message: Our introductory message
+    you_may_see_a_pop_up_welcome_message_whe: You may see a pop-up welcome message
+      when you first visit PVB. We’ll store a cookie so that your computer knows you’ve
+      seen it and knows not to show it again.
+    seen_cookie_message: seen_cookie_message
+    saves_a_message_to_let_us_know_that_you: Saves a message to let us know that you
+      have seen our cookie message
+    1_month: 1 month
+    session: Session
+    the_pvb_service_does_not_store_your_pris: The PVB service does not store your
+      prisoner and visitor information. The details you enter are encrypted and temporarily
+      stored on your computer until your booking request is sent.
+    pvbs: pvbs
+    store_prisoner_visitor_and_visit_details: Store prisoner, visitor and visit details
+    20_minutes: 20 minutes
+    the_prison_visits_booking_system_is_not: The prison visits booking system is not
+      available right now, but we're working hard to get things up and running again.
+    you_can_try_again_later_or_book_your_vis: You can try again later or book your
+      visit by phone instead. See the <a href="http://www.justice.gov.uk/contacts/prison-finder">prison
+      finder</a> for contact details.
+    this_service_saves_your_information_over: This service saves your information
+      over the 3 steps of the form using a cookie. The cookie is deleted after you
+      have sent your request, or if your session times out after 20 minutes.
+    please_a_and_return_to_the_b: Please %{a} and return to the %{b}.
+    the_prison_visits_booking_system_is_not_1: The prison visits booking system is
+      not available as we're carrying out some planned maintenance. You can try again
+      later or book your visit by phone instead.
+    see_the_prison_finder_for_contact_detail: See the <a href="http://www.justice.gov.uk/contacts/prison-finder">prison
+      finder</a> for contact details.
+  deferred:
+    speak_to_the_prisoner_to_check_you_re_on: Speak to the prisoner to check you’re
+      on their visitor list (visitor identities will be checked)
+    your_details: Your details
+    you_need_to_fix_the_errors_on_this_page: You need to fix the errors on this page
+      before continuing.
+    other_visitors: Other visitors
+    seating_arrangements_at_this_prison_allo: Seating arrangements at this prison
+      allow 3 visitors over the age of %{a} plus 3 children under that age. Children
+      may have to sit on your lap.
+    how_many_other_visitors: How many other visitors?
+    prisoner_details: Prisoner details
+    a_b: '%{a} %{b}'
+    date_of_birth: 'Date of birth:'
+    prisoner_number: 'Prisoner number:'
+    prison: 'Prison:'
+    visitor_details: Visitor details
+    confirmation_email: 'Confirmation email:'
+    visitor_a: 'Visitor %{a}:'
+    unknown: \ -
+    over_a: Over %{a}
+    under_a: Under %{a}
+    your_visit: Your visit
+    you_can_choose_up_to_2_alternative_dates: You can choose up to 2 alternative dates
+      if your first choice isn’t available.
+    first_choice: 'First choice:'
+    alternatives: 'Alternatives:'
+    your_visit_is_not_booked_yet: 'Your visit is not booked yet:'
+    you_ll_get_an_email_to: 'you''ll get an email to '
+    by: by
+    to_confirm_the_date_and_time_of_your_vis: 'to confirm the date and time of your
+      visit. '
+    if_you_don_t_get_a_confirmation_email_pl: If you don't get a confirmation email,
+      please
+    email_us_at_a: email us at %{a}.
+    alternative_a: 'Alternative %{a}:'
+    location: Location
+    tel: Tel
+    email: Email
+    take_a_moment_to_a: Take a moment to %{a}.
+    haml_io_ga_set: haml_io << "ga('set', {"
+    haml_io_dimension1_visitmetadata_prison: 'haml_io << "''dimension1'': visitMetadata.prison_name,"'
+    haml_io_dimension2_visitmetadata_slot_we: 'haml_io << "''dimension2'': visitMetadata.slot_weekdays[0],"'
+    haml_io_dimension3_visitmetadata_slot_ti: 'haml_io << "''dimension3'': visitMetadata.slot_times[0],"'
+    haml_io_dimension4_visitmetadata_complet: 'haml_io << "''dimension4'': visitMetadata.completed_at,"'
+    haml_io_metric1_visitmetadata_prisoner_a: 'haml_io << "''metric1'': visitMetadata.prisoner_age,"'
+    haml_io_metric2_visitmetadata_visitor_ag: 'haml_io << "''metric2'': visitMetadata.visitor_age,"'
+    haml_io_metric3_visitmetadata_number_of: 'haml_io << "''metric3'': visitMetadata.number_of_slots,"'
+    haml_io_metric4_visitmetadata_number_of: 'haml_io << "''metric4'': visitMetadata.number_of_adult_visitors,"'
+    haml_io_metric5_visitmetadata_number_of: 'haml_io << "''metric5'': visitMetadata.number_of_child_visitors"'
+    haml_io: haml_io << "});"
+    haml_io_if_visitmetadata_days_to_first_s: haml_io << "if (visitMetadata.days_to_first_slot)
+      {"
+    haml_io_ga_set_metric6_visitmetadata_day: haml_io << "ga('set', 'metric6', visitMetadata.days_to_first_slot);"
+    haml_io_1: haml_io << "}"
+    you_need_to_select_a_date_and_time_for_y: You need to select a date and time for
+      your visit.
+    mon: Mon
+    tue: Tue
+    wed: Wed
+    thu: Thu
+    fri: Fri
+    sat: Sat
+    sun: Sun
+    unknown_1: ❮
+    unknown_2: ❯
+    visit_days: Visit days
+    non_visit_days: Non-visit days
+    it_is_not_possible_to_book_a_visit_in_th: It is not possible to book a visit in
+      the past.
+    it_is_not_possible_to_book_a_visit_on_th: It is not possible to book a visit on
+      this day.
+    you_can_only_book_a_visit_in_the_next_da: You can only book a visit in the next
+      {{ daysInRange }} days.
+    you_can_only_book_a_visit_3_working_days: You can only book a visit 3 working
+      days in advance.
+    use_the_arrows_to_put_your_visit_choices: Use the arrows to put your visit choices
+      in the order that suits you best.
+    option_a: Option %{a}
+    id_visit_slot_a: '{ id: "visit_slot_%{a}" }'
+    none: none
+    an_error_has_occurred: An error has occurred
+    the_link_you_used_is_invalid_this_usuall: The link you used is invalid. This usually
+      happens when the link was pasted in only in part. Try selecting the entire link
+      again.
+    this_booking_request_has_been_cancelled: This booking request has been cancelled
+      by the visitor.
+    you_received_a_request_to_visit_a_for: 'You received a request to visit %{a} for:'
+    prisoner: 'Prisoner:'
+    number: 'Number:'
+    the_visitors_are: 'The visitors are:'
+    age: 'Age:'
+    email_1: 'Email:'
+    phone: 'Phone:'
+    confirm_the_visit_or_ask_the_visitor_to: Confirm the visit, or ask the visitor
+      to choose new visit times
+    1_if_one_of_the_visit_times_is_available: 1. If one of the visit times is available
+      and the visitor(s) are on the prisoner’s contact list, then enter the visit
+      on Prison NOMIS.
+    2_choose_the_available_date_below_to_sen: 2. Choose the available date below to
+      send a confirmation email to the visitor.
+    unknown_3: \-
+    3_if_the_visitor_is_not_on_the_prisoner: 3. If the visitor is not on the prisoner’s
+      contact list they will need to contact the prisoner before booking a visit.
+    select_the_option_below: Select the option below.
+    the_visitor_is_not_on_the_prisoner_s_con: The visitor is not on the prisoner’s
+      contact list
+    4_if_no_dates_are_available_select_the_o: 4. If no dates are available select
+      the option below. This will send an email to the visitor asking them to choose
+      new dates on the
+    prison_visits_booking_website: prison visits booking website.
+    none_of_the_chosen_times_are_available: None of the chosen times are available
+    5_if_the_prisoner_does_not_have_any_vos: 5. If the prisoner does not have any
+      VOs to cover this visit, select the option below.
+    the_prisoner_does_not_have_any_visiting: The prisoner does not have any visiting
+      allowance left
+    6_enter_the_vo_number_here_except_for_vi: 6. Enter the VO number here (except
+      for visits to prisoners on remand). You can also add any additional information.
+    book_the_visit_in_nomis_first: book the visit in NOMIS first
+    use_this_form_to_send_a_visit_confirmati: use this form to send a visit confirmation
+      or visit rejection email to the visitor
+    make_sure_you_select_visitors_who_can_t: make sure you select visitors who can’t
+      attend under 'Issue with visitors'
+    visit_date: Visit date
+    reference_number: Reference number
+    eg_last_8_digits_of_vo_number_or_none_fo: eg Last 8 digits of VO number or "none"
+      for remand
+    this_is_a_closed_visit: This is a closed visit
+    what_we_ll_tell_the_visitor: What we’ll tell the visitor
+    this_is_a_closed_visit_1: 'This is a closed visit:'
+    the_prisoner_will_be_behind_a_glass_scre: 'the prisoner will be behind a glass
+      screen in a separate area rather than in the visiting hall. '
+    choose_this_option_if: 'Choose this option if:'
+    the_prisoner_has_restrictions_on_their_v: the prisoner has restrictions on their
+      visits
+    the_prisoner_is_due_to_be_elsewhere_eg_a: the prisoner is due to be elsewhere,
+      eg at court
+    the_visit_can_t_take_place_because_anoth: the visit can’t take place because another
+      prisoner is having a visit at the same time and they are incompatible
+    we_re_sorry_but_none_of_the_dates_and_ti: We’re sorry but none of the dates and
+      times you chose to visit %{a} %{b} at %{c} were available. Please visit www.gov.uk/prison-visits
+      to choose some alternative dates.
+    visiting_allowance: Visiting allowance
+    the_prisoner_does_not_have_any_visiting_1: The prisoner does not have any visiting
+      allowance (VO)
+    we_re_sorry_but_the_prisoner_you_want_to: We’re sorry, but the prisoner you want
+      to visit has not got any visiting allowance left for the dates you’ve chosen.
+    you_can_also_tell_the_visitor_more_about: 'You can also tell the visitor more
+      about the VO and PVO status:'
+    visiting_allowance_weekends_and_weekday: 'Visiting allowance (weekends and weekday
+      visits) (VO) will be renewed:'
+    a_b_will_have_their_full_visiting_allow: '%{a} %{b} will have their full visiting
+      allowance (VO) renewed on'
+    date_not_chosen: '[DATE NOT CHOSEN]'
+    if_weekday_visit_pvo_is_possible_instead: 'If weekday visit (PVO) is possible
+      instead, choose the date PVO expires:'
+    however_you_can_book_a_weekday_visit_wit: However, you can book a weekday visit
+      with visiting allowance valid until
+    the_visit_must_be_taken_before_the_allow: The visit must be taken before the allowance
+      expires.
+    issue_with_the_prisoner: Issue with the prisoner
+    prisoner_details_are_incorrect: Prisoner details are incorrect
+    your_visit_cannot_take_place_as_you_have: Your visit cannot take place as you
+      haven’t given correct information for the prisoner. Eg, the prisoner’s name,
+      number or date of birth is incorrect. Contact the prisoner to get up-to-date
+      information.
+    prisoner_no_longer_at_the_prison: Prisoner no longer at the prison
+    your_visit_cannot_take_place_as_the_pris: Your visit cannot take place as the
+      prisoner you want to visit has moved prison. They should contact you about where
+      they are now.  You can also use the find a prisoner service (www.gov.uk/find-prisoner).
+    issue_with_visitors: Issue with visitors
+    visitor_isn_t_on_the_contact_list: Visitor isn’t on the contact list
+    your_visit_cannot_take_place_as_details: Your visit cannot take place as details
+      for
+    visitor_name: '[VISITOR NAME]'
+    don_t_match_our_records_or_they_aren_t_o: don’t match our records or they aren’t
+      on the prisoner’s contact list.
+    please_contact_the_prisoner_and_ask_them: Please contact the prisoner and ask
+      them to update their contact list with correct details, making sure that names
+      appear exactly the same as on ID documents.
+    if_this_is_the_prisoner_s_first_visit_re: If this is the prisoner’s first visit
+      (reception visit), then you need to contact the prison to book.
+    cannot_attend: 'cannot attend. '
+    details_for: Details for
+    don_t_match_our_records_or_the_visitor_i: 'don’t match our records or the visitor
+      isn’t on the contact list. '
+    a_b_c_is_not_on_the_list: '%{a} %{b} %{c} is not on the list'
+    visitor_is_banned: Visitor is banned
+    your_visit_cannot_take_place: Your visit cannot take place.
+    should_have_received_a_letter_to_say_tha: 'should have received a letter to say
+      that they’re banned from visiting the prison at the moment. Get in touch with
+      the prison for more information. '
+    cannot_attend_1: cannot attend.
+    a_b_c_is_banned: '%{a} %{b} %{c} is banned'
+    visit_already_confirmed: Visit already confirmed.
+    this_visit_has_already_been_processed_pl: This visit has already been processed.
+      Please refer to your functional mailbox inbox folder for a receipt with the
+      outcome.
+    today: Today
+    tabindex_1_day_strftime_b: (tabindex='-1')= day.strftime('%b')
+    process_a_visit_request: Process a visit request
+    thank_you: Thank you
+    a_confirmation_email_has_been_sent_to_th: A confirmation email has been sent to
+      the visitor.
+    staff_update_visits_on_easter_bank_holid: 'Staff update: visits on Easter Bank
+      Holiday'
+    please_notify_us_now_if_your_social_visi: Please notify us now if your social
+      visits slots will change due to Easter Bank Holidays. Please email changes to
+      prison-visits-feedback@digital.justice.gov.uk.
+    read_about_recent_updates: Read about recent updates
+  mailers_common:
+    dear_a: Dear %{a},
+    we_re_sorry_but_none_of_the_dates_and_ti: We’re sorry but none of the dates and
+      times you chose to visit
+    a_b: '%{a} %{b}'
+    at: at
+    were_available: were available.
+    a_b_c: '%{a}. %{b}, %{c}'
+    please_visit_a_to_choose_some_alternativ: Please visit %{a} to choose some alternative
+      dates.
+    you_have_tried_to_book_a_visit_but_not_a: You have tried to book a visit but not
+      all visitors are on the prisoner’s contact list.
+    you_need_to_contact_the_prisoner_to_be_a: You need to contact the prisoner to
+      be added to the contact list.
+    you_have_tried_to_book_a_visit_but_the_p: You have tried to book a visit but the
+      prisoner you want to visit has not got any visiting allowance left. You need
+      to contact the prisoner to find out more about their visiting allowance.
+    we_re_sorry_but_the_prisoner_you_want_to: We’re sorry, but the prisoner you want
+      to visit has not got any visiting allowance left for the dates you’ve chosen.
+    however_you_can_book_a_weekday_visit_wit: However, you can book a weekday visit
+      with visiting allowance valid until %{a}. The visit must be taken before the
+      allowance expires.
+    a_b_will_have_their_full_visiting_allow: '%{a} %{b} will have their full visiting
+      allowance (VO) renewed on %{c}.'
+    your_visit_cannot_take_place_as_you_have: Your visit cannot take place as you
+      haven’t given correct information for the prisoner. Eg, the prisoner’s name,
+      number or date of birth is incorrect. Contact the prisoner to get up-to-date
+      information.
+    your_visit_cannot_take_place_as_the_pris: Your visit cannot take place as the
+      prisoner you want to visit has moved prison. They should contact you about where
+      they are now. You can also use the %{a}.
+    your_visit_cannot_take_place_as_details: Your visit cannot take place as details
+      for %{a} don’t match our records or they aren’t on the prisoner’s contact list.
+    please_contact_the_prisoner_and_ask_them: Please contact the prisoner and ask
+      them to update their contact list with correct details, making sure that names
+      appear exactly the same as on ID documents.
+    if_this_is_the_prisoner_s_first_visit_re: If this is the prisoner’s first visit
+      (reception visit), then you need to contact the prison to book.
+    your_visit_cannot_take_place_a_should_ha: Your visit cannot take place. %{a} should
+      have received a letter to say that they’re banned from visiting the prison at
+      the moment. Get in touch with the prison for more information.
+    if_you_have_any_questions_visit_the: If you have any questions, visit the
+    prison_website: prison website
+    or_call_the_prison_on: or call the prison on
+    a: '%{a}.'
+    visit_id_a: 'Visit ID: %{a}'
+    your_visit_to_a_is_now_successfully_conf: Your visit to %{a} is now successfully
+      confirmed.
+    a_b_1: '%{a}, %{b}'
+    please_arrive_45_minutes_before_your_vis: Please arrive 45 minutes before your
+      visit starts.
+    prisoner: 'Prisoner:'
+    prisoner_number: 'Prisoner number:'
+    visitor_a: 'Visitor %{a}:'
+    your_reference_number_is_a: 'Your reference number is: %{a}'
+    visitors_unable_to_attend_this_visit: Visitors unable to attend this visit
+    a_cannot_attend_as_they_re_not_on_the_p: '%{a} cannot attend as they’re not on
+      the prisoner’s contact list'
+    a_cannot_attend_as_they_re_currently_ba: '%{a} cannot attend as they’re currently
+      banned'
+    visitors_not_on_contact_lists_need_to_as: Visitors not on contact lists need to
+      ask prisoners to update their lists with correct details, making sure that names
+      appear exactly the same as on ID documents.
+    banned_visitors_should_have_received_a_l: 'Banned visitors should have received
+      a letter to say that they’re banned from visiting the prison at the moment.
+      Get in touch with the prison for more information. '
+    this_is_a_closed_visit: 'This is a closed visit:'
+    the_prisoner_will_be_behind_a_glass_scre: the prisoner will be behind a glass
+      screen in a separate area rather than in the visiting hall.
+    cancel_or_change_this_visit: Cancel or change this visit
+    if_you_no_longer_want_to_visit_on_this_d: If you no longer want to visit on this
+      date, %{a}.
+    if_you_want_to_change_anything_about_you: If you want to change anything about
+      your visit, like dates or visitors coming, contact the prison.
+    questions_about_your_visit: Questions about your visit
+    please_don_t_reply_to_this_email_if_you: Please don't reply to this email if you
+      have any other questions about your visit. Instead you must contact us directly.
+    telephone: 'telephone:'
+    email: 'email:'
+    add_this_email_to_your_address_book: Add this email to your address book
+    to_stop_visit_confirmation_emails_going: To stop visit confirmation emails going
+      to your spam or junk folder please add no-reply@email.prisonvisits.service.gov.uk
+      to your address book or safe senders list.
+    what_to_bring_when_you_visit: What to bring when you visit
+    if_you_have_any_questions_about_id_requi: If you have any questions about ID requirements,
+      please contact the prison.
+    if_you_re_bringing_someone_else_s_child: If you’re bringing someone else’s child
+    you_ll_need_a_letter_from_that_child_s_p: 'You’ll need a letter from that child’s
+      parents giving you permission to accompany their child. '
+    what_to_expect_when_visiting_prison: What to expect when visiting prison
+    you_will_be_searched_before_entering_the: You will be searched before entering
+      the prison visiting room. Prison staff may check  your pockets, pat you down
+      and ask you to go through a metal detector. Dogs may also be used to detect
+      illegal substances.
+    what_not_to_bring: What not to bring
+    please_don_t_bring_anything_restricted_o: Please don’t bring anything restricted
+      or illegal to the prison. The %{a} has more information about what you can bring.
+    your_data: Your data
+    the_ministry_of_justice_hm_prison_servic: The Ministry of Justice (HM Prison Service)
+      uses and retains the personal data of visitors for the purposes of the safe
+      and secure provision of Prison Services, including those related to the management
+      and rehabilitation of offenders. Access to the establishment can only be granted
+      by supplying the prescribed information in order to ensure and maintain a safe
+      and secure environment for all. You have the right to request details as to
+      the personal information we hold for you; and subsequently request that we correct
+      any personal information if it is found to be inaccurate or out of date. We
+      will not share your information with other organisations unless it is required
+      for the purposes of prevention, detection of crime, apprehension, prosecution,
+      and management of offenders; prevention of terrorism; National  Security; or
+      required to do by law.
+    need_help_or_have_a_question: Need help or have a question?
+    if_you_have_a_question_or_need_any_help: If you have a question or need any help
+      with the online visits service, please %{a}.

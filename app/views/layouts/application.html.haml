@@ -43,7 +43,7 @@
 
 
 - content_for :cookie_message do
-  GOV.UK uses cookies to make the site simpler. 
+  = t("layouts.gov_uk_uses_cookies_to_make_the_site_sim")
   = succeed '.' do
     = link_to "Find out more about cookies", cookies_path
 
@@ -56,7 +56,7 @@
             %a= link_to 'Booking staff information', staff_path
 
         %p
-          This is a new service. If you need any help with using it, please 
+          = t("layouts.this_is_a_new_service_if_you_need_any_he")
           = succeed "." do
             = link_to("contact us", new_feedback_path(referrer: request.original_url))
 

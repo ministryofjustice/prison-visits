@@ -1,49 +1,49 @@
 %script{src: "//www.google-analytics.com/cx/api.js?experiment=4uAdObjoRp2Cz3Ve100AvA"}
 
 %p
-  You can use this form to tell us about a problem you're having with the website. You must
-  %a(href="http://www.justice.gov.uk/contacts/prison-finder") contact the prison
-  if your question is about:
+  = t("feedbacks.you_can_use_this_form_to_tell_us_about_a")
+  %a(href="http://www.justice.gov.uk/contacts/prison-finder")= t("feedbacks.contact_the_prison")
+  = t("feedbacks.if_your_question_is_about")
   %ul
-    %li whether your visit has been booked
-    %li cancelling or changing visit details eg names of visitors, dates or times
-    %li what you can bring when you visit, eg clothes or money
-    %li prisoner's contact lists or visiting allowance
+    %li= t("feedbacks.whether_your_visit_has_been_booked")
+    %li= t("feedbacks.cancelling_or_changing_visit_details_eg")
+    %li= t("feedbacks.what_you_can_bring_when_you_visit_eg_clo")
+    %li= t("feedbacks.prisoner_s_contact_lists_or_visiting_all")
 %p
-  We’re not able to help with questions about the above.
+  = t("feedbacks.we_re_not_able_to_help_with_questions_ab")
   
 = form_for @feedback, :url => feedback_path, :html => {:novalidate => 'novalidate', :class => 'js-SubmitOnce'} do |f|
-  %input{name: 'feedback[referrer]', type: 'hidden', value: (params[:referrer] || (params[:feedback][:referrer] if params[:feedback]))}/
+  %input{name: 'feedback[referrer]', type: 'hidden', value: (params[:referrer] || (params[:feedback][:referrer] if params[:feedback]))}= t("feedbacks.unknown")
   %input{name: 'feedback[user_agent]', type: 'hidden', value: request.headers['HTTP_USER_AGENT']}
 
   - if @feedback.errors.any?
     #error-summary.validation-summary.group(role="alert" tabindex="-1" aria-labelledby="error-heading")
-      %h2#error-heading You need to fix the errors on this page before continuing.
-      %p See highlighted errors below.
+      %h2#error-heading= t("feedbacks.you_need_to_fix_the_errors_on_this_page")
+      %p= t("feedbacks.see_highlighted_errors_below")
       %ul
         - @feedback.errors.full_messages.each do |msg|
           %li= msg
 
   %p
-    %strong Please don't include any sensitive personal information (eg. prisoner numbers).
+    %strong= t("feedbacks.please_don_t_include_any_sensitive_perso")
   
   %fieldset
-    %legend.visuallyhidden Feedback form
+    %legend.visuallyhidden= t("feedbacks.feedback_form")
     .group{ :class => ('validation-error' if f.object.errors.include?(:text)) }
       = f.label :text do
-        Your question
+        = t("feedbacks.your_question")
         %span.validation-message= f.object.errors[:text].first if f.object.errors.include?(:text)
       = f.text_area :text, :cols => 50, :rows => 5
 
   %fieldset
-    %legend Do you want a reply?
-    %p If you'd like us to get back to you, please leave your details below.
+    %legend= t("feedbacks.do_you_want_a_reply")
+    %p= t("feedbacks.if_you_d_like_us_to_get_back_to_you_plea")
     .group{ :class => ('validation-error' if f.object.errors.include?(:email)) }
       = f.label :email do
-        Your email address
+        = t("feedbacks.your_email_address")
         %span.validation-message= f.object.errors[:email].first if f.object.errors.include?(:email)
       = f.email_field :email
-      .group__help We'll only use this to reply to your message.
+      .group__help= t("feedbacks.we_ll_only_use_this_to_reply_to_your_mes")
     
     .actions
       = f.submit 'Send', :class => 'button button-primary', :id => 'submit-button'

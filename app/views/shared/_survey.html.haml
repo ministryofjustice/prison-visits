@@ -1,9 +1,9 @@
 #user-satisfaction-survey-container
   %section#user-satisfaction-survey
     .wrapper
-      %h1 Help us design new ways of sending money to prisoners
+      %h1= t("shared.help_us_design_new_ways_of_sending_money")
       %p.right
-        %button#survey-no-thanks{:href => "#survey-no-thanks"} No thanks
+        %button#survey-no-thanks{:href => "#survey-no-thanks"}= t("shared.no_thanks")
       %p
-        %a#take-survey{:href => "https://www.surveymonkey.com/r/PJWKMSQ", :target => "_blank"} Take a short survey now
-        The survey will open in a new window
+        %a#take-survey{:href => "https://www.surveymonkey.com/r/PJWKMSQ", :target => "_blank"}= t("shared.take_a_short_survey_now")
+        = t("shared.the_survey_will_open_in_a_new_window")

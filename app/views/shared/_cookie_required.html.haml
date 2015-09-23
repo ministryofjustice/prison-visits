@@ -1,5 +1,5 @@
 %noscript
   #error-summary.validation-summary.group(role="alert" aria-labelledby="cookie-heading")
-    %h2#cookie-heading You need to enable cookies before continuing.
-    %p This service saves your information over the 3 steps of the form using a cookie. The cookie is deleted after you have sent your request, or if your session times out after 20 minutes.
-    %p.hidden--js-enabled You have not enabled JavaScript. You don’t need JavaScript to use this service, but it does make it easier.
+    %h2#cookie-heading= t("shared.you_need_to_enable_cookies_before_contin")
+    %p= t("shared.this_service_saves_your_information_over")
+    %p.hidden--js-enabled= t("shared.you_have_not_enabled_javascript_you_don")

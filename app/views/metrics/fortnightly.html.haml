@@ -3,23 +3,23 @@
 = stylesheet_link_tag 'metrics'
 
 %h1
-  Fortnightly performance indicators for
+  = t("metrics.fortnightly_performance_indicators_for")
   = prison_name_for_id(@nomis_id)
   = link_to('(All time)', prison_metrics_all_time_path(@nomis_id))
   = link_to('Performance over time', prison_metrics_fortnightly_performance_path(@nomis_id))
 %h2
-  Summary for
+  = t("metrics.summary_for")
   = format_date(@start_date)
-  to
+  = t("metrics.to")
   = format_date(@end_date)
 %table#overall-performance
   %tr
     %th
-      Under 3 days
+      = t("metrics.under_3_days")
     %th
-      Over 3 days
+      = t("metrics.over_3_days")
     %th
-      Status
+      = t("metrics.status")
   %tr
     %td
       = @dataset.processed_before
@@ -29,11 +29,11 @@
       = image_for_performance_score(@dataset.percentile(@dataset.end_to_end_times))
   %tr
     %th
-      Median
+      = t("metrics.median")
     %th
-      Total
+      = t("metrics.total")
     %th
-      Waiting
+      = t("metrics.waiting")
   %tr
     %td
       = display_interval_as_fraction(@dataset.median(@dataset.end_to_end_times), 1.day)
@@ -43,13 +43,13 @@
       = @dataset.waiting
       
 %h2
-  End to end processing time
+  = t("metrics.end_to_end_processing_time")
 %script#end_to_end_times{language: 'json'}
   = @dataset.end_to_end_times.to_json
 #end_to_end
 
 %h2
-  Unprocessed visits by days from today
+  = t("metrics.unprocessed_visits_by_days_from_today")
 %script#waiting_times{language: 'json'}
   = @dataset.waiting_times.to_json
 #waiting

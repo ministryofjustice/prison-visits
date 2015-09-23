@@ -2,14 +2,14 @@
   .Grid-2-3
 
     %header
-      %h1 Thank you
-      %p A confirmation email has been sent to the visitor.
+      %h1= t("deferred.thank_you")
+      %p= t("deferred.a_confirmation_email_has_been_sent_to_th")
 
     - if Date.today < Date.parse('2015-03-25')
       #latest-change.notice
-        %h1 Staff update: visits on Easter Bank Holiday
+        %h1= t("deferred.staff_update_visits_on_easter_bank_holid")
 
-        %p Please notify us now if your social visits slots will change due to Easter Bank Holidays. Please email changes to prison-visits-feedback@digital.justice.gov.uk.
+        %p= t("deferred.please_notify_us_now_if_your_social_visi")
 
         %p
-          %a(href="/staff/changes") Read about recent updates
+          %a(href="/staff/changes")= t("deferred.read_about_recent_updates")

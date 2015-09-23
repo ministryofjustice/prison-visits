@@ -1,57 +1,57 @@
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
-  Prisoner:
-  %strong #{@visit.prisoner.first_name} #{@visit.prisoner.last_name}
+  = t("prison_mailer.prisoner")
+  %strong= t("prison_mailer.a_b", a: (@visit.prisoner.first_name), b: (@visit.prisoner.last_name))
   %br
-  Number:
+  = t("prison_mailer.number")
   %strong #{@visit.prisoner.number}
   %br
-  Date of birth:
+  = t("prison_mailer.date_of_birth")
   %strong #{@visit.prisoner.date_of_birth.strftime("%e %B %Y")}
 
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
-  First choice:
+  = t("prison_mailer.first_choice")
   %strong
     = Date.parse(@visit.slots.first.date).strftime('%A, %d/%m/%Y at ')
     = format_time_str_24 @visit.slots.first.times.split('-')[0]
-    \-
+    = t("prison_mailer.unknown")
     = format_time_str_24 @visit.slots.first.times.split('-')[1]
   - if @visit.slots.length > 1
     - @visit.slots.each_with_index do |slot, index|
       - unless index == 0
         - if slot.date.present?
           %br
-          Alternative #{index}:
+          = t("prison_mailer.alternative_a", a: (index))
           %strong
             = Date.parse(slot.date).strftime('%A, %d/%m/%Y at ')
             = format_time_str_24 slot.times.split('-')[0]
-            \-
+            = t("prison_mailer.unknown")
             = format_time_str_24 slot.times.split('-')[1]
 
 - @visit.visitors.each_with_index do |visitor, index|
   %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
-    Visitor #{index + 1}:
-    %strong #{visitor.first_name} #{visitor.last_name}
+    = t("prison_mailer.visitor_a", a: (index + 1))
+    %strong= t("prison_mailer.a_b", a: (visitor.first_name), b: (visitor.last_name))
     %br
-    Age: 
+    = t("prison_mailer.age")
     %strong #{visitor.age}
     %br
-    Date of birth:
+    = t("prison_mailer.date_of_birth")
     %strong #{visitor.date_of_birth.strftime("%d/%m/%Y")}
     - if visitor.email
       %br
-      Email:
+      = t("prison_mailer.email")
       %strong #{visitor.email}
     - if visitor.phone
       %br
-      Phone:
+      = t("prison_mailer.phone")
       %strong #{visitor.phone}
 
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }= link_to("Process the booking", deferred_new_confirmation_url(state: @token), style: 'color: white; background: #00823b; text-decoration: none; padding: 7px 12px 5px; font-family: arial; font-weight: bold; letter-spacing: 0.03em; border-bottom: 2px solid #003518; margin-top: 1em; display: inline-block;')
 
-%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } If you cannot click on the link above, copy the entire link and paste it into the address bar of your browser.
+%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }= t("prison_mailer.if_you_cannot_click_on_the_link_above_co")
 
 %div{ style: 'word-wrap: break-word; border: thin solid gray; padding: 5px;' }
   = deferred_new_confirmation_url(state: @token)
 
 %p
-  %small Visit ID: #{@visit.visit_id}
+  %small= t("prison_mailer.visit_id_a", a: (@visit.visit_id))

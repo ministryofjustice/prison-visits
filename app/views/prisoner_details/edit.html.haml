@@ -3,81 +3,81 @@
 .Grid
   .Grid-2-3
     %ul
-      %li you don’t need a Visiting Order (VO) number to request a visit
-      %li you need the dates of birth for all visitors coming with you
-      %li your visit will be confirmed by email within 3 working days of making your request
+      %li= t("prisoner_details.you_don_t_need_a_visiting_order_vo_numbe")
+      %li= t("prisoner_details.you_need_the_dates_of_birth_for_all_visi")
+      %li= t("prisoner_details.your_visit_will_be_confirmed_by_email_wi")
 
     = form_for visit.prisoner, url: prisoner_details_path, as: :prisoner, :html => { :class => 'form validation', :autocomplete => 'off' } do |f|
 
-      %h2 Prisoner details
+      %h2= t("prisoner_details.prisoner_details")
 
       - if f.object.errors.any?
         - if f.object.errors.include?(:api)
           #error-summary.validation-summary.group(role="alert" tabindex="-1" aria-labelledby="error-heading")
-            %h2#error-heading Your details need to be checked
-            %p To protect prisoners’ identity, we can’t highlight incorrect details.
-            %p Carefully check the following:
+            %h2#error-heading= t("prisoner_details.your_details_need_to_be_checked")
+            %p= t("prisoner_details.to_protect_prisoners_identity_we_can_t_h")
+            %p= t("prisoner_details.carefully_check_the_following")
             %ul
-              %li names should be entered exactly as they appear on official documents, eg ‘Thomas’ instead of ‘Tom’
-              %li the prisoner number should follow this format a1111aa
-            %p If you’re sure that all details are correct, contact the prisoner to check with them.
-            %p You won’t be able to book a visit to a prisoner who has moved prison or has no visit entitlement left.
+              %li= t("prisoner_details.names_should_be_entered_exactly_as_they")
+              %li= t("prisoner_details.the_prisoner_number_should_follow_this_f")
+            %p= t("prisoner_details.if_you_re_sure_that_all_details_are_corr")
+            %p= t("prisoner_details.you_won_t_be_able_to_book_a_visit_to_a_p")
 
         - else
           = render 'shared/validation'
 
       %fieldset
-        %legend.visuallyhidden Prisoner details
+        %legend.visuallyhidden= t("prisoner_details.prisoner_details")
 
         .group{ :class => ('validation-error' if f.object.errors.include?(:first_name)) }
           = f.label :first_name do
-            Prisoner first name
+            = t("prisoner_details.prisoner_first_name")
             %span.validation-message= f.object.errors[:first_name].first if f.object.errors.include?(:first_name)
           = f.text_field :first_name
 
         .group{ :class => ('validation-error' if f.object.errors.include?(:last_name)) }
           = f.label :last_name do
-            Prisoner last name
+            = t("prisoner_details.prisoner_last_name")
             %span.validation-message= f.object.errors[:last_name].first if f.object.errors.include?(:last_name)
           = f.text_field :last_name
 
         .group{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
           %fieldset
             %legend
-              Prisoner date of birth
+              = t("prisoner_details.prisoner_date_of_birth")
               %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
               %span.validation-message= 'year must be four digits' if visit.prisoner.date_of_birth && visit.prisoner.date_of_birth.year < 100
             .date-of-birth
-              %p#dobHint.form-hint.datefield-hint eg 28 04 1996
+              %p#dobHint.form-hint.datefield-hint= t("prisoner_details.eg_28_04_1996")
               - dates = ['day', 'month', 'year']
               - min = [1, 1, 1900]
               - max = [31, 12, Date.today.year - 15]
               - dates.each_with_index do |o, i|
                 .datefield{ :class => "form-group form-group-#{o}" }
-                  %label{ :for => "prisoner_date_of_birth_#{dates.count - i}i"} #{o.mb_chars.titleize }
+                  %label{ :for => "prisoner_date_of_birth_#{dates.count - i}i"}#{o.mb_chars.titleize }
                   %input.form-control{ :value => (visit.prisoner.date_of_birth ? visit.prisoner.date_of_birth.send(o).to_s.rjust(2, '0') : ''), :type => "number", :min => min[i], :max => max[i], :pattern => "[0-9]*", :name => "prisoner[date_of_birth(#{dates.count - i}i)]", :id => "prisoner_date_of_birth_#{dates.count - i}i", :'aria-describedby' => "dobHint" }
 
         .group{ :class => ('validation-error' if f.object.errors.include?(:number)) }
           = f.label :number do
-            Prisoner number
+            = t("prisoner_details.prisoner_number")
             %span.validation-message= f.object.errors[:number].first if f.object.errors.include?(:number)
-          %p.form-hint eg a1234bc
+          %p.form-hint= t("prisoner_details.eg_a1234bc")
           = f.text_field :number
 
         .group{ :class => ('validation-error' if f.object.errors.include?(:prison_name)) }
           = f.label :prison_name do
-            Name of the prison
-            %p.form-hint eg Cardiff
+            = t("prisoner_details.name_of_the_prison")
+            %p.form-hint= t("prisoner_details.eg_cardiff")
             %span.validation-message= f.object.errors[:prison_name].first if f.object.errors.include?(:prison_name)
           - if f.object.errors.include?(:prison_name_reason)
             %p
               - case prison_data['reason']
                 - when 'it_issues'
-                  HMP #{prison_name} is unable to process online visit requests right now. You can #{prison_link visit, 'contact the prison'} directly to book a visit instead.
+                  = t("prisoner_details.hmp_a_is_unable_to_process_online_visit", a: (prison_name), b: (prison_link visit, 'contact the prison'))
                 - when 'coming_soon'
-                  HMP #{prison_name} isn’t able to process online visit requests yet. You can #{prison_link visit, 'contact the prison'} directly to book a visit instead.
+                  = t("prisoner_details.hmp_a_isn_t_able_to_process_online_visit", a: (prison_name), b: (prison_link visit, 'contact the prison'))
                 - else
-                  HMP #{prison_name} is unable to process online visit requests. Instead you can #{prison_link visit, 'contact the prison'} directly to book a visit.
+                  = t("prisoner_details.hmp_a_is_unable_to_process_online_visit_1", a: (prison_name), b: (prison_link visit, 'contact the prison'))
           = f.select :prison_name, prison_names, { prompt: 'select a prison' }, { class: 'js-autocomplete' }
 
       .actions
@@ -86,9 +86,9 @@
         %p= link_to 'Cancel and delete all details', abandon_path, :'data-confirm' => "Are you sure you wish to cancel this visit request?\r\rThis will delete all the information you have entered"
 
     %p.note
-      %strong Please note
+      %strong= t("prisoner_details.please_note")
       %br
-      If you don't enter any information for more than 20 minutes, then your session will time out and you'll need to start again.
+      = t("prisoner_details.if_you_don_t_enter_any_information_for_m")
     - content_for :analytics do
       :ruby
         haml_io << "var serverTime = " + Time.now.to_f.to_s + ";\n";

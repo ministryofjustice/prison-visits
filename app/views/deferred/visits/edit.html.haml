@@ -1,52 +1,52 @@
 - content_for :header, 'Check your request'
 
 .divider.compact
-  %h2 Prisoner details
+  %h2= t("deferred.prisoner_details")
   %p
     %big
-      %strong #{visit.prisoner.first_name} #{visit.prisoner.last_name}
+      %strong= t("deferred.a_b", a: (visit.prisoner.first_name), b: (visit.prisoner.last_name))
   %p
-    Date of birth:
+    = t("deferred.date_of_birth")
     %strong= format_date visit.prisoner.date_of_birth
   - if visit.prisoner.number.present?
     %p
-      Prisoner number:
+      = t("deferred.prisoner_number")
       %strong #{visit.prisoner.number}
   %p
-    Prison:
+    = t("deferred.prison")
     %strong #{visit.prisoner.prison_name}
   %p.edit-link= link_to 'Change prisoner details', prisoner_details_path
 
 .divider.compact
-  %h2 Visitor details
+  %h2= t("deferred.visitor_details")
   %p
-    Confirmation email:
+    = t("deferred.confirmation_email")
     %strong= visit.visitors.first.email
   - visit.visitors.each_with_index do |visitor, i|
     - if visitor.first_name.present? || visitor.last_name.present?
       %p
-        Visitor #{i+1}:
-        %strong #{visitor.first_name} #{visitor.last_name}
-        \ -
+        = t("deferred.visitor_a", a: (i+1))
+        %strong= t("deferred.a_b", a: (visitor.first_name), b: (visitor.last_name))
+        = t("deferred.unknown")
         = format_date visitor.date_of_birth
         - if visit.adult?(visitor)
-          %small.AgeLabel-label.over Over #{adult_age}
+          %small.AgeLabel-label.over= t("deferred.over_a", a: (adult_age))
         - else
-          %small.AgeLabel-label.under Under #{adult_age}
+          %small.AgeLabel-label.under= t("deferred.under_a", a: (adult_age))
   %p.edit-link= link_to 'Change visitor details', deferred_edit_visitors_details_path
 
 .divider.compact.visit-details
-  %h2 Your visit
+  %h2= t("deferred.your_visit")
   - if visit.slots.dup.delete_if{|s|s.date.blank?}.size < 3
-    %p You can choose up to 2 alternative dates if your first choice isn’t available.
+    %p= t("deferred.you_can_choose_up_to_2_alternative_dates")
 
-  %p First choice:
+  %p= t("deferred.first_choice")
   %p
     %strong= format_day visit.slots.first.date
     = display_slot_and_duration visit.slots.first.times
   
   - if visit.slots[1].date.present?
-    %p.alt Alternatives:
+    %p.alt= t("deferred.alternatives")
     %ol.unstyled-list
       - visit.slots[1..-1].each do |slot|
         - if slot.date.present?

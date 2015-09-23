@@ -6,46 +6,46 @@
     - case @visit_status
     
     - when 'confirmed'
-      %h1 Your visit has been confirmed
-      %p You should have received an email confirming the exact date and time of your visit.
-      %p If you haven't received a confirmation email, please check your spam or junk folder. You need to do this on a computer or tablet (rather than a smart phone).
+      %h1= t("visit.your_visit_has_been_confirmed")
+      %p= t("visit.you_should_have_received_an_email_confir")
+      %p= t("visit.if_you_haven_t_received_a_confirmation_e")
 
       = render 'spam_notice'
 
       - if @state
-        %h1 Cancel this visit
-        %p If you no longer want to visit on this date, you can cancel this visit. 
+        %h1= t("visit.cancel_this_visit")
+        %p= t("visit.if_you_no_longer_want_to_visit_on_this_d")
 
         = render 'cancellation_form', type: :visit
     
     - when 'rejected'
-      %h1 Your visit request cannot take place on the dates you've chosen 
-      %p There are a couple of possible reasons for this, for example there may be no space in the visiting hall, or the prisoner may not have any visiting allowance left.
-      %p If you haven't received an email to say that your visit can't take place as planned, please check your spam or junk folder. You need to do this on a computer or tablet (rather than a smart phone).
+      %h1= t("visit.your_visit_request_cannot_take_place_on")
+      %p= t("visit.there_are_a_couple_of_possible_reasons_f")
+      %p= t("visit.if_you_haven_t_received_an_email_to_say")
 
       = render 'spam_notice'
       
-      %p Request a #{link_to 'new visit', prisoner_details_path}.
+      %p= t("visit.request_a_a", a: (link_to 'new visit', prisoner_details_path))
     
     - when 'pending'
-      %h1 Your visit is not booked yet
-      %p Your visit request hasn't yet been processed by visit booking staff. You should get a visit confirmation email within 3 working days of making your request.
-      %p If you don’t receive an email within 3 working days, please check your spam or junk folder. You need to do this on a computer or tablet (rather than a smart phone).
+      %h1= t("visit.your_visit_is_not_booked_yet")
+      %p= t("visit.your_visit_request_hasn_t_yet_been_proce")
+      %p= t("visit.if_you_don_t_receive_an_email_within_3_w")
 
       = render 'spam_notice'
       
-      %h1 Cancel this visit request
-      %p If you no longer want to visit on this date, you can cancel this request.
+      %h1= t("visit.cancel_this_visit_request")
+      %p= t("visit.if_you_no_longer_want_to_visit_on_this_d_1")
 
       = render 'cancellation_form', type: :request
     
     - when 'request_cancelled'
-      %h1 You cancelled this visit request
-      %p Request a #{link_to 'new visit', prisoner_details_path}.
+      %h1= t("visit.you_cancelled_this_visit_request")
+      %p= t("visit.request_a_a", a: (link_to 'new visit', prisoner_details_path))
     
     - when 'visit_cancelled'
-      %h1 You cancelled this visit
-      %p Request a #{link_to 'new visit', prisoner_details_path}.
+      %h1= t("visit.you_cancelled_this_visit")
+      %p= t("visit.request_a_a", a: (link_to 'new visit', prisoner_details_path))
     
     - else
-      %p There was a problem. Your visit request is invalid.
+      %p= t("visit.there_was_a_problem_your_visit_request_i")

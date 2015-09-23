@@ -1,46 +1,46 @@
 - content_for :header, 'Check your request'
 
 .divider.compact
-  %h2 Prisoner details
+  %h2= t("instant.prisoner_details")
   %p
     %big
-      %strong #{visit.prisoner.first_name} #{visit.prisoner.last_name}
+      %strong= t("instant.a_b", a: (visit.prisoner.first_name), b: (visit.prisoner.last_name))
   %p
-    Date of birth:
+    = t("instant.date_of_birth")
     %strong= format_date visit.prisoner.date_of_birth
   - if visit.prisoner.number.present?
     %p
-      Prisoner number:
+      = t("instant.prisoner_number")
       %strong #{visit.prisoner.number}
   %p
-    Prison:
+    = t("instant.prison")
     %strong #{visit.prisoner.prison_name}
   %p.edit-link= link_to 'Change prisoner details', prisoner_details_path
 
 .divider.compact
-  %h2 Visitor details
+  %h2= t("instant.visitor_details")
   %p
-    Confirmation email:
+    = t("instant.confirmation_email")
     %strong= visit.visitors.first.email
   - visit.visitors.each_with_index do |visitor, i|
     - if visitor.first_name.present? || visitor.last_name.present?
       %p
-        Visitor #{i+1}:
-        %strong #{visitor.first_name} #{visitor.last_name}
-        \ -
+        = t("instant.visitor_a", a: (i+1))
+        %strong= t("instant.a_b", a: (visitor.first_name), b: (visitor.last_name))
+        = t("instant.unknown")
         = format_date visitor.date_of_birth
         - if visit.adult?(visitor)
-          %small.AgeLabel-label.over Over #{adult_age}
+          %small.AgeLabel-label.over= t("instant.over_a", a: (adult_age))
         - else
-          %small.AgeLabel-label.under Under #{adult_age}
+          %small.AgeLabel-label.under= t("instant.under_a", a: (adult_age))
   %p.edit-link= link_to 'Change visitor details', instant_edit_visitors_details_path
 
 .divider.compact.visit-details
-  %h2 Your visit
+  %h2= t("instant.your_visit")
   - if visit.slots.dup.delete_if{|s|s.date.blank?}.size < 3
-    %p You can choose up to 2 alternative dates if your first choice isn’t available.
+    %p= t("instant.you_can_choose_up_to_2_alternative_dates")
 
-  %p First choice:
+  %p= t("instant.first_choice")
   %p
     %strong= format_day visit.slots.first.date
     = display_slot_and_duration visit.slots.first.times

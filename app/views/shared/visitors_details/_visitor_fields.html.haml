@@ -7,10 +7,10 @@
 
   - unless index == 0
     %h2
-      Visitor
+      = t("shared.visitor")
       - if js_template
         %span.js-visitor-position
-          ${index}
+          = t("shared.index")
       - else
         %span.js-visitor-position
           = index+1
@@ -37,43 +37,43 @@
       .known-date.AgeLabel-date
         #dobHint
           - if index == 0
-            %p.form-hint You must be over 18 to book a visit.
-          %p.form-hint.datefield-hint eg 28 04 1996
+            %p.form-hint= t("shared.you_must_be_over_18_to_book_a_visit")
+          %p.form-hint.datefield-hint= t("shared.eg_28_04_1996")
         - dates = ['day', 'month', 'year']
         - min = [1, 1, Date.today.year - 115]
         - max = [31, 12, Date.today.year]
         - dates.each_with_index do |o, i|
           .datefield{ :class => "form-group form-group-#{o}" }
-            %label{ :for => "visitor_date_of_birth_#{dates.count - i}i_#{index}" } #{o.mb_chars.titleize}
+            %label{ :for => "visitor_date_of_birth_#{dates.count - i}i_#{index}" }#{o.mb_chars.titleize}
             %input.form-control{ :value => (visit.visitors[index.to_i].date_of_birth && !js_template ? visit.visitors[index.to_i].date_of_birth.send(o).to_s.rjust(2, '0') : ''), :type => "number", :min => min[i], :max => max[i], :pattern => "[0-9]*", :name => "visit[visitor][][date_of_birth(#{dates.count - i}i)]", :id => "visitor_date_of_birth_#{dates.count - i}i_#{index}", :class => o, :'aria-describedby' => "dobHint" }
 
   - if index == 0
   
     .group{ :class => ('validation-error' if f.object.errors.include?(:email)) }
       %label{for: 'visit_visitor__email'}
-        Email address
+        = t("shared.email_address")
         %span.validation-message= f.object.errors[:email].first if f.object.errors.include?(:email)
-      %p.form-hint#emailHint You'll receive confirmation by email.
+      %p.form-hint#emailHint= t("shared.you_ll_receive_confirmation_by_email")
       = email_field_tag 'visit[visitor][][email]', f.object.email, :'aria-describedby' => "emailHint"
 
     - if @collect_phone_number
       .group{ :class => ('validation-error' if f.object.errors.include?(:phone)) }
         %label{for: 'visit_visitor__phone'}
-          Phone number
+          = t("shared.phone_number")
           %span.validation-message= f.object.errors[:phone].first if f.object.errors.include?(:phone)
         = telephone_field_tag 'visit[visitor][][phone]', f.object.phone
 
   - unless index == 0
     %label.remove-visitor
       = check_box_tag 'visit[visitor][][_destroy]', 1, false, { id: "_destroy-#{index}" }
-      remove
+      = t("shared.remove")
 
     %p.remove-link.visible--js-enabled
       = link_to '#' do
-        Remove visitor
+        = t("shared.remove_visitor")
         - if js_template
           %span.js-visitor-position
-            ${index}
+            = t("shared.index")
         - else
           %span.js-visitor-position
             = index+1

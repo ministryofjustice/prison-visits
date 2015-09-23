@@ -3,36 +3,36 @@
     %tr
       %th
       %th{colspan: 5}
-        Number of visits
+        = t("metrics.number_of_visits")
       %th{colspan: 2}
-        End to end
+        = t("metrics.end_to_end")
       %th{colspan: 4}
-        Percent rejected
+        = t("metrics.percent_rejected")
     %tr
       %td.prison-name
-        Prison name
+        = t("metrics.prison_name")
       %td
-        Total
+        = t("metrics.total")
       %td
-        Waiting
+        = t("metrics.waiting")
       %td
-        Overdue
+        = t("metrics.overdue")
       %td
-        Rejected
+        = t("metrics.rejected")
       %td
-        Confirmed
+        = t("metrics.confirmed")
       %td
-        median days
+        = t("metrics.median_days")
       %td
-        95th percentile days
+        = t("metrics.95th_percentile_days")
       %td
-        Overall
+        = t("metrics.overall")
       %td
-        No slot
+        = t("metrics.no_slot")
       %td
-        Not on contact list
+        = t("metrics.not_on_contact_list")
       %td
-        No VOs left
+        = t("metrics.no_vos_left")
     - @nomis_ids.each_with_index do |nomis_id, i|
       %tr{class: i.even? ? 'even' : 'odd'}
         %td.prison-name

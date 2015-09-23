@@ -1,27 +1,27 @@
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
-  Dear #{@visit.visitors.first.first_name},
+  = t("visitor_mailer.dear_a", a: (@visit.visitors.first.first_name))
 
 
 %h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' }
-  Your visit is not booked yet
+  = t("visitor_mailer.your_visit_is_not_booked_yet")
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
-  You can check whether your visit has been booked on the #{link_to('visit status page', visit_status_url(@visit.visit_id, state: @token))}.
+  = t("visitor_mailer.you_can_check_whether_your_visit_has_bee", a: (link_to('visit status page', visit_status_url(@visit.visit_id, state: @token))))
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
-  We'll email you by #{when_to_expect_reply} to confirm the date and time of your visit. Please don't contact us any sooner than that, as we won't be able to comment on booking requests that are being processed.
+  = t("visitor_mailer.we_ll_email_you_by_a_to_confirm_the_date", a: (when_to_expect_reply))
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
-  If you don’t receive a confirmation email by #{when_to_expect_reply}, please check your spam or junk folder for it. You need to do this on a computer or tablet (rather than a smart phone).
+  = t("visitor_mailer.if_you_don_t_receive_a_confirmation_emai", a: (when_to_expect_reply))
 
 
 %h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' }
-  Add this email to your address book
+  = t("visitor_mailer.add_this_email_to_your_address_book")
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
-  To stop visit confirmation emails going to your spam or junk folder please add no-reply@email.prisonvisits.service.gov.uk to your address book or safe senders list.
+  = t("visitor_mailer.to_stop_visit_confirmation_emails_going")
 
 
 %h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' }
-  Visit request details
+  = t("visitor_mailer.visit_request_details")
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
-  You have requested a visit to #{@visit.prisoner.prison_name} for #{@visit.visitors.size} #{@visit.visitors.size > 1 ? 'people' : 'person'}:
+  = t("visitor_mailer.you_have_requested_a_visit_to_a_for_b_c", a: (@visit.prisoner.prison_name), b: (@visit.visitors.size), c: (@visit.visitors.size > 1 ? 'people' : 'person'))
 
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
   - @visit.slots.each_with_index do |slot, index|
@@ -29,36 +29,36 @@
       %br
     - if slot.date.present?
       - if index == 0
-        First choice:
+        = t("visitor_mailer.first_choice")
       - else 
-        Alternative #{index}:
-      %strong #{Date.parse(slot.date).strftime("%A %e %B")}, #{display_time_slot(slot.times)}
+        = t("visitor_mailer.alternative_a", a: (index))
+      %strong= t("visitor_mailer.a_b", a: (Date.parse(slot.date).strftime("%A %e %B")), b: (display_time_slot(slot.times)))
 
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
-  Prisoner:
-  %strong #{@visit.prisoner.first_name} #{@visit.prisoner.last_initial}.
+  = t("visitor_mailer.prisoner")
+  %strong= t("visitor_mailer.a_b_1", a: (@visit.prisoner.first_name), b: (@visit.prisoner.last_initial))
   %br
-  Prisoner number:
+  = t("visitor_mailer.prisoner_number")
   %strong #{@visit.prisoner.number.upcase}
 
 
 %h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' }
-  Cancel this visit request
+  = t("visitor_mailer.cancel_this_visit_request")
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
-  If you no longer want to visit on this date, #{link_to('you can cancel this visit', visit_status_url(@visit.visit_id, state: @token))}.
+  = t("visitor_mailer.if_you_no_longer_want_to_visit_on_this_d", a: (link_to('you can cancel this visit', visit_status_url(@visit.visit_id, state: @token))))
 
 %ul
   %li{ style: 'font: 16px Helvetica, Arial, sans-serif' }
-    telephone:
+    = t("visitor_mailer.telephone")
     %strong #{prison_phone}
   %li{ style: 'font: 16px Helvetica, Arial, sans-serif' }
-    email:
+    = t("visitor_mailer.email")
     %strong #{prison_email}
 
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
-  Need help or want to make a complaint? If you have a question or need any help with the online visits service, please 
+  = t("visitor_mailer.need_help_or_want_to_make_a_complaint_if")
   = succeed '.' do
-    %a{ :href => new_feedback_url } contact us
+    %a{ :href => new_feedback_url }= t("visitor_mailer.contact_us")
 
 %p
-  %small Visit ID: #{@visit.visit_id}
+  %small= t("visitor_mailer.visit_id_a", a: (@visit.visit_id))
