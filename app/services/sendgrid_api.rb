@@ -1,7 +1,7 @@
 class SendgridApi
   extend SingleForwardable
 
-  def_single_delegators :new, :spam_reported?, :bounced?, :smtp_alive?
+  def_single_delegators :new, :spam_reported?, :bounced?
 
   def spam_reported?(email)
     return false unless can_access_sendgrid?
@@ -14,17 +14,6 @@ class SendgridApi
     return false unless can_access_sendgrid?
     bounces.retrieve(email: email).any?
   rescue JSON::ParserError, SendgridToolkit::APIError
-    false
-  end
-
-  def smtp_alive?(host, port)
-    Net::SMTP.start(host, port) do |smtp|
-      smtp.enable_starttls_auto
-      smtp.ehlo(Socket.gethostname)
-      smtp.finish
-    end
-    true
-  rescue StandardError
     false
   end
 

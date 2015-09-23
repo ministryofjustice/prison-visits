@@ -182,42 +182,4 @@ RSpec.describe SendgridApi do
       end
     end
   end
-
-  context 'sendgrid connection test' do
-    let :host do
-      'smtp.sendgrid.net'
-    end
-
-    let :port do
-      587
-    end
-
-    context 'when it connects' do
-      it 'will return true' do
-        expect(Net::SMTP).to receive(:start)
-        expect(subject.smtp_alive?(host, port)).to be_truthy
-      end
-    end
-
-    context 'when it times out' do
-      it 'will return false' do
-        expect(Net::SMTP).to receive(:start).and_raise(Net::OpenTimeout)
-        expect(subject.smtp_alive?(host, port)).to be_falsey
-      end
-    end
-
-    context 'when the port is closed' do
-      it 'will return false' do
-        expect(Net::SMTP).to receive(:start).and_raise(Errno::ECONNREFUSED)
-        expect(subject.smtp_alive?(host, port)).to be_falsey
-      end
-    end
-
-    context 'when the hostname cannot be resolved' do
-      it 'will return false' do
-        expect(Net::SMTP).to receive(:start).and_raise(SocketError)
-        expect(subject.smtp_alive?(host, port)).to be_falsey
-      end
-    end
-  end
 end

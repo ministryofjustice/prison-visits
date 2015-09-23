@@ -94,4 +94,6 @@ PrisonVisits2::Application.configure do
   config.logstasher.logger_path = File.join(Rails.root, "log", "logstash_production.json")
 
   config.action_mailer.default_url_options = { host: ENV["SERVICE_URL"] || (raise "Missing SERVICE_URL"), protocol: "https" }
+
+  Rails.application.config.active_job.queue_adapter = :sidekiq
 end

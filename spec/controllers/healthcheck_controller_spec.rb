@@ -16,28 +16,29 @@ RSpec.describe HealthcheckController, type: :controller do
     JSON.parse(response.body)
   }
 
-  let(:message_labs_address) { double }
-  let(:message_labs_port) { double }
-  let(:sendgrid_address) { double }
-  let(:sendgrid_port) { double }
+  let(:healthcheck) {
+    double(
+      Healthcheck,
+      ok?: true,
+      checks: {
+        database: {
+          description: "Postgres database", ok: true
+        },
+        mailers: {
+          description: "Email queue", ok: true,
+          oldest: nil, count: 0
+        },
+        zendesk: {
+          description: "Zendesk queue", ok: true,
+          oldest: nil, count: 0
+        },
+        ok: true
+      }
+    )
+  }
 
   before do
-    allow(SendgridApi).to receive(:smtp_alive?).and_return(true)
-    allow(ZENDESK_CLIENT).to receive(:tickets).and_return(double(count: 0))
-  end
-
-  shared_examples 'a service is broken' do |service|
-    before do
-      get :index, key: key
-    end
-
-    it 'returns an HTTP Bad Gateway status' do
-      expect(response).to have_http_status(:bad_gateway)
-    end
-
-    it "reports #{service} as inaccessible" do
-      expect(parsed_body).to include('checks' => include(service => false))
-    end
+    allow(Healthcheck).to receive(:new).and_return(healthcheck)
   end
 
   context 'with an invalid key' do
@@ -57,80 +58,80 @@ RSpec.describe HealthcheckController, type: :controller do
       expect(response).to be_success
     end
 
-    it 'reports sendgrid as OK' do
-      expect(parsed_body).to include('checks' => include('sendgrid' => true))
-    end
-
-    it 'reports messagelabs as OK' do
-      expect(parsed_body).to include('checks' => include('messagelabs' => true))
-    end
-
-    it 'reports database as OK' do
-      expect(parsed_body).to include('checks' => include('database' => true))
-    end
-
-    it 'reports zendesk as OK' do
-      expect(parsed_body).to include('checks' => include('zendesk' => true))
+    it 'returns the healthcheck data as JSON' do
+      expect(parsed_body).to eq(
+        'database' => {
+          'description' => "Postgres database",
+          'ok' => true
+        },
+        'mailers' => {
+          'description' => "Email queue",
+          'ok' => true,
+          'oldest' => nil,
+          'count' => 0
+        },
+        'zendesk' => {
+          'description' => "Zendesk queue",
+          'ok' => true,
+          'oldest' => nil,
+          'count' => 0
+        },
+        'ok' => true
+      )
     end
   end
 
-  context 'when messagelabs is down' do
+  context 'when the healthcheck is not OK' do
     before do
-      address = double
-      port = double
-      allow(PrisonMailer).
-        to receive(:smtp_settings).
-        and_return(address: address, port: port)
-      allow(SendgridApi).
-        to receive(:smtp_alive?).
-        with(address, port).
-        and_return(false)
+      allow(healthcheck).to receive(:ok?).and_return(false)
+      get :index, key: key
     end
 
-    it_behaves_like 'a service is broken', 'messagelabs'
+    it 'returns an HTTP Bad Gateway status' do
+      expect(response).to have_http_status(:bad_gateway)
+    end
   end
 
-  context 'when sendgrid is down' do
+  context 'when there are no queue items' do
     before do
-      address = double
-      port = double
-      allow(VisitorMailer).
-        to receive(:smtp_settings).
-        and_return(address: address, port: port)
-      allow(SendgridApi).
-        to receive(:smtp_alive?).
-        with(address, port).
-        and_return(false)
+      get :index, key: key
     end
 
-    it_behaves_like 'a service is broken', 'sendgrid'
+    it 'reports empty queue statuses' do
+      expect(parsed_body).to include(
+        'mailers' => include('oldest' => nil, 'count' => 0),
+        'zendesk' => include('oldest' => nil, 'count' => 0)
+      )
+    end
   end
 
-  context 'when the database is down' do
+  context 'when there are queue items' do
+    let(:mq_created_at) { Time.at(1440685647).utc }
+    let(:zq_created_at) { Time.at(1440685724).utc }
+
     before do
-      allow(ActiveRecord::Base.connection).
-        to receive(:active?).
-        and_return(false)
+      allow(healthcheck).to receive(:checks).and_return(
+        database: {
+          description: "Postgres database", ok: true
+        },
+        mailers: {
+          description: "Email queue", ok: true,
+          oldest: mq_created_at, count: 1
+        },
+        zendesk: {
+          description: "Zendesk queue", ok: true,
+          oldest: zq_created_at, count: 2
+        },
+        ok: true
+      )
+      get :index, key: key
     end
 
-    it_behaves_like 'a service is broken', 'database'
-  end
-
-  context 'when the database is off' do
-    before do
-      allow(ActiveRecord::Base.connection).
-        to receive(:active?).
-        and_raise(PG::ConnectionBad)
+    it 'reports timestamps in RFC 3339 format' do
+      expect(parsed_body).to include(
+        'mailers' => include('oldest' => '2015-08-27T14:27:27.000Z'),
+        'zendesk' => include('oldest' => '2015-08-27T14:28:44.000Z')
+      )
     end
-
-    it_behaves_like 'a service is broken', 'database'
-  end
-
-  context 'when Zendesk is inaccessible' do
-    before do
-      allow(ZENDESK_CLIENT).to receive(:tickets).and_return(double(count: -1))
-    end
-
-    it_behaves_like 'a service is broken', 'zendesk'
   end
 end
