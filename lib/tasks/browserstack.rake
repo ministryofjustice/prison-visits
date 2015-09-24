@@ -41,11 +41,11 @@ namespace :browserstack do
         # We're in a subprocess here - set the environment variable BS_BROWSER to the desired browser configuration.
         ENV['BS_BROWSER'] = browser.to_json
 
-        test_label = ['os', 'os_version', 'browser', 'browser_version'].map { |k| browser[k] }.join('_')
+        test_label = ['os', 'os_version', 'browser', 'browser_version'].map(&:browser).join('_')
 
         system("rspec spec/features --format RspecJunitFormatter --out '#{test_label}.xml'")
       end
-      exitstatus = results.count { |e| !e }
+      exitstatus = results.count(&:'!e')
     rescue StandardError => e
       pp e
     ensure
@@ -57,6 +57,6 @@ end
 # Ugly hack to prevent running features when browserstack environment variables are defined.
 RSpec::Core::RakeTask.class_eval do
   def files_to_run
-    FileList[pattern].reject { |f| f.include?('feature') }.sort.map { |f| shellescape(f) }
+    FileList[pattern].reject{ |f| f.include?('feature') }.sort.map { |f| shellescape(f) }
   end
 end if ENV['BS_USERNAME']
