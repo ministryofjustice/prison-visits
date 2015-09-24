@@ -151,7 +151,7 @@ RSpec.describe VisitHelper, type: :helper do
 
   it "provides the booking range grouped by the Monday of each week" do
     range = Date.today.beginning_of_week..(Date.today + 28.days).end_of_month.end_of_week
-    grouped = range.group_by{|date| date.beginning_of_week}
+    grouped = range.group_by(&:beginning_of_week)
     expect(helper.weeks).to eq(grouped)
   end
 
