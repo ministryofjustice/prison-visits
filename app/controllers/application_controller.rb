@@ -79,4 +79,21 @@ class ApplicationController < ActionController::Base
         notice: 'You need to complete missing information to start or continue your visit request'
     end
   end
+
+  private
+
+  def i18n_flash(type, *partial_key, **options)
+    full_key = [
+      :controllers, controller_path, *partial_key
+    ].join('.')
+    flash[type] = I18n.t(full_key, options)
+  end
+
+  def notice(*partial_key, **options)
+    i18n_flash :notice, partial_key, options
+  end
+
+  def error(*partial_key, **options)
+    i18n_flash :error, partial_key, options
+  end
 end
