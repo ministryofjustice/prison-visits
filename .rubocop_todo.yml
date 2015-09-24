@@ -441,10 +441,9 @@ Style/SpaceInsideHashLiteralBraces:
 Style/StringLiterals:
   Enabled: false
 
-# Offense count: 2
+# Offense count: 1
 Style/StructInheritance:
   Exclude:
-    - 'lib/prison_day.rb'
     - 'lib/prison_schedule.rb'
 
 # Offense count: 4
