@@ -14,9 +14,6 @@ Metrics/AbcSize:
 # Configuration parameters: AllowURI, URISchemes.
 Metrics/LineLength:
   Exclude:
-    - 'test/mailers/previews/mailer_preview_common.rb'
-    - 'test/mailers/previews/prison_mailer_preview.rb'
-    - 'test/mailers/previews/visitor_mailer_preview.rb'
     - 'spec/**/*'
 
 # Offense count: 27
