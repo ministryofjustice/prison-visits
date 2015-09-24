@@ -23,7 +23,7 @@ class PrisonMailer < ActionMailer::Base
 
   def booking_request_email(visit, token)
     @visit = visit
-    user = visit.visitors.find { |v| v.email }.email
+    user = visit.visitors.find(&:email).email
     @token = token
 
     mail(from: sender, reply_to: user, to: recipient, subject: "Visit request for #{@visit.prisoner.full_name} on #{Date.parse(@visit.slots.first.date).strftime('%A %e %B')}")

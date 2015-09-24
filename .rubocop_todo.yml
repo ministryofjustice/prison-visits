@@ -435,12 +435,11 @@ Style/StructInheritance:
     - 'lib/prison_day.rb'
     - 'lib/prison_schedule.rb'
 
-# Offense count: 3
+# Offense count: 2
 # Cop supports --auto-correct.
 # Configuration parameters: IgnoredMethods.
 Style/SymbolProc:
   Exclude:
-    - 'app/mailers/prison_mailer.rb'
     - 'lib/tasks/browserstack.rake'
     - 'spec/helpers/visit_helper_spec.rb'
 
