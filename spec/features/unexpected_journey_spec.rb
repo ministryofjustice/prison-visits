@@ -54,95 +54,93 @@ RSpec.feature 'unexpected journeys through the application' do
     visit start_page
   end
 
-  context 'deferred' do
-    let(:prison_name) { 'Cardiff' }
+  let(:prison_name) { 'Cardiff' }
 
-    context 'session expires' do
-      scenario 'while entering prisoner details' do
-        complete_prisoner_details
-        clear_session
-        click_button 'Continue'
+  context 'session expires' do
+    scenario 'while entering prisoner details' do
+      complete_prisoner_details
+      clear_session
+      click_button 'Continue'
 
-        expect(status).to eq(200)
-        expect(page).to have_text('Your session timed out')
-        expect(page).to have_title('Who are you visiting?')
-      end
-
-      scenario 'while entering visitor details' do
-        complete_prisoner_details
-        click_button 'Continue'
-
-        complete_visitor_details
-        clear_session
-        click_button 'Continue'
-
-        expect(status).to eq(200)
-        expect(page).to have_text('Your session timed out')
-        expect(page).to have_title('Who are you visiting?')
-      end
-
-      scenario 'while entering visit details' do
-        complete_prisoner_details
-        click_button 'Continue'
-
-        complete_visitor_details
-        click_button 'Continue'
-
-        complete_visit_details
-        clear_session
-        click_button 'Continue'
-
-        expect(status).to eq(200)
-        expect(page).to have_text('Your session timed out')
-        expect(page).to have_title('Who are you visiting?')
-      end
-
-      scenario 'on the confirmation page' do
-        complete_prisoner_details
-        click_button 'Continue'
-
-        complete_visitor_details
-        click_button 'Continue'
-
-        complete_visit_details
-        click_button 'Continue'
-
-        clear_session
-        click_button 'Send request'
-
-        expect(status).to eq(200)
-        expect(page).to have_text('Your session timed out')
-        expect(page).to have_title('Who are you visiting?')
-      end
+      expect(status).to eq(200)
+      expect(page).to have_text('Your session timed out')
+      expect(page).to have_title('Who are you visiting?')
     end
 
-    context 'skipping the prisoner step' do
-      scenario 'and going to visitor details' do
-        visit deferred_edit_visitors_details_path
+    scenario 'while entering visitor details' do
+      complete_prisoner_details
+      click_button 'Continue'
 
-        expect(status).to eq(200)
-        expect(current_path).to eq(start_page)
-        expect(page).to have_text('You need to complete missing information')
-        expect(page).to have_title('Who are you visiting?')
-      end
+      complete_visitor_details
+      clear_session
+      click_button 'Continue'
 
-      scenario 'and going directly to visit details' do
-        visit deferred_edit_slots_path
+      expect(status).to eq(200)
+      expect(page).to have_text('Your session timed out')
+      expect(page).to have_title('Who are you visiting?')
+    end
 
-        expect(status).to eq(200)
-        expect(current_path).to eq(start_page)
-        expect(page).to have_text('You need to complete missing information')
-        expect(page).to have_title('Who are you visiting?')
-      end
+    scenario 'while entering visit details' do
+      complete_prisoner_details
+      click_button 'Continue'
 
-      scenario 'and going directly to the confirmation page' do
-        visit deferred_edit_visit_path
+      complete_visitor_details
+      click_button 'Continue'
 
-        expect(status).to eq(200)
-        expect(current_path).to eq(start_page)
-        expect(page).to have_text('You need to complete missing information')
-        expect(page).to have_title('Who are you visiting?')
-      end
+      complete_visit_details
+      clear_session
+      click_button 'Continue'
+
+      expect(status).to eq(200)
+      expect(page).to have_text('Your session timed out')
+      expect(page).to have_title('Who are you visiting?')
+    end
+
+    scenario 'on the confirmation page' do
+      complete_prisoner_details
+      click_button 'Continue'
+
+      complete_visitor_details
+      click_button 'Continue'
+
+      complete_visit_details
+      click_button 'Continue'
+
+      clear_session
+      click_button 'Send request'
+
+      expect(status).to eq(200)
+      expect(page).to have_text('Your session timed out')
+      expect(page).to have_title('Who are you visiting?')
+    end
+  end
+
+  context 'skipping the prisoner step' do
+    scenario 'and going to visitor details' do
+      visit deferred_edit_visitors_details_path
+
+      expect(status).to eq(200)
+      expect(current_path).to eq(start_page)
+      expect(page).to have_text('You need to complete missing information')
+      expect(page).to have_title('Who are you visiting?')
+    end
+
+    scenario 'and going directly to visit details' do
+      visit deferred_edit_slots_path
+
+      expect(status).to eq(200)
+      expect(current_path).to eq(start_page)
+      expect(page).to have_text('You need to complete missing information')
+      expect(page).to have_title('Who are you visiting?')
+    end
+
+    scenario 'and going directly to the confirmation page' do
+      visit deferred_edit_visit_path
+
+      expect(status).to eq(200)
+      expect(current_path).to eq(start_page)
+      expect(page).to have_text('You need to complete missing information')
+      expect(page).to have_title('Who are you visiting?')
     end
   end
 end
