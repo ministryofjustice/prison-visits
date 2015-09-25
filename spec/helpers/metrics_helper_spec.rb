@@ -14,7 +14,7 @@ RSpec.describe MetricsHelper do
   end
 
   it "displays percentages" do
-    expect(helper.display_percent(1.0/3)).to eq("33.3")
+    expect(helper.display_percent(1.0 / 3)).to eq("33.3")
     expect(helper.display_percent(0.1)).to eq("10.0")
     expect(helper.display_percent(0.0)).to eq("0.0")
   end
