@@ -1,35 +1,8 @@
 require 'rails_helper'
+require 'shared_examples_prison_slots_and_data'
 
 RSpec.describe Prison, type: :model do
-  let(:mock_slots_data) do
-    {
-      "mon"=>["1400-1600"],
-      "tue"=>["1400-1600"],
-      "wed"=>["1400-1600"],
-      "thu"=>["1400-1600"],
-      "fri"=>["1400-1600"],
-      "sat"=>["0930-1130", "1400-1600"],
-      "sun"=>["1400-1600"]
-    }
-  end
-
-  let(:mock_prison_data) do
-    {
-      "nomis_id"=>"RCI",
-      "canned_responses"=>true,
-      "enabled"=>true,
-      "phone"=>"01634 803100",
-      "email"=>"pvb.rochester@maildrop.dsd.io",
-      "instant_booking"=>false,
-      "address"=>["1 Fort Road", "Rochester", "Kent", "ME1 3QS"],
-      "lead_days"=>4,
-      "booking_window"=>14,
-      "works_weekends"=>true,
-      "unbookable"=>[Date.new(2015, 7, 29), Date.new(2015, 12, 25)],
-      "slot_anomalies"=>{Date.new(2015, 8, 14)=>["0700-0900"]},
-      "slots"=> mock_slots_data
-    }
-  end
+  include_examples "prison slots and data"
 
   describe '.find' do
     context 'when a prison exists' do
@@ -91,10 +64,10 @@ RSpec.describe Prison, type: :model do
 
   describe '#visiting_slot_days' do
     let(:prison_with_everyday_visits) { subject }
-    let(:expected_slot_days_for_everyday_visits) { %w<mon tue wed thu fri sat sun> }
+    let(:expected_slot_days_for_everyday_visits) { %w[mon tue wed thu fri sat sun] }
 
-    let(:weekend_slots_data) {  { "sat"=>["0930-1130"], "sun"=>["1400-1600"] } }
-    let(:expected_slot_days_for_weekend_only_visits) { %w<sat sun> }
+    let(:weekend_slots_data) {  { "sat" => ["0930-1130"], "sun" => ["1400-1600"] } }
+    let(:expected_slot_days_for_weekend_only_visits) { %w[sat sun] }
     let(:prison_with_weekend_only_visists) {
       constructor_for mock_prison_data.replace('slots' => weekend_slots_data)
     }
