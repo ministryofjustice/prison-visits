@@ -46,7 +46,7 @@ private
       NO_ALLOWANCE,
       PRISONER_INCORRECT,
       PRISONER_NOT_PRESENT,
-      NOT_ON_CONTACT_LIST,
+      NOT_ON_CONTACT_LIST
     ] + SLOTS_RESPONSES
     !outcomes.include?(outcome)
   end

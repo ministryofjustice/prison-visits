@@ -27,7 +27,7 @@ RSpec.describe Instant::VisitorsDetailsController, type: :controller do
      :'date_of_birth(3i)' => '14',
      :'date_of_birth(2i)' => '03',
      :'date_of_birth(1i)' => '1986',
-     email: 'sue.denim@maildrop.dsd.io',
+     email: 'sue.denim@maildrop.dsd.io'
     ]
   end
 
@@ -41,7 +41,7 @@ RSpec.describe Instant::VisitorsDetailsController, type: :controller do
                     :'date_of_birth(3i)' => '14',
                     :'date_of_birth(2i)' => '03',
                     :'date_of_birth(1i)' => '1986',
-                    email: 'sue.denim@maildrop.dsd.io',
+                    email: 'sue.denim@maildrop.dsd.io'
                    ]
         },
         next: ''
@@ -67,7 +67,7 @@ RSpec.describe Instant::VisitorsDetailsController, type: :controller do
                     :'date_of_birth(3i)' => '5',
                     :'date_of_birth(2i)' => '3',
                     :'date_of_birth(1i)' => '12',
-                    email: 'sue.denim@maildrop.dsd.io',
+                    email: 'sue.denim@maildrop.dsd.io'
                    ]
         },
         next: ''

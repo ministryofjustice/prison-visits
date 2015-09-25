@@ -40,7 +40,7 @@ RSpec.describe Instant::SlotsController, type: :controller do
                     slot: '2013-01-01-1345-2000'
                   }
                  ]
-        },
+        }
       }
     end
 
