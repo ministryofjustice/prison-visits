@@ -19,7 +19,7 @@ RSpec.feature "visitor selects a date" do
 
   context "deferred flow" do
     before :each do
-      visit '/prisoner-details'
+      visit edit_prisoner_details_path
       enter_prisoner_information
       enter_visitor_information
       click_button 'Continue'

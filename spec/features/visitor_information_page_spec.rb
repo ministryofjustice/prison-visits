@@ -4,7 +4,7 @@ RSpec.feature "visitor enters visitor information" do
   include_examples "feature helper"
 
   before :each do
-    visit '/prisoner-details'
+    visit edit_prisoner_details_path
     enter_prisoner_information
   end
 

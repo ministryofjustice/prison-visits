@@ -3,7 +3,7 @@ require 'browserstack_helper'
 RSpec.feature 'visitor entering prisoner information' do
   include_examples 'feature helper'
 
-  before(:each) { visit '/prisoner-details' }
+  before(:each) { visit edit_prisoner_details_path }
 
   describe 'page validations' do
     context 'when a prison is not selected' do
@@ -66,6 +66,6 @@ RSpec.feature 'visitor entering prisoner information' do
     enter_prisoner_information
 
     expect(page).to have_content('Visitor 1')
-    expect(page.current_path).to eq "/deferred/visitors"
+    expect(page.current_path).to eq deferred_edit_visitors_details_path
   end
 end
