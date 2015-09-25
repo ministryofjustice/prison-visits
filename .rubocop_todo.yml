@@ -19,7 +19,6 @@ Metrics/ClassLength:
 # Configuration parameters: CountComments.
 Metrics/MethodLength:
   Exclude:
-    - 'app/controllers/metrics_controller.rb'
     - 'app/controllers/slots_controller.rb'
     - 'app/controllers/static_controller.rb'
     - 'app/controllers/visit_controller.rb'
