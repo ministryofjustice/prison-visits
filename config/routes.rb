@@ -22,18 +22,6 @@ PrisonVisits2::Application.routes.draw do
     post 'confirmation'    => 'confirmations#create', as: :confirmation
   end
 
-  namespace :instant do
-    get 'visitors'         => 'visitors_details#edit', as: :edit_visitors_details
-    post 'visitors'        => 'visitors_details#update', as: :visitors_details
-
-    get 'slots'            => 'slots#edit', as: :edit_slots
-    post 'slots'           => 'slots#update', as: :slots
-
-    get 'visit'            => 'visits#edit', as: :edit_visit
-    post 'visit'           => 'visits#update', as: :visit
-    get 'your-visit/:state' => 'visits#show', as: :show_visit
-  end
-
   scope controller: :visit do
     get "/abandon", action: :abandon
     get "/timeout", action: :timeout

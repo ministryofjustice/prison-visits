@@ -85,19 +85,6 @@ RSpec.describe MetricsLogger do
     end
   end
 
-  it "logs when the visit was instantly booked" do
-    expect {
-      subject.record_instant_visit(sample_visit)
-    }.to change { VisitMetricsEntry.count }.by 1
-    VisitMetricsEntry.last.tap do |entry|
-      expect(entry.visit_id).to eq(sample_visit.visit_id)
-      expect(entry.kind).to eq('instant')
-      expect(entry.outcome).to eq('confirmed')
-      expect(entry.requested_at).to eq(@time)
-      expect(entry.processed_at).to eq(@time)
-    end
-  end
-
   it "responds with a visit request status as cancelled" do
     subject.record_visit_request(sample_visit)
     subject.record_link_click(sample_visit)

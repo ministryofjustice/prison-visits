@@ -87,7 +87,6 @@ Rails/ActionFilter:
   Exclude:
     - 'app/controllers/application_controller.rb'
     - 'app/controllers/deferred/visits_controller.rb'
-    - 'app/controllers/instant/visits_controller.rb'
     - 'app/controllers/prisoner_details_controller.rb'
 
 # Offense count: 33
@@ -101,7 +100,6 @@ Rails/Date:
     - 'lib/rag_status_report.rb'
     - 'spec/configuration/bank_holidays_spec.rb'
     - 'spec/controllers/deferred/visits_controller_spec.rb'
-    - 'spec/controllers/instant/visits_controller_spec.rb'
     - 'spec/helpers/visit_helper_spec.rb'
     - 'spec/lib/age_validator_spec.rb'
     - 'spec/models/visit_spec.rb'
@@ -115,8 +113,6 @@ Rails/TimeZone:
     - 'lib/calculated_metrics.rb'
     - 'spec/controllers/deferred/slots_controller_spec.rb'
     - 'spec/controllers/deferred/visits_controller_spec.rb'
-    - 'spec/controllers/instant/slots_controller_spec.rb'
-    - 'spec/controllers/instant/visits_controller_spec.rb'
     - 'spec/features/datepicker_spec.rb'
     - 'spec/helpers/application_helper_spec.rb'
     - 'spec/mailers/visitor_mailer_spec.rb'
@@ -267,8 +263,6 @@ Style/IndentArray:
     - 'lib/rag_status_report.rb'
     - 'spec/controllers/deferred/slots_controller_spec.rb'
     - 'spec/controllers/deferred/visitors_details_controller_spec.rb'
-    - 'spec/controllers/instant/slots_controller_spec.rb'
-    - 'spec/controllers/instant/visitors_details_controller_spec.rb'
 
 # Offense count: 9
 # Cop supports --auto-correct.

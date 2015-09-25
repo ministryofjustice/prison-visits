@@ -38,13 +38,6 @@ class MetricsLogger
     end
   end
 
-  def record_instant_visit(visit)
-    nomis_id = Rails.configuration.prison_data[visit.prisoner.prison_name]['nomis_id']
-    VisitMetricsEntry.create!(visit_id: visit.visit_id, requested_at: now_in_utc, processed_at: now_in_utc, kind: 'instant', nomis_id: nomis_id, outcome: 'confirmed')
-  rescue PG::ConnectionBad => e
-    Raven.capture_exception(e)
-  end
-
   def processed?(visit)
     entry = find_entry(visit.visit_id)
     if entry

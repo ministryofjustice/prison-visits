@@ -113,7 +113,7 @@ RSpec.describe "Prison data" do
         _, s = staging_prison_data.shift
 
         p.each_key do |k|
-          next if ['email', 'enabled', 'instant_booking'].include? k
+          next if ['email', 'enabled'].include? k
           expect(p[k]).to eq(s[k])
           if k == 'unbookable'
             expect(p[k].sort).to eq(p[k])

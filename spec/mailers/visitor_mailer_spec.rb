@@ -404,19 +404,6 @@ RSpec.describe VisitorMailer do
       end
     end
 
-    context "instant visit" do
-      it "sends out an e-mail confirmation of an instant visit" do
-        email = subject.instant_confirmation_email(sample_visit)
-        expect(email.subject).to eq("Visit confirmation for 7 July 2013")
-        expect(email[:from]).to eq(noreply_address)
-        expect(email[:reply_to]).to eq(prison_address)
-        expect(email[:to]).to eq(visitor_address)
-        expect(email).not_to match_in_html("Jimmy Harris")
-
-        expect(email).to match_in_text(sample_visit.visit_id)
-      end
-    end
-
     it "sends an e-mail to the person who requested a booking" do
       expect(subject.booking_confirmation_email(sample_visit, confirmation, token)[:to]).to eq(visitor_address)
     end

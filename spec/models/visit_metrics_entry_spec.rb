@@ -13,12 +13,7 @@ RSpec.describe VisitMetricsEntry do
     subject.requested_at = Time.now
     expect(subject).not_to be_valid
 
-    subject.kind = 'instant'
-    expect(subject).not_to be_valid
-
     subject.outcome = 'pending'
-    expect(subject).to be_valid
-
     subject.kind = 'deferred'
     expect(subject).to be_valid
   end

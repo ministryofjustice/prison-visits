@@ -87,13 +87,6 @@ RSpec.describe PrisonerDetailsController, type: :controller do
         expect(response).to redirect_to(deferred_edit_visitors_details_path)
       end
 
-      it "updates prisoner details and redirects to the api flow" do
-        prisoner_hash[:prisoner].merge!(prison_name: 'Durham')
-
-        post :update, prisoner_hash
-        expect(response).to redirect_to(instant_edit_visitors_details_path)
-      end
-
       it "updates prisoner details with bad date and redirects back" do
         bad_prisoner_hash = prisoner_hash.dup
         bad_prisoner_hash[:prisoner].except!(:'date_of_birth(3i)', :'date_of_birth(2i)', :'date_of_birth(1i)')
