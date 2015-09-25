@@ -54,7 +54,7 @@ RSpec.describe ApplicationHelper do
   end
 
   it "creates a time from a string" do
-    expect(helper.time_from_str("1545")).to eq(DateTime.now.change({:hour => 15 , :min => 45 , :sec => 0 }))
+    expect(helper.time_from_str("1545")).to eq(DateTime.now.change({ hour: 15, min: 45, sec: 0 }))
   end
 
   it "displays a prefix and suffix around a variable when it exists" do
