@@ -1,4 +1,9 @@
-class PrisonSchedule < Struct.new(:prison)
+class PrisonSchedule
+  attr_accessor :prison
+
+  def initialize(prison)
+    @prison = prison
+  end
 
   delegate :days_lead_time, :booking_window, to: :prison
 

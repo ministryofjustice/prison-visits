@@ -1,4 +1,11 @@
-class PrisonDay < Struct.new(:date, :prison)
+class PrisonDay
+  attr_accessor :date, :prison
+
+  def initialize(date, prison)
+    @date = date
+    @prison = prison
+  end
+
   WEEKEND_DAYS = %w<sat sun>.freeze
 
   def staff_working_day?
