@@ -19,7 +19,6 @@ Metrics/ClassLength:
 # Configuration parameters: CountComments.
 Metrics/MethodLength:
   Exclude:
-    - 'app/controllers/visit_controller.rb'
     - 'app/helpers/metrics_helper.rb'
     - 'app/jobs/zendesk_tickets_job.rb'
     - 'app/mailers/prison_mailer.rb'
