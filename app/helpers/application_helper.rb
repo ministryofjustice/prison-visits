@@ -18,14 +18,14 @@ module ApplicationHelper
     format_time_str(times.split('-')[0])
   end
 
-  def display_time_slot(times, glue=' to ')
+  def display_time_slot(times, glue = ' to ')
     from, to = times.split('-')
     [format_time_str(from).strip, format_time_str(to).strip].join(glue)
   end
 
-  def display_slot_and_duration(times, glue=', ')
+  def display_slot_and_duration(times, glue = ', ')
     from, to = times.split('-')
-    [format_time_str(from).strip, (time_from_str(to)-time_from_str(from)).duration].join(glue)
+    [format_time_str(from).strip, (time_from_str(to) - time_from_str(from)).duration].join(glue)
   end
 
   def format_time_str(time)
@@ -46,7 +46,7 @@ module ApplicationHelper
     page_title.join glue
   end
 
-  def conditional_text(variable, prefix='', suffix='')
+  def conditional_text(variable, prefix = '', suffix = '')
     if variable.present?
       prefix + variable.to_s + suffix
     end

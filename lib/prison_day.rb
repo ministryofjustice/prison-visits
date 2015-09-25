@@ -6,7 +6,7 @@ class PrisonDay < Struct.new(:date, :prison)
   end
 
   def visiting_day?
-    available_day?  && !blocked_day?
+    available_day? && !blocked_day?
   end
 
   private

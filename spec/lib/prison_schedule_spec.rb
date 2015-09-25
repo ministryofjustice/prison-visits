@@ -1,32 +1,8 @@
 require 'rails_helper'
+require 'shared_examples_prison_slots_and_data'
 
 RSpec.describe PrisonSchedule do
-  let(:slots_for_everyday) do
-    {
-      "mon"=>["1400-1600"],
-      "tue"=>["1400-1600"],
-      "wed"=>["1400-1600"],
-      "thu"=>["1400-1600"],
-      "fri"=>["1400-1600"],
-      "sat"=>["0930-1130"],
-      "sun"=>["1400-1600"]
-    }
-  end
-
-  let(:prison_data) do
-    {
-      "nomis_id"=>"RCI",
-      "canned_responses"=>true,
-      "enabled"=>true,
-      "phone"=>"01634 803100",
-      "email"=>"pvb.rochester@maildrop.dsd.io",
-      "instant_booking"=>false,
-      "address"=>["1 Fort Road", "Rochester", "Kent", "ME1 3QS"],
-      "unbookable"=> [],
-      "slot_anomalies"=> {},
-      "slots"=> slots_for_everyday
-    }
-  end
+  include_examples "prison slots and data"
 
   describe '#confirmation_email_date' do
     let(:thursday) { Utilities::DAYS.fetch :thursday }
