@@ -1,37 +1,10 @@
 require 'rails_helper'
 
 RSpec.feature 'unexpected journeys through the application' do
+  include RackTestFeaturesHelper
+
   before do
     Capybara.current_driver = :rack_test
-  end
-
-  def complete_prisoner_details
-    fill_in 'Prisoner first name', with: 'Arthur'
-    fill_in 'Prisoner last name', with: 'Raffles'
-    fill_in 'Day', with: '1'
-    fill_in 'Month', with: '1'
-    fill_in 'Year', with: '1980'
-    fill_in 'Prisoner number', with: 'a1234bc'
-    select prison_name, from: 'Name of the prison'
-  end
-
-  def complete_visitor_details
-    fill_in 'Your first name', with: 'Harry'
-    fill_in 'Your last name', with: 'Manders'
-    fill_in 'Day', with: '1'
-    fill_in 'Month', with: '1'
-    fill_in 'Year', with: '1980'
-    fill_in 'Email address', with: 'user@digital.justice.gov.uk'
-    fill_in 'Phone number', with: '0115 496 0123'
-  end
-
-  def complete_visit_details
-    slot = first('.SlotPicker-input option[value!=""]').text
-    select slot, from: 'Option 1'
-  end
-
-  def status
-    page.driver.browser.last_response.status
   end
 
   def clear_session
@@ -58,7 +31,7 @@ RSpec.feature 'unexpected journeys through the application' do
 
   context 'session expires' do
     scenario 'while entering prisoner details' do
-      complete_prisoner_details
+      complete_prisoner_details prison_name
       clear_session
       click_button 'Continue'
 
@@ -68,7 +41,7 @@ RSpec.feature 'unexpected journeys through the application' do
     end
 
     scenario 'while entering visitor details' do
-      complete_prisoner_details
+      complete_prisoner_details prison_name
       click_button 'Continue'
 
       complete_visitor_details
@@ -81,7 +54,7 @@ RSpec.feature 'unexpected journeys through the application' do
     end
 
     scenario 'while entering visit details' do
-      complete_prisoner_details
+      complete_prisoner_details prison_name
       click_button 'Continue'
 
       complete_visitor_details
@@ -97,7 +70,7 @@ RSpec.feature 'unexpected journeys through the application' do
     end
 
     scenario 'on the confirmation page' do
-      complete_prisoner_details
+      complete_prisoner_details prison_name
       click_button 'Continue'
 
       complete_visitor_details
