@@ -57,8 +57,9 @@ module VisitorsManipulator
       end
       begin
         visitor[:date_of_birth] = Date.new(*date_of_birth.reverse)
-      rescue ArgumentError
-        # NOOP
+      rescue ArgumentError => e
+        logger.error "Visitor DOB issue (VisitorsManipulator): " \
+          "#{date_of_birth.inspect}\nexception: #{e}"
       end
     end
     ParamUtils.trim_whitespace_from_values(params.require(:visit).require(:visitor))
