@@ -34,7 +34,7 @@ RSpec.describe ApplicationController, type: :controller do
 
     before :each do
       allow(Rails.configuration).to receive(:metrics_auth_key).and_return('lulz')
-      controller.class.permit_only_from_prisons_or_with_key
+      controller.class.permit_only_trusted_users
     end
 
     it "rejects untrusted IPs" do
@@ -62,7 +62,7 @@ RSpec.describe ApplicationController, type: :controller do
     end
 
     before :each do
-      controller.class.permit_only_from_prisons_or_with_key
+      controller.class.permit_only_trusted_users
     end
 
     it "rejects untrusted IPs" do
@@ -86,7 +86,7 @@ RSpec.describe ApplicationController, type: :controller do
     end
 
     before :each do
-      controller.class.permit_only_from_prisons_or_with_key
+      controller.class.permit_only_trusted_users
       Rails.configuration.metrics_auth_key = "VALID"
     end
 
@@ -110,7 +110,7 @@ RSpec.describe ApplicationController, type: :controller do
     end
 
     it "accepts all IPs" do
-      expect(controller).to receive(:reject_untrusted_ips_and_without_key!).never
+      expect(controller).to receive(:reject_without_key_or_trusted_ip!).never
       get :index
     end
   end

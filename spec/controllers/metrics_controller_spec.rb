@@ -3,14 +3,14 @@ require 'rails_helper'
 RSpec.describe MetricsController, type: :controller do
   context "IP & key restrictions" do
     it "are enabled" do
-      expect(controller).to receive(:reject_untrusted_ips_and_without_key!)
+      expect(controller).to receive(:reject_without_key_or_trusted_ip!)
       get :index
     end
   end
 
   context "when accessing the site from the right IP address" do
     before :each do
-      allow(controller).to receive(:reject_untrusted_ips_and_without_key!)
+      allow(controller).to receive(:reject_without_key_or_trusted_ip!)
     end
 
     context "for all prisons" do

@@ -3,11 +3,11 @@ class ApplicationController < ActionController::Base
   before_filter :add_extra_sentry_metadata
   protect_from_forgery with: :exception
 
-  def self.permit_only_from_prisons_or_with_key
-    before_filter :reject_untrusted_ips_and_without_key!
+  def self.permit_only_trusted_users
+    before_filter :reject_without_key_or_trusted_ip!
   end
 
-  def reject_untrusted_ips_and_without_key!
+  def reject_without_key_or_trusted_ip!
     unless valid_auth_key? || permitted_ip?
       raise ActionController::RoutingError.new('Not Found')
     end

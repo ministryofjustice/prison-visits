@@ -1,5 +1,5 @@
 class MetricsController < ApplicationController
-  permit_only_from_prisons_or_with_key
+  permit_only_trusted_users
 
   def index
     @nomis_ids = Rails.configuration.nomis_ids
