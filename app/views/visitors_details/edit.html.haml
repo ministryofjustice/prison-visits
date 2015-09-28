@@ -1,0 +1,59 @@
+- content_for :header, 'Visitor 1'
+
+.Grid
+  .Grid-2-3
+
+    %p Speak to the prisoner to check you’re on their visitor list (visitor identities will be checked)
+
+    %h2 Your details
+
+    = form_for visit, url: visitors_details_path, :html => { :autocomplete => 'off' } do |f|
+
+      - if visit.errors.any? || visit.visitors.any? { |v| v.errors.any? }
+        #error-summary.validation-summary.group(role="alert" tabindex="-1" aria-labelledby="error-heading")
+          %h2#error-heading You need to fix the errors on this page before continuing.
+
+          %ul.error-messages
+            - visit.errors.full_messages.each do |msg|
+              %li= msg
+            - visit.visitors.select{|v|v.errors.any?}.each do |visitor|
+              - visitor.errors.messages.each do |key, val|
+                %li
+                  - if key == :base
+                    = val.join(', ').humanize
+                  - else
+                    = [(visitor.index == 0 ? "your" : "visitor #{visitor.index+1}"), key, val.join(' and ')].join(' ').humanize
+
+      %fieldset
+        %legend.visuallyhidden Your details
+        = f.fields_for visit.visitors[0], index: '' do |visitor_form|
+          = render 'shared/visitors_details/visitor_fields', f: visitor_form, index: 0, visitor: visit.visitors[0], js_template: false
+
+      %h2 Other visitors
+      %p Seating arrangements at this prison allow 3 visitors over the age of #{adult_age} plus 3 children under that age. Children may have to sit on your lap.
+
+      %fieldset
+        %legend.visuallyhidden Other visitors
+        .group.group--inline.visible--js-enabled
+          %label(for="number_of_adults") How many other visitors?
+          = select_tag 'visit[visitor][][number_of_adults]', options_for_select([['none',0],1,2,3,4,5], visit.visitors[0].number_of_adults.to_s), :class => 'number_of_visitors adults'
+
+        .additional-visitors
+          - visit.visitors.each_with_index do |visitor, index|
+            - next if index == 0
+            = f.fields_for visitor, index: '' do |visitor_form|
+              = render 'shared/visitors_details/visitor_fields', f: visitor_form, index: index, visitor: visitor, js_template: false
+
+      .actions
+        .primary-actions
+          = f.submit :name => 'next', :value => 'Continue', :class => 'button button-primary', :id => 'continue'
+          = f.submit :name => 'next', :value => 'Add another visitor', :class => 'button hidden--js-enabled', :id => 'add-visitor'
+        %p= link_to 'Cancel and delete all details', abandon_path, :'data-confirm' => "Are you sure you wish to cancel this visit request?\r\rThis will delete all the information you have entered"
+
+    -# Repeat an empty instance of the visitor fields to append additional visitors on the client-side
+    = form_for(Visit.new(prisoner: Prisoner.new, visitors: [Visitor.new, Visitor.new], slots: []), url: '', html: { id: 'template' }) do |f|
+      = f.fields_for Visitor.new, index: '' do |visitor_form|
+        %script#additional-visitor(type="text/html")
+          = render 'shared/visitors_details/visitor_fields', f: visitor_form, index: '{{index}}', visitor: Visitor.new, js_template: true
+
+    = render 'ad_help'

@@ -11,12 +11,7 @@ class PrisonerDetailsController < ApplicationController
 
   def update
     if (visit.prisoner = Prisoner.new(prisoner_params)).valid?
-      instant_booking = Rails.configuration.prison_data[visit.prisoner.prison_name][:instant_booking]
-      if instant_booking && !killswitch_active?
-        redirect_to instant_edit_visitors_details_path
-      else
-        redirect_to deferred_edit_visitors_details_path
-      end
+      redirect_to edit_visitors_details_path
     else
       if visit.prisoner.errors[:number].any?
         STATSD_CLIENT.increment('pvb.app.invalid_prisoner_number')

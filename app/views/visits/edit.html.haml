@@ -1,0 +1,67 @@
+- content_for :header, 'Check your request'
+
+.divider.compact
+  %h2 Prisoner details
+  %p
+    %big
+      %strong #{visit.prisoner.first_name} #{visit.prisoner.last_name}
+  %p
+    Date of birth:
+    %strong= format_date visit.prisoner.date_of_birth
+  - if visit.prisoner.number.present?
+    %p
+      Prisoner number:
+      %strong #{visit.prisoner.number}
+  %p
+    Prison:
+    %strong #{visit.prisoner.prison_name}
+  %p.edit-link= link_to 'Change prisoner details', prisoner_details_path
+
+.divider.compact
+  %h2 Visitor details
+  %p
+    Confirmation email:
+    %strong= visit.visitors.first.email
+  - visit.visitors.each_with_index do |visitor, i|
+    - if visitor.first_name.present? || visitor.last_name.present?
+      %p
+        Visitor #{i+1}:
+        %strong #{visitor.first_name} #{visitor.last_name}
+        \ -
+        = format_date visitor.date_of_birth
+        - if visit.adult?(visitor)
+          %small.AgeLabel-label.over Over #{adult_age}
+        - else
+          %small.AgeLabel-label.under Under #{adult_age}
+  %p.edit-link= link_to 'Change visitor details', edit_visitors_details_path
+
+.divider.compact.visit-details
+  %h2 Your visit
+  - if visit.slots.dup.delete_if{|s|s.date.blank?}.size < 3
+    %p You can choose up to 2 alternative dates if your first choice isn’t available.
+
+  %p First choice:
+  %p
+    %strong= format_day visit.slots.first.date
+    = display_slot_and_duration visit.slots.first.times
+
+  - if visit.slots[1].date.present?
+    %p.alt Alternatives:
+    %ol.unstyled-list
+      - visit.slots[1..-1].each do |slot|
+        - if slot.date.present?
+          %li
+            %strong= format_day slot.date
+            = display_slot_and_duration slot.times
+
+  %p.edit-link= link_to 'Change visit details', edit_slots_path
+
+
+.divider
+
+  = link_to 'Terms & conditions', terms_and_conditions_path
+
+  .actions
+    .primary-actions
+      = button_to 'Send request', visit_path, class: 'button button-primary', form: { id: 'send-request-form', class: 'js-SubmitOnce' }
+    %p= link_to 'Cancel and delete all details', abandon_path, :'data-confirm' => "Are you sure you wish to cancel this visit request?\r\rThis will delete all the information you have entered"

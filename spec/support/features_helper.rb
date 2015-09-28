@@ -1,11 +1,6 @@
 module FeaturesHelper
-  def enter_prisoner_information(kind)
-    case kind
-    when :deferred
-      find(:css, ".ui-autocomplete-input").set('Cardiff')
-    when :instant
-      find(:css, ".ui-autocomplete-input").set('Durham')
-    end
+  def enter_prisoner_information
+    find(:css, ".ui-autocomplete-input").set('Cardiff')
     click_button 'Continue'
 
     fill_in 'Prisoner first name', with: 'Jimmy'
@@ -17,7 +12,7 @@ module FeaturesHelper
     click_button 'Continue'
   end
 
-  def enter_visitor_information(kind)
+  def enter_visitor_information
     within "#visitor-0" do
       fill_in "Your first name", with: 'Margaret'
       fill_in "Your last name", with: 'Smith'
@@ -25,10 +20,7 @@ module FeaturesHelper
       fill_in 'visit[visitor][][date_of_birth(2i)]', with: '6'
       fill_in 'visit[visitor][][date_of_birth(1i)]', with: '1977'
       fill_in "Email address", with: 'test@maildrop.dsd.io'
-
-      if kind == :deferred
-        fill_in "Phone number", with: '09998887777'
-      end
+      fill_in "Phone number", with: '09998887777'
     end
   end
 

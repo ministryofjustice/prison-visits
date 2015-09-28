@@ -12,6 +12,8 @@ class Visitor
 
   validates :email, absence: true, if: :additional?
   validate :validate_email, if: :primary?
+  validates :phone, absence: true, if: :additional?
+  validates :phone, presence: true, length: { minimum: 9 }, if: :primary?
 
   def validate_email
     EmailValidator.new.validate(self)

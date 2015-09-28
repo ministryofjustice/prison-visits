@@ -18,7 +18,6 @@ RSpec.shared_examples "prison slots and data" do
       "enabled" => true,
       "phone" => "01634 803100",
       "email" => "pvb.rochester@maildrop.dsd.io",
-      "instant_booking" => false,
       "address" => ["1 Fort Road", "Rochester", "Kent", "ME1 3QS"],
       "unbookable" => [],
       "slot_anomalies" => {},

@@ -31,6 +31,6 @@ Phone: <%= visitor.phone %>
 
 To process the booking copy the entire link and paste it into the address bar of your browser.
 
-<%= deferred_new_confirmation_url(state: @token) %>
+<%= new_confirmation_url(state: @token) %>
 
 Visit ID: <%= @visit.visit_id %>

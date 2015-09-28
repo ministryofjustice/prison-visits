@@ -28,13 +28,13 @@ RSpec.configure do |config|
           p.number = 'a0000aa'
         end
         v.visitors = [
-          Deferred::Visitor.new(
+          Visitor.new(
             email: 'visitor@example.com',
             date_of_birth: Date.new(1918, 11, 11),
             first_name: 'Mark',
             last_name: 'Harris'
           ),
-          Deferred::Visitor.new(
+          Visitor.new(
             date_of_birth: Date.new(1967, 3, 3),
             first_name: 'Joan',
             last_name: 'Harris'
