@@ -1,6 +1,6 @@
 class ConfirmationsController < ApplicationController
   helper_method :booked_visit
-  permit_only_from_prisons
+  permit_only_from_prisons_or_with_key
 
   def new
     reset_session if params[:state]

@@ -1,3 +1,3 @@
 class StaffController < ApplicationController
-  permit_only_from_prisons
+  permit_only_from_prisons_or_with_key
 end

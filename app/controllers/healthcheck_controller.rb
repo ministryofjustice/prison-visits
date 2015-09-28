@@ -1,5 +1,5 @@
 class HealthcheckController < ApplicationController
-  permit_only_with_key
+  permit_only_from_prisons_or_with_key
 
   def index
     healthcheck = Healthcheck.new

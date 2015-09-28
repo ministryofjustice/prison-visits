@@ -13,7 +13,7 @@ RSpec.describe ConfirmationsController, type: :controller do
     context "before interaction" do
       before do
         allow(controller).to receive(:metrics_logger).and_return(mock_metrics_logger)
-        allow(controller).to receive(:reject_untrusted_ips!)
+        allow(controller).to receive(:reject_untrusted_ips_and_without_key!)
       end
 
       it "resurrects the visit" do
@@ -89,7 +89,7 @@ RSpec.describe ConfirmationsController, type: :controller do
           allow_any_instance_of(VisitorMailer).to receive(:sender).and_return('test@example.com')
           allow_any_instance_of(PrisonMailer).to receive(:sender).and_return('test@example.com')
           allow(controller).to receive(:metrics_logger).and_return(mock_metrics_logger)
-          allow(controller).to receive(:reject_untrusted_ips!)
+          allow(controller).to receive(:reject_untrusted_ips_and_without_key!)
         end
 
         context "when a form is submitted with a slot selected" do
@@ -203,7 +203,7 @@ RSpec.describe ConfirmationsController, type: :controller do
           allow_any_instance_of(VisitorMailer).to receive(:sender).and_return('test@example.com')
           allow_any_instance_of(PrisonMailer).to receive(:sender).and_return('test@example.com')
           allow(controller).to receive(:metrics_logger).and_return(mock_metrics_logger)
-          allow(controller).to receive(:reject_untrusted_ips!)
+          allow(controller).to receive(:reject_untrusted_ips_and_without_key!)
         end
 
         context "when a form is submitted with a slot selected" do
