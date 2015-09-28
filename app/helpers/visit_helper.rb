@@ -107,9 +107,7 @@ module VisitHelper
   end
 
   def weeks
-    (weeks_start..weeks_end).group_by do |day|
-      day.beginning_of_week
-    end
+    (weeks_start..weeks_end).group_by(&:beginning_of_week)
   end
 
   def tag_with_today?(day)
