@@ -27,15 +27,28 @@ class ApplicationController < ActionController::Base
   end
 
   def reject_untrusted_ips_and_without_key!
-    unless Rails.configuration.metrics_auth_key.secure_compare(params[:key])
+    unless valid_auth_key?
       reject_untrusted_ips!
     end
   end
 
   def reject_without_key!
-    unless Rails.configuration.metrics_auth_key.secure_compare(params[:key])
+    unless valid_auth_key?
       reject!
     end
+  end
+
+  def auth_key
+    Rails.configuration.metrics_auth_key
+  end
+
+  def valid_auth_key?
+    auth_key &&
+      params[:key] &&
+      ActiveSupport::SecurityUtils.secure_compare(
+        auth_key,
+        params[:key]
+      )
   end
 
   delegate :prison_name, :visit_id, to: :visit, allow_nil: true

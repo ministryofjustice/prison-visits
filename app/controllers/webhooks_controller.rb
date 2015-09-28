@@ -69,8 +69,11 @@ class WebhooksController < ApplicationController
   end
 
   def authorized?
-    params[:auth].present? &&
-      params[:auth].secure_compare(ENV['WEBHOOK_AUTH_KEY'])
+    params.key?(:auth) &&
+      ActiveSupport::SecurityUtils.secure_compare(
+        params[:auth],
+        ENV['WEBHOOK_AUTH_KEY']
+      )
   end
 
   def handle_conditions(&_return_if_performed)
