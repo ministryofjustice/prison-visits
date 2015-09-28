@@ -188,6 +188,14 @@ Currently a private Gem which contains information for booking staff.
 
 ## Automated tests
 
+By default the tests use PhantomJS
+
+    brew install phantomjs
+
+You will also need to initialize the test database if it doesn't exist
+
+    bundle exec rake db:create RAILS_ENV=test
+
 This app uses [RSpec](http://rspec.info/) for Rails tests.
 
     rake
