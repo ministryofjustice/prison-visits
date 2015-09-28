@@ -3,7 +3,7 @@
   %li use this form to send a visit confirmation or visit rejection email to the visitor
   %li make sure you select visitors who can’t attend under 'Issue with visitors'
 
-= form_for @confirmation, url: deferred_confirmation_path, html: { class: 'js-SubmitOnce' } do |f|
+= form_for @confirmation, url: confirmation_path, html: { class: 'js-SubmitOnce' } do |f|
   = hidden_field_tag :state, params[:state]
   = hidden_field_tag 'confirmation[canned_response]', true
 
@@ -15,7 +15,7 @@
           %li
             %a.error-link{ :href => "##{obj.to_s}" }= error
 
-  
+
   %h2 Visit date
 
 
@@ -39,7 +39,7 @@
           %p.form-hint eg Last 8 digits of VO number or "none" for remand
           %span.validation-message= f.object.errors[:vo_number].first if f.object.errors.include?(:vo_number)
         = text_field_tag 'confirmation[vo_number]', nil, :maxlength => 8
-      
+
       .group
         #closed_visit.field
           %label.block-label(for='confirmation_closed_visit')
@@ -51,7 +51,7 @@
           %p
             %em.email
               %strong This is a closed visit:
-              the prisoner will be behind a glass screen in a separate area rather than in the visiting hall. 
+              the prisoner will be behind a glass screen in a separate area rather than in the visiting hall.
 
     %label.block-label(for='confirmation_outcome_no_slot_available' )
       = radio_button_tag 'confirmation[outcome]', Confirmation::NO_SLOT_AVAILABLE, false, { :'data-conditional-el' => 'details_no_slot_available', :class => 'js-Conditional' }
@@ -67,7 +67,7 @@
       %p
         %em.email We’re sorry but none of the dates and times you chose to visit #{booked_visit.prisoner.first_name} #{booked_visit.prisoner.last_name} at #{booked_visit.prisoner.prison_name} were available. Please visit www.gov.uk/prison-visits to choose some alternative dates.
 
-  
+
   %h2 Visiting allowance
 
   .group{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
@@ -112,7 +112,7 @@
               %span.date [DATE NOT CHOSEN]
             The visit must be taken before the allowance expires.
 
-  
+
   %h2 Issue with the prisoner
 
   .group
@@ -136,7 +136,7 @@
       %p
         %em.email Your visit cannot take place as the prisoner you want to visit has moved prison. They should contact you about where they are now.  You can also use the find a prisoner service (www.gov.uk/find-prisoner).
 
-  
+
   %h2 Issue with visitors
 
   .group
@@ -162,12 +162,12 @@
         %p
           %em.email
             %span.CheckboxSummary-summary
-            cannot attend. 
+            cannot attend.
         %p
           %em.email
             Details for
             %span.CheckboxSummary-summary
-            don’t match our records or the visitor isn’t on the contact list. 
+            don’t match our records or the visitor isn’t on the contact list.
         %p
           %em.email Please contact the prisoner and ask them to update their contact list with correct details, making sure that names appear exactly the same as on ID documents.
 
@@ -189,7 +189,7 @@
           %em.email
             Your visit cannot take place.
             %span.CheckboxSummary-summary [VISITOR NAME]
-            should have received a letter to say that they’re banned from visiting the prison at the moment. Get in touch with the prison for more information. 
+            should have received a letter to say that they’re banned from visiting the prison at the moment. Get in touch with the prison for more information.
 
       #banned_confirmed
         %p
@@ -199,7 +199,7 @@
         %p
           %em.email
             %span.CheckboxSummary-summary
-            should have received a letter to say that they’re banned from visiting the prison at the moment. Get in touch with the prison for more information. 
+            should have received a letter to say that they’re banned from visiting the prison at the moment. Get in touch with the prison for more information.
 
       - booked_visit.visitors.each_with_index do |visitor, index|
         %label.block-label{ :for => "confirmation_banned_visitors_#{index}" }

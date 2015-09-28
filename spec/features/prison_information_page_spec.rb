@@ -66,6 +66,6 @@ RSpec.feature 'visitor entering prisoner information' do
     enter_prisoner_information
 
     expect(page).to have_content('Visitor 1')
-    expect(page.current_path).to eq deferred_edit_visitors_details_path
+    expect(page.current_path).to eq edit_visitors_details_path
   end
 end

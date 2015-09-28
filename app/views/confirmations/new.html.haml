@@ -8,7 +8,7 @@
     %dl.labels
       %dt Prisoner:
       %dd= booked_visit.prisoner.full_name
-      
+
       %dt Number:
       %dd= booked_visit.prisoner.number
 
@@ -27,11 +27,11 @@
 
         %dt Date of birth:
         %dd= format_date_nomis visitor.date_of_birth
-        
+
         - if visitor.email
           %dt Email:
           %dd= visitor.email
-        
+
         - if visitor.phone
           %dt Phone:
           %dd= visitor.phone

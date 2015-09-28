@@ -1,4 +1,4 @@
-class Deferred::ConfirmationsController < ApplicationController
+class ConfirmationsController < ApplicationController
   helper_method :booked_visit
   permit_only_from_prisons
 
@@ -40,7 +40,7 @@ class Deferred::ConfirmationsController < ApplicationController
     end
     PrisonMailer.booking_receipt_email(booked_visit, @confirmation).deliver_later
     STATSD_CLIENT.increment("pvb.app.visit_processed")
-    redirect_to deferred_show_confirmation_path(visit_id: booked_visit.visit_id)
+    redirect_to show_confirmation_path(visit_id: booked_visit.visit_id)
   end
 
   def show

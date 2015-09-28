@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Deferred::SlotsController, type: :controller do
+RSpec.describe SlotsController, type: :controller do
   render_views
 
   before :each do
@@ -22,8 +22,8 @@ RSpec.describe Deferred::SlotsController, type: :controller do
   it_behaves_like "a session timed out"
 
   it "sets up the flow" do
-    expect(controller.this_path).to eq(deferred_edit_slots_path)
-    expect(controller.next_path).to eq(deferred_edit_visit_path)
+    expect(controller.this_path).to eq(edit_slots_path)
+    expect(controller.next_path).to eq(edit_visit_path)
   end
 
   it "permits up to 3 slots to be selected" do

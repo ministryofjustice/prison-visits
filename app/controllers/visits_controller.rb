@@ -1,4 +1,4 @@
-class Deferred::VisitsController < ApplicationController
+class VisitsController < ApplicationController
   include CookieGuard
   include SessionGuard::OnEditAndUpdate
   before_action :ensure_visit_integrity, only: [:edit, :update]
@@ -12,7 +12,7 @@ class Deferred::VisitsController < ApplicationController
     STATSD_CLIENT.increment("pvb.app.visit_request_submitted")
 
     metrics_logger.record_visit_request(visit)
-    redirect_to deferred_show_visit_path(state: @token)
+    redirect_to show_visit_path(state: @token)
     reset_session
   end
 

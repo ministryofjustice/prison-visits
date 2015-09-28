@@ -117,7 +117,7 @@ RSpec.feature 'unexpected journeys through the application' do
 
   context 'skipping the prisoner step' do
     scenario 'and going to visitor details' do
-      visit deferred_edit_visitors_details_path
+      visit edit_visitors_details_path
 
       expect(status).to eq(200)
       expect(current_path).to eq(start_page)
@@ -126,7 +126,7 @@ RSpec.feature 'unexpected journeys through the application' do
     end
 
     scenario 'and going directly to visit details' do
-      visit deferred_edit_slots_path
+      visit edit_slots_path
 
       expect(status).to eq(200)
       expect(current_path).to eq(start_page)
@@ -135,7 +135,7 @@ RSpec.feature 'unexpected journeys through the application' do
     end
 
     scenario 'and going directly to the confirmation page' do
-      visit deferred_edit_visit_path
+      visit edit_visit_path
 
       expect(status).to eq(200)
       expect(current_path).to eq(start_page)

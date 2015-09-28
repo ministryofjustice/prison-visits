@@ -46,12 +46,12 @@
       Phone:
       %strong #{visitor.phone}
 
-%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }= link_to("Process the booking", deferred_new_confirmation_url(state: @token), style: 'color: white; background: #00823b; text-decoration: none; padding: 7px 12px 5px; font-family: arial; font-weight: bold; letter-spacing: 0.03em; border-bottom: 2px solid #003518; margin-top: 1em; display: inline-block;')
+%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }= link_to("Process the booking", new_confirmation_url(state: @token), style: 'color: white; background: #00823b; text-decoration: none; padding: 7px 12px 5px; font-family: arial; font-weight: bold; letter-spacing: 0.03em; border-bottom: 2px solid #003518; margin-top: 1em; display: inline-block;')
 
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } If you cannot click on the link above, copy the entire link and paste it into the address bar of your browser.
 
 %div{ style: 'word-wrap: break-word; border: thin solid gray; padding: 5px;' }
-  = deferred_new_confirmation_url(state: @token)
+  = new_confirmation_url(state: @token)
 
 %p
   %small Visit ID: #{@visit.visit_id}

@@ -78,13 +78,13 @@ RSpec.describe PrisonerDetailsController, type: :controller do
 
       it "updates prisoner details and redirects to the email flow" do
         post :update, prisoner_hash
-        expect(response).to redirect_to(deferred_edit_visitors_details_path)
+        expect(response).to redirect_to(edit_visitors_details_path)
       end
 
       it "updates prisoner details and redirects to the email flow if the killswitch is active" do
         allow(subject).to receive(:killswitch_active?).and_return(true)
         post :update, prisoner_hash
-        expect(response).to redirect_to(deferred_edit_visitors_details_path)
+        expect(response).to redirect_to(edit_visitors_details_path)
       end
 
       it "updates prisoner details with bad date and redirects back" do

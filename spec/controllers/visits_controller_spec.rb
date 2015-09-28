@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Deferred::VisitsController, type: :controller do
+RSpec.describe VisitsController, type: :controller do
   include ActiveJobHelper
 
   render_views
@@ -32,7 +32,7 @@ RSpec.describe Deferred::VisitsController, type: :controller do
           p.date_of_birth = Date.new(1975, 1, 1)
         end
 
-        v.visitors = [Deferred::Visitor.new.tap do |vi|
+        v.visitors = [Visitor.new.tap do |vi|
                         vi.first_name = 'Morvern'
                         vi.last_name = 'Callar'
                         vi.email = 'email@system.lol'
@@ -63,7 +63,7 @@ RSpec.describe Deferred::VisitsController, type: :controller do
       expect_any_instance_of(VisitorMailer).to receive(:sender).and_return('test@example.com')
 
       post :update
-      expect(response).to redirect_to(deferred_show_visit_path(state: state))
+      expect(response).to redirect_to(show_visit_path(state: state))
 
       expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(['Visit request for Jimmy Harris on Friday 6 December',
                                                               "Not booked yet: we've received your visit request for 6 December 2013"])

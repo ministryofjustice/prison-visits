@@ -86,7 +86,7 @@ RSpec/InstanceVariable:
 Rails/ActionFilter:
   Exclude:
     - 'app/controllers/application_controller.rb'
-    - 'app/controllers/deferred/visits_controller.rb'
+    - 'app/controllers/visits_controller.rb'
     - 'app/controllers/prisoner_details_controller.rb'
 
 # Offense count: 33
@@ -99,7 +99,7 @@ Rails/Date:
     - 'lib/leaderboard_report.rb'
     - 'lib/rag_status_report.rb'
     - 'spec/configuration/bank_holidays_spec.rb'
-    - 'spec/controllers/deferred/visits_controller_spec.rb'
+    - 'spec/controllers/visits_controller_spec.rb'
     - 'spec/helpers/visit_helper_spec.rb'
     - 'spec/lib/age_validator_spec.rb'
     - 'spec/models/visit_spec.rb'
@@ -111,8 +111,8 @@ Rails/TimeZone:
   Exclude:
     - 'app/controllers/metrics_controller.rb'
     - 'lib/calculated_metrics.rb'
-    - 'spec/controllers/deferred/slots_controller_spec.rb'
-    - 'spec/controllers/deferred/visits_controller_spec.rb'
+    - 'spec/controllers/slots_controller_spec.rb'
+    - 'spec/controllers/visits_controller_spec.rb'
     - 'spec/features/datepicker_spec.rb'
     - 'spec/helpers/application_helper_spec.rb'
     - 'spec/mailers/visitor_mailer_spec.rb'
@@ -142,7 +142,7 @@ Style/AccessorMethodName:
 # Cop supports --auto-correct.
 Style/AlignArray:
   Exclude:
-    - 'spec/controllers/deferred/visits_controller_spec.rb'
+    - 'spec/controllers/visits_controller_spec.rb'
 
 # Offense count: 25
 # Cop supports --auto-correct.
@@ -204,8 +204,8 @@ Style/EmptyLinesAroundAccessModifier:
 Style/EmptyLinesAroundBlockBody:
   Exclude:
     - 'lib/weekly_confirmations_report.rb'
-    - 'spec/controllers/deferred/confirmations_controller_spec.rb'
-    - 'spec/controllers/deferred/visitors_details_controller_spec.rb'
+    - 'spec/controllers/confirmations_controller_spec.rb'
+    - 'spec/controllers/visitors_details_controller_spec.rb'
     - 'spec/features/visitor_information_page_spec.rb'
     - 'spec/helpers/visit_helper_spec.rb'
     - 'spec/models/confirmation_spec.rb'
@@ -261,8 +261,8 @@ Style/IndentArray:
     - 'app/controllers/geckoboard_controller.rb'
     - 'lib/csv_formatter.rb'
     - 'lib/rag_status_report.rb'
-    - 'spec/controllers/deferred/slots_controller_spec.rb'
-    - 'spec/controllers/deferred/visitors_details_controller_spec.rb'
+    - 'spec/controllers/slots_controller_spec.rb'
+    - 'spec/controllers/visitors_details_controller_spec.rb'
 
 # Offense count: 9
 # Cop supports --auto-correct.

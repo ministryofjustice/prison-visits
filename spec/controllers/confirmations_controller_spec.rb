@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Deferred::ConfirmationsController, type: :controller do
+RSpec.describe ConfirmationsController, type: :controller do
   include ActiveJobHelper
 
   render_views
@@ -101,7 +101,7 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
 
           after do
             post :create, confirmation: { outcome: 'slot_0' }, state: encrypted_visit
-            expect(response).to redirect_to(deferred_show_confirmation_path(visit_id: visit.visit_id))
+            expect(response).to redirect_to(show_confirmation_path(visit_id: visit.visit_id))
             expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(
               [
                 "Visit confirmed: your visit for 7 July 2013 has been confirmed",
@@ -120,7 +120,7 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
 
           after do
             post :create, confirmation: { outcome: Confirmation::NOT_ON_CONTACT_LIST }, state: encrypted_visit
-            expect(response).to redirect_to(deferred_show_confirmation_path(visit_id: visit.visit_id))
+            expect(response).to redirect_to(show_confirmation_path(visit_id: visit.visit_id))
             expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(
               [
                 "Visit cannot take place: your visit for 7 July 2013 could not be booked",
@@ -139,7 +139,7 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
 
           after do
             post :create, confirmation: { outcome: Confirmation::NO_VOS_LEFT }, state: encrypted_visit
-            expect(response).to redirect_to(deferred_show_confirmation_path(visit_id: visit.visit_id))
+            expect(response).to redirect_to(show_confirmation_path(visit_id: visit.visit_id))
             expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(
               [
                 "Visit cannot take place: your visit for 7 July 2013 could not be booked",
@@ -158,7 +158,7 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
 
           after do
             post :create, confirmation: { outcome: Confirmation::NO_SLOT_AVAILABLE }, state: encrypted_visit
-            expect(response).to redirect_to(deferred_show_confirmation_path(visit_id: visit.visit_id))
+            expect(response).to redirect_to(show_confirmation_path(visit_id: visit.visit_id))
             expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(["Visit cannot take place: your visit for 7 July 2013 could not be booked", "COPY of booking rejection for Jimmy Harris"])
           end
         end
@@ -215,7 +215,7 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
 
           after do
             post :create, confirmation: { outcome: 'slot_0', vo_number: '55512345', canned_response: true }, state: encrypted_visit
-            expect(response).to redirect_to(deferred_show_confirmation_path(visit_id: visit.visit_id))
+            expect(response).to redirect_to(show_confirmation_path(visit_id: visit.visit_id))
             expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(
               [
                 "Visit confirmed: your visit for 7 July 2013 has been confirmed",
@@ -264,7 +264,7 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
           end
 
           after do
-            expect(response).to redirect_to(deferred_show_confirmation_path(visit_id: visit.visit_id))
+            expect(response).to redirect_to(show_confirmation_path(visit_id: visit.visit_id))
             expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(
               [
                 "Visit confirmed: your visit for 7 July 2013 has been confirmed",
@@ -310,7 +310,7 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
           end
 
           after do
-            expect(response).to redirect_to(deferred_show_confirmation_path(visit_id: visit.visit_id))
+            expect(response).to redirect_to(show_confirmation_path(visit_id: visit.visit_id))
             expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(
               [
                 "Visit cannot take place: your visit for 7 July 2013 could not be booked",
@@ -355,7 +355,7 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
           end
 
           after do
-            expect(response).to redirect_to(deferred_show_confirmation_path(visit_id: visit.visit_id))
+            expect(response).to redirect_to(show_confirmation_path(visit_id: visit.visit_id))
             expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(
               [
                 "Visit cannot take place: your visit for 7 July 2013 could not be booked",
@@ -379,7 +379,7 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
                 canned_response: true
               },
               state: encrypted_visit
-            expect(response).to redirect_to(deferred_show_confirmation_path(visit_id: visit.visit_id))
+            expect(response).to redirect_to(show_confirmation_path(visit_id: visit.visit_id))
             expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(
               [
                 "Visit cannot take place: your visit for 7 July 2013 could not be booked",
@@ -403,7 +403,7 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
                 canned_response: true
               },
               state: encrypted_visit
-            expect(response).to redirect_to(deferred_show_confirmation_path(visit_id: visit.visit_id))
+            expect(response).to redirect_to(show_confirmation_path(visit_id: visit.visit_id))
             expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(
               [
                 "Visit cannot take place: your visit for 7 July 2013 could not be booked",
@@ -427,7 +427,7 @@ RSpec.describe Deferred::ConfirmationsController, type: :controller do
                 canned_response: true
               },
               state: encrypted_visit
-            expect(response).to redirect_to(deferred_show_confirmation_path(visit_id: visit.visit_id))
+            expect(response).to redirect_to(show_confirmation_path(visit_id: visit.visit_id))
             expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(
               [
                 "Visit cannot take place: your visit for 7 July 2013 could not be booked",

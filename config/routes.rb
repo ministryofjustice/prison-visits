@@ -6,21 +6,19 @@ PrisonVisits2::Application.routes.draw do
   get 'prisoner'           => 'prisoner_details#edit', as: :edit_prisoner_details
   post 'prisoner'          => 'prisoner_details#update', as: :prisoner_details
 
-  namespace :deferred do
-    get 'visitors'         => 'visitors_details#edit', as: :edit_visitors_details
-    post 'visitors'        => 'visitors_details#update', as: :visitors_details
+  get 'visitors'         => 'visitors_details#edit', as: :edit_visitors_details
+  post 'visitors'        => 'visitors_details#update', as: :visitors_details
 
-    get 'slots'            => 'slots#edit', as: :edit_slots
-    post 'slots'           => 'slots#update', as: :slots
+  get 'slots'            => 'slots#edit', as: :edit_slots
+  post 'slots'           => 'slots#update', as: :slots
 
-    get 'visit'            => 'visits#edit', as: :edit_visit
-    post 'visit'           => 'visits#update', as: :visit
-    get 'your-visit/:state' => 'visits#show', as: :show_visit
+  get 'visit'            => 'visits#edit', as: :edit_visit
+  post 'visit'           => 'visits#update', as: :visit
+  get 'your-visit/:state' => 'visits#show', as: :show_visit
 
-    get 'confirmation/new' => 'confirmations#new', as: :new_confirmation
-    get 'confirmation/:visit_id'     => 'confirmations#show', as: :show_confirmation, constraints: { visit_id: /[0-9a-f]{32}/ }
-    post 'confirmation'    => 'confirmations#create', as: :confirmation
-  end
+  get 'confirmation/new' => 'confirmations#new', as: :new_confirmation
+  get 'confirmation/:visit_id'     => 'confirmations#show', as: :show_confirmation, constraints: { visit_id: /[0-9a-f]{32}/ }
+  post 'confirmation'    => 'confirmations#create', as: :confirmation
 
   scope controller: :visit do
     get "/abandon", action: :abandon

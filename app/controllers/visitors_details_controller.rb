@@ -1,4 +1,4 @@
-class Deferred::VisitorsDetailsController < ApplicationController
+class VisitorsDetailsController < ApplicationController
   include CookieGuard
   include SessionGuard::OnEditAndUpdate
   include VisitorsManipulator
@@ -9,14 +9,14 @@ class Deferred::VisitorsDetailsController < ApplicationController
   end
 
   def this_path
-    deferred_edit_visitors_details_path
+    edit_visitors_details_path
   end
 
   def next_path
-    deferred_edit_slots_path
+    edit_slots_path
   end
 
   def model_class
-    Deferred::Visitor
+    Visitor
   end
 end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Deferred::Visitor do
+RSpec.describe Visitor do
   it_behaves_like 'a visitor'
 
   context 'phone' do

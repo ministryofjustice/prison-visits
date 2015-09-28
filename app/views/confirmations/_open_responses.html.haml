@@ -58,11 +58,11 @@
 
 %h2 Confirm the visit, or ask the visitor to choose new visit times
 
-= form_for @confirmation, url: deferred_confirmation_path do |f|
+= form_for @confirmation, url: confirmation_path do |f|
   = hidden_field_tag :state, params[:state]
   %p
     1. If one of the visit times is available and the visitor(s) are on the prisoner’s contact list, then enter the visit on Prison NOMIS.
-  
+
   .group{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
     %p
       2. Choose the available date below to send a confirmation email to the visitor.
@@ -79,7 +79,7 @@
               = format_time_str_24 slot.times.split('-')[0]
               \-
               = format_time_str_24 slot.times.split('-')[1]
-  
+
   %p
     3. If the visitor is not on the prisoner’s contact list they will need to contact the prisoner before booking a visit.
     Select the option below.
@@ -113,7 +113,7 @@
           The prisoner does not have any visiting allowance left
 
     .group
-  
+
   %p 6. Enter the VO number here (except for visits to prisoners on remand). You can also add any additional information.
   = f.text_area :message
 

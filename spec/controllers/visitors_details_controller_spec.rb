@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Deferred::VisitorsDetailsController, type: :controller do
+RSpec.describe VisitorsDetailsController, type: :controller do
   render_views
 
   before :each do
@@ -15,8 +15,8 @@ RSpec.describe Deferred::VisitorsDetailsController, type: :controller do
   it_behaves_like "a visitor data manipulator with invalid data"
 
   it "sets up the flow" do
-    expect(controller.this_path).to eq(deferred_edit_visitors_details_path)
-    expect(controller.next_path).to eq(deferred_edit_slots_path)
+    expect(controller.this_path).to eq(edit_visitors_details_path)
+    expect(controller.next_path).to eq(edit_slots_path)
   end
 
   let :single_visitor_hash do
@@ -53,7 +53,7 @@ RSpec.describe Deferred::VisitorsDetailsController, type: :controller do
       get :edit
       expect {
         post :update, visitor_hash
-        expect(response).to redirect_to deferred_edit_slots_path
+        expect(response).to redirect_to edit_slots_path
       }.to change { session[:visit].visitors.first.first_name }
     end
   end
@@ -78,7 +78,7 @@ RSpec.describe Deferred::VisitorsDetailsController, type: :controller do
 
     it "rejects visitor information" do
       post :update, visitor_hash
-      expect(response).to redirect_to(deferred_edit_visitors_details_path)
+      expect(response).to redirect_to(edit_visitors_details_path)
     end
   end
 
