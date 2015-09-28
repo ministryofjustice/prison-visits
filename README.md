@@ -6,7 +6,7 @@
 
 Also known as “Prison visit booking”, is one of the 25 'exemplar' [government digital transformation services](https://www.gov.uk/transformation).
 
-It is a Ruby on Rails cookie based (no database) service which enables a user to pick 3 posible visiting times and submit the required details of a visit to the relevant prison. 
+It is a Ruby on Rails cookie based (no database) service which enables a user to pick 3 posible visiting times and submit the required details of a visit to the relevant prison.
 
 The request is sent via secure email to prison staff who manually process the request before returning to this app to respond to the user.
 
@@ -54,7 +54,7 @@ Will change the message to:
 
 ### Weekly visiting slots
 
-Slots are defined per prison via a weekly schedule. Only days listed here with a list of slots will appear on the slot picker. 
+Slots are defined per prison via a weekly schedule. Only days listed here with a list of slots will appear on the slot picker.
 
 Use 3 letter strings for days of the week. Times are entered in 24 hours format.
 
@@ -161,7 +161,7 @@ Clone the project into a directory on to your environment using [instructions on
 Open terminal and go to the project directory and install the dependancies by running (assuming you have [Bundler](http://bundler.io/) installed):
 
     bundle install
-   
+
 Run the server by running:
 
     rails server
@@ -204,14 +204,6 @@ This app uses [RSpec](http://rspec.info/) for Rails tests.
 
 #### Locally (using Google Chrome)
 
-    rake spec:features
-
-#### Remotely (using BrowserStack)
-
-You'll need to set the environment variables to tell the tests scripts that you want them to be run remotely.
-
-    export BS_USERNAME browserstack-username
-    export BS_PASSWORD browserstack-password
     rake spec:features
 
 #### In parallel

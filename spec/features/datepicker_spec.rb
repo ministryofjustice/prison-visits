@@ -1,4 +1,4 @@
-require 'browserstack_helper'
+require 'poltergeist_helper'
 
 RSpec.feature "visitor selects a date" do
   include ActiveJobHelper
