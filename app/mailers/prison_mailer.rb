@@ -4,6 +4,8 @@ class PrisonMailer < ActionMailer::Base
   include Addresses
   include EnsureQuotedPrintable
 
+  after_action :do_not_send_to_prison, if: :smoke_test?
+
   add_template_helper(ApplicationHelper)
   add_template_helper(VisitHelper)
 
@@ -56,5 +58,21 @@ class PrisonMailer < ActionMailer::Base
 
   def recipient
     prison_mailbox_email
+  end
+
+  private
+
+  def do_not_send_to_prison
+    message.to = visitors_email_address
+    message.delivery_method.settings.
+      merge!(Rails.configuration.action_mailer.smtp_settings)
+  end
+
+  def smoke_test?
+    visit && MailUtilities::SmokeTestEmailCheck.new(visitors_email_address).matches?
+  end
+
+  def visitors_email_address
+    visit.visitors.first.email
   end
 end

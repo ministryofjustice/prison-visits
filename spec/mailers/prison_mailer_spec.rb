@@ -51,6 +51,27 @@ RSpec.describe PrisonMailer do
     Confirmation.new(message: 'A message', outcome: Confirmation::NO_VOS_LEFT)
   end
 
+  context 'first visitor has smoke test details' do
+    let(:smoke_test_email) { 'smoke-tests@example.com' }
+
+    let(:smoke_test_visit) do
+      sample_visit.tap do |visit|
+        visit.visitors.first.email = smoke_test_email
+      end
+    end
+
+    before do
+      allow_any_instance_of(MailUtilities::SmokeTestEmailCheck).
+        to receive(:matches?).and_return true
+    end
+
+    it 'alters the mail settings to not send to the prison' do
+      subject.booking_request_email(smoke_test_visit, "token").tap do |email|
+        expect(email.to).to contain_exactly smoke_test_email
+      end
+    end
+  end
+
   context "always" do
     it "sends an e-mail with the prisoner name in the subject" do
       expect(subject.booking_request_email(sample_visit, "token").subject).to eq('Visit request for Jimmy Harris on Sunday 7 July')
