@@ -32,7 +32,7 @@ PrisonVisits2::Application.routes.draw do
   scope controller: :staff do
     get "staff" => "staff#index"
     ['changes', 'guide', 'troubleshooting', 'training', 'stats', 'downloads', 'telephone-script'].each do |n|
-      label = n.gsub '-', '_'
+      label = n.tr '-', '_'
       get "staff/#{n}", action: label, as: label
     end
   end
