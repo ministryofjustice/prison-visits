@@ -35,7 +35,7 @@ RSpec.feature 'unexpected journeys through the application' do
       clear_session
       click_button 'Continue'
 
-      expect(status).to eq(200)
+      expect(page).to have_http_status(:success)
       expect(page).to have_text('Your session timed out')
       expect(page).to have_title('Who are you visiting?')
     end
@@ -48,7 +48,7 @@ RSpec.feature 'unexpected journeys through the application' do
       clear_session
       click_button 'Continue'
 
-      expect(status).to eq(200)
+      expect(page).to have_http_status(:success)
       expect(page).to have_text('Your session timed out')
       expect(page).to have_title('Who are you visiting?')
     end
@@ -64,7 +64,7 @@ RSpec.feature 'unexpected journeys through the application' do
       clear_session
       click_button 'Continue'
 
-      expect(status).to eq(200)
+      expect(page).to have_http_status(:success)
       expect(page).to have_text('Your session timed out')
       expect(page).to have_title('Who are you visiting?')
     end
@@ -82,7 +82,7 @@ RSpec.feature 'unexpected journeys through the application' do
       clear_session
       click_button 'Send request'
 
-      expect(status).to eq(200)
+      expect(page).to have_http_status(:success)
       expect(page).to have_text('Your session timed out')
       expect(page).to have_title('Who are you visiting?')
     end
@@ -92,7 +92,7 @@ RSpec.feature 'unexpected journeys through the application' do
     scenario 'and going to visitor details' do
       visit edit_visitors_details_path
 
-      expect(status).to eq(200)
+      expect(page).to have_http_status(:success)
       expect(current_path).to eq(start_page)
       expect(page).to have_text('You need to complete missing information')
       expect(page).to have_title('Who are you visiting?')
@@ -101,7 +101,7 @@ RSpec.feature 'unexpected journeys through the application' do
     scenario 'and going directly to visit details' do
       visit edit_slots_path
 
-      expect(status).to eq(200)
+      expect(page).to have_http_status(:success)
       expect(current_path).to eq(start_page)
       expect(page).to have_text('You need to complete missing information')
       expect(page).to have_title('Who are you visiting?')
@@ -110,7 +110,7 @@ RSpec.feature 'unexpected journeys through the application' do
     scenario 'and going directly to the confirmation page' do
       visit edit_visit_path
 
-      expect(status).to eq(200)
+      expect(page).to have_http_status(:success)
       expect(current_path).to eq(start_page)
       expect(page).to have_text('You need to complete missing information')
       expect(page).to have_title('Who are you visiting?')

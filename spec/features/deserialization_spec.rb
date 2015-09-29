@@ -35,14 +35,14 @@ RSpec.feature "deserialization" do
     scenario 'booking receipt' do
       link = data.fetch('booking_receipt_path')
       visit link
-      expect(status).to eq(200)
+      expect(page).to have_http_status(:success)
       expect(page).to have_text('Your visit is not booked yet')
     end
 
     scenario 'booking request email' do
       link = data.fetch('booking_request_path')
       visit link
-      expect(status).to eq(200)
+      expect(page).to have_http_status(:success)
       expect(page).to have_text('Process a visit request')
       expect(page).to have_text('Prisoner: Arthur Raffles')
       expect(page).to have_text('Visitor 1: Harry Manders')
@@ -52,7 +52,7 @@ RSpec.feature "deserialization" do
     scenario 'booking confirmation' do
       link = data.fetch('booking_confirmation_path')
       visit link
-      expect(status).to eq(200)
+      expect(page).to have_http_status(:success)
       expect(page).to have_text('Your visit has been confirmed')
     end
   end

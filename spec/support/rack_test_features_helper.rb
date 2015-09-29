@@ -2,10 +2,6 @@
 # when we want to freeze time in the feature).
 #
 module RackTestFeaturesHelper
-  def status
-    page.driver.browser.last_response.status
-  end
-
   def complete_prisoner_details(prison_name)
     fill_in 'Prisoner first name', with: 'Arthur'
     fill_in 'Prisoner last name', with: 'Raffles'
