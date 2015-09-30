@@ -56,4 +56,43 @@ RSpec.feature "deserialization" do
       expect(page).to have_text('Your visit has been confirmed')
     end
   end
+
+  context 'immediately after changing to JSON serialization' do
+    let(:data) {
+      super().fetch('immediately_after_changing_to_json_serialization')
+    }
+
+    before do
+      data.fetch('visit_metrics_entries').each do |hash|
+        VisitMetricsEntry.create! hash
+      end
+      allow_any_instance_of(ApplicationController).
+        to receive(:reject_untrusted_ips!)
+    end
+
+    scenario 'booking receipt' do
+      link = data.fetch('booking_receipt_path')
+      visit link
+      expect(page).to have_http_status(:success)
+      expect(page).to have_text('Your visit is not booked yet')
+    end
+
+    scenario 'booking request email' do
+      link = data.fetch('booking_request_path')
+      visit link
+      expect(page).to have_http_status(:success)
+      expect(page).to have_text('Process a visit request')
+      expect(page).to have_text('Process a visit request')
+      expect(page).to have_text('Prisoner: Arthur Raffles')
+      expect(page).to have_text('Visitor 1: Harry Manders')
+      expect(page).to have_text('First choice: Saturday, 05/09/2015 from 09:45 - 11:15')
+    end
+
+    scenario 'booking confirmation' do
+      link = data.fetch('booking_confirmation_path')
+      visit link
+      expect(page).to have_http_status(:success)
+      expect(page).to have_text('Your visit has been confirmed')
+    end
+  end
 end
