@@ -26,6 +26,7 @@ class CompressedMarshaller
   def deserialize(str)
     JSON.parse(str)
   rescue JSON::ParserError
+    Rails.logger.info 'Deserializing legacy token'
     Marshal.load(str)
   end
 end
