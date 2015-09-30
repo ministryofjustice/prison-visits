@@ -49,7 +49,8 @@ class ConfirmationsController < ApplicationController
   end
 
   def booked_visit
-    legacy_data_fixes(encryptor.decrypt_and_verify(params[:state]))
+    @booked_visit ||=
+      legacy_data_fixes(encryptor.decrypt_and_verify(params[:state]))
   end
 
   def confirmation_params
