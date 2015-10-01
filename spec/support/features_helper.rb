@@ -40,6 +40,12 @@ module FeaturesHelper
     end
   end
 
+  def select_a_slot
+    first('.BookingCalendar-date--bookable .BookingCalendar-dateLink').
+      trigger('click')
+    first('.SlotPicker-slot').trigger('click')
+  end
+
   def set_prison_to(prison_name)
     find(:css, ".ui-autocomplete-input").set(prison_name)
   end
