@@ -25,9 +25,11 @@ module PrisonVisits2
       back-office.css
       *.png
     )
+    config.prison_data_source = File.join(Rails.root, 'config', 'prison_data.yml')
     config.prison_data = YAML.load_file(ENV['PRISON_DATA_FILE'] ||
-      File.join(Rails.root, 'config', 'prison_data_staging.yml')).
-        with_indifferent_access
+        ENV['PRISON_DATA_FILE'] ||
+        self.config.prison_data_source
+    ).with_indifferent_access.freeze
     config.nomis_ids = config.prison_data.sort_by do |prison_name, _prison_data|
       prison_name
     end.inject(Set[]) do |set, (_prison_name, prison_data)|

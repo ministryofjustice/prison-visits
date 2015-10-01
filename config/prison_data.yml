@@ -4,7 +4,32 @@ Stafford:
   canned_responses: true
   enabled: true
   phone: 0300 060 6505
-  email: pvb.stafford@maildrop.dsd.io
+  email:
+  address:
+  - 54 Gaol Road
+  - Stafford
+  - ST16 3AW
+  unbookable:
+  - 2015-10-14
+  - 2015-12-25
+  slots:
+    wed:
+    - 1400-1600
+    thu:
+    - 1400-1600
+    sat:
+    - 1400-1600
+    sun:
+    - 1400-1600
+  slot_anomalies:
+    2015-10-13:
+    - 1400-1600
+Stafford:
+  nomis_id: SFI
+  canned_responses: true
+  enabled: true
+  phone: 0300 060 6505
+  email: visitsbooking.westmidlands@noms.gsi.gov.uk
   address:
   - 54 Gaol Road
   - Stafford
@@ -64,21 +89,17 @@ Rochester:
   canned_responses: true
   enabled: true
   phone: 01634 803100
-  email: pvb.rochester@maildrop.dsd.io
+  email: socialvisits.rochester@hmps.gsi.gov.uk
   address:
   - 1 Fort Road
   - Rochester
   - Kent
   - ME1 3QS
-  lead_days: 0
   unbookable:
   - 2013-12-25
   - 2013-12-26
   - 2014-12-25
   - 2014-12-26
-  slot_anomalies:
-    2014-08-14:
-    - 0700-0900
   slots:
     mon:
     - 1400-1600
@@ -100,7 +121,7 @@ Durham:
   canned_responses: true
   enabled: true
   phone: 0191 3323417
-  email: pvb.durham@maildrop.dsd.io
+  email: socialvisits.durham@hmps.gsi.gov.uk
   address:
   - Old Elvet
   - Durham
@@ -134,7 +155,7 @@ Cardiff:
   canned_responses: true
   enabled: true
   phone: 029 20923327
-  email: pvb.cardiff@maildrop.dsd.io
+  email: socialvisits.cardiff@hmps.gsi.gov.uk
   booking_window: 14
   address:
   - Knox Road
@@ -221,7 +242,7 @@ Gartree:
   canned_responses: true
   enabled: true
   phone: 01858 426 727
-  email: pvb.gartree@maildrop.dsd.io
+  email: socialvisits.gartree@hmps.gsi.gov.uk
   address:
   - Gallow Field Rd
   - Market Harborough
@@ -247,7 +268,7 @@ Brinsford:
   canned_responses: true
   enabled: true
   phone: 0300 060 6500
-  email: pvb.brinsford@maildrop.dsd.io
+  email: visitsbooking.westmidlands@noms.gsi.gov.uk
   adult_age: 10
   address:
   - New Road
@@ -299,7 +320,7 @@ Drake Hall:
   canned_responses: true
   enabled: true
   phone: 0300 060 6501
-  email: pvb.drakehall@maildrop.dsd.io
+  email: visitsbooking.westmidlands@noms.gsi.gov.uk
   address:
   - Eccleshall
   - Staffordshire
@@ -324,7 +345,7 @@ Werrington:
   canned_responses: true
   enabled: true
   phone: 0300 060 6508
-  email: pvb.werrington@maildrop.dsd.io
+  email: visitsbooking.westmidlands@noms.gsi.gov.uk
   adult_age: 10
   address:
   - Werrington
@@ -352,7 +373,7 @@ Featherstone:
   canned_responses: true
   enabled: true
   phone: 0300 060 6502
-  email: pvb.featherstone@maildrop.dsd.io
+  email: visitsbooking.westmidlands@noms.gsi.gov.uk
   address:
   - New Road
   - Featherstone
@@ -384,7 +405,7 @@ Stoke Heath:
   canned_responses: true
   enabled: true
   phone: 0300 060 6506
-  email: pvb.stokeheath@maildrop.dsd.io
+  email: visitsbooking.westmidlands@noms.gsi.gov.uk
   adult_age: 10
   address:
   - Market Drayton
@@ -415,7 +436,7 @@ Swinfen Hall:
   canned_responses: true
   enabled: true
   phone: 0300 060 6507
-  email: pvb.swinfenhall@maildrop.dsd.io
+  email: visitsbooking.westmidlands@noms.gsi.gov.uk
   adult_age: 10
   address:
   - Swinfen Hall
@@ -444,7 +465,7 @@ Hewell:
   canned_responses: true
   enabled: true
   phone: 0300 060 6503
-  email: pvb.hewell@maildrop.dsd.io
+  email: visitsbooking.westmidlands@noms.gsi.gov.uk
   adult_age: 10
   address:
   - Hewell Lane
@@ -477,7 +498,7 @@ Foston Hall:
   nomis_id: FHI
   enabled: true
   phone: 01283 584357
-  email: pvb.fostonhall@maildrop.dsd.io
+  email: socialvisits.fostonhall@hmps.gsi.gov.uk
   address:
   - Foston Hall
   - Derby
@@ -504,7 +525,7 @@ Holloway:
   canned_responses: true
   enabled: true
   phone: 020 7979 4751
-  email: pvb.holloway@maildrop.dsd.io
+  email: socialvisits.holloway@hmps.gsi.gov.uk
   address:
   - Pankhurst Road
   - London
@@ -573,7 +594,7 @@ Bristol:
   canned_responses: true
   enabled: true
   phone: 0117 372 3213
-  email: pvb.bristol@maildrop.dsd.io
+  email: socialvisits.bristol@hmps.gsi.gov.uk
   address:
   - 19 Cambridge Road
   - Bristol
@@ -603,7 +624,7 @@ Buckley Hall:
   canned_responses: true
   enabled: true
   phone: 01706 514350
-  email: pvb.buckleyhall@maildrop.dsd.io
+  email: socialvisits.buckleyhall@hmps.gsi.gov.uk
   address:
   - Buckley Road
   - OL12 9DP
@@ -639,7 +660,7 @@ Bure:
   canned_responses: true
   enabled: true
   phone: 01603 326252
-  email: pvb.bure@maildrop.dsd.io
+  email: socialvisits.bure@hmps.gsi.gov.uk
   address:
   - Jaguar Drive
   - NR10 5GB
@@ -656,18 +677,12 @@ Bure:
     sun:
     - 0930-1130
     - 1400-1600
-  slot_anomalies:
-    2014-12-23:
-    - 1400-1545
-    2014-12-24:
-    - 0915-1100
 Coldingley:
   nomis_id: CLI
   canned_responses: true
   enabled: true
   phone: 01483 344418
-  email: pvb.coldingley@maildrop.dsd.io
-  adult_age: 12
+  email: socialvisits.coldingley@hmps.gsi.gov.uk
   address:
   - Shaftesbury Road
   - GU24 9EX
@@ -701,7 +716,7 @@ Cookham Wood:
   canned_responses: true
   enabled: true
   phone: 01634 202557
-  email: pvb.cookhamwood@maildrop.dsd.io
+  email: socialvisits.cookhamwood@hmps.gsi.gov.uk
   address:
   - Sir Evelyn Road
   - ME1 3LU
@@ -728,8 +743,7 @@ Deerbolt:
   canned_responses: true
   enabled: true
   phone: 01833 633349
-  email: pvb.deerbolt@maildrop.dsd.io
-  adult_age: 10
+  email: socialvisits.deerbolt@hmps.gsi.gov.uk
   address:
   - Bowes Road
   - DL12 9BG
@@ -754,7 +768,7 @@ Exeter:
   canned_responses: true
   enabled: true
   phone: 01392 41 5833
-  email: pvb.exeter@maildrop.dsd.io
+  email: socialvisits.exeter@hmps.gsi.gov.uk
   address:
   - New North Road
   - EX4 4EX
@@ -786,7 +800,7 @@ Lewes:
   canned_responses: true
   enabled: true
   phone: 01273785277
-  email: pvb.lewes@maildrop.dsd.io
+  email: socialvisits.lewes@hmps.gsi.gov.uk
   works_weekends: true
   address:
   - 1 Brighton Road
@@ -820,7 +834,7 @@ Moorland Closed:
   canned_responses: true
   enabled: true
   phone: 01302523289
-  email: pvb.moorlandclosed@maildrop.dsd.io
+  email: socialvisits.moorlandclosed@hmps.gsi.gov.uk
   finder_slug: moorland
   address:
   - Bawtry Road
@@ -844,7 +858,7 @@ Onley:
   canned_responses: true
   enabled: true
   phone: 01788 523 402
-  email: pvb.onley@maildrop.dsd.io
+  email: socialvisits.onley@hmps.gsi.gov.uk
   adult_age: 10
   address:
   - Willoughby
@@ -880,7 +894,7 @@ The Mount:
   canned_responses: true
   enabled: true
   phone: 01442 836352
-  email: pvb.themount@maildrop.dsd.io
+  email: socialvisits.themount@hmps.gsi.gov.uk
   address:
   - Molyneaux Avenue
   - HP3 0NZ
@@ -929,7 +943,7 @@ Wayland:
   canned_responses: true
   enabled: true
   phone: 001953 804152
-  email: pvb.wayland@maildrop.dsd.io
+  email: socialvisits.wayland@hmps.gsi.gov.uk
   address:
   - Griston
   - IP25 6RL
@@ -952,7 +966,7 @@ Wealstun:
   canned_responses: true
   enabled: true
   phone: 01937 444599
-  email: pvb.wealstun@maildrop.dsd.io
+  email: socialvisits.wealstun@hmps.gsi.gov.uk
   address:
   - Church Causeway
   - LS23 7AZ
@@ -983,7 +997,7 @@ Bedford:
   canned_responses: true
   enabled: true
   phone: 01234 373196
-  email: pvb.bedford@maildrop.dsd.io
+  email: socialvisits.bedford@hmps.gsi.gov.uk
   booking_window: 14
   address:
   - St. Loyes Street
@@ -1015,7 +1029,7 @@ Preston:
   canned_responses: true
   enabled: true
   phone: 01772 444666
-  email: pvb.preston@maildrop.io
+  email: socialvisits.preston@hmps.gsi.gov.uk
   address:
   - 2 Ribbleton Lane
   - 'PR1 5AB '
@@ -1041,8 +1055,7 @@ Maidstone:
   canned_responses: true
   enabled: true
   phone: 01622 775619
-  email: pvb.maidstone@maildrop.dsd.io
-  adult_age: 12
+  email: socialvisits.maidstone@hmps.gsi.gov.uk
   address:
   - 36 County Road
   - 'ME14 1UZ '
@@ -1067,7 +1080,7 @@ Warren Hill:
   canned_responses: true
   enabled: true
   phone: 020 8588 4002
-  email: pvb.warrenhill@maildrop.dsd.io
+  email: socialvisits.warrenhill@hmps.gsi.gov.uk
   address:
   - Hollesley
   - 'IP12 3JW '
@@ -1092,7 +1105,7 @@ Wetherby:
   canned_responses: true
   enabled: true
   phone: 01937 544207
-  email: pvb.wetherby@maildrop.dsd.io
+  email: socialvisits.wetherby@hmps.gsi.gov.uk
   address:
   - York Road
   - 'LS22 5ED '
@@ -1112,7 +1125,7 @@ Erlestoke:
   canned_responses: true
   enabled: true
   phone: 01380 814264
-  email: pvb.erlestoke@maildrop.dsd.io
+  email: eecmbookavisit@hmps.gsi.gov.uk
   address:
   - DEVIZES
   - SN10 5TU
@@ -1136,7 +1149,7 @@ Chelmsford:
   canned_responses: true
   enabled: true
   phone: 01245 552265
-  email: pvb.chelmsford@maildrop.dsd.io
+  email: socialvisits.chelmsford@hmps.gsi.gov.uk
   address:
   - 200 Springfield Road
   - 'CM2 6LQ '
@@ -1163,7 +1176,7 @@ Stocken:
   canned_responses: true
   enabled: true
   phone: 01780 795156
-  email: pvb.stocken@maildrop.dsd.io
+  email: socialvisits.stocken@hmps.gsi.gov.uk
   address:
   - Stocken Hall Road
   - LE15 7RD
@@ -1187,7 +1200,7 @@ Dartmoor:
   canned_responses: true
   enabled: true
   phone: 01822 322022
-  email: pvb.dartmoor@maildrop.dsd.io
+  email: socvisdartmoor@hmps.gsi.gov.uk
   address:
   - Princetown
   - PL20 6RR
@@ -1221,7 +1234,7 @@ Low Newton:
   canned_responses: true
   enabled: true
   phone: 0191 376 4147
-  email: pvb.lownewton@maildrop.dsd.io
+  email: socialvisits.lownewton@hmps.gsi.gov.uk
   address:
   - Brasside
   - DH1 5YA
@@ -1245,7 +1258,7 @@ Aylesbury:
   canned_responses: true
   enabled: true
   phone: 01296 444099
-  email: pvb.aylesbury@maildrop.dsd.io
+  email: socialvisits.aylesbury@hmps.gsi.gov.uk
   address:
   - Bierton Road
   - HP20 1EH
@@ -1261,6 +1274,7 @@ Aylesbury:
   - 2015-01-26
   - 2015-01-28
   - 2015-01-29
+
   slots:
     mon:
     - 1415-1615
@@ -1277,7 +1291,7 @@ Isle of Wight - Albany:
   canned_responses: true
   enabled: true
   phone: 01983 634218
-  email: pvb.albany@maildrop.dsd.io
+  email: socialvisitsisleofwight@hmps.gsi.gov.uk
   address:
   - 55 Parkhurst Road
   - PO30 5RS
@@ -1297,7 +1311,7 @@ Blantyre House:
   enabled: false
   reason: it_issues
   phone: ''
-  email: pvb.blantyrehouse@maildrop.dsd.io
+  email: socialvisits.blantyrehouse@hmps.gsi.gov.uk
   address:
   - Goudhurst
   - TN17 2NH
@@ -1315,8 +1329,7 @@ Brixton:
   canned_responses: true
   enabled: true
   phone: 0208 678 1433
-  email: pvb.brixton@maildrop.dsd.io
-  adult_age: 12
+  email: socialvisits.brixton@hmps.gsi.gov.uk
   address:
   - Jebb Avenue
   - SW2 5XF
@@ -1414,7 +1427,7 @@ Downview:
   enabled: false
   reason: coming_soon
   phone: 0208 196 6359
-  email: pvb.downview@maildrop.dsd.io
+  email: socialvisits.downview@hmps.gsi.gov.uk
   address:
   - Sutton Lane
   - SM2 5PD
@@ -1432,7 +1445,7 @@ East Sutton Park:
   enabled: false
   reason: coming_soon
   phone: ''
-  email: pvb.eastsuttonpark@maildrop.dsd.io
+  email: socialvisits.eastsuttonpark@hmps.gsi.gov.uk
   address:
   - Sutton Valence
   - 'ME17 3DF '
@@ -1448,7 +1461,7 @@ Elmley:
   canned_responses: true
   enabled: true
   phone: 0300 060 6605
-  email: pvb.sheppeycluster-elmley@maildrop.dsd.io
+  email: socialvisits.elmley@hmps.gsi.gov.uk
   finder_slug: sheppey-cluster-elmley
   address:
   - Church Road
@@ -1477,7 +1490,7 @@ Everthorpe:
   canned_responses: true
   enabled: true
   phone: 01430 426505
-  email: pvb.everthorpe@maildrop.dsd.io
+  email: socialvisits.everthorpe@hmps.gsi.gov.uk
   address:
   - 1a Beck Road
   - HU15 1RB
@@ -1500,7 +1513,7 @@ Wolds:
   canned_responses: true
   enabled: true
   phone: 01430 426505
-  email: pvb.everthorpe@maildrop.dsd.io
+  email: socialvisits.everthorpe@hmps.gsi.gov.uk
   address:
   - Everthorpe
   - HU15 2JZ
@@ -1522,8 +1535,7 @@ Glen Parva:
   canned_responses: true
   enabled: true
   phone: 0116 228 4366
-  email: pvb.glenparva@maildrop.dsd.io
-  adult_age: 10
+  email: socialvisits.glenparva@hmps.gsi.gov.uk
   address:
   - Tigers Road
   - 'LE8 4TN '
@@ -1553,7 +1565,7 @@ Grendon:
   canned_responses: true
   enabled: true
   phone: ''
-  email: pvb.grendon@maildrop.dsd.io
+  email: socialvisits.grendon@hmps.gsi.gov.uk
   address:
   - Grendon Underwood
   - HP18 0TL
@@ -1566,15 +1578,12 @@ Grendon:
     - 1345-1545
     wed:
     - 1400-1600
-  slot_anomalies:
-    2014-12-29:
-    - 1330-1545
 Guys Marsh:
   nomis_id: GMI
   canned_responses: true
   enabled: true
   phone: 01747 856586
-  email: pvb.guysmarsh@maildrop.dsd.io
+  email: socialvisitsguysmarsh@hmps.gsi.gov.uk
   address:
   - SHAFTESBURY
   - 'SP7 0AH '
@@ -1599,7 +1608,7 @@ Hatfield Open:
   canned_responses: true
   enabled: true
   phone: 01405 746611
-  email: pvb.hatfieldmoorlandopen@maildrop.dsd.io
+  email: socialvisitshatfield@hmps.gsi.gov.uk
   finder_slug: hatfield
   address:
   - Thorne Road
@@ -1627,7 +1636,7 @@ Haverigg:
   enabled: true
   phone: 01229713016
   adult_age: 10
-  email: pvb.haverigg@maildrop.dsd.io
+  email: socialvisits.haverigg@hmps.gsi.gov.uk
   address:
   - MILLOM
   - 'LA18 4NA '
@@ -1653,7 +1662,7 @@ High Down:
   canned_responses: true
   enabled: true
   phone: 020 7147 6570
-  email: pvb.highdown@maildrop.dsd.io
+  email: socialvisits.highdown@hmps.gsi.gov.uk
   address:
   - Sutton Lane
   - 'SM2 5PJ '
@@ -1693,7 +1702,7 @@ Highpoint North:
   canned_responses: true
   enabled: true
   phone: 01440 743134
-  email: pvb.highpointnorth@maildrop.dsd.io
+  email: socialvisits.highpoint@hmps.gsi.gov.uk
   address:
   - Stradishall
   - 'CB8 9YG '
@@ -1716,7 +1725,7 @@ Highpoint South:
   canned_responses: true
   enabled: true
   phone: 01440 743134
-  email: pvb.highpointnorth@maildrop.dsd.io
+  email: socialvisits.highpoint@hmps.gsi.gov.uk
   address:
   - Stradishall
   - 'CB8 9YG '
@@ -1742,7 +1751,7 @@ Holme House:
   canned_responses: true
   enabled: true
   phone: 03000 606602
-  email: pvb.holmehouse@maildrop.dsd.io
+  email: socialvisits.holmehouse@hmps.gsi.gov.uk
   address:
   - Holme House Road
   - S18 2QU
@@ -1770,7 +1779,7 @@ Hull:
   enabled: false
   reason: coming_soon
   phone: 01482 282016
-  email: pvb.hull@maildrop.dsd.io
+  email: socialvisits.hull@hmps.gsi.gov.uk
   address:
   - Hedon Road
   - 'HU9 5LS '
@@ -1794,7 +1803,7 @@ Huntercombe:
   canned_responses: true
   enabled: true
   phone: 01491 643151
-  email: pvb.huntercombe@maildrop.dsd.io
+  email: socialvisits.huntercombe@hmps.gsi.gov.uk
   address:
   - Huntercombe Place
   - 'RG9 5SB '
@@ -1825,7 +1834,7 @@ Isle of Wight - Parkhurst:
   canned_responses: true
   enabled: true
   phone: 01983 634218
-  email: pvb.isleofwight-parkhurst@maildrop.dsd.io
+  email: socialvisitsisleofwight@hmps.gsi.gov.uk
   address:
   - 'Clissold Road '
   - 'PO30 5RS '
@@ -1845,8 +1854,7 @@ Leeds:
   canned_responses: true
   enabled: true
   phone: 0113 203 2995
-  email: pvb.leeds@maildrop.dsd.io
-  adult_age: 10
+  email: socialvisits.leeds@hmps.gsi.gov.uk
   address:
   - Gloucester Terrace
   - 'LS12 2TJ '
@@ -1891,7 +1899,7 @@ New Hall:
   canned_responses: true
   enabled: true
   phone: 01924 803219
-  email: pvb.newhall@maildrop.dsd.io
+  email: socialvisits.newhall@hmps.gsi.gov.uk
   address:
   - Dial Wood
   - WF4 4XX
@@ -1915,8 +1923,7 @@ Nottingham:
   canned_responses: true
   enabled: true
   phone: 0115 962 8980
-  email: pvb.nottingham@maildrop.dsd.io
-  adult_age: 14
+  email: socialvisits.nottingham@hmps.gsi.gov.uk
   address:
   - Perry Road
   - 'NG5 3AG '
@@ -1945,7 +1952,7 @@ Send:
   canned_responses: true
   enabled: true
   phone: 01483 471033
-  email: pvb.send@maildrop.dsd.io
+  email: socialvisits.send@hmps.gsi.gov.uk
   address:
   - Ripley Road
   - 'GU23 7LJ '
@@ -1971,7 +1978,7 @@ Styal:
   canned_responses: true
   enabled: true
   phone: 01625553195
-  email: pvb.styal@maildrop.dsd.io
+  email: socialvisits.styal@hmps.gsi.gov.uk
   address:
   - WILMSLOW
   - 'SK9 4HR '
@@ -1997,7 +2004,7 @@ Swaleside:
   canned_responses: true
   enabled: true
   phone: 0300 060 6604
-  email: pvb.swaleside@maildrop.dsd.io
+  email: socialvisits.swaleside@hmps.gsi.gov.uk
   address:
   - Brabazon Road
   - ME12 4AX
@@ -2022,9 +2029,8 @@ Norwich (A, B, C, E, M only):
   canned_responses: true
   enabled: true
   phone: 01603 708795
-  email: pvb.norwich@maildrop.dsd.io
+  email: socialvisits.norwich@hmps.gsi.gov.uk
   finder_slug: norwich
-  adult_age: 16
   address:
   - Knox Road
   - 'NR1 4LU '
@@ -2047,7 +2053,7 @@ Norwich (F, G, H, L only):
   canned_responses: true
   enabled: true
   phone: 01603 708795
-  email: pvb.norwich@maildrop.dsd.io
+  email: socialvisits.norwich@hmps.gsi.gov.uk
   finder_slug: norwich
   address:
   - Knox Road
@@ -2069,7 +2075,7 @@ Norwich (Britannia House):
   canned_responses: true
   enabled: true
   phone: 01603 708795
-  email: pvb.norwich@maildrop.dsd.io
+  email: socialvisits.norwich@hmps.gsi.gov.uk
   finder_slug: norwich
   address:
   - Knox Road
@@ -2104,7 +2110,7 @@ Standford Hill:
   canned_responses: true
   enabled: true
   phone: 0300 060 6603
-  email: pvb.standfordhill@maildrop.dsd.io
+  email: socialvisits.standfordhill@hmps.gsi.gov.uk
   finder_slug: sheppey-cluster-standford-hill
   address:
   - Church Road
@@ -2123,7 +2129,7 @@ Liverpool Social Visits:
   canned_responses: true
   enabled: true
   phone: 0151 530 4050
-  email: pvb.liverpool@maildrop.dsd.io
+  email: socialvisits.liverpool@hmps.gsi.gov.uk
   finder_slug: liverpool
   address:
   - 68 Hornby Road
@@ -2184,7 +2190,7 @@ Liverpool (Closed only):
   canned_responses: true
   enabled: true
   phone: 0151 530 4050
-  email: pvb.liverpool@maildrop.dsd.io
+  email: socialvisits.liverpool@hmps.gsi.gov.uk
   finder_slug: liverpool
   address:
   - 68 Hornby Road
@@ -2212,9 +2218,8 @@ Bullingdon (Convicted Only):
   canned_responses: true
   enabled: true
   phone: 01869 353176
-  email: pvb.bullingdon@maildrop.dsd.io
+  email: socialvisits.bullingdon@hmps.gsi.gov.uk
   finder_slug: bullingdon
-  adult_age: 13
   address:
   - Bicester
   - OX25 1PZ
@@ -2239,7 +2244,7 @@ Bullingdon (Remand Only):
   canned_responses: true
   enabled: true
   phone: 01869 353176
-  email: pvb.bullingdon@maildrop.dsd.io
+  email: socialvisits.bullingdon@hmps.gsi.gov.uk
   finder_slug: bullingdon
   address:
   - Bicester
@@ -2260,9 +2265,8 @@ Hindley:
   canned_responses: true
   enabled: true
   phone: 01942 663492
-  email: pvb.hindley@maildrop.dsd.io
+  email: socialvisits.hindley@hmps.gsi.gov.uk
   finder_slug: hindley
-  adult_age: 10
   address:
   - Gibson Street
   - WN2 5TH
@@ -2340,7 +2344,7 @@ Hollesley Bay Open:
   canned_responses: true
   enabled: true
   phone: ''
-  email: pvb.hollesleybay@maildrop.dsd.io
+  email: socialvisits.hollesleybay@hmps.gsi.gov.uk
   address:
   - WOODBRIDGE
   - 'IP12 3JW '
@@ -2361,7 +2365,7 @@ Kennet:
   canned_responses: true
   enabled: true
   phone: 0151 213 3179
-  email: pvb.kennet@maildrop.dsd.io
+  email: socialvisits.kennet@hmps.gsi.gov.uk
   address:
   - Parkbourn
   - 'L31 1HX '
@@ -2405,7 +2409,7 @@ Kirkham:
   canned_responses: true
   enabled: true
   phone:
-  email: pvb.kirkham@maildrop.dsd.io
+  email: socialvisits.kirkham@hmps.gsi.gov.uk
   address:
   - Freckleton Road
   - ' Kirkham'
@@ -2424,7 +2428,7 @@ Lancaster Farms:
   canned_responses: true
   enabled: true
   phone: 01524 563636
-  email: pvb.lancasterfarms@maildrop.dsd.io
+  email: lancasterfarmsdomesticvisitsbooking@hmps.gsi.gov.uk
   address:
   - Stone Row Head
   - LA1 3QZ
@@ -2445,8 +2449,7 @@ Lincoln:
   canned_responses: true
   enabled: true
   phone: 01522 663172
-  email: pvb.lincoln@maildrop.dsd.io
-  adult_age: 16
+  email: lincolnsocialvisits@hmps.gsi.gov.uk
   address:
   - Greetwell Road
   - 'LN2 4BD '
@@ -2472,7 +2475,7 @@ Lindholme:
   canned_responses: true
   enabled: true
   phone: 01302 524980
-  email: pvb.lindholme@maildrop.dsd.io
+  email: socialvisits.lindholme@hmps.gsi.gov.uk
   address:
   - Bawtry Road
   - 'DN7 6EE '
@@ -2514,7 +2517,7 @@ Littlehey:
   canned_responses: true
   enabled: true
   phone: 01480 335650
-  email: pvb.littlehey@maildrop.dsd.io
+  email: socialvisits.littlehey@hmps.gsi.gov.uk
   lead_days: 2
   address:
   - Perry
@@ -2547,7 +2550,7 @@ North Sea Camp:
   canned_responses: true
   enabled: true
   phone: 01205 769 368
-  email: pvb.northseacamp@maildrop.dsd.io
+  email: socialvisits.northseacamp@hmps.gsi.gov.uk
   address:
   - Freiston
   - PE22 0QX
@@ -2567,7 +2570,7 @@ Portland:
   canned_responses: true
   enabled: true
   phone: 01305 715775
-  email: pvb.portland@maildrop.dsd.io
+  email: socialvisits.portland@hmps.gsi.gov.uk
   adult_age: 11
   address:
   - 104 The Grove
@@ -2594,7 +2597,7 @@ Ranby:
   canned_responses: true
   enabled: true
   phone: 01777 862107
-  email: pvb.ranby@maildrop.dsd.io
+  email: socialvisits.ranby@hmps.gsi.gov.uk
   address:
   - RETFORD
   - DN22 8EU
@@ -2618,7 +2621,7 @@ Wandsworth:
   canned_responses: true
   enabled: true
   phone: 0208 588 4002
-  email: pvb.wandsworth@maildrop.dsd.io
+  email: socialvisits.wandsworth@hmps.gsi.gov.uk
   address:
   - Heathfield Rd
   - PO Box 757
@@ -2676,7 +2679,7 @@ Winchester (Remand only):
   canned_responses: true
   enabled: true
   phone: 0845 223 5514
-  email: pvb.winchester@maildrop.dsd.io
+  email: socialvisits.winchester@hmps.gsi.gov.uk
   finder_slug: winchester
   address:
   - Romsey Road
@@ -2712,7 +2715,7 @@ Winchester (Convicted only):
   canned_responses: true
   enabled: true
   phone: 0845 223 5514
-  email: pvb.winchester@maildrop.dsd.io
+  email: socialvisits.winchester@hmps.gsi.gov.uk
   finder_slug: winchester
   address:
   - Romsey Road
@@ -2741,7 +2744,7 @@ Wormwood Scrubs:
   canned_responses: true
   enabled: true
   phone: 020 8588 3564
-  email: pvb.wormwoodscrubs@maildrop.dsd.io
+  email: socialvisits.wormwoodscrubs@hmps.gsi.gov.uk
   address:
   - Du Cane Road
   - W12 0AE
@@ -2771,7 +2774,7 @@ Wymott:
   canned_responses: true
   enabled: true
   phone: 01772 442234
-  email: pvb.wymott@maildrop.dsd.io
+  email: socialvisits.wymott@hmps.gsi.gov.uk
   address:
   - Ulnes Walton Lane
   - PR26 8LW
@@ -2800,7 +2803,7 @@ Thorn Cross:
   canned_responses: true
   enabled: true
   phone: 01925805018
-  email: pvb.thorncrossk@maildrop.dsd.io
+  email: socialvisits.thorncross@hmps.gsi.gov.uk
   address:
   - Arley Road
   - NWA4 4RL
@@ -2830,7 +2833,7 @@ Risley:
   canned_responses: true
   enabled: true
   phone: 01925 733284
-  email: pvb.risley@maildrop.dsd.io
+  email: socialvisits.risley@hmps.gsi.gov.uk
   address:
   - Warrington Road
   - WA3 6BP
@@ -2886,9 +2889,8 @@ Feltham (Young Adults 18-21 only):
   canned_responses: true
   enabled: true
   phone: 0208 844 5400
-  email: pvb.feltham@maildrop.dsd.io
+  email: socialvisits.feltham@hmps.gsi.gov.uk
   finder_slug: feltham
-  adult_age: 10
   address:
   - Bedfont Road
   - TW13 4ND
@@ -2943,7 +2945,7 @@ Feltham (Young People 15-18 only):
   canned_responses: true
   enabled: true
   phone: 0208 844 5400
-  email: pvb.feltham@maildrop.dsd.io
+  email: socialvisits.feltham@hmps.gsi.gov.uk
   finder_slug: feltham
   address:
   - Bedfont Road
@@ -2997,7 +2999,7 @@ Whatton:
   canned_responses: true
   enabled: true
   phone: 01949 803564
-  email: pvb.whatton@maildrop.dsd.io
+  email: socialvisits.whatton@hmps.gsi.gov.uk
   address:
   - New Lane
   - 'NG13 9FQ '
@@ -3024,7 +3026,7 @@ Pentonville:
   canned_responses: true
   enabled: true
   phone: 020 70237251
-  email: pvb.pentonville@maildrop.dsd.io
+  email: socialvisits.pentonville@hmps.gsi.gov.uk
   address:
   - Caledonian Road
   - N7 8TT
@@ -3055,7 +3057,7 @@ Eastwood Park:
   canned_responses: true
   enabled: true
   phone: 01454 382159
-  email: pvb.eastwoodpark@maildrop.dsd.io
+  email: socialvisits.eastwoodpark@hmps.gsi.gov.uk
   address:
   - Falfield
   - GL12 8DB
@@ -3084,10 +3086,10 @@ Leyhill:
   canned_responses: true
   enabled: true
   phone: 01454 264211
-  email: pvb.leyhill@maildrop.dsd.io
+  email: socialvisits.leyhill@hmps.gsi.gov.uk
   address:
-  - Wotton-under-edge
-  - GL12 8BT
+   - Wotton-under-edge
+   - GL12 8BT
   unbookable:
   - 2014-12-25
   slots:
@@ -3104,10 +3106,10 @@ Swansea:
   canned_responses: true
   enabled: true
   phone: 01792 48 5322
-  email: pvb.swansea@maildrop.dsd.io
+  email: socialvisits.swansea@hmps.gsi.gov.uk
   address:
-  - 200 Oystermouth Road
-  - SA1 3SR
+   - 200 Oystermouth Road
+   - SA1 3SR
   unbookable:
   - 2014-12-25
   - 2014-12-26
@@ -3143,7 +3145,7 @@ Usk:
   canned_responses: true
   enabled: true
   phone: 01291 671730
-  email: pvb.usk@maildrop.dsd.io
+  email: socialvisits.usk@hmps.gsi.gov.uk
   finder_slug: usk-prescoed-usk
   address:
   - 47 Maryport Street
@@ -3172,7 +3174,7 @@ Ford:
   canned_responses: true
   enabled: true
   phone:
-  email: pvb.ford@maildrop.dsd.io
+  email: socialvisits.ford@hmps.gsi.gov.uk
   address:
   - Arundel
   - BN18 0BX
@@ -3193,7 +3195,7 @@ Askham Grange:
   canned_responses: true
   enabled: true
   phone:
-  email: pvb.askhamgrange@maildrop.dsd.io
+  email: socialvisits.askhamgrange@hmps.gsi.gov.uk
   address:
   - Askham Richard
   - YO23 3FT
@@ -3209,7 +3211,7 @@ Spring Hill:
   canned_responses: true
   enabled: true
   phone:
-  email: pvb.springhill@maildrop.dsd.io
+  email: socialvisits.springhill@hmps.gsi.gov.uk
   address:
   - Grendon Underwood
   - HP18 0TL
@@ -3225,7 +3227,7 @@ Leicester:
   canned_responses: true
   enabled: true
   phone: 0116 228 3128
-  email: pvb.leicester@maildrop.dsd.io
+  email: socialvisitsleiceste@hmps.gsi.gov.uk
   address:
   - 116 Welford Road
   - LE2 7AJ
@@ -3259,7 +3261,7 @@ Sudbury:
   canned_responses: true
   enabled: true
   phone: 01283 584066
-  email: pvb.sudbury@maildrop.dsd.io
+  email: socialvisitssudbury@hmps.gsi.gov.uk
   address:
   - Ashbourne
   - Derbyshire
@@ -3305,7 +3307,7 @@ Channings Wood:
   canned_responses: true
   enabled: true
   phone: 01803 812060
-  email: pvb.channingswood@maildrop.dsd.io
+  email: socialvisits.channingswood@hmps.gsi.gov.uk
   address:
   - Denbury
   - Newton Abbot
@@ -3379,29 +3381,6 @@ Channings Wood:
     - 1400-1600
     sun:
     - 1400-1600
-  slot_anomalies:
-    2014-12-22:
-    - 0930-1130
-    - 1345-1545
-    2014-12-23:
-    - 0930-1130
-    2014-12-24:
-    - 0930-1130
-    2014-12-27:
-    - 0930-1130
-    2014-12-29:
-    - 0930-1130
-    - 1345-1545
-    2014-12-30:
-    - 0930-1130
-    - 1345-1545
-    2014-12-31:
-    - 0930-1130
-    2015-01-01:
-    - 0930-1130
-    2015-01-02:
-    - 0930-1130
-    - 1345-1545
 Acklington:
   nomis_id: AKI
   enabled: false
