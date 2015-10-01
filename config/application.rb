@@ -26,14 +26,11 @@ module PrisonVisits2
       *.png
     )
     config.prison_data_source = File.join(Rails.root, 'config', 'prison_data.yml')
-    config.prison_data = YAML.load_file(ENV['PRISON_DATA_FILE'] ||
-        ENV['PRISON_DATA_FILE'] ||
-        self.config.prison_data_source
-    ).with_indifferent_access.freeze
-    config.nomis_ids = config.prison_data.sort_by do |prison_name, _prison_data|
-      prison_name
-    end.inject(Set[]) do |set, (_prison_name, prison_data)|
-      set << prison_data['nomis_id'] if prison_data['enabled']
+    config.prison_data = YAML.load_file(
+      ENV.fetch('PRISON_DATA_FILE', config.prison_data_source)
+    ).map(&:with_indifferent_access).sort_by{ |p| p[:name] }
+    config.nomis_ids = config.prison_data.inject(Set[]) do |set, prison|
+      set << prison[:nomis_id]
       set
     end
     config.bank_holidays = \

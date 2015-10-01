@@ -7,7 +7,7 @@ RSpec.describe Prison, type: :model do
   describe '.find' do
     context 'when a prison exists' do
       it 'returns a prison instance' do
-        expect(Rails.configuration.prison_data).to receive(:[]).
+        allow(Rails.configuration.prison_data).to receive(:[]).
           with('Example Prison') { mock_prison_data }
 
         prison = described_class.find 'Example Prison'
@@ -21,6 +21,16 @@ RSpec.describe Prison, type: :model do
         expect { described_class.find('nothing') }.
           to raise_error(described_class::PrisonNotFound)
       end
+    end
+  end
+
+  describe '.all' do
+    before do
+      allow(Rails.configuration).to receive(:prison_data)
+        .and_return(mock_prison_data)
+    end
+    it 'returns an array of all prisons' do
+      expect(described_class.all).to match_array(mock_prison_data)
     end
   end
 

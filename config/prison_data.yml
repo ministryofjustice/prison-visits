@@ -1,31 +1,5 @@
 ---
-Stafford:
-  nomis_id: SFI
-  canned_responses: true
-  enabled: true
-  phone: 0300 060 6505
-  email:
-  address:
-  - 54 Gaol Road
-  - Stafford
-  - ST16 3AW
-  unbookable:
-  - 2015-10-14
-  - 2015-12-25
-  slots:
-    wed:
-    - 1400-1600
-    thu:
-    - 1400-1600
-    sat:
-    - 1400-1600
-    sun:
-    - 1400-1600
-  slot_anomalies:
-    2015-10-13:
-    - 1400-1600
-Stafford:
-  nomis_id: SFI
+- nomis_id: SFI
   canned_responses: true
   enabled: true
   phone: 0300 060 6505
@@ -49,8 +23,8 @@ Stafford:
   slot_anomalies:
     2015-10-13:
     - 1400-1600
-Belmarsh:
-  nomis_id: BAI
+  name: Stafford
+- nomis_id: BAI
   canned_responses: true
   enabled: true
   phone: 0208 3314768
@@ -84,8 +58,8 @@ Belmarsh:
     - 1430-1600
     sun:
     - 1430-1600
-Rochester:
-  nomis_id: RCI
+  name: Belmarsh
+- nomis_id: RCI
   canned_responses: true
   enabled: true
   phone: 01634 803100
@@ -116,8 +90,8 @@ Rochester:
     - 1400-1600
     sun:
     - 1400-1600
-Durham:
-  nomis_id: DMI
+  name: Rochester
+- nomis_id: DMI
   canned_responses: true
   enabled: true
   phone: 0191 3323417
@@ -150,8 +124,8 @@ Durham:
     sun:
     - 0930-1130
     - 1345-1645
-Cardiff:
-  nomis_id: CFI
+  name: Durham
+- nomis_id: CFI
   canned_responses: true
   enabled: true
   phone: 029 20923327
@@ -237,8 +211,8 @@ Cardiff:
     - 1330-1430
     2015-08-31:
     - 1330-1430
-Gartree:
-  nomis_id: GTI
+  name: Cardiff
+- nomis_id: GTI
   canned_responses: true
   enabled: true
   phone: 01858 426 727
@@ -263,8 +237,8 @@ Gartree:
     - 1400-1600
     sun:
     - 1400-1600
-Brinsford:
-  nomis_id: BSI
+  name: Gartree
+- nomis_id: BSI
   canned_responses: true
   enabled: true
   phone: 0300 060 6500
@@ -315,8 +289,8 @@ Brinsford:
     - 1745-1900
     2015-12-28:
     - 1745-1900
-Drake Hall:
-  nomis_id: DHI
+  name: Brinsford
+- nomis_id: DHI
   canned_responses: true
   enabled: true
   phone: 0300 060 6501
@@ -340,8 +314,8 @@ Drake Hall:
     - 1330-1545
     sun:
     - 1330-1545
-Werrington:
-  nomis_id: WNI
+  name: Drake Hall
+- nomis_id: WNI
   canned_responses: true
   enabled: true
   phone: 0300 060 6508
@@ -368,8 +342,8 @@ Werrington:
     - 1430-1630
     sun:
     - 1430-1630
-Featherstone:
-  nomis_id: FSI
+  name: Werrington
+- nomis_id: FSI
   canned_responses: true
   enabled: true
   phone: 0300 060 6502
@@ -400,8 +374,8 @@ Featherstone:
     - 1400-1600
     sun:
     - 1400-1600
-Stoke Heath:
-  nomis_id: SHI
+  name: Featherstone
+- nomis_id: SHI
   canned_responses: true
   enabled: true
   phone: 0300 060 6506
@@ -431,8 +405,8 @@ Stoke Heath:
     - 1400-1600
     sun:
     - 1400-1600
-Swinfen Hall:
-  nomis_id: SNI
+  name: Stoke Heath
+- nomis_id: SNI
   canned_responses: true
   enabled: true
   phone: 0300 060 6507
@@ -460,8 +434,8 @@ Swinfen Hall:
     - 1400-1600
     sun:
     - 1400-1600
-Hewell:
-  nomis_id: HEI
+  name: Swinfen Hall
+- nomis_id: HEI
   canned_responses: true
   enabled: true
   phone: 0300 060 6503
@@ -494,8 +468,8 @@ Hewell:
     - 1430-1630
     sun:
     - 1430-1630
-Foston Hall:
-  nomis_id: FHI
+  name: Hewell
+- nomis_id: FHI
   enabled: true
   phone: 01283 584357
   email: socialvisits.fostonhall@hmps.gsi.gov.uk
@@ -520,8 +494,8 @@ Foston Hall:
     sun:
     - 0930-1130
     - 1400-1600
-Holloway:
-  nomis_id: HYI
+  name: Foston Hall
+- nomis_id: HYI
   canned_responses: true
   enabled: true
   phone: 020 7979 4751
@@ -589,8 +563,8 @@ Holloway:
     - 0930-1030
     2014-12-18:
     - 0930-1030
-Bristol:
-  nomis_id: BLI
+  name: Holloway
+- nomis_id: BLI
   canned_responses: true
   enabled: true
   phone: 0117 372 3213
@@ -619,8 +593,8 @@ Bristol:
     - 1400-1600
     sun:
     - 1400-1600
-Buckley Hall:
-  nomis_id: BCI
+  name: Bristol
+- nomis_id: BCI
   canned_responses: true
   enabled: true
   phone: 01706 514350
@@ -655,8 +629,8 @@ Buckley Hall:
     - 1400-1600
     2014-12-31:
     - 1400-1600
-Bure:
-  nomis_id: BRI
+  name: Buckley Hall
+- nomis_id: BRI
   canned_responses: true
   enabled: true
   phone: 01603 326252
@@ -677,8 +651,8 @@ Bure:
     sun:
     - 0930-1130
     - 1400-1600
-Coldingley:
-  nomis_id: CLI
+  name: Bure
+- nomis_id: CLI
   canned_responses: true
   enabled: true
   phone: 01483 344418
@@ -711,8 +685,8 @@ Coldingley:
     - 1400-1545
     2014-12-24:
     - 0915-1100
-Cookham Wood:
-  nomis_id: CKI
+  name: Coldingley
+- nomis_id: CKI
   canned_responses: true
   enabled: true
   phone: 01634 202557
@@ -738,8 +712,8 @@ Cookham Wood:
     - 1430-1630
     2014-12-31:
     - 1430-1630
-Deerbolt:
-  nomis_id: DTI
+  name: Cookham Wood
+- nomis_id: DTI
   canned_responses: true
   enabled: true
   phone: 01833 633349
@@ -763,8 +737,8 @@ Deerbolt:
     - 1345-1545
     2014-12-30:
     - 1345-1545
-Exeter:
-  nomis_id: EXI
+  name: Deerbolt
+- nomis_id: EXI
   canned_responses: true
   enabled: true
   phone: 01392 41 5833
@@ -795,8 +769,8 @@ Exeter:
     - 1415-1615
     2015-08-31:
     - 1415-1615
-Lewes:
-  nomis_id: LWI
+  name: Exeter
+- nomis_id: LWI
   canned_responses: true
   enabled: true
   phone: 01273785277
@@ -829,8 +803,8 @@ Lewes:
     - 1410-1535
     sun:
     - 1410-1535
-Moorland Closed:
-  nomis_id: MDI
+  name: Lewes
+- nomis_id: MDI
   canned_responses: true
   enabled: true
   phone: 01302523289
@@ -853,8 +827,8 @@ Moorland Closed:
     - 1340-1545
     sun:
     - 1340-1545
-Onley:
-  nomis_id: ONI
+  name: Moorland Closed
+- nomis_id: ONI
   canned_responses: true
   enabled: true
   phone: 01788 523 402
@@ -889,8 +863,8 @@ Onley:
     sun:
     - 1345-1500
     - 1515-1630
-The Mount:
-  nomis_id: MTI
+  name: Onley
+- nomis_id: MTI
   canned_responses: true
   enabled: true
   phone: 01442 836352
@@ -938,8 +912,8 @@ The Mount:
     2015-01-04:
     - 0915-1115
     - 1400-1600
-Wayland:
-  nomis_id: WLI
+  name: The Mount
+- nomis_id: WLI
   canned_responses: true
   enabled: true
   phone: 001953 804152
@@ -961,8 +935,8 @@ Wayland:
     - 1400-1600
     sun:
     - 1400-1600
-Wealstun:
-  nomis_id: WEI
+  name: Wayland
+- nomis_id: WEI
   canned_responses: true
   enabled: true
   phone: 01937 444599
@@ -992,8 +966,8 @@ Wealstun:
     sun:
     - 0930-1130
     - 1345-1600
-Bedford:
-  nomis_id: BFI
+  name: Wealstun
+- nomis_id: BFI
   canned_responses: true
   enabled: true
   phone: 01234 373196
@@ -1024,8 +998,8 @@ Bedford:
     wed:
     - 1345-1445
     - 1515-1615
-Preston:
-  nomis_id: PNI
+  name: Bedford
+- nomis_id: PNI
   canned_responses: true
   enabled: true
   phone: 01772 444666
@@ -1050,8 +1024,8 @@ Preston:
     - 1400-1600
     wed:
     - 1400-1600
-Maidstone:
-  nomis_id: MSI
+  name: Preston
+- nomis_id: MSI
   canned_responses: true
   enabled: true
   phone: 01622 775619
@@ -1075,8 +1049,8 @@ Maidstone:
     - 1345-1545
     wed:
     - 1345-1545
-Warren Hill:
-  nomis_id: WII
+  name: Maidstone
+- nomis_id: WII
   canned_responses: true
   enabled: true
   phone: 020 8588 4002
@@ -1100,8 +1074,8 @@ Warren Hill:
   slot_anomalies:
     2014-12-24:
     - 1400-1600
-Wetherby:
-  nomis_id: WYI
+  name: Warren Hill
+- nomis_id: WYI
   canned_responses: true
   enabled: true
   phone: 01937 544207
@@ -1120,8 +1094,8 @@ Wetherby:
     sun:
     - 0930-1130
     - 1430-1630
-Erlestoke:
-  nomis_id: EEI
+  name: Wetherby
+- nomis_id: EEI
   canned_responses: true
   enabled: true
   phone: 01380 814264
@@ -1144,8 +1118,8 @@ Erlestoke:
   slot_anomalies:
     2015-04-01:
     - 1315-1600
-Chelmsford:
-  nomis_id: CDI
+  name: Erlestoke
+- nomis_id: CDI
   canned_responses: true
   enabled: true
   phone: 01245 552265
@@ -1171,8 +1145,8 @@ Chelmsford:
     - 1415-1600
     wed:
     - 1415-1600
-Stocken:
-  nomis_id: SKI
+  name: Chelmsford
+- nomis_id: SKI
   canned_responses: true
   enabled: true
   phone: 01780 795156
@@ -1195,8 +1169,8 @@ Stocken:
     - 1345-1545
     wed:
     - 1345-1545
-Dartmoor:
-  nomis_id: DAI
+  name: Stocken
+- nomis_id: DAI
   canned_responses: true
   enabled: true
   phone: 01822 322022
@@ -1229,8 +1203,8 @@ Dartmoor:
     - 1400-1600
     wed:
     - 1400-1600
-Low Newton:
-  nomis_id: LNI
+  name: Dartmoor
+- nomis_id: LNI
   canned_responses: true
   enabled: true
   phone: 0191 376 4147
@@ -1253,8 +1227,8 @@ Low Newton:
     - 1415-1545
     tue:
     - 1415-1545
-Aylesbury:
-  nomis_id: AYI
+  name: Low Newton
+- nomis_id: AYI
   canned_responses: true
   enabled: true
   phone: 01296 444099
@@ -1274,7 +1248,6 @@ Aylesbury:
   - 2015-01-26
   - 2015-01-28
   - 2015-01-29
-
   slots:
     mon:
     - 1415-1615
@@ -1286,8 +1259,8 @@ Aylesbury:
     - 1415-1615
     wed:
     - 1415-1615
-Isle of Wight - Albany:
-  nomis_id: ALI
+  name: Aylesbury
+- nomis_id: ALI
   canned_responses: true
   enabled: true
   phone: 01983 634218
@@ -1306,8 +1279,8 @@ Isle of Wight - Albany:
     - 1400-1600
     sun:
     - 1400-1600
-Blantyre House:
-  nomis_id: BHI
+  name: Isle of Wight - Albany
+- nomis_id: BHI
   enabled: false
   reason: it_issues
   phone: ''
@@ -1324,8 +1297,8 @@ Blantyre House:
     - 1345-1600
     wed:
     - 1345-1600
-Brixton:
-  nomis_id: BXI
+  name: Blantyre House
+- nomis_id: BXI
   canned_responses: true
   enabled: true
   phone: 0208 678 1433
@@ -1422,8 +1395,8 @@ Brixton:
     - 1345-1645
     2015-01-04:
     - 1345-1645
-Downview:
-  nomis_id: DWI
+  name: Brixton
+- nomis_id: DWI
   enabled: false
   reason: coming_soon
   phone: 0208 196 6359
@@ -1440,8 +1413,8 @@ Downview:
     - 1330-1530
     thu:
     - 1400-1600
-East Sutton Park:
-  nomis_id: ESI
+  name: Downview
+- nomis_id: ESI
   enabled: false
   reason: coming_soon
   phone: ''
@@ -1456,8 +1429,8 @@ East Sutton Park:
     - 1330-1530
     sun:
     - 1330-1530
-Elmley:
-  nomis_id: EYI
+  name: East Sutton Park
+- nomis_id: EYI
   canned_responses: true
   enabled: true
   phone: 0300 060 6605
@@ -1485,8 +1458,8 @@ Elmley:
     - 1400-1530
     wed:
     - 1400-1530
-Everthorpe:
-  nomis_id: EVI
+  name: Elmley
+- nomis_id: EVI
   canned_responses: true
   enabled: true
   phone: 01430 426505
@@ -1508,8 +1481,8 @@ Everthorpe:
     - 1400-1600
     thu:
     - 1415-1615
-Wolds:
-  nomis_id: WOI
+  name: Everthorpe
+- nomis_id: WOI
   canned_responses: true
   enabled: true
   phone: 01430 426505
@@ -1530,8 +1503,8 @@ Wolds:
     - 1415-1615
     sat:
     - 1400-1600
-Glen Parva:
-  nomis_id: GPI
+  name: Wolds
+- nomis_id: GPI
   canned_responses: true
   enabled: true
   phone: 0116 228 4366
@@ -1560,8 +1533,8 @@ Glen Parva:
     - 1345-1545
     2014-12-26:
     - 0930-1130
-Grendon:
-  nomis_id: GNI
+  name: Glen Parva
+- nomis_id: GNI
   canned_responses: true
   enabled: true
   phone: ''
@@ -1578,8 +1551,8 @@ Grendon:
     - 1345-1545
     wed:
     - 1400-1600
-Guys Marsh:
-  nomis_id: GMI
+  name: Grendon
+- nomis_id: GMI
   canned_responses: true
   enabled: true
   phone: 01747 856586
@@ -1603,8 +1576,8 @@ Guys Marsh:
   slot_anomalies:
     2014-12-29:
     - 1330-1545
-Hatfield Open:
-  nomis_id: HDI
+  name: Guys Marsh
+- nomis_id: HDI
   canned_responses: true
   enabled: true
   phone: 01405 746611
@@ -1630,8 +1603,8 @@ Hatfield Open:
     - 1400-1600
     2014-12-31:
     - 1400-1600
-Haverigg:
-  nomis_id: HVI
+  name: Hatfield Open
+- nomis_id: HVI
   canned_responses: true
   enabled: true
   phone: 01229713016
@@ -1657,8 +1630,8 @@ Haverigg:
     - 1400-1545
     wed:
     - 1400-1545
-High Down:
-  nomis_id: HOI
+  name: Haverigg
+- nomis_id: HOI
   canned_responses: true
   enabled: true
   phone: 020 7147 6570
@@ -1667,20 +1640,10 @@ High Down:
   - Sutton Lane
   - 'SM2 5PJ '
   unbookable:
-  - 2014-12-25
-  - 2014-12-26
-  - 2015-01-14
-  - 2015-02-11
-  - 2015-03-11
-  - 2015-04-08
-  - 2015-05-15
-  - 2015-06-10
-  - 2015-07-08
-  - 2015-08-12
-  - 2015-09-09
+  - 2015-09-16
   - 2015-10-14
-  - 2015-11-11
-  - 2015-12-09
+  - 2015-11-18
+  - 2015-12-16
   slots:
     sat:
     - 1400-1600
@@ -1692,13 +1655,8 @@ High Down:
     - 1400-1600
     wed:
     - 1400-1600
-  unbookable:
-  - 2015-09-16
-  - 2015-10-14
-  - 2015-11-18
-  - 2015-12-16
-Highpoint North:
-  nomis_id: HPI
+  name: High Down
+- nomis_id: HPI
   canned_responses: true
   enabled: true
   phone: 01440 743134
@@ -1720,8 +1678,8 @@ Highpoint North:
   slot_anomalies:
     2014-12-22:
     - 1400-1600
-Highpoint South:
-  nomis_id: HPI
+  name: Highpoint North
+- nomis_id: HPI
   canned_responses: true
   enabled: true
   phone: 01440 743134
@@ -1746,8 +1704,8 @@ Highpoint South:
   slot_anomalies:
     2015-08-31:
     - 1400-1600
-Holme House:
-  nomis_id: HHI
+  name: Highpoint South
+- nomis_id: HHI
   canned_responses: true
   enabled: true
   phone: 03000 606602
@@ -1774,8 +1732,8 @@ Holme House:
     - 1345-1545
     mon:
     - 1345-1545
-Hull:
-  nomis_id: HLI
+  name: Holme House
+- nomis_id: HLI
   enabled: false
   reason: coming_soon
   phone: 01482 282016
@@ -1798,8 +1756,8 @@ Hull:
     sun:
     - 0930-1130
     - 1345-1545
-Huntercombe:
-  nomis_id: HCI
+  name: Hull
+- nomis_id: HCI
   canned_responses: true
   enabled: true
   phone: 01491 643151
@@ -1829,8 +1787,8 @@ Huntercombe:
     - 1345-1600
     2015-01-02:
     - 1345-1600
-Isle of Wight - Parkhurst:
-  nomis_id: IWI
+  name: Huntercombe
+- nomis_id: IWI
   canned_responses: true
   enabled: true
   phone: 01983 634218
@@ -1849,8 +1807,8 @@ Isle of Wight - Parkhurst:
     - 1400-1600
     sun:
     - 1400-1600
-Leeds:
-  nomis_id: LEI
+  name: Isle of Wight - Parkhurst
+- nomis_id: LEI
   canned_responses: true
   enabled: true
   phone: 0113 203 2995
@@ -1894,8 +1852,8 @@ Leeds:
     - 1030-1130
     - 1400-1500
     - 1530-1630
-New Hall:
-  nomis_id: NHI
+  name: Leeds
+- nomis_id: NHI
   canned_responses: true
   enabled: true
   phone: 01924 803219
@@ -1918,8 +1876,8 @@ New Hall:
     - 1400-1600
     wed:
     - 1400-1600
-Nottingham:
-  nomis_id: NMI
+  name: New Hall
+- nomis_id: NMI
   canned_responses: true
   enabled: true
   phone: 0115 962 8980
@@ -1947,8 +1905,8 @@ Nottingham:
     tue:
     - 0900-1100
     - 1400-1600
-Send:
-  nomis_id: SDI
+  name: Nottingham
+- nomis_id: SDI
   canned_responses: true
   enabled: true
   phone: 01483 471033
@@ -1973,8 +1931,8 @@ Send:
     - 1415-1615
     2014-12-30:
     - 1415-1615
-Styal:
-  nomis_id: STI
+  name: Send
+- nomis_id: STI
   canned_responses: true
   enabled: true
   phone: 01625553195
@@ -1999,8 +1957,8 @@ Styal:
     - 1345-1545
     wed:
     - 1345-1545
-Swaleside:
-  nomis_id: SLI
+  name: Styal
+- nomis_id: SLI
   canned_responses: true
   enabled: true
   phone: 0300 060 6604
@@ -2024,8 +1982,8 @@ Swaleside:
     - 1400-1600
     wed:
     - 1400-1600
-Norwich (A, B, C, E, M only):
-  nomis_id: NWI
+  name: Swaleside
+- nomis_id: NWI
   canned_responses: true
   enabled: true
   phone: 01603 708795
@@ -2048,8 +2006,8 @@ Norwich (A, B, C, E, M only):
     - 1415-1615
     sun:
     - 0930-1130
-Norwich (F, G, H, L only):
-  nomis_id: NWI
+  name: Norwich (A, B, C, E, M only)
+- nomis_id: NWI
   canned_responses: true
   enabled: true
   phone: 01603 708795
@@ -2070,8 +2028,8 @@ Norwich (F, G, H, L only):
     - 0930-1130
     sun:
     - 1415-1615
-Norwich (Britannia House):
-  nomis_id: NWI
+  name: Norwich (F, G, H, L only)
+- nomis_id: NWI
   canned_responses: true
   enabled: true
   phone: 01603 708795
@@ -2105,8 +2063,8 @@ Norwich (Britannia House):
     sun:
     - 0930-1130
     - 1400-1600
-Standford Hill:
-  nomis_id: EHI
+  name: Norwich (Britannia House)
+- nomis_id: EHI
   canned_responses: true
   enabled: true
   phone: 0300 060 6603
@@ -2124,8 +2082,8 @@ Standford Hill:
     - 1345-1545
     sun:
     - 1345-1545
-Liverpool Social Visits:
-  nomis_id: LPI
+  name: Standford Hill
+- nomis_id: LPI
   canned_responses: true
   enabled: true
   phone: 0151 530 4050
@@ -2185,8 +2143,8 @@ Liverpool Social Visits:
     - 1030-1130
     - 1355-1455
     - 1525-1625
-Liverpool (Closed only):
-  nomis_id: LPI
+  name: Liverpool Social Visits
+- nomis_id: LPI
   canned_responses: true
   enabled: true
   phone: 0151 530 4050
@@ -2213,8 +2171,8 @@ Liverpool (Closed only):
     - 1025-1125
     tue:
     - 1025-1125
-Bullingdon (Convicted Only):
-  nomis_id: BNI
+  name: Liverpool (Closed only)
+- nomis_id: BNI
   canned_responses: true
   enabled: true
   phone: 01869 353176
@@ -2239,8 +2197,8 @@ Bullingdon (Convicted Only):
     - 1400-1610
     wed:
     - 1400-1610
-Bullingdon (Remand Only):
-  nomis_id: BNI
+  name: Bullingdon (Convicted Only)
+- nomis_id: BNI
   canned_responses: true
   enabled: true
   phone: 01869 353176
@@ -2260,8 +2218,8 @@ Bullingdon (Remand Only):
     - 1400-1610
     tue:
     - 1400-1610
-Hindley:
-  nomis_id: HII
+  name: Bullingdon (Remand Only)
+- nomis_id: HII
   canned_responses: true
   enabled: true
   phone: 01942 663492
@@ -2339,8 +2297,8 @@ Hindley:
     - 1400-1600
     sun:
     - 1400-1600
-Hollesley Bay Open:
-  nomis_id: HBI
+  name: Hindley
+- nomis_id: HBI
   canned_responses: true
   enabled: true
   phone: ''
@@ -2360,8 +2318,8 @@ Hollesley Bay Open:
     - 1400-1545
     sun:
     - 1400-1545
-Kennet:
-  nomis_id: KTI
+  name: Hollesley Bay Open
+- nomis_id: KTI
   canned_responses: true
   enabled: true
   phone: 0151 213 3179
@@ -2404,8 +2362,8 @@ Kennet:
     2014-12-31:
     - 1400-1500
     - 1530-1630
-Kirkham:
-  nomis_id: KMI
+  name: Kennet
+- nomis_id: KMI
   canned_responses: true
   enabled: true
   phone:
@@ -2423,8 +2381,8 @@ Kirkham:
     - 1300-1530
     sun:
     - 1300-1530
-Lancaster Farms:
-  nomis_id: LFI
+  name: Kirkham
+- nomis_id: LFI
   canned_responses: true
   enabled: true
   phone: 01524 563636
@@ -2444,8 +2402,8 @@ Lancaster Farms:
     wed:
     - 1400-1500
     - 1530-1630
-Lincoln:
-  nomis_id: LII
+  name: Lancaster Farms
+- nomis_id: LII
   canned_responses: true
   enabled: true
   phone: 01522 663172
@@ -2470,8 +2428,8 @@ Lincoln:
     - 1400-1600
     thu:
     - 1400-1600
-Lindholme:
-  nomis_id: LHI
+  name: Lincoln
+- nomis_id: LHI
   canned_responses: true
   enabled: true
   phone: 01302 524980
@@ -2512,8 +2470,8 @@ Lindholme:
     - 1345-1600
     2015-08-31:
     - 1345-1600
-Littlehey:
-  nomis_id: LTI
+  name: Lindholme
+- nomis_id: LTI
   canned_responses: true
   enabled: true
   phone: 01480 335650
@@ -2545,8 +2503,8 @@ Littlehey:
     wed:
     - 0915-1115
     - 1400-1600
-North Sea Camp:
-  nomis_id: NSI
+  name: Littlehey
+- nomis_id: NSI
   canned_responses: true
   enabled: true
   phone: 01205 769 368
@@ -2565,8 +2523,8 @@ North Sea Camp:
     - 1330-1545
     wed:
     - 1330-1545
-Portland:
-  nomis_id: PDI
+  name: North Sea Camp
+- nomis_id: PDI
   canned_responses: true
   enabled: true
   phone: 01305 715775
@@ -2592,8 +2550,8 @@ Portland:
     - 1400-1600
     2014-12-31:
     - 1400-1600
-Ranby:
-  nomis_id: RNI
+  name: Portland
+- nomis_id: RNI
   canned_responses: true
   enabled: true
   phone: 01777 862107
@@ -2616,8 +2574,8 @@ Ranby:
     sun:
     - 0845-1100
     - 1345-1600
-Wandsworth:
-  nomis_id: WWI
+  name: Ranby
+- nomis_id: WWI
   canned_responses: true
   enabled: true
   phone: 0208 588 4002
@@ -2674,8 +2632,8 @@ Wandsworth:
     - 1115-1215
     - 1345-1445
     - 1515-1615
-Winchester (Remand only):
-  nomis_id: WCI
+  name: Wandsworth
+- nomis_id: WCI
   canned_responses: true
   enabled: true
   phone: 0845 223 5514
@@ -2710,8 +2668,8 @@ Winchester (Remand only):
     wed:
     - 1400-1500
     - 1515-1615
-Winchester (Convicted only):
-  nomis_id: WCI
+  name: Winchester (Remand only)
+- nomis_id: WCI
   canned_responses: true
   enabled: true
   phone: 0845 223 5514
@@ -2739,8 +2697,8 @@ Winchester (Convicted only):
     - 1400-1600
     wed:
     - 1400-1600
-Wormwood Scrubs:
-  nomis_id: WSI
+  name: Winchester (Convicted only)
+- nomis_id: WSI
   canned_responses: true
   enabled: true
   phone: 020 8588 3564
@@ -2769,8 +2727,8 @@ Wormwood Scrubs:
     wed:
     - 0930-1100
     - 1400-1600
-Wymott:
-  nomis_id: WMI
+  name: Wormwood Scrubs
+- nomis_id: WMI
   canned_responses: true
   enabled: true
   phone: 01772 442234
@@ -2798,8 +2756,8 @@ Wymott:
   slot_anomalies:
     2015-08-31:
     - 1400-1550
-Thorn Cross:
-  nomis_id: TCI
+  name: Wymott
+- nomis_id: TCI
   canned_responses: true
   enabled: true
   phone: 01925805018
@@ -2828,8 +2786,8 @@ Thorn Cross:
     - 1345-1545
     2014-12-31:
     - 1345-1545
-Risley:
-  nomis_id: RSI
+  name: Thorn Cross
+- nomis_id: RSI
   canned_responses: true
   enabled: true
   phone: 01925 733284
@@ -2884,8 +2842,8 @@ Risley:
     - 1400-1600
     2014-11-28:
     - 1400-1600
-Feltham (Young Adults 18-21 only):
-  nomis_id: FMI
+  name: Risley
+- nomis_id: FMI
   canned_responses: true
   enabled: true
   phone: 0208 844 5400
@@ -2940,8 +2898,8 @@ Feltham (Young Adults 18-21 only):
     sun:
     - 1330-1500
     - 1500-1630
-Feltham (Young People 15-18 only):
-  nomis_id: FMI
+  name: Feltham (Young Adults 18-21 only)
+- nomis_id: FMI
   canned_responses: true
   enabled: true
   phone: 0208 844 5400
@@ -2994,8 +2952,8 @@ Feltham (Young People 15-18 only):
     sun:
     - 1330-1500
     - 1500-1630
-Whatton:
-  nomis_id: WTI
+  name: Feltham (Young People 15-18 only)
+- nomis_id: WTI
   canned_responses: true
   enabled: true
   phone: 01949 803564
@@ -3021,8 +2979,8 @@ Whatton:
     - 1400-1600
     thu:
     - 1415-1615
-Pentonville:
-  nomis_id: PVI
+  name: Whatton
+- nomis_id: PVI
   canned_responses: true
   enabled: true
   phone: 020 70237251
@@ -3052,8 +3010,8 @@ Pentonville:
     - 1400-1600
     sun:
     - 1400-1600
-Eastwood Park:
-  nomis_id: EWI
+  name: Pentonville
+- nomis_id: EWI
   canned_responses: true
   enabled: true
   phone: 01454 382159
@@ -3081,15 +3039,15 @@ Eastwood Park:
     - 1530-1630
     sun:
     - 1400-1600
-Leyhill:
-  nomis_id: LYI
+  name: Eastwood Park
+- nomis_id: LYI
   canned_responses: true
   enabled: true
   phone: 01454 264211
   email: socialvisits.leyhill@hmps.gsi.gov.uk
   address:
-   - Wotton-under-edge
-   - GL12 8BT
+  - Wotton-under-edge
+  - GL12 8BT
   unbookable:
   - 2014-12-25
   slots:
@@ -3101,15 +3059,15 @@ Leyhill:
     - 1330-1530
     sun:
     - 1330-1530
-Swansea:
-  nomis_id: SWI
+  name: Leyhill
+- nomis_id: SWI
   canned_responses: true
   enabled: true
   phone: 01792 48 5322
   email: socialvisits.swansea@hmps.gsi.gov.uk
   address:
-   - 200 Oystermouth Road
-   - SA1 3SR
+  - 200 Oystermouth Road
+  - SA1 3SR
   unbookable:
   - 2014-12-25
   - 2014-12-26
@@ -3140,8 +3098,8 @@ Swansea:
     2015-01-01:
     - 1345-1445
     - 1515-1615
-Usk:
-  nomis_id: UKI
+  name: Swansea
+- nomis_id: UKI
   canned_responses: true
   enabled: true
   phone: 01291 671730
@@ -3169,8 +3127,8 @@ Usk:
     - 1400-1600
     sun:
     - 1400-1600
-Ford:
-  nomis_id: FDI
+  name: Usk
+- nomis_id: FDI
   canned_responses: true
   enabled: true
   phone:
@@ -3190,8 +3148,8 @@ Ford:
     - 1400-1600
     sun:
     - 1400-1600
-Askham Grange:
-  nomis_id: AGI
+  name: Ford
+- nomis_id: AGI
   canned_responses: true
   enabled: true
   phone:
@@ -3206,8 +3164,8 @@ Askham Grange:
     - 1345-1545
     sun:
     - 1345-1545
-Spring Hill:
-  nomis_id: SPI
+  name: Askham Grange
+- nomis_id: SPI
   canned_responses: true
   enabled: true
   phone:
@@ -3222,8 +3180,8 @@ Spring Hill:
     - 1345-1600
     sun:
     - 1345-1600
-Leicester:
-  nomis_id: LCI
+  name: Spring Hill
+- nomis_id: LCI
   canned_responses: true
   enabled: true
   phone: 0116 228 3128
@@ -3256,8 +3214,8 @@ Leicester:
     2014-12-31:
     - 0900-1100
     - 1415-1615
-Sudbury:
-  nomis_id: SUI
+  name: Leicester
+- nomis_id: SUI
   canned_responses: true
   enabled: true
   phone: 01283 584066
@@ -3302,8 +3260,8 @@ Sudbury:
     2015-01-02:
     - 0930-1130
     - 1345-1545
-Channings Wood:
-  nomis_id: CWI
+  name: Sudbury
+- nomis_id: CWI
   canned_responses: true
   enabled: true
   phone: 01803 812060
@@ -3381,42 +3339,42 @@ Channings Wood:
     - 1400-1600
     sun:
     - 1400-1600
-Acklington:
-  nomis_id: AKI
+  name: Channings Wood
+- nomis_id: AKI
   enabled: false
   finder_slug: acklington2
-Albany:
-  nomis_id: ALI
+  name: Acklington
+- nomis_id: ACI
   enabled: false
-Altcourse:
-  nomis_id: ACI
+  name: Altcourse
+- nomis_id: ASI
   enabled: false
-Ashfield:
-  nomis_id: ASI
+  name: Ashfield
+- nomis_id: BMI
   enabled: false
-Birmingham:
-  nomis_id: BMI
+  name: Birmingham
+- nomis_id: BZI
   enabled: false
-Bronzefield:
-  nomis_id: BZI
+  name: Bronzefield
+- nomis_id: DNI
   enabled: false
-Doncaster:
-  nomis_id: DNI
+  name: Doncaster
+- nomis_id:
   enabled: false
-Dovegate:
-  nomis_id:
+  name: Dovegate
+- nomis_id: FBI
   enabled: false
-Forest Bank:
-  nomis_id: FBI
+  name: Forest Bank
+- nomis_id: FKI
+  name: Frankland
   enabled: false
-Frankland:
-  nomis_id: FKI
+- nomis_id: FNI
   enabled: false
-Full Sutton:
-  nomis_id: FNI
+  name: Full Sutton
+- nomis_id: GHI
   enabled: false
-Garth:
-  nomis_id: GHI
+  name: Garth
+- nomis_id: KVI
   enabled: false
 Isis:
   nomis_id: ISI
@@ -3425,48 +3383,49 @@ Kirklevington Grange:
   nomis_id: KVI
   enabled: false
   reason: coming_soon
-Long Lartin:
-  nomis_id: LLI
+  name: Kirklevington Grange
+- nomis_id: LLI
   enabled: false
-Lowdham Grange:
-  nomis_id: LGI
+  name: Long Lartin
+- nomis_id: LGI
   enabled: false
-Manchester:
-  nomis_id: MRI
+  name: Lowdham Grange
+- nomis_id: MRI
   enabled: false
-Morton Hall:
-  nomis_id: MHI
+  name: Manchester
+- nomis_id: MHI
   enabled: false
-Northumberland:
-  nomis_id: NLI
+  name: Morton Hall
+- nomis_id: NLI
   enabled: false
-Oakwood:
-  nomis_id: OWI
+  name: Northumberland
+- nomis_id: OWI
   enabled: false
   finder_slug: hmp-oakwood
-Parc:
-  nomis_id: PRI
+  name: Oakwood
+- nomis_id: PRI
   enabled: false
-Peterborough:
-  nomis_id: PBI
+  name: Parc
+- nomis_id: PBI
   enabled: false
-Prescoed:
-  nomis_id: UPI
+  name: Peterborough
+- nomis_id: UPI
   enabled: false
   reason: coming_soon
   finder_slug: usk-prescoed-prescoed
-Rye Hill:
-  nomis_id: RHI
+  name: Prescoed
+- nomis_id: RHI
   enabled: false
-Thameside:
-  nomis_id:
+  name: Rye Hill
+- nomis_id:
   enabled: false
-Wakefield:
-  nomis_id: WDI
+  name: Thameside
+- nomis_id: WDI
   enabled: false
-Whitemoor:
-  nomis_id: WRI
+  name: Wakefield
+- nomis_id: WRI
   enabled: false
-Woodhill:
-  nomis_id: WHI
+  name: Whitemoor
+- nomis_id: WHI
   enabled: false
+  name: Woodhill
