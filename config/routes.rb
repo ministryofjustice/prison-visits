@@ -68,5 +68,5 @@ PrisonVisits2::Application.routes.draw do
   # Legacy URLs
   get "/prisoner-details", to: redirect("/prisoner")
 
-  get "/", to: redirect(ENV["GOVUK_START_PAGE"] || "https://www.gov.uk/prison-visits")
+  get "/", to: redirect(ENV.fetch("GOVUK_START_PAGE", "/prisoner"))
 end
