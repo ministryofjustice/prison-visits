@@ -42,5 +42,6 @@ module PrisonVisits2
     config.autoload_paths += %w(lib app/mailers/concerns)
     config.assets.paths << Rails.root.join('vendor', 'assets', 'moj.slot-picker', 'dist', 'stylesheets')
     config.middleware.delete 'ActiveRecord::QueryCache'
+    config.session_expire_after = 20.minutes
   end
 end

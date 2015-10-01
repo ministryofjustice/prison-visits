@@ -14,4 +14,5 @@ PrisonVisits2::Application.configure do
   config.active_job.queue_adapter = :sidekiq
   config.smoke_test_email_local_part = ENV['SMOKE_TEST_EMAIL_LOCAL_PART']
   config.smoke_test_email_domain = ENV['SMOKE_TEST_EMAIL_DOMAIN']
+  config.session_expire_after = 24.hours
 end
