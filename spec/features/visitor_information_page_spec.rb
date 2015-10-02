@@ -1,4 +1,4 @@
-require 'browserstack_helper'
+require 'poltergeist_helper'
 
 RSpec.feature "visitor enters visitor information" do
   include_examples "feature helper"
