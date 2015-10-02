@@ -69,5 +69,5 @@ PrisonVisits2::Application.routes.draw do
   get "/prisoner-details", to: redirect("/prisoner")
   get "/deferred/confirmation/new" => "confirmations#new"
 
-  get "/", to: redirect(ENV["GOVUK_START_PAGE"] || "https://www.gov.uk/prison-visits")
+  get "/", to: redirect(ENV.fetch("GOVUK_START_PAGE", "/prisoner"))
 end
