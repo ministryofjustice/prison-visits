@@ -1,7 +1,7 @@
 module SmokeTest
   module Steps
     class VisitorsPage < BaseStep
-      PAGE_PATH = '/deferred/visitors'
+      PAGE_PATH = '/visitors'
 
       def validate!
         if page.current_path != PAGE_PATH
