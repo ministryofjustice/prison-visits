@@ -1,7 +1,7 @@
 module SmokeTest
   module Steps
     class SlotsPage < BaseStep
-      PAGE_PATH = '/deferred/slots'
+      PAGE_PATH = '/slots'
 
       def validate!
         if page.current_path != PAGE_PATH
