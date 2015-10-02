@@ -1,4 +1,5 @@
 - content_for :header, 'Who are you visiting?'
+= render partial: 'analytics'
 
 .Grid
   .Grid-2-3
@@ -89,11 +90,4 @@
       %strong Please note
       %br
       If you don't enter any information for more than 20 minutes, then your session will time out and you'll need to start again.
-    - content_for :analytics do
-      :ruby
-        haml_io << "var serverTime = " + Time.now.to_f.to_s + ";\n";
-      var clientTime = (new Date()).valueOf() / 1000;
-      var offset = clientTime - serverTime;
-      ga('set', 'metric7', parseInt(offset, 10));
-
     = render 'ad_help'

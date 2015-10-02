@@ -1,4 +1,5 @@
 - content_for :header, 'Your request is being processed'
+= render partial: 'analytics'
 
 - content_for :after_header do
   = render 'shared/survey'
@@ -75,25 +76,3 @@
 
     .footnote
       %p Take a moment to #{link_to('rate this service', 'http://www.gov.uk/done/prison-visits')}.
-
-- content_for :analytics do
-  :ruby
-    haml_io << "visitMetadata = "
-    haml_io << GoogleAnalyticsAdapter.new(visit).to_json
-    haml_io << ";"
-
-    haml_io << "ga('set', {"
-    haml_io << "'dimension1': visitMetadata.prison_name,"
-    haml_io << "'dimension2': visitMetadata.slot_weekdays[0],"
-    haml_io << "'dimension3': visitMetadata.slot_times[0],"
-    haml_io << "'dimension4': visitMetadata.completed_at,"
-    haml_io << "'metric1': visitMetadata.prisoner_age,"
-    haml_io << "'metric2': visitMetadata.visitor_age,"
-    haml_io << "'metric3': visitMetadata.number_of_slots,"
-    haml_io << "'metric4': visitMetadata.number_of_adult_visitors,"
-    haml_io << "'metric5': visitMetadata.number_of_child_visitors"
-    haml_io << "});"
-
-    haml_io << "if (visitMetadata.days_to_first_slot) {"
-    haml_io << "ga('set', 'metric6', visitMetadata.days_to_first_slot);"
-    haml_io << "}"
