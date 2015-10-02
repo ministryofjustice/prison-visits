@@ -24,7 +24,7 @@ module SmokeTest
         self.class.name.split('::').last.gsub(/(?=[A-Z])/, ' ')
       end
 
-      def with_retries(attempts: 5, initial_delay: 2, max_delay: 30)
+      def with_retries(attempts: 10, initial_delay: 2, max_delay: 120)
         delay = initial_delay
         result = nil
         attempts.times do
