@@ -3342,6 +3342,9 @@ Acklington:
   nomis_id: AKI
   enabled: false
   finder_slug: acklington2
+Albany:
+  nomis_id: ALI
+  enabled: false
 Altcourse:
   nomis_id: ACI
   enabled: false
@@ -3371,6 +3374,9 @@ Full Sutton:
   enabled: false
 Garth:
   nomis_id: GHI
+  enabled: false
+Isis:
+  nomis_id: ISI
   enabled: false
 Kirklevington Grange:
   nomis_id: KVI
