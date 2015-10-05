@@ -19,7 +19,7 @@
   %h2 Visit date
 
 
-  #outcome.group{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
+  =group_container(f, :outcome, id: 'outcome') do
     - booked_visit.slots.each_with_index do |slot, index|
       - if slot.date.present?
         %label.block-label{ for: "confirmation_outcome_slot_#{index}" }
@@ -33,7 +33,7 @@
             = format_time_str_24 slot.times.split('-')[1]
 
     .panel-indent{ :id => 'vo_number_field' }
-      #vo_number.field{ :class => ('validation-error' if f.object.errors.include?(:vo_number)) }
+      =field_container(f, :vo_number, id: 'vo_number') do
         %label{ :for => 'confirmation_vo_number' }
           Reference number
           %p.form-hint eg Last 8 digits of VO number or "none" for remand
@@ -70,7 +70,7 @@
 
   %h2 Visiting allowance
 
-  .group{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
+  =group_container(f, :outcome) do
     %label.block-label(for='confirmation_outcome_no_allowance')
       = radio_button_tag 'confirmation[outcome]', Confirmation::NO_ALLOWANCE, f.object.outcome == Confirmation::NO_ALLOWANCE, { :'data-conditional-el' => 'no_allowance', :class => 'js-Conditional' }
       The prisoner does not have any visiting allowance (VO)
@@ -81,7 +81,7 @@
         %em.email We’re sorry, but the prisoner you want to visit has not got any visiting allowance left for the dates you’ve chosen.
       %p You can also tell the visitor more about the VO and PVO status:
 
-      #no_vo.field{ :class => ('validation-error' if f.object.errors.include?(:no_vo)) }
+      =field_container(f, :no_vo, id: 'no_vo') do
         %label.block-label(for='confirmation_no_vo')
           = check_box_tag 'confirmation[no_vo]', 1, f.object.no_vo.present?, { :'data-conditional-el' => 'details_no_vo', :class => 'js-Conditional', :id => 'confirmation_no_vo' }
           Visiting allowance (weekends and weekday visits) (VO) will be renewed:
@@ -96,7 +96,7 @@
             = succeed '.' do
               %span.date [DATE NOT CHOSEN]
 
-      #no_pvo.field{ :class => ('validation-error' if f.object.errors.include?(:no_pvo)) }
+      =field_container(f, :no_pvo, id: 'no_pvo') do
         %label.block-label(for='confirmation_no_pvo')
           = check_box_tag 'confirmation[no_pvo]', 1, f.object.no_pvo.present?, { :'data-conditional-el' => 'details_no_pvo', :class => 'js-Conditional', :id => 'confirmation_no_pvo' }
           If weekday visit (PVO) is possible instead, choose the date PVO expires:
@@ -116,7 +116,7 @@
   %h2 Issue with the prisoner
 
   .group
-    .field{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
+    =field_container(f, :outcome) do
       %label.block-label(for='confirmation_outcome_prisoner_incorrect')
         = radio_button_tag 'confirmation[outcome]', Confirmation::PRISONER_INCORRECT, false, { :'data-conditional-el' => 'prisoner_incorrect', :class => 'js-Conditional' }
         Prisoner details are incorrect
@@ -126,7 +126,7 @@
       %p
         %em.email Your visit cannot take place as you haven’t given correct information for the prisoner. Eg, the prisoner’s name, number or date of birth is incorrect. Contact the prisoner to get up-to-date information.
 
-    .field{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
+    =field_container(f, :outcome) do
       %label.block-label(for='confirmation_outcome_prisoner_not_present')
         = radio_button_tag 'confirmation[outcome]', Confirmation::PRISONER_NOT_PRESENT, false, { :'data-conditional-el' => 'prisoner_not_present', :class => 'js-Conditional' }
         Prisoner no longer at the prison

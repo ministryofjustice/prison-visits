@@ -29,7 +29,7 @@
 
   %fieldset
     %legend.visuallyhidden Feedback form
-    .group{ :class => ('validation-error' if f.object.errors.include?(:text)) }
+    =group_container(f, :text) do
       = f.label :text do
         Your question
         =field_error(f, :text)
@@ -38,7 +38,7 @@
   %fieldset
     %legend Do you want a reply?
     %p If you'd like us to get back to you, please leave your details below.
-    .group{ :class => ('validation-error' if f.object.errors.include?(:email)) }
+    =group_container(f, :email) do
       = f.label :email do
         Your email address
         =field_error(f, :email)

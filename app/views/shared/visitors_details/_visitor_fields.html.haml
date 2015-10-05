@@ -16,19 +16,19 @@
           = index+1
       %small.AgeLabel-label
 
-  .group{ :class => ('validation-error' if f.object.errors.include?(:first_name)) }
+  =group_container(f, :first_name) do
     %label{ for: "first_name_#{index}" }
       = index == 0 ? 'Your first name' : 'First name'
       =field_error(f, :first_name)
     = text_field_tag 'visit[visitor][][first_name]', f.object.first_name, id: "first_name_#{index}"
 
-  .group{ :class => ('validation-error' if f.object.errors.include?(:last_name)) }
+  =group_container(f, :last_name) do
     %label{ for: "last_name_#{index}" }
       = index == 0 ? 'Your last name' : 'Last name'
       =field_error(f, :last_name)
     = text_field_tag 'visit[visitor][][last_name]', f.object.last_name, id: "last_name_#{index}"
 
-  .group{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
+  =group_container(f, :date_of_birth) do
     %fieldset
       %legend
         = index == 0 ? 'Your date of birth' : 'Date of birth'
@@ -48,7 +48,7 @@
 
   - if index == 0
 
-    .group{ :class => ('validation-error' if f.object.errors.include?(:email)) }
+    =group_container(f, :email) do
       %label{for: 'visit_visitor__email'}
         Email address
         =field_error(f, :email)
@@ -56,7 +56,7 @@
       = email_field_tag 'visit[visitor][][email]', f.object.email, :'aria-describedby' => "emailHint"
 
     - if @collect_phone_number
-      .group{ :class => ('validation-error' if f.object.errors.include?(:phone)) }
+      =group_container(f, :phone) do
         %label{for: 'visit_visitor__phone'}
           Phone number
           =field_error(f, :phone)

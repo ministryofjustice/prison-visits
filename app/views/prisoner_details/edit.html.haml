@@ -30,19 +30,19 @@
       %fieldset
         %legend.visuallyhidden Prisoner details
 
-        .group{ :class => ('validation-error' if f.object.errors.include?(:first_name)) }
+        =group_container(f, :first_name) do
           = f.label :first_name do
             Prisoner first name
             =field_error(f, :first_name)
           = f.text_field :first_name
 
-        .group{ :class => ('validation-error' if f.object.errors.include?(:last_name)) }
+        =group_container(f, :last_name) do
           = f.label :last_name do
             Prisoner last name
             =field_error(f, :last_name)
           = f.text_field :last_name
 
-        .group{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
+        =group_container(f, :date_of_birth) do
           %fieldset
             %legend
               Prisoner date of birth
@@ -57,14 +57,14 @@
                   %label{ :for => "prisoner_date_of_birth_#{dates.count - i}i"} #{o.mb_chars.titleize }
                   %input.form-control{ :value => (f.object.date_of_birth ? f.object.date_of_birth.send(o).to_s.rjust(2, '0') : ''), :type => "number", :min => min[i], :max => max[i], :pattern => "[0-9]*", :name => "prisoner[date_of_birth(#{dates.count - i}i)]", :id => "prisoner_date_of_birth_#{dates.count - i}i", :'aria-describedby' => "dobHint" }
 
-        .group{ :class => ('validation-error' if f.object.errors.include?(:number)) }
+        =group_container(f, :number) do
           = f.label :number do
             Prisoner number
             =field_error(f, :number)
           %p.form-hint eg a1234bc
           = f.text_field :number
 
-        .group{ :class => ('validation-error' if f.object.errors.include?(:prison_name)) }
+        =group_container(f, :prison_name) do
           = f.label :prison_name do
             Name of the prison
             %p.form-hint eg Cardiff
