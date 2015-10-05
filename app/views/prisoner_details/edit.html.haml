@@ -55,7 +55,7 @@
               - dates.each_with_index do |o, i|
                 .datefield{ :class => "form-group form-group-#{o}" }
                   %label{ :for => "prisoner_date_of_birth_#{dates.count - i}i"} #{o.mb_chars.titleize }
-                  %input.form-control{ :value => (visit.prisoner.date_of_birth ? visit.prisoner.date_of_birth.send(o).to_s.rjust(2, '0') : ''), :type => "number", :min => min[i], :max => max[i], :pattern => "[0-9]*", :name => "prisoner[date_of_birth(#{dates.count - i}i)]", :id => "prisoner_date_of_birth_#{dates.count - i}i", :'aria-describedby' => "dobHint" }
+                  %input.form-control{ :value => (f.object.date_of_birth ? f.object.date_of_birth.send(o).to_s.rjust(2, '0') : ''), :type => "number", :min => min[i], :max => max[i], :pattern => "[0-9]*", :name => "prisoner[date_of_birth(#{dates.count - i}i)]", :id => "prisoner_date_of_birth_#{dates.count - i}i", :'aria-describedby' => "dobHint" }
 
         .group{ :class => ('validation-error' if f.object.errors.include?(:number)) }
           = f.label :number do
