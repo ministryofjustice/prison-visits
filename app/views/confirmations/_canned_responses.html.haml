@@ -15,9 +15,7 @@
           %li
             %a.error-link{ :href => "##{obj.to_s}" }= error
 
-
   %h2 Visit date
-
 
   =group_container(f, :outcome, id: 'outcome') do
     - booked_visit.slots.each_with_index do |slot, index|
@@ -67,7 +65,6 @@
       %p
         %em.email We’re sorry but none of the dates and times you chose to visit #{booked_visit.prisoner.first_name} #{booked_visit.prisoner.last_name} at #{booked_visit.prisoner.prison_name} were available. Please visit www.gov.uk/prison-visits to choose some alternative dates.
 
-
   %h2 Visiting allowance
 
   =group_container(f, :outcome) do
@@ -112,7 +109,6 @@
               %span.date [DATE NOT CHOSEN]
             The visit must be taken before the allowance expires.
 
-
   %h2 Issue with the prisoner
 
   .group
@@ -135,7 +131,6 @@
       %h3 What we’ll tell the visitor
       %p
         %em.email Your visit cannot take place as the prisoner you want to visit has moved prison. They should contact you about where they are now.  You can also use the find a prisoner service (www.gov.uk/find-prisoner).
-
 
   %h2 Issue with visitors
 

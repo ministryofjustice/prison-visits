@@ -17,7 +17,6 @@
       = conditional_text prison_phone, 'call ', ' or'
       email us at #{prison_email_link}.
 
-
 .Grid
   .Grid-2-3
     %dl
@@ -34,7 +33,6 @@
                 %strong= format_day slot.date
                 \ -
                 = display_slot_and_duration slot.times
-
 
 .Grid
   .Grid-1-3
@@ -63,7 +61,6 @@
 
   .Grid-1-3
     %p.visible--js-enabled= link_to 'Print this page', '#', :class => 'print-link'
-
 
 .Grid#info
   .Grid-1-3
