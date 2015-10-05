@@ -1,7 +1,6 @@
 class MetricsLogger
   def record_visit_request(visit)
-    nomis_id = Rails.configuration.
-                prison_data[visit.prisoner.prison_name]['nomis_id']
+    nomis_id = visit.prison_nomis_id
     VisitMetricsEntry.create!(
       visit_id: visit.visit_id,
       requested_at: now_in_utc,

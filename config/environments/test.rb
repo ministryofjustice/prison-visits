@@ -19,4 +19,18 @@ PrisonVisits2::Application.configure do
 
   config.smoke_test_email_local_part = 'user'
   config.smoke_test_email_domain = 'example.com'
+
+  # TODO: this does not need to be assigned as a configuration attribute if
+  # we are going to access it as a collection of models.  I'm leaving this here
+  # for the moment as I do not want to have to unplug every single call to
+  # Rails.configuration.prison_data just yet.
+  config.prison_data = YAML.load_file(
+    ENV.fetch('PRISON_DATA_FILE', config.prison_data_source)
+  ).map{ |p| Prison.new(p) }.sort_by{ |p| p.name }
+
+  # TODO: This is for code hygiene while I move this to the prison model
+  config.nomis_ids = config.prison_data.inject(Set[]) do |set, prison|
+    set << prison.nomis_id
+    set
+  end
 end

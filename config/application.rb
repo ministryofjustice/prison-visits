@@ -25,14 +25,8 @@ module PrisonVisits2
       back-office.css
       *.png
     )
-    config.prison_data_source = File.join(Rails.root, 'config', 'prison_data.yml')
-    config.prison_data = YAML.load_file(
-      ENV.fetch('PRISON_DATA_FILE', config.prison_data_source)
-    ).map(&:with_indifferent_access).sort_by{ |p| p[:name] }
-    config.nomis_ids = config.prison_data.inject(Set[]) do |set, prison|
-      set << prison[:nomis_id]
-      set
-    end
+    config.prison_data_source = \
+      File.join(Rails.root, 'config', 'prison_data.yml')
     config.bank_holidays = \
       JSON.parse(
         File.read(

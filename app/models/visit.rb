@@ -18,7 +18,10 @@ class Visit
   }
   validate :validate_amount_of_adults, on: :visitors_set
 
-  delegate :prison_name, :prison_name=, to: :prisoner, allow_nil: true
+  delegate :prison, :prison_name, :prison_name=,
+    to: :prisoner, allow_nil: true
+  delegate :prison_email, :prison_canned_responses, :prison_nomis_id,
+    to: :prisoner
 
   def validate_amount_of_adults
     if visitors.none? { |v| v.age && v.age >= 18 }
@@ -30,8 +33,7 @@ class Visit
   end
 
   def adult_age
-    AgeValidator.new(Rails.configuration.prison_data[prisoner.prison_name]).
-      adult_age
+    AgeValidator.new(prison).adult_age
   end
 
   def adult?(visitor)

@@ -1,5 +1,4 @@
 - content_for :header, 'Who are you visiting?'
-= render partial: 'analytics'
 
 .Grid
   .Grid-2-3
@@ -30,39 +29,46 @@
       %fieldset
         %legend.visuallyhidden Prisoner details
 
-        =group_container(f, :first_name) do
+        .group{ :class => ('validation-error' if f.object.errors.include?(:first_name)) }
           = f.label :first_name do
             Prisoner first name
-            =field_error(f, :first_name)
+            %span.validation-message= f.object.errors[:first_name].first if f.object.errors.include?(:first_name)
           = f.text_field :first_name
 
-        =group_container(f, :last_name) do
+        .group{ :class => ('validation-error' if f.object.errors.include?(:last_name)) }
           = f.label :last_name do
             Prisoner last name
-            =field_error(f, :last_name)
+            %span.validation-message= f.object.errors[:last_name].first if f.object.errors.include?(:last_name)
           = f.text_field :last_name
 
-        =group_container(f, :date_of_birth) do
+        .group{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
           %fieldset
             %legend
               Prisoner date of birth
-              =field_error(f, :date_of_birth)
+              %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
+              %span.validation-message= 'year must be four digits' if visit.prisoner.date_of_birth && visit.prisoner.date_of_birth.year < 100
             .date-of-birth
               %p#dobHint.form-hint.datefield-hint eg 28 04 1996
-              = render partial: 'dob', locals: { prisoner: f.object }
+              - dates = ['day', 'month', 'year']
+              - min = [1, 1, 1900]
+              - max = [31, 12, Date.today.year - 15]
+              - dates.each_with_index do |o, i|
+                .datefield{ :class => "form-group form-group-#{o}" }
+                  %label{ :for => "prisoner_date_of_birth_#{dates.count - i}i"} #{o.mb_chars.titleize }
+                  %input.form-control{ :value => (visit.prisoner.date_of_birth ? visit.prisoner.date_of_birth.send(o).to_s.rjust(2, '0') : ''), :type => "number", :min => min[i], :max => max[i], :pattern => "[0-9]*", :name => "prisoner[date_of_birth(#{dates.count - i}i)]", :id => "prisoner_date_of_birth_#{dates.count - i}i", :'aria-describedby' => "dobHint" }
 
-        =group_container(f, :number) do
+        .group{ :class => ('validation-error' if f.object.errors.include?(:number)) }
           = f.label :number do
             Prisoner number
-            =field_error(f, :number)
+            %span.validation-message= f.object.errors[:number].first if f.object.errors.include?(:number)
           %p.form-hint eg a1234bc
           = f.text_field :number
 
-        =group_container(f, :prison_name) do
+        .group{ :class => ('validation-error' if f.object.errors.include?(:prison_name)) }
           = f.label :prison_name do
             Name of the prison
             %p.form-hint eg Cardiff
-            =field_error(f, :prison_name)
+            %span.validation-message= f.object.errors[:prison_name].first if f.object.errors.include?(:prison_name)
           - if f.object.errors.include?(:prison_name_reason)
             %p
               - case prison_data['reason']
@@ -83,4 +89,11 @@
       %strong Please note
       %br
       If you don't enter any information for more than 20 minutes, then your session will time out and you'll need to start again.
+    - content_for :analytics do
+      :ruby
+        haml_io << "var serverTime = " + Time.now.to_f.to_s + ";\n";
+      var clientTime = (new Date()).valueOf() / 1000;
+      var offset = clientTime - serverTime;
+      ga('set', 'metric7', parseInt(offset, 10));
+
     = render 'ad_help'

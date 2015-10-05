@@ -19,7 +19,7 @@ module Utilities
 
   included do
     def prison_from(prison_hash)
-      Prison.new 'Example Prison', prison_hash
+      Prison.create prison_hash
     end
   end
 end

@@ -1,32 +1,85 @@
 class Prison
-  DEFAULT_LEAD_DAYS = 3.freeze
+
+  attr_accessor :address, :adult_age, :booking_window, :canned_responses,
+    :email, :enabled, :lead_days,
+    :name, :nomis_id, :phone,
+    :slot_anomalies, :slots, :unbookable,
+    :works_weekends
+
+  attribute :address
+  attribute :adult_age, Integer,
+    default: DEFAULT_ADULT_AGE,
+    lazy: true
+  attribute :booking_window, Integer,
+    default: DEFAULT_BOOKING_WINDOW,
+    lazy: true
+  attribute :canned_responses, Boolean
+  attribute :email, String
+  attribute :enabled, Boolean
+  attribute :finder_slug, String
+  attribute :lead_days, Integer,
+    default: DEFAULT_LEAD_DAYS,
+    lazy: true
+  attribute :name, String
+  attribute :nomis_id, String
+  attribute :phone, String
+  attribute :reason
+  attribute :slot_anomalies
+  attribute :slots
+  attribute :unbookable, Boolean
   DEFAULT_BOOKING_WINDOW = 28.freeze
 
   class PrisonNotFound < StandardError; end
 
-  def self.find(prison_name)
-    prison_hash = Rails.configuration.prison_data[prison_name]
-    if prison_hash.nil?
-      raise PrisonNotFound, "Can't find prison #{prison_name.inspect}"
+  def self.find(name_or_nomis, raise_error = false)
+    prison = all.detect { |p|
+      p.name == name_or_nomis || p.nomis_id == name_or_nomis
+    }
+    if raise_error && prison.nil?
+      raise PrisonNotFound, "Can't find prison #{name_or_nomis.inspect}"
     end
-    new(prison_name, prison_hash)
+    prison
   end
 
-  def initialize(name, prison_hash)
-    @name = name
-    @prison_hash = prison_hash.with_indifferent_access
+  def initialize(opts = {})
+    opts.with_indifferent_access.map do |k,v|
+      v = DEFAULT_BOOKING_WINDOW if k.to_sym == :booking_window && v.blank?
+      instance_variable_set("@#{k}", v)
+    end
   end
 
-  attr_reader :name
+  def self.create(opts = {})
+    prison = new(opts)
+    Rails.configuration.prison_data << prison
+    prison
+  end
 
-  delegate :fetch, to: :@prison_hash
+  def self.all
+    Rails.configuration.prison_data
+  end
+
+  def self.enabled
+    all.select{ |p| p.enabled == true }
+  end
+
+  def self.names
+    all.map(&:name).sort
+  end
+
+  def self.nomis_ids
+    all.map(&:nomis_id).sort
+  end
+
+  def enabled?
+    enabled
+  end
 
   def unbookable_dates
-    (fetch(:unbookable) { Array.new }).to_set
+    (unbookable || Array.new).to_set
   end
 
   def visiting_slots
-    fetch(:slots)
+    @visiting_slots ||= slots
   end
 
   def visiting_slot_days
@@ -34,19 +87,15 @@ class Prison
   end
 
   def anomalous_dates
-    (fetch(:slot_anomalies) { Hash.new }).keys.to_set
+    (slot_anomalies || Hash.new).keys.to_set
   end
 
   def days_lead_time
-    fetch(:lead_days, DEFAULT_LEAD_DAYS)
-  end
-
-  def booking_window
-    fetch(:booking_window, DEFAULT_BOOKING_WINDOW)
+    lead_days || DEFAULT_LEAD_DAYS
   end
 
   def works_weekends?
-    fetch(:works_weekends, false)
+    works_weekends || false
   end
   alias_method :works_everyday?, :works_weekends?
 end

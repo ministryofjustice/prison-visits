@@ -20,11 +20,12 @@ module VisitHelper
   end
 
   def prison_data(source=visit)
+    return source.prison if source.is_a?(Visit)
     Rails.configuration.prison_data.fetch(source.prisoner.prison_name.to_s)
   end
 
-  def prison_phone
-    prison_data['phone']
+  delegate :adult_age, :phone, :email, :slot_anomalies,
+    to: :prison, prefix: :prison
   end
 
   def prison_email
@@ -54,11 +55,14 @@ module VisitHelper
   def prison_url(visit)
     data = prison_data(visit)
     slug = data.fetch('finder_slug') { visit.prisoner.prison_name.parameterize }
-    ['http://www.justice.gov.uk/contacts/prison-finder', slug].join('/')
+    ['http://www.justice.gov.uk/contacts/prison-finder',
+     visit.prison_name.parameterize].join('/')
   end
 
   def prison_link(source=visit, link_text=nil)
-    link_text ||= "#{source.prisoner.prison_name.capitalize} prison"
+    unless link_text
+      link_text = "#{source.prison_name.capitalize} prison"
+    end
     link_to link_text, prison_url(visit), :rel => 'external'
   end
 
