@@ -15,7 +15,7 @@
         %span.js-visitor-position
           = index+1
       %small.AgeLabel-label
-  
+
   .group{ :class => ('validation-error' if f.object.errors.include?(:first_name)) }
     %label{ for: "first_name_#{index}" }
       = index == 0 ? 'Your first name' : 'First name'
@@ -48,7 +48,7 @@
             %input.form-control{ :value => (visit.visitors[index.to_i].date_of_birth && !js_template ? visit.visitors[index.to_i].date_of_birth.send(o).to_s.rjust(2, '0') : ''), :type => "number", :min => min[i], :max => max[i], :pattern => "[0-9]*", :name => "visit[visitor][][date_of_birth(#{dates.count - i}i)]", :id => "visitor_date_of_birth_#{dates.count - i}i_#{index}", :class => o, :'aria-describedby' => "dobHint" }
 
   - if index == 0
-  
+
     .group{ :class => ('validation-error' if f.object.errors.include?(:email)) }
       %label{for: 'visit_visitor__email'}
         Email address

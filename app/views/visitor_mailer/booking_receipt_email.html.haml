@@ -30,7 +30,7 @@
     - if slot.date.present?
       - if index == 0
         First choice:
-      - else 
+      - else
         Alternative #{index}:
       %strong #{Date.parse(slot.date).strftime("%A %e %B")}, #{display_time_slot(slot.times)}
 
@@ -56,7 +56,7 @@
     %strong #{prison_email}
 
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
-  Need help or want to make a complaint? If you have a question or need any help with the online visits service, please 
+  Need help or want to make a complaint? If you have a question or need any help with the online visits service, please
   = succeed '.' do
     %a{ :href => new_feedback_url } contact us
 

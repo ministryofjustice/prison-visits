@@ -11,7 +11,7 @@
     %li prisoner's contact lists or visiting allowance
 %p
   We’re not able to help with questions about the above.
-  
+
 = form_for @feedback, :url => feedback_path, :html => {:novalidate => 'novalidate', :class => 'js-SubmitOnce'} do |f|
   %input{name: 'feedback[referrer]', type: 'hidden', value: (params[:referrer] || (params[:feedback][:referrer] if params[:feedback]))}/
   %input{name: 'feedback[user_agent]', type: 'hidden', value: request.headers['HTTP_USER_AGENT']}
@@ -26,7 +26,7 @@
 
   %p
     %strong Please don't include any sensitive personal information (eg. prisoner numbers).
-  
+
   %fieldset
     %legend.visuallyhidden Feedback form
     .group{ :class => ('validation-error' if f.object.errors.include?(:text)) }
@@ -44,6 +44,6 @@
         %span.validation-message= f.object.errors[:email].first if f.object.errors.include?(:email)
       = f.email_field :email
       .group__help We'll only use this to reply to your message.
-    
+
     .actions
       = f.submit 'Send', :class => 'button button-primary', :id => 'submit-button'

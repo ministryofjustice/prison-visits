@@ -19,7 +19,7 @@
 
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
   - visitors.each_with_index do |visitor, index|
-    - unless index == 0 
+    - unless index == 0
       %br
     Visitor #{index + 1}:
     %strong #{first_name(visitor)} #{initial ? last_initial(visitor) : last_name(visitor)}
@@ -46,7 +46,7 @@
 
   - if @confirmation.visitor_banned
 
-    %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } Banned visitors should have received a letter to say that they’re banned from visiting the prison at the moment. Get in touch with the prison for more information. 
+    %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } Banned visitors should have received a letter to say that they’re banned from visiting the prison at the moment. Get in touch with the prison for more information.
 
 
 - if @confirmation.closed_visit
@@ -90,7 +90,7 @@
 
 %h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' } If you’re bringing someone else’s child
 
-%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } You’ll need a letter from that child’s parents giving you permission to accompany their child. 
+%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } You’ll need a letter from that child’s parents giving you permission to accompany their child.
 
 
 %h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' } What to expect when visiting prison

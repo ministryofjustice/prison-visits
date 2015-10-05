@@ -10,14 +10,14 @@
     at
     %strong #{@visit.prisoner.prison_name}
     were available.
-  
+
   %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
     - @visit.slots.each_with_index do |slot, index|
       - if slot.date.present?
-        - unless index == 0 
+        - unless index == 0
           %br
         #{index + 1}. #{Date.parse(slot.date).strftime("%A %e %B")}, #{display_time_slot(slot.times)}
-  
+
   %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } Please visit #{link_to('www.gov.uk/prison-visits', 'http://www.gov.uk/prison-visits')} to choose some alternative dates.
 
 
@@ -64,7 +64,7 @@
   - elsif @confirmation.visitor_banned
     %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } Your visit cannot take place. #{@confirmation.banned_visitors.join(', ').gsub(';', ' ')} should have received a letter to say that they’re banned from visiting the prison at the moment. Get in touch with the prison for more information.
 
-  - else 
+  - else
     - raise 'bad reason'
 
 
@@ -79,4 +79,3 @@
 
 %p
   %small Visit ID: #{@visit.visit_id}
-
