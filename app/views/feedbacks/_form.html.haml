@@ -13,8 +13,8 @@
   We’re not able to help with questions about the above.
 
 = form_for @feedback, :url => feedback_path, :html => {:novalidate => 'novalidate', :class => 'js-SubmitOnce'} do |f|
-  %input{name: 'feedback[referrer]', type: 'hidden', value: (params[:referrer] || (params[:feedback][:referrer] if params[:feedback]))}/
-  %input{name: 'feedback[user_agent]', type: 'hidden', value: request.headers['HTTP_USER_AGENT']}
+  = f.hidden_field :referrer
+  = f.hidden_field :user_agent
 
   - if @feedback.errors.any?
     #error-summary.validation-summary.group(role="alert" tabindex="-1" aria-labelledby="error-heading")
