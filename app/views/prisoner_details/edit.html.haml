@@ -33,20 +33,20 @@
         .group{ :class => ('validation-error' if f.object.errors.include?(:first_name)) }
           = f.label :first_name do
             Prisoner first name
-            %span.validation-message= f.object.errors[:first_name].first if f.object.errors.include?(:first_name)
+            =field_error(f, :first_name)
           = f.text_field :first_name
 
         .group{ :class => ('validation-error' if f.object.errors.include?(:last_name)) }
           = f.label :last_name do
             Prisoner last name
-            %span.validation-message= f.object.errors[:last_name].first if f.object.errors.include?(:last_name)
+            =field_error(f, :last_name)
           = f.text_field :last_name
 
         .group{ :class => ('validation-error' if f.object.errors.include?(:date_of_birth)) }
           %fieldset
             %legend
               Prisoner date of birth
-              %span.validation-message= f.object.errors[:date_of_birth].first if f.object.errors.include?(:date_of_birth)
+              =field_error(f, :date_of_birth)
               %span.validation-message= 'year must be four digits' if visit.prisoner.date_of_birth && visit.prisoner.date_of_birth.year < 100
             .date-of-birth
               %p#dobHint.form-hint.datefield-hint eg 28 04 1996
@@ -61,7 +61,7 @@
         .group{ :class => ('validation-error' if f.object.errors.include?(:number)) }
           = f.label :number do
             Prisoner number
-            %span.validation-message= f.object.errors[:number].first if f.object.errors.include?(:number)
+            =field_error(f, :number)
           %p.form-hint eg a1234bc
           = f.text_field :number
 
@@ -69,7 +69,7 @@
           = f.label :prison_name do
             Name of the prison
             %p.form-hint eg Cardiff
-            %span.validation-message= f.object.errors[:prison_name].first if f.object.errors.include?(:prison_name)
+            =field_error(f, :prison_name)
           - if f.object.errors.include?(:prison_name_reason)
             %p
               - case prison_data['reason']

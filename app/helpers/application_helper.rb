@@ -68,4 +68,10 @@ module ApplicationHelper
     options = Rails.application.config.redcarpet_markdown_options
     ::Redcarpet::Markdown.new(renderer, options).render(source).html_safe
   end
+
+  def field_error(form, name)
+    errors = form.object.errors[name]
+    return '' unless errors.any?
+    content_tag(:span, class: 'validation-message') { errors.first }
+  end
 end

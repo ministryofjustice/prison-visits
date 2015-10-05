@@ -32,7 +32,7 @@
     .group{ :class => ('validation-error' if f.object.errors.include?(:text)) }
       = f.label :text do
         Your question
-        %span.validation-message= f.object.errors[:text].first if f.object.errors.include?(:text)
+        =field_error(f, :text)
       = f.text_area :text, :cols => 50, :rows => 5
 
   %fieldset
@@ -41,7 +41,7 @@
     .group{ :class => ('validation-error' if f.object.errors.include?(:email)) }
       = f.label :email do
         Your email address
-        %span.validation-message= f.object.errors[:email].first if f.object.errors.include?(:email)
+        =field_error(f, :email)
       = f.email_field :email
       .group__help We'll only use this to reply to your message.
 
