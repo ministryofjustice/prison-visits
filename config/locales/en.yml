@@ -14,6 +14,8 @@ en:
               inclusion: 'must be a valid date'
             phone:
               too_short: 'must include area code'
+      messages:
+        four_digit_year: 'year must be four digits'
   email_validator:
     errors:
       invalid_address: "is not a valid address"

@@ -47,7 +47,6 @@
             %legend
               Prisoner date of birth
               =field_error(f, :date_of_birth)
-              %span.validation-message= 'year must be four digits' if visit.prisoner.date_of_birth && visit.prisoner.date_of_birth.year < 100
             .date-of-birth
               %p#dobHint.form-hint.datefield-hint eg 28 04 1996
               - dates = ['day', 'month', 'year']

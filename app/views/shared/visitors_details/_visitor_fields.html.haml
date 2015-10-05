@@ -33,7 +33,6 @@
       %legend
         = index == 0 ? 'Your date of birth' : 'Date of birth'
         =field_error(f, :date_of_birth)
-        %span.validation-message= 'year must be four digits' if f.object.date_of_birth && f.object.date_of_birth.year < 100
       .known-date.AgeLabel-date
         #dobHint
           - if index == 0
