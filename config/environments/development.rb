@@ -18,12 +18,9 @@ PrisonVisits2::Application.configure do
   config.active_job.queue_adapter = :sidekiq
   config.smoke_test_email_local_part = ENV['SMOKE_TEST_EMAIL_LOCAL_PART']
   config.smoke_test_email_domain = ENV['SMOKE_TEST_EMAIL_DOMAIN']
-
-  # TODO: this does not need to be assigned as a configuration attribute if
-  # we are going to access it as a collection of models.  I'm leaving this here
-  # for the moment as I do not want to have to unplug every single call to
-  # Rails.configuration.prison_data just yet.
   config.session_expire_after = 24.hours
+
+  config.prison_data = YAML.load_file(
     ENV.fetch('PRISON_DATA_FILE', config.prison_data_source)
   ).map{ |p| Prison.new(p) }.sort_by{ |p| p.name }
 

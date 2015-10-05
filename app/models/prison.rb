@@ -1,7 +1,7 @@
 class Prison
 
   attr_accessor :address, :adult_age, :booking_window, :canned_responses,
-    :email, :enabled, :lead_days,
+    :email, :enabled, :finder_slug, :lead_days,
     :name, :nomis_id, :phone,
     :slot_anomalies, :slots, :unbookable,
     :works_weekends
@@ -43,9 +43,9 @@ class Prison
 
   def initialize(opts = {})
     opts.with_indifferent_access.map do |k,v|
-      v = DEFAULT_BOOKING_WINDOW if k.to_sym == :booking_window && v.blank?
       instance_variable_set("@#{k}", v)
     end
+    @booking_window = DEFAULT_BOOKING_WINDOW if @booking_window.blank?
   end
 
   def self.create(opts = {})

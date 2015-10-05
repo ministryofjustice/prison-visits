@@ -5,8 +5,11 @@ RSpec.describe VisitsController, type: :controller do
 
   render_views
 
+  let(:target_prison_name) { 'Rochester' }
+
   before :each do
     cookies['cookies-enabled'] = 1
+    Prison.find(target_prison_name).booking_window = 3
   end
 
   it_behaves_like "a browser without a session present"
@@ -28,7 +31,7 @@ RSpec.describe VisitsController, type: :controller do
           p.first_name = 'Jimmy'
           p.last_name = 'Harris'
           p.number = 'aa1111aa'
-          p.prison_name = 'Rochester'
+          p.prison_name = target_prison_name
           p.date_of_birth = Date.new(1975, 1, 1)
         end
 

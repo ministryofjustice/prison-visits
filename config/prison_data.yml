@@ -3553,16 +3553,13 @@
 - nomis_id: GHI
   enabled: false
   name: Garth
+- nomis_id: ISI
+  enabled: false
+  name: Isis
 - nomis_id: KVI
-  enabled: false
-Isis:
-  nomis_id: ISI
-  enabled: false
-Kirklevington Grange:
-  nomis_id: KVI
+  name: Kirklevington Grange
   enabled: false
   reason: coming_soon
-  name: Kirklevington Grange
 - nomis_id: LLI
   enabled: false
   name: Long Lartin

@@ -1,9 +1,11 @@
 class AgeValidator < ActiveModel::Validator
   DEFAULT_ADULT_AGE = 18
 
-  def initialize(prison_config)
-    @config = prison_config || (raise ArgumentError)
-    super
+  attr_accessor :adult_age
+
+  def initialize(prison_name)
+    prison = Prison.find(prison_name, true)
+    @adult_age = prison.adult_age || DEFAULT_ADULT_AGE
   end
 
   def validate(record)
@@ -13,9 +15,5 @@ class AgeValidator < ActiveModel::Validator
       record.errors.add :date_of_birth,
         "You must be #{adult_age} or older to book a visit"
     end
-  end
-
-  def adult_age
-    @config[:adult_age] || DEFAULT_ADULT_AGE
   end
 end

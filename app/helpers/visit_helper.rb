@@ -1,6 +1,6 @@
 module VisitHelper
   def visiting_slots
-    prison_data['slots'].inject({}) do |hash, (day, slots)|
+    prison_data.slots.inject({}) do |hash, (day, slots)|
       hash.merge({
         day.to_sym => slots.map { |s| s.split('-') }
       })
@@ -16,7 +16,7 @@ module VisitHelper
   end
 
   def prison_names
-    Rails.configuration.prison_data.keys.sort
+    Prison.names
   end
 
   def prison_data(source=visit)
@@ -29,33 +29,32 @@ module VisitHelper
   end
 
   def prison_email
-    prison_data['email']
+    prison_data.email
   end
 
   def prison_email_link
-    mail_to prison_data['email']
+    mail_to prison_data.email
   end
 
   def prison_postcode
-    prison_data['address'][-1]
+    prison_data.address[-1]
   end
 
   def prison_slot_anomalies
-    prison_data['slot_anomalies']
+    prison_data.slot_anomalies
   end
 
   def prison_address(glue='<br>'.html_safe)
-    safe_join(prison_data['address'], glue)
+    safe_join(prison_data.address, glue)
   end
 
   def adult_age
-    prison_data['adult_age'] || 18
+    prison_data.adult_age || 18
   end
 
   def prison_url(visit)
-    data = prison_data(visit)
-    slug = data.fetch('finder_slug') { visit.prisoner.prison_name.parameterize }
-    ['http://www.justice.gov.uk/contacts/prison-finder',
+    slug = prison_data(visit).finder_slug || visit.prisoner.prison_name.parameterize
+    ['http://www.justice.gov.uk/contacts/prison-finder', slug].join('/')
      visit.prison_name.parameterize].join('/')
   end
 
@@ -91,7 +90,7 @@ module VisitHelper
   end
 
   def prison_specific_id_requirements(prison_name)
-    nomis_id =
+    nomis_id = prison_data(prison_name).nomis_id
       Rails.configuration.prison_data.fetch(prison_name).fetch(:nomis_id)
     template_path = Rails.root.join('app', 'views', 'content')
     candidates = [

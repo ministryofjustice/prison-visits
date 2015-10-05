@@ -11,7 +11,7 @@ RSpec.describe AgeValidator do
 
   context "a regular prison" do
     subject do
-      AgeValidator.new(Rails.configuration.prison_data['Cardiff'])
+      AgeValidator.new('Cardiff')
     end
 
     it "considers an 18-year old person to be an adult" do
@@ -24,7 +24,7 @@ RSpec.describe AgeValidator do
 
   context "a prison which treats a child above a certain age as an adult" do
     subject do
-      AgeValidator.new(Rails.configuration.prison_data['Werrington'])
+      AgeValidator.new('Werrington')
     end
 
     it "considers a 16-year old to be an adult" do
