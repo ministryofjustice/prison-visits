@@ -2,37 +2,27 @@
   %table
     %tr
       %th
-      %th{colspan: 5}
-        Number of visits
-      %th{colspan: 2}
-        End to end
-      %th{colspan: 4}
-        Percent rejected
+      %th{colspan: 5} Number of visits
+      %th{colspan: 2} End to end
+      %th{colspan: 4} Percent rejected
+
     %tr
-      %td.prison-name
-        Prison name
-      %td
-        Total
-      %td
-        Waiting
-      %td
-        Overdue
-      %td
-        Rejected
-      %td
-        Confirmed
-      %td
-        median days
-      %td
-        95th percentile days
-      %td
-        Overall
-      %td
-        No slot
-      %td
-        Not on contact list
-      %td
-        No VOs left
+      %td.prison-name Prison name
+
+      %td Total
+      %td Waiting
+      %td Overdue
+      %td Rejected
+      %td Confirmed
+
+      %td Median days
+      %td 95th percentile days
+
+      %td Overall
+      %td No slot
+      %td Not on contact list
+      %td No VOs left
+
     - @nomis_ids.each do |nomis_id|
       %tr{class: cycle('odd', 'even')}
         %td.prison-name
