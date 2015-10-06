@@ -33,8 +33,8 @@
         Not on contact list
       %td
         No VOs left
-    - @nomis_ids.each_with_index do |nomis_id, i|
-      %tr{class: i.even? ? 'even' : 'odd'}
+    - @nomis_ids.each do |nomis_id|
+      %tr{class: cycle('odd', 'even')}
         %td.prison-name
           = link_to(prison_name_for_id(nomis_id), prison_metrics_fortnightly_path(nomis_id))
         %td.narrow.left-border
