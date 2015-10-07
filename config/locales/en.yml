@@ -2,6 +2,10 @@ en:
   date:
     formats:
       default: "%d/%m/%Y"
+    fields:
+      day: Day
+      month: Month
+      year: Year
   activemodel:
     attributes:
       feedback:

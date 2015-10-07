@@ -1,5 +1,5 @@
 <%
-  field_names = ['day', 'month', 'year']
+  field_names = %i[day month year]
   min = [1, 1, Date.today.year - 115]
   max = [31, 12, Date.today.year]
 %>
@@ -7,7 +7,7 @@
 <% field_names.each_with_index do |field_name, i| %>
   <div class="datefield form-group form-group-<%= field_name %>">
     <label for="visitor_date_of_birth_<%= field_names.count - i %>i_<%= index %>">
-      <%= field_name.mb_chars.titleize %>
+      <%= t(field_name, scope: 'date.fields') %>
     </label>
     <input
       class="form-control <%= field_name %>"
