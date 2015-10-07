@@ -1,12 +1,6 @@
-<%
-  field_names = %i[day month year]
-  min = [1, 1, Date.today.year - 115]
-  max = [31, 12, Date.today.year]
-%>
-
-<% field_names.each_with_index do |field_name, i| %>
+<% %i[day month year].zip([3, 2, 1]).each do |field_name, i| %>
   <div class="datefield form-group form-group-<%= field_name %>">
-    <label for="visitor_date_of_birth_<%= field_names.count - i %>i_<%= index %>">
+    <label for="visitor_date_of_birth_<%= i %>i_<%= index %>">
       <%= t(field_name, scope: 'date.fields') %>
     </label>
     <input
@@ -16,11 +10,11 @@
           visitor.date_of_birth.send(field_name).to_s.rjust(2, '0') : ''
         %>"
       type="number"
-      min="<%= min[i] %>"
-      max="<%= max[i] %>"
+      min="<%= visitor.minimum_date_of_birth.send(field_name) %>"
+      max="<%= visitor.maximum_date_of_birth.send(field_name) %>"
       pattern="[0-9]*",
-      name="visit[visitor][][date_of_birth(<%= field_names.count - i %>i)]"
-      id="visitor_date_of_birth_<%= field_names.count - i %>i_<%= index %>"
+      name="visit[visitor][][date_of_birth(<%= i %>i)]"
+      id="visitor_date_of_birth_<%= i %>i_<%= index %>"
       aria-describedby="dobHint"
     />
   </div>
