@@ -3545,8 +3545,8 @@
   enabled: false
   name: Forest Bank
 - nomis_id: FKI
-  name: Frankland
   enabled: false
+  name: Frankland
 - nomis_id: FNI
   enabled: false
   name: Full Sutton
