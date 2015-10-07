@@ -38,13 +38,7 @@
           - if index == 0
             %p.form-hint You must be over 18 to book a visit.
           %p.form-hint.datefield-hint eg 28 04 1996
-        - dates = ['day', 'month', 'year']
-        - min = [1, 1, Date.today.year - 115]
-        - max = [31, 12, Date.today.year]
-        - dates.each_with_index do |o, i|
-          .datefield{ :class => "form-group form-group-#{o}" }
-            %label{ :for => "visitor_date_of_birth_#{dates.count - i}i_#{index}" } #{o.mb_chars.titleize}
-            %input.form-control{ :value => (visit.visitors[index.to_i].date_of_birth && !js_template ? visit.visitors[index.to_i].date_of_birth.send(o).to_s.rjust(2, '0') : ''), :type => "number", :min => min[i], :max => max[i], :pattern => "[0-9]*", :name => "visit[visitor][][date_of_birth(#{dates.count - i}i)]", :id => "visitor_date_of_birth_#{dates.count - i}i_#{index}", :class => o, :'aria-describedby' => "dobHint" }
+        = render partial: 'shared/visitors_details/dob', locals: { visitor: visit.visitors[index.to_i], index: index }
 
   - if index == 0
 

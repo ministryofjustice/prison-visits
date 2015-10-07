@@ -1,0 +1,27 @@
+<%
+  field_names = ['day', 'month', 'year']
+  min = [1, 1, 1900]
+  max = [31, 12, Date.today.year - 15]
+%>
+
+<% field_names.each_with_index do |field_name, i| %>
+  <div class="datefield form-group form-group-<%= field_name %>">
+    <label for="prisoner_date_of_birth_<%= field_names.count - i %>i">
+      <%= field_name.mb_chars.titleize %>
+    </label>
+    <input
+      class="form-control"
+      value="<%=
+        prisoner.date_of_birth ?
+          prisoner.date_of_birth.send(field_name).to_s.rjust(2, '0') : ''
+        %>"
+      type="number"
+      min="<%= min[i] %>"
+      max="<%= max[i] %>"
+      pattern="[0-9]*"
+      name="prisoner[date_of_birth(<%= field_names.count - i %>i)]"
+      id="prisoner_date_of_birth_<%= field_names.count - i %>i"
+      aria-describedby="dobHint"
+    />
+  </div>
+<% end %>

@@ -49,13 +49,7 @@
               =field_error(f, :date_of_birth)
             .date-of-birth
               %p#dobHint.form-hint.datefield-hint eg 28 04 1996
-              - dates = ['day', 'month', 'year']
-              - min = [1, 1, 1900]
-              - max = [31, 12, Date.today.year - 15]
-              - dates.each_with_index do |o, i|
-                .datefield{ :class => "form-group form-group-#{o}" }
-                  %label{ :for => "prisoner_date_of_birth_#{dates.count - i}i"} #{o.mb_chars.titleize }
-                  %input.form-control{ :value => (f.object.date_of_birth ? f.object.date_of_birth.send(o).to_s.rjust(2, '0') : ''), :type => "number", :min => min[i], :max => max[i], :pattern => "[0-9]*", :name => "prisoner[date_of_birth(#{dates.count - i}i)]", :id => "prisoner_date_of_birth_#{dates.count - i}i", :'aria-describedby' => "dobHint" }
+              = render partial: 'dob', locals: { prisoner: f.object }
 
         =group_container(f, :number) do
           = f.label :number do
