@@ -1,7 +1,7 @@
 - content_for :header do
   Process a visit request
 
-- if prison_data(booked_visit)['canned_responses']
+- if Prison.find(booked_visit.prisoner.prison_name).canned_responses
 
   .people
 
