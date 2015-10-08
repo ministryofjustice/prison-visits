@@ -1,26 +1,11 @@
 require 'rails_helper'
+require_relative './concerns/visitor_mailer_shared_conditions.rb'
 
 RSpec.describe VisitorMailer do
-  before :each do
-    ActionMailer::Base.deliveries.clear
-    allow_any_instance_of(VisitorMailer).to receive(:smtp_domain).and_return('example.com')
-    Timecop.freeze(Time.local(2013, 7, 4))
-  end
 
-  after :each do
-    Timecop.return
-  end
+  subject! { described_class }
 
-  let :email do
-    ParsedEmail.parse({
-        from: "visitor@example.com",
-        to: 'test@example.com',
-        text: "some text",
-        charsets: {to: "UTF-8", html: "utf-8", subject: "UTF-8", from: "UTF-8", text: "utf-8"}.to_json,
-        subject: "important email"
-    })
-  end
-
+  include_context 'shared conditions for visitor mailer'
   it_behaves_like 'a mailer that ensures content transfer encoding is quoted printable'
 
   it "relays e-mails via sendgrid" do
@@ -34,30 +19,6 @@ RSpec.describe VisitorMailer do
         expect(m[:to]).to eq(visitor_address)
       end.deliver_now
     }.to change { ActionMailer::Base.deliveries.size }.by(1)
-  end
-
-  let! :subject do
-    VisitorMailer
-  end
-
-  let :confirmation do
-    Confirmation.new(message: 'A message', outcome: 'slot_0')
-  end
-
-  let :confirmation_canned_response do
-    Confirmation.new(canned_response: true, outcome: 'slot_0', vo_number: '5551234')
-  end
-
-  let :confirmation_canned_response_remand do
-    Confirmation.new(canned_response: true, outcome: 'slot_0', vo_number: 'none')
-  end
-
-  let :confirmation_unlisted_visitors do
-    Confirmation.new(canned_response: true, vo_number: '5551234', outcome: 'slot_0', visitor_not_listed: true, unlisted_visitors: ['Joan;Harris'])
-  end
-
-  let :confirmation_banned_visitors do
-    Confirmation.new(canned_response: true, vo_number: '5551234', outcome: 'slot_0', visitor_banned: true, banned_visitors: ['Joan;Harris'])
   end
 
   let :confirmation_closed_visit do
@@ -141,7 +102,7 @@ RSpec.describe VisitorMailer do
         expect(email[:reply_to]).to eq(prison_address)
         expect(email[:to]).to eq(visitor_address)
 
-        expect(email).to match_in_html("pvb.rochester@maildrop.dsd.io")
+        expect(email).to match_in_html(prison_email)
         expect(email).to match_in_html("01634 803100")
         expect(email).not_to match_in_html("Jimmy Harris")
         expect(email).not_to match_in_html("Your reference number is")
@@ -158,7 +119,7 @@ RSpec.describe VisitorMailer do
         expect(email[:reply_to]).to eq(prison_address)
         expect(email[:to]).to eq(visitor_address)
 
-        expect(email).to match_in_html("pvb.rochester@maildrop.dsd.io")
+        expect(email).to match_in_html(prison_email)
         expect(email).to match_in_html("01634 803100")
         expect(email).not_to match_in_html("Jimmy Harris")
         expect(email).to match_in_html('5551234')
@@ -176,7 +137,7 @@ RSpec.describe VisitorMailer do
         expect(email[:reply_to]).to eq(prison_address)
         expect(email[:to]).to eq(visitor_address)
 
-        expect(email).to match_in_html("pvb.rochester@maildrop.dsd.io")
+        expect(email).to match_in_html(prison_email)
         expect(email).to match_in_html("01634 803100")
         expect(email).not_to match_in_html("Jimmy Harris")
         expect(email).not_to match_in_html('Your reference number is')
@@ -193,7 +154,7 @@ RSpec.describe VisitorMailer do
         expect(email[:reply_to]).to eq(prison_address)
         expect(email[:to]).to eq(visitor_address)
 
-        expect(email).to match_in_html("pvb.rochester@maildrop.dsd.io")
+        expect(email).to match_in_html(prison_email)
         expect(email).to match_in_html("01634 803100")
         expect(email).not_to match_in_html("Jimmy Harris")
         expect(email).to match_in_html("Joan H. cannot attend as they’re not on the prisoner’s contact list")
@@ -211,7 +172,7 @@ RSpec.describe VisitorMailer do
         expect(email[:reply_to]).to eq(prison_address)
         expect(email[:to]).to eq(visitor_address)
 
-        expect(email).to match_in_html("pvb.rochester@maildrop.dsd.io")
+        expect(email).to match_in_html(prison_email)
         expect(email).to match_in_html("01634 803100")
         expect(email).not_to match_in_html("Jimmy Harris")
         expect(email).to match_in_html("Joan H. cannot attend as they’re currently banned")
@@ -404,13 +365,13 @@ RSpec.describe VisitorMailer do
       end
     end
 
-    context "booking receipt sent" do
+    context "booking receipt is sent" do
       it "attempts spam and bounce resets" do
         expect_any_instance_of(SpamAndBounceResets).to receive(:perform_resets)
         subject.booking_receipt_email(sample_visit, token).deliver_now
       end
 
-      it "sends out an e-mail with a date in the subject" do
+      it "with a date in the subject" do
         email = subject.booking_receipt_email(sample_visit, "token")
         expect(email.subject).to eq("Not booked yet: we've received your visit request for Sunday 7 July 2013")
         expect(email[:from]).to eq(noreply_address)
