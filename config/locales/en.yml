@@ -22,10 +22,13 @@ en:
         four_digit_year: 'year must be four digits'
   email_validator:
     errors:
-      invalid_address: "is not a valid address"
+      unparseable: "is not a valid address"
       domain_dot: "is not a valid address because it ends with a dot or starts with a dot"
       bad_domain: "does not appear to be valid"
-      malformed_address: "is not a valid address"
+      malformed: "is not a valid address"
       no_mx_record: "does not appear to be valid"
-      spam_reported: "cannot receive messages from this system"
-      bounced: "cannot receive messages from this system"
+      spam_reported: >
+        needs to be checked as past messages were marked as spam.
+        Check your spam folder too
+      bounced: >
+        needs to be checked as messages have been returned in the past

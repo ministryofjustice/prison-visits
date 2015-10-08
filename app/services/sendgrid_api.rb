@@ -1,23 +1,47 @@
 class SendgridApi
   extend SingleForwardable
 
-  def_single_delegators :new, :spam_reported?, :bounced?
+  def_single_delegators :new, :spam_reported?, :bounced?,
+    :smtp_alive?, :remove_from_bounce_list, :remove_from_spam_list
+
+  RETRIEVAL_ERRORS = [JSON::ParserError, SendgridToolkit::APIError]
 
   def spam_reported?(email)
-    return false unless can_access_sendgrid?
-    spam_reports.retrieve(email: email).any?
-  rescue JSON::ParserError, SendgridToolkit::APIError
-    false
+    api(RETRIEVAL_ERRORS) { spam_reports.retrieve(email: email).any? }
   end
 
   def bounced?(email)
-    return false unless can_access_sendgrid?
-    bounces.retrieve(email: email).any?
-  rescue JSON::ParserError, SendgridToolkit::APIError
+    api(RETRIEVAL_ERRORS) { bounces.retrieve(email: email).any? }
+  end
+
+  REMOVAL_ERRORS = [SendgridToolkit::EmailDoesNotExist]
+
+  def remove_from_bounce_list(email)
+    api(REMOVAL_ERRORS) { bounces.delete(email: email) }
+  end
+
+  def remove_from_spam_list(email)
+    api(REMOVAL_ERRORS) { spam_reports.delete(email: email) }
+  end
+
+  def smtp_alive?(host, port)
+    Net::SMTP.start(host, port) do |smtp|
+      smtp.enable_starttls_auto
+      smtp.ehlo(Socket.gethostname)
+      smtp.finish
+    end
+    true
+  rescue StandardError
     false
   end
 
   private
+
+  def api(rescue_from_errors, &_action)
+    yield if can_access_sendgrid?
+  rescue *rescue_from_errors
+    false
+  end
 
   def spam_reports
     SendgridToolkit::SpamReports.new(user_name, password)

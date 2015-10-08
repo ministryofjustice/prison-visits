@@ -66,6 +66,11 @@ Style/StringLiterals:
   Exclude:
     - 'spec/**/*'
 
+# Allow us to define simple predicate methods like foo? that look at the value
+# of @foo. See https://github.com/bbatsov/rubocop/issues/2140
+Style/TrivialAccessors:
+  AllowPredicates: true
+
 # Prefer sensible naming to comments everywhere.
 Documentation:
   Description: Document classes and non-namespace modules.

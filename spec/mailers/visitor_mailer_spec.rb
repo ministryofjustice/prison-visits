@@ -120,8 +120,19 @@ RSpec.describe VisitorMailer do
     MESSAGE_ENCRYPTOR.encrypt_and_sign(sample_visit)
   end
 
+  shared_examples 'an email without spam and bounce reset checks' do
+    it 'makes no attempt at resets' do
+      expect_any_instance_of(SpamAndBounceResets).to_not receive(:perform_resets)
+      email.deliver_now
+    end
+  end
+
   context "always" do
     context "booking is successful" do
+      it_behaves_like 'an email without spam and bounce reset checks' do
+        let(:email) { subject.booking_confirmation_email(sample_visit, confirmation, token) }
+      end
+
       it "sends out an e-mail" do
         email = subject.booking_confirmation_email(sample_visit, confirmation, token)
         expect(email.subject).to eq("Visit confirmed: your visit for 7 July 2013 has been confirmed")
@@ -234,6 +245,10 @@ RSpec.describe VisitorMailer do
     end
 
     context "sends out an unsuccessful e-mail with a date in the subject" do
+      it_behaves_like 'an email without spam and bounce reset checks' do
+        let(:email) { subject.booking_rejection_email(sample_visit, confirmation_no_slot_available) }
+      end
+
       it "because of a slot not being available" do
         email = subject.booking_rejection_email(sample_visit, confirmation_no_slot_available)
         expect(email.subject).to eq("Visit cannot take place: your visit for 7 July 2013 could not be booked")
@@ -390,6 +405,11 @@ RSpec.describe VisitorMailer do
     end
 
     context "booking receipt sent" do
+      it "attempts spam and bounce resets" do
+        expect_any_instance_of(SpamAndBounceResets).to receive(:perform_resets)
+        subject.booking_receipt_email(sample_visit, token).deliver_now
+      end
+
       it "sends out an e-mail with a date in the subject" do
         email = subject.booking_receipt_email(sample_visit, "token")
         expect(email.subject).to eq("Not booked yet: we've received your visit request for 7 July 2013")
