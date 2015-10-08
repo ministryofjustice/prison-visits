@@ -38,7 +38,7 @@
           - if index == 0
             %p.form-hint You must be over 18 to book a visit.
           %p.form-hint.datefield-hint eg 28 04 1996
-        = render partial: 'shared/visitors_details/dob', locals: { visitor: visit.visitors[index.to_i], index: index }
+        = render partial: 'shared/visitors_details/dob', locals: { visitor: visit.visitors[index.to_i], index: index, js_template: js_template }
 
   - if index == 0
 
