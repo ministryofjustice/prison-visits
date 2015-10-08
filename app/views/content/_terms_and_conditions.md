@@ -107,7 +107,7 @@ We don’t accept liability for loss or damage incurred by users of this service
 This does not affect our liability for death or personal injury arising from our negligence, nor our liability for fraudulent misrepresentation or misrepresentation as to a fundamental matter, nor any other liability which cannot be excluded or limited under applicable law.
 
 ## Contact us
-   
+
 Ministry of Justice
 Digital Services, 11.51
 102 Petty France

@@ -27,9 +27,7 @@
   Date of birth:
   %strong #{booked_visit.prisoner.date_of_birth.strftime("%d/%m/%Y")}
 
-
 %hr
-
 
 %h2 The visitors are:
 
@@ -52,9 +50,7 @@
       Phone:
       %strong #{visitor.phone}
 
-
 %hr
-
 
 %h2 Confirm the visit, or ask the visitor to choose new visit times
 
@@ -63,7 +59,7 @@
   %p
     1. If one of the visit times is available and the visitor(s) are on the prisoner’s contact list, then enter the visit on Prison NOMIS.
 
-  .group{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
+  =group_container(f, :outcome) do
     %p
       2. Choose the available date below to send a confirmation email to the visitor.
 
@@ -84,7 +80,7 @@
     3. If the visitor is not on the prisoner’s contact list they will need to contact the prisoner before booking a visit.
     Select the option below.
 
-  .group{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
+  =group_container(f, :outcome) do
     %p
       %strong
         %label(for='confirmation_outcome_not_on_contact_list')
@@ -95,7 +91,7 @@
     4. If no dates are available select the option below. This will send an email to the visitor asking them to choose new dates on the
     prison visits booking website.
 
-  .group{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
+  =group_container(f, :outcome) do
     %p
       %strong
         %label(for='confirmation_outcome_no_slot_available')
@@ -105,7 +101,7 @@
   %p
     5. If the prisoner does not have any VOs to cover this visit, select the option below.
 
-  .group{ :class => ('validation-error' if f.object.errors.include?(:outcome)) }
+  =group_container(f, :outcome) do
     %p
       %strong
         %label(for='confirmation_outcome_no_vos_left')

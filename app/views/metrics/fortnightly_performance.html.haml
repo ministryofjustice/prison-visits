@@ -13,7 +13,7 @@
         = year
     - else
       = link_to(year, prison_metrics_fortnightly_performance_path(@nomis_id, year: year))
-      
+
 %script#percentile95{languge: 'json'}
   = @percentile95.to_json.html_safe
 %script#percentile50{languge: 'json'}

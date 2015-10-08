@@ -18,8 +18,8 @@ If you don't have one of these forms of ID, you can bring TWO of the following:
 * foreign identity or residents' card
 
 If you don’t have any of the above, you can bring THREE of the following:
-    
+
 * letters from the Department of Work & Pensions
-* tenancy agreement 
-* council tax bill 
-* utility bill 
+* tenancy agreement
+* council tax bill
+* utility bill

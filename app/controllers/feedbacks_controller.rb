@@ -23,6 +23,9 @@ class FeedbacksController < ApplicationController
   private
 
   def feedback_params
-    params.require(:feedback).permit(:referrer, :text, :email, :user_agent, :prison)
+    params.
+      require(:feedback).
+      permit(:referrer, :text, :email, :user_agent, :prison).
+      merge(user_agent: request.headers['HTTP_USER_AGENT'])
   end
 end

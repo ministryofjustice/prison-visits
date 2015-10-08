@@ -10,25 +10,22 @@
     at
     %strong #{@visit.prisoner.prison_name}
     were available.
-  
+
   %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
     - @visit.slots.each_with_index do |slot, index|
       - if slot.date.present?
-        - unless index == 0 
+        - unless index == 0
           %br
         #{index + 1}. #{Date.parse(slot.date).strftime("%A %e %B")}, #{display_time_slot(slot.times)}
-  
-  %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } Please visit #{link_to('www.gov.uk/prison-visits', 'http://www.gov.uk/prison-visits')} to choose some alternative dates.
 
+  %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } Please visit #{link_to('www.gov.uk/prison-visits', 'http://www.gov.uk/prison-visits')} to choose some alternative dates.
 
 - when Confirmation::NOT_ON_CONTACT_LIST
   %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } You have tried to book a visit but not all visitors are on the prisoner’s contact list.
   %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } You need to contact the prisoner to be added to the contact list.
 
-
 - when Confirmation::NO_VOS_LEFT
   %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } You have tried to book a visit but the prisoner you want to visit has not got any visiting allowance left. You need to contact the prisoner to find out more about their visiting allowance.
-
 
 - when Confirmation::NO_ALLOWANCE
   %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } We’re sorry, but the prisoner you want to visit has not got any visiting allowance left for the dates you’ve chosen.
@@ -41,16 +38,13 @@
 
     %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } #{@visit.prisoner.first_name} #{initial ? @visit.prisoner.last_initial : @visit.prisoner.last_name} will have their full visiting allowance (VO) renewed on #{Date.parse(@confirmation.renew_vo).strftime("%A %e %B")}.
 
-
 - when Confirmation::PRISONER_INCORRECT
 
   %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } Your visit cannot take place as you haven’t given correct information for the prisoner. Eg, the prisoner’s name, number or date of birth is incorrect. Contact the prisoner to get up-to-date information.
 
-
 - when Confirmation::PRISONER_NOT_PRESENT
 
   %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } Your visit cannot take place as the prisoner you want to visit has moved prison. They should contact you about where they are now. You can also use the #{link_to('find a prisoner service', 'http://www.gov.uk/find-prisoner')}.
-
 
 - else
   - if @confirmation.visitor_not_listed
@@ -64,9 +58,8 @@
   - elsif @confirmation.visitor_banned
     %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } Your visit cannot take place. #{@confirmation.banned_visitors.join(', ').gsub(';', ' ')} should have received a letter to say that they’re banned from visiting the prison at the moment. Get in touch with the prison for more information.
 
-  - else 
+  - else
     - raise 'bad reason'
-
 
 - if @message_from_prison
   %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }= @message_from_prison
@@ -79,4 +72,3 @@
 
 %p
   %small Visit ID: #{@visit.visit_id}
-

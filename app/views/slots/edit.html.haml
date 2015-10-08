@@ -7,7 +7,6 @@
     %h2#error-heading You need to fix the errors on this page before continuing.
     %p You need to select a date and time for your visit.
 
-
 .SlotPicker{ :"data-today" => Date.today }
 
   .right-column.visible--js-enabled
@@ -73,7 +72,6 @@
 
     .SlotPicker-choices.visible--js-enabled
       %p.SlotPicker-promoteHelp Use the arrows to put your visit choices in the order that suits you best.
-
 
   = form_for visit, url: slots_path, :html => { :class => 'slot-form' } do |f|
 

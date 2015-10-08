@@ -1,7 +1,6 @@
 - content_for :page_title do
   = page_title(yield(:header))
 
-
 - content_for :stylesheets do
   %script(src='/modernizr.custom.85598.js')
   /[if IE 6]
@@ -11,16 +10,14 @@
   /[if IE 8]
     = stylesheet_link_tag "application-ie8", media: "all"
   = "<!--[if gt IE 8]><!-->#{stylesheet_link_tag("application", media: "all")}<!--<![endif]-->".html_safe
-  = stylesheet_link_tag "back-office", media: "all" if controller.controller_name == 'confirmations'
-
+  - if controller.controller_name == 'confirmations'
+    = stylesheet_link_tag "back-office", media: "all"
 
 - content_for :head do
   %meta{name: 'msapplication-config', content: 'none'}
   = csrf_meta_tag
 
-
 - content_for :js_gt_ie, controller.controller_name == 'confirmations' ? '5' : '6'
-
 
 - content_for :javascripts do
   = javascript_include_tag "application"
@@ -29,7 +26,7 @@
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
- 
+
     ga('create', '#{config_item :ga_id}', 'service.gov.uk');
     #{yield :analytics}
     ga('set', 'anonymizeIp', true);
@@ -38,12 +35,10 @@
     :javascript
       moj.log = function(){}; // Silence hiring banner
 
-
 - content_for :body_classes, "#{config_item(:phase).to_s.downcase} #{config_item(:product_type).to_s.downcase} #{controller.controller_name} #{controller.action_name}"
 
-
 - content_for :cookie_message do
-  GOV.UK uses cookies to make the site simpler. 
+  GOV.UK uses cookies to make the site simpler.
   = succeed '.' do
     = link_to "Find out more about cookies", cookies_path
 
@@ -56,7 +51,7 @@
             %a= link_to 'Booking staff information', staff_path
 
         %p
-          This is a new service. If you need any help with using it, please 
+          This is a new service. If you need any help with using it, please
           = succeed "." do
             = link_to("contact us", new_feedback_path(referrer: request.original_url))
 
@@ -70,14 +65,12 @@
 
         - if notice.present?
           %p.validation-summary= notice
-        
-        = yield
 
+        = yield
 
 - content_for :footer_support_links do
   %li= link_to "Cookies", cookies_path
   %li= link_to "Terms and Conditions", terms_and_conditions_path
   %li= link_to "Contact us", new_feedback_path(referrer: request.original_url)
-
 
 = render template: "layouts/moj_template"

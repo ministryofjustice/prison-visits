@@ -68,4 +68,27 @@ module ApplicationHelper
     options = Rails.application.config.redcarpet_markdown_options
     ::Redcarpet::Markdown.new(renderer, options).render(source).html_safe
   end
+
+  def field_error(form, name)
+    errors = form.object.errors[name]
+    return '' unless errors.any?
+    content_tag(:span, class: 'validation-message') { errors.first }
+  end
+
+  def error_container(form, name, options = {}, &blk)
+    if form.object.errors.include?(name)
+      klass = [options[:class], 'validation-error'].compact.join(' ')
+    else
+      klass = options[:class]
+    end
+    content_tag(:div, options.merge(class: klass), &blk)
+  end
+
+  def group_container(form, name, options = {}, &blk)
+    error_container(form, name, options.merge(class: 'group'), &blk)
+  end
+
+  def field_container(form, name, options = {}, &blk)
+    error_container(form, name, options.merge(class: 'group'), &blk)
+  end
 end

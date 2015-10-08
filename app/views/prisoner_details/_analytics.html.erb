@@ -1,0 +1,6 @@
+<%= content_for :analytics do %>
+  var serverTime = <%= Time.now.to_f %>;
+  var clientTime = (new Date()).valueOf() / 1000;
+  var offset = clientTime - serverTime;
+  ga('set', 'metric7', parseInt(offset, 10));
+<% end %>

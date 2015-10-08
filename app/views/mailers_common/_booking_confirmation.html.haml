@@ -19,16 +19,14 @@
 
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
   - visitors.each_with_index do |visitor, index|
-    - unless index == 0 
+    - unless index == 0
       %br
     Visitor #{index + 1}:
     %strong #{first_name(visitor)} #{initial ? last_initial(visitor) : last_name(visitor)}
 
-
 - if @confirmation.canned_response && @confirmation.vo_number != 'none'
 
   %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } Your reference number is: #{@confirmation.vo_number}
-
 
 - if @confirmation.visitor_not_listed or @confirmation.visitor_banned
 
@@ -46,15 +44,13 @@
 
   - if @confirmation.visitor_banned
 
-    %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } Banned visitors should have received a letter to say that they’re banned from visiting the prison at the moment. Get in touch with the prison for more information. 
-
+    %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } Banned visitors should have received a letter to say that they’re banned from visiting the prison at the moment. Get in touch with the prison for more information.
 
 - if @confirmation.closed_visit
 
   %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
     %strong This is a closed visit:
     the prisoner will be behind a glass screen in a separate area rather than in the visiting hall.
-
 
 %h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' } Cancel or change this visit
 
@@ -74,11 +70,9 @@
     email:
     %strong #{prison_email}
 
-
 %h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' } Add this email to your address book
 
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }  To stop visit confirmation emails going to your spam or junk folder please add no-reply@email.prisonvisits.service.gov.uk to your address book or safe senders list.
-
 
 %h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' } What to bring when you visit
 
@@ -87,26 +81,21 @@
 
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } If you have any questions about ID requirements, please contact the prison.
 
-
 %h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' } If you’re bringing someone else’s child
 
-%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } You’ll need a letter from that child’s parents giving you permission to accompany their child. 
-
+%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } You’ll need a letter from that child’s parents giving you permission to accompany their child.
 
 %h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' } What to expect when visiting prison
 
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } You will be searched before entering the prison visiting room. Prison staff may check  your pockets, pat you down and ask you to go through a metal detector. Dogs may also be used to detect illegal substances.
 
-
 %h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' } What not to bring
 
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } Please don’t bring anything restricted or illegal to the prison. The #{link_to(@visit.prisoner.prison_name + ' prison page', prison_url(@visit))} has more information about what you can bring.
 
-
 %h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' } Your data
 
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } The Ministry of Justice (HM Prison Service) uses and retains the personal data of visitors for the purposes of the safe and secure provision of Prison Services, including those related to the management and rehabilitation of offenders. Access to the establishment can only be granted by supplying the prescribed information in order to ensure and maintain a safe and secure environment for all. You have the right to request details as to the personal information we hold for you; and subsequently request that we correct any personal information if it is found to be inaccurate or out of date. We will not share your information with other organisations unless it is required for the purposes of prevention, detection of crime, apprehension, prosecution, and management of offenders; prevention of terrorism; National  Security; or required to do by law.
-
 
 %h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' } Need help or have a question?
 

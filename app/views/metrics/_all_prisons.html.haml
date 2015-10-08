@@ -2,39 +2,29 @@
   %table
     %tr
       %th
-      %th{colspan: 5}
-        Number of visits
-      %th{colspan: 2}
-        End to end
-      %th{colspan: 4}
-        Percent rejected
+      %th{colspan: 5} Number of visits
+      %th{colspan: 2} End to end
+      %th{colspan: 4} Percent rejected
+
     %tr
-      %td.prison-name
-        Prison name
-      %td
-        Total
-      %td
-        Waiting
-      %td
-        Overdue
-      %td
-        Rejected
-      %td
-        Confirmed
-      %td
-        median days
-      %td
-        95th percentile days
-      %td
-        Overall
-      %td
-        No slot
-      %td
-        Not on contact list
-      %td
-        No VOs left
-    - @nomis_ids.each_with_index do |nomis_id, i|
-      %tr{class: i.even? ? 'even' : 'odd'}
+      %td.prison-name Prison name
+
+      %td Total
+      %td Waiting
+      %td Overdue
+      %td Rejected
+      %td Confirmed
+
+      %td Median days
+      %td 95th percentile days
+
+      %td Overall
+      %td No slot
+      %td Not on contact list
+      %td No VOs left
+
+    - @nomis_ids.each do |nomis_id|
+      %tr{class: cycle('odd', 'even')}
         %td.prison-name
           = link_to(prison_name_for_id(nomis_id), prison_metrics_fortnightly_path(nomis_id))
         %td.narrow.left-border
@@ -59,4 +49,3 @@
           = display_percent(dataset.percent_rejected(nomis_id, Confirmation::NOT_ON_CONTACT_LIST))
         %td.narrow
           = display_percent(dataset.percent_rejected(nomis_id, Confirmation::NO_VOS_LEFT))
-

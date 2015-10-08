@@ -11,7 +11,7 @@ Photo IDs include:
 * senior citizen's public transport photo pass issued by a local authority
 * employer's or student ID card but only if this has a photo and clearly shows your name and the issuing employer or educational establishment
 
-Official documents include:  
+Official documents include:
 
 * birth or marriage certificate
 * benefits book

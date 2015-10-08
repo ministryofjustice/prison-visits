@@ -41,7 +41,7 @@
       = @dataset.total
     %td
       = @dataset.waiting
-      
+
 %h2
   End to end processing time
 %script#end_to_end_times{language: 'json'}
@@ -60,4 +60,3 @@
     displayHistogram('#end_to_end', JSON.parse(d3.select('#end_to_end_times').html()), true);
     displayHistogram('#waiting', JSON.parse(d3.select('#waiting_times').html()), false);
   });
-

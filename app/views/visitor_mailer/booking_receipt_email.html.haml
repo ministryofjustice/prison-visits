@@ -1,7 +1,6 @@
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
   Dear #{@visit.visitors.first.first_name},
 
-
 %h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' }
   Your visit is not booked yet
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
@@ -11,12 +10,10 @@
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
   If you don’t receive a confirmation email by #{when_to_expect_reply}, please check your spam or junk folder for it. You need to do this on a computer or tablet (rather than a smart phone).
 
-
 %h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' }
   Add this email to your address book
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
   To stop visit confirmation emails going to your spam or junk folder please add no-reply@email.prisonvisits.service.gov.uk to your address book or safe senders list.
-
 
 %h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' }
   Visit request details
@@ -30,7 +27,7 @@
     - if slot.date.present?
       - if index == 0
         First choice:
-      - else 
+      - else
         Alternative #{index}:
       %strong #{Date.parse(slot.date).strftime("%A %e %B")}, #{display_time_slot(slot.times)}
 
@@ -40,7 +37,6 @@
   %br
   Prisoner number:
   %strong #{@visit.prisoner.number.upcase}
-
 
 %h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' }
   Cancel this visit request
@@ -56,7 +52,7 @@
     %strong #{prison_email}
 
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
-  Need help or want to make a complaint? If you have a question or need any help with the online visits service, please 
+  Need help or want to make a complaint? If you have a question or need any help with the online visits service, please
   = succeed '.' do
     %a{ :href => new_feedback_url } contact us
 

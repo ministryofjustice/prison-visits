@@ -1,0 +1,21 @@
+<% %i[day month year].zip([3, 2, 1]).each do |field_name, i| %>
+  <div class="datefield form-group form-group-<%= field_name %>">
+    <label for="visitor_date_of_birth_<%= i %>i_<%= index %>">
+      <%= t(field_name, scope: 'date.fields') %>
+    </label>
+    <input
+      class="form-control <%= field_name %>"
+      value="<%=
+        visitor.date_of_birth && !js_template ?
+          visitor.date_of_birth.send(field_name).to_s.rjust(2, '0') : ''
+        %>"
+      type="number"
+      min="<%= visitor.minimum_date_of_birth.send(field_name) %>"
+      max="<%= visitor.maximum_date_of_birth.send(field_name) %>"
+      pattern="[0-9]*",
+      name="visit[visitor][][date_of_birth(<%= i %>i)]"
+      id="visitor_date_of_birth_<%= i %>i_<%= index %>"
+      aria-describedby="dobHint"
+    />
+  </div>
+<% end %>
