@@ -6,7 +6,14 @@ class PrisonerDetailsController < ApplicationController
   def edit
     session[:visit] ||= new_session
     logstasher_add_visit_id(visit.visit_id)
-    response.set_cookie 'cookies-enabled', value: 1, secure: request.ssl?, httponly: true, domain: service_domain, path: '/'
+    response.set_cookie(
+      'cookies-enabled',
+      value: 1,
+      secure: request.ssl?,
+      httponly: true,
+      domain: service_domain,
+      path: '/'
+    )
   end
 
   def update
@@ -23,7 +30,8 @@ class PrisonerDetailsController < ApplicationController
   def prisoner_params
     dob = [:'date_of_birth(3i)', :'date_of_birth(2i)', :'date_of_birth(1i)']
     if params[:date_of_birth_native].present?
-      params[:prisoner][:date_of_birth] = Date.parse(params[:date_of_birth_native])
+      params[:prisoner][:date_of_birth] =
+        Date.parse(params[:date_of_birth_native])
       dob.map{|d| params[:prisoner].delete(d)}
     else
       date_of_birth = dob.map do |key|
@@ -31,13 +39,20 @@ class PrisonerDetailsController < ApplicationController
       end
       params[:prisoner][:date_of_birth] = Date.new(*date_of_birth.reverse)
     end
-    ParamUtils.trim_whitespace_from_values(params.require(:prisoner).permit(:first_name, :last_name, :date_of_birth, :number, :prison_name))
+    trim_whitespace_from_params %i[
+      first_name last_name date_of_birth number prison_name
+    ]
   rescue ArgumentError
-    ParamUtils.trim_whitespace_from_values(params.require(:prisoner).permit(:first_name, :last_name, :number, :prison_name))
+    trim_whitespace_from_params %i[first_name last_name number prison_name]
   end
 
   def new_session
-    Visit.new(visit_id: SecureRandom.hex, prisoner: Prisoner.new, visitors: [], slots: [])
+    Visit.new(
+      visit_id: SecureRandom.hex,
+      prisoner: Prisoner.new,
+      visitors: [],
+      slots: []
+    )
   end
 
   def service_domain
@@ -46,5 +61,13 @@ class PrisonerDetailsController < ApplicationController
 
   def killswitch_active?
     ENV['API_KILLSWITCH']
+  end
+
+  private
+
+  def trim_whitespace_from_params(whitelisted_params)
+    ParamUtils.trim_whitespace_from_values(
+      params.require(:prisoner).permit(*whitelisted_params)
+    )
   end
 end

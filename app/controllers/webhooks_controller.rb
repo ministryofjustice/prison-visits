@@ -33,7 +33,7 @@ class WebhooksController < ApplicationController
 
   def handle_blacklisted!
     if BLACKLISTED_SENDERS.include? parsed_email.from.local.downcase
-      logger.error "Blacklisted sender detected. Skipping message.\n #{parsed_email.inspect}"
+      logger.error "Blacklisted sender issue.\n #{parsed_email.inspect}"
       render text: 'Sender blacklisted'
     end
   end
@@ -45,7 +45,7 @@ class WebhooksController < ApplicationController
       render text: "Accepted."
     end
   rescue StandardError => e
-    logger.error "Issue with e-mail detected ( PrisonMailer ): #{parsed_email.inspect}\nexception: #{e}"
+    logger.error "PrisonMailer issue #{parsed_email.inspect}\nexception: #{e}"
     raise
   end
 
@@ -56,7 +56,7 @@ class WebhooksController < ApplicationController
       render text: "Accepted."
     end
   rescue StandardError => e
-    logger.error "Issue with e-mail detected ( VisitorMailer ): #{parsed_email.inspect}\nexception: #{e}"
+    logger.error "VisitorMailer issue #{parsed_email.inspect}\nexception: #{e}"
     raise
   end
 
@@ -69,7 +69,8 @@ class WebhooksController < ApplicationController
   end
 
   def authorized?
-    params[:auth].present? && params[:auth].secure_compare(ENV['WEBHOOK_AUTH_KEY'])
+    params[:auth].present? &&
+      params[:auth].secure_compare(ENV['WEBHOOK_AUTH_KEY'])
   end
 
   def handle_conditions(&_return_if_performed)

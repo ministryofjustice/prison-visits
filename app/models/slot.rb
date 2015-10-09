@@ -11,7 +11,9 @@ class Slot
   validate do
     if index == 0
       errors.add(:date, 'must be given') unless date.present? && date.size == 10
-      errors.add(:times, 'must be given') unless times.present? && times.size == 9
+      unless times.present? && times.size == 9
+        errors.add(:times, 'must be given')
+      end
     end
   end
 

@@ -6,15 +6,18 @@ class ConfirmationsController < ApplicationController
     reset_session if params[:state]
     @confirmation = Confirmation.new
     metrics_logger.record_link_click(booked_visit)
+
     if metrics_logger.processed?(booked_visit)
       reset_session
       STATSD_CLIENT.increment('pvb.app.already_booked')
       render '_already_booked'
     end
+
     if metrics_logger.request_cancelled?(booked_visit)
       reset_session
       render '_request_cancelled'
     end
+
     logstasher_add_visit_id(booked_visit.visit_id)
   rescue ActiveSupport::MessageVerifier::InvalidSignature => e
     render '_bad_state', status: 400
@@ -24,21 +27,40 @@ class ConfirmationsController < ApplicationController
 
   def create
     logstasher_add_visit_id(booked_visit.visit_id)
-    unless params[:confirmation] && (@confirmation = Confirmation.new(confirmation_params)).valid?
+    unless set_confirmation_params
       return render :new
     end
 
     if @confirmation.slot_selected?
-      token = encryptor.encrypt_and_sign(attach_vo_number(remove_unused_slots(booked_visit, @confirmation.slot), @confirmation))
-      VisitorMailer.booking_confirmation_email(booked_visit, @confirmation, token).deliver_later
+      token = encryptor.encrypt_and_sign(
+        attach_vo_number(
+          remove_unused_slots(
+            booked_visit, @confirmation.slot),
+          @confirmation)
+      )
+
+      VisitorMailer.booking_confirmation_email(
+        booked_visit,
+        @confirmation,
+        token
+      ).deliver_later
+
       STATSD_CLIENT.increment("pvb.app.visit_confirmed")
       metrics_logger.record_booking_confirmation(booked_visit)
     else
-      VisitorMailer.booking_rejection_email(booked_visit, @confirmation).deliver_later
+      VisitorMailer.booking_rejection_email(
+        booked_visit, @confirmation
+      ).deliver_later
+
       STATSD_CLIENT.increment("pvb.app.visit_rejected")
-      metrics_logger.record_booking_rejection(booked_visit, @confirmation.outcome)
+      metrics_logger.record_booking_rejection(
+        booked_visit,
+        @confirmation.outcome
+      )
     end
-    PrisonMailer.booking_receipt_email(booked_visit, @confirmation).deliver_later
+    PrisonMailer.booking_receipt_email(booked_visit, @confirmation).
+      deliver_later
+
     STATSD_CLIENT.increment("pvb.app.visit_processed")
     redirect_to show_confirmation_path(visit_id: booked_visit.visit_id)
   end
@@ -53,8 +75,21 @@ class ConfirmationsController < ApplicationController
       legacy_data_fixes(encryptor.decrypt_and_verify(params[:state]))
   end
 
+  private
+
+  def set_confirmation_params
+    params[:confirmation] && (set_new_confirmation_params).valid?
+  end
+
+  def set_new_confirmation_params
+    @confirmation = Confirmation.new(confirmation_params)
+  end
+
   def confirmation_params
-    params.require(:confirmation).permit(:outcome, :message, :vo_number, :no_vo, :no_pvo, :renew_vo, :renew_pvo, :closed_visit, :visitor_not_listed, :visitor_banned, :canned_response, banned_visitors: [], unlisted_visitors: [])
+    params.require(:confirmation).permit(
+      :outcome, :message, :vo_number, :no_vo, :no_pvo, :renew_vo,
+      :renew_pvo, :closed_visit, :visitor_not_listed, :visitor_banned,
+      :canned_response, banned_visitors: [], unlisted_visitors: [])
   end
 
   LEGACY_PRISON_NAMES = {
@@ -84,8 +119,6 @@ class ConfirmationsController < ApplicationController
   end
 
   def attach_vo_number(visit, confirmation)
-    visit.dup.tap do |v|
-      v.vo_number = confirmation.vo_number
-    end
+    visit.dup.tap { |v| v.vo_number = confirmation.vo_number }
   end
 end

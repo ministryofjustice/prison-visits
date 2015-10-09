@@ -13,7 +13,7 @@ class VisitorMailer < ActionMailer::Base
   attr_reader :visit
   helper_method :visit
 
-  default('List-Unsubscribe' => '<https://www.prisonvisits.service.gov.uk/unsubscribe>')
+  default('List-Unsubscribe' => Rails.configuration.unsubscribe_url)
 
   def booking_confirmation_email(visit, confirmation, token)
     @visit = visit
@@ -21,20 +21,28 @@ class VisitorMailer < ActionMailer::Base
     @confirmation = confirmation
     @token = token
 
-    mail(from: sender,
-         reply_to: prison_mailbox_email,
-         to: recipient,
-         subject: "Visit confirmed: your visit for #{confirmation_date} has been confirmed")
+    mail(
+      from: sender,
+      reply_to: prison_mailbox_email,
+      to: recipient,
+      subject: default_i18n_subject(
+        slot_date: Date.parse(@slot.date).strftime('%e %B %Y').gsub(/^ /,'')
+      )
+    )
   end
 
   def booking_rejection_email(visit, confirmation)
     @visit = visit
     @confirmation = confirmation
 
-    mail(from: sender,
-         reply_to: prison_mailbox_email,
-         to: recipient,
-         subject: "Visit cannot take place: your visit for #{rejection_date} could not be booked")
+    mail(
+      from: sender,
+      reply_to: prison_mailbox_email,
+      to: recipient,
+      subject: default_i18n_subject(
+        first_date: first_date.strftime('%e %B %Y').gsub(/^ /,'')
+      )
+    )
   end
 
   def booking_receipt_email(visit, token)
@@ -43,10 +51,14 @@ class VisitorMailer < ActionMailer::Base
 
     SpamAndBounceResets.new(@visit.visitors.first).perform_resets
 
-    mail(from: sender,
-         reply_to: prison_mailbox_email,
-         to: recipient,
-         subject: "Not booked yet: we've received your visit request for #{receipt_date}")
+    mail(
+      from: sender,
+      reply_to: prison_mailbox_email,
+      to: recipient,
+      subject: default_i18n_subject(
+        first_date: first_date.strftime('%e %B %Y').gsub(/^ /,'')
+      )
+    )
   end
 
   def sender

@@ -1,6 +1,9 @@
 namespace :maintenance do
   task :sort_yaml do
-    ['config/prison_data_production.yml', 'config/prison_data_staging.yml'].each do |filename|
+    [
+      'config/prison_data_production.yml',
+      'config/prison_data_staging.yml'
+    ].each do |filename|
       YAML.load_file(filename).tap do |yaml|
         yaml.each_pair do |_prison, data|
           array = data['unbookable']
@@ -19,6 +22,12 @@ namespace :maintenance do
   end
 
   task :update_bank_holidays do
-    `curl -k https://www.gov.uk/bank-holidays.json -o config/bank-holidays.json`
+    sh(
+      'curl',
+      '--insecure',
+      'https://www.gov.uk/bank-holidays.json',
+      '--output',
+      'config/bank-holidays.json'
+    )
   end
 end

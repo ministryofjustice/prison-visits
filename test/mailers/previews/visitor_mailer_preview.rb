@@ -1,4 +1,5 @@
 class VisitorMailerPreview < ActionMailer::Preview
+  # rubocop:disable Metrics/LineLength
   include MailerPreviewCommon
 
   def booking_confirmation

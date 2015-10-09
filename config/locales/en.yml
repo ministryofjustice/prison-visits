@@ -12,6 +12,13 @@ en:
         text: Your comments
     errors:
       models:
+        prisoner:
+          attributes:
+            number:
+              message: "must be a valid prisoner number" # eg a1234aa
+            prison_name:
+              inclusion:
+                message: "must be chosen"
         visitor:
           attributes:
             date_of_birth:
@@ -20,6 +27,14 @@ en:
               too_short: 'must include area code'
       messages:
         four_digit_year: 'year must be four digits'
+        visit:
+          attributes:
+            slots:
+              too_short: 'must be at least one'
+              too_long: 'must be at most three'
+            visitors:
+              at_least_one_adult: "There must be at least one adult visitor"
+              max_3_adults: 'You can book a maximum of 3 visitors over the age of %{adult_age} on this visit'
   email_validator:
     errors:
       unparseable: "is not a valid address"
@@ -32,3 +47,28 @@ en:
         Check your spam folder too
       bounced: >
         needs to be checked as messages have been returned in the past
+  controllers:
+    shared:
+      ensure_visit_integrity: You need to complete missing information to start or continue your visit request
+      session_timed_out: Your session timed out because no information was entered for more than 20 minutes.
+      max_visitors: "You may only have a maximum of #{Visit::MAX_VISITORS} visitors"
+    visit:
+      update: "You need to confirm that you want to cancel this visit."
+  feedback_mailer:
+    new_feedback:
+      subject: "PVB feedback: %{referrer}"
+  prison_mailer:
+    booking_request_email:
+      subject: "Visit request for %{full_name} on %{date}"
+    booking_receipt_email:
+      subject_confirmation: "COPY of booking confirmation for %{full_name}"
+      subject_rejection: "COPY of booking rejection for %{full_name}"
+    booking_cancellation_receipt_email:
+      subject: "CANCELLED: %{full_name} on %{date}"
+  visitor_mailer:
+    booking_confirmation_email:
+      subject: "Visit confirmed: your visit for %{slot_date} has been confirmed"
+    booking_rejection_email:
+      subject: "Visit cannot take place: your visit for %{first_date} could not be booked"
+    booking_receipt_email:
+      subject: "Not booked yet: we've received your visit request for %{first_date}"

@@ -24,15 +24,19 @@ module VisitorsManipulator
     go_forward = visit.visitors.all?(&:valid?) && visit.valid?(:visitors_set)
 
     if params[:next] == 'Add another visitor'
-      if visit.visitors.size < Visit::MAX_VISITORS
-        visit.visitors << model_class.new
-        redirect_to this_path
-      else
-        redirect_to this_path, notice: "You may only have a maximum of #{Visit::MAX_VISITORS} visitors"
-      end
+      prepare_next_visitor
     else
       redirect_to go_forward ? next_path : this_path
     end
+  end
+
+  def prepare_next_visitor
+    if visit.visitors.size < Visit::MAX_VISITORS
+      visit.visitors << model_class.new
+    else
+      flash[:notice] = I18n.t(:max_visitors, scope: 'controllers.shared')
+    end
+    redirect_to this_path
   end
 
   private
@@ -62,6 +66,8 @@ module VisitorsManipulator
           "#{date_of_birth.inspect}\nexception: #{e}"
       end
     end
-    ParamUtils.trim_whitespace_from_values(params.require(:visit).require(:visitor))
+    ParamUtils.trim_whitespace_from_values(
+      params.require(:visit).require(:visitor)
+    )
   end
 end

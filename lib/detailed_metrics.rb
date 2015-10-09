@@ -16,7 +16,8 @@ class DetailedMetrics
   end
 
   def time_since_last_unprocessed
-    @scoped_model.waiting.minimum('EXTRACT(EPOCH FROM NOW() - requested_at)').to_i
+    @scoped_model.waiting.minimum('EXTRACT(EPOCH FROM NOW() - requested_at)').
+      to_i
   end
 
   def week_hour_breakdown(column)
@@ -44,7 +45,9 @@ class DetailedMetrics
   end
 
   def waiting_times
-    @scoped_model.waiting.pluck("EXTRACT(epoch FROM NOW() - requested_at) AS delay")
+    @scoped_model.waiting.pluck(
+      "EXTRACT(epoch FROM NOW() - requested_at) AS delay"
+    )
   end
 
   def total
