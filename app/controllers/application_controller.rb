@@ -23,12 +23,11 @@ class ApplicationController < ActionController::Base
   end
 
   def valid_auth_key?
-    auth_key &&
-      params[:key] &&
-      ActiveSupport::SecurityUtils.secure_compare(
-        auth_key,
-        params[:key]
-      )
+    pad_execution_time 0.1 do
+      auth_key &&
+        params[:key] &&
+        auth_key == params[:key]
+    end
   end
 
   delegate :prison_name, :visit_id, to: :visit, allow_nil: true
@@ -75,6 +74,14 @@ class ApplicationController < ActionController::Base
       )
       redirect_to edit_prisoner_details_path
     end
+  end
+
+  def pad_execution_time(execution_time)
+    start = Time.zone.now
+    result = yield
+    stop = Time.zone.now
+    sleep execution_time - (stop - start)
+    result
   end
 
   private
