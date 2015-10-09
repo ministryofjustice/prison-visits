@@ -93,7 +93,7 @@ RSpec.describe Prison, type: :model do
     describe '.nomis_ids' do
       before do
         allow(Rails.configuration).to receive(:prison_data).
-          and_return([double('prison', nomis_id: 'WSI')])
+          and_return([double('prison', nomis_id: 'WSI').as_null_object])
       end
       it 'returns all nomis ids' do
         expect(described_class.nomis_ids).to match_array(['WSI'])
