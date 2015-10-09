@@ -52,20 +52,32 @@ RSpec.describe Visit do
     expect(sample_visit.valid?(:visitors_set)).to be_falsey
   end
 
-  context "given a prison which treats a child as an adult for seating purposes" do
-    it "requires at least one real adult" do
+  context "a prison which treats a child as an adult for seating purposes" do
+    before do
       sample_visit.prisoner.prison_name = 'Deerbolt'
       sample_visit.visitors = []
+    end
 
-      [double(age: 19),
-       double(age: 10),
-       double(age: 10),
-       double(age: 9)].each do |visitor|
-        sample_visit.visitors << visitor
-        expect(sample_visit.valid?(:visitors_set)).to be_truthy
-      end
+    let(:group_with_adult) do
+      [double(age: 19), double(age: 10),
+       double(age: 10), double(age: 9)
+      ].each { |v| sample_visit.visitors << v }
+    end
 
-      sample_visit.visitors << double(age: 10)
+    let(:group_of_children) do
+      [double(age: 9), double(age: 10),
+       double(age: 10), double(age: 9)
+      ].each { |v| sample_visit.visitors << v }
+    end
+
+    it "requires at least one real adult" do
+      group_with_adult
+      expect(sample_visit.valid?(:visitors_set)).to be_truthy
+    end
+
+    it "fails if there is not at least one adult" do
+      group_of_children
+      sample_visit.valid?
       expect(sample_visit.valid?(:visitors_set)).to be_falsey
     end
   end
@@ -79,7 +91,7 @@ RSpec.describe Visit do
   end
 
   it "knows if a visitor is an adult or not" do
-    expect(sample_visit.adult?(adult_visitor)).to be_truthy
+      expect(sample_visit.adult?(adult_visitor)).to be_truthy
     expect(sample_visit.adult?(child_visitor)).to be_falsey
   end
 
