@@ -2,7 +2,7 @@ class Prison
 
   attr_accessor :address, :adult_age, :booking_window, :canned_responses,
     :email, :enabled, :finder_slug, :lead_days,
-    :name, :nomis_id, :phone,
+    :name, :nomis_id, :phone, :reason,
     :slot_anomalies, :slots, :unbookable,
     :works_weekends
 

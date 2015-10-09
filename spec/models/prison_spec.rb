@@ -10,6 +10,9 @@ RSpec.describe Prison, type: :model do
     ) }
 
   let!(:basic_prison) { described_class.create(basic_attributes) }
+  let!(:disabled_prison) {
+    described_class.create(basic_attributes.merge('enabled' => false))
+  }
 
   context 'class methods' do
     describe '.find' do
@@ -54,6 +57,16 @@ RSpec.describe Prison, type: :model do
                 to raise_error(described_class::PrisonNotFound)
             end
           end
+        end
+      end
+
+      describe '.enabled' do
+        it 'returns only enabled prisons' do
+          expect(described_class.enabled.all?{ |p| p.enabled? }).to be_truthy
+        end
+
+        it 'does not return disabled prisons' do
+          expect(described_class.enabled).not_to include(disabled_prison)
         end
       end
     end
