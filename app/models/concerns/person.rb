@@ -36,7 +36,7 @@ module Person
   end
 
   def maximum_date_of_birth
-    Time.zone.today
+    Time.zone.today.end_of_year
   end
 
   private
