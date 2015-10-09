@@ -19,7 +19,7 @@ RSpec.describe "Prison data" do
   end
 
   context "enabled prisons" do
-    let(:enabled) { Prison.all.select { |p| p.enabled? } }
+    let(:enabled) { Prison.enabled }
 
     it "each has a nomis_id" do
       expect(enabled.any?{ |p| p.nomis_id.blank? }).to be_falsey
@@ -66,7 +66,7 @@ RSpec.describe "Prison data" do
 
     it "has three character day names as keys" do
       enabled.each do |prison|
-        expect(prison.slots.keys - %w{mon tue wed thu fri sat sun}).to be_empty
+        expect(prison.slots.keys.map(&:to_s) - %w{mon tue wed thu fri sat sun}).to be_empty
       end
     end
   end
