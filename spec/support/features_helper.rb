@@ -1,10 +1,10 @@
 module FeaturesHelper
-  def enter_prisoner_information
+  def enter_prisoner_information(first_name: 'Jimmy', last_name: 'Harris')
     find(:css, ".ui-autocomplete-input").set('Cardiff')
     click_button 'Continue'
 
-    fill_in 'Prisoner first name', with: 'Jimmy'
-    fill_in 'Prisoner last name', with: 'Harris'
+    fill_in 'Prisoner first name', with: first_name
+    fill_in 'Prisoner last name', with: last_name
     fill_in 'prisoner[date_of_birth(3i)]', with: '1'
     fill_in 'prisoner[date_of_birth(2i)]', with: '5'
     fill_in 'prisoner[date_of_birth(1i)]', with: '1969'
@@ -12,10 +12,10 @@ module FeaturesHelper
     click_button 'Continue'
   end
 
-  def enter_visitor_information
+  def enter_visitor_information(first_name: 'Jimmy', last_name: 'Harris')
     within "#visitor-0" do
-      fill_in "Your first name", with: 'Margaret'
-      fill_in "Your last name", with: 'Smith'
+      fill_in "Your first name", with: first_name
+      fill_in "Your last name", with: last_name
       fill_in 'visit[visitor][][date_of_birth(3i)]', with: '1'
       fill_in 'visit[visitor][][date_of_birth(2i)]', with: '6'
       fill_in 'visit[visitor][][date_of_birth(1i)]', with: '1977'
@@ -24,10 +24,10 @@ module FeaturesHelper
     end
   end
 
-  def enter_additional_visitor_information(n, kind)
+  def enter_additional_visitor_information(n, kind, first_name: 'Jimmy', last_name: 'Harris')
     within "#visitor-#{n}" do
-      fill_in "First name", with: 'Andy'
-      fill_in "Last name", with: 'Smith'
+      fill_in "First name", with: first_name
+      fill_in "Last name", with: last_name
       if kind == :adult
         fill_in 'visit[visitor][][date_of_birth(3i)]', with: '1'
         fill_in 'visit[visitor][][date_of_birth(2i)]', with: '6'

@@ -10,6 +10,7 @@ class Visit
   attribute :slots, Array[Slot]
   attribute :visit_id, String
   attribute :vo_number, String
+  attribute :special_requirements, String, default: RandomString.random_string(50)
 
   validates_presence_of :visit_id
   validates_size_of :slots, within: 1..MAX_SLOTS, on: :date_and_time, message: 'must be at least one and at most three'
