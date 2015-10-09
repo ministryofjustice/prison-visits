@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   helper_method :visit
   before_filter :add_extra_sentry_metadata
   protect_from_forgery with: :exception
+  rescue_from ActiveSupport::MessageVerifier::InvalidSignature, with: :bad_state
 
   def self.permit_only_from_prisons
     before_filter :reject_untrusted_ips!
@@ -99,5 +100,11 @@ class ApplicationController < ActionController::Base
 
   def set_error(*partial_key, **options)
     i18n_flash :error, partial_key, options
+  end
+
+  def bad_state(ex)
+    render 'shared/bad_state', status: 400
+    STATSD_CLIENT.increment('pvb.app.bad_state')
+    Raven.capture_exception(ex)
   end
 end
