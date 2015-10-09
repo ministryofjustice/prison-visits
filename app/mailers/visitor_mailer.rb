@@ -25,9 +25,7 @@ class VisitorMailer < ActionMailer::Base
       from: sender,
       reply_to: prison_mailbox_email,
       to: recipient,
-      subject: default_i18n_subject(
-        slot_date: Date.parse(@slot.date).strftime('%e %B %Y').gsub(/^ /,'')
-      )
+      subject: default_i18n_subject(confirmation_date: format_date(slot_date))
     )
   end
 
@@ -39,9 +37,7 @@ class VisitorMailer < ActionMailer::Base
       from: sender,
       reply_to: prison_mailbox_email,
       to: recipient,
-      subject: default_i18n_subject(
-        first_date: first_date.strftime('%e %B %Y').gsub(/^ /,'')
-      )
+      subject: default_i18n_subject(rejection_date: format_date(first_date))
     )
   end
 
@@ -55,9 +51,7 @@ class VisitorMailer < ActionMailer::Base
       from: sender,
       reply_to: prison_mailbox_email,
       to: recipient,
-      subject: default_i18n_subject(
-        first_date: first_date.strftime('%e %B %Y').gsub(/^ /,'')
-      )
+      subject: default_i18n_subject(receipt_date: format_date(first_date))
     )
   end
 
@@ -73,13 +67,11 @@ class VisitorMailer < ActionMailer::Base
     Date.parse(@visit.slots.first.date)
   end
 
-  def receipt_date
-    first_date.strftime('%e %B %Y').gsub(/^ /,'')
+  def slot_date
+    Date.parse(@slot.date)
   end
 
-  alias_method :rejection_date, :receipt_date
-
-  def confirmation_date
-    Date.parse(@slot.date).strftime('%e %B %Y').gsub(/^ /,'')
+  def format_date(date)
+    I18n.l(date, format: :day_date_and_year)
   end
 end

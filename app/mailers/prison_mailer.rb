@@ -34,7 +34,7 @@ class PrisonMailer < ActionMailer::Base
       to: recipient,
       subject: default_i18n_subject(
         full_name: @visit.prisoner.full_name,
-        date: Date.parse(@visit.slots.first.date).strftime('%A %e %B')
+        request_date: formatted_first_slot_date
       )
     )
   end
@@ -78,7 +78,7 @@ class PrisonMailer < ActionMailer::Base
       to: recipient,
       subject: default_i18n_subject(
         full_name: @visit.prisoner.full_name,
-        date: Date.parse(@visit.slots.first.date).strftime('%A %e %B')
+        receipt_date: formatted_first_slot_date
       )
     )
   end
@@ -106,5 +106,9 @@ class PrisonMailer < ActionMailer::Base
 
   def visitors_email_address
     visit.visitors.first.email
+  end
+
+  def formatted_first_slot_date
+    I18n.l(Date.parse(@visit.slots.first.date), format: :day_and_date)
   end
 end
