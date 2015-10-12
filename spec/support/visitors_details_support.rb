@@ -1,7 +1,7 @@
 RSpec.shared_examples "a visitor data manipulator with valid data" do
   context "given prisoner data in the session" do
     before :each do
-      controller.visit.prisoner.prison_name = 'Cardiff'
+      controller.visit.prison_name = 'Cardiff'
     end
 
     let :add_visitor_hash do
@@ -170,7 +170,7 @@ RSpec.shared_examples "a visitor data manipulator with invalid data" do
       end
 
       before :each do
-        controller.visit.prisoner.prison_name = 'Deerbolt'
+        controller.visit.prison_name = 'Deerbolt'
       end
 
       it "allows the visitor to proceed" do

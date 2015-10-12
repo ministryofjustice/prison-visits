@@ -18,7 +18,7 @@
 %h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' }
   Visit request details
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
-  You have requested a visit to #{@visit.prisoner.prison_name} for #{@visit.visitors.size} #{@visit.visitors.size > 1 ? 'people' : 'person'}:
+  You have requested a visit to #{@visit.prison_name} for #{@visit.visitors.size} #{@visit.visitors.size > 1 ? 'people' : 'person'}:
 
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
   - @visit.slots.each_with_index do |slot, index|

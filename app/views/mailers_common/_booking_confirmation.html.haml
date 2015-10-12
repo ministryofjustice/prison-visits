@@ -4,7 +4,7 @@
 
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } Dear #{@visit.visitors.first.first_name},
 
-%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } Your visit to #{@visit.prisoner.prison_name} is now successfully confirmed.
+%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } Your visit to #{@visit.prison_name} is now successfully confirmed.
 
 %h2{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' } #{format_date(@slot.date)}, #{display_time_slot(@slot.times)}
 
@@ -91,7 +91,7 @@
 
 %h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' } What not to bring
 
-%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } Please don’t bring anything restricted or illegal to the prison. The #{link_to(@visit.prisoner.prison_name + ' prison page', prison_url(@visit))} has more information about what you can bring.
+%p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } Please don’t bring anything restricted or illegal to the prison. The #{link_to(@visit.prison_name + ' prison page', prison_url(@visit))} has more information about what you can bring.
 
 %h1{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' } Your data
 

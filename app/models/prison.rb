@@ -26,36 +26,32 @@ class Prison
   attribute :slot_anomalies
   attribute :slots
   attribute :unbookable, Boolean
-  attribute :works_weekends, Boolean, default: false, lazy: true
+  attribute :works_weekends, Boolean,
+    default: false,
+    lazy: true
 
   class PrisonNotFound < StandardError; end
-
-  def self.find(name_or_nomis, raise_error = false)
-    prison = all.detect { |p|
-      p.name == name_or_nomis || p.nomis_id == name_or_nomis
-    }
-    if raise_error && prison.nil?
-      raise PrisonNotFound, "Can't find prison #{name_or_nomis.inspect}"
-    end
-    prison
-  end
-
-  def initialize(opts = {})
-    self.attributes = attributes.merge(opts.symbolize_keys)
-  end
-
-  def self.create(opts = {})
-    prison = new(opts)
-    Rails.configuration.prisons << prison
-    prison
-  end
 
   def self.all
     Rails.configuration.prisons
   end
 
+  def self.create(opts = {})
+    new(opts).tap { |p| Rails.configuration.prisons << p }
+  end
+
   def self.enabled
-    all.select{ |p| p.enabled == true }
+    all.select(&:enabled)
+  end
+
+  def self.find(name_or_nomis)
+    all.detect { |p|
+      p.name == name_or_nomis || p.nomis_id == name_or_nomis
+    }
+  end
+
+  def initialize(opts = {})
+    self.attributes = attributes.merge(opts.symbolize_keys)
   end
 
   def self.names
@@ -66,28 +62,25 @@ class Prison
     all.map(&:nomis_id).compact.sort
   end
 
+  def anomalous_dates
+    (slot_anomalies || {}).keys.to_set
+  end
+
+  alias_method :days_lead_time, :lead_days
+
+  def postcode
+    address.last
+  end
+
   def unbookable_dates
     (unbookable || []).to_set
   end
 
-  def visiting_slots
-    @visiting_slots = slots
-  end
+  alias_method :visiting_slots, :slots
 
   def visiting_slot_days
     visiting_slots.keys
   end
 
-  def anomalous_dates
-    (slot_anomalies || {}).keys.to_set
-  end
-
-  def days_lead_time
-    lead_days
-  end
-
-  def works_weekends?
-    works_weekends || false
-  end
   alias_method :works_everyday?, :works_weekends?
 end

@@ -53,7 +53,7 @@ RSpec.describe ConfirmationsController, type: :controller do
 
       ['Hollesley Bay', 'Hatfield (moorland Open)', 'Highpoint', 'Albany', 'Parkhurst', 'Liverpool (Open only)'].each do |prison_name|
         it "resurrects a visit with a old prison name (#{prison_name}) to avoid a runtime exception" do
-          visit.prisoner.prison_name = prison_name
+          visit.prison_name = prison_name
           expect(controller).to receive(:logstasher_add_visit_id).with(visit.visit_id)
           expect(mock_metrics_logger).to receive(:request_cancelled?).and_return(false)
           expect(mock_metrics_logger).to receive(:record_link_click)
@@ -64,7 +64,7 @@ RSpec.describe ConfirmationsController, type: :controller do
           get :new, state: encrypted_visit
           expect(response).to be_success
           expect(response).to render_template('confirmations/new')
-          expect(controller.booked_visit.prisoner.prison_name).not_to eq(prison_name)
+          expect(controller.booked_visit.prison_name).not_to eq(prison_name)
         end
       end
 

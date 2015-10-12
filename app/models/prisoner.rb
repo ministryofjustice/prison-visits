@@ -9,9 +9,7 @@ class Prisoner
     with: /\A[a-z]\d{4}[a-z]{2}\z/i
   }
 
-  validates :prison_name, inclusion: {
-    in: Prison.names,
-    message: "must be chosen" }
+  validates :prison_name, inclusion: { in: Prison.names }
 
   delegate :email, :canned_responses, :nomis_id, to: :prison, prefix: :prison
 

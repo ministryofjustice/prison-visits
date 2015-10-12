@@ -5,7 +5,7 @@ RSpec.describe VisitorsDetailsController, type: :controller do
 
   before :each do
     session[:visit] = PrisonerDetailsController.new.new_session
-    controller.visit.prisoner.prison_name = 'Cardiff'
+    controller.visit.prison_name = 'Cardiff'
     cookies['cookies-enabled'] = 1
   end
 

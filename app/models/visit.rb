@@ -24,10 +24,10 @@ class Visit
     to: :prisoner
 
   def validate_amount_of_adults
-    if visitors.none? { |v| v.age && v.age >= 18 }
+    if visitors.none? { |v| adult?(v) }
       errors.add :visitors, :at_least_one_adult
     end
-    if visitors.count { |v| v.age && v.age >= adult_age } > 3
+    if visitors.count { |v| adult?(v) } > 3
       errors.add :visitors, :max_3_adults, adult_age: adult_age
     end
   end

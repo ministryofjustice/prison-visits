@@ -15,15 +15,11 @@ module VisitHelper
     Prison.names
   end
 
-  delegate :adult_age, :phone, :email, :slot_anomalies, to: :prison, prefix: :prison
+  delegate :adult_age, :phone, :postcode, :email, :slot_anomalies,
   delegate :prison_name, :prison, to: :visit
 
   def prison_email_link
     mail_to prison.email
-  end
-
-  def prison_postcode
-    prison.address[-1]
   end
 
   def prison_address(glue='<br>'.html_safe)
@@ -31,8 +27,10 @@ module VisitHelper
   end
 
   def prison_url(visit)
-    ['http://www.justice.gov.uk/contacts/prison-finder', visit.prison_name.parameterize].join('/')
-     visit.prison_name.parameterize].join('/')
+    [
+      PRISON_FINDER_ENDPOINT,
+      visit.prison_name.parameterize
+    ].join('/')
   end
 
   def prison_link(source=visit, link_text=nil)

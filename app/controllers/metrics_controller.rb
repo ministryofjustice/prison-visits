@@ -82,7 +82,6 @@ class MetricsController < ApplicationController
 
   def prison_param
     (prison = params[:prison]) && Prison.nomis_ids.include?(prison) && prison
-    prison && Rails.configuration.nomis_ids.include?(prison)
   end
 
   def year_param

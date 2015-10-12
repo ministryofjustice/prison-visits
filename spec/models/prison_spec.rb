@@ -31,11 +31,6 @@ RSpec.describe Prison, type: :model do
           it 'returns nil by default' do
             expect(described_class.find('Not A Prison')).to be_nil
           end
-
-          it 'raises a PrisonNotFound error if passed true' do
-            expect{ described_class.find('Not A Prison', true) }.
-              to raise_error(described_class::PrisonNotFound)
-          end
         end
 
         context 'by nomis_is' do
@@ -51,11 +46,6 @@ RSpec.describe Prison, type: :model do
           context 'when a prison does not exist' do
             it 'returns nil by default' do
               expect(described_class.find('Not a valid ID')).to be_nil
-            end
-
-            it 'raises a PrisonNotFound error if passed true' do
-              expect{ described_class.find('Not a valid id', true) }.
-                to raise_error(described_class::PrisonNotFound)
             end
           end
         end
@@ -222,8 +212,7 @@ RSpec.describe Prison, type: :model do
         end
       end
       context 'when no works weekends boolean flag has been set' do
-        before do; subject.works_weekends = nil end
-
+        subject { basic_prison }
         specify { expect(subject.works_weekends?).to be false }
       end
     end

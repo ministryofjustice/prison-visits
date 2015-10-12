@@ -6,7 +6,7 @@ class StaticController < ApplicationController
       format.csv do
         csv_string = CSV.generate do |csv|
           csv << ['name', 'email']
-          Prison.enabled do |prison|
+          Prison.enabled.each do |prison|
             csv << [prison.name, prison.email]
           end
         end
