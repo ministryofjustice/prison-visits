@@ -19,8 +19,4 @@ PrisonVisits2::Application.configure do
 
   config.smoke_test_email_local_part = 'user'
   config.smoke_test_email_domain = 'example.com'
-
-  config.prison_data = YAML.load_file(
-    ENV.fetch('PRISON_DATA_FILE', config.prison_data_source)
-  ).map{ |p| Prison.new(p) }.sort_by(&:name)
 end
