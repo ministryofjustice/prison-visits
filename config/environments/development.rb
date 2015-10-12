@@ -22,11 +22,5 @@ PrisonVisits2::Application.configure do
 
   config.prison_data = YAML.load_file(
     ENV.fetch('PRISON_DATA_FILE', config.prison_data_source)
-  ).map{ |p| Prison.new(p) }.sort_by{ |p| p.name }
-
-  # TODO: This is for code hygiene while I move this to the prison model
-  config.nomis_ids = config.prison_data.inject(Set[]) do |set, prison|
-    set << prison.nomis_id
-    set
-  end
+  ).map{ |p| Prison.new(p) }.sort_by(&:name)
 end

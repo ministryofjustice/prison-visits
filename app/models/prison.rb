@@ -1,5 +1,4 @@
 class Prison
-
   attr_accessor :address, :adult_age, :booking_window, :canned_responses,
     :email, :enabled, :finder_slug, :lead_days,
     :name, :nomis_id, :phone, :reason,
@@ -42,7 +41,7 @@ class Prison
   end
 
   def initialize(opts = {})
-    opts.with_indifferent_access.map do |k,v|
+    opts.with_indifferent_access.map do |k, v|
       instance_variable_set("@#{k}", v)
     end
     @booking_window = DEFAULT_BOOKING_WINDOW if @booking_window.blank?
@@ -67,7 +66,7 @@ class Prison
   end
 
   def self.nomis_ids
-    all.map(&:nomis_id).sort
+    all.map(&:nomis_id).reject(&:nil?).sort
   end
 
   def enabled?
