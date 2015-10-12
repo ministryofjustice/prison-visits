@@ -191,11 +191,6 @@ RSpec.shared_examples "a visitor data manipulator with invalid data" do
               }
             ] * 3
         end
-
-        it "rejects the booking request" do
-          post :update, visitor_hash
-          expect(response).to redirect_to(controller.this_path)
-        end
       end
     end
   end
