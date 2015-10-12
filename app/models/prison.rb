@@ -1,9 +1,9 @@
 class Prison
-  attr_accessor :address, :adult_age, :booking_window, :canned_responses,
-    :email, :enabled, :finder_slug, :lead_days,
-    :name, :nomis_id, :phone, :reason,
-    :slot_anomalies, :slots, :unbookable,
-    :works_weekends
+  include Virtus.model
+
+  DEFAULT_ADULT_AGE =       18
+  DEFAULT_BOOKING_WINDOW =  28
+  DEFAULT_LEAD_DAYS =       3
 
   attribute :address
   attribute :adult_age, Integer,
@@ -26,7 +26,7 @@ class Prison
   attribute :slot_anomalies
   attribute :slots
   attribute :unbookable, Boolean
-  DEFAULT_BOOKING_WINDOW = 28.freeze
+  attribute :works_weekends, Boolean, default: false, lazy: true
 
   class PrisonNotFound < StandardError; end
 
@@ -41,20 +41,17 @@ class Prison
   end
 
   def initialize(opts = {})
-    opts.with_indifferent_access.map do |k, v|
-      instance_variable_set("@#{k}", v)
-    end
-    @booking_window = DEFAULT_BOOKING_WINDOW if @booking_window.blank?
+    self.attributes = attributes.merge(opts.symbolize_keys)
   end
 
   def self.create(opts = {})
     prison = new(opts)
-    Rails.configuration.prison_data << prison
+    Rails.configuration.prisons << prison
     prison
   end
 
   def self.all
-    Rails.configuration.prison_data
+    Rails.configuration.prisons
   end
 
   def self.enabled
@@ -66,19 +63,15 @@ class Prison
   end
 
   def self.nomis_ids
-    all.map(&:nomis_id).reject(&:nil?).sort
-  end
-
-  def enabled?
-    enabled
+    all.map(&:nomis_id).compact.sort
   end
 
   def unbookable_dates
-    (unbookable || Array.new).to_set
+    (unbookable || []).to_set
   end
 
   def visiting_slots
-    @visiting_slots ||= slots
+    @visiting_slots = slots
   end
 
   def visiting_slot_days
@@ -86,11 +79,11 @@ class Prison
   end
 
   def anomalous_dates
-    (slot_anomalies || Hash.new).keys.to_set
+    (slot_anomalies || {}).keys.to_set
   end
 
   def days_lead_time
-    lead_days || DEFAULT_LEAD_DAYS
+    lead_days
   end
 
   def works_weekends?
