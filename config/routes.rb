@@ -4,6 +4,8 @@ PrisonVisits2::Application.routes.draw do
 
   resource :feedback
 
+  resources :frontend_events, only: [:create]
+
   get 'prisoner'           => 'prisoner_details#edit', as: :edit_prisoner_details
   post 'prisoner'          => 'prisoner_details#update', as: :prisoner_details
 
