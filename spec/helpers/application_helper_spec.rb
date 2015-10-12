@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ApplicationHelper do
-
   describe '#prison_name_for_id' do
     it 'returns a prison name for a nomis id' do
       expect(helper.prison_name_for_id('RCI')).to eq('Rochester')

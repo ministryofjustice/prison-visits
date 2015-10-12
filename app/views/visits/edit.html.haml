@@ -30,9 +30,9 @@
         \ -
         = format_date visitor.date_of_birth
         - if visit.adult?(visitor)
-          %small.AgeLabel-label.over Over #{adult_age}
+          %small.AgeLabel-label.over Over #{prison_adult_age}
         - else
-          %small.AgeLabel-label.under Under #{adult_age}
+          %small.AgeLabel-label.under Under #{prison_adult_age}
   %p.edit-link= link_to 'Change visitor details', edit_visitors_details_path
 
 .divider.compact.visit-details

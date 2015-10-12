@@ -146,13 +146,16 @@ RSpec.describe VisitHelper, type: :helper do
   end
 
   describe 'prison_specific_id_requirements' do
+    let(:wymott) { Prison.find('Wymott') }
+    let(:rochester) { Prison.find('Rochester') }
+
     it 'should render custom id content for prisons that have it' do
-      requirements = helper.prison_specific_id_requirements('Wymott')
+      requirements = helper.prison_specific_id_requirements(wymott)
       expect(requirements).to match(/tenancy agreement/)
     end
 
     it 'should render standard id content for prisons that do not have custom content' do
-      requirements = helper.prison_specific_id_requirements('Rochester')
+      requirements = helper.prison_specific_id_requirements(rochester)
       expect(requirements).not_to match(/tenancy agreement/)
       expect(requirements).to match(/driving licence/)
     end

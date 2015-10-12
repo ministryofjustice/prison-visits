@@ -2,7 +2,7 @@ module Addresses
   include ActiveSupport::Concern
 
   def prison_mailbox_email
-    Prison.find(@visit.prisoner.prison_name).email
+    @visit.prison_email
   end
 
   def first_visitor_email

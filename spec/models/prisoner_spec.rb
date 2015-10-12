@@ -65,4 +65,16 @@ RSpec.describe Prisoner do
   it 'generates an initial from the last name' do
     expect(prisoner.last_initial).to eq('H')
   end
+
+  it 'returns the email of the prison holding the prisoner' do
+    expect(prisoner.prison_email).to eq('socialvisits.rochester@hmps.gsi.gov.uk')
+  end
+
+  it 'returns the nomis_id of the prison holding the prisoner' do
+    expect(prisoner.prison_nomis_id).to eq('RCI')
+  end
+
+  it 'returns the canned responses status of the prison holding the prisoner' do
+    expect(prisoner.prison_canned_responses).to be_truthy
+  end
 end

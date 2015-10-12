@@ -83,7 +83,7 @@ RSpec.describe Prison, type: :model do
 
     describe '.names' do
       before do
-        allow(Rails.configuration).to receive(:prison_data).
+        allow(Rails.configuration).to receive(:prisons).
           and_return([double('prison', name: 'Wormwood Scrubs')])
       end
       it 'returns all names' do
@@ -93,10 +93,11 @@ RSpec.describe Prison, type: :model do
 
     describe '.nomis_ids' do
       before do
-        allow(Rails.configuration).to receive(:prison_data).
-          and_return([double('prison', nomis_id: 'WSI').as_null_object])
+        allow(Rails.configuration).to receive(:prisons).
+          and_return([double('prison', nomis_id: 'WSI').as_null_object,
+                      double('prison', nomis_id: nil).as_null_object])
       end
-      it 'returns all nomis ids' do
+      it 'returns nomis ids for all prisons with a nomis id' do
         expect(described_class.nomis_ids).to match_array(['WSI'])
       end
     end
@@ -164,11 +165,14 @@ RSpec.describe Prison, type: :model do
 
     describe '#anomalous_dates' do
       context 'when a prison has days for visitation that are different from the regular slots' do
+        subject { complete_prison }
         let(:expected_anomalous_dates) { Set.new [Date.new(2015, 8, 14)] }
+
         it 'returns the day' do
           expect(subject.anomalous_dates).to eq expected_anomalous_dates
         end
       end
+
       context 'when a prison has no anomalous slots' do
         before do; subject.slot_anomalies = nil end
 
@@ -189,8 +193,7 @@ RSpec.describe Prison, type: :model do
       end
 
       context 'when no lead time has been set' do
-        before do; subject.lead_days = nil end
-
+        subject { basic_prison }
         it 'returns the default value' do
           expect(subject.days_lead_time).to eq 3
         end
@@ -204,7 +207,7 @@ RSpec.describe Prison, type: :model do
         end
       end
       context 'when no booking window has been set' do
-        subject { described_class.create(basic_attributes.merge(booking_window: nil)) }
+        subject { basic_prison }
 
         it 'returns the default value' do
           expect(subject.booking_window).to eq 28

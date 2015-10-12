@@ -1,6 +1,6 @@
 module VisitHelper
   def visiting_slots
-    prison_data.slots.inject({}) do |hash, (day, slots)|
+    prison.slots.inject({}) do |hash, (day, slots)|
       hash.merge({
         day.to_sym => slots.map { |s| s.split('-') }
       })
@@ -11,51 +11,27 @@ module VisitHelper
     visit.slots.map { |s| s.date + '-' + s.times }
   end
 
-  def prison_name
-    visit.prisoner.prison_name
-  end
-
   def prison_names
     Prison.names
   end
 
-  def prison_data(source=visit)
-    return source.prison if source.is_a?(Visit)
-    Rails.configuration.prison_data.fetch(source.prisoner.prison_name.to_s)
-  end
-
-  delegate :adult_age, :phone, :email, :slot_anomalies,
-    to: :prison, prefix: :prison
-  end
-
-  def prison_email
-    prison_data.email
-  end
+  delegate :adult_age, :phone, :email, :slot_anomalies, to: :prison, prefix: :prison
+  delegate :prison_name, :prison, to: :visit
 
   def prison_email_link
-    mail_to prison_data.email
+    mail_to prison.email
   end
 
   def prison_postcode
-    prison_data.address[-1]
-  end
-
-  def prison_slot_anomalies
-    prison_data.slot_anomalies
+    prison.address[-1]
   end
 
   def prison_address(glue='<br>'.html_safe)
-    safe_join(prison_data.address, glue)
-  end
-
-  def adult_age
-    prison_data.adult_age || 18
+    safe_join(prison.address, glue)
   end
 
   def prison_url(visit)
-    return unless prison_data
-    slug = prison_data(visit).finder_slug || visit.prisoner.prison_name.parameterize
-    ['http://www.justice.gov.uk/contacts/prison-finder', slug].join('/')
+    ['http://www.justice.gov.uk/contacts/prison-finder', visit.prison_name.parameterize].join('/')
      visit.prison_name.parameterize].join('/')
   end
 
@@ -85,17 +61,14 @@ module VisitHelper
   end
 
   def when_to_expect_reply
-    prison = Prison.find(visit.prisoner.prison_name)
     schedule = PrisonSchedule.new(prison)
     format_day(schedule.confirmation_email_date)
   end
 
-  def prison_specific_id_requirements(prison_name)
-    nomis_id = prison_data(prison_name).nomis_id
-      Rails.configuration.prison_data.fetch(prison_name).fetch(:nomis_id)
+  def prison_specific_id_requirements(prison)
     template_path = Rails.root.join('app', 'views', 'content')
     candidates = [
-      "_id_#{nomis_id}.md",
+      "_id_#{prison.nomis_id}.md",
       '_standard_id_requirements.md'
     ].map { |filename| template_path.join(filename) }
     File.read(candidates.find { |path| File.exist?(path) })

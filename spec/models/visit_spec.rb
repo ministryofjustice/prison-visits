@@ -13,6 +13,19 @@ RSpec.describe Visit do
     Visit.new(visit_id: SecureRandom.hex, prisoner: Prisoner.new(prison_name: 'Rochester'))
   end
 
+  describe 'delegation' do
+    it 'exposes the prison via the prisoner' do
+      expect(sample_visit.prison).to eq(Prison.find('Rochester'))
+    end
+
+    it 'exposes some prison attributes via the prisoner' do
+      expect(sample_visit.prison_name).to eq('Rochester')
+      expect(sample_visit.prison_nomis_id).to eq('RCI')
+      expect(sample_visit.prison_canned_responses).to be_truthy
+      expect(sample_visit.prison_email).to eq('socialvisits.rochester@hmps.gsi.gov.uk')
+    end
+  end
+
   it "restricts the number of visitors" do
     sample_visit.visitors = []
     expect(sample_visit.valid?(:visitors_set)).to be_falsey
@@ -54,7 +67,7 @@ RSpec.describe Visit do
 
   context "a prison which treats a child as an adult for seating purposes" do
     before do
-      sample_visit.prisoner.prison_name = 'Deerbolt'
+      sample_visit.prison_name = 'Deerbolt'
       sample_visit.visitors = []
     end
 

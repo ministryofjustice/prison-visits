@@ -13,7 +13,7 @@ class Prisoner
     in: Prison.names,
     message: "must be chosen" }
 
-  validate :prison_in_service
+  delegate :email, :canned_responses, :nomis_id, to: :prison, prefix: :prison
 
   def prison_in_service
     unless prison && prison.enabled?

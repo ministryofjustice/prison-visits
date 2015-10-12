@@ -1,11 +1,8 @@
 class AgeValidator < ActiveModel::Validator
-  DEFAULT_ADULT_AGE = 18
-
   attr_accessor :adult_age
 
-  def initialize(prison_name)
-    prison = Prison.find(prison_name, true)
-    @adult_age = prison.adult_age || DEFAULT_ADULT_AGE
+  def initialize(prison)
+    @adult_age = prison.adult_age
   end
 
   def validate(record)
