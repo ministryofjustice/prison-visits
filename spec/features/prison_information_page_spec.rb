@@ -9,7 +9,6 @@ RSpec.feature 'visitor entering prisoner information' do
     context 'when a prison is not selected' do
       it 'displays an error message' do
         click_button 'Continue'
-
         expect(page).to have_css "label[for='prisoner_prison_name'] .validation-message"
       end
     end

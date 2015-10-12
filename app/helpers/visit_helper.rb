@@ -8,7 +8,7 @@ module VisitHelper
   end
 
   def current_slots
-    visit.slots.map { |slot| slot.date + '-' + slot.times }
+    visit.slots.map { |s| s.date + '-' + s.times }
   end
 
   def prison_name
@@ -53,6 +53,7 @@ module VisitHelper
   end
 
   def prison_url(visit)
+    return unless prison_data
     slug = prison_data(visit).finder_slug || visit.prisoner.prison_name.parameterize
     ['http://www.justice.gov.uk/contacts/prison-finder', slug].join('/')
      visit.prison_name.parameterize].join('/')

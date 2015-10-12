@@ -3,5 +3,3 @@ require File.expand_path('../application', __FILE__)
 
 # Initialize the Rails application.
 PrisonVisits2::Application.initialize!
-
-

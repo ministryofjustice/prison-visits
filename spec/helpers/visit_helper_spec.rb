@@ -107,8 +107,6 @@ RSpec.describe VisitHelper, type: :helper do
       expect(link).to match(%r{href="http://www\.justice\.gov\.uk/contacts/prison-finder/rochester"})
     end
 
-
-
     it "provides all the slots for a particular day" do
       expect(helper.slots_for_day(Date.parse("2014-08-13"))).to eq([["1400", "1600"]])
     end

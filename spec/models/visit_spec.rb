@@ -91,7 +91,7 @@ RSpec.describe Visit do
   end
 
   it "knows if a visitor is an adult or not" do
-      expect(sample_visit.adult?(adult_visitor)).to be_truthy
+    expect(sample_visit.adult?(adult_visitor)).to be_truthy
     expect(sample_visit.adult?(child_visitor)).to be_falsey
   end
 

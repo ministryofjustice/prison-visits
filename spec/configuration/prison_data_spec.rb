@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe "Prison data" do
-
   context 'example prisons' do
     %w{ Cardiff Durham Rochester }.each do |prison|
       it "contains an enabled entry for #{prison}" do
@@ -26,7 +25,7 @@ RSpec.describe "Prison data" do
     end
 
     it "each unbookable date for each prison should be a valid date" do
-      unbookable = enabled.map{ |p| p.unbookable }.flatten
+      unbookable = enabled.map(&:unbookable).flatten
       expect(unbookable.map(&:class).all?{ |p| p == Date }).to be_truthy
     end
 

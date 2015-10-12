@@ -7,7 +7,8 @@ RSpec.describe Prison, type: :model do
   let!(:complete_prison) {
     described_class.create(
       basic_attributes.merge(advanced_attributes)
-    ) }
+    )
+  }
 
   let!(:basic_prison) { described_class.create(basic_attributes) }
   let!(:disabled_prison) {
@@ -62,7 +63,7 @@ RSpec.describe Prison, type: :model do
 
       describe '.enabled' do
         it 'returns only enabled prisons' do
-          expect(described_class.enabled.all?{ |p| p.enabled? }).to be_truthy
+          expect(described_class.enabled.all?(&:enabled?)).to be_truthy
         end
 
         it 'does not return disabled prisons' do
@@ -76,7 +77,7 @@ RSpec.describe Prison, type: :model do
       it 'returns all prisons' do
         expect(subject).to be_kind_of(Array)
         expect(subject.size).to be >= 1
-        expect(subject.all?{ |p| p.class == Prison}).to be_truthy
+        expect(subject.all?{ |p| p.class == described_class}).to be_truthy
       end
     end
 

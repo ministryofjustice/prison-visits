@@ -2,7 +2,6 @@ require 'rails_helper'
 require_relative './concerns/visitor_mailer_shared_conditions.rb'
 
 RSpec.describe VisitorMailer do
-
   subject! { described_class }
 
   include_context 'shared conditions for visitor mailer'

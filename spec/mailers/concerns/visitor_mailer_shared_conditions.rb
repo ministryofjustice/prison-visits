@@ -1,5 +1,4 @@
 RSpec.shared_context "shared conditions for visitor mailer" do
-
   before do
     ActionMailer::Base.deliveries.clear
     allow_any_instance_of(VisitorMailer).to receive(:smtp_domain).and_return('example.com')
@@ -7,19 +6,19 @@ RSpec.shared_context "shared conditions for visitor mailer" do
   end
 
   around do |example|
-    Timecop.freeze(Time.local(2013, 7, 4)) do
+    Timecop.freeze(Time.zone.local(2013, 7, 4)) do
       example.run
     end
   end
 
   let(:email) {
-    ParsedEmail.parse({
-        from: "visitor@example.com",
-        to: 'test@example.com',
-        text: "some text",
-        charsets: {to: "UTF-8", html: "utf-8", subject: "UTF-8", from: "UTF-8", text: "utf-8"}.to_json,
-        subject: "important email"
-    })
+    ParsedEmail.parse(
+      from: "visitor@example.com",
+      to: 'test@example.com',
+      text: "some text",
+      charsets: { to: "UTF-8", html: "utf-8", subject: "UTF-8", from: "UTF-8", text: "utf-8" }.to_json,
+      subject: "important email"
+    )
   }
 
   let :confirmation do
