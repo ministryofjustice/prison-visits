@@ -1,17 +1,37 @@
 ---
-- nomis_id: SFI
+- name: Acklington
+  nomis_id: AKI
+  enabled: false
+  finder_slug: acklington2
+- name: Altcourse
+  nomis_id: ACI
+  enabled: false
+- name: Ashfield
+  nomis_id: ASI
+  enabled: false
+- name: Askham Grange
+  nomis_id: AGI
+  address:
+  - Askham Richard
+  - YO23 3FT
   canned_responses: true
+  email: socialvisits.askhamgrange@hmps.gsi.gov.uk
   enabled: true
+<<<<<<< HEAD
 <<<<<<< HEAD
   phone: 0300 060 6505
   email: visitsbooking.westmidlands@noms.gsi.gov.uk
 =======
   phone:
+=======
+  phone: 
+>>>>>>> 298f7bc... Move name/nomis_id to top and alpha-sort the list
   slots:
     sat:
     - 1345-1545
     sun:
     - 1345-1545
+<<<<<<< HEAD
   unbookable:
   - 2014-12-25
 - name: Aylesbury
@@ -21,39 +41,87 @@
   - 54 Gaol Road
   - Stafford
   - ST16 3AW
+=======
+>>>>>>> 298f7bc... Move name/nomis_id to top and alpha-sort the list
   unbookable:
-  - 2015-10-14
-  - 2015-12-25
-  slots:
-    wed:
-    - 1400-1600
-    thu:
-    - 1400-1600
-    sat:
-    - 1400-1600
-    sun:
-    - 1400-1600
-  slot_anomalies:
-    2015-10-13:
-    - 1400-1600
-  name: Stafford
-- nomis_id: BAI
+  - 2014-12-25
+- name: Aylesbury
+  nomis_id: AYI
+  address:
+  - Bierton Road
+  - HP20 1EH
   canned_responses: true
+  email: socialvisits.aylesbury@hmps.gsi.gov.uk
   enabled: true
-  phone: 0208 3314768
-  email: belmarsh.visits@hmps.gsi.gov.uk
-  booking_window: 21
+  phone: 01296 444099
+  slots:
+    mon:
+    - 1415-1615
+    sat:
+    - 1400-1535
+    sun:
+    - 1400-1535
+    thu:
+    - 1415-1615
+    wed:
+    - 1415-1615
+  unbookable:
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
+  - 2015-01-19
+  - 2015-01-21
+  - 2015-01-22
+  - 2015-01-24
+  - 2015-01-25
+  - 2015-01-26
+  - 2015-01-28
+  - 2015-01-29
+- name: Bedford
+  nomis_id: BFI
+  address:
+  - St. Loyes Street
+  - MK40 1HG
+  booking_window: 14
+  canned_responses: true
+  email: socialvisits.bedford@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01234 373196
+  slots:
+    mon:
+    - 1345-1445
+    - 1515-1615
+    sat:
+    - 1345-1445
+    - 1515-1615
+    sun:
+    - 1345-1445
+    - 1515-1615
+    thu:
+    - 1345-1445
+    - 1515-1615
+    tue:
+    - 1345-1445
+    - 1515-1615
+    wed:
+    - 1345-1445
+    - 1515-1615
+  unbookable:
+  - 2014-12-25
+  - 2014-12-26
+- name: Belmarsh
+  nomis_id: BAI
   address:
   - Western Way
   - Thamesmead
   - London
   - SE28 0EB
+  booking_window: 21
+  canned_responses: true
+  email: belmarsh.visits@hmps.gsi.gov.uk
+  enabled: true
   lead_days: 3
-  unbookable:
-  - 2015-12-25
-  - 2015-12-26
-  - 2015-12-31
-  - 2016-01-01
+  phone: 0208 3314768
   slots:
     tue:
     - 0930-1100
@@ -71,83 +139,372 @@
     - 1430-1600
     sun:
     - 1430-1600
-  name: Belmarsh
-- nomis_id: RCI
-  canned_responses: true
-  enabled: true
-  phone: 01634 803100
-  email: socialvisits.rochester@hmps.gsi.gov.uk
-  address:
-  - 1 Fort Road
-  - Rochester
-  - Kent
-  - ME1 3QS
   unbookable:
-  - 2013-12-25
-  - 2013-12-26
-  - 2014-12-25
-  - 2014-12-26
-  slots:
-    mon:
-    - 1400-1600
-    tue:
-    - 1400-1600
-    wed:
-    - 1400-1600
-    thu:
-    - 1400-1600
-    fri:
-    - 1400-1600
-    sat:
-    - 0930-1130
-    - 1400-1600
-    sun:
-    - 1400-1600
-  name: Rochester
-- nomis_id: DMI
-  canned_responses: true
-  enabled: true
-  phone: 0191 3323417
-  email: socialvisits.durham@hmps.gsi.gov.uk
+  - 2015-12-25
+  - 2015-12-26
+  - 2015-12-31
+  - 2016-01-01
+- name: Birmingham
+  nomis_id: BMI
+  enabled: false
+- name: Blantyre House
+  nomis_id: BHI
   address:
-  - Old Elvet
-  - Durham
-  - DH1 3HU
+  - Goudhurst
+  - TN17 2NH
+  email: socialvisits.blantyrehouse@hmps.gsi.gov.uk
+  enabled: false
+  phone: ''
+  reason: it_issues
+  slots:
+    sat:
+    - 1345-1600
+    sun:
+    - 1345-1600
+    wed:
+    - 1345-1600
+  unbookable:
+  - 2014-12-25
+- name: Brinsford
+  nomis_id: BSI
+  address:
+  - New Road
+  - Featherstone
+  - Wolverhampton
+  - WV10 7PY
+  adult_age: 10
+  canned_responses: true
+  email: visitsbooking.westmidlands@noms.gsi.gov.uk
+  enabled: true
+  phone: 0300 060 6500
+  slot_anomalies:
+    2015-02-23:
+    - 1745-1900
+    2015-03-30:
+    - 1745-1900
+    2015-04-27:
+    - 1745-1900
+    2015-05-25:
+    - 1745-1900
+    2015-06-29:
+    - 1745-1900
+    2015-07-27:
+    - 1745-1900
+    2015-08-31:
+    - 1745-1900
+    2015-09-28:
+    - 1745-1900
+    2015-10-26:
+    - 1745-1900
+    2015-11-30:
+    - 1745-1900
+    2015-12-28:
+    - 1745-1900
+  slots:
+    tue:
+    - 1330-1600
+    thu:
+    - 1330-1600
+    sat:
+    - 1330-1600
+    sun:
+    - 1330-1600
   unbookable:
   - 2014-04-18
+  - 2014-04-21
+  - 2014-05-05
+  - 2014-05-26
   - 2014-12-25
   - 2014-12-26
   - 2015-01-01
+- name: Bristol
+  nomis_id: BLI
+  address:
+  - 19 Cambridge Road
+  - Bristol
+  - BS7 8PS
+  canned_responses: true
+  email: socialvisits.bristol@hmps.gsi.gov.uk
+  enabled: true
+  phone: 0117 372 3213
   slots:
     mon:
-    - 1345-1545
+    - 1400-1600
     tue:
-    - 1345-1545
-    - 1715-1900
+    - 1400-1600
     wed:
-    - 1345-1545
-    - 1715-1900
+    - 1400-1600
     thu:
-    - 1345-1545
+    - 1400-1600
     fri:
-    - 1345-1545
+    - 1400-1600
+    sat:
+    - 1400-1600
+    sun:
+    - 1400-1600
+  unbookable:
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
+  - 2015-04-03
+- name: Brixton
+  nomis_id: BXI
+  address:
+  - Jebb Avenue
+  - SW2 5XF
+  canned_responses: true
+  email: socialvisits.brixton@hmps.gsi.gov.uk
+  enabled: true
+  phone: 0208 678 1433
+  slot_anomalies:
+    2014-08-12:
+    - 0830-1145
+    - 1315-1615
+    2014-08-14:
+    - 0830-1145
+    - 1315-1615
+    2014-08-16:
+    - 0900-1200
+    - 1345-1645
+    2014-08-17:
+    - 1345-1645
+    2014-09-09:
+    - 0830-1145
+    - 1315-1615
+    2014-09-11:
+    - 0830-1145
+    - 1315-1615
+    2014-09-13:
+    - 0900-1200
+    - 1345-1645
+    2014-09-14:
+    - 1345-1645
+    2014-10-07:
+    - 0830-1145
+    - 1315-1615
+    2014-10-09:
+    - 0830-1145
+    - 1315-1615
+    2014-10-11:
+    - 0900-1200
+    - 1345-1645
+    2014-10-12:
+    - 1345-1645
+    2014-11-04:
+    - 0830-1145
+    - 1315-1615
+    2014-11-06:
+    - 0830-1145
+    - 1315-1615
+    2014-11-08:
+    - 0900-1200
+    - 1345-1645
+    2014-11-09:
+    - 1345-1645
+    2014-12-02:
+    - 0830-1145
+    - 1315-1615
+    2014-12-04:
+    - 0830-1145
+    - 1315-1615
+    2014-12-06:
+    - 0900-1200
+    - 1345-1645
+    2014-12-07:
+    - 1345-1645
+    2014-12-30:
+    - 0830-1145
+    - 1315-1615
+    2015-01-01:
+    - 0830-1145
+    - 1315-1615
+    2015-01-03:
+    - 0900-1200
+    - 1345-1645
+    2015-01-04:
+    - 1345-1645
+  slots:
+    sat:
+    - 0900-1015
+    - 1045-1200
+    - 1345-1500
+    - 1530-1645
+    sun:
+    - 1345-1645
+    thu:
+    - 0830-1000
+    - 1030-1145
+    - 1315-1430
+    - 1500-1615
+    tue:
+    - 0830-1000
+    - 1030-1145
+    - 1315-1430
+    - 1500-1615
+  unbookable:
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
+- name: Bronzefield
+  nomis_id: BZI
+  enabled: false
+- name: Buckley Hall
+  nomis_id: BCI
+  address:
+  - Buckley Road
+  - OL12 9DP
+  canned_responses: true
+  email: socialvisits.buckleyhall@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01706 514350
+  slot_anomalies:
+    2014-12-24:
+    - 1400-1600
+    2014-12-31:
+    - 1400-1600
+  slots:
+    mon:
+    - 1400-1600
+    tue:
+    - 1400-1600
+    wed:
+    - 1400-1600
+    - 1745-1845
+    thu:
+    - 1400-1600
+    fri:
+    - 1400-1600
     sat:
     - 0930-1130
-    - 1345-1645
+    - 1400-1600
     sun:
     - 0930-1130
-    - 1345-1645
-  name: Durham
-- nomis_id: CFI
+    - 1400-1600
+  unbookable:
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-04-03
+- name: Bullingdon (Convicted Only)
+  nomis_id: BNI
+  address:
+  - Bicester
+  - OX25 1PZ
   canned_responses: true
+  email: socialvisits.bullingdon@hmps.gsi.gov.uk
   enabled: true
-  phone: 029 20923327
-  email: socialvisits.cardiff@hmps.gsi.gov.uk
-  booking_window: 14
+  finder_slug: bullingdon
+  phone: 01869 353176
+  slots:
+    mon:
+    - 1400-1610
+    sat:
+    - 1400-1610
+    sun:
+    - 1400-1610
+    thu:
+    - 1400-1610
+    tue:
+    - 1400-1610
+    wed:
+    - 1400-1610
+  unbookable:
+  - 2014-12-25
+  - 2014-12-26
+- name: Bullingdon (Remand Only)
+  nomis_id: BNI
+  address:
+  - Bicester
+  - OX25 1PZ
+  canned_responses: true
+  email: socialvisits.bullingdon@hmps.gsi.gov.uk
+  enabled: true
+  finder_slug: bullingdon
+  phone: 01869 353176
+  slots:
+    mon:
+    - 1400-1610
+    sat:
+    - 1400-1610
+    thu:
+    - 1400-1610
+    tue:
+    - 1400-1610
+  unbookable:
+  - 2014-12-25
+- name: Bure
+  nomis_id: BRI
+  address:
+  - Jaguar Drive
+  - NR10 5GB
+  canned_responses: true
+  email: socialvisits.bure@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01603 326252
+  slots:
+    fri:
+    - 1400-1600
+    sat:
+    - 0930-1130
+    - 1400-1600
+    sun:
+    - 0930-1130
+    - 1400-1600
+  unbookable:
+  - 2014-12-25
+  - 2015-01-01
+  - 2015-04-03
+- name: Cardiff
+  nomis_id: CFI
   address:
   - Knox Road
   - Cardiff
   - CF24 0UG
+  booking_window: 14
+  canned_responses: true
+  email: socialvisits.cardiff@hmps.gsi.gov.uk
+  enabled: true
+  phone: 029 20923327
+  slot_anomalies:
+    2014-04-21:
+    - 0945-1115
+    - 1350-1520
+    2014-05-05:
+    - 0945-1115
+    - 1350-1520
+    2014-05-26:
+    - 0945-1115
+    - 1350-1520
+    2015-01-01:
+    - 1350-1520
+    2015-04-06:
+    - 1330-1430
+    2015-05-04:
+    - 1330-1430
+    2015-05-25:
+    - 1330-1430
+    2015-08-31:
+    - 1330-1430
+  slots:
+    mon:
+    - 1330-1430
+    - 1445-1545
+    tue:
+    - 1330-1430
+    - 1445-1545
+    wed:
+    - 1330-1430
+    - 1445-1545
+    thu:
+    - 1330-1430
+    - 1445-1545
+    fri:
+    - 1330-1430
+    - 1445-1545
+    sat:
+    - 0945-1115
+    - 1330-1500
+    sun:
+    - 1330-1500
   unbookable:
   - 2014-02-05
   - 2014-03-05
@@ -183,269 +540,245 @@
   - 2015-10-07
   - 2015-10-26
   - 2015-11-04
-  slots:
-    mon:
-    - 1330-1430
-    - 1445-1545
-    tue:
-    - 1330-1430
-    - 1445-1545
-    wed:
-    - 1330-1430
-    - 1445-1545
-    thu:
-    - 1330-1430
-    - 1445-1545
-    fri:
-    - 1330-1430
-    - 1445-1545
-    sat:
-    - 0945-1115
-    - 1330-1500
-    sun:
-    - 1330-1500
-  slot_anomalies:
-    2014-04-21:
-    - 0945-1115
-    - 1350-1520
-    2014-05-05:
-    - 0945-1115
-    - 1350-1520
-    2014-05-26:
-    - 0945-1115
-    - 1350-1520
-    2015-01-01:
-    - 1350-1520
-    2015-04-06:
-    - 1330-1430
-    2015-05-04:
-    - 1330-1430
-    2015-05-25:
-    - 1330-1430
-    2015-08-31:
-    - 1330-1430
-  name: Cardiff
-- nomis_id: GTI
-  canned_responses: true
-  enabled: true
-  phone: 01858 426 727
-  email: socialvisits.gartree@hmps.gsi.gov.uk
+  nomis_id: CWI
   address:
-  - Gallow Field Rd
-  - Market Harborough
-  - Leicestershire
-  - LE16 7RP
-  unbookable:
-  - 2014-04-18
-  - 2014-04-21
-  - 2014-12-25
-  - 2014-12-26
-  - 2015-01-01
-  slots:
-    tue:
-    - 1400-1600
-    thu:
-    - 1400-1600
-    sat:
-    - 1400-1600
-    sun:
-    - 1400-1600
-  name: Gartree
-- nomis_id: BSI
+  - Denbury
+  - Newton Abbot
+  - TQ12 6DW
   canned_responses: true
+  email: socialvisits.channingswood@hmps.gsi.gov.uk
   enabled: true
-  phone: 0300 060 6500
-  email: visitsbooking.westmidlands@noms.gsi.gov.uk
-  adult_age: 10
-  address:
-  - New Road
-  - Featherstone
-  - Wolverhampton
-  - WV10 7PY
-  unbookable:
-  - 2014-04-18
-  - 2014-04-21
-  - 2014-05-05
-  - 2014-05-26
-  - 2014-12-25
-  - 2014-12-26
-  - 2015-01-01
-  slots:
-    tue:
-    - 1330-1600
-    thu:
-    - 1330-1600
-    sat:
-    - 1330-1600
-    sun:
-    - 1330-1600
-  slot_anomalies:
-    2015-02-23:
-    - 1745-1900
-    2015-03-30:
-    - 1745-1900
-    2015-04-27:
-    - 1745-1900
-    2015-05-25:
-    - 1745-1900
-    2015-06-29:
-    - 1745-1900
-    2015-07-27:
-    - 1745-1900
-    2015-08-31:
-    - 1745-1900
-    2015-09-28:
-    - 1745-1900
-    2015-10-26:
-    - 1745-1900
-    2015-11-30:
-    - 1745-1900
-    2015-12-28:
-    - 1745-1900
-  name: Brinsford
-- nomis_id: DHI
-  canned_responses: true
-  enabled: true
-  phone: 0300 060 6501
-  email: visitsbooking.westmidlands@noms.gsi.gov.uk
-  address:
-  - Eccleshall
-  - Staffordshire
-  - ST21 6LQ
-  unbookable:
-  - 2014-04-18
-  - 2014-04-21
-  - 2014-05-05
-  - 2014-05-26
-  - 2014-12-25
-  - 2014-12-26
-  - 2015-01-01
-  slots:
-    tue:
-    - 1330-1545
-    sat:
-    - 1330-1545
-    sun:
-    - 1330-1545
-  name: Drake Hall
-- nomis_id: WNI
-  canned_responses: true
-  enabled: true
-  phone: 0300 060 6508
-  email: visitsbooking.westmidlands@noms.gsi.gov.uk
-  adult_age: 10
-  address:
-  - Werrington
-  - Stoke-On-Trent
-  - ST9 0DX
-  unbookable:
-  - 2014-04-18
-  - 2014-04-21
-  - 2014-05-05
-  - 2014-05-26
-  - 2014-12-25
-  - 2014-12-26
-  - 2015-01-01
+  phone: 01803 812060
   slots:
     wed:
     - 1400-1600
     fri:
     - 1400-1600
     sat:
-    - 1430-1630
+    - 1400-1600
     sun:
-    - 1430-1630
-  name: Werrington
-- nomis_id: FSI
-  canned_responses: true
-  enabled: true
-  phone: 0300 060 6502
-  email: visitsbooking.westmidlands@noms.gsi.gov.uk
-  address:
-  - New Road
-  - Featherstone
-  - Wolverhampton
-  - WV10 7PU
+    - 1400-1600
   unbookable:
-  - 2014-04-18
-  - 2014-04-21
-  - 2014-05-05
-  - 2014-05-26
+  - 2014-09-07
+  - 2014-09-13
+  - 2014-09-20
+  - 2014-09-21
+  - 2014-09-27
+  - 2014-10-04
+  - 2014-10-05
+  - 2014-10-11
+  - 2014-10-18
+  - 2014-10-19
+  - 2014-10-25
+  - 2014-11-01
+  - 2014-11-02
+  - 2014-11-08
+  - 2014-11-15
+  - 2014-11-16
+  - 2014-11-22
+  - 2014-11-29
+  - 2014-11-30
+  - 2014-12-06
+  - 2014-12-13
+  - 2014-12-14
+  - 2014-12-20
   - 2014-12-25
   - 2014-12-26
   - 2015-01-01
+  - 2015-01-03
+  - 2015-01-10
+  - 2015-01-11
+  - 2015-01-17
+  - 2015-01-24
+  - 2015-01-25
+  - 2015-01-31
+  - 2015-02-07
+  - 2015-02-08
+  - 2015-02-14
+  - 2015-02-21
+  - 2015-02-22
+  - 2015-02-28
+  - 2015-03-07
+  - 2015-03-08
+  - 2015-03-14
+  - 2015-03-21
+  - 2015-03-22
+  - 2015-03-28
+  - 2015-04-05
+  - 2015-04-19
+  - 2015-05-03
+  - 2015-05-17
+  - 2015-05-31
+  - 2015-06-14
+  - 2015-06-28
+  - 2015-07-12
+  - 2015-07-26
+  - 2015-08-09
+  - 2015-08-23
+  - 2015-09-06
+  - 2015-09-20
+  - 2015-10-04
+- name: Chelmsford
+  nomis_id: CDI
+  address:
+  - 200 Springfield Road
+  - 'CM2 6LQ '
+  canned_responses: true
+  email: socialvisits.chelmsford@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01245 552265
   slots:
     mon:
-    - 1400-1630
-    tue:
-    - 1400-1600
-    wed:
-    - 1400-1600
+    - 1415-1600
+    sat:
+    - 0900-1100
+    - 1415-1600
+    sun:
+    - 0900-1100
+    - 1415-1600
     thu:
+    - 1415-1600
+    tue:
+    - 1415-1600
+    wed:
+    - 1415-1600
+  unbookable:
+  - 2014-12-25
+  - 2014-12-26
+- name: Coldingley
+  nomis_id: CLI
+  address:
+  - Shaftesbury Road
+  - GU24 9EX
+  canned_responses: true
+  email: socialvisits.coldingley@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01483 344418
+  slot_anomalies:
+    2014-12-23:
+    - 1400-1545
+    2014-12-24:
+    - 0915-1100
+  slots:
+    mon:
+    - 1400-1545
+    wed:
+    - 1400-1545
+    thu:
+    - 1400-1545
+    sat:
+    - 1400-1545
+    sun:
+    - 1400-1545
+  unbookable:
+  - 2014-07-30
+  - 2014-08-20
+  - 2014-10-29
+  - 2014-12-19
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
+  - 2015-04-03
+- name: Cookham Wood
+  nomis_id: CKI
+  address:
+  - Sir Evelyn Road
+  - ME1 3LU
+  canned_responses: true
+  email: socialvisits.cookhamwood@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01634 202557
+  slot_anomalies:
+    2014-12-24:
+    - 1430-1630
+    2014-12-31:
+    - 1430-1630
+  slots:
+    wed:
+    - 1345-1615
+    sat:
+    - 0930-1130
+    - 1430-1630
+    sun:
+    - 0930-1130
+    - 1430-1630
+  unbookable:
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
+- name: Dartmoor
+  nomis_id: DAI
+  address:
+  - Princetown
+  - PL20 6RR
+  canned_responses: true
+  email: socvisdartmoor@hmps.gsi.gov.uk
+  enabled: true
+  lead_days: 4
+  phone: 01822 322022
+  slots:
+    tue:
     - 1400-1600
     sat:
     - 1400-1600
     sun:
     - 1400-1600
-  name: Featherstone
-- nomis_id: SHI
-  canned_responses: true
-  enabled: true
-  phone: 0300 060 6506
-  email: visitsbooking.westmidlands@noms.gsi.gov.uk
-  adult_age: 10
-  address:
-  - Market Drayton
-  - Shropshire
-  - TF9 2JL
-  unbookable:
-  - 2014-04-18
-  - 2014-04-21
-  - 2014-05-05
-  - 2014-12-25
-  - 2014-12-26
-  - 2015-01-01
-  slots:
-    mon:
-    - 1400-1600
-    tue:
+    thu:
     - 1400-1600
     wed:
     - 1400-1600
-    thu:
-    - 1400-1600
-    sat:
-    - 1400-1600
-    sun:
-    - 1400-1600
-  name: Stoke Heath
-- nomis_id: SNI
-  canned_responses: true
-  enabled: true
-  phone: 0300 060 6507
-  email: visitsbooking.westmidlands@noms.gsi.gov.uk
-  adult_age: 10
-  address:
-  - Swinfen Hall
-  - FLichfield
-  - Staffordshire
-  - WS14 9QS
   unbookable:
-  - 2014-04-18
-  - 2014-04-21
-  - 2014-05-05
-  - 2014-05-26
+  - 2014-12-17
+  - 2014-12-18
+  - 2014-12-20
+  - 2014-12-21
+  - 2014-12-23
+  - 2014-12-24
   - 2014-12-25
   - 2014-12-26
+  - 2014-12-27
+  - 2014-12-28
+  - 2014-12-30
+  - 2015-01-01
+- name: Deerbolt
+  nomis_id: DTI
+  address:
+  - Bowes Road
+  - DL12 9BG
+  canned_responses: true
+  email: socialvisits.deerbolt@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01833 633349
+  slot_anomalies:
+    2014-12-23:
+    - 1345-1545
+    2014-12-30:
+    - 1345-1545
+  slots:
+    thu:
+    - 1345-1545
+    sat:
+    - 1345-1545
+    sun:
+    - 1345-1545
+  unbookable:
+  - 2014-12-25
   - 2015-01-01
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 298f7bc... Move name/nomis_id to top and alpha-sort the list
   - 2015-04-03
 - name: Doncaster
   nomis_id: DNI
   enabled: false
 - name: Dovegate
+<<<<<<< HEAD
   nomis_id:
+=======
+  nomis_id: 
+>>>>>>> 298f7bc... Move name/nomis_id to top and alpha-sort the list
   enabled: false
 - name: Downview
   nomis_id: DWI
@@ -456,462 +789,367 @@
   enabled: false
   phone: 0208 196 6359
   reason: coming_soon
+<<<<<<< HEAD
 >>>>>>> ad396cd... fixup! Change the way prison data is accessed.
+=======
+>>>>>>> 298f7bc... Move name/nomis_id to top and alpha-sort the list
+  slots:
+    sat:
+    - 1330-1530
+    sun:
+    - 1330-1530
+    thu:
+    - 1400-1600
+  unbookable:
+  - 2014-12-25
+- name: Drake Hall
+  nomis_id: DHI
+  address:
+  - Eccleshall
+  - Staffordshire
+  - ST21 6LQ
+  canned_responses: true
+  email: visitsbooking.westmidlands@noms.gsi.gov.uk
+  enabled: true
+  phone: 0300 060 6501
   slots:
     tue:
-    - 1400-1600
-    wed:
-    - 1400-1600
+    - 1330-1545
     sat:
-    - 1400-1600
+    - 1330-1545
     sun:
-    - 1400-1600
-  name: Swinfen Hall
-- nomis_id: HEI
-  canned_responses: true
-  enabled: true
-  phone: 0300 060 6503
-  email: visitsbooking.westmidlands@noms.gsi.gov.uk
-  adult_age: 10
-  address:
-  - Hewell Lane
-  - Redditch
-  - Worcestershire
-  - B97 6QS
+    - 1330-1545
   unbookable:
+  - 2014-04-18
+  - 2014-04-21
   - 2014-05-05
   - 2014-05-26
   - 2014-12-25
   - 2014-12-26
   - 2015-01-01
-  slots:
-    mon:
-    - 1400-1630
-    tue:
-    - 1400-1630
-    wed:
-    - 1400-1630
-    thu:
-    - 1400-1630
-    fri:
-    - 1430-1630
-    sat:
-    - 0930-1130
-    - 1430-1630
-    sun:
-    - 1430-1630
-  name: Hewell
-- nomis_id: FHI
-  enabled: true
-  phone: 01283 584357
-  email: socialvisits.fostonhall@hmps.gsi.gov.uk
+- name: Durham
+  nomis_id: DMI
   address:
-  - Foston Hall
-  - Derby
-  - Foston
-  - DE65 5DN
-  unbookable:
-  - 2014-12-25
-  - 2015-04-03
-  slots:
-    mon:
-    - 1400-1600
-    wed:
-    - 1400-1600
-    fri:
-    - 1400-1600
-    sat:
-    - 0930-1130
-    - 1400-1600
-    sun:
-    - 0930-1130
-    - 1400-1600
-  name: Foston Hall
-- nomis_id: HYI
+  - Old Elvet
+  - Durham
+  - DH1 3HU
   canned_responses: true
+  email: socialvisits.durham@hmps.gsi.gov.uk
   enabled: true
-  phone: 020 7979 4751
-  email: socialvisits.holloway@hmps.gsi.gov.uk
-  address:
-  - Pankhurst Road
-  - London
-  - N7 0NU
+  phone: 0191 3323417
+  slots:
+    mon:
+    - 1345-1545
+    tue:
+    - 1345-1545
+    - 1715-1900
+    wed:
+    - 1345-1545
+    - 1715-1900
+    thu:
+    - 1345-1545
+    fri:
+    - 1345-1545
+    sat:
+    - 0930-1130
+    - 1345-1645
+    sun:
+    - 0930-1130
+    - 1345-1645
   unbookable:
-  - 2014-06-14
-  - 2014-07-12
-  - 2014-08-09
-  - 2014-09-13
-  - 2014-10-11
-  - 2014-11-08
-  - 2014-12-06
-  - 2014-12-13
-  - 2014-12-20
+  - 2014-04-18
   - 2014-12-25
   - 2014-12-26
-  - 2014-12-27
+  - 2015-01-01
+- name: East Sutton Park
+  nomis_id: ESI
+  address:
+  - Sutton Valence
+  - ME17 3DF
+  email: socialvisits.eastsuttonpark@hmps.gsi.gov.uk
+  enabled: false
+  phone: ''
+  reason: coming_soon
   slots:
-    mon:
-    - 1430-1530
+    sat:
+    - 1330-1530
+    sun:
+    - 1330-1530
+  unbookable:
+  - 2014-12-25
+- name: Eastwood Park
+  nomis_id: EWI
+  address:
+  - Falfield
+  - GL12 8DB
+  canned_responses: true
+  email: socialvisits.eastwoodpark@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01454 382159
+  slots:
     tue:
-    - 0930-1030
-    - 1430-1530
+    - 1400-1500
+    - 1530-1630
     wed:
-    - 0930-1030
-    - 1430-1530
+    - 1400-1500
+    - 1530-1630
     thu:
-    - 0930-1030
-    - 1430-1530
-    - 1800-1900
+    - 1400-1500
+    - 1530-1630
     fri:
-    - 0930-1030
+    - 1400-1500
+    - 1530-1630
     sat:
     - 1400-1500
     - 1530-1630
     sun:
-    - 1400-1500
-    - 1530-1630
-  slot_anomalies:
-    2014-05-21:
-    - 0930-1030
-    2014-05-29:
-    - 0930-1030
-    2014-06-18:
-    - 0930-1030
-    2014-07-24:
-    - 0930-1030
-    2014-07-29:
-    - 0930-1030
-    2014-08-20:
-    - 0930-1030
-    2014-08-21:
-    - 0930-1030
-    2014-09-24:
-    - 0930-1030
-    2014-10-22:
-    - 0930-1030
-    2014-10-30:
-    - 0930-1030
-    2014-11-19:
-    - 0930-1030
-    2014-12-18:
-    - 0930-1030
-  name: Holloway
-- nomis_id: BLI
-  canned_responses: true
-  enabled: true
-  phone: 0117 372 3213
-  email: socialvisits.bristol@hmps.gsi.gov.uk
-  address:
-  - 19 Cambridge Road
-  - Bristol
-  - BS7 8PS
+    - 1400-1600
   unbookable:
   - 2014-12-25
-  - 2014-12-26
-  - 2015-01-01
-  - 2015-04-03
+- name: Elmley
+  nomis_id: EYI
+  address:
+  - Church Road
+  - ME12 4DZ
+  canned_responses: true
+  email: socialvisits.elmley@hmps.gsi.gov.uk
+  enabled: true
+  finder_slug: sheppey-cluster-elmley
+  phone: 0300 060 6605
   slots:
     mon:
-    - 1400-1600
+    - 1400-1530
+    fri:
+    - 1400-1530
+    sat:
+    - 1400-1530
+    sun:
+    - 1400-1530
+    thu:
+    - 1400-1530
     tue:
-    - 1400-1600
+    - 1400-1530
     wed:
-    - 1400-1600
-    thu:
-    - 1400-1600
-    fri:
-    - 1400-1600
-    sat:
-    - 1400-1600
-    sun:
-    - 1400-1600
-  name: Bristol
-- nomis_id: BCI
-  canned_responses: true
-  enabled: true
-  phone: 01706 514350
-  email: socialvisits.buckleyhall@hmps.gsi.gov.uk
-  address:
-  - Buckley Road
-  - OL12 9DP
+    - 1400-1530
   unbookable:
   - 2014-12-25
   - 2014-12-26
   - 2015-04-03
+- name: Erlestoke
+  nomis_id: EEI
+  address:
+  - DEVIZES
+  - SN10 5TU
+  canned_responses: true
+  email: eecmbookavisit@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01380 814264
+  slot_anomalies:
+    2015-04-01:
+    - 1315-1600
   slots:
+    sat:
+    - 0900-1130
+    - 1315-1600
+    thu:
+    - 1315-1600
+    fri:
+    - 1315-1600
+  unbookable:
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-04-03
+- name: Everthorpe
+  nomis_id: EVI
+  address:
+  - 1a Beck Road
+  - HU15 1RB
+  canned_responses: true
+  email: socialvisits.everthorpe@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01430 426505
+  slots:
+    fri:
+    - 1415-1615
     mon:
+    - 1415-1615
+    sat:
     - 1400-1600
-    tue:
+    sun:
+    - 0930-1130
     - 1400-1600
-    wed:
-    - 1400-1600
-    - 1745-1845
     thu:
-    - 1400-1600
-    fri:
-    - 1400-1600
-    sat:
-    - 0930-1130
-    - 1400-1600
-    sun:
-    - 0930-1130
-    - 1400-1600
-  slot_anomalies:
-    2014-12-24:
-    - 1400-1600
-    2014-12-31:
-    - 1400-1600
-  name: Buckley Hall
-- nomis_id: BRI
-  canned_responses: true
-  enabled: true
-  phone: 01603 326252
-  email: socialvisits.bure@hmps.gsi.gov.uk
-  address:
-  - Jaguar Drive
-  - NR10 5GB
+    - 1415-1615
   unbookable:
   - 2014-12-25
-  - 2015-01-01
-  - 2015-04-03
-  slots:
-    fri:
-    - 1400-1600
-    sat:
-    - 0930-1130
-    - 1400-1600
-    sun:
-    - 0930-1130
-    - 1400-1600
-  name: Bure
-- nomis_id: CLI
-  canned_responses: true
-  enabled: true
-  phone: 01483 344418
-  email: socialvisits.coldingley@hmps.gsi.gov.uk
-  address:
-  - Shaftesbury Road
-  - GU24 9EX
-  unbookable:
-  - 2014-07-30
-  - 2014-08-20
-  - 2014-10-29
-  - 2014-12-19
-  - 2014-12-25
-  - 2014-12-26
-  - 2015-01-01
-  - 2015-04-03
-  slots:
-    mon:
-    - 1400-1545
-    wed:
-    - 1400-1545
-    thu:
-    - 1400-1545
-    sat:
-    - 1400-1545
-    sun:
-    - 1400-1545
-  slot_anomalies:
-    2014-12-23:
-    - 1400-1545
-    2014-12-24:
-    - 0915-1100
-  name: Coldingley
-- nomis_id: CKI
-  canned_responses: true
-  enabled: true
-  phone: 01634 202557
-  email: socialvisits.cookhamwood@hmps.gsi.gov.uk
-  address:
-  - Sir Evelyn Road
-  - ME1 3LU
-  unbookable:
-  - 2014-12-25
-  - 2014-12-26
-  - 2015-01-01
-  slots:
-    wed:
-    - 1345-1615
-    sat:
-    - 0930-1130
-    - 1430-1630
-    sun:
-    - 0930-1130
-    - 1430-1630
-  slot_anomalies:
-    2014-12-24:
-    - 1430-1630
-    2014-12-31:
-    - 1430-1630
-  name: Cookham Wood
-- nomis_id: DTI
-  canned_responses: true
-  enabled: true
-  phone: 01833 633349
-  email: socialvisits.deerbolt@hmps.gsi.gov.uk
-  address:
-  - Bowes Road
-  - DL12 9BG
-  unbookable:
-  - 2014-12-25
-  - 2015-01-01
-  - 2015-04-03
-  slots:
-    thu:
-    - 1345-1545
-    sat:
-    - 1345-1545
-    sun:
-    - 1345-1545
-  slot_anomalies:
-    2014-12-23:
-    - 1345-1545
-    2014-12-30:
-    - 1345-1545
-  name: Deerbolt
-- nomis_id: EXI
-  canned_responses: true
-  enabled: true
-  phone: 01392 41 5833
-  email: socialvisits.exeter@hmps.gsi.gov.uk
+- name: Exeter
+  nomis_id: EXI
   address:
   - New North Road
   - EX4 4EX
-  unbookable:
-  - 2014-12-22
-  - 2014-12-25
-  - 2014-12-26
-  - 2015-04-03
-  slots:
-    mon:
-    - 1415-1615
-    tue:
-    - 1415-1615
-    thu:
-    - 1415-1615
-    fri:
-    - 1415-1615
-    sat:
-    - 1415-1615
-    sun:
-    - 1415-1615
+  canned_responses: true
+  email: socialvisits.exeter@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01392 41 5833
   slot_anomalies:
     2014-12-24:
     - 1415-1615
     2015-08-31:
     - 1415-1615
-  name: Exeter
-- nomis_id: LWI
-  canned_responses: true
-  enabled: true
-  phone: 01273785277
-  email: socialvisits.lewes@hmps.gsi.gov.uk
-  works_weekends: true
-  address:
-  - 1 Brighton Road
-  - BN7 1EA
+  slots:
+    mon:
+    - 1415-1615
+    tue:
+    - 1415-1615
+    thu:
+    - 1415-1615
+    fri:
+    - 1415-1615
+    sat:
+    - 1415-1615
+    sun:
+    - 1415-1615
   unbookable:
+  - 2014-12-22
   - 2014-12-25
   - 2014-12-26
-  - 2015-01-01
-  - 2015-01-27
   - 2015-04-03
+- name: Featherstone
+  nomis_id: FSI
+  address:
+  - New Road
+  - Featherstone
+  - Wolverhampton
+  - WV10 7PU
+  canned_responses: true
+  email: visitsbooking.westmidlands@noms.gsi.gov.uk
+  enabled: true
+  phone: 0300 060 6502
   slots:
     mon:
-    - 0930-1100
-    - 1410-1535
+    - 1400-1630
     tue:
-    - 1410-1535
+    - 1400-1600
     wed:
-    - 0930-1100
-    - 1410-1535
+    - 1400-1600
     thu:
-    - 1410-1535
-    fri:
-    - 0930-1100
-    - 1410-1535
+    - 1400-1600
     sat:
-    - 1410-1535
+    - 1400-1600
     sun:
-    - 1410-1535
-  name: Lewes
-- nomis_id: MDI
-  canned_responses: true
-  enabled: true
-  phone: 01302523289
-  email: socialvisits.moorlandclosed@hmps.gsi.gov.uk
-  finder_slug: moorland
-  address:
-  - Bawtry Road
-  - DN7 6BW
-  lead_days: 1
+    - 1400-1600
   unbookable:
+  - 2014-04-18
+  - 2014-04-21
+  - 2014-05-05
+  - 2014-05-26
   - 2014-12-25
   - 2014-12-26
   - 2015-01-01
-  slots:
-    wed:
-    - 1340-1545
-    thu:
-    - 1340-1545
-    sat:
-    - 1340-1545
-    sun:
-    - 1340-1545
-  name: Moorland Closed
-- nomis_id: ONI
-  canned_responses: true
-  enabled: true
-  phone: 01788 523 402
-  email: socialvisits.onley@hmps.gsi.gov.uk
-  adult_age: 10
+- name: Feltham (Young Adults 18-21 only)
+  nomis_id: FMI
   address:
-  - Willoughby
-  - CV23 8AP
-  unbookable:
-  - 2012-12-22
-  - 2014-12-25
-  - 2014-12-26
-  - 2015-01-01
+  - Bedfont Road
+  - TW13 4ND
+  canned_responses: true
+  email: socialvisits.feltham@hmps.gsi.gov.uk
+  enabled: true
+  finder_slug: feltham
+  phone: 0208 844 5400
   slots:
     mon:
-    - 1345-1445
-    - 1515-1615
-    tue:
-    - 1345-1445
-    - 1515-1615
+    - 1330-1500
+    - 1500-1630
     wed:
-    - 1345-1445
-    - 1515-1615
-    thu:
-    - 1345-1445
-    - 1515-1615
+    - 1330-1500
+    - 1500-1630
     fri:
-    - 1430-1600
+    - 1330-1500
+    - 1500-1630
     sat:
-    - 1345-1500
-    - 1515-1630
+    - 0900-1000
+    - 1000-1100
     sun:
-    - 1345-1500
-    - 1515-1630
-  name: Onley
-- nomis_id: MTI
-  canned_responses: true
-  enabled: true
-  phone: 01442 836352
-  email: socialvisits.themount@hmps.gsi.gov.uk
-  address:
-  - Molyneaux Avenue
-  - HP3 0NZ
+    - 1330-1500
+    - 1500-1630
   unbookable:
+  - 2014-06-15
+  - 2014-06-29
+  - 2014-07-13
+  - 2014-07-27
+  - 2014-08-10
+  - 2014-08-24
+  - 2014-09-07
+  - 2014-09-21
+  - 2014-10-05
+  - 2014-10-19
+  - 2014-11-02
+  - 2014-11-16
+  - 2014-11-30
+  - 2014-12-14
+  - 2014-12-25
+  - 2014-12-28
+  - 2015-01-11
+  - 2015-01-25
+  - 2015-02-08
+  - 2015-02-22
+  - 2015-03-08
+  - 2015-03-22
+  - 2015-04-05
+  - 2015-04-19
+  - 2015-05-03
+  - 2015-05-17
+  - 2015-05-31
+  - 2015-06-14
+  - 2015-06-28
+- name: Feltham (Young People 15-18 only)
+  nomis_id: FMI
+  address:
+  - Bedfont Road
+  - TW13 4ND
+  canned_responses: true
+  email: socialvisits.feltham@hmps.gsi.gov.uk
+  enabled: true
+  finder_slug: feltham
+  phone: 0208 844 5400
+  slots:
+    tue:
+    - 1330-1500
+    - 1500-1630
+    thu:
+    - 1330-1500
+    - 1500-1630
+    sat:
+    - 1330-1500
+    - 1500-1630
+    sun:
+    - 1330-1500
+    - 1500-1630
+  unbookable:
+  - 2014-06-22
+  - 2014-07-06
+  - 2014-07-20
+  - 2014-08-03
+  - 2014-08-17
+  - 2014-08-31
+  - 2014-09-14
+  - 2014-09-28
+  - 2014-10-12
+  - 2014-10-26
+  - 2014-11-09
+  - 2014-11-23
+  - 2014-12-07
+  - 2014-12-21
   - 2014-12-25
   - 2014-12-26
+<<<<<<< HEAD
 <<<<<<< HEAD
   - 2015-01-01
   - 2015-04-03
   - 2015-04-05
 =======
+=======
+>>>>>>> 298f7bc... Move name/nomis_id to top and alpha-sort the list
   - 2015-01-04
   - 2015-01-18
   - 2015-02-01
@@ -934,409 +1172,323 @@
   canned_responses: true
   email: socialvisits.ford@hmps.gsi.gov.uk
   enabled: true
+<<<<<<< HEAD
   phone:
 >>>>>>> ad396cd... fixup! Change the way prison data is accessed.
+=======
+  phone: 
+>>>>>>> 298f7bc... Move name/nomis_id to top and alpha-sort the list
   slots:
     wed:
+    - 1800-2000
+    fri:
     - 1400-1600
-    thu:
+    sat:
+    - 1400-1600
+    sun:
+    - 1400-1600
+  unbookable:
+  - 2014-12-25
+  - 2014-12-31
+- name: Forest Bank
+  nomis_id: FBI
+  enabled: false
+- name: Foston Hall
+  nomis_id: FHI
+  address:
+  - Foston Hall
+  - Derby
+  - Foston
+  - DE65 5DN
+  email: socialvisits.fostonhall@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01283 584357
+  slots:
+    mon:
+    - 1400-1600
+    wed:
     - 1400-1600
     fri:
     - 1400-1600
     sat:
-    - 0915-1115
+    - 0930-1130
     - 1400-1600
     sun:
-    - 0915-1115
+    - 0930-1130
     - 1400-1600
+  unbookable:
+  - 2014-12-25
+  - 2015-04-03
+- name: Frankland
+  nomis_id: FKI
+  enabled: false
+- name: Full Sutton
+  nomis_id: FNI
+  enabled: false
+- name: Garth
+  nomis_id: GHI
+  enabled: false
+- name: Gartree
+  nomis_id: GTI
+  address:
+  - Gallow Field Rd
+  - Market Harborough
+  - Leicestershire
+  - LE16 7RP
+  canned_responses: true
+  email: socialvisits.gartree@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01858 426 727
+  slots:
+    tue:
+    - 1400-1600
+    thu:
+    - 1400-1600
+    sat:
+    - 1400-1600
+    sun:
+    - 1400-1600
+  unbookable:
+  - 2014-04-18
+  - 2014-04-21
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
+- name: Glen Parva
+  nomis_id: GPI
+  address:
+  - Tigers Road
+  - 'LE8 4TN '
+  canned_responses: true
+  email: socialvisits.glenparva@hmps.gsi.gov.uk
+  enabled: true
+  phone: 0116 228 4366
   slot_anomalies:
-    2014-12-23:
-    - 1400-1600
     2014-12-24:
-    - 1400-1600
-    2014-12-27:
-    - 0915-1115
-    - 1400-1600
-    2014-12-28:
-    - 0915-1115
-    - 1400-1600
-    2014-12-31:
-    - 1400-1600
-    2015-01-02:
-    - 1400-1600
-    2015-01-03:
-    - 0915-1115
-    - 1400-1600
-    2015-01-04:
-    - 0915-1115
-    - 1400-1600
-  name: The Mount
-- nomis_id: WLI
-  canned_responses: true
-  enabled: true
-  phone: 001953 804152
-  email: socialvisits.wayland@hmps.gsi.gov.uk
-  address:
-  - Griston
-  - IP25 6RL
+    - 1345-1545
+    2014-12-26:
+    - 0930-1130
+  slots:
+    mon:
+    - 1400-1545
+    sat:
+    - 1400-1545
+    sun:
+    - 1400-1545
+    thu:
+    - 1400-1545
+    tue:
+    - 1400-1545
+    wed:
+    - 1400-1545
   unbookable:
   - 2014-12-25
   - 2015-01-01
+- name: Grendon
+  nomis_id: GNI
+  address:
+  - Grendon Underwood
+  - HP18 0TL
+  canned_responses: true
+  email: socialvisits.grendon@hmps.gsi.gov.uk
+  enabled: true
+  phone: ''
   slots:
-    tue:
-    - 1400-1600
+    sat:
+    - 1345-1545
+    sun:
+    - 1345-1545
     wed:
     - 1400-1600
+  unbookable:
+  - 2014-12-25
+- name: Guys Marsh
+  nomis_id: GMI
+  address:
+  - SHAFTESBURY
+  - 'SP7 0AH '
+  canned_responses: true
+  email: socialvisitsguysmarsh@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01747 856586
+  slot_anomalies:
+    2014-12-29:
+    - 1330-1545
+  slots:
     fri:
     - 1400-1600
     sat:
     - 1400-1600
     sun:
     - 1400-1600
-  name: Wayland
-- nomis_id: WEI
-  canned_responses: true
-  enabled: true
-  phone: 01937 444599
-  email: socialvisits.wealstun@hmps.gsi.gov.uk
-  address:
-  - Church Causeway
-  - LS23 7AZ
   unbookable:
-  - 2014-12-25
-  - 2015-01-01
-  slots:
-    mon:
-    - 0930-1130
-    - 1330-1530
-    tue:
-    - 0930-1130
-    - 1330-1530
-    wed:
-    - 0930-1130
-    - 1330-1530
-    thu:
-    - 0930-1130
-    - 1330-1530
-    sat:
-    - 0930-1130
-    - 1345-1600
-    sun:
-    - 0930-1130
-    - 1345-1600
-  name: Wealstun
-- nomis_id: BFI
-  canned_responses: true
-  enabled: true
-  phone: 01234 373196
-  email: socialvisits.bedford@hmps.gsi.gov.uk
-  booking_window: 14
-  address:
-  - St. Loyes Street
-  - MK40 1HG
-  unbookable:
-  - 2014-12-25
-  - 2014-12-26
-  slots:
-    mon:
-    - 1345-1445
-    - 1515-1615
-    sat:
-    - 1345-1445
-    - 1515-1615
-    sun:
-    - 1345-1445
-    - 1515-1615
-    thu:
-    - 1345-1445
-    - 1515-1615
-    tue:
-    - 1345-1445
-    - 1515-1615
-    wed:
-    - 1345-1445
-    - 1515-1615
-  name: Bedford
-- nomis_id: PNI
-  canned_responses: true
-  enabled: true
-  phone: 01772 444666
-  email: socialvisits.preston@hmps.gsi.gov.uk
-  address:
-  - 2 Ribbleton Lane
-  - 'PR1 5AB '
-  unbookable:
-  - 2014-12-25
-  slots:
-    fri:
-    - 1400-1600
-    mon:
-    - 1400-1600
-    sat:
-    - 1400-1600
-    sun:
-    - 1400-1600
-    thu:
-    - 1400-1600
-    tue:
-    - 1400-1600
-    wed:
-    - 1400-1600
-  name: Preston
-- nomis_id: MSI
-  canned_responses: true
-  enabled: true
-  phone: 01622 775619
-  email: socialvisits.maidstone@hmps.gsi.gov.uk
-  address:
-  - 36 County Road
-  - 'ME14 1UZ '
-  unbookable:
-  - 2014-12-25
-  - 2014-12-26
-  slots:
-    tue:
-    - 1345-1545
-    mon:
-    - 1345-1545
-    sat:
-    - 1345-1620
-    sun:
-    - 1345-1620
-    thu:
-    - 1345-1545
-    wed:
-    - 1345-1545
-  name: Maidstone
-- nomis_id: WII
-  canned_responses: true
-  enabled: true
-  phone: 020 8588 4002
-  email: socialvisits.warrenhill@hmps.gsi.gov.uk
-  address:
-  - Hollesley
-  - 'IP12 3JW '
-  unbookable:
+  - 2014-12-24
   - 2014-12-25
   - 2014-12-26
   - 2014-12-31
   - 2015-01-01
-  - 2015-04-03
-  slots:
-    sat:
-    - 1400-1600
-    sun:
-    - 1400-1600
-    fri:
-    - 1400-1600
+- name: Hatfield Open
+  nomis_id: HDI
+  address:
+  - Thorne Road
+  - DN7 6El
+  canned_responses: true
+  email: socialvisitshatfield@hmps.gsi.gov.uk
+  enabled: true
+  finder_slug: hatfield
+  phone: 01405 746611
   slot_anomalies:
     2014-12-24:
     - 1400-1600
-  name: Warren Hill
-- nomis_id: WYI
-  canned_responses: true
-  enabled: true
-  phone: 01937 544207
-  email: socialvisits.wetherby@hmps.gsi.gov.uk
-  address:
-  - York Road
-  - 'LS22 5ED '
+    2014-12-31:
+    - 1400-1600
+  slots:
+    thu:
+    - 1400-1600
+    sat:
+    - 1400-1600
+    sun:
+    - 1400-1600
+    - 0930-1130
   unbookable:
   - 2014-12-25
-  slots:
-    wed:
-    - 1830-2000
-    sat:
-    - 0930-1130
-    - 1430-1630
-    sun:
-    - 0930-1130
-    - 1430-1630
-  name: Wetherby
-- nomis_id: EEI
-  canned_responses: true
-  enabled: true
-  phone: 01380 814264
-  email: eecmbookavisit@hmps.gsi.gov.uk
+  - 2014-12-26
+  - 2015-01-01
+- name: Haverigg
+  nomis_id: HVI
   address:
-  - DEVIZES
-  - SN10 5TU
+  - MILLOM
+  - 'LA18 4NA '
+  adult_age: 10
+  canned_responses: true
+  email: socialvisits.haverigg@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01229713016
+  slots:
+    fri:
+    - 1400-1545
+    mon:
+    - 1400-1545
+    sat:
+    - 1400-1545
+    sun:
+    - 1400-1545
+    thu:
+    - 1400-1545
+    wed:
+    - 1400-1545
   unbookable:
   - 2014-12-25
   - 2014-12-26
   - 2015-04-03
+- name: Hewell
+  nomis_id: HEI
+  address:
+  - Hewell Lane
+  - Redditch
+  - Worcestershire
+  - B97 6QS
+  adult_age: 10
+  canned_responses: true
+  email: visitsbooking.westmidlands@noms.gsi.gov.uk
+  enabled: true
+  phone: 0300 060 6503
+  slots:
+    mon:
+    - 1400-1630
+    tue:
+    - 1400-1630
+    wed:
+    - 1400-1630
+    thu:
+    - 1400-1630
+    fri:
+    - 1430-1630
+    sat:
+    - 0930-1130
+    - 1430-1630
+    sun:
+    - 1430-1630
+  unbookable:
+  - 2014-05-05
+  - 2014-05-26
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
+- name: High Down
+  nomis_id: HOI
+  address:
+  - Sutton Lane
+  - SM2 5PJ
+  canned_responses: true
+  email: socialvisits.highdown@hmps.gsi.gov.uk
+  enabled: true
+  phone: 020 7147 6570
   slots:
     sat:
-    - 0900-1130
-    - 1315-1600
+    - 1400-1600
+    sun:
+    - 1400-1600
     thu:
-    - 1315-1600
-    fri:
-    - 1315-1600
+    - 1400-1600
+    tue:
+    - 1400-1600
+    wed:
+    - 1400-1600
+  unbookable:
+  - 2015-10-14
+  - 2015-11-11
+  - 2015-11-18
+  - 2015-12-09
+  - 2015-12-16
+- name: Highpoint North
+  nomis_id: HPI
+  address:
+  - Stradishall
+  - 'CB8 9YG '
+  canned_responses: true
+  email: socialvisits.highpoint@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01440 743134
   slot_anomalies:
-    2015-04-01:
-    - 1315-1600
-  name: Erlestoke
-- nomis_id: CDI
-  canned_responses: true
-  enabled: true
-  phone: 01245 552265
-  email: socialvisits.chelmsford@hmps.gsi.gov.uk
-  address:
-  - 200 Springfield Road
-  - 'CM2 6LQ '
+    2014-12-22:
+    - 1400-1600
+  slots:
+    fri:
+    - 1430-1630
+    sat:
+    - 1400-1600
+    sun:
+    - 1400-1600
   unbookable:
   - 2014-12-25
   - 2014-12-26
+  - 2015-04-03
+  - 2015-11-18
+  - 2015-12-16
+- name: Highpoint South
+  nomis_id: HPI
+  address:
+  - Stradishall
+  - 'CB8 9YG '
+  canned_responses: true
+  email: socialvisits.highpoint@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01440 743134
+  slot_anomalies:
+    2015-08-31:
+    - 1400-1600
   slots:
+    fri:
+    - 1430-1630
     mon:
-    - 1415-1600
+    - 1400-1600
     sat:
+    - 1400-1600
+    sun:
     - 0900-1100
-    - 1415-1600
-    sun:
-    - 0900-1100
-    - 1415-1600
-    thu:
-    - 1415-1600
-    tue:
-    - 1415-1600
-    wed:
-    - 1415-1600
-  name: Chelmsford
-- nomis_id: SKI
-  canned_responses: true
-  enabled: true
-  phone: 01780 795156
-  email: socialvisits.stocken@hmps.gsi.gov.uk
-  address:
-  - Stocken Hall Road
-  - LE15 7RD
-  unbookable:
-  - 2014-12-25
-  - 2014-12-26
-  - 2015-01-01
-  slots:
-    fri:
-    - 1345-1545
-    sat:
-    - 0915-1115
-    - 1345-1545
-    sun:
-    - 0915-1115
-    - 1345-1545
-    wed:
-    - 1345-1545
-  name: Stocken
-- nomis_id: DAI
-  canned_responses: true
-  enabled: true
-  phone: 01822 322022
-  email: socvisdartmoor@hmps.gsi.gov.uk
-  address:
-  - Princetown
-  - PL20 6RR
-  lead_days: 4
-  unbookable:
-  - 2014-12-17
-  - 2014-12-18
-  - 2014-12-20
-  - 2014-12-21
-  - 2014-12-23
-  - 2014-12-24
-  - 2014-12-25
-  - 2014-12-26
-  - 2014-12-27
-  - 2014-12-28
-  - 2014-12-30
-  - 2015-01-01
-  slots:
-    tue:
     - 1400-1600
-    sat:
-    - 1400-1600
-    sun:
-    - 1400-1600
-    thu:
-    - 1400-1600
-    wed:
-    - 1400-1600
-  name: Dartmoor
-- nomis_id: LNI
-  canned_responses: true
-  enabled: true
-  phone: 0191 376 4147
-  email: socialvisits.lownewton@hmps.gsi.gov.uk
-  address:
-  - Brasside
-  - DH1 5YA
-  unbookable:
-  - 2014-12-25
-  - 2014-12-26
-  - 2015-01-01
-  slots:
-    fri:
-    - 1415-1545
-    sat:
-    - 1400-1545
-    sun:
-    - 1400-1545
-    thu:
-    - 1415-1545
-    tue:
-    - 1415-1545
-  name: Low Newton
-- nomis_id: AYI
-  canned_responses: true
-  enabled: true
-  phone: 01296 444099
-  email: socialvisits.aylesbury@hmps.gsi.gov.uk
-  address:
-  - Bierton Road
-  - HP20 1EH
-  unbookable:
-  - 2014-12-25
-  - 2014-12-26
-  - 2015-01-01
-  - 2015-01-19
-  - 2015-01-21
-  - 2015-01-22
-  - 2015-01-24
-  - 2015-01-25
-  - 2015-01-26
-  - 2015-01-28
-  - 2015-01-29
-  slots:
-    mon:
-    - 1415-1615
-    sat:
-    - 1400-1535
-    sun:
-    - 1400-1535
-    thu:
-    - 1415-1615
-    wed:
-    - 1415-1615
-  name: Aylesbury
-- nomis_id: ALI
-  canned_responses: true
-  enabled: true
-  phone: 01983 634218
-  email: socialvisitsisleofwight@hmps.gsi.gov.uk
-  address:
-  - 55 Parkhurst Road
-  - PO30 5RS
-  unbookable:
-  - 2014-12-25
-  slots:
-    fri:
-    - 1400-1600
-    mon:
-    - 1400-1600
-    sat:
-    - 1400-1600
-    sun:
-    - 1400-1600
+<<<<<<< HEAD
   name: Isle of Wight - Albany
 - nomis_id: BHI
   enabled: false
@@ -1512,795 +1664,37 @@
   address:
   - Church Road
   - 'ME12 4DZ '
+=======
+>>>>>>> 298f7bc... Move name/nomis_id to top and alpha-sort the list
   unbookable:
   - 2014-12-25
   - 2014-12-26
   - 2015-04-03
-  slots:
-    mon:
-    - 1400-1530
-    fri:
-    - 1400-1530
-    sat:
-    - 1400-1530
-    sun:
-    - 1400-1530
-    thu:
-    - 1400-1530
-    tue:
-    - 1400-1530
-    wed:
-    - 1400-1530
-  name: Elmley
-- nomis_id: EVI
-  canned_responses: true
-  enabled: true
-  phone: 01430 426505
-  email: socialvisits.everthorpe@hmps.gsi.gov.uk
-  address:
-  - 1a Beck Road
-  - HU15 1RB
-  unbookable:
-  - 2014-12-25
-  slots:
-    fri:
-    - 1415-1615
-    mon:
-    - 1415-1615
-    sat:
-    - 1400-1600
-    sun:
-    - 0930-1130
-    - 1400-1600
-    thu:
-    - 1415-1615
-  name: Everthorpe
-- nomis_id: WOI
-  canned_responses: true
-  enabled: true
-  phone: 01430 426505
-  email: socialvisits.everthorpe@hmps.gsi.gov.uk
-  address:
-  - Everthorpe
-  - HU15 2JZ
-  unbookable:
-  - 2014-12-25
-  slots:
-    fri:
-    - 1415-1615
-    sun:
-    - 1400-1600
-    wed:
-    - 1415-1615
-    thu:
-    - 1415-1615
-    sat:
-    - 1400-1600
-  name: Wolds
-- nomis_id: GPI
-  canned_responses: true
-  enabled: true
-  phone: 0116 228 4366
-  email: socialvisits.glenparva@hmps.gsi.gov.uk
-  address:
-  - Tigers Road
-  - 'LE8 4TN '
-  unbookable:
-  - 2014-12-25
-  - 2015-01-01
-  slots:
-    mon:
-    - 1400-1545
-    sat:
-    - 1400-1545
-    sun:
-    - 1400-1545
-    thu:
-    - 1400-1545
-    tue:
-    - 1400-1545
-    wed:
-    - 1400-1545
-  slot_anomalies:
-    2014-12-24:
-    - 1345-1545
-    2014-12-26:
-    - 0930-1130
-  name: Glen Parva
-- nomis_id: GNI
-  canned_responses: true
-  enabled: true
-  phone: ''
-  email: socialvisits.grendon@hmps.gsi.gov.uk
-  address:
-  - Grendon Underwood
-  - HP18 0TL
-  unbookable:
-  - 2014-12-25
-  slots:
-    sat:
-    - 1345-1545
-    sun:
-    - 1345-1545
-    wed:
-    - 1400-1600
-  name: Grendon
-- nomis_id: GMI
-  canned_responses: true
-  enabled: true
-  phone: 01747 856586
-  email: socialvisitsguysmarsh@hmps.gsi.gov.uk
-  address:
-  - SHAFTESBURY
-  - 'SP7 0AH '
-  unbookable:
-  - 2014-12-24
-  - 2014-12-25
-  - 2014-12-26
-  - 2014-12-31
-  - 2015-01-01
-  slots:
-    fri:
-    - 1400-1600
-    sat:
-    - 1400-1600
-    sun:
-    - 1400-1600
-  slot_anomalies:
-    2014-12-29:
-    - 1330-1545
-  name: Guys Marsh
-- nomis_id: HDI
-  canned_responses: true
-  enabled: true
-  phone: 01405 746611
-  email: socialvisitshatfield@hmps.gsi.gov.uk
-  finder_slug: hatfield
-  address:
-  - Thorne Road
-  - DN7 6El
-  unbookable:
-  - 2014-12-25
-  - 2014-12-26
-  - 2015-01-01
-  slots:
-    thu:
-    - 1400-1600
-    sat:
-    - 1400-1600
-    sun:
-    - 1400-1600
-    - 0930-1130
-  slot_anomalies:
-    2014-12-24:
-    - 1400-1600
-    2014-12-31:
-    - 1400-1600
-  name: Hatfield Open
-- nomis_id: HVI
-  canned_responses: true
-  enabled: true
-  phone: 01229713016
-  adult_age: 10
-  email: socialvisits.haverigg@hmps.gsi.gov.uk
-  address:
-  - MILLOM
-  - 'LA18 4NA '
-  unbookable:
-  - 2014-12-25
-  - 2014-12-26
-  - 2015-04-03
-  slots:
-    fri:
-    - 1400-1545
-    mon:
-    - 1400-1545
-    sat:
-    - 1400-1545
-    sun:
-    - 1400-1545
-    thu:
-    - 1400-1545
-    wed:
-    - 1400-1545
-  name: Haverigg
-- nomis_id: HOI
-  canned_responses: true
-  enabled: true
-  phone: 020 7147 6570
-  email: socialvisits.highdown@hmps.gsi.gov.uk
-  address:
-  - Sutton Lane
-  - 'SM2 5PJ '
-  unbookable:
-  - 2015-09-16
-  - 2015-10-14
-  - 2015-11-18
-  - 2015-12-16
-  slots:
-    sat:
-    - 1400-1600
-    sun:
-    - 1400-1600
-    thu:
-    - 1400-1600
-    tue:
-    - 1400-1600
-    wed:
-    - 1400-1600
-  name: High Down
-- nomis_id: HPI
-  canned_responses: true
-  enabled: true
-  phone: 01440 743134
-  email: socialvisits.highpoint@hmps.gsi.gov.uk
-  address:
-  - Stradishall
-  - 'CB8 9YG '
-  unbookable:
-  - 2014-12-25
-  - 2014-12-26
-  - 2015-04-03
-  slots:
-    fri:
-    - 1430-1630
-    sat:
-    - 1400-1600
-    sun:
-    - 1400-1600
-  slot_anomalies:
-    2014-12-22:
-    - 1400-1600
-  name: Highpoint North
-- nomis_id: HPI
-  canned_responses: true
-  enabled: true
-  phone: 01440 743134
-  email: socialvisits.highpoint@hmps.gsi.gov.uk
-  address:
-  - Stradishall
-  - 'CB8 9YG '
-  unbookable:
-  - 2014-12-25
-  - 2014-12-26
-  - 2015-04-03
-  slots:
-    fri:
-    - 1430-1630
-    mon:
-    - 1400-1600
-    sat:
-    - 1400-1600
-    sun:
-    - 0900-1100
-    - 1400-1600
-  slot_anomalies:
-    2015-08-31:
-    - 1400-1600
-  name: Highpoint South
-- nomis_id: HHI
-  canned_responses: true
-  enabled: true
-  phone: 03000 606602
-  email: socialvisits.holmehouse@hmps.gsi.gov.uk
-  address:
-  - Holme House Road
-  - S18 2QU
-  unbookable:
-  - 2014-12-25
-  slots:
-    fri:
-    - 1345-1545
-    sat:
-    - 0845-1130
-    - 1345-1530
-    sun:
-    - 0845-1130
-    - 1345-1530
-    thu:
-    - 1345-1545
-    tue:
-    - 1340-1545
-    wed:
-    - 1345-1545
-    mon:
-    - 1345-1545
-  name: Holme House
-- nomis_id: HLI
-  enabled: false
-  reason: coming_soon
-  phone: 01482 282016
-  email: socialvisits.hull@hmps.gsi.gov.uk
-  address:
-  - Hedon Road
-  - 'HU9 5LS '
-  unbookable:
-  - 2014-12-25
-  slots:
-    fri:
-    - 0930-1130
-    - 1345-1545
-    mon:
-    - 0930-1130
-    - 1345-1545
-    sat:
-    - 0930-1130
-    - 1345-1545
-    sun:
-    - 0930-1130
-    - 1345-1545
-  name: Hull
-- nomis_id: HCI
-  canned_responses: true
-  enabled: true
-  phone: 01491 643151
-  email: socialvisits.huntercombe@hmps.gsi.gov.uk
-  address:
-  - Huntercombe Place
-  - 'RG9 5SB '
-  unbookable:
-  - 2014-12-25
-  - 2014-12-26
-  - 2014-12-31
-  slots:
-    mon:
-    - 1345-1615
-    sat:
-    - 1345-1615
-    sun:
-    - 1345-1615
-    thu:
-    - 1345-1615
-  slot_anomalies:
-    2014-12-22:
-    - 1345-1600
-    2014-12-24:
-    - 1345-1600
-    2014-12-29:
-    - 1345-1600
-    2015-01-02:
-    - 1345-1600
-  name: Huntercombe
-- nomis_id: IWI
-  canned_responses: true
-  enabled: true
-  phone: 01983 634218
-  email: socialvisitsisleofwight@hmps.gsi.gov.uk
-  address:
-  - 'Clissold Road '
-  - 'PO30 5RS '
-  unbookable:
-  - 2014-12-25
-  slots:
-    fri:
-    - 1400-1600
-    mon:
-    - 1400-1600
-    sat:
-    - 1400-1600
-    sun:
-    - 1400-1600
-  name: Isle of Wight - Parkhurst
-- nomis_id: LEI
-  canned_responses: true
-  enabled: true
-  phone: 0113 203 2995
-  email: socialvisits.leeds@hmps.gsi.gov.uk
-  address:
-  - Gloucester Terrace
-  - 'LS12 2TJ '
-  unbookable:
-  - 2014-12-25
-  - 2014-12-26
-  - 2015-01-01
-  - 2015-04-03
-  slots:
-    fri:
-    - 1030-1130
-    - 1400-1500
-    - 1530-1630
-    mon:
-    - 1030-1130
-    - 1400-1500
-    - 1530-1630
-    sat:
-    - 0900-1000
-    - 1030-1130
-    - 1400-1500
-    - 1530-1630
-    sun:
-    - 0900-1000
-    - 1030-1130
-    - 1400-1500
-    - 1530-1630
-    thu:
-    - 1030-1130
-    - 1400-1500
-    - 1530-1630
-    tue:
-    - 1030-1130
-    - 1400-1500
-    - 1530-1630
-    wed:
-    - 1030-1130
-    - 1400-1500
-    - 1530-1630
-  name: Leeds
-- nomis_id: NHI
-  canned_responses: true
-  enabled: true
-  phone: 01924 803219
-  email: socialvisits.newhall@hmps.gsi.gov.uk
-  address:
-  - Dial Wood
-  - WF4 4XX
-  unbookable:
-  - 2014-12-25
-  - 2014-12-26
-  - 2015-01-01
-  slots:
-    sat:
-    - 1400-1600
-    sun:
-    - 1400-1600
-    thu:
-    - 1400-1600
-    tue:
-    - 1400-1600
-    wed:
-    - 1400-1600
-  name: New Hall
-- nomis_id: NMI
-  canned_responses: true
-  enabled: true
-  phone: 0115 962 8980
-  email: socialvisits.nottingham@hmps.gsi.gov.uk
-  address:
-  - Perry Road
-  - 'NG5 3AG '
-  unbookable:
-  - 2014-12-25
-  - 2014-12-26
-  - 2015-01-01
-  slots:
-    fri:
-    - 0900-1100
-    - 1400-1600
-    sat:
-    - 0900-1100
-    - 1400-1600
-    sun:
-    - 0900-1100
-    - 1400-1600
-    thu:
-    - 0900-1100
-    - 1400-1600
-    tue:
-    - 0900-1100
-    - 1400-1600
-  name: Nottingham
-- nomis_id: SDI
-  canned_responses: true
-  enabled: true
-  phone: 01483 471033
-  email: socialvisits.send@hmps.gsi.gov.uk
-  address:
-  - Ripley Road
-  - 'GU23 7LJ '
-  unbookable:
-  - 2014-12-25
-  - 2014-12-26
-  - 2014-12-31
-  - 2015-01-01
-  slots:
-    thu:
-    - 1400-1545
-    sat:
-    - 1400-1545
-    sun:
-    - 1400-1545
-  slot_anomalies:
-    2014-12-22:
-    - 1415-1615
-    2014-12-30:
-    - 1415-1615
-  name: Send
-- nomis_id: STI
-  canned_responses: true
-  enabled: true
-  phone: 01625553195
-  email: socialvisits.styal@hmps.gsi.gov.uk
-  address:
-  - WILMSLOW
-  - 'SK9 4HR '
-  unbookable:
-  - 2014-12-25
-  - 2014-12-26
-  - 2015-01-01
-  slots:
-    mon:
-    - 1345-1545
-    sat:
-    - 1345-1545
-    sun:
-    - 1345-1545
-    thu:
-    - 1345-1545
-    tue:
-    - 1345-1545
-    wed:
-    - 1345-1545
-  name: Styal
-- nomis_id: SLI
-  canned_responses: true
-  enabled: true
-  phone: 0300 060 6604
-  email: socialvisits.swaleside@hmps.gsi.gov.uk
-  address:
-  - Brabazon Road
-  - ME12 4AX
-  unbookable:
-  - 2014-12-25
-  - 2014-12-26
-  slots:
-    mon:
-    - 1400-1600
-    sat:
-    - 1330-1530
-    sun:
-    - 1330-1530
-    thu:
-    - 1400-1600
-    tue:
-    - 1400-1600
-    wed:
-    - 1400-1600
-  name: Swaleside
-- nomis_id: NWI
-  canned_responses: true
-  enabled: true
-  phone: 01603 708795
-  email: socialvisits.norwich@hmps.gsi.gov.uk
-  finder_slug: norwich
-  address:
-  - Knox Road
-  - 'NR1 4LU '
-  unbookable:
-  - 2014-12-25
-  - 2014-12-26
-  slots:
-    tue:
-    - 0930-1130
-    wed:
-    - 1415-1615
-    thu:
-    - 0930-1130
-    sat:
-    - 1415-1615
-    sun:
-    - 0930-1130
-  name: Norwich (A, B, C, E, M only)
-- nomis_id: NWI
-  canned_responses: true
-  enabled: true
-  phone: 01603 708795
-  email: socialvisits.norwich@hmps.gsi.gov.uk
-  finder_slug: norwich
-  address:
-  - Knox Road
-  - 'NR1 4LU '
-  unbookable:
-  - 2014-12-25
-  - 2014-12-26
-  slots:
-    tue:
-    - 1415-1615
-    thu:
-    - 1415-1615
-    sat:
-    - 0930-1130
-    sun:
-    - 1415-1615
-  name: Norwich (F, G, H, L only)
-- nomis_id: NWI
-  canned_responses: true
-  enabled: true
-  phone: 01603 708795
-  email: socialvisits.norwich@hmps.gsi.gov.uk
-  finder_slug: norwich
-  address:
-  - Knox Road
-  - NR1 4LU
-  unbookable:
-  - 2014-12-25
-  - 2014-12-26
-  slots:
-    mon:
-    - 0930-1130
-    - 1400-1600
-    tue:
-    - 0930-1130
-    - 1400-1600
-    wed:
-    - 0930-1130
-    - 1400-1600
-    thu:
-    - 0930-1130
-    - 1400-1600
-    fri:
-    - 0930-1130
-    - 1400-1600
-    sat:
-    - 0930-1130
-    - 1400-1600
-    sun:
-    - 0930-1130
-    - 1400-1600
-  name: Norwich (Britannia House)
-- nomis_id: EHI
-  canned_responses: true
-  enabled: true
-  phone: 0300 060 6603
-  email: socialvisits.standfordhill@hmps.gsi.gov.uk
-  finder_slug: sheppey-cluster-standford-hill
-  address:
-  - Church Road
-  - 'ME12 4AA '
-  unbookable:
-  - 2014-12-25
-  slots:
-    wed:
-    - 1345-1545
-    sat:
-    - 1345-1545
-    sun:
-    - 1345-1545
-  name: Standford Hill
-- nomis_id: LPI
-  canned_responses: true
-  enabled: true
-  phone: 0151 530 4050
-  email: socialvisits.liverpool@hmps.gsi.gov.uk
-  finder_slug: liverpool
-  address:
-  - 68 Hornby Road
-  - L9 3DF
-  unbookable:
-  - 2014-08-12
-  - 2014-09-17
-  - 2014-10-14
-  - 2014-10-23
-  - 2014-11-11
-  - 2014-12-10
-  - 2014-12-16
-  - 2014-12-25
-  - 2014-12-26
-  - 2015-01-22
-  - 2015-02-10
-  - 2015-03-16
-  - 2015-04-08
-  - 2015-05-12
-  - 2015-06-11
-  - 2015-07-09
-  - 2015-08-12
-  - 2015-09-10
-  slots:
-    fri:
-    - 0905-1005
-    - 1030-1130
-    - 1355-1455
-    - 1525-1625
-    mon:
-    - 1355-1455
-    - 1525-1625
-    sat:
-    - 0900-1000
-    - 1030-1130
-    - 1350-1450
-    - 1515-1615
-    sun:
-    - 0900-1000
-    - 1030-1130
-    - 1350-1450
-    - 1515-1615
-    thu:
-    - 0905-1005
-    - 1030-1130
-    - 1355-1455
-    - 1525-1625
-    tue:
-    - 1355-1455
-    - 1525-1625
-    wed:
-    - 0905-1005
-    - 1030-1130
-    - 1355-1455
-    - 1525-1625
-  name: Liverpool Social Visits
-- nomis_id: LPI
-  canned_responses: true
-  enabled: true
-  phone: 0151 530 4050
-  email: socialvisits.liverpool@hmps.gsi.gov.uk
-  finder_slug: liverpool
-  address:
-  - 68 Hornby Road
-  - L9 3DF
-  unbookable:
-  - 2014-08-12
-  - 2014-09-17
-  - 2014-10-14
-  - 2014-10-23
-  - 2014-11-11
-  - 2014-12-10
-  - 2014-12-16
-  - 2014-12-25
-  - 2014-12-26
-  - 2015-01-22
-  - 2015-02-10
-  - 2015-03-16
-  slots:
-    mon:
-    - 1025-1125
-    tue:
-    - 1025-1125
-  name: Liverpool (Closed only)
-- nomis_id: BNI
-  canned_responses: true
-  enabled: true
-  phone: 01869 353176
-  email: socialvisits.bullingdon@hmps.gsi.gov.uk
-  finder_slug: bullingdon
-  address:
-  - Bicester
-  - OX25 1PZ
-  unbookable:
-  - 2014-12-25
-  - 2014-12-26
-  slots:
-    mon:
-    - 1400-1610
-    sat:
-    - 1400-1610
-    sun:
-    - 1400-1610
-    thu:
-    - 1400-1610
-    tue:
-    - 1400-1610
-    wed:
-    - 1400-1610
-  name: Bullingdon (Convicted Only)
-- nomis_id: BNI
-  canned_responses: true
-  enabled: true
-  phone: 01869 353176
-  email: socialvisits.bullingdon@hmps.gsi.gov.uk
-  finder_slug: bullingdon
-  address:
-  - Bicester
-  - OX25 1PZ
-  unbookable:
-  - 2014-12-25
-  slots:
-    mon:
-    - 1400-1610
-    sat:
-    - 1400-1610
-    thu:
-    - 1400-1610
-    tue:
-    - 1400-1610
-  name: Bullingdon (Remand Only)
-- nomis_id: HII
-  canned_responses: true
-  enabled: true
-  phone: 01942 663492
-  email: socialvisits.hindley@hmps.gsi.gov.uk
-  finder_slug: hindley
+- name: Hindley
+  nomis_id: HII
   address:
   - Gibson Street
   - WN2 5TH
+  canned_responses: true
+  email: socialvisits.hindley@hmps.gsi.gov.uk
+  enabled: true
+  finder_slug: hindley
+  phone: 01942 663492
+  slots:
+    mon:
+    - 1400-1600
+    tue:
+    - 1400-1600
+    wed:
+    - 1400-1600
+    thu:
+    - 1400-1600
+    fri:
+    - 1400-1600
+    sat:
+    - 1400-1600
+    sun:
+    - 1400-1600
   unbookable:
   - 2014-06-29
   - 2014-07-05
@@ -2355,30 +1749,20 @@
   - 2015-05-23
   - 2015-05-31
   - 2015-06-06
-  slots:
-    mon:
-    - 1400-1600
-    tue:
-    - 1400-1600
-    wed:
-    - 1400-1600
-    thu:
-    - 1400-1600
-    fri:
-    - 1400-1600
-    sat:
-    - 1400-1600
-    sun:
-    - 1400-1600
-  name: Hindley
-- nomis_id: HBI
-  canned_responses: true
-  enabled: true
-  phone: ''
-  email: socialvisits.hollesleybay@hmps.gsi.gov.uk
+- name: Hollesley Bay Open
+  nomis_id: HBI
   address:
   - WOODBRIDGE
   - 'IP12 3JW '
+  canned_responses: true
+  email: socialvisits.hollesleybay@hmps.gsi.gov.uk
+  enabled: true
+  phone: ''
+  slots:
+    sat:
+    - 1400-1545
+    sun:
+    - 1400-1545
   unbookable:
   - 2014-12-25
   - 2014-12-26
@@ -2386,24 +1770,217 @@
   - 2014-12-28
   - 2014-12-31
   - 2015-01-01
-  slots:
-    sat:
-    - 1400-1545
-    sun:
-    - 1400-1545
-  name: Hollesley Bay Open
-- nomis_id: KTI
-  canned_responses: true
-  enabled: true
-  phone: 0151 213 3179
-  email: socialvisits.kennet@hmps.gsi.gov.uk
+- name: Holloway
+  nomis_id: HYI
   address:
-  - Parkbourn
-  - 'L31 1HX '
+  - Pankhurst Road
+  - London
+  - N7 0NU
+  canned_responses: true
+  email: socialvisits.holloway@hmps.gsi.gov.uk
+  enabled: true
+  phone: 020 7979 4751
+  slot_anomalies:
+    2014-05-21:
+    - 0930-1030
+    2014-05-29:
+    - 0930-1030
+    2014-06-18:
+    - 0930-1030
+    2014-07-24:
+    - 0930-1030
+    2014-07-29:
+    - 0930-1030
+    2014-08-20:
+    - 0930-1030
+    2014-08-21:
+    - 0930-1030
+    2014-09-24:
+    - 0930-1030
+    2014-10-22:
+    - 0930-1030
+    2014-10-30:
+    - 0930-1030
+    2014-11-19:
+    - 0930-1030
+    2014-12-18:
+    - 0930-1030
+  slots:
+    mon:
+    - 1430-1530
+    tue:
+    - 0930-1030
+    - 1430-1530
+    wed:
+    - 0930-1030
+    - 1430-1530
+    thu:
+    - 0930-1030
+    - 1430-1530
+    - 1800-1900
+    fri:
+    - 0930-1030
+    sat:
+    - 1400-1500
+    - 1530-1630
+    sun:
+    - 1400-1500
+    - 1530-1630
+  unbookable:
+  - 2014-06-14
+  - 2014-07-12
+  - 2014-08-09
+  - 2014-09-13
+  - 2014-10-11
+  - 2014-11-08
+  - 2014-12-06
+  - 2014-12-13
+  - 2014-12-20
+  - 2014-12-25
+  - 2014-12-26
+  - 2014-12-27
+- name: Holme House
+  nomis_id: HHI
+  address:
+  - Holme House Road
+  - S18 2QU
+  canned_responses: true
+  email: socialvisits.holmehouse@hmps.gsi.gov.uk
+  enabled: true
+  phone: 03000 606602
+  slots:
+    fri:
+    - 1345-1545
+    sat:
+    - 0845-1130
+    - 1345-1530
+    sun:
+    - 0845-1130
+    - 1345-1530
+    thu:
+    - 1345-1545
+    tue:
+    - 1340-1545
+    wed:
+    - 1345-1545
+    mon:
+    - 1345-1545
+  unbookable:
+  - 2014-12-25
+- name: Hull
+  nomis_id: HLI
+  address:
+  - Hedon Road
+  - 'HU9 5LS '
+  email: socialvisits.hull@hmps.gsi.gov.uk
+  enabled: false
+  phone: 01482 282016
+  reason: coming_soon
+  slots:
+    fri:
+    - 0930-1130
+    - 1345-1545
+    mon:
+    - 0930-1130
+    - 1345-1545
+    sat:
+    - 0930-1130
+    - 1345-1545
+    sun:
+    - 0930-1130
+    - 1345-1545
+  unbookable:
+  - 2014-12-25
+- name: Huntercombe
+  nomis_id: HCI
+  address:
+  - Huntercombe Place
+  - 'RG9 5SB '
+  canned_responses: true
+  email: socialvisits.huntercombe@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01491 643151
+  slot_anomalies:
+    2014-12-22:
+    - 1345-1600
+    2014-12-24:
+    - 1345-1600
+    2014-12-29:
+    - 1345-1600
+    2015-01-02:
+    - 1345-1600
+  slots:
+    mon:
+    - 1345-1615
+    sat:
+    - 1345-1615
+    sun:
+    - 1345-1615
+    thu:
+    - 1345-1615
   unbookable:
   - 2014-12-25
   - 2014-12-26
-  - 2015-01-01
+  - 2014-12-31
+- name: Isis
+  nomis_id: ISI
+  enabled: false
+- name: Isle of Wight - Albany
+  nomis_id: ALI
+  address:
+  - 55 Parkhurst Road
+  - PO30 5RS
+  canned_responses: true
+  email: socialvisitsisleofwight@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01983 634218
+  slots:
+    fri:
+    - 1400-1600
+    mon:
+    - 1400-1600
+    sat:
+    - 1400-1600
+    sun:
+    - 1400-1600
+  unbookable:
+  - 2014-12-25
+- name: Isle of Wight - Parkhurst
+  nomis_id: IWI
+  address:
+  - 'Clissold Road '
+  - 'PO30 5RS '
+  canned_responses: true
+  email: socialvisitsisleofwight@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01983 634218
+  slots:
+    fri:
+    - 1400-1600
+    mon:
+    - 1400-1600
+    sat:
+    - 1400-1600
+    sun:
+    - 1400-1600
+  unbookable:
+  - 2014-12-25
+- name: Kennet
+  nomis_id: KTI
+  address:
+  - Parkbourn
+  - 'L31 1HX '
+  canned_responses: true
+  email: socialvisits.kennet@hmps.gsi.gov.uk
+  enabled: true
+  phone: 0151 213 3179
+  slot_anomalies:
+    2014-12-24:
+    - 1400-1500
+    - 1530-1630
+    2014-12-31:
+    - 1400-1500
+    - 1530-1630
   slots:
     sat:
     - 0900-1000
@@ -2428,25 +2005,20 @@
     mon:
     - 1345-1445
     - 1515-1615
-  slot_anomalies:
-    2014-12-24:
-    - 1400-1500
-    - 1530-1630
-    2014-12-31:
-    - 1400-1500
-    - 1530-1630
-  name: Kennet
-- nomis_id: KMI
-  canned_responses: true
-  enabled: true
-  phone:
-  email: socialvisits.kirkham@hmps.gsi.gov.uk
+  unbookable:
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
+- name: Kirkham
+  nomis_id: KMI
   address:
   - Freckleton Road
   - ' Kirkham'
   - PR4 2RN
-  unbookable:
-  - 2014-12-25
+  canned_responses: true
+  email: socialvisits.kirkham@hmps.gsi.gov.uk
+  enabled: true
+  phone: 
   slots:
     fri:
     - 1300-1530
@@ -2454,17 +2026,21 @@
     - 1300-1530
     sun:
     - 1300-1530
-  name: Kirkham
-- nomis_id: LFI
-  canned_responses: true
-  enabled: true
-  phone: 01524 563636
-  email: lancasterfarmsdomesticvisitsbooking@hmps.gsi.gov.uk
+  unbookable:
+  - 2014-12-25
+- name: Kirklevington Grange
+  nomis_id: KVI
+  enabled: false
+  reason: coming_soon
+- name: Lancaster Farms
+  nomis_id: LFI
   address:
   - Stone Row Head
   - LA1 3QZ
-  unbookable:
-  - 2014-12-25
+  canned_responses: true
+  email: lancasterfarmsdomesticvisitsbooking@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01524 563636
   slots:
     sat:
     - 1400-1500
@@ -2475,19 +2051,150 @@
     wed:
     - 1400-1500
     - 1530-1630
-  name: Lancaster Farms
-- nomis_id: LII
-  canned_responses: true
-  enabled: true
-  phone: 01522 663172
-  email: lincolnsocialvisits@hmps.gsi.gov.uk
+  unbookable:
+  - 2014-12-25
+- name: Leeds
+  nomis_id: LEI
   address:
-  - Greetwell Road
-  - 'LN2 4BD '
+  - Gloucester Terrace
+  - 'LS12 2TJ '
+  canned_responses: true
+  email: socialvisits.leeds@hmps.gsi.gov.uk
+  enabled: true
+  phone: 0113 203 2995
+  slots:
+    fri:
+    - 1030-1130
+    - 1400-1500
+    - 1530-1630
+    mon:
+    - 1030-1130
+    - 1400-1500
+    - 1530-1630
+    sat:
+    - 0900-1000
+    - 1030-1130
+    - 1400-1500
+    - 1530-1630
+    sun:
+    - 0900-1000
+    - 1030-1130
+    - 1400-1500
+    - 1530-1630
+    thu:
+    - 1030-1130
+    - 1400-1500
+    - 1530-1630
+    tue:
+    - 1030-1130
+    - 1400-1500
+    - 1530-1630
+    wed:
+    - 1030-1130
+    - 1400-1500
+    - 1530-1630
   unbookable:
   - 2014-12-25
   - 2014-12-26
   - 2015-01-01
+  - 2015-04-03
+- name: Leicester
+  nomis_id: LCI
+  address:
+  - 116 Welford Road
+  - LE2 7AJ
+  canned_responses: true
+  email: socialvisitsleiceste@hmps.gsi.gov.uk
+  enabled: true
+  phone: 0116 228 3128
+  slot_anomalies:
+    2014-12-24:
+    - 0900-1100
+    - 1415-1615
+    2014-12-31:
+    - 0900-1100
+    - 1415-1615
+  slots:
+    mon:
+    - 1415-1615
+    tue:
+    - 1415-1615
+    wed:
+    - 1600-1800
+    thu:
+    - 1415-1615
+    sat:
+    - 1415-1615
+    sun:
+    - 1415-1615
+  unbookable:
+  - 2014-12-25
+  - 2014-12-26
+  - 2014-12-31
+  - 2015-01-01
+- name: Lewes
+  nomis_id: LWI
+  address:
+  - 1 Brighton Road
+  - BN7 1EA
+  canned_responses: true
+  email: socialvisits.lewes@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01273785277
+  slots:
+    mon:
+    - 0930-1100
+    - 1410-1535
+    tue:
+    - 1410-1535
+    wed:
+    - 0930-1100
+    - 1410-1535
+    thu:
+    - 1410-1535
+    fri:
+    - 0930-1100
+    - 1410-1535
+    sat:
+    - 1410-1535
+    sun:
+    - 1410-1535
+  unbookable:
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
+  - 2015-01-27
+  - 2015-04-03
+  works_weekends: true
+- name: Leyhill
+  nomis_id: LYI
+  address:
+  - Wotton-under-edge
+  - GL12 8BT
+  canned_responses: true
+  email: socialvisits.leyhill@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01454 264211
+  slots:
+    tue:
+    - 1330-1530
+    thu:
+    - 1330-1530
+    sat:
+    - 1330-1530
+    sun:
+    - 1330-1530
+  unbookable:
+  - 2014-12-25
+- name: Lincoln
+  nomis_id: LII
+  address:
+  - Greetwell Road
+  - 'LN2 4BD '
+  canned_responses: true
+  email: lincolnsocialvisits@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01522 663172
   slots:
     sat:
     - 0900-1100
@@ -2501,20 +2208,32 @@
     - 1400-1600
     thu:
     - 1400-1600
-  name: Lincoln
-- nomis_id: LHI
-  canned_responses: true
-  enabled: true
-  phone: 01302 524980
-  email: socialvisits.lindholme@hmps.gsi.gov.uk
-  address:
-  - Bawtry Road
-  - 'DN7 6EE '
   unbookable:
   - 2014-12-25
   - 2014-12-26
   - 2015-01-01
-  - 2015-04-03
+- name: Lindholme
+  nomis_id: LHI
+  address:
+  - Bawtry Road
+  - 'DN7 6EE '
+  canned_responses: true
+  email: socialvisits.lindholme@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01302 524980
+  slot_anomalies:
+    2014-12-24:
+    - 1345-1600
+    2014-12-31:
+    - 1345-1600
+    2015-04-06:
+    - 1345-1600
+    2015-05-04:
+    - 1345-1600
+    2015-05-25:
+    - 1345-1600
+    2015-08-31:
+    - 1345-1600
   slots:
     mon:
     - 1730-1900
@@ -2530,33 +2249,21 @@
     - 1730-1900
     fri:
     - 1730-1900
-  slot_anomalies:
-    2014-12-24:
-    - 1345-1600
-    2014-12-31:
-    - 1345-1600
-    2015-04-06:
-    - 1345-1600
-    2015-05-04:
-    - 1345-1600
-    2015-05-25:
-    - 1345-1600
-    2015-08-31:
-    - 1345-1600
-  name: Lindholme
-- nomis_id: LTI
-  canned_responses: true
-  enabled: true
-  phone: 01480 335650
-  email: socialvisits.littlehey@hmps.gsi.gov.uk
-  lead_days: 2
-  address:
-  - Perry
-  - PE28 0SR
   unbookable:
   - 2014-12-25
   - 2014-12-26
   - 2015-01-01
+  - 2015-04-03
+- name: Littlehey
+  nomis_id: LTI
+  address:
+  - Perry
+  - PE28 0SR
+  canned_responses: true
+  email: socialvisits.littlehey@hmps.gsi.gov.uk
+  enabled: true
+  lead_days: 2
+  phone: 01480 335650
   slots:
     fri:
     - 0915-1115
@@ -2576,17 +2283,217 @@
     wed:
     - 0915-1115
     - 1400-1600
-  name: Littlehey
-- nomis_id: NSI
+  unbookable:
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
+- name: Liverpool (Closed only)
+  nomis_id: LPI
+  address:
+  - 68 Hornby Road
+  - L9 3DF
   canned_responses: true
+  email: socialvisits.liverpool@hmps.gsi.gov.uk
   enabled: true
-  phone: 01205 769 368
-  email: socialvisits.northseacamp@hmps.gsi.gov.uk
+  finder_slug: liverpool
+  phone: 0151 530 4050
+  slots:
+    mon:
+    - 1025-1125
+    tue:
+    - 1025-1125
+  unbookable:
+  - 2014-08-12
+  - 2014-09-17
+  - 2014-10-14
+  - 2014-10-23
+  - 2014-11-11
+  - 2014-12-10
+  - 2014-12-16
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-22
+  - 2015-02-10
+  - 2015-03-16
+- name: Liverpool Social Visits
+  nomis_id: LPI
+  address:
+  - 68 Hornby Road
+  - L9 3DF
+  canned_responses: true
+  email: socialvisits.liverpool@hmps.gsi.gov.uk
+  enabled: true
+  finder_slug: liverpool
+  phone: 0151 530 4050
+  slots:
+    fri:
+    - 0905-1005
+    - 1030-1130
+    - 1355-1455
+    - 1525-1625
+    mon:
+    - 1355-1455
+    - 1525-1625
+    sat:
+    - 0900-1000
+    - 1030-1130
+    - 1350-1450
+    - 1515-1615
+    sun:
+    - 0900-1000
+    - 1030-1130
+    - 1350-1450
+    - 1515-1615
+    thu:
+    - 0905-1005
+    - 1030-1130
+    - 1355-1455
+    - 1525-1625
+    tue:
+    - 1355-1455
+    - 1525-1625
+    wed:
+    - 0905-1005
+    - 1030-1130
+    - 1355-1455
+    - 1525-1625
+  unbookable:
+  - 2014-08-12
+  - 2014-09-17
+  - 2014-10-14
+  - 2014-10-23
+  - 2014-11-11
+  - 2014-12-10
+  - 2014-12-16
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-22
+  - 2015-02-10
+  - 2015-03-16
+  - 2015-04-08
+  - 2015-05-12
+  - 2015-06-11
+  - 2015-07-09
+  - 2015-08-12
+  - 2015-09-10
+- name: Long Lartin
+  nomis_id: LLI
+  enabled: false
+- name: Low Newton
+  nomis_id: LNI
+  address:
+  - Brasside
+  - DH1 5YA
+  canned_responses: true
+  email: socialvisits.lownewton@hmps.gsi.gov.uk
+  enabled: true
+  phone: 0191 376 4147
+  slots:
+    fri:
+    - 1415-1545
+    sat:
+    - 1400-1545
+    sun:
+    - 1400-1545
+    thu:
+    - 1415-1545
+    tue:
+    - 1415-1545
+  unbookable:
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
+- name: Lowdham Grange
+  nomis_id: LGI
+  enabled: false
+- name: Maidstone
+  nomis_id: MSI
+  address:
+  - 36 County Road
+  - 'ME14 1UZ '
+  canned_responses: true
+  email: socialvisits.maidstone@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01622 775619
+  slots:
+    tue:
+    - 1345-1545
+    mon:
+    - 1345-1545
+    sat:
+    - 1345-1620
+    sun:
+    - 1345-1620
+    thu:
+    - 1345-1545
+    wed:
+    - 1345-1545
+  unbookable:
+  - 2014-12-25
+  - 2014-12-26
+- name: Manchester
+  nomis_id: MRI
+  enabled: false
+- name: Moorland Closed
+  nomis_id: MDI
+  address:
+  - Bawtry Road
+  - DN7 6BW
+  canned_responses: true
+  email: socialvisits.moorlandclosed@hmps.gsi.gov.uk
+  enabled: true
+  finder_slug: moorland
+  lead_days: 1
+  phone: 01302523289
+  slots:
+    wed:
+    - 1340-1545
+    thu:
+    - 1340-1545
+    sat:
+    - 1340-1545
+    sun:
+    - 1340-1545
+  unbookable:
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
+- name: Morton Hall
+  nomis_id: MHI
+  enabled: false
+- name: New Hall
+  nomis_id: NHI
+  address:
+  - Dial Wood
+  - WF4 4XX
+  canned_responses: true
+  email: socialvisits.newhall@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01924 803219
+  slots:
+    sat:
+    - 1400-1600
+    sun:
+    - 1400-1600
+    thu:
+    - 1400-1600
+    tue:
+    - 1400-1600
+    wed:
+    - 1400-1600
+  unbookable:
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
+- name: North Sea Camp
+  nomis_id: NSI
   address:
   - Freiston
   - PE22 0QX
-  unbookable:
-  - 2014-12-25
+  canned_responses: true
+  email: socialvisits.northseacamp@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01205 769 368
   slots:
     sat:
     - 0900-1130
@@ -2596,16 +2503,204 @@
     - 1330-1545
     wed:
     - 1330-1545
-  name: North Sea Camp
-- nomis_id: PDI
+  unbookable:
+  - 2014-12-25
+- name: Northumberland
+  nomis_id: NLI
+  enabled: false
+- name: Norwich (A, B, C, E, M only)
+  nomis_id: NWI
+  address:
+  - Knox Road
+  - 'NR1 4LU '
   canned_responses: true
+  email: socialvisits.norwich@hmps.gsi.gov.uk
   enabled: true
-  phone: 01305 715775
-  email: socialvisits.portland@hmps.gsi.gov.uk
-  adult_age: 11
+  finder_slug: norwich
+  phone: 01603 708795
+  slots:
+    tue:
+    - 0930-1130
+    wed:
+    - 1415-1615
+    thu:
+    - 0930-1130
+    sat:
+    - 1415-1615
+    sun:
+    - 0930-1130
+  unbookable:
+  - 2014-12-25
+  - 2014-12-26
+- name: Norwich (Britannia House)
+  nomis_id: NWI
+  address:
+  - Knox Road
+  - NR1 4LU
+  canned_responses: true
+  email: socialvisits.norwich@hmps.gsi.gov.uk
+  enabled: true
+  finder_slug: norwich
+  phone: 01603 708795
+  slots:
+    mon:
+    - 0930-1130
+    - 1400-1600
+    tue:
+    - 0930-1130
+    - 1400-1600
+    wed:
+    - 0930-1130
+    - 1400-1600
+    thu:
+    - 0930-1130
+    - 1400-1600
+    fri:
+    - 0930-1130
+    - 1400-1600
+    sat:
+    - 0930-1130
+    - 1400-1600
+    sun:
+    - 0930-1130
+    - 1400-1600
+  unbookable:
+  - 2014-12-25
+  - 2014-12-26
+- name: Norwich (F, G, H, L only)
+  nomis_id: NWI
+  address:
+  - Knox Road
+  - 'NR1 4LU '
+  canned_responses: true
+  email: socialvisits.norwich@hmps.gsi.gov.uk
+  enabled: true
+  finder_slug: norwich
+  phone: 01603 708795
+  slots:
+    tue:
+    - 1415-1615
+    thu:
+    - 1415-1615
+    sat:
+    - 0930-1130
+    sun:
+    - 1415-1615
+  unbookable:
+  - 2014-12-25
+  - 2014-12-26
+- name: Nottingham
+  nomis_id: NMI
+  address:
+  - Perry Road
+  - 'NG5 3AG '
+  canned_responses: true
+  email: socialvisits.nottingham@hmps.gsi.gov.uk
+  enabled: true
+  phone: 0115 962 8980
+  slots:
+    fri:
+    - 0900-1100
+    - 1400-1600
+    sat:
+    - 0900-1100
+    - 1400-1600
+    sun:
+    - 0900-1100
+    - 1400-1600
+    thu:
+    - 0900-1100
+    - 1400-1600
+    tue:
+    - 0900-1100
+    - 1400-1600
+  unbookable:
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
+- name: Oakwood
+  nomis_id: OWI
+  enabled: false
+  finder_slug: hmp-oakwood
+- name: Onley
+  nomis_id: ONI
+  address:
+  - Willoughby
+  - CV23 8AP
+  adult_age: 10
+  canned_responses: true
+  email: socialvisits.onley@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01788 523 402
+  slots:
+    mon:
+    - 1345-1445
+    - 1515-1615
+    tue:
+    - 1345-1445
+    - 1515-1615
+    wed:
+    - 1345-1445
+    - 1515-1615
+    thu:
+    - 1345-1445
+    - 1515-1615
+    fri:
+    - 1430-1600
+    sat:
+    - 1345-1500
+    - 1515-1630
+    sun:
+    - 1345-1500
+    - 1515-1630
+  unbookable:
+  - 2012-12-22
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
+- name: Parc
+  nomis_id: PRI
+  enabled: false
+- name: Pentonville
+  nomis_id: PVI
+  address:
+  - Caledonian Road
+  - N7 8TT
+  canned_responses: true
+  email: socialvisits.pentonville@hmps.gsi.gov.uk
+  enabled: true
+  phone: 020 70237251
+  slots:
+    mon:
+    - 0915-1115
+    - 1400-1600
+    tue:
+    - 1400-1600
+    wed:
+    - 0915-1115
+    - 1400-1600
+    thu:
+    - 0915-1115
+    - 1400-1600
+    fri:
+    - 1400-1600
+    sat:
+    - 0915-1115
+    - 1400-1600
+    sun:
+    - 1400-1600
+  unbookable:
+  - 2014-12-25
+  - 2015-04-03
+- name: Peterborough
+  nomis_id: PBI
+  enabled: false
+- name: Portland
+  nomis_id: PDI
   address:
   - 104 The Grove
   - DT5 1DL
+<<<<<<< HEAD
   unbookable:
   - 2014-12-25
   - 2015-01-01
@@ -2621,6 +2716,18 @@
   enabled: true
   phone:
 >>>>>>> ad396cd... fixup! Change the way prison data is accessed.
+=======
+  adult_age: 11
+  canned_responses: true
+  email: socialvisits.portland@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01305 715775
+  slot_anomalies:
+    2014-12-24:
+    - 1400-1600
+    2014-12-31:
+    - 1400-1600
+>>>>>>> 298f7bc... Move name/nomis_id to top and alpha-sort the list
   slots:
     sat:
     - 1345-1600
@@ -2630,24 +2737,49 @@
     - 1345-1600
     tue:
     - 1345-1600
-  slot_anomalies:
-    2014-12-24:
-    - 1400-1600
-    2014-12-31:
-    - 1400-1600
-  name: Portland
-- nomis_id: RNI
+  unbookable:
+  - 2014-12-25
+  - 2015-01-01
+- name: Prescoed
+  nomis_id: UPI
+  enabled: false
+  finder_slug: usk-prescoed-prescoed
+  reason: coming_soon
+- name: Preston
+  nomis_id: PNI
+  address:
+  - 2 Ribbleton Lane
+  - 'PR1 5AB '
   canned_responses: true
+  email: socialvisits.preston@hmps.gsi.gov.uk
   enabled: true
-  phone: 01777 862107
-  email: socialvisits.ranby@hmps.gsi.gov.uk
+  phone: 01772 444666
+  slots:
+    fri:
+    - 1400-1600
+    mon:
+    - 1400-1600
+    sat:
+    - 1400-1600
+    sun:
+    - 1400-1600
+    thu:
+    - 1400-1600
+    tue:
+    - 1400-1600
+    wed:
+    - 1400-1600
+  unbookable:
+  - 2014-12-25
+- name: Ranby
+  nomis_id: RNI
   address:
   - RETFORD
   - DN22 8EU
-  unbookable:
-  - 2014-12-25
-  - 2014-12-26
-  - 2015-01-01
+  canned_responses: true
+  email: socialvisits.ranby@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01777 862107
   slots:
     fri:
     - 1345-1600
@@ -2659,6 +2791,7 @@
     sun:
     - 0845-1100
     - 1345-1600
+<<<<<<< HEAD
   name: Ranby
 - nomis_id: WWI
   canned_responses: true
@@ -2790,56 +2923,85 @@
     - 1515-1615
   name: Wandsworth
 - nomis_id: WCI
-  canned_responses: true
-  enabled: true
-  phone: 0845 223 5514
-  email: socialvisits.winchester@hmps.gsi.gov.uk
-  finder_slug: winchester
-  address:
-  - Romsey Road
-  - SO22 5DF
+=======
   unbookable:
   - 2014-12-25
   - 2014-12-26
-  - 2015-04-03
-  slots:
-    fri:
-    - 1400-1500
-    - 1515-1615
-    mon:
-    - 1400-1500
-    - 1515-1615
-    sat:
-    - 1400-1500
-    - 1515-1615
-    sun:
-    - 1400-1500
-    - 1515-1615
-    thu:
-    - 1400-1500
-    - 1515-1615
-    tue:
-    - 1400-1500
-    - 1515-1615
-    wed:
-    - 1400-1500
-    - 1515-1615
-  name: Winchester (Remand only)
-- nomis_id: WCI
-  canned_responses: true
-  enabled: true
-  phone: 0845 223 5514
-  email: socialvisits.winchester@hmps.gsi.gov.uk
-  finder_slug: winchester
+  - 2015-01-01
+- name: Risley
+  nomis_id: RSI
   address:
-  - Romsey Road
-  - SO22 5DF
+  - Warrington Road
+  - WA3 6BP
+>>>>>>> 298f7bc... Move name/nomis_id to top and alpha-sort the list
+  canned_responses: true
+  email: socialvisits.risley@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01925 733284
+  slot_anomalies:
+    2014-07-25:
+    - 1400-1600
+    2014-08-22:
+    - 1400-1600
+    2014-09-26:
+    - 1400-1600
+    2014-10-17:
+    - 0900-1115
+    - 1400-1600
+    2014-10-24:
+    - 0900-1115
+    - 1400-1600
+    2014-10-31:
+    - 0900-1115
+    - 1400-1600
+    2014-11-28:
+    - 1400-1600
+  slots:
+    sat:
+    - 0900-1115
+    - 1400-1600
+    sun:
+    - 0900-1115
+    - 1400-1600
+    wed:
+    - 1400-1600
+    thu:
+    - 1400-1600
+    mon:
+    - 1400-1600
+    tue:
+    - 1400-1600
+    fri:
+    - 1400-1600
   unbookable:
+  - 2014-08-01
+  - 2014-08-04
+  - 2014-08-13
+  - 2014-10-15
+  - 2014-12-17
   - 2014-12-25
   - 2014-12-26
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  - 2015-01-01
+  - 2015-02-11
+>>>>>>> 298f7bc... Move name/nomis_id to top and alpha-sort the list
   - 2015-04-03
+  - 2015-04-15
+- name: Rochester
+  nomis_id: RCI
+  address:
+  - 1 Fort Road
+  - Rochester
+  - Kent
+  - ME1 3QS
+  canned_responses: true
+  email: socialvisits.rochester@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01634 803100
   slots:
+<<<<<<< HEAD
     fri:
 =======
   - 2015-01-01
@@ -2864,6 +3026,682 @@
     - 0915-1115
 >>>>>>> ad396cd... fixup! Change the way prison data is accessed.
     - 1400-1600
+=======
+>>>>>>> 298f7bc... Move name/nomis_id to top and alpha-sort the list
+    mon:
+    - 1400-1600
+    tue:
+    - 1400-1600
+    wed:
+    - 1400-1600
+    thu:
+    - 1400-1600
+    fri:
+    - 1400-1600
+    sat:
+    - 0930-1130
+    - 1400-1600
+    sun:
+    - 1400-1600
+  unbookable:
+  - 2013-12-25
+  - 2013-12-26
+  - 2014-12-25
+  - 2014-12-26
+- name: Rye Hill
+  nomis_id: RHI
+  enabled: false
+- name: Send
+  nomis_id: SDI
+  address:
+  - Ripley Road
+  - 'GU23 7LJ '
+  canned_responses: true
+  email: socialvisits.send@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01483 471033
+  slot_anomalies:
+    2014-12-22:
+    - 1415-1615
+    2014-12-30:
+    - 1415-1615
+  slots:
+    thu:
+    - 1400-1545
+    sat:
+    - 1400-1545
+    sun:
+    - 1400-1545
+  unbookable:
+  - 2014-12-25
+  - 2014-12-26
+  - 2014-12-31
+  - 2015-01-01
+- name: Spring Hill
+  nomis_id: SPI
+  address:
+  - Grendon Underwood
+  - HP18 0TL
+  canned_responses: true
+  email: socialvisits.springhill@hmps.gsi.gov.uk
+  enabled: true
+  phone: 
+  slots:
+    sat:
+    - 1345-1600
+    sun:
+    - 1345-1600
+  unbookable:
+  - 2014-12-25
+- name: Stafford
+  nomis_id: SFI
+  address:
+  - 54 Gaol Road
+  - Stafford
+  - ST16 3AW
+  canned_responses: true
+  email: visitsbooking.westmidlands@noms.gsi.gov.uk
+  enabled: true
+  phone: 0300 060 6505
+  slot_anomalies:
+    2015-10-13:
+    - 1400-1600
+  slots:
+    wed:
+    - 1400-1600
+    thu:
+    - 1400-1600
+    sat:
+    - 1400-1600
+    sun:
+    - 1400-1600
+  unbookable:
+  - 2015-10-14
+  - 2015-12-25
+- name: Standford Hill
+  nomis_id: EHI
+  address:
+  - Church Road
+  - 'ME12 4AA '
+  canned_responses: true
+  email: socialvisits.standfordhill@hmps.gsi.gov.uk
+  enabled: true
+  finder_slug: sheppey-cluster-standford-hill
+  phone: 0300 060 6603
+  slots:
+    wed:
+    - 1345-1545
+    sat:
+    - 1345-1545
+    sun:
+    - 1345-1545
+  unbookable:
+  - 2014-12-25
+- name: Stocken
+  nomis_id: SKI
+  address:
+  - Stocken Hall Road
+  - LE15 7RD
+  canned_responses: true
+  email: socialvisits.stocken@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01780 795156
+  slots:
+    fri:
+    - 1345-1545
+    sat:
+    - 0915-1115
+    - 1345-1545
+    sun:
+    - 0915-1115
+    - 1345-1545
+    wed:
+    - 1345-1545
+  unbookable:
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
+- name: Stoke Heath
+  nomis_id: SHI
+  address:
+  - Market Drayton
+  - Shropshire
+  - TF9 2JL
+  adult_age: 10
+  canned_responses: true
+  email: visitsbooking.westmidlands@noms.gsi.gov.uk
+  enabled: true
+  phone: 0300 060 6506
+  slots:
+    mon:
+    - 1400-1600
+    tue:
+    - 1400-1600
+    wed:
+    - 1400-1600
+    thu:
+    - 1400-1600
+    sat:
+    - 1400-1600
+    sun:
+    - 1400-1600
+  unbookable:
+  - 2014-04-18
+  - 2014-04-21
+  - 2014-05-05
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
+- name: Styal
+  nomis_id: STI
+  address:
+  - WILMSLOW
+  - 'SK9 4HR '
+  canned_responses: true
+  email: socialvisits.styal@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01625553195
+  slots:
+    mon:
+    - 1345-1545
+    sat:
+    - 1345-1545
+    sun:
+    - 1345-1545
+    thu:
+    - 1345-1545
+    tue:
+    - 1345-1545
+    wed:
+    - 1345-1545
+  unbookable:
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
+- name: Sudbury
+  nomis_id: SUI
+  address:
+  - Ashbourne
+  - Derbyshire
+  - DE6 5HW
+  canned_responses: true
+  email: socialvisitssudbury@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01283 584066
+  slot_anomalies:
+    2014-12-22:
+    - 0930-1130
+    - 1345-1545
+    2014-12-23:
+    - 0930-1130
+    2014-12-24:
+    - 0930-1130
+    2014-12-27:
+    - 0930-1130
+    2014-12-29:
+    - 0930-1130
+    2014-12-30:
+    - 1345-1545
+    - 0930-1130
+    - 1345-1545
+    2014-12-31:
+    - 0930-1130
+    2015-01-01:
+    - 0930-1130
+    2015-01-02:
+    - 0930-1130
+    - 1345-1545
+  slots:
+    wed:
+    - 1345-1545
+    thu:
+    - 1345-1545
+    sat:
+    - 1345-1545
+    sun:
+    - 0930-1130
+    - 1345-1545
+  unbookable:
+  - 2014-12-25
+  - 2014-12-26
+- name: Swaleside
+  nomis_id: SLI
+  address:
+  - Brabazon Road
+  - ME12 4AX
+  canned_responses: true
+  email: socialvisits.swaleside@hmps.gsi.gov.uk
+  enabled: true
+  phone: 0300 060 6604
+  slots:
+    mon:
+    - 1400-1600
+    sat:
+    - 1330-1530
+    sun:
+    - 1330-1530
+    thu:
+    - 1400-1600
+    tue:
+    wed:
+    - 1400-1600
+    - 1400-1600
+  unbookable:
+  - 2014-12-25
+  - 2014-12-26
+- name: Swansea
+  nomis_id: SWI
+  address:
+  - 200 Oystermouth Road
+  - SA1 3SR
+  canned_responses: true
+  email: socialvisits.swansea@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01792 48 5322
+  slot_anomalies:
+    2015-01-01:
+    - 1345-1445
+    - 1515-1615
+  slots:
+    mon:
+    - 1000-1100
+    - 1345-1445
+    - 1515-1615
+    tue:
+    - 1000-1100
+    - 1345-1445
+    - 1515-1615
+    thu:
+    - 1000-1100
+    - 1345-1445
+    - 1515-1615
+    fri:
+    - 1000-1100
+    - 1345-1445
+    - 1515-1615
+    sat:
+    - 1345-1445
+    - 1515-1615
+    sun:
+    - 1345-1445
+    - 1515-1615
+  unbookable:
+  - 2014-12-25
+  - 2014-12-26
+- name: Swinfen Hall
+  nomis_id: SNI
+  address:
+  - Swinfen Hall
+  - FLichfield
+  - Staffordshire
+  - WS14 9QS
+  adult_age: 10
+  canned_responses: true
+  email: visitsbooking.westmidlands@noms.gsi.gov.uk
+  enabled: true
+  phone: 0300 060 6507
+  slots:
+    tue:
+    - 1400-1600
+    wed:
+    - 1400-1600
+    sat:
+    - 1400-1600
+    sun:
+    - 1400-1600
+  unbookable:
+  - 2014-04-18
+  - 2014-04-21
+  - 2014-05-05
+  - 2014-05-26
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
+- name: Thameside
+  nomis_id: 
+  enabled: false
+- name: The Mount
+  nomis_id: MTI
+  address:
+  - Molyneaux Avenue
+  - HP3 0NZ
+  canned_responses: true
+  email: socialvisits.themount@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01442 836352
+  slot_anomalies:
+    2014-12-23:
+    - 1400-1600
+    2014-12-24:
+    - 1400-1600
+    2014-12-27:
+    - 0915-1115
+    - 1400-1600
+    2014-12-28:
+    - 0915-1115
+    - 1400-1600
+    2014-12-31:
+    - 1400-1600
+    2015-01-02:
+    - 1400-1600
+    2015-01-03:
+    - 0915-1115
+    - 1400-1600
+    2015-01-04:
+    - 0915-1115
+    - 1400-1600
+  slots:
+    wed:
+    - 1400-1600
+    thu:
+    - 1400-1600
+    fri:
+    - 1400-1600
+    sat:
+    - 0915-1115
+    - 1400-1600
+    sun:
+    - 0915-1115
+    - 1400-1600
+  unbookable:
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
+  - 2015-04-03
+  - 2015-04-05
+- name: Thorn Cross
+  nomis_id: TCI
+  address:
+  - Arley Road
+  - NWA4 4RL
+  canned_responses: true
+  email: socialvisits.thorncross@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01925805018
+  slot_anomalies:
+    2014-12-24:
+    - 1345-1545
+    2014-12-31:
+    - 1345-1545
+  slots:
+    sat:
+    - 0945-1145
+    - 1345-1545
+    sun:
+    - 1345-1545
+    tue:
+    - 1745-1945
+    wed:
+    - 1745-1945
+    fri:
+    - 1345-1545
+  unbookable:
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-04-03
+- name: Usk
+  nomis_id: UKI
+  address:
+  - 47 Maryport Street
+  - NP15 1XP
+  canned_responses: true
+  email: socialvisits.usk@hmps.gsi.gov.uk
+  enabled: true
+  finder_slug: usk-prescoed-usk
+  phone: 01291 671730
+  slots:
+    mon:
+    - 1700-1900
+    tue:
+    - 1400-1600
+    wed:
+    - 1400-1600
+    - 1700-1900
+    thu:
+    - 1400-1600
+    fri:
+    - 1400-1600
+    - 1700-1900
+    sat:
+    - 1400-1600
+    sun:
+    - 1400-1600
+  unbookable:
+  - 2014-12-25
+- name: Wakefield
+  nomis_id: WDI
+  enabled: false
+- name: Wandsworth
+  nomis_id: WWI
+  address:
+  - Heathfield Rd
+  - PO Box 757
+  - SW18 3HS
+  canned_responses: true
+  email: visitsbooking.westmidlands@noms.gsi.gov.uk
+  enabled: true
+  phone: 0208 588 4002
+  slots:
+    mon:
+    - 1000-1100
+    - 1115-1215
+    - 1345-1445
+    - 1515-1615
+    sat:
+    - 1000-1100
+    - 1115-1215
+    - 1345-1445
+    - 1515-1615
+    sun:
+    - 1000-1100
+    - 1115-1215
+    - 1345-1445
+    - 1515-1615
+    thu:
+    - 1000-1100
+    - 1115-1215
+    - 1345-1445
+    - 1515-1615
+    tue:
+    - 1000-1100
+    - 1115-1215
+    - 1345-1445
+    - 1515-1615
+    wed:
+    - 1000-1100
+    - 1115-1215
+    - 1345-1445
+    - 1515-1615
+  unbookable:
+  - 2014-12-25
+  - 2015-10-14
+  - 2015-11-11
+  - 2015-12-09
+  - 2016-01-13
+  - 2016-02-10
+  - 2016-03-09
+  - 2016-04-13
+  - 2016-05-11
+  - 2016-06-08
+  - 2016-07-13
+  - 2016-08-10
+  - 2016-09-14
+  - 2016-10-12
+  - 2016-11-09
+  - 2016-12-14
+- name: Warren Hill
+  nomis_id: WII
+  address:
+  - Hollesley
+  - 'IP12 3JW '
+  canned_responses: true
+  email: socialvisits.warrenhill@hmps.gsi.gov.uk
+  enabled: true
+  phone: 020 8588 4002
+  slot_anomalies:
+    2014-12-24:
+    - 1400-1600
+  slots:
+    sat:
+    - 1400-1600
+    sun:
+    - 1400-1600
+    fri:
+    - 1400-1600
+  unbookable:
+  - 2014-12-25
+  - 2014-12-26
+  - 2014-12-31
+  - 2015-01-01
+  - 2015-04-03
+- name: Wayland
+  nomis_id: WLI
+  address:
+  - Griston
+  - IP25 6RL
+  canned_responses: true
+  email: socialvisits.wayland@hmps.gsi.gov.uk
+  enabled: true
+  phone: 001953 804152
+  slots:
+    tue:
+    - 1400-1600
+    wed:
+    - 1400-1600
+    - 1700-1900
+    thu:
+    - 1400-1600
+    fri:
+    - 1400-1600
+    sat:
+    - 1400-1600
+    sun:
+    - 1400-1600
+  unbookable:
+  - 2014-12-25
+  - 2015-01-01
+- name: Wealstun
+  nomis_id: WEI
+  address:
+  - Church Causeway
+  - LS23 7AZ
+  canned_responses: true
+  email: socialvisits.wealstun@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01937 444599
+  slots:
+    mon:
+    - 0930-1130
+    - 1330-1530
+    tue:
+    - 0930-1130
+    - 1330-1530
+    wed:
+    - 0930-1130
+    - 1330-1530
+    thu:
+    - 0930-1130
+    - 1330-1530
+    sat:
+    - 0930-1130
+    - 1345-1600
+    sun:
+    - 0930-1130
+    - 1345-1600
+  unbookable:
+  - 2014-12-25
+  - 2015-01-01
+- name: Werrington
+  nomis_id: WNI
+  address:
+  - Werrington
+  - Stoke-On-Trent
+  - ST9 0DX
+  adult_age: 10
+  canned_responses: true
+  email: visitsbooking.westmidlands@noms.gsi.gov.uk
+  enabled: true
+  phone: 0300 060 6508
+  slots:
+    wed:
+    - 1400-1600
+    fri:
+    - 1400-1600
+    sat:
+    - 1430-1630
+    sun:
+    - 1430-1630
+  unbookable:
+  - 2014-04-18
+  - 2014-04-21
+  - 2014-05-05
+  - 2014-05-26
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-01-01
+- name: Wetherby
+  nomis_id: WYI
+  address:
+  - York Road
+  - 'LS22 5ED '
+  canned_responses: true
+  email: socialvisits.wetherby@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01937 544207
+  slots:
+    wed:
+    - 1830-2000
+    sat:
+    - 0930-1130
+    - 1430-1630
+    sun:
+    - 0930-1130
+    - 1430-1630
+  unbookable:
+  - 2014-12-25
+- name: Whatton
+  nomis_id: WTI
+  address:
+  - New Lane
+  - 'NG13 9FQ '
+  canned_responses: true
+  email: socialvisits.whatton@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01949 803564
+  slots:
+    fri:
+    - 1415-1615
+    mon:
+    - 1415-1615
+    sat:
+    - 0900-1130
+    - 1400-1600
+    sun:
+    - 0900-1130
+    - 1400-1600
+    thu:
+    - 1415-1615
+  unbookable:
+  - 2014-12-25
+  - 2014-12-26
+  - 2014-12-31
+  - 2015-01-01
+- name: Whitemoor
+  nomis_id: WRI
+  enabled: false
+- name: Winchester (Convicted only)
+  nomis_id: WCI
+  address:
+  - Romsey Road
+  - SO22 5DF
+  canned_responses: true
+  email: socialvisits.winchester@hmps.gsi.gov.uk
+  enabled: true
+  finder_slug: winchester
+  phone: 0845 223 5514
+  slots:
+    fri:
+    - 1400-1600
     mon:
     - 1400-1600
     sat:
@@ -2876,17 +3714,80 @@
     - 1400-1600
     wed:
     - 1400-1600
-  name: Winchester (Convicted only)
-- nomis_id: WSI
+  unbookable:
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-04-03
+- name: Winchester (Remand only)
+  nomis_id: WCI
+  address:
+  - Romsey Road
+  - SO22 5DF
   canned_responses: true
+  email: socialvisits.winchester@hmps.gsi.gov.uk
   enabled: true
-  phone: 020 8588 3564
-  email: socialvisits.wormwoodscrubs@hmps.gsi.gov.uk
+  finder_slug: winchester
+  phone: 0845 223 5514
+  slots:
+    fri:
+    - 1400-1500
+    - 1515-1615
+    mon:
+    - 1400-1500
+    - 1515-1615
+    sat:
+    - 1400-1500
+    - 1515-1615
+    sun:
+    - 1400-1500
+    - 1515-1615
+    thu:
+    - 1400-1500
+    - 1515-1615
+    tue:
+    - 1400-1500
+    - 1515-1615
+    wed:
+    - 1400-1500
+    - 1515-1615
+  unbookable:
+  - 2014-12-25
+  - 2014-12-26
+  - 2015-04-03
+- name: Wolds
+  nomis_id: WOI
+  address:
+  - Everthorpe
+  - HU15 2JZ
+  canned_responses: true
+  email: socialvisits.everthorpe@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01430 426505
+  slots:
+    fri:
+    - 1415-1615
+    sun:
+    - 1400-1600
+    wed:
+    - 1415-1615
+    thu:
+    - 1415-1615
+    sat:
+    - 1400-1600
+  unbookable:
+  - 2014-12-25
+- name: Woodhill
+  nomis_id: WHI
+  enabled: false
+- name: Wormwood Scrubs
+  nomis_id: WSI
   address:
   - Du Cane Road
   - W12 0AE
-  unbookable:
-  - 2014-12-25
+  canned_responses: true
+  email: socialvisits.wormwoodscrubs@hmps.gsi.gov.uk
+  enabled: true
+  phone: 020 8588 3564
   slots:
     mon:
     - 0930-1100
@@ -2906,702 +3807,34 @@
     wed:
     - 0930-1100
     - 1400-1600
-  name: Wormwood Scrubs
-- nomis_id: WMI
-  canned_responses: true
-  enabled: true
-  phone: 01772 442234
-  email: socialvisits.wymott@hmps.gsi.gov.uk
+  unbookable:
+  - 2014-12-25
+- name: Wymott
+  nomis_id: WMI
   address:
   - Ulnes Walton Lane
   - PR26 8LW
-  unbookable:
-  - 2014-12-25
-  - 2014-12-26
-  - 2015-01-01
-  slots:
-    mon:
-    - 1400-1550
-    tue:
-    - 1400-1550
-    wed:
-    - 1400-1550
-    thu:
-    - 1400-1550
-    sat:
-    - 1400-1550
-    sun:
-    - 1400-1550
+  canned_responses: true
+  email: socialvisits.wymott@hmps.gsi.gov.uk
+  enabled: true
+  phone: 01772 442234
   slot_anomalies:
     2015-08-31:
     - 1400-1550
-  name: Wymott
-- nomis_id: TCI
-  canned_responses: true
-  enabled: true
-  phone: 01925805018
-  email: socialvisits.thorncross@hmps.gsi.gov.uk
-  address:
-  - Arley Road
-  - NWA4 4RL
-  unbookable:
-  - 2014-12-25
-  - 2014-12-26
-  - 2015-04-03
   slots:
-    sat:
-    - 0945-1145
-    - 1345-1545
-    sun:
-    - 1345-1545
+    mon:
+    - 1400-1550
     tue:
-    - 1745-1945
+    - 1400-1550
     wed:
-    - 1745-1945
-    fri:
-    - 1345-1545
-  slot_anomalies:
-    2014-12-24:
-    - 1345-1545
-    2014-12-31:
-    - 1345-1545
-  name: Thorn Cross
-- nomis_id: RSI
-  canned_responses: true
-  enabled: true
-  phone: 01925 733284
-  email: socialvisits.risley@hmps.gsi.gov.uk
-  address:
-  - Warrington Road
-  - WA3 6BP
+    - 1400-1550
+    thu:
+    - 1400-1550
+    sat:
+    - 1400-1550
+    sun:
+    - 1400-1550
   unbookable:
-  - 2014-08-01
-  - 2014-08-04
-  - 2014-08-13
-  - 2014-10-15
-  - 2014-12-17
   - 2014-12-25
   - 2014-12-26
   - 2015-01-01
-  - 2015-02-11
-  - 2015-04-03
-  - 2015-04-15
-  slots:
-    sat:
-    - 0900-1115
-    - 1400-1600
-    sun:
-    - 0900-1115
-    - 1400-1600
-    wed:
-    - 1400-1600
-    thu:
-    - 1400-1600
-    mon:
-    - 1400-1600
-    tue:
-    - 1400-1600
-    fri:
-    - 1400-1600
-  slot_anomalies:
-    2014-07-25:
-    - 1400-1600
-    2014-08-22:
-    - 1400-1600
-    2014-09-26:
-    - 1400-1600
-    2014-10-17:
-    - 0900-1115
-    - 1400-1600
-    2014-10-24:
-    - 0900-1115
-    - 1400-1600
-    2014-10-31:
-    - 0900-1115
-    - 1400-1600
-    2014-11-28:
-    - 1400-1600
-  name: Risley
-- nomis_id: FMI
-  canned_responses: true
-  enabled: true
-  phone: 0208 844 5400
-  email: socialvisits.feltham@hmps.gsi.gov.uk
-  finder_slug: feltham
-  address:
-  - Bedfont Road
-  - TW13 4ND
-  unbookable:
-  - 2014-06-15
-  - 2014-06-29
-  - 2014-07-13
-  - 2014-07-27
-  - 2014-08-10
-  - 2014-08-24
-  - 2014-09-07
-  - 2014-09-21
-  - 2014-10-05
-  - 2014-10-19
-  - 2014-11-02
-  - 2014-11-16
-  - 2014-11-30
-  - 2014-12-14
-  - 2014-12-25
-  - 2014-12-28
-  - 2015-01-11
-  - 2015-01-25
-  - 2015-02-08
-  - 2015-02-22
-  - 2015-03-08
-  - 2015-03-22
-  - 2015-04-05
-  - 2015-04-19
-  - 2015-05-03
-  - 2015-05-17
-  - 2015-05-31
-  - 2015-06-14
-  - 2015-06-28
-  slots:
-    mon:
-    - 1330-1500
-    - 1500-1630
-    wed:
-    - 1330-1500
-    - 1500-1630
-    fri:
-    - 1330-1500
-    - 1500-1630
-    sat:
-    - 0900-1000
-    - 1000-1100
-    sun:
-    - 1330-1500
-    - 1500-1630
-  name: Feltham (Young Adults 18-21 only)
-- nomis_id: FMI
-  canned_responses: true
-  enabled: true
-  phone: 0208 844 5400
-  email: socialvisits.feltham@hmps.gsi.gov.uk
-  finder_slug: feltham
-  address:
-  - Bedfont Road
-  - TW13 4ND
-  unbookable:
-  - 2014-06-22
-  - 2014-07-06
-  - 2014-07-20
-  - 2014-08-03
-  - 2014-08-17
-  - 2014-08-31
-  - 2014-09-14
-  - 2014-09-28
-  - 2014-10-12
-  - 2014-10-26
-  - 2014-11-09
-  - 2014-11-23
-  - 2014-12-07
-  - 2014-12-21
-  - 2014-12-25
-  - 2014-12-26
-  - 2015-01-04
-  - 2015-01-18
-  - 2015-02-01
-  - 2015-02-15
-  - 2015-03-01
-  - 2015-03-15
-  - 2015-03-29
-  - 2015-04-12
-  - 2015-04-26
-  - 2015-05-10
-  - 2015-05-24
-  - 2015-06-07
-  - 2015-06-21
-  - 2015-07-05
-  slots:
-    tue:
-    - 1330-1500
-    - 1500-1630
-    thu:
-    - 1330-1500
-    - 1500-1630
-    sat:
-    - 1330-1500
-    - 1500-1630
-    sun:
-    - 1330-1500
-    - 1500-1630
-  name: Feltham (Young People 15-18 only)
-- nomis_id: WTI
-  canned_responses: true
-  enabled: true
-  phone: 01949 803564
-  email: socialvisits.whatton@hmps.gsi.gov.uk
-  address:
-  - New Lane
-  - 'NG13 9FQ '
-  unbookable:
-  - 2014-12-25
-  - 2014-12-26
-  - 2014-12-31
-  - 2015-01-01
-  slots:
-    fri:
-    - 1415-1615
-    mon:
-    - 1415-1615
-    sat:
-    - 0900-1130
-    - 1400-1600
-    sun:
-    - 0900-1130
-    - 1400-1600
-    thu:
-    - 1415-1615
-  name: Whatton
-- nomis_id: PVI
-  canned_responses: true
-  enabled: true
-  phone: 020 70237251
-  email: socialvisits.pentonville@hmps.gsi.gov.uk
-  address:
-  - Caledonian Road
-  - N7 8TT
-  unbookable:
-  - 2014-12-25
-  - 2015-04-03
-  slots:
-    mon:
-    - 0915-1115
-    - 1400-1600
-    tue:
-    - 1400-1600
-    wed:
-    - 0915-1115
-    - 1400-1600
-    thu:
-    - 0915-1115
-    - 1400-1600
-    fri:
-    - 1400-1600
-    sat:
-    - 0915-1115
-    - 1400-1600
-    sun:
-    - 1400-1600
-  name: Pentonville
-- nomis_id: EWI
-  canned_responses: true
-  enabled: true
-  phone: 01454 382159
-  email: socialvisits.eastwoodpark@hmps.gsi.gov.uk
-  address:
-  - Falfield
-  - GL12 8DB
-  unbookable:
-  - 2014-12-25
-  slots:
-    tue:
-    - 1400-1500
-    - 1530-1630
-    wed:
-    - 1400-1500
-    - 1530-1630
-    thu:
-    - 1400-1500
-    - 1530-1630
-    fri:
-    - 1400-1500
-    - 1530-1630
-    sat:
-    - 1400-1500
-    - 1530-1630
-    sun:
-    - 1400-1600
-  name: Eastwood Park
-- nomis_id: LYI
-  canned_responses: true
-  enabled: true
-  phone: 01454 264211
-  email: socialvisits.leyhill@hmps.gsi.gov.uk
-  address:
-  - Wotton-under-edge
-  - GL12 8BT
-  unbookable:
-  - 2014-12-25
-  slots:
-    tue:
-    - 1330-1530
-    thu:
-    - 1330-1530
-    sat:
-    - 1330-1530
-    sun:
-    - 1330-1530
-  name: Leyhill
-- nomis_id: SWI
-  canned_responses: true
-  enabled: true
-  phone: 01792 48 5322
-  email: socialvisits.swansea@hmps.gsi.gov.uk
-  address:
-  - 200 Oystermouth Road
-  - SA1 3SR
-  unbookable:
-  - 2014-12-25
-  - 2014-12-26
-  slots:
-    mon:
-    - 1000-1100
-    - 1345-1445
-    - 1515-1615
-    tue:
-    - 1000-1100
-    - 1345-1445
-    - 1515-1615
-    thu:
-    - 1000-1100
-    - 1345-1445
-    - 1515-1615
-    fri:
-    - 1000-1100
-    - 1345-1445
-    - 1515-1615
-    sat:
-    - 1345-1445
-    - 1515-1615
-    sun:
-    - 1345-1445
-    - 1515-1615
-  slot_anomalies:
-    2015-01-01:
-    - 1345-1445
-    - 1515-1615
-  name: Swansea
-- nomis_id: UKI
-  canned_responses: true
-  enabled: true
-  phone: 01291 671730
-  email: socialvisits.usk@hmps.gsi.gov.uk
-  finder_slug: usk-prescoed-usk
-  address:
-  - 47 Maryport Street
-  - NP15 1XP
-  unbookable:
-  - 2014-12-25
-  slots:
-    mon:
-    - 1700-1900
-    tue:
-    - 1400-1600
-    wed:
-    - 1400-1600
-    - 1700-1900
-    thu:
-    - 1400-1600
-    fri:
-    - 1400-1600
-    - 1700-1900
-    sat:
-    - 1400-1600
-    sun:
-    - 1400-1600
-  name: Usk
-- nomis_id: FDI
-  canned_responses: true
-  enabled: true
-  phone:
-  email: socialvisits.ford@hmps.gsi.gov.uk
-  address:
-  - Arundel
-  - BN18 0BX
-  unbookable:
-  - 2014-12-25
-  - 2014-12-31
-  slots:
-    wed:
-    - 1800-2000
-    fri:
-    - 1400-1600
-    sat:
-    - 1400-1600
-    sun:
-    - 1400-1600
-  name: Ford
-- nomis_id: AGI
-  canned_responses: true
-  enabled: true
-  phone:
-  email: socialvisits.askhamgrange@hmps.gsi.gov.uk
-  address:
-  - Askham Richard
-  - YO23 3FT
-  unbookable:
-  - 2014-12-25
-  slots:
-    sat:
-    - 1345-1545
-    sun:
-    - 1345-1545
-  name: Askham Grange
-- nomis_id: SPI
-  canned_responses: true
-  enabled: true
-  phone:
-  email: socialvisits.springhill@hmps.gsi.gov.uk
-  address:
-  - Grendon Underwood
-  - HP18 0TL
-  unbookable:
-  - 2014-12-25
-  slots:
-    sat:
-    - 1345-1600
-    sun:
-    - 1345-1600
-  name: Spring Hill
-- nomis_id: LCI
-  canned_responses: true
-  enabled: true
-  phone: 0116 228 3128
-  email: socialvisitsleiceste@hmps.gsi.gov.uk
-  address:
-  - 116 Welford Road
-  - LE2 7AJ
-  unbookable:
-  - 2014-12-25
-  - 2014-12-26
-  - 2014-12-31
-  - 2015-01-01
-  slots:
-    mon:
-    - 1415-1615
-    tue:
-    - 1415-1615
-    wed:
-    - 1600-1800
-    thu:
-    - 1415-1615
-    sat:
-    - 1415-1615
-    sun:
-    - 1415-1615
-  slot_anomalies:
-    2014-12-24:
-    - 0900-1100
-    - 1415-1615
-    2014-12-31:
-    - 0900-1100
-    - 1415-1615
-  name: Leicester
-- nomis_id: SUI
-  canned_responses: true
-  enabled: true
-  phone: 01283 584066
-  email: socialvisitssudbury@hmps.gsi.gov.uk
-  address:
-  - Ashbourne
-  - Derbyshire
-  - DE6 5HW
-  unbookable:
-  - 2014-12-25
-  - 2014-12-26
-  slots:
-    wed:
-    - 1345-1545
-    thu:
-    - 1345-1545
-    sat:
-    - 1345-1545
-    sun:
-    - 0930-1130
-    - 1345-1545
-  slot_anomalies:
-    2014-12-22:
-    - 0930-1130
-    - 1345-1545
-    2014-12-23:
-    - 0930-1130
-    2014-12-24:
-    - 0930-1130
-    2014-12-27:
-    - 0930-1130
-    2014-12-29:
-    - 0930-1130
-    - 1345-1545
-    2014-12-30:
-    - 0930-1130
-    - 1345-1545
-    2014-12-31:
-    - 0930-1130
-    2015-01-01:
-    - 0930-1130
-    2015-01-02:
-    - 0930-1130
-    - 1345-1545
-  name: Sudbury
-- nomis_id: CWI
-  canned_responses: true
-  enabled: true
-  phone: 01803 812060
-  email: socialvisits.channingswood@hmps.gsi.gov.uk
-  address:
-  - Denbury
-  - Newton Abbot
-  - TQ12 6DW
-  unbookable:
-  - 2014-09-07
-  - 2014-09-13
-  - 2014-09-20
-  - 2014-09-21
-  - 2014-09-27
-  - 2014-10-04
-  - 2014-10-05
-  - 2014-10-11
-  - 2014-10-18
-  - 2014-10-19
-  - 2014-10-25
-  - 2014-11-01
-  - 2014-11-02
-  - 2014-11-08
-  - 2014-11-15
-  - 2014-11-16
-  - 2014-11-22
-  - 2014-11-29
-  - 2014-11-30
-  - 2014-12-06
-  - 2014-12-13
-  - 2014-12-14
-  - 2014-12-20
-  - 2014-12-25
-  - 2014-12-26
-  - 2015-01-01
-  - 2015-01-03
-  - 2015-01-10
-  - 2015-01-11
-  - 2015-01-17
-  - 2015-01-24
-  - 2015-01-25
-  - 2015-01-31
-  - 2015-02-07
-  - 2015-02-08
-  - 2015-02-14
-  - 2015-02-21
-  - 2015-02-22
-  - 2015-02-28
-  - 2015-03-07
-  - 2015-03-08
-  - 2015-03-14
-  - 2015-03-21
-  - 2015-03-22
-  - 2015-03-28
-  - 2015-04-05
-  - 2015-04-19
-  - 2015-05-03
-  - 2015-05-17
-  - 2015-05-31
-  - 2015-06-14
-  - 2015-06-28
-  - 2015-07-12
-  - 2015-07-26
-  - 2015-08-09
-  - 2015-08-23
-  - 2015-09-06
-  - 2015-09-20
-  - 2015-10-04
-  slots:
-    wed:
-    - 1400-1600
-    fri:
-    - 1400-1600
-    sat:
-    - 1400-1600
-    sun:
-    - 1400-1600
-  name: Channings Wood
-- nomis_id: AKI
-  enabled: false
-  finder_slug: acklington2
-  name: Acklington
-- nomis_id: ACI
-  enabled: false
-  name: Altcourse
-- nomis_id: ASI
-  enabled: false
-  name: Ashfield
-- nomis_id: BMI
-  enabled: false
-  name: Birmingham
-- nomis_id: BZI
-  enabled: false
-  name: Bronzefield
-- nomis_id: DNI
-  enabled: false
-  name: Doncaster
-- nomis_id:
-  enabled: false
-  name: Dovegate
-- nomis_id: FBI
-  enabled: false
-  name: Forest Bank
-- nomis_id: FKI
-  enabled: false
-  name: Frankland
-- nomis_id: FNI
-  enabled: false
-  name: Full Sutton
-- nomis_id: GHI
-  enabled: false
-  name: Garth
-- nomis_id: ISI
-  enabled: false
-  name: Isis
-- nomis_id: KVI
-  name: Kirklevington Grange
-  enabled: false
-  reason: coming_soon
-- nomis_id: LLI
-  enabled: false
-  name: Long Lartin
-- nomis_id: LGI
-  enabled: false
-  name: Lowdham Grange
-- nomis_id: MRI
-  enabled: false
-  name: Manchester
-- nomis_id: MHI
-  enabled: false
-  name: Morton Hall
-- nomis_id: NLI
-  enabled: false
-  name: Northumberland
-- nomis_id: OWI
-  enabled: false
-  finder_slug: hmp-oakwood
-  name: Oakwood
-- nomis_id: PRI
-  enabled: false
-  name: Parc
-- nomis_id: PBI
-  enabled: false
-  name: Peterborough
-- nomis_id: UPI
-  enabled: false
-  reason: coming_soon
-  finder_slug: usk-prescoed-prescoed
-  name: Prescoed
-- nomis_id: RHI
-  enabled: false
-  name: Rye Hill
-- nomis_id:
-  enabled: false
-  name: Thameside
-- nomis_id: WDI
-  enabled: false
-  name: Wakefield
-- nomis_id: WRI
-  enabled: false
-  name: Whitemoor
-- nomis_id: WHI
-  enabled: false
-  name: Woodhill
