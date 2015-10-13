@@ -2,6 +2,8 @@ en:
   date:
     formats:
       default: "%d/%m/%Y"
+      day_and_date: "%A %e %B"
+      day_date_and_year: "%-d %B %Y"
     fields:
       day: Day
       month: Month
@@ -59,16 +61,16 @@ en:
       subject: "PVB feedback: %{referrer}"
   prison_mailer:
     booking_request_email:
-      subject: "Visit request for %{full_name} on %{date}"
+      subject: "Visit request for %{full_name} on %{request_date}"
     booking_receipt_email:
       subject_confirmation: "COPY of booking confirmation for %{full_name}"
       subject_rejection: "COPY of booking rejection for %{full_name}"
     booking_cancellation_receipt_email:
-      subject: "CANCELLED: %{full_name} on %{date}"
+      subject: "CANCELLED: %{full_name} on %{receipt_date}"
   visitor_mailer:
     booking_confirmation_email:
-      subject: "Visit confirmed: your visit for %{slot_date} has been confirmed"
+      subject: "Visit confirmed: your visit for %{confirmation_date} has been confirmed"
     booking_rejection_email:
-      subject: "Visit cannot take place: your visit for %{first_date} could not be booked"
+      subject: "Visit cannot take place: your visit for %{rejection_date} could not be booked"
     booking_receipt_email:
-      subject: "Not booked yet: we've received your visit request for %{first_date}"
+      subject: "Not booked yet: we've received your visit request for %{receipt_date}"
