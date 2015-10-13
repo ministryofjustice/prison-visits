@@ -59,10 +59,6 @@ class PrisonerDetailsController < ApplicationController
     SERVICE_DOMAIN
   end
 
-  def killswitch_active?
-    ENV['API_KILLSWITCH']
-  end
-
   private
 
   def trim_whitespace_from_params(whitelisted_params)
