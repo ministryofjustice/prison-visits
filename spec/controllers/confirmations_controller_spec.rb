@@ -104,7 +104,7 @@ RSpec.describe ConfirmationsController, type: :controller do
             expect(response).to redirect_to(show_confirmation_path(visit_id: visit.visit_id))
             expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(
               [
-                "Visit confirmed: your visit for 7 July 2013 has been confirmed",
+                "Visit confirmed: your visit for Sunday 7 July 2013 has been confirmed",
                 "COPY of booking confirmation for Jimmy Harris"
               ]
             )
@@ -123,7 +123,7 @@ RSpec.describe ConfirmationsController, type: :controller do
             expect(response).to redirect_to(show_confirmation_path(visit_id: visit.visit_id))
             expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(
               [
-                "Visit cannot take place: your visit for 7 July 2013 could not be booked",
+                "Visit cannot take place: your visit for Sunday 7 July 2013 could not be booked",
                 "COPY of booking rejection for Jimmy Harris"
               ]
             )
@@ -142,7 +142,7 @@ RSpec.describe ConfirmationsController, type: :controller do
             expect(response).to redirect_to(show_confirmation_path(visit_id: visit.visit_id))
             expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(
               [
-                "Visit cannot take place: your visit for 7 July 2013 could not be booked",
+                "Visit cannot take place: your visit for Sunday 7 July 2013 could not be booked",
                 "COPY of booking rejection for Jimmy Harris"
               ]
             )
@@ -159,7 +159,7 @@ RSpec.describe ConfirmationsController, type: :controller do
           after do
             post :create, confirmation: { outcome: Confirmation::NO_SLOT_AVAILABLE }, state: encrypted_visit
             expect(response).to redirect_to(show_confirmation_path(visit_id: visit.visit_id))
-            expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(["Visit cannot take place: your visit for 7 July 2013 could not be booked", "COPY of booking rejection for Jimmy Harris"])
+            expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(["Visit cannot take place: your visit for Sunday 7 July 2013 could not be booked", "COPY of booking rejection for Jimmy Harris"])
           end
         end
 
@@ -218,7 +218,7 @@ RSpec.describe ConfirmationsController, type: :controller do
             expect(response).to redirect_to(show_confirmation_path(visit_id: visit.visit_id))
             expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(
               [
-                "Visit confirmed: your visit for 7 July 2013 has been confirmed",
+                "Visit confirmed: your visit for Sunday 7 July 2013 has been confirmed",
                 "COPY of booking confirmation for Jimmy Harris"
               ]
             )
@@ -267,7 +267,7 @@ RSpec.describe ConfirmationsController, type: :controller do
             expect(response).to redirect_to(show_confirmation_path(visit_id: visit.visit_id))
             expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(
               [
-                "Visit confirmed: your visit for 7 July 2013 has been confirmed",
+                "Visit confirmed: your visit for Sunday 7 July 2013 has been confirmed",
                 "COPY of booking confirmation for Jimmy Harris"
               ]
             )
@@ -313,7 +313,7 @@ RSpec.describe ConfirmationsController, type: :controller do
             expect(response).to redirect_to(show_confirmation_path(visit_id: visit.visit_id))
             expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(
               [
-                "Visit cannot take place: your visit for 7 July 2013 could not be booked",
+                "Visit cannot take place: your visit for Sunday 7 July 2013 could not be booked",
                 "COPY of booking rejection for Jimmy Harris"
               ]
             )
@@ -358,7 +358,7 @@ RSpec.describe ConfirmationsController, type: :controller do
             expect(response).to redirect_to(show_confirmation_path(visit_id: visit.visit_id))
             expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(
               [
-                "Visit cannot take place: your visit for 7 July 2013 could not be booked",
+                "Visit cannot take place: your visit for Sunday 7 July 2013 could not be booked",
                 "COPY of booking rejection for Jimmy Harris"
               ]
             )
@@ -382,7 +382,7 @@ RSpec.describe ConfirmationsController, type: :controller do
             expect(response).to redirect_to(show_confirmation_path(visit_id: visit.visit_id))
             expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(
               [
-                "Visit cannot take place: your visit for 7 July 2013 could not be booked",
+                "Visit cannot take place: your visit for Sunday 7 July 2013 could not be booked",
                 "COPY of booking rejection for Jimmy Harris"
               ]
             )
@@ -406,7 +406,7 @@ RSpec.describe ConfirmationsController, type: :controller do
             expect(response).to redirect_to(show_confirmation_path(visit_id: visit.visit_id))
             expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(
               [
-                "Visit cannot take place: your visit for 7 July 2013 could not be booked",
+                "Visit cannot take place: your visit for Sunday 7 July 2013 could not be booked",
                 "COPY of booking rejection for Jimmy Harris"
               ]
             )
@@ -430,7 +430,7 @@ RSpec.describe ConfirmationsController, type: :controller do
             expect(response).to redirect_to(show_confirmation_path(visit_id: visit.visit_id))
             expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(
               [
-                "Visit cannot take place: your visit for 7 July 2013 could not be booked",
+                "Visit cannot take place: your visit for Sunday 7 July 2013 could not be booked",
                 "COPY of booking rejection for Jimmy Harris"
               ]
             )

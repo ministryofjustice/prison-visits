@@ -72,6 +72,6 @@ class VisitorMailer < ActionMailer::Base
   end
 
   def format_date(date)
-    I18n.l(date, format: :day_date_and_year)
+    I18n.l(date, format: :long)
   end
 end
