@@ -17,10 +17,10 @@ require_relative 'steps/prison_booking_confirmation_copy'
 require_relative 'steps/cancel_booking_page'
 require_relative 'steps/prison_booking_cancelled'
 
-module SuprressJsConsoleLogging; end
+module SuppressJsConsoleLogging; end
 Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new \
-    app, phantomjs_logger: SuprressJsConsoleLogging
+    app, phantomjs_logger: SuppressJsConsoleLogging
 end
 
 Capybara.run_server = false
