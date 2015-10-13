@@ -19,10 +19,6 @@ class ConfirmationsController < ApplicationController
     end
 
     logstasher_add_visit_id(booked_visit.visit_id)
-  rescue ActiveSupport::MessageVerifier::InvalidSignature => e
-    render '_bad_state', status: 400
-    STATSD_CLIENT.increment('pvb.app.bad_state')
-    Raven.capture_exception(e)
   end
 
   def create

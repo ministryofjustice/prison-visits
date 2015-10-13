@@ -71,13 +71,13 @@ RSpec.describe ConfirmationsController, type: :controller do
       it "bails out if the state is not present" do
         get :new
         expect(response.status).to eq(400)
-        expect(response).to render_template('confirmations/_bad_state')
+        expect(response).to render_template('shared/bad_state')
       end
 
       it "bails out if the state is corrupt" do
         get :new, state: 'bad state'
         expect(response.status).to eq(400)
-        expect(response).to render_template('confirmations/_bad_state')
+        expect(response).to render_template('shared/bad_state')
       end
     end
 

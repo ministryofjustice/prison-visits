@@ -94,5 +94,25 @@ RSpec.feature "deserialization" do
       expect(page).to have_http_status(:success)
       expect(page).to have_text('Your visit has been confirmed')
     end
+
+    context 'when the link is corrupt' do
+      scenario 'booking receipt' do
+        link = data.fetch('corrupt_booking_receipt_path')
+        visit link
+        within '#content' do
+          expect(page).to have_text('The link you used is invalid')
+        end
+        expect(page).to have_http_status(:bad_request)
+      end
+
+      scenario 'booking request email' do
+        link = data.fetch('corrupt_booking_request_path')
+        visit link
+        within '#content' do
+          expect(page).to have_text('The link you used is invalid')
+        end
+        expect(page).to have_http_status(:bad_request)
+      end
+    end
   end
 end
