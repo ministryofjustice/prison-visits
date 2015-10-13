@@ -17,32 +17,12 @@
   canned_responses: true
   email: socialvisits.askhamgrange@hmps.gsi.gov.uk
   enabled: true
-<<<<<<< HEAD
-<<<<<<< HEAD
-  phone: 0300 060 6505
-  email: visitsbooking.westmidlands@noms.gsi.gov.uk
-=======
   phone:
-=======
-  phone: 
->>>>>>> 298f7bc... Move name/nomis_id to top and alpha-sort the list
   slots:
     sat:
     - 1345-1545
     sun:
     - 1345-1545
-<<<<<<< HEAD
-  unbookable:
-  - 2014-12-25
-- name: Aylesbury
-  nomis_id: AYI
->>>>>>> ad396cd... fixup! Change the way prison data is accessed.
-  address:
-  - 54 Gaol Road
-  - Stafford
-  - ST16 3AW
-=======
->>>>>>> 298f7bc... Move name/nomis_id to top and alpha-sort the list
   unbookable:
   - 2014-12-25
 - name: Aylesbury
@@ -540,6 +520,7 @@
   - 2015-10-07
   - 2015-10-26
   - 2015-11-04
+- name: Channings Wood
   nomis_id: CWI
   address:
   - Denbury
@@ -764,21 +745,12 @@
   unbookable:
   - 2014-12-25
   - 2015-01-01
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 298f7bc... Move name/nomis_id to top and alpha-sort the list
   - 2015-04-03
 - name: Doncaster
   nomis_id: DNI
   enabled: false
 - name: Dovegate
-<<<<<<< HEAD
   nomis_id:
-=======
-  nomis_id: 
->>>>>>> 298f7bc... Move name/nomis_id to top and alpha-sort the list
   enabled: false
 - name: Downview
   nomis_id: DWI
@@ -789,10 +761,6 @@
   enabled: false
   phone: 0208 196 6359
   reason: coming_soon
-<<<<<<< HEAD
->>>>>>> ad396cd... fixup! Change the way prison data is accessed.
-=======
->>>>>>> 298f7bc... Move name/nomis_id to top and alpha-sort the list
   slots:
     sat:
     - 1330-1530
@@ -1142,14 +1110,6 @@
   - 2014-12-21
   - 2014-12-25
   - 2014-12-26
-<<<<<<< HEAD
-<<<<<<< HEAD
-  - 2015-01-01
-  - 2015-04-03
-  - 2015-04-05
-=======
-=======
->>>>>>> 298f7bc... Move name/nomis_id to top and alpha-sort the list
   - 2015-01-04
   - 2015-01-18
   - 2015-02-01
@@ -1172,12 +1132,7 @@
   canned_responses: true
   email: socialvisits.ford@hmps.gsi.gov.uk
   enabled: true
-<<<<<<< HEAD
   phone:
->>>>>>> ad396cd... fixup! Change the way prison data is accessed.
-=======
-  phone: 
->>>>>>> 298f7bc... Move name/nomis_id to top and alpha-sort the list
   slots:
     wed:
     - 1800-2000
@@ -1488,184 +1443,6 @@
     sun:
     - 0900-1100
     - 1400-1600
-<<<<<<< HEAD
-  name: Isle of Wight - Albany
-- nomis_id: BHI
-  enabled: false
-  reason: it_issues
-  phone: ''
-  email: socialvisits.blantyrehouse@hmps.gsi.gov.uk
-  address:
-  - Goudhurst
-  - TN17 2NH
-  unbookable:
-  - 2014-12-25
-  slots:
-    sat:
-    - 1345-1600
-    sun:
-    - 1345-1600
-    wed:
-    - 1345-1600
-  name: Blantyre House
-- nomis_id: BXI
-  canned_responses: true
-  enabled: true
-  phone: 0208 678 1433
-  email: socialvisits.brixton@hmps.gsi.gov.uk
-  address:
-  - Jebb Avenue
-  - SW2 5XF
-  unbookable:
-  - 2014-12-25
-  - 2014-12-26
-  - 2015-01-01
-  slots:
-    sat:
-    - 0900-1015
-    - 1045-1200
-    - 1345-1500
-    - 1530-1645
-    sun:
-    - 1345-1645
-    thu:
-    - 0830-1000
-    - 1030-1145
-    - 1315-1430
-    - 1500-1615
-    tue:
-    - 0830-1000
-    - 1030-1145
-    - 1315-1430
-    - 1500-1615
-  slot_anomalies:
-    2014-08-12:
-    - 0830-1145
-    - 1315-1615
-    2014-08-14:
-    - 0830-1145
-    - 1315-1615
-    2014-08-16:
-    - 0900-1200
-    - 1345-1645
-    2014-08-17:
-    - 1345-1645
-    2014-09-09:
-    - 0830-1145
-    - 1315-1615
-    2014-09-11:
-    - 0830-1145
-    - 1315-1615
-    2014-09-13:
-    - 0900-1200
-    - 1345-1645
-    2014-09-14:
-    - 1345-1645
-    2014-10-07:
-    - 0830-1145
-    - 1315-1615
-    2014-10-09:
-    - 0830-1145
-    - 1315-1615
-    2014-10-11:
-    - 0900-1200
-    - 1345-1645
-    2014-10-12:
-    - 1345-1645
-    2014-11-04:
-    - 0830-1145
-    - 1315-1615
-    2014-11-06:
-    - 0830-1145
-    - 1315-1615
-    2014-11-08:
-    - 0900-1200
-    - 1345-1645
-    2014-11-09:
-    - 1345-1645
-    2014-12-02:
-    - 0830-1145
-    - 1315-1615
-    2014-12-04:
-    - 0830-1145
-    - 1315-1615
-    2014-12-06:
-    - 0900-1200
-    - 1345-1645
-    2014-12-07:
-    - 1345-1645
-    2014-12-30:
-    - 0830-1145
-    - 1315-1615
-    2015-01-01:
-    - 0830-1145
-    - 1315-1615
-    2015-01-03:
-    - 0900-1200
-    - 1345-1645
-    2015-01-04:
-    - 1345-1645
-  name: Brixton
-- nomis_id: DWI
-  enabled: false
-  reason: coming_soon
-  phone: 0208 196 6359
-  email: socialvisits.downview@hmps.gsi.gov.uk
-  address:
-  - Sutton Lane
-  - SM2 5PD
-  unbookable:
-  - 2014-12-25
-<<<<<<< HEAD
-=======
-  - 2014-12-26
-  - 2015-01-01
-- name: Kirkham
-  nomis_id: KMI
-  address:
-  - Freckleton Road
-  - ' Kirkham'
-  - PR4 2RN
-  canned_responses: true
-  email: socialvisits.kirkham@hmps.gsi.gov.uk
-  enabled: true
-  phone:
->>>>>>> ad396cd... fixup! Change the way prison data is accessed.
-  slots:
-    sat:
-    - 1330-1530
-    sun:
-    - 1330-1530
-    thu:
-    - 1400-1600
-  name: Downview
-- nomis_id: ESI
-  enabled: false
-  reason: coming_soon
-  phone: ''
-  email: socialvisits.eastsuttonpark@hmps.gsi.gov.uk
-  address:
-  - Sutton Valence
-  - 'ME17 3DF '
-  unbookable:
-  - 2014-12-25
-  slots:
-    sat:
-    - 1330-1530
-    sun:
-    - 1330-1530
-  name: East Sutton Park
-- nomis_id: EYI
-  canned_responses: true
-  enabled: true
-  phone: 0300 060 6605
-  email: socialvisits.elmley@hmps.gsi.gov.uk
-  finder_slug: sheppey-cluster-elmley
-  address:
-  - Church Road
-  - 'ME12 4DZ '
-=======
->>>>>>> 298f7bc... Move name/nomis_id to top and alpha-sort the list
   unbookable:
   - 2014-12-25
   - 2014-12-26
@@ -2018,7 +1795,7 @@
   canned_responses: true
   email: socialvisits.kirkham@hmps.gsi.gov.uk
   enabled: true
-  phone: 
+  phone:
   slots:
     fri:
     - 1300-1530
@@ -2700,23 +2477,6 @@
   address:
   - 104 The Grove
   - DT5 1DL
-<<<<<<< HEAD
-  unbookable:
-  - 2014-12-25
-  - 2015-01-01
-<<<<<<< HEAD
-=======
-- name: Spring Hill
-  nomis_id: SPI
-  address:
-  - Grendon Underwood
-  - HP18 0TL
-  canned_responses: true
-  email: socialvisits.springhill@hmps.gsi.gov.uk
-  enabled: true
-  phone:
->>>>>>> ad396cd... fixup! Change the way prison data is accessed.
-=======
   adult_age: 11
   canned_responses: true
   email: socialvisits.portland@hmps.gsi.gov.uk
@@ -2727,7 +2487,6 @@
     - 1400-1600
     2014-12-31:
     - 1400-1600
->>>>>>> 298f7bc... Move name/nomis_id to top and alpha-sort the list
   slots:
     sat:
     - 1345-1600
@@ -2791,139 +2550,6 @@
     sun:
     - 0845-1100
     - 1345-1600
-<<<<<<< HEAD
-  name: Ranby
-- nomis_id: WWI
-  canned_responses: true
-  enabled: true
-  phone: 0208 588 4002
-  email: socialvisits.wandsworth@hmps.gsi.gov.uk
-  address:
-<<<<<<< HEAD
-  - Heathfield Rd
-  - PO Box 757
-  - SW18 3HS
-=======
-  - Ashbourne
-  - Derbyshire
-  - DE6 5HW
-  canned_responses: true
-  email: socialvisitssudbury@hmps.gsi.gov.uk
-  enabled: true
-  phone: 01283 584066
-  slot_anomalies:
-    2014-12-22:
-    - 0930-1130
-    - 1345-1545
-    2014-12-23:
-    - 0930-1130
-    2014-12-24:
-    - 0930-1130
-    2014-12-27:
-    - 0930-1130
-    2014-12-29:
-    - 0930-1130
-    - 1345-1545
-    2014-12-30:
-    - 0930-1130
-    - 1345-1545
-    2014-12-31:
-    - 0930-1130
-    2015-01-01:
-    - 0930-1130
-    2015-01-02:
-    - 0930-1130
-    - 1345-1545
-  slots:
-    wed:
-    - 1345-1545
-    thu:
-    - 1345-1545
-    sat:
-    - 1345-1545
-    sun:
-    - 0930-1130
-    - 1345-1545
->>>>>>> ad396cd... fixup! Change the way prison data is accessed.
-  unbookable:
-  - 2014-12-25
-  - 2015-10-14
-  - 2015-11-11
-  - 2015-12-09
-  - 2016-01-13
-  - 2016-02-10
-  - 2016-03-09
-  - 2016-04-13
-  - 2016-05-11
-  - 2016-06-08
-  - 2016-07-13
-  - 2016-08-10
-  - 2016-09-14
-  - 2016-10-12
-  - 2016-11-09
-  - 2016-12-14
-  slots:
-    mon:
-<<<<<<< HEAD
-    - 1000-1100
-    - 1115-1215
-=======
-    - 1400-1600
-    sat:
-    - 1330-1530
-    sun:
-    - 1330-1530
-    thu:
-    - 1400-1600
-    tue:
-    - 1400-1600
-    wed:
-    - 1400-1600
-  unbookable:
-  - 2014-12-25
-  - 2014-12-26
-- name: Swansea
-  nomis_id: SWI
-  address:
-  - 200 Oystermouth Road
-  - SA1 3SR
-  canned_responses: true
-  email: socialvisits.swansea@hmps.gsi.gov.uk
-  enabled: true
-  phone: 01792 48 5322
-  slot_anomalies:
-    2015-01-01:
->>>>>>> ad396cd... fixup! Change the way prison data is accessed.
-    - 1345-1445
-    - 1515-1615
-    sat:
-    - 1000-1100
-    - 1115-1215
-    - 1345-1445
-    - 1515-1615
-    sun:
-    - 1000-1100
-    - 1115-1215
-    - 1345-1445
-    - 1515-1615
-    thu:
-    - 1000-1100
-    - 1115-1215
-    - 1345-1445
-    - 1515-1615
-    tue:
-    - 1000-1100
-    - 1115-1215
-    - 1345-1445
-    - 1515-1615
-    wed:
-    - 1000-1100
-    - 1115-1215
-    - 1345-1445
-    - 1515-1615
-  name: Wandsworth
-- nomis_id: WCI
-=======
   unbookable:
   - 2014-12-25
   - 2014-12-26
@@ -2933,7 +2559,6 @@
   address:
   - Warrington Road
   - WA3 6BP
->>>>>>> 298f7bc... Move name/nomis_id to top and alpha-sort the list
   canned_responses: true
   email: socialvisits.risley@hmps.gsi.gov.uk
   enabled: true
@@ -2981,12 +2606,8 @@
   - 2014-12-17
   - 2014-12-25
   - 2014-12-26
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
   - 2015-01-01
   - 2015-02-11
->>>>>>> 298f7bc... Move name/nomis_id to top and alpha-sort the list
   - 2015-04-03
   - 2015-04-15
 - name: Rochester
@@ -3001,33 +2622,6 @@
   enabled: true
   phone: 01634 803100
   slots:
-<<<<<<< HEAD
-    fri:
-=======
-  - 2015-01-01
-- name: Thameside
-  nomis_id:
-  enabled: false
-- name: The Mount
-  nomis_id: MTI
-  address:
-  - Molyneaux Avenue
-  - HP3 0NZ
-  canned_responses: true
-  email: socialvisits.themount@hmps.gsi.gov.uk
-  enabled: true
-  phone: 01442 836352
-  slot_anomalies:
-    2014-12-23:
-    - 1400-1600
-    2014-12-24:
-    - 1400-1600
-    2014-12-27:
-    - 0915-1115
->>>>>>> ad396cd... fixup! Change the way prison data is accessed.
-    - 1400-1600
-=======
->>>>>>> 298f7bc... Move name/nomis_id to top and alpha-sort the list
     mon:
     - 1400-1600
     tue:
@@ -3085,7 +2679,7 @@
   canned_responses: true
   email: socialvisits.springhill@hmps.gsi.gov.uk
   enabled: true
-  phone: 
+  phone:
   slots:
     sat:
     - 1345-1600
@@ -3240,8 +2834,8 @@
     - 0930-1130
     2014-12-29:
     - 0930-1130
-    2014-12-30:
     - 1345-1545
+    2014-12-30:
     - 0930-1130
     - 1345-1545
     2014-12-31:
@@ -3283,8 +2877,8 @@
     thu:
     - 1400-1600
     tue:
-    wed:
     - 1400-1600
+    wed:
     - 1400-1600
   unbookable:
   - 2014-12-25
@@ -3358,7 +2952,7 @@
   - 2014-12-26
   - 2015-01-01
 - name: Thameside
-  nomis_id: 
+  nomis_id:
   enabled: false
 - name: The Mount
   nomis_id: MTI

@@ -16,6 +16,7 @@ module VisitHelper
   end
 
   delegate :adult_age, :phone, :postcode, :email, :slot_anomalies,
+    to: :prison, prefix: :prison
   delegate :prison_name, :prison, to: :visit
 
   def prison_email_link
