@@ -4,38 +4,30 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   rescue_from ActiveSupport::MessageVerifier::InvalidSignature, with: :bad_state
 
-  def self.permit_only_from_prisons
-    before_filter :reject_untrusted_ips!
+  def self.permit_only_trusted_users
+    before_filter :reject_without_key_or_trusted_ip!
   end
 
-  def self.permit_only_from_prisons_or_with_key
-    before_filter :reject_untrusted_ips_and_without_key!
+  def reject_without_key_or_trusted_ip!
+    unless valid_auth_key? || permitted_ip?
+      raise ActionController::RoutingError.new('Not Found')
+    end
   end
 
-  def self.permit_only_with_key
-    before_filter :reject_without_key!
-  end
-
-  def reject!
-    raise ActionController::RoutingError.new('Go away')
-  end
-
-  def reject_untrusted_ips!
-    unless Rails.configuration.permitted_ips_for_confirmations.
+  def permitted_ip?
+    Rails.configuration.permitted_ips_for_confirmations.
       include?(request.remote_ip)
-      reject!
-    end
   end
 
-  def reject_untrusted_ips_and_without_key!
-    unless Rails.configuration.metrics_auth_key.secure_compare(params[:key])
-      reject_untrusted_ips!
-    end
+  def auth_key
+    Rails.configuration.metrics_auth_key
   end
 
-  def reject_without_key!
-    unless Rails.configuration.metrics_auth_key.secure_compare(params[:key])
-      reject!
+  def valid_auth_key?
+    pad_execution_time 0.1 do
+      auth_key &&
+        params[:key] &&
+        auth_key == params[:key]
     end
   end
 
@@ -83,6 +75,14 @@ class ApplicationController < ActionController::Base
       )
       redirect_to edit_prisoner_details_path
     end
+  end
+
+  def pad_execution_time(execution_time)
+    start = Time.zone.now
+    result = yield
+    stop = Time.zone.now
+    sleep execution_time - (stop - start)
+    result
   end
 
   private

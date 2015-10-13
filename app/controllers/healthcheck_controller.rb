@@ -1,5 +1,5 @@
 class HealthcheckController < ApplicationController
-  permit_only_with_key
+  permit_only_trusted_users
 
   def index
     healthcheck = Healthcheck.new

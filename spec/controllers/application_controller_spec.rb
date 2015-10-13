@@ -34,14 +34,14 @@ RSpec.describe ApplicationController, type: :controller do
 
     before :each do
       allow(Rails.configuration).to receive(:metrics_auth_key).and_return('lulz')
-      controller.class.permit_only_from_prisons_or_with_key
+      controller.class.permit_only_trusted_users
     end
 
     it "rejects untrusted IPs" do
       allow(Rails.configuration.permitted_ips_for_confirmations).to receive(:include?).and_return(false)
       expect {
         get :index
-      }.to raise_error(ActionController::RoutingError, 'Go away')
+      }.to raise_error(ActionController::RoutingError)
     end
 
     it "accepts trusted IPs" do
@@ -62,14 +62,14 @@ RSpec.describe ApplicationController, type: :controller do
     end
 
     before :each do
-      controller.class.permit_only_from_prisons
+      controller.class.permit_only_trusted_users
     end
 
     it "rejects untrusted IPs" do
       allow(Rails.configuration.permitted_ips_for_confirmations).to receive(:include?).and_return(false)
       expect {
         get :index
-      }.to raise_error(ActionController::RoutingError, 'Go away')
+      }.to raise_error(ActionController::RoutingError)
     end
 
     it "accepts trusted IPs" do
@@ -86,19 +86,19 @@ RSpec.describe ApplicationController, type: :controller do
     end
 
     before :each do
-      controller.class.permit_only_with_key
-      Rails.configuration.metrics_auth_key = "WUT"
+      controller.class.permit_only_trusted_users
+      Rails.configuration.metrics_auth_key = "VALID"
     end
 
     it "accepts clients with key" do
-      get :index, key: "WUT"
+      get :index, key: "VALID"
       expect(response).to be_success
     end
 
     it "rejects clients without key" do
-      expect {
-        get :index, key: "LOL"
-      }.to raise_error(ActionController::RoutingError, 'Go away')
+      expect{
+        get :index, key: "INVALID"
+      }.to raise_error(ActionController::RoutingError)
     end
   end
 
@@ -110,7 +110,7 @@ RSpec.describe ApplicationController, type: :controller do
     end
 
     it "accepts all IPs" do
-      expect(controller).to receive(:reject_untrusted_ips!).never
+      expect(controller).to receive(:reject_without_key_or_trusted_ip!).never
       get :index
     end
   end

@@ -1,5 +1,5 @@
 class GeckoboardController < ApplicationController
-  permit_only_from_prisons_or_with_key
+  permit_only_trusted_users
 
   def leaderboard
     report = leaderboard_report

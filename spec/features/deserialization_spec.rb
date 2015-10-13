@@ -29,7 +29,7 @@ RSpec.feature "deserialization" do
         VisitMetricsEntry.create! hash
       end
       allow_any_instance_of(ApplicationController).
-        to receive(:reject_untrusted_ips!)
+        to receive(:reject_without_key_or_trusted_ip!)
     end
 
     scenario 'booking receipt' do
@@ -67,7 +67,7 @@ RSpec.feature "deserialization" do
         VisitMetricsEntry.create! hash
       end
       allow_any_instance_of(ApplicationController).
-        to receive(:reject_untrusted_ips!)
+        to receive(:reject_without_key_or_trusted_ip!)
     end
 
     scenario 'booking receipt' do
