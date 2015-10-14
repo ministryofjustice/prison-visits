@@ -6,10 +6,10 @@ RSpec.describe HealthcheckController, type: :controller do
   let(:key) { 'super secret' }
 
   around do |example|
-    original = Rails.configuration.metrics_auth_key
-    Rails.configuration.metrics_auth_key = key
+    original = Rails.configuration.trusted_users_access_key
+    Rails.configuration.trusted_users_access_key = key
     example.call
-    Rails.configuration.metrics_auth_key = original
+    Rails.configuration.trusted_users_access_key = original
   end
 
   let(:parsed_body) {

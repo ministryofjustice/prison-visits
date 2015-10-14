@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   def reject_without_key_or_trusted_ip!
-    unless valid_auth_key? || permitted_ip?
+    unless valid_trusted_users_access_key? || permitted_ip?
       raise ActionController::RoutingError.new('Not Found')
     end
   end
@@ -19,15 +19,15 @@ class ApplicationController < ActionController::Base
       include?(request.remote_ip)
   end
 
-  def auth_key
-    Rails.configuration.metrics_auth_key
+  def trusted_users_access_key
+    Rails.configuration.trusted_users_access_key
   end
 
-  def valid_auth_key?
+  def valid_trusted_users_access_key?
     pad_execution_time 0.1 do
-      auth_key &&
+      trusted_users_access_key &&
         params[:key] &&
-        auth_key == params[:key]
+        trusted_users_access_key == params[:key]
     end
   end
 
