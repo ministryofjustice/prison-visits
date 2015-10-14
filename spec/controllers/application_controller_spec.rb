@@ -33,7 +33,7 @@ RSpec.describe ApplicationController, type: :controller do
     end
 
     before :each do
-      allow(Rails.configuration).to receive(:metrics_auth_key).and_return('lulz')
+      allow(Rails.configuration).to receive(:trusted_users_access_key).and_return('lulz')
       controller.class.permit_only_trusted_users
     end
 
@@ -87,7 +87,7 @@ RSpec.describe ApplicationController, type: :controller do
 
     before :each do
       controller.class.permit_only_trusted_users
-      Rails.configuration.metrics_auth_key = "VALID"
+      Rails.configuration.trusted_users_access_key = "VALID"
     end
 
     it "accepts clients with key" do

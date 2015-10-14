@@ -41,7 +41,7 @@ module PrisonVisits2
             fetch('england-and-wales').
             fetch('events').
             map { |event| Date.parse(event['date']) }
-    config.metrics_auth_key = ENV['METRICS_AUTH_KEY']
+    config.trusted_users_access_key = ENV['TRUSTED_USERS_ACCESS_KEY']
     config.permitted_ips_for_confirmations =
       (ENV['PRISON_ESTATE_IPS'] || '').split(',')
 
