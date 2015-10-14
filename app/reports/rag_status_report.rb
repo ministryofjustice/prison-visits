@@ -35,18 +35,18 @@ class RagStatusReport
   def as_json(*)
     {
       item: [
-       {
-         value: this_period[:red],
-         text: "Over 4 days"
-       },
-       {
-         value: this_period[:amber],
-         text: "Between 3 and 4 days"
-       },
-       {
-         value: this_period[:green],
-         text: "Less than 3 days"
-       }
+        {
+          value: this_period[:red],
+          text: "Over 4 days"
+        },
+        {
+          value: this_period[:amber],
+          text: "Between 3 and 4 days"
+        },
+        {
+          value: this_period[:green],
+          text: "Less than 3 days"
+        }
       ]
     }
   end
