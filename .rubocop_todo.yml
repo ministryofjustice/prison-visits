@@ -166,15 +166,6 @@ Style/BracesAroundHashParameters:
 Style/DotPosition:
   Enabled: false
 
-# Offense count: 6
-Style/EachWithObject:
-  Exclude:
-    - 'config/application.rb'
-    - 'lib/detailed_metrics.rb'
-    - 'lib/param_utils.rb'
-    - 'lib/rag_status_report.rb'
-    - 'lib/weekly_confirmations_report.rb'
-
 # Offense count: 1
 # Cop supports --auto-correct.
 Style/EmptyLinesAroundAccessModifier:
