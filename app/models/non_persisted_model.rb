@@ -6,7 +6,7 @@ module NonPersistedModel
   #
   module InstanceMethods
     def to_key
-      [self.object_id]
+      [object_id]
     end
 
     def persisted?
