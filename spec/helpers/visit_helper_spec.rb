@@ -143,22 +143,22 @@ RSpec.describe VisitHelper, type: :helper do
   end
 
   it "provides the date of Monday in the current week" do
-    expect(helper.weeks_start).to eq(Date.today.beginning_of_week)
+    expect(helper.weeks_start).to eq(Time.zone.today.beginning_of_week)
   end
 
   it "provides the date the Sunday at the end of the bookable range" do
-    expect(helper.weeks_end).to eq((Date.today + 28.days).end_of_month.end_of_week)
+    expect(helper.weeks_end).to eq((Time.zone.today + 28.days).end_of_month.end_of_week)
   end
 
   it "provides the booking range grouped by the Monday of each week" do
-    range = Date.today.beginning_of_week..(Date.today + 28.days).end_of_month.end_of_week
+    range = Time.zone.today.beginning_of_week..(Time.zone.today + 28.days).end_of_month.end_of_week
     grouped = range.group_by(&:beginning_of_week)
     expect(helper.weeks).to eq(grouped)
   end
 
   it "confirms when a date is today" do
-    expect(helper.tag_with_today?(Date.today)).to eq(true)
-    expect(helper.tag_with_today?(Date.tomorrow)).to eq(false)
+    expect(helper.tag_with_today?(Time.zone.today)).to eq(true)
+    expect(helper.tag_with_today?(Time.zone.tomorrow)).to eq(false)
   end
 
   it "confirms when a date is the first day of a month" do

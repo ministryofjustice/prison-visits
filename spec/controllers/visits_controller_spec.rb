@@ -41,7 +41,7 @@ RSpec.describe VisitsController, type: :controller do
                         vi.email = 'email@system.lol'
                         vi.index = 0
                         vi.phone = '01234567890'
-                        vi.date_of_birth = Date.today - 20.years
+                        vi.date_of_birth = Time.zone.today - 20.years
                       end]
 
         v.slots = [Slot.new(date: '2013-12-06', times: '0945-1115'), Slot.new, Slot.new]

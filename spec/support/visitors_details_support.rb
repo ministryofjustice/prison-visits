@@ -144,7 +144,7 @@ RSpec.shared_examples "a visitor data manipulator with invalid data" do
 
     context "when the prison assumes each adult to be 18 or older" do
       let :date_of_birth do
-        Date.today - 18.years
+        Time.zone.today - 18.years
       end
 
       it "allows the visitor to proceed" do
@@ -154,7 +154,7 @@ RSpec.shared_examples "a visitor data manipulator with invalid data" do
 
       context "a child applies" do
         let :date_of_birth do
-          Date.today - 10.years
+          Time.zone.today - 10.years
         end
 
         it "rejects the booking request" do
@@ -166,7 +166,7 @@ RSpec.shared_examples "a visitor data manipulator with invalid data" do
 
     context "when the prison assumes each adult to be some other age" do
       let :date_of_birth do
-        Date.today - 18.years
+        Time.zone.today - 18.years
       end
 
       before :each do
@@ -185,9 +185,9 @@ RSpec.shared_examples "a visitor data manipulator with invalid data" do
               {
                 first_name: 'Mark',
                 last_name: 'Bauer',
-                :'date_of_birth(3i)' => Date.today.day,
-                :'date_of_birth(2i)' => Date.today.month,
-                :'date_of_birth(1i)' => Date.today.year - 10
+                :'date_of_birth(3i)' => Time.zone.today.day,
+                :'date_of_birth(2i)' => Time.zone.today.month,
+                :'date_of_birth(1i)' => Time.zone.today.year - 10
               }
             ] * 3
         end

@@ -7,7 +7,7 @@
   = prison_name_for_id(@nomis_id)
 %h2
   Summary for the year
-  - (2014..(Date.today.year)).each do |year|
+  - (2014..(Time.zone.today.year)).each do |year|
     - if year == @year
       %span{id: 'year'}
         = year

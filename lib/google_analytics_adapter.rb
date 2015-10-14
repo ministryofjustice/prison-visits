@@ -62,7 +62,7 @@ class GoogleAnalyticsAdapter
   end
 
   def number_of_days_from_now_for(slot)
-    (Date.parse(slot.date) - Date.today).to_i if slot
+    (Date.parse(slot.date) - Time.zone.today).to_i if slot
   end
 
   def date_sorted_slots
