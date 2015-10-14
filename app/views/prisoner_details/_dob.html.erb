@@ -7,12 +7,11 @@
       class="form-control"
       value="<%=
         prisoner.date_of_birth ?
-          prisoner.date_of_birth.send(field_name).to_s.rjust(2, '0') : ''
+          prisoner.date_of_birth.send(field_name) : ''
         %>"
       type="number"
       min="<%= prisoner.minimum_date_of_birth.send(field_name) %>"
       max="<%= prisoner.maximum_date_of_birth.send(field_name) %>"
-      pattern="[0-9]*"
       name="prisoner[date_of_birth(<%= i %>i)]"
       id="prisoner_date_of_birth_<%= i %>i"
       aria-describedby="dobHint"
