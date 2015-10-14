@@ -36,7 +36,7 @@ en:
             visitors:
               at_least_one_adult: "There must be at least one adult visitor"
               max_3_adults: 'You can book a maximum of 3 visitors over the age of %{adult_age} on this visit'
-  email_validator:
+  email_checker:
     errors:
       unparseable: "is not a valid address"
       domain_dot: "is not a valid address because it ends with a dot or starts with a dot"

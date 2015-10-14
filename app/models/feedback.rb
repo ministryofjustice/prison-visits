@@ -13,7 +13,7 @@ class Feedback
   private
 
   def validate_email
-    validator = EmailValidator.new(email)
-    errors.add :email, validator.message unless validator.valid?
+    checker = EmailChecker.new(email)
+    errors.add :email, checker.message unless checker.valid?
   end
 end

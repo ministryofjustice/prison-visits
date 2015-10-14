@@ -37,11 +37,11 @@ class Visitor
   private
 
   def validate_email
-    validator = EmailValidator.new(email, override_email_checks)
-    unless validator.valid?
-      errors.add :email, validator.message
-      @email_overrideable = validator.overrideable?
-      @email_override = validator.error
+    checker = EmailChecker.new(email, override_email_checks)
+    unless checker.valid?
+      errors.add :email, checker.message
+      @email_overrideable = checker.overrideable?
+      @email_override = checker.error
     end
   end
 end

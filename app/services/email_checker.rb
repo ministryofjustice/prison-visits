@@ -1,4 +1,4 @@
-class EmailValidator
+class EmailChecker
   BAD_DOMAINS = File.readlines("data/bad_domains.txt").map(&:chomp)
 
   extend Forwardable
@@ -19,7 +19,7 @@ class EmailValidator
   end
 
   def message
-    I18n.t(error, scope: 'email_validator.errors')
+    I18n.t(error, scope: 'email_checker.errors')
   end
 
   def valid?

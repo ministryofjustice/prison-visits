@@ -1,7 +1,6 @@
 require 'rails_helper'
-require 'email_validator'
 
-RSpec.describe EmailValidator do
+RSpec.describe EmailChecker do
   subject { described_class.new(address, override) }
   let(:override) { false }
 
