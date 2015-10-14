@@ -2,8 +2,8 @@ module VisitorsManipulator
   extend ActiveSupport::Concern
 
   included do
-    before_filter :adjust_visitors_in_session, only: :edit
-    before_filter :logstasher_add_visit_id_from_session
+    before_action :adjust_visitors_in_session, only: :edit
+    before_action :logstasher_add_visit_id_from_session
   end
 
   def adjust_visitors_in_session

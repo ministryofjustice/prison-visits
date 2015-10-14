@@ -1,11 +1,11 @@
 class ApplicationController < ActionController::Base
   helper_method :visit
-  before_filter :add_extra_sentry_metadata
+  before_action :add_extra_sentry_metadata
   protect_from_forgery with: :exception
   rescue_from ActiveSupport::MessageVerifier::InvalidSignature, with: :bad_state
 
   def self.permit_only_trusted_users
-    before_filter :reject_without_key_or_trusted_ip!
+    before_action :reject_without_key_or_trusted_ip!
   end
 
   def reject_without_key_or_trusted_ip!

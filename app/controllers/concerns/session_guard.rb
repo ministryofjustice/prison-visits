@@ -15,7 +15,7 @@ module SessionGuard
     include Shared
 
     included do
-      before_filter :check_if_session_timed_out, only: :update
+      before_action :check_if_session_timed_out, only: :update
     end
   end
 
@@ -24,7 +24,7 @@ module SessionGuard
     include Shared
 
     included do
-      before_filter :check_if_session_timed_out, only: [:update, :edit]
+      before_action :check_if_session_timed_out, only: [:update, :edit]
     end
   end
 end

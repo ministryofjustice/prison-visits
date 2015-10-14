@@ -2,7 +2,7 @@ class VisitsController < ApplicationController
   include CookieGuard
   include SessionGuard::OnEditAndUpdate
   before_action :ensure_visit_integrity, only: [:edit, :update]
-  before_filter :logstasher_add_visit_id_from_session, only: :update
+  before_action :logstasher_add_visit_id_from_session, only: :update
 
   def update
     @token = encryptor.encrypt_and_sign(visit)
