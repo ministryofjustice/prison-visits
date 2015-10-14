@@ -22,6 +22,7 @@ class Visit
     to: :prisoner, allow_nil: true
   delegate :prison_email, :prison_canned_responses, :prison_nomis_id,
     to: :prisoner
+  delegate :adult_age, to: :prison
 
   def validate_amount_of_adults
     if visitors.none? { |v| adult?(v) }
@@ -30,10 +31,6 @@ class Visit
     if visitors.count { |v| adult?(v) } > 3
       errors.add :visitors, :max_3_adults, adult_age: adult_age
     end
-  end
-
-  def adult_age
-    AgeValidator.new(prison).adult_age
   end
 
   def adult?(visitor)
