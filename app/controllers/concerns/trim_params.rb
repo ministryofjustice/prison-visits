@@ -1,5 +1,5 @@
-module ParamUtils
-  def self.trim_whitespace_from_values(p)
+module TrimParams
+  def trim_whitespace_from_values(p)
     case p
     when Hash
       p.inject(p.class.new) do |h, (k, v)|
