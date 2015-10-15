@@ -189,21 +189,9 @@ Style/MultilineOperationIndentation:
 
 # Offense count: 1
 # Cop supports --auto-correct.
-Style/NegatedIf:
-  Exclude:
-    - 'lib/tasks/static_pages.rake'
-
-# Offense count: 1
-# Cop supports --auto-correct.
 Style/NegatedWhile:
   Exclude:
     - 'spec/configuration/prison_data_spec.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/Not:
-  Exclude:
-    - 'lib/tasks/static_pages.rake'
 
 # Offense count: 5
 # Cop supports --auto-correct.
