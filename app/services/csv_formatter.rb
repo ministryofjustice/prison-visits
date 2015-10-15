@@ -17,19 +17,19 @@ class CSVFormatter
       @nomis_ids.each do |nomis_id|
         csv <<
           [
-           @prison_labeling_function.call(nomis_id),
-           dataset.total_visits[nomis_id],
-           dataset.waiting_visits[nomis_id],
-           dataset.overdue_visits[nomis_id],
-           dataset.rejected_visits[nomis_id],
-           dataset.confirmed_visits[nomis_id],
-           dataset.end_to_end_median_times[nomis_id],
-           dataset.end_to_end_times[nomis_id],
-           dataset.percent_rejected(nomis_id),
-           dataset.percent_rejected(nomis_id, no_slot_available),
-           dataset.percent_rejected(nomis_id, not_on_contact_list),
-           dataset.percent_rejected(nomis_id, no_vos_left),
-           nomis_id
+            @prison_labeling_function.call(nomis_id),
+            dataset.total_visits[nomis_id],
+            dataset.waiting_visits[nomis_id],
+            dataset.overdue_visits[nomis_id],
+            dataset.rejected_visits[nomis_id],
+            dataset.confirmed_visits[nomis_id],
+            dataset.end_to_end_median_times[nomis_id],
+            dataset.end_to_end_times[nomis_id],
+            dataset.percent_rejected(nomis_id),
+            dataset.percent_rejected(nomis_id, no_slot_available),
+            dataset.percent_rejected(nomis_id, not_on_contact_list),
+            dataset.percent_rejected(nomis_id, no_vos_left),
+            nomis_id
           ]
       end
     end
