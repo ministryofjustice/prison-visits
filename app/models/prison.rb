@@ -44,14 +44,12 @@ class Prison
     all.select(&:enabled)
   end
 
-  def self.find(name_or_nomis)
-    all.detect { |p|
-      p.name == name_or_nomis || p.nomis_id == name_or_nomis
-    }
+  def self.find(name)
+    all.detect { |p| p.name == name }.try(:dup)
   end
 
-  def initialize(opts = {})
-    self.attributes = attributes.merge(opts.symbolize_keys)
+  def self.find_by_nomis_id(nomis_id)
+    all.detect { |p| p.nomis_id == nomis_id }.try(:dup)
   end
 
   def self.names

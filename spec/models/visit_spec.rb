@@ -15,7 +15,7 @@ RSpec.describe Visit do
 
   describe 'delegation' do
     it 'exposes the prison via the prisoner' do
-      expect(sample_visit.prison).to eq(Prison.find('Rochester'))
+      expect(sample_visit.prison.to_json).to eq(Prison.find('Rochester').to_json)
     end
 
     it 'exposes some prison attributes via the prisoner' do

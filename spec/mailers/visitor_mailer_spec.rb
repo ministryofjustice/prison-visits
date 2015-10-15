@@ -20,66 +20,6 @@ RSpec.describe VisitorMailer do
     }.to change { ActionMailer::Base.deliveries.size }.by(1)
   end
 
-  let :confirmation_closed_visit do
-    Confirmation.new(canned_response: true, vo_number: '5551234', outcome: 'slot_0', closed_visit: true)
-  end
-
-  let :confirmation_no_slot_available do
-    Confirmation.new(message: 'A message', outcome: Confirmation::NO_SLOT_AVAILABLE)
-  end
-
-  let :confirmation_not_on_contact_list do
-    Confirmation.new(message: 'A message', outcome: Confirmation::NOT_ON_CONTACT_LIST)
-  end
-
-  let :rejection_prisoner_incorrect do
-    Confirmation.new(outcome: Confirmation::PRISONER_INCORRECT)
-  end
-
-  let :rejection_prisoner_not_present do
-    Confirmation.new(outcome: Confirmation::PRISONER_NOT_PRESENT)
-  end
-
-  let :rejection_prisoner_no_allowance do
-    Confirmation.new(outcome: Confirmation::NO_ALLOWANCE)
-  end
-
-  let :rejection_prisoner_no_allowance_vo_renew do
-    Confirmation.new(outcome: Confirmation::NO_ALLOWANCE, no_vo: true, renew_vo: '2014-11-29')
-  end
-
-  let :rejection_prisoner_no_allowance_pvo_renew do
-    Confirmation.new(outcome: Confirmation::NO_ALLOWANCE, no_vo: true, renew_vo: '2014-11-29', no_pvo: true, renew_pvo: '2014-11-17')
-  end
-
-  let :rejection_visitor_not_listed do
-    Confirmation.new(visitor_not_listed: true, unlisted_visitors: ['Joan;Harris'])
-  end
-
-  let :rejection_visitor_banned do
-    Confirmation.new(visitor_banned: true, banned_visitors: ['Joan;Harris'])
-  end
-
-  let :confirmation_no_vos_left do
-    Confirmation.new(message: 'A message', outcome: Confirmation::NO_VOS_LEFT)
-  end
-
-  let :noreply_address do
-    Mail::Field.new('from', "Prison Visits Booking <no-reply@example.com> (Unattended)")
-  end
-
-  let :visitor_address do
-    Mail::Field.new('to', "Mark Harris <visitor@example.com>")
-  end
-
-  let :prison_address do
-    Mail::Field.new('reply-to', "pvb.rochester@maildrop.dsd.io")
-  end
-
-  let :token do
-    MESSAGE_ENCRYPTOR.encrypt_and_sign(sample_visit)
-  end
-
   shared_examples 'an email without spam and bounce reset checks' do
     it 'makes no attempt at resets' do
       expect_any_instance_of(SpamAndBounceResets).to_not receive(:perform_resets)
@@ -365,6 +305,14 @@ RSpec.describe VisitorMailer do
     end
 
     context "booking receipt is sent" do
+      before do
+        # TODO: I dislike this as a solution, but seem unable to persist any changes to
+        # Prison#lead_days when it is being accessed via the Visit model (at the time of
+        # writing, Prison is a Virtus model.
+        allow_any_instance_of(PrisonSchedule).to receive(:days_lead_time).
+          and_return(double('days', zero?: true))
+      end
+
       it "attempts spam and bounce resets" do
         expect_any_instance_of(SpamAndBounceResets).to receive(:perform_resets)
         subject.booking_receipt_email(sample_visit, token).deliver_now
@@ -378,6 +326,9 @@ RSpec.describe VisitorMailer do
         expect(email[:to]).to eq(visitor_address)
         expect(email).not_to match_in_html("Jimmy Harris")
         expect(email).to match_in_html(visit_status_url(id: sample_visit.visit_id))
+        # On Rochester, using production data, this fails if lead_days is set to the default of 3.
+        # This is because it breaks over a weekend and the next working day that qualifies is the 9th.
+        # The issue is expalined here: https://www.pivotaltracker.com/story/show/105232814
         expect(email).to match_in_html("by Friday 5 July to")
         expect(email).to match_in_html(sample_visit.visit_id)
         expect(email).to match_in_text(sample_visit.visit_id)

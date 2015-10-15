@@ -25,32 +25,18 @@ RSpec.describe VisitHelper, type: :helper do
     end
 
     context 'slots' do
-      before do
-        rochester.slots =
-          {
-          mon: ['1400-1600'],
-          tue: ['1400-1600'],
-          wed: ['1400-1600'],
-          thu: ['1400-1600'],
-          sat:[
-            '0930-1130',
-            '1400-1600'
-          ],
-          sun: ['1400-1600']
-          }
-      end
-
       it "provides a hash of slots by day" do
         expect(helper.visiting_slots).to eq({
-          :mon => [["1400", "1600"]],
-          :tue => [["1400", "1600"]],
-          :wed => [["1400", "1600"]],
-          :thu => [["1400", "1600"]],
-          :sat => [
+          mon: [["1400", "1600"]],
+          tue: [["1400", "1600"]],
+          wed: [["1400", "1600"]],
+          thu: [["1400", "1600"]],
+          fri: [["1400", "1600"]],
+          sat: [
             ["0930", "1130"],
             ["1400", "1600"]
           ],
-          :sun => [["1400", "1600"]]
+          sun: [["1400", "1600"]]
         })
       end
     end
@@ -92,9 +78,7 @@ RSpec.describe VisitHelper, type: :helper do
     end
 
     it "joins address lines with br" do
-      allow(rochester).to receive('address') { ['hello', 'hey'] }
-
-      expect(helper.prison_address).to eq('hello<br>hey')
+      expect(helper.prison_address).to eq('1 Fort Road<br>Rochester<br>Kent<br>ME1 3QS')
     end
 
     it "provides the URL" do
@@ -113,13 +97,11 @@ RSpec.describe VisitHelper, type: :helper do
 
     context 'anomalies' do
       before do
-        rochester.slot_anomalies = {
-          Date.parse('2014-08-14') => ['0700-0900']
-        }
+        allow_any_instance_of(Prison).to receive(:slot_anomalies).
+          and_return({ Date.parse('2014-08-14') => ['0700-0900'] })
       end
 
       it "informs when slot anomalies exist" do
-        helper.has_anomalies?(Date.today).is_a? TrueClass
         expect(helper.has_anomalies?(Date.parse("2014-08-14"))).to eq(true)
       end
 
@@ -133,9 +115,8 @@ RSpec.describe VisitHelper, type: :helper do
     end
 
     it "provides a formatted date for when a response may be sent out" do
-      rochester.booking_window = 3
-      Timecop.travel(Date.parse("2014-10-03")) do
-        expect(helper.when_to_expect_reply).to eq("Monday 6 October")
+      Timecop.travel(Date.parse("2014-10-06")) do
+        expect(helper.when_to_expect_reply).to eq("Thursday 9 October")
       end
     end
   end

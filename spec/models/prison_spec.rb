@@ -19,11 +19,11 @@ RSpec.describe Prison, type: :model do
     describe '.find' do
       context 'by name' do
         context 'when a prison exists' do
-          subject { described_class.find('Basic Prison') }
+          subject { described_class.find('Cardiff') }
 
           it 'returns the correct prison' do
-            expect(subject.name).to eq('Basic Prison')
-            expect(subject.nomis_id).to eq('PPP')
+            expect(subject.name).to eq('Cardiff')
+            expect(subject.nomis_id).to eq('CFI')
           end
         end
 
@@ -35,11 +35,11 @@ RSpec.describe Prison, type: :model do
 
         context 'by nomis_is' do
           context 'when a prison exists' do
-            subject { described_class.find('PPP') }
+            subject { described_class.find_by_nomis_id('CFI') }
 
             it 'returns the correct prison' do
-              expect(subject.name).to eq('Basic Prison')
-              expect(subject.nomis_id).to eq('PPP')
+              expect(subject.name).to eq('Cardiff')
+              expect(subject.nomis_id).to eq('CFI')
             end
           end
 
@@ -73,7 +73,7 @@ RSpec.describe Prison, type: :model do
 
     describe '.names' do
       before do
-        allow(Rails.configuration).to receive(:prisons).
+        allow(described_class).to receive(:all).
           and_return([double('prison', name: 'Wormwood Scrubs')])
       end
       it 'returns all names' do
@@ -83,7 +83,7 @@ RSpec.describe Prison, type: :model do
 
     describe '.nomis_ids' do
       before do
-        allow(Rails.configuration).to receive(:prisons).
+        allow(described_class).to receive(:all).
           and_return([double('prison', nomis_id: 'WSI').as_null_object,
                       double('prison', nomis_id: nil).as_null_object])
       end
