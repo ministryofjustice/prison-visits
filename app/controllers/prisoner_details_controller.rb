@@ -30,16 +30,8 @@ class PrisonerDetailsController < ApplicationController
 
   def prisoner_params
     dob = [:'date_of_birth(3i)', :'date_of_birth(2i)', :'date_of_birth(1i)']
-    if params[:date_of_birth_native].present?
-      params[:prisoner][:date_of_birth] =
-        Date.parse(params[:date_of_birth_native])
-      dob.map{|d| params[:prisoner].delete(d)}
-    else
-      date_of_birth = dob.map do |key|
-        params[:prisoner].delete(key).to_i
-      end
-      params[:prisoner][:date_of_birth] = Date.new(*date_of_birth.reverse)
-    end
+    date_of_birth = dob.map { |key| params[:prisoner].delete(key).to_i }
+    params[:prisoner][:date_of_birth] = Date.new(*date_of_birth.reverse)
     trim_whitespace_from_params %i[
       first_name last_name date_of_birth number prison_name
     ]

@@ -51,15 +51,8 @@ module VisitorsManipulator
   def visitors_params
     dob = [:'date_of_birth(3i)', :'date_of_birth(2i)', :'date_of_birth(1i)']
     params[:visit][:visitor].each do |visitor|
-      if visitor[:date_of_birth_native].present?
-        date_of_birth = visitor[:date_of_birth_native]
-        dob.push(:date_of_birth_native).map{|d| visitor.delete(d)}
-      else
-        date_of_birth = dob.map do |key|
-          visitor.delete(key).to_i
-        end
-        visitor.delete(:date_of_birth_native)
-      end
+      date_of_birth = dob.map { |key| visitor.delete(key).to_i }
+      visitor.delete(:date_of_birth_native)
       begin
         visitor[:date_of_birth] = Date.new(*date_of_birth.reverse)
       rescue ArgumentError => e
