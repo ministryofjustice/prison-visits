@@ -14,11 +14,6 @@ RSpec.describe VisitorsDetailsController, type: :controller do
   it_behaves_like "a visitor data manipulator with valid data"
   it_behaves_like "a visitor data manipulator with invalid data"
 
-  it "sets up the flow" do
-    expect(controller.this_path).to eq(edit_visitors_details_path)
-    expect(controller.next_path).to eq(edit_slots_path)
-  end
-
   let :single_visitor_hash do
     [
       first_name: 'Sue',
