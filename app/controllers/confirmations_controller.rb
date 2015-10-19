@@ -67,8 +67,7 @@ class ConfirmationsController < ApplicationController
   end
 
   def booked_visit
-    @booked_visit ||=
-      legacy_data_fixes(encryptor.decrypt_and_verify(params[:state]))
+    @booked_visit ||= encryptor.decrypt_and_verify(params[:state])
   end
 
   private
@@ -86,25 +85,6 @@ class ConfirmationsController < ApplicationController
       :outcome, :message, :vo_number, :no_vo, :no_pvo, :renew_vo,
       :renew_pvo, :closed_visit, :visitor_not_listed, :visitor_banned,
       :canned_response, banned_visitors: [], unlisted_visitors: [])
-  end
-
-  LEGACY_PRISON_NAMES = {
-    'Hollesley Bay'                     => 'Hollesley Bay Open',
-    'Hatfield (moorland Open)'          => 'Hatfield Open',
-    'Highpoint'                         => 'Highpoint North',
-    'Albany'                            => 'Isle of Wight - Albany',
-    'Parkhurst'                         => 'Isle of Wight - Parkhurst',
-    'Liverpool (Open only)'             => 'Liverpool Social Visits',
-    'Hindley (Young Adult 18-21 only)'  => 'Hindley',
-    'Hindley (Young People 15-18 only)' => 'Hindley'
-  }
-
-  def legacy_data_fixes(visit)
-    if LEGACY_PRISON_NAMES.key?(visit.prison_name)
-      STATSD_CLIENT.increment('pvb.app.legacy_data_fixes')
-      visit.prison_name = LEGACY_PRISON_NAMES[visit.prison_name]
-    end
-    visit
   end
 
   def remove_unused_slots(visit, slot_index)

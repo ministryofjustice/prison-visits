@@ -51,23 +51,6 @@ RSpec.describe ConfirmationsController, type: :controller do
         expect(response).to render_template('confirmations/_already_booked')
       end
 
-      ['Hollesley Bay', 'Hatfield (moorland Open)', 'Highpoint', 'Albany', 'Parkhurst', 'Liverpool (Open only)'].each do |prison_name|
-        it "resurrects a visit with a old prison name (#{prison_name}) to avoid a runtime exception" do
-          visit.prison_name = prison_name
-          expect(controller).to receive(:logstasher_add_visit_id).with(visit.visit_id)
-          expect(mock_metrics_logger).to receive(:request_cancelled?).and_return(false)
-          expect(mock_metrics_logger).to receive(:record_link_click)
-          expect(mock_metrics_logger).to receive(:processed?) do |v|
-            expect(v).to be_same_visit(visit)
-            false
-          end
-          get :new, state: encrypted_visit
-          expect(response).to be_success
-          expect(response).to render_template('confirmations/new')
-          expect(controller.booked_visit.prison_name).not_to eq(prison_name)
-        end
-      end
-
       it "bails out if the state is not present" do
         get :new
         expect(response.status).to eq(400)
