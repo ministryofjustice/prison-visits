@@ -14,7 +14,7 @@ RSpec.feature "visitor enters visitor information" do
 
       expect(page).to have_css(".validation-error #first_name_0")
       expect(page).to have_css(".validation-error #last_name_0")
-      expect(page).to have_css(".validation-error #visitor_date_of_birth_3i_0")
+      expect(page).to have_css(".validation-error #visitor_date_of_birth_day_0")
       expect(page).to have_css(".validation-error #visit_visitor__email")
       expect(page).to have_css(".validation-error #visit_visitor__phone")
     end

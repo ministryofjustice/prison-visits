@@ -107,9 +107,11 @@ RSpec.shared_examples "a visitor data manipulator with invalid data" do
             [
               first_name: 'John',
               last_name: 'Denver',
-              :'date_of_birth(3i)' => '31',
-              :'date_of_birth(2i)' => '12',
-              :'date_of_birth(1i)' => '1943'
+              date_of_birth: {
+                day: '31',
+                month: '12',
+                year: '1943'
+              }
             ] * 3
           ].flatten
         },
@@ -131,9 +133,11 @@ RSpec.shared_examples "a visitor data manipulator with invalid data" do
           visitor: [
             first_name: 'Jack',
             last_name: 'Bauer',
-            :'date_of_birth(3i)' => date_of_birth.day,
-            :'date_of_birth(2i)' => date_of_birth.month,
-            :'date_of_birth(1i)' => date_of_birth.year,
+            date_of_birth: {
+              day: date_of_birth.day,
+              month: date_of_birth.month,
+              year: date_of_birth.year
+            },
             email: 'user@test.example.com',
             phone: '09998887777'
           ]
@@ -185,9 +189,11 @@ RSpec.shared_examples "a visitor data manipulator with invalid data" do
               {
                 first_name: 'Mark',
                 last_name: 'Bauer',
-                :'date_of_birth(3i)' => Time.zone.today.day,
-                :'date_of_birth(2i)' => Time.zone.today.month,
-                :'date_of_birth(1i)' => Time.zone.today.year - 10
+                date_of_birth: {
+                  day: Time.zone.today.day,
+                  month: Time.zone.today.month,
+                  year: Time.zone.today.year - 10
+                }
               }
             ] * 3
         end

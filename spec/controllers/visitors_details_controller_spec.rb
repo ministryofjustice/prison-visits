@@ -21,13 +21,15 @@ RSpec.describe VisitorsDetailsController, type: :controller do
 
   let :single_visitor_hash do
     [
-     first_name: 'Sue',
-     last_name: 'Demin',
-     :'date_of_birth(3i)' => '14',
-     :'date_of_birth(2i)' => '03',
-     :'date_of_birth(1i)' => '1986',
-     email: 'sue.denim@maildrop.dsd.io',
-     phone: '07783 123 456'
+      first_name: 'Sue',
+      last_name: 'Demin',
+      date_of_birth: {
+        day: '14',
+        month: '03',
+        year: '1986'
+      },
+      email: 'sue.denim@maildrop.dsd.io',
+      phone: '07783 123 456'
     ]
   end
 
@@ -38,9 +40,11 @@ RSpec.describe VisitorsDetailsController, type: :controller do
           visitor: [
             first_name: 'Sue',
             last_name: 'Demin',
-            :'date_of_birth(3i)' => '14',
-            :'date_of_birth(2i)' => '03',
-            :'date_of_birth(1i)' => '1986',
+            date_of_birth: {
+              day: '14',
+              month: '03',
+              year: '1986'
+            },
             email: 'sue.denim@maildrop.dsd.io',
             phone: '07783 123 456'
           ]
@@ -65,9 +69,11 @@ RSpec.describe VisitorsDetailsController, type: :controller do
           visitor: [
             first_name: 'James',
             last_name: 'Harris',
-            :'date_of_birth(3i)' => '5',
-            :'date_of_birth(2i)' => '3',
-            :'date_of_birth(1i)' => '12',
+            date_of_birth: {
+              day: '5',
+              month: '3',
+              year: '12'
+            },
             email: 'sue.denim@maildrop.dsd.io',
             phone: '07783 123 456'
           ]

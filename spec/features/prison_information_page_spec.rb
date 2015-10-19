@@ -14,7 +14,7 @@ RSpec.feature 'visitor entering prisoner information' do
     end
 
     context 'when prisoner related form fields are left blank' do
-      let(:prisoner_element_ids) { %w<first_name last_name date_of_birth_3i number> }
+      let(:prisoner_element_ids) { %w<first_name last_name date_of_birth_day number> }
 
       it 'displays error messages for each field' do
         set_prison_to 'Cardiff'

@@ -8,9 +8,11 @@ RSpec.describe PrisonerDetailsController, type: :controller do
       prisoner: {
         first_name: 'Jimmy',
         last_name: 'Harris',
-        :'date_of_birth(3i)' => '20',
-        :'date_of_birth(2i)' => '04',
-        :'date_of_birth(1i)' => '1986',
+        date_of_birth: {
+          day: '20',
+          month: '04',
+          year: '1986'
+        },
         number: 'g3133ff',
         prison_name: 'Rochester'
       }
@@ -83,15 +85,15 @@ RSpec.describe PrisonerDetailsController, type: :controller do
 
       it "updates prisoner details with bad date and redirects back" do
         bad_prisoner_hash = prisoner_hash.dup
-        bad_prisoner_hash[:prisoner].except!(:'date_of_birth(3i)', :'date_of_birth(2i)', :'date_of_birth(1i)')
+        bad_prisoner_hash[:prisoner].except!(:date_of_birth)
         post :update, bad_prisoner_hash
         expect(response).to redirect_to(edit_prisoner_details_path)
       end
 
       it "doesn't accept the year as having two digits" do
-        prisoner_hash[:prisoner][:'date_of_birth(3i)'] = '5'
-        prisoner_hash[:prisoner][:'date_of_birth(2i)'] = '2'
-        prisoner_hash[:prisoner][:'date_of_birth(1i)'] = '12'
+        prisoner_hash[:prisoner][:date_of_birth] = {
+          day: '5', month: '2', year: '12'
+        }
         post :update, prisoner_hash
         expect(response).to redirect_to(edit_prisoner_details_path)
       end

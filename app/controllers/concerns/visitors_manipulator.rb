@@ -49,17 +49,6 @@ module VisitorsManipulator
   end
 
   def visitors_params
-    dob = [:'date_of_birth(3i)', :'date_of_birth(2i)', :'date_of_birth(1i)']
-    params[:visit][:visitor].each do |visitor|
-      date_of_birth = dob.map { |key| visitor.delete(key).to_i }
-      visitor.delete(:date_of_birth_native)
-      begin
-        visitor[:date_of_birth] = Date.new(*date_of_birth.reverse)
-      rescue ArgumentError => e
-        logger.error "Visitor DOB issue (VisitorsManipulator): " \
-          "#{date_of_birth.inspect}\nexception: #{e}"
-      end
-    end
     trim_whitespace_from_values(
       params.require(:visit).require(:visitor)
     )

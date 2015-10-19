@@ -29,14 +29,12 @@ class PrisonerDetailsController < ApplicationController
   end
 
   def prisoner_params
-    dob = [:'date_of_birth(3i)', :'date_of_birth(2i)', :'date_of_birth(1i)']
-    date_of_birth = dob.map { |key| params[:prisoner].delete(key).to_i }
-    params[:prisoner][:date_of_birth] = Date.new(*date_of_birth.reverse)
-    trim_whitespace_from_params %i[
-      first_name last_name date_of_birth number prison_name
-    ]
-  rescue ArgumentError
-    trim_whitespace_from_params %i[first_name last_name number prison_name]
+    trim_whitespace_from_values(
+      params.require(:prisoner).permit(
+        :first_name, :last_name, :number, :prison_name,
+        date_of_birth: [:day, :month, :year]
+      )
+    )
   end
 
   def new_session
@@ -50,13 +48,5 @@ class PrisonerDetailsController < ApplicationController
 
   def service_domain
     SERVICE_DOMAIN
-  end
-
-  private
-
-  def trim_whitespace_from_params(whitelisted_params)
-    trim_whitespace_from_values(
-      params.require(:prisoner).permit(*whitelisted_params)
-    )
   end
 end
