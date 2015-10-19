@@ -1,12 +1,12 @@
 module NonPersistedModel
-
+  #
   # Note: this module is needed so that it can be included last and thus
   # override the definition of to_global_id supplied by
   # GlobalID::Identification.
   #
   module InstanceMethods
     def to_key
-      [self.object_id]
+      [object_id]
     end
 
     def persisted?

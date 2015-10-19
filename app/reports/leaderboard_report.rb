@@ -7,13 +7,13 @@ class LeaderboardReport
   end
 
   def this_period
-    this_fortnight = Date.today.cweek / 2
-    @this_period ||= query(Date.today.year, this_fortnight, @percentile)
+    this_fortnight = Time.zone.today.cweek / 2
+    @this_period ||= query(Time.zone.today.year, this_fortnight, @percentile)
   end
 
   def prev_period
-    prev_fortnight = Date.today.cweek / 2 - 1
-    @prev_period ||= query(Date.today.year, prev_fortnight, @percentile)
+    prev_fortnight = Time.zone.today.cweek / 2 - 1
+    @prev_period ||= query(Time.zone.today.year, prev_fortnight, @percentile)
   end
 
   def query(year, fortnight, percentile)

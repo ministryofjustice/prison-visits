@@ -6,7 +6,7 @@ class PrisonDay
     @prison = prison
   end
 
-  WEEKEND_DAYS = %w<sat sun>.freeze
+  WEEKEND_DAYS = %w[ sat sun ].freeze
 
   def staff_working_day?
     normal_working_day? && !holiday?

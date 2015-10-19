@@ -2,7 +2,7 @@ module SlotsManipulator
   extend ActiveSupport::Concern
 
   included do
-    before_filter :logstasher_add_visit_id_from_session
+    before_action :logstasher_add_visit_id_from_session
   end
 
   def update

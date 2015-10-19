@@ -1,9 +1,10 @@
 module VisitorsManipulator
   extend ActiveSupport::Concern
+  include TrimParams
 
   included do
-    before_filter :adjust_visitors_in_session, only: :edit
-    before_filter :logstasher_add_visit_id_from_session
+    before_action :adjust_visitors_in_session, only: :edit
+    before_action :logstasher_add_visit_id_from_session
   end
 
   def adjust_visitors_in_session
@@ -66,7 +67,7 @@ module VisitorsManipulator
           "#{date_of_birth.inspect}\nexception: #{e}"
       end
     end
-    ParamUtils.trim_whitespace_from_values(
+    trim_whitespace_from_values(
       params.require(:visit).require(:visitor)
     )
   end

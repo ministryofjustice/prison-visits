@@ -33,7 +33,6 @@ AND outcome = 'confirmed'
 GROUP BY nomis_id, EXTRACT(week FROM processed_at)
 ORDER BY nomis_id, weekno", @year])
     .inject(hash_with_default) do |h, row|
-
       weekno = row['weekno'].to_i
       nomis_id = row['nomis_id']
       count = row['count'].to_i

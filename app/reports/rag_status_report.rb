@@ -6,8 +6,8 @@ class RagStatusReport
   end
 
   def this_period
-    this_fortnight = Date.today.cweek / 2
-    @this_period ||= query(Date.today.year, this_fortnight, @percentile)
+    this_fortnight = Time.zone.today.cweek / 2
+    @this_period ||= query(Time.zone.today.year, this_fortnight, @percentile)
   end
 
   def query(year, fortnight, percentile)
@@ -35,18 +35,18 @@ class RagStatusReport
   def as_json(*)
     {
       item: [
-       {
-         value: this_period[:red],
-         text: "Over 4 days"
-       },
-       {
-         value: this_period[:amber],
-         text: "Between 3 and 4 days"
-       },
-       {
-         value: this_period[:green],
-         text: "Less than 3 days"
-       }
+        {
+          value: this_period[:red],
+          text: "Over 4 days"
+        },
+        {
+          value: this_period[:amber],
+          text: "Between 3 and 4 days"
+        },
+        {
+          value: this_period[:green],
+          text: "Less than 3 days"
+        }
       ]
     }
   end

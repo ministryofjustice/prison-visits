@@ -74,11 +74,11 @@ module VisitHelper
   end
 
   def weeks_start
-    Date.today.beginning_of_week
+    Time.zone.today.beginning_of_week
   end
 
   def weeks_end
-    (Date.today + Slot::BOOKABLE_DAYS.days).end_of_month.end_of_week
+    (Time.zone.today + Slot::BOOKABLE_DAYS.days).end_of_month.end_of_week
   end
 
   def weeks
@@ -86,7 +86,7 @@ module VisitHelper
   end
 
   def tag_with_today?(day)
-    day == Date.today
+    day == Time.zone.today
   end
 
   def tag_with_month?(day)

@@ -33,7 +33,7 @@ class MetricsController < ApplicationController
 
   def fortnightly
     @nomis_id = prison_param
-    @start_date, @end_date = Date.today - 18, Date.today - 4
+    @start_date, @end_date = Time.zone.today - 18, Time.zone.today - 4
     @dataset = DetailedWindowedMetrics.new(
       VisitMetricsEntry.deferred, @nomis_id, @start_date..@end_date)
     respond_to do |format|
@@ -77,7 +77,7 @@ class MetricsController < ApplicationController
   end
 
   def fortnightly_range
-    (Date.today - 18)..(Date.today - 4)
+    (Time.zone.today - 18)..(Time.zone.today - 4)
   end
 
   def prison_param

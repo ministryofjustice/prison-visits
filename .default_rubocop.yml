@@ -29,6 +29,9 @@ Style/ConstantName:
 Style/DotPosition:
   EnforcedStyle: trailing
 
+Style/EachWithObject:
+  Enabled: false
+
 # Percent-formatting and hash interpolation both have their place. Don't
 # enforce any particular one.
 Style/FormatString:

@@ -1,4 +1,4 @@
-class EmailValidator
+class EmailChecker
   BAD_DOMAINS = File.readlines("data/bad_domains.txt").map(&:chomp)
 
   extend Forwardable
@@ -19,7 +19,7 @@ class EmailValidator
   end
 
   def message
-    I18n.t(error, scope: 'email_validator.errors')
+    I18n.t(error, scope: 'email_checker.errors')
   end
 
   def valid?
@@ -51,7 +51,7 @@ class EmailValidator
     return :domain_dot if domain_dot_error?
     return :bad_domain if bad_domain?
     return :malformed unless well_formed_address?
-    return :no_mx_record unless has_mx_records?
+    return :no_mx_record unless mx_records?
     unless override_sendgrid?
       return :spam_reported if spam_reported?(parsed.address)
       return :bounced if bounced?(parsed.address)
@@ -86,7 +86,7 @@ class EmailValidator
       parsed.address == original_address && parsed.local != original_address
   end
 
-  def has_mx_records?
+  def mx_records?
     Resolv::DNS.new.getresource(domain, Resolv::DNS::Resource::IN::MX)
   rescue Resolv::ResolvError
     false

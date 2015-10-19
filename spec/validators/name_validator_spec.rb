@@ -3,7 +3,7 @@ require 'name_validator'
 
 RSpec.describe NameValidator do
   subject do
-    NameValidator.new(attributes: [:first_name])
+    described_class.new(attributes: [:first_name])
   end
 
   let! :model do

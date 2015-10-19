@@ -29,7 +29,7 @@ class CalculatedMetrics
     @overdue_visits = scope.group(:nomis_id).
       where(
         "processed_at IS NULL AND ? - requested_at > INTERVAL '? seconds'",
-        Time.now, @overdue_threshold).count
+        Time.zone.now, @overdue_threshold).count
     @confirmed_visits = scope.group(:nomis_id).where(outcome: 'confirmed').
       count
     @rejected_visits = scope.group(:nomis_id).where(outcome: 'rejected').count
@@ -59,6 +59,7 @@ class CalculatedMetrics
   end
 
   private
+
   def calculate_percentiles(column, percentile)
     # This is a truly horrible hack. It lets us get past AR built-in value
     # quoting, by pretending to be another object. It is needed so that we

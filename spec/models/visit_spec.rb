@@ -2,11 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Visit do
   let :adult_visitor do
-    Visitor.new(date_of_birth: (Date.today - 19.years))
+    Visitor.new(date_of_birth: (Time.zone.today - 19.years))
   end
 
   let :child_visitor do
-    Visitor.new(date_of_birth: (Date.today - 10.years))
+    Visitor.new(date_of_birth: (Time.zone.today - 10.years))
   end
 
   let :sample_visit do
