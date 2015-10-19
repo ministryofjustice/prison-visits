@@ -212,6 +212,123 @@ This app uses [RSpec](http://rspec.info/) for Rails tests.
 
     rake parallel:spec
 
+## Environment variables used by the application
+
+### Sending emails
+
+#### To prisons
+
+We use MessageLabs to send emails to prisons because they're on the Government Secure Intranet (GSI). On preprod, we use Sendgrid to send to maildrop so we can get access to them easily. You will need to configure them if you want to send email when submitting a booking request locally.
+
+Source: `app/mailers/prison_mailer.rb`
+
+- `GSI_SMTP_HOSTNAME`
+- `GSI_SMTP_PORT`
+- `GSI_SMTP_DOMAIN`
+
+#### To visitors
+
+These SMTP settings are used to send emails to visitors. Because these using SendGrid's SMTP server, they must be sent via SendGrid. You will need to configured them if you want to try and test email by submiting a booking request locally.
+
+Source: `config/environments/production.rb`
 
 
+- `SMTP_HOSTNAME`
+- `SMTP_PORT`
+- `SMTP_DOMAIN`
+- `SMTP_USERNAME`
+- `SMTP_PASSWORD`
 
+### Service URL
+
+This URL is used to configure the session store host and to generate links in emails. For development and test environment it is set to `localhost`.
+
+Source: `config/environments/production.rb` and `config/initializers/session_store.rb`
+
+- `SERVICE_URL`
+
+### Message Encryptor Secret Key
+
+The key is a base 64-encoded value and is used to encrypt serialised data that are transmitted in URLs in the emails that are sent to prison staff (to process requests) and visitors (to view or cancel requests).
+
+Source: `config/initializers/encryptor.rb`
+
+- `MESSAGE_ENCRYPTOR_SECRET_KEY`
+
+### Start Page
+
+On production, we set this to [https://www.gov.uk/prison-visits](https://www.gov.uk/prison-visits) because that's the official start page for the service, but you can configure a different one.
+
+Source: `config/routes.rb`
+
+- `GOVUK_START_PAGE`
+
+### Google Analytics ID.
+
+Source: `config/application.rb`
+
+- `GA_TRACKING_ID`
+
+### Prison Estate IP
+
+This is a comma-separated list of IP addresses. Users on these addresses can access metrics, the prison booking admin pages, and the prison staff info pages without needing to log in.
+
+Source: `config/application.rb`
+
+- `PRISON_ESTATE_IPS`
+
+### Zendesk
+
+These username and token need to be configured if you want to use feedback.
+
+Source: `config/initializers/zendesk.rb`
+
+- `ZENDESK_USERNAME`
+- `ZENDESK_TOKEN`
+
+### Session Secret Key
+
+This is used to cryptographically sign sessions both by Rails and by the Sidekiq queue maintenance interface.
+
+Source: `config/secrets.yml`
+
+- `SESSION_SECRET_KEY`
+
+### Kibana
+
+#### Trusted Users Access Key
+
+It's the key you pass in the URL when requesting the metrics page to send application metrics to Elastic Search for use in Kibana.
+
+Source: `config/application.rb`
+
+- `TRUSTED_USERS_ACCESS_KEY`
+
+#### Elastic Search Url
+
+This is used to send application metrics to Kibana via Elasticsearch. It is optional.
+
+Source: `config/initializers/metrics_logger.rb`
+
+- `ELASTICSEARCH_URL`
+
+#### Stastsd
+
+These are used to send application statistics to Kibana via statsd. They are optional.
+
+Source: `config/initializers/statsd_client.rb`
+
+- `STATSD_HOST`
+- `STATSD_PORT`
+
+### Smoke test configuration
+
+Only the first two (local part and domain) are needed in order to
+run the application; to run the smoke tests you'll also need the email password and host.
+
+Source: `config/environments/development.rb` and `config/environments`.
+
+- `SMOKE_TEST_EMAIL_LOCAL_PART`
+- `SMOKE_TEST_EMAIL_DOMAIN`
+- `SMOKE_TEST_EMAIL_PASSWORD`
+- `SMOKE_TEST_EMAIL_HOST`
