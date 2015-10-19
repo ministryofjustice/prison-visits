@@ -1,6 +1,5 @@
 module VisitorsManipulator
   extend ActiveSupport::Concern
-  include TrimParams
 
   included do
     before_action :adjust_visitors_in_session, only: :edit
@@ -49,8 +48,6 @@ module VisitorsManipulator
   end
 
   def visitors_params
-    trim_whitespace_from_values(
-      params.require(:visit).require(:visitor)
-    )
+    params.require(:visit).require(:visitor)
   end
 end

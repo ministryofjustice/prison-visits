@@ -2,6 +2,8 @@ class VisitorsDetailsController < ApplicationController
   include CookieGuard
   include SessionGuard::OnEditAndUpdate
   include VisitorsManipulator
+  include TrimParams
+
   before_action :ensure_visit_integrity, only: [:edit, :update]
 
   def edit

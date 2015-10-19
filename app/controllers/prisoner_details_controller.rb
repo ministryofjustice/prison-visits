@@ -2,6 +2,7 @@ class PrisonerDetailsController < ApplicationController
   include CookieGuard
   include SessionGuard::OnUpdate
   include TrimParams
+
   before_action :logstasher_add_visit_id_from_session, only: :update
 
   def edit
@@ -29,11 +30,9 @@ class PrisonerDetailsController < ApplicationController
   end
 
   def prisoner_params
-    trim_whitespace_from_values(
-      params.require(:prisoner).permit(
-        :first_name, :last_name, :number, :prison_name,
-        date_of_birth: [:day, :month, :year]
-      )
+    params.require(:prisoner).permit(
+      :first_name, :last_name, :number, :prison_name,
+      date_of_birth: [:day, :month, :year]
     )
   end
 
