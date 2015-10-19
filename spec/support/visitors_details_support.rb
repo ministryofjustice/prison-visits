@@ -16,15 +16,6 @@ RSpec.shared_examples "a visitor data manipulator with valid data" do
     let :remove_visitor_hash do
       {
         visit: {
-          visitor: [{}, {}]
-        },
-        next: 'remove-1'
-      }
-    end
-
-    let :remove_visitor_hash2 do
-      {
-        visit: {
           visitor: [{_destroy: 1}, {}]
         },
         next: ''

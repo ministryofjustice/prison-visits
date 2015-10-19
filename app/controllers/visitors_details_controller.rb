@@ -12,14 +12,6 @@ class VisitorsDetailsController < ApplicationController
   end
 
   def update
-    m = params[:next].match(/remove-(\d)/)
-    if m
-      index = m[1].to_i
-      visit.visitors.delete_at(index)
-      redirect_to edit_visitors_details_path
-      return
-    end
-
     visit.visitors = build_visitors
 
     go_forward = visit.visitors.all?(&:valid?) && visit.valid?(:visitors_set)
