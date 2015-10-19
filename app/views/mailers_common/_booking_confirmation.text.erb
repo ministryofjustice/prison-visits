@@ -1,6 +1,6 @@
 Dear <%= @visit.visitors.first.first_name %>,
 
-Your visit to <%= @visit.prisoner.prison_name %> from <%= display_time_slot(@slot.times) %> on <%= format_date(@slot.date) %> is now successfully confirmed.
+Your visit to <%= @visit.prison_name %> from <%= display_time_slot(@slot.times) %> on <%= format_date(@slot.date) %> is now successfully confirmed.
 
 <% case @confirmation.slot %>
 <% when 1 %>
@@ -91,7 +91,7 @@ You will be searched before entering the prison visiting room. Prison staff may 
 What not to bring
 -----------------
 
-Please do not bring anything restricted or illegal to the prison. For more information about what you are allowed to bring, please see the <%= @visit.prisoner.prison_name %> page: <%= prison_url(@visit) %>
+Please do not bring anything restricted or illegal to the prison. For more information about what you are allowed to bring, please see the <%= @visit.prison_name %> page: <%= prison_url(@visit) %>
 
 Your data
 ---------

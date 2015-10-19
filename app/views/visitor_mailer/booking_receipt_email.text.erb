@@ -15,7 +15,7 @@ To stop visit confirmation emails going to your spam or junk folder please add n
 
 Visit request details
 
-You have requested a visit to <%= @visit.prisoner.prison_name %> for <%= @visit.visitors.size %> <%= @visit.visitors.size > 1 ? 'people' : 'person' %>:
+You have requested a visit to <%= @visit.prison_name %> for <%= @visit.visitors.size %> <%= @visit.visitors.size > 1 ? 'people' : 'person' %>:
 
 <% @visit.slots.each_with_index do |slot, index| %>
 <% if slot.date.present? %>

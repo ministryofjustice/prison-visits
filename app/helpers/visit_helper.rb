@@ -1,6 +1,6 @@
 module VisitHelper
   def visiting_slots
-    prison_data['slots'].inject({}) do |hash, (day, slots)|
+    prison.slots.inject({}) do |hash, (day, slots)|
       hash.merge({
         day.to_sym => slots.map { |s| s.split('-') }
       })
@@ -8,57 +8,36 @@ module VisitHelper
   end
 
   def current_slots
-    visit.slots.map { |slot| slot.date + '-' + slot.times }
-  end
-
-  def prison_name
-    visit.prisoner.prison_name
+    visit.slots.map { |s| s.date + '-' + s.times }
   end
 
   def prison_names
-    Rails.configuration.prison_data.keys.sort
+    Prison.names
   end
 
-  def prison_data(source=visit)
-    Rails.configuration.prison_data.fetch(source.prisoner.prison_name.to_s)
-  end
-
-  def prison_phone
-    prison_data['phone']
-  end
-
-  def prison_email
-    prison_data['email']
-  end
+  delegate :adult_age, :phone, :postcode, :email, :slot_anomalies,
+    to: :prison, prefix: :prison
+  delegate :prison_name, :prison, to: :visit
 
   def prison_email_link
-    mail_to prison_data['email']
-  end
-
-  def prison_postcode
-    prison_data['address'][-1]
-  end
-
-  def prison_slot_anomalies
-    prison_data['slot_anomalies']
+    mail_to prison.email
   end
 
   def prison_address(glue='<br>'.html_safe)
-    safe_join(prison_data['address'], glue)
-  end
-
-  def adult_age
-    prison_data['adult_age'] || 18
+    safe_join(prison.address, glue)
   end
 
   def prison_url(visit)
-    data = prison_data(visit)
-    slug = data.fetch('finder_slug') { visit.prisoner.prison_name.parameterize }
-    ['http://www.justice.gov.uk/contacts/prison-finder', slug].join('/')
+    [
+      PRISON_FINDER_ENDPOINT,
+      visit.prison_name.parameterize
+    ].join('/')
   end
 
   def prison_link(source=visit, link_text=nil)
-    link_text ||= "#{source.prisoner.prison_name.capitalize} prison"
+    unless link_text
+      link_text = "#{source.prison_name.capitalize} prison"
+    end
     link_to link_text, prison_url(visit), :rel => 'external'
   end
 
@@ -81,17 +60,14 @@ module VisitHelper
   end
 
   def when_to_expect_reply
-    prison = Prison.find(visit.prisoner.prison_name)
     schedule = PrisonSchedule.new(prison)
     format_day(schedule.confirmation_email_date)
   end
 
-  def prison_specific_id_requirements(prison_name)
-    nomis_id =
-      Rails.configuration.prison_data.fetch(prison_name).fetch(:nomis_id)
+  def prison_specific_id_requirements(prison)
     template_path = Rails.root.join('app', 'views', 'content')
     candidates = [
-      "_id_#{nomis_id}.md",
+      "_id_#{prison.nomis_id}.md",
       '_standard_id_requirements.md'
     ].map { |filename| template_path.join(filename) }
     File.read(candidates.find { |path| File.exist?(path) })

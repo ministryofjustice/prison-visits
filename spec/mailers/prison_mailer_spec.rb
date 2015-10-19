@@ -111,8 +111,8 @@ RSpec.describe PrisonMailer do
 
     it "sends an e-mail to rochester functional mailbox" do
       sample_visit.tap do |visit|
-        visit.prisoner.prison_name = 'Rochester'
-        expect(subject.booking_request_email(visit, "token").to).to eq(['pvb.rochester@maildrop.dsd.io'])
+        visit.prison_name = 'Rochester'
+        expect(subject.booking_request_email(visit, "token").to).to eq(['socialvisits.rochester@hmps.gsi.gov.uk'])
       end
     end
 

@@ -1,4 +1,4 @@
-## Visiting <%= visit.prisoner.prison_name %> prison
+## Visiting <%= visit.prison_name %> prison
 
 * [If you don't get an email to confirm your visit](#info-check-spam)
 * [ID you need for each visit](#info-id-requirements)

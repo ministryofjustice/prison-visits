@@ -6,8 +6,8 @@ class StaticController < ApplicationController
       format.csv do
         csv_string = CSV.generate do |csv|
           csv << ['name', 'email']
-          Rails.configuration.prison_data.each_pair do |prison_name, data|
-            csv << [prison_name, data[:email]] if data[:enabled]
+          Prison.enabled.each do |prison|
+            csv << [prison.name, prison.email]
           end
         end
 

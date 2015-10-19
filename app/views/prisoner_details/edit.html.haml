@@ -65,7 +65,7 @@
             =field_error(f, :prison_name)
           - if f.object.errors.include?(:prison_name_reason)
             %p
-              - case prison_data['reason']
+              - case prison.try(:reason)
                 - when 'it_issues'
                   HMP #{prison_name} is unable to process online visit requests right now. You can #{prison_link visit, 'contact the prison'} directly to book a visit instead.
                 - when 'coming_soon'

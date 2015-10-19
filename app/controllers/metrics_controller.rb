@@ -2,7 +2,7 @@ class MetricsController < ApplicationController
   permit_only_trusted_users
 
   def index
-    @nomis_ids = Rails.configuration.nomis_ids
+    @nomis_ids = Prison.nomis_ids
     if params[:range] == 'all'
       @dataset = CalculatedMetrics.new(VisitMetricsEntry.deferred, 3.days)
     else
@@ -66,7 +66,7 @@ class MetricsController < ApplicationController
       @start_of_year,
       ApplicationHelper.instance_method(:prison_name_for_id)).
     refresh
-    @nomis_ids = Rails.configuration.nomis_ids
+    @nomis_ids = Prison.nomis_ids
 
     respond_to do |format|
       format.html
@@ -81,8 +81,7 @@ class MetricsController < ApplicationController
   end
 
   def prison_param
-    prison = params[:prison]
-    prison && Rails.configuration.nomis_ids.include?(prison)
+    (prison = params[:prison]) && Prison.nomis_ids.include?(prison) && prison
   end
 
   def year_param

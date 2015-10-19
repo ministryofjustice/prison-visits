@@ -7,6 +7,9 @@ RSpec.describe VisitHelper, type: :helper do
   end
 
   context "for the current prison" do
+    let :rochester do
+      Prison.find 'Rochester'
+    end
 
     let :slot do
       Slot.new(date: (Date.parse("2014-05-12")).to_s, times: "1045-1345", index: 1)
@@ -21,30 +24,21 @@ RSpec.describe VisitHelper, type: :helper do
       allow(helper).to receive(:visit).and_return(visit)
     end
 
-    it "provides a hash of slots by day" do
-      allow(Rails.configuration.prison_data['Rochester']).
-        to receive(:[]).with('slots') { {
-            mon: ['1400-1600'],
-            tue: ['1400-1600'],
-            wed: ['1400-1600'],
-            thu: ['1400-1600'],
-            sat:[
-              '0930-1130',
-              '1400-1600'
-            ],
-            sun: ['1400-1600']
-        } }
-      expect(helper.visiting_slots).to eq({
-          :mon => [["1400", "1600"]],
-          :tue => [["1400", "1600"]],
-          :wed => [["1400", "1600"]],
-          :thu => [["1400", "1600"]],
-          :sat => [
+    context 'slots' do
+      it "provides a hash of slots by day" do
+        expect(helper.visiting_slots).to eq({
+          mon: [["1400", "1600"]],
+          tue: [["1400", "1600"]],
+          wed: [["1400", "1600"]],
+          thu: [["1400", "1600"]],
+          fri: [["1400", "1600"]],
+          sat: [
             ["0930", "1130"],
             ["1400", "1600"]
           ],
-          :sun => [["1400", "1600"]]
+          sun: [["1400", "1600"]]
         })
+      end
     end
 
     it "provides current slots" do
@@ -60,11 +54,13 @@ RSpec.describe VisitHelper, type: :helper do
     end
 
     it "provides the email address" do
-      expect(helper.prison_email).to eq("pvb.rochester@maildrop.dsd.io")
+      expect(helper.prison_email).to eq('socialvisits.rochester@hmps.gsi.gov.uk')
     end
 
     it "provides the email address" do
-      expect(helper.prison_email_link).to eq('<a href="mailto:pvb.rochester@maildrop.dsd.io">pvb.rochester@maildrop.dsd.io</a>')
+      expect(helper.prison_email_link).to eq(
+        '<a href="mailto:socialvisits.rochester@hmps.gsi.gov.uk">socialvisits.rochester@hmps.gsi.gov.uk</a>'
+      )
     end
 
     it "provides the postcode" do
@@ -76,17 +72,13 @@ RSpec.describe VisitHelper, type: :helper do
     end
 
     it "escapes html in the address" do
-      allow(Rails.configuration.prison_data['Rochester']).
-        to receive(:[]).with('address') { ['Danger<script>ous']}
+      allow(rochester).to receive(:address) { ['Danger<script>ous']}
 
       expect(helper.prison_address).not_to match(/<script/)
     end
 
     it "joins address lines with br" do
-      allow(Rails.configuration.prison_data['Rochester']).
-        to receive(:[]).with('address') { ['hello', 'hey'] }
-
-      expect(helper.prison_address).to eq('hello<br>hey')
+      expect(helper.prison_address).to eq('1 Fort Road<br>Rochester<br>Kent<br>ME1 3QS')
     end
 
     it "provides the URL" do
@@ -99,26 +91,32 @@ RSpec.describe VisitHelper, type: :helper do
       expect(link).to match(%r{href="http://www\.justice\.gov\.uk/contacts/prison-finder/rochester"})
     end
 
-    it "provides the slot anomalies" do
-      expect(helper.prison_slot_anomalies).to eq({ Date.parse("2014-08-14") => ["0700-0900"] })
-    end
-
-    it "informs when slot anomalies exist" do
-      helper.has_anomalies?(Date.today).is_a? TrueClass
-      expect(helper.has_anomalies?(Date.parse("2014-08-14"))).to eq(true)
-    end
-
-    it "informs when slot anomalies exist for a particular day" do
+    it "provides all the slots for a particular day" do
       expect(helper.slots_for_day(Date.parse("2014-08-13"))).to eq([["1400", "1600"]])
     end
 
-    it "provides all the slots for a particular day" do
-      expect(helper.anomalies_for_day(Date.parse("2014-08-14"))).to eq([["0700", "0900"]])
+    context 'anomalies' do
+      before do
+        allow_any_instance_of(Prison).to receive(:slot_anomalies).
+          and_return({ Date.parse('2014-08-14') => ['0700-0900'] })
+      end
+
+      it "informs when slot anomalies exist" do
+        expect(helper.has_anomalies?(Date.parse("2014-08-14"))).to eq(true)
+      end
+
+      it "provides the slot anomalies" do
+        expect(helper.prison_slot_anomalies).to eq({ Date.parse("2014-08-14") => ["0700-0900"] })
+      end
+
+      it "informs when slot anomalies exist for a particular day" do
+        expect(helper.anomalies_for_day(Date.parse("2014-08-14"))).to eq([["0700", "0900"]])
+      end
     end
 
     it "provides a formatted date for when a response may be sent out" do
-      Timecop.travel(Date.parse("2014-10-03")) do
-        expect(helper.when_to_expect_reply).to eq("Monday 6 October")
+      Timecop.travel(Date.parse("2014-10-06")) do
+        expect(helper.when_to_expect_reply).to eq("Thursday 9 October")
       end
     end
   end
@@ -129,13 +127,16 @@ RSpec.describe VisitHelper, type: :helper do
   end
 
   describe 'prison_specific_id_requirements' do
+    let(:wymott) { Prison.find('Wymott') }
+    let(:rochester) { Prison.find('Rochester') }
+
     it 'should render custom id content for prisons that have it' do
-      requirements = helper.prison_specific_id_requirements('Wymott')
+      requirements = helper.prison_specific_id_requirements(wymott)
       expect(requirements).to match(/tenancy agreement/)
     end
 
     it 'should render standard id content for prisons that do not have custom content' do
-      requirements = helper.prison_specific_id_requirements('Rochester')
+      requirements = helper.prison_specific_id_requirements(rochester)
       expect(requirements).not_to match(/tenancy agreement/)
       expect(requirements).to match(/driving licence/)
     end

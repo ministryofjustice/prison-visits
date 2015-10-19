@@ -14,8 +14,6 @@ The request is sent via secure email to prison staff who manually process the re
 
 Prison details are store in a single Yaml file which can be edited directly on this website by anyone with access to this repository. [Yaml files](http://en.wikipedia.org/wiki/YAML) use a two-space indentation syntax, so be careful.
 
-**Note** the [staging data](config/prison_data_staging.yml) must contain all the same slots, anomalies and non-bookable dates as [production](config/prison_data_production.yml) in order for it to behave the same for testing.
-
 ### Prison visibility
 
 All known prisons should exist in the data files. If a prison is not in scope of the service, it should be disabled and can be given a specific reason.
@@ -23,11 +21,17 @@ All known prisons should exist in the data files. If a prison is not in scope of
 To enable visit requests to a prison, set `enabled` to `true`.
 
 ```yaml
-Rochester:
-  enabled: true # this prison accepts visit requests
 
-Stafford:
+- nomis_id: RCI
+  enabled: true
+  name: Rochester
+  ...
+
+- nomis_id: SFI
   enabled: false # this prison does not accept online visit request through this service
+  name: Stafford
+  ...
+
 ```
 
 When a disabled prison is chosen on the prisoner details page, the user is shown this message:
@@ -144,11 +148,9 @@ adult_age: 15 # allow only 3 visitors over the age of 15
 
 Follow these steps if you need to rename a prison.
 
-1. Rename the prison name `key` in the Yaml file ([see above](#prison-visibility)).
+1. Rename the prison name in the Yaml file ([see above](#prison-visibility)).
 
 2. Register the old name in the [`legacy_data_fixes` method](https://github.com/ministryofjustice/prison-visits/blob/master/app/controllers/deferred/confirmations_controller.rb#L67), using the old name as the key, and the new name as the value.
-
-3. Write a migration to rename old records ([see this example](https://github.com/ministryofjustice/prison-visits/commit/46a713811ae1875f12e9b85dab397eef2088afa8)).
 
 ### Combining prisons
 

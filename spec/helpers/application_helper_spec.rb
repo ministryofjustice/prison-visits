@@ -1,6 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe ApplicationHelper do
+  describe '#prison_name_for_id' do
+    it 'returns a prison name for a nomis id' do
+      expect(helper.prison_name_for_id('RCI')).to eq('Rochester')
+    end
+
+    it 'returns nil for a bad nomis id' do
+      expect(helper.prison_name_for_id('Bad Id')).to be_nil
+    end
+  end
+
   it "formats a date from a string" do
     expect(helper.format_date('2014-07-24')).to eq("24 July 2014")
   end

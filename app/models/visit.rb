@@ -18,20 +18,19 @@ class Visit
   }
   validate :validate_amount_of_adults, on: :visitors_set
 
-  delegate :prison_name, :prison_name=, to: :prisoner, allow_nil: true
+  delegate :prison, :prison_name, :prison_name=,
+    to: :prisoner, allow_nil: true
+  delegate :prison_email, :prison_canned_responses, :prison_nomis_id,
+    to: :prisoner
+  delegate :adult_age, to: :prison
 
   def validate_amount_of_adults
-    if visitors.none? { |v| v.age && v.age >= 18 }
+    if visitors.none? { |v| adult?(v) }
       errors.add :visitors, :at_least_one_adult
     end
-    if visitors.count { |v| v.age && v.age >= adult_age } > 3
+    if visitors.count { |v| adult?(v) } > 3
       errors.add :visitors, :max_3_adults, adult_age: adult_age
     end
-  end
-
-  def adult_age
-    AgeValidator.new(Rails.configuration.prison_data[prisoner.prison_name]).
-      adult_age
   end
 
   def adult?(visitor)

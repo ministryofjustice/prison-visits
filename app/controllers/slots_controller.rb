@@ -6,7 +6,7 @@ class SlotsController < ApplicationController
 
   def edit
     @slots = visit.slots.empty? ? [Slot.new, Slot.new, Slot.new] : visit.slots
-    @schedule = PrisonSchedule.new(Prison.find(visit.prisoner.prison_name))
+    @schedule = PrisonSchedule.new(visit.prison)
   end
 
   def max_slots

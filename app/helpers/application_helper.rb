@@ -56,12 +56,8 @@ module ApplicationHelper
   end
 
   def prison_name_for_id(nomis_id)
-    @nomis_id_to_prison ||= Hash[
-      Rails.configuration.prison_data.
-        select { |_, data| data['enabled'] }.
-        map { |name, data| [data['nomis_id'], name] }
-    ]
-    @nomis_id_to_prison[nomis_id]
+    prison = Prison.find_by_nomis_id(nomis_id)
+    return prison.name if prison && prison.enabled?
   end
 
   def markdown(source)

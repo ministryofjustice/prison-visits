@@ -19,4 +19,5 @@ PrisonVisits2::Application.configure do
 
   config.smoke_test_email_local_part = 'user'
   config.smoke_test_email_domain = 'example.com'
+  config.action_view.raise_on_missing_translations = true
 end

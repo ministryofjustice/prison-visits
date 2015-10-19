@@ -13,6 +13,19 @@ RSpec.describe Visit do
     Visit.new(visit_id: SecureRandom.hex, prisoner: Prisoner.new(prison_name: 'Rochester'))
   end
 
+  describe 'delegation' do
+    it 'exposes the prison via the prisoner' do
+      expect(sample_visit.prison.to_json).to eq(Prison.find('Rochester').to_json)
+    end
+
+    it 'exposes some prison attributes via the prisoner' do
+      expect(sample_visit.prison_name).to eq('Rochester')
+      expect(sample_visit.prison_nomis_id).to eq('RCI')
+      expect(sample_visit.prison_canned_responses).to be_truthy
+      expect(sample_visit.prison_email).to eq('socialvisits.rochester@hmps.gsi.gov.uk')
+    end
+  end
+
   it "restricts the number of visitors" do
     sample_visit.visitors = []
     expect(sample_visit.valid?(:visitors_set)).to be_falsey
@@ -52,20 +65,32 @@ RSpec.describe Visit do
     expect(sample_visit.valid?(:visitors_set)).to be_falsey
   end
 
-  context "given a prison which treats a child as an adult for seating purposes" do
-    it "requires at least one real adult" do
-      sample_visit.prisoner.prison_name = 'Deerbolt'
+  context "a prison which treats a child as an adult for seating purposes" do
+    before do
+      sample_visit.prison_name = 'Deerbolt'
       sample_visit.visitors = []
+    end
 
-      [double(age: 19),
-       double(age: 10),
-       double(age: 10),
-       double(age: 9)].each do |visitor|
-        sample_visit.visitors << visitor
-        expect(sample_visit.valid?(:visitors_set)).to be_truthy
-      end
+    let(:group_with_adult) do
+      [double(age: 19), double(age: 10),
+       double(age: 10), double(age: 9)
+      ].each { |v| sample_visit.visitors << v }
+    end
 
-      sample_visit.visitors << double(age: 10)
+    let(:group_of_children) do
+      [double(age: 9), double(age: 10),
+       double(age: 10), double(age: 9)
+      ].each { |v| sample_visit.visitors << v }
+    end
+
+    it "requires at least one real adult" do
+      group_with_adult
+      expect(sample_visit.valid?(:visitors_set)).to be_truthy
+    end
+
+    it "fails if there is not at least one adult" do
+      group_of_children
+      sample_visit.valid?
       expect(sample_visit.valid?(:visitors_set)).to be_falsey
     end
   end

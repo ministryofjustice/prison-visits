@@ -22,7 +22,7 @@ class GoogleAnalyticsAdapter
   private
 
   def prison_name
-    @visit.prisoner.prison_name
+    @visit.prison_name
   end
 
   def number_of_slots

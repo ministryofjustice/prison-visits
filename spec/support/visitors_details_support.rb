@@ -1,7 +1,7 @@
 RSpec.shared_examples "a visitor data manipulator with valid data" do
   context "given prisoner data in the session" do
     before :each do
-      controller.visit.prisoner.prison_name = 'Cardiff'
+      controller.visit.prison_name = 'Cardiff'
     end
 
     let :add_visitor_hash do
@@ -170,7 +170,7 @@ RSpec.shared_examples "a visitor data manipulator with invalid data" do
       end
 
       before :each do
-        controller.visit.prisoner.prison_name = 'Deerbolt'
+        controller.visit.prison_name = 'Deerbolt'
       end
 
       it "allows the visitor to proceed" do
@@ -190,11 +190,6 @@ RSpec.shared_examples "a visitor data manipulator with invalid data" do
                 :'date_of_birth(1i)' => Date.today.year - 10
               }
             ] * 3
-        end
-
-        it "rejects the booking request" do
-          post :update, visitor_hash
-          expect(response).to redirect_to(controller.this_path)
         end
       end
     end

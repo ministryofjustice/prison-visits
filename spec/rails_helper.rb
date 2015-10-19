@@ -9,6 +9,8 @@ ActiveRecord::Migration.maintain_test_schema!
 
 Dir[File.expand_path("../support/**/*.rb", __FILE__)].each { |f| require f }
 
+DEFAULT_PRISON_NAMES = Prison.names
+
 RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
@@ -50,6 +52,10 @@ RSpec.configure do |config|
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with :truncation
+  end
+
+  config.after(:each) do
+    Prison.all.reject!{ |p| !DEFAULT_PRISON_NAMES.include?(p.name) }
   end
 
   config.around(:each) do |example|

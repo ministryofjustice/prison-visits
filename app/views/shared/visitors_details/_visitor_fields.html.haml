@@ -1,9 +1,9 @@
 
 .visitor.cf.AgeLabel{ :id => "visitor-#{index}",
   :class => ('additional-visitor' unless index == 0),
-  :data => { :'threshold' => adult_age,
-    :'label-over' => "Over #{adult_age}",
-    :'label-under' => "Under #{adult_age}" } }
+  :data => { :'threshold' => prison_adult_age,
+    :'label-over' => "Over #{prison_adult_age}",
+    :'label-under' => "Under #{prison_adult_age}" } }
 
   - unless index == 0
     %h2

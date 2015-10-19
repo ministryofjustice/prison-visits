@@ -2,7 +2,7 @@ module Addresses
   include ActiveSupport::Concern
 
   def prison_mailbox_email
-    Rails.configuration.prison_data[@visit.prisoner.prison_name]['email']
+    @visit.prison_email
   end
 
   def first_visitor_email
