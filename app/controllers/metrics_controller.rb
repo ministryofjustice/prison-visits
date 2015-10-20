@@ -1,8 +1,8 @@
 class MetricsController < ApplicationController
   permit_only_trusted_users
+  before_action :nomis_ids, only: [:index, :weekly]
 
   def index
-    @nomis_ids = Prison.nomis_ids
     if params[:range] == 'all'
       @dataset = CalculatedMetrics.new(VisitMetricsEntry.deferred, 3.days)
     else
@@ -66,7 +66,6 @@ class MetricsController < ApplicationController
       @start_of_year,
       ApplicationHelper.instance_method(:prison_estate_name_for_id)).
     refresh
-    @nomis_ids = Prison.nomis_ids
 
     respond_to do |format|
       format.html
@@ -74,6 +73,10 @@ class MetricsController < ApplicationController
         render text: @dataset.csv
       end
     end
+  end
+
+  def nomis_ids
+    @nomis_ids = Prison.enabled_nomis_ids
   end
 
   def fortnightly_range

@@ -61,6 +61,10 @@ class Prison
     all.map(&:nomis_id).compact.sort
   end
 
+  def self.enabled_nomis_ids
+    enabled.map(&:nomis_id).compact.sort
+  end
+
   def anomalous_dates
     (slot_anomalies || {}).keys.to_set
   end
