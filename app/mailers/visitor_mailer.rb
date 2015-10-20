@@ -4,8 +4,10 @@ class VisitorMailer < ActionMailer::Base
   include Autoresponder
   include Addresses
   include EnsureQuotedPrintable
-  include ApplicationHelper
+  include DateHelper
 
+  add_template_helper(DateHelper)
+  # needs to be removed after refactoring time
   add_template_helper(ApplicationHelper)
   add_template_helper(VisitHelper)
 

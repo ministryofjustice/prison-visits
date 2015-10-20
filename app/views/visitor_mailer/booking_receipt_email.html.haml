@@ -29,7 +29,7 @@
         First choice:
       - else
         Alternative #{index}:
-      %strong #{Date.parse(slot.date).strftime("%A %e %B")}, #{display_time_slot(slot.times)}
+      %strong #{format_date_of_visit(slot.date)}, #{display_time_slot(slot.times)}
 
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
   Prisoner:
