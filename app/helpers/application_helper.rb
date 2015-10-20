@@ -1,17 +1,18 @@
 module ApplicationHelper
+  def date_from_string_or_date(obj)
+    obj.class == String ? Date.parse(obj) : obj
+  end
+
   def format_date(date)
-    date = Date.parse(date) if date.class == String
-    date.strftime("%e %B %Y").strip
+    date_from_string_or_date(date).strftime("%e %B %Y").strip
   end
 
   def format_date_nomis(date)
-    date = Date.parse(date) if date.class == String
-    date.strftime("%d/%m/%Y").strip
+    date_from_string_or_date(date).strftime("%d/%m/%Y").strip
   end
 
   def format_day(date)
-    date = Date.parse(date) if date.class == String
-    date.strftime("%A %-e %B")
+    date_from_string_or_date(date).strftime("%A %-e %B")
   end
 
   def display_start_time(times)
