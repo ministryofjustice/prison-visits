@@ -4,11 +4,11 @@ module ApplicationHelper
   end
 
   def format_date(date)
-    date_from_string_or_date(date).strftime("%-d %B %Y")
+    I18n.l(date_from_string_or_date(date), format: :default)
   end
 
   def format_day(date)
-    date_from_string_or_date(date).strftime("%A %-e %B")
+    I18n.l(date_from_string_or_date(date), format: :long)
   end
 
   def display_start_time(times)
