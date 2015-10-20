@@ -1,5 +1,9 @@
 Rails.configuration.prisons = []
 
 Dir["config/prisons/*.yml"].each { |file|
-  Prison.create(YAML.load_file(file))
+  prison = YAML.load_file(file)
+  unless Rails.env.production?
+    prison['email'] = "pvb.#{prison['nomis_id']}@maildrop.dsd.io"
+  end
+  Prison.create(prison)
 }
