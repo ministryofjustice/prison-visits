@@ -68,8 +68,8 @@ RSpec.describe VisitsController, type: :controller do
       post :update
       expect(response).to redirect_to(show_visit_path(state: state))
 
-      expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(['Visit request for Jimmy Harris on Friday 6 December 2013',
-                                                              "Not booked yet: we've received your visit request for Friday 6 December 2013"])
+      expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(['Visit request for Jimmy Harris on Friday 6 December',
+                                                              "Not booked yet: we've received your visit request for Friday 6 December"])
     end
 
     it "displays the final page" do

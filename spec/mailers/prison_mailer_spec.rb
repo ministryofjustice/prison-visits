@@ -74,7 +74,7 @@ RSpec.describe PrisonMailer do
 
   context "always" do
     it "sends an e-mail with the prisoner name in the subject" do
-      expect(subject.booking_request_email(sample_visit, "token").subject).to eq('Visit request for Jimmy Harris on Sunday 7 July 2013')
+      expect(subject.booking_request_email(sample_visit, "token").subject).to eq('Visit request for Jimmy Harris on Sunday 7 July')
     end
 
     it "sends an e-mail with a long link to the confirmation page" do
@@ -120,7 +120,7 @@ RSpec.describe PrisonMailer do
       subject.booking_cancellation_receipt_email(sample_visit).tap do |email|
         expect(email['X-Priority'].value).to eq('1 (Highest)')
         expect(email['X-MSMail-Priority'].value).to eq('High')
-        expect(email.subject).to eq('CANCELLED: Jimmy Harris on Sunday 7 July 2013')
+        expect(email.subject).to eq('CANCELLED: Jimmy Harris on Sunday 7 July')
         expect(email).to match_in_text('a0000aa')
         expect(email).to match_in_text(sample_visit.visit_id)
         expect(email).to match_in_text('87654321')

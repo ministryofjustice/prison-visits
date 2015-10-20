@@ -2,7 +2,7 @@ en:
   date:
     formats:
       default: "%d/%m/%Y"
-      long: "%A %-d %B %Y"
+      long: "%A %-d %B"
     fields:
       day: Day
       month: Month
