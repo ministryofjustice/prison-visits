@@ -2,6 +2,7 @@ class PrisonerDetailsController < ApplicationController
   include CookieGuard
   include SessionGuard::OnUpdate
   include TrimParams
+
   before_action :logstasher_add_visit_id_from_session, only: :update
 
   def edit
@@ -29,22 +30,10 @@ class PrisonerDetailsController < ApplicationController
   end
 
   def prisoner_params
-    dob = [:'date_of_birth(3i)', :'date_of_birth(2i)', :'date_of_birth(1i)']
-    if params[:date_of_birth_native].present?
-      params[:prisoner][:date_of_birth] =
-        Date.parse(params[:date_of_birth_native])
-      dob.map{|d| params[:prisoner].delete(d)}
-    else
-      date_of_birth = dob.map do |key|
-        params[:prisoner].delete(key).to_i
-      end
-      params[:prisoner][:date_of_birth] = Date.new(*date_of_birth.reverse)
-    end
-    trim_whitespace_from_params %i[
-      first_name last_name date_of_birth number prison_name
-    ]
-  rescue ArgumentError
-    trim_whitespace_from_params %i[first_name last_name number prison_name]
+    params.require(:prisoner).permit(
+      :first_name, :last_name, :number, :prison_name,
+      date_of_birth: [:day, :month, :year]
+    )
   end
 
   def new_session
@@ -58,13 +47,5 @@ class PrisonerDetailsController < ApplicationController
 
   def service_domain
     SERVICE_DOMAIN
-  end
-
-  private
-
-  def trim_whitespace_from_params(whitelisted_params)
-    trim_whitespace_from_values(
-      params.require(:prisoner).permit(*whitelisted_params)
-    )
   end
 end

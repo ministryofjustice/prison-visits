@@ -39,6 +39,10 @@ module Person
     Time.zone.today.end_of_year
   end
 
+  def date_of_birth
+    super.is_a?(Date) ? super : nil
+  end
+
   private
 
   def validate_four_digit_year

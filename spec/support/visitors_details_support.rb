@@ -16,15 +16,6 @@ RSpec.shared_examples "a visitor data manipulator with valid data" do
     let :remove_visitor_hash do
       {
         visit: {
-          visitor: [{}, {}]
-        },
-        next: 'remove-1'
-      }
-    end
-
-    let :remove_visitor_hash2 do
-      {
-        visit: {
           visitor: [{_destroy: 1}, {}]
         },
         next: ''
@@ -40,12 +31,12 @@ RSpec.shared_examples "a visitor data manipulator with valid data" do
       get :edit
       expect {
         post :update, add_visitor_hash
-        expect(response).to redirect_to controller.this_path
+        expect(response).to redirect_to edit_visitors_details_path
       }.to change { session[:visit].visitors.size }.by(1)
 
       expect {
         post :update, remove_visitor_hash
-        expect(response).to redirect_to controller.this_path
+        expect(response).to redirect_to edit_visitors_details_path
       }.to change { session[:visit].visitors.size }.by(-1)
     end
 
@@ -55,7 +46,7 @@ RSpec.shared_examples "a visitor data manipulator with valid data" do
 
       expect {
         post :update, remove_visitor_hash
-        expect(response).to redirect_to controller.this_path
+        expect(response).to redirect_to edit_visitors_details_path
       }.to change { session[:visit].visitors.size }.by(-1)
     end
   end
@@ -76,7 +67,7 @@ RSpec.shared_examples "a visitor data manipulator with invalid data" do
       get :edit
       expect {
         post :update, bad_visitor_hash
-        expect(response).to redirect_to controller.this_path
+        expect(response).to redirect_to edit_visitors_details_path
       }.not_to change { session[:visit].visitors.first.first_name }
     end
   end
@@ -93,7 +84,7 @@ RSpec.shared_examples "a visitor data manipulator with invalid data" do
 
     it "rejects the submission if there are too many visitors" do
       post :update, visitor_hash
-      expect(response).to redirect_to(controller.this_path)
+      expect(response).to redirect_to(edit_visitors_details_path)
       expect(session[:visit].valid?(:visitors_set)).to be_falsey
     end
   end
@@ -107,9 +98,11 @@ RSpec.shared_examples "a visitor data manipulator with invalid data" do
             [
               first_name: 'John',
               last_name: 'Denver',
-              :'date_of_birth(3i)' => '31',
-              :'date_of_birth(2i)' => '12',
-              :'date_of_birth(1i)' => '1943'
+              date_of_birth: {
+                day: '31',
+                month: '12',
+                year: '1943'
+              }
             ] * 3
           ].flatten
         },
@@ -119,7 +112,7 @@ RSpec.shared_examples "a visitor data manipulator with invalid data" do
 
     it "rejects the submission if there are too many adult visitors" do
       post :update, visitor_hash
-      expect(response).to redirect_to(controller.this_path)
+      expect(response).to redirect_to(edit_visitors_details_path)
       expect(session[:visit].valid?(:visitors_set)).to be_falsey
     end
   end
@@ -131,9 +124,11 @@ RSpec.shared_examples "a visitor data manipulator with invalid data" do
           visitor: [
             first_name: 'Jack',
             last_name: 'Bauer',
-            :'date_of_birth(3i)' => date_of_birth.day,
-            :'date_of_birth(2i)' => date_of_birth.month,
-            :'date_of_birth(1i)' => date_of_birth.year,
+            date_of_birth: {
+              day: date_of_birth.day,
+              month: date_of_birth.month,
+              year: date_of_birth.year
+            },
             email: 'user@test.example.com',
             phone: '09998887777'
           ]
@@ -149,7 +144,7 @@ RSpec.shared_examples "a visitor data manipulator with invalid data" do
 
       it "allows the visitor to proceed" do
         post :update, visitor_hash
-        expect(response).to redirect_to(controller.next_path)
+        expect(response).to redirect_to(edit_slots_path)
       end
 
       context "a child applies" do
@@ -159,7 +154,7 @@ RSpec.shared_examples "a visitor data manipulator with invalid data" do
 
         it "rejects the booking request" do
           post :update, visitor_hash
-          expect(response).to redirect_to(controller.this_path)
+          expect(response).to redirect_to(edit_visitors_details_path)
         end
       end
     end
@@ -175,7 +170,7 @@ RSpec.shared_examples "a visitor data manipulator with invalid data" do
 
       it "allows the visitor to proceed" do
         post :update, visitor_hash
-        expect(response).to redirect_to(controller.next_path)
+        expect(response).to redirect_to(edit_slots_path)
       end
 
       context "an adult with three people over seat age threshold" do
@@ -185,9 +180,11 @@ RSpec.shared_examples "a visitor data manipulator with invalid data" do
               {
                 first_name: 'Mark',
                 last_name: 'Bauer',
-                :'date_of_birth(3i)' => Time.zone.today.day,
-                :'date_of_birth(2i)' => Time.zone.today.month,
-                :'date_of_birth(1i)' => Time.zone.today.year - 10
+                date_of_birth: {
+                  day: Time.zone.today.day,
+                  month: Time.zone.today.month,
+                  year: Time.zone.today.year - 10
+                }
               }
             ] * 3
         end

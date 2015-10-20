@@ -1,21 +1,29 @@
 module TrimParams
-  def trim_whitespace_from_values(p)
-    case p
+  extend ActiveSupport::Concern
+
+  included do
+    before_action :strip_parameter_whitespace
+  end
+
+  private
+
+  def strip_parameter_whitespace
+    self.params = strip_whitespace(params)
+  end
+
+  def strip_whitespace(obj)
+    case obj
     when Hash
-      p.inject(p.class.new) do |h, (k, v)|
-        if v.is_a?(String)
-          h[k] = v.strip
-        else
-          h[k] = trim_whitespace_from_values(v)
-        end
+      obj.inject(obj.class.new) { |h, (k, v)|
+        h[k] = strip_whitespace(v)
         h
-      end
+      }
     when Array
-      p.map do |v|
-        trim_whitespace_from_values(v)
-      end
+      obj.map { |v| strip_whitespace(v) }
+    when String
+      obj.strip
     else
-      p
+      obj
     end
   end
 end
