@@ -24,7 +24,8 @@
           = succeed ':' do
             = index == 0 ? "First choice" : "Alternative #{index}"
           %strong
-            = Date.parse(slot.date).strftime('%A, %d/%m/%Y from ')
+            = format_day(slot.date)
+            from
             = format_time_str_24 slot.times.split('-')[0]
             \-
             = format_time_str_24 slot.times.split('-')[1]

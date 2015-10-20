@@ -7,10 +7,6 @@ module ApplicationHelper
     date_from_string_or_date(date).strftime("%-d %B %Y")
   end
 
-  def format_date_nomis(date)
-    date_from_string_or_date(date).strftime("%d/%m/%Y").strip
-  end
-
   def format_day(date)
     date_from_string_or_date(date).strftime("%A %-e %B")
   end

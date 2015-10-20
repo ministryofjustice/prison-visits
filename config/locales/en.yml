@@ -1,8 +1,8 @@
 en:
   date:
     formats:
-      default: "%d/%m/%Y"
-      long: "%A %-d %B"
+      default: "%-d %B %Y" # 24 July 2014
+      long: "%A %-d %B" # Thursday 24 July
     fields:
       day: Day
       month: Month

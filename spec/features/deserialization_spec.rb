@@ -46,7 +46,7 @@ RSpec.feature "deserialization" do
       expect(page).to have_text('Process a visit request')
       expect(page).to have_text('Prisoner: Arthur Raffles')
       expect(page).to have_text('Visitor 1: Harry Manders')
-      expect(page).to have_text('First choice: Saturday, 05/09/2015 from 09:45 - 11:15')
+      expect(page).to have_text('First choice: Saturday 5 September from 09:45 - 11:15')
     end
 
     scenario 'booking confirmation' do
@@ -85,7 +85,7 @@ RSpec.feature "deserialization" do
       expect(page).to have_text('Process a visit request')
       expect(page).to have_text('Prisoner: Arthur Raffles')
       expect(page).to have_text('Visitor 1: Harry Manders')
-      expect(page).to have_text('First choice: Saturday, 05/09/2015 from 09:45 - 11:15')
+      expect(page).to have_text('First choice: Saturday 5 September from 09:45 - 11:15')
     end
 
     scenario 'booking confirmation' do
