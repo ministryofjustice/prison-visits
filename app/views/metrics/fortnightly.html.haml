@@ -9,9 +9,9 @@
   = link_to('Performance over time', prison_metrics_fortnightly_performance_path(@nomis_id))
 %h2
   Summary for
-  = format_date(@start_date)
+  = format_date_of_visit(@start_date)
   to
-  = format_date(@end_date)
+  = format_date_of_visit(@end_date)
 %table#overall-performance
   %tr
     %th

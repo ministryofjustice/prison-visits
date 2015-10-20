@@ -3,12 +3,12 @@ module ApplicationHelper
     obj.class == String ? Date.parse(obj) : obj
   end
 
-  def format_date(date)
-    I18n.l(date_from_string_or_date(date), format: :default)
+  def format_date_of_birth(date)
+    I18n.l(date_from_string_or_date(date), format: :date_of_birth)
   end
 
-  def format_day(date)
-    I18n.l(date_from_string_or_date(date), format: :long)
+  def format_date_of_visit(date)
+    I18n.l(date_from_string_or_date(date), format: :date_of_visit)
   end
 
   def display_start_time(times)

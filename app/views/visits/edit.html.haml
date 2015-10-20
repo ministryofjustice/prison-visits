@@ -7,7 +7,7 @@
       %strong #{visit.prisoner.first_name} #{visit.prisoner.last_name}
   %p
     Date of birth:
-    %strong= format_date visit.prisoner.date_of_birth
+    %strong= format_date_of_birth visit.prisoner.date_of_birth
   - if visit.prisoner.number.present?
     %p
       Prisoner number:
@@ -28,7 +28,7 @@
         Visitor #{i+1}:
         %strong #{visitor.first_name} #{visitor.last_name}
         \ -
-        = format_date visitor.date_of_birth
+        = format_date_of_birth visitor.date_of_birth
         - if visit.adult?(visitor)
           %small.AgeLabel-label.over Over #{prison_adult_age}
         - else
@@ -42,7 +42,7 @@
 
   %p First choice:
   %p
-    %strong= format_day visit.slots.first.date
+    %strong= format_date_of_visit visit.slots.first.date
     = display_slot_and_duration visit.slots.first.times
 
   - if visit.slots[1].date.present?
@@ -51,7 +51,7 @@
       - visit.slots[1..-1].each do |slot|
         - if slot.date.present?
           %li
-            %strong= format_day slot.date
+            %strong= format_date_of_visit slot.date
             = display_slot_and_duration slot.times
 
   %p.edit-link= link_to 'Change visit details', edit_slots_path

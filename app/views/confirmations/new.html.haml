@@ -11,7 +11,7 @@
     %dd= booked_visit.prisoner.number
 
     %dt Date of birth:
-    %dd= format_date booked_visit.prisoner.date_of_birth
+    %dd= format_date_of_birth booked_visit.prisoner.date_of_birth
 
   %hr
 
@@ -24,7 +24,7 @@
       %dd= visitor.age
 
       %dt Date of birth:
-      %dd= format_date visitor.date_of_birth
+      %dd= format_date_of_birth visitor.date_of_birth
 
       - if visitor.email
         %dt Email:

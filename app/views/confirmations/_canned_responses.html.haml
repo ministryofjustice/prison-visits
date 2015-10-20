@@ -24,7 +24,7 @@
           = succeed ':' do
             = index == 0 ? "First choice" : "Alternative #{index}"
           %strong
-            = format_day(slot.date)
+            = format_date_of_visit(slot.date)
             from
             = format_time_str_24 slot.times.split('-')[0]
             \-

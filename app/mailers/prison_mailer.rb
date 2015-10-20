@@ -109,6 +109,6 @@ class PrisonMailer < ActionMailer::Base
   end
 
   def formatted_first_slot_date
-    I18n.l(Date.parse(@visit.slots.first.date), format: :long)
+    I18n.l(Date.parse(@visit.slots.first.date), format: :date_of_visit)
   end
 end
