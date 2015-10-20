@@ -54,12 +54,12 @@ RSpec.describe VisitHelper, type: :helper do
     end
 
     it "provides the email address" do
-      expect(helper.prison_email).to eq('socialvisits.rochester@hmps.gsi.gov.uk')
+      expect(helper.prison_email).to eq('pvb.RCI@maildrop.dsd.io')
     end
 
     it "provides the email address" do
       expect(helper.prison_email_link).to eq(
-        '<a href="mailto:socialvisits.rochester@hmps.gsi.gov.uk">socialvisits.rochester@hmps.gsi.gov.uk</a>'
+        '<a href="mailto:pvb.RCI@maildrop.dsd.io">pvb.RCI@maildrop.dsd.io</a>'
       )
     end
 

@@ -72,7 +72,7 @@ RSpec.describe Prisoner do
   end
 
   it 'returns the email of the prison holding the prisoner' do
-    expect(prisoner.prison_email).to eq('socialvisits.rochester@hmps.gsi.gov.uk')
+    expect(prisoner.prison_email).to eq('pvb.RCI@maildrop.dsd.io')
   end
 
   it 'returns the nomis_id of the prison holding the prisoner' do

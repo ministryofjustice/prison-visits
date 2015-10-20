@@ -22,7 +22,7 @@ RSpec.describe Visit do
       expect(sample_visit.prison_name).to eq('Rochester')
       expect(sample_visit.prison_nomis_id).to eq('RCI')
       expect(sample_visit.prison_canned_responses).to be_truthy
-      expect(sample_visit.prison_email).to eq('socialvisits.rochester@hmps.gsi.gov.uk')
+      expect(sample_visit.prison_email).to eq('pvb.RCI@maildrop.dsd.io')
     end
   end
 

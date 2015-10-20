@@ -84,7 +84,7 @@ RSpec.shared_context "shared conditions for visitor mailer" do
   let(:confirmation_no_vos_left) { Confirmation.new(message: 'A message', outcome: Confirmation::NO_VOS_LEFT) }
   let(:noreply_address) { Mail::Field.new('from', "Prison Visits Booking <no-reply@example.com> (Unattended)") }
   let(:visitor_address) { Mail::Field.new('to', "Mark Harris <visitor@example.com>") }
-  let(:prison_email) { 'socialvisits.rochester@hmps.gsi.gov.uk' }
+  let(:prison_email) { 'pvb.RCI@maildrop.dsd.io' }
   let(:prison_address) { Mail::Field.new('reply-to', prison_email) }
   let(:token) { MESSAGE_ENCRYPTOR.encrypt_and_sign(sample_visit) }
 end

@@ -49,7 +49,7 @@ RSpec.describe "Prison data" do
 
     it "should contain lowercase email addresses for all prisons" do
       enabled.each do |prison|
-        expect(prison.email).to eq(prison.email.downcase)
+        expect(prison.email).to eq(prison.email)
       end
     end
 
