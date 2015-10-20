@@ -4,7 +4,7 @@ module ApplicationHelper
   end
 
   def format_date(date)
-    date_from_string_or_date(date).strftime("%e %B %Y").strip
+    date_from_string_or_date(date).strftime("%-d %B %Y")
   end
 
   def format_date_nomis(date)
