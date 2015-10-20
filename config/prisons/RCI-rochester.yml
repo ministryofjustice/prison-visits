@@ -6,7 +6,6 @@ address:
 - Rochester
 - Kent
 - ME1 3QS
-canned_responses: true
 email: socialvisits.rochester@hmps.gsi.gov.uk
 enabled: true
 phone: 01634 803100

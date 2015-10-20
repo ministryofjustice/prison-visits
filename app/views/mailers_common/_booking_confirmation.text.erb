@@ -20,7 +20,7 @@ Prisoner number: <%= @visit.prisoner.number.upcase %>
 <% visitors.each_with_index do |visitor, index| %>
 Visitor <%= index + 1 %>: <%= first_name(visitor) %> <%= initial ? last_initial(visitor) : last_name(visitor) %>
 <% end %>
-<% if @confirmation.canned_response && @confirmation.vo_number != 'none' %>
+<% if @confirmation.vo_number != 'none' %>
 
 Your reference number is: <%= @confirmation.vo_number %>
 <% end %>

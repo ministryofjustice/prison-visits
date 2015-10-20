@@ -4,7 +4,6 @@ nomis_id: LYI
 address:
 - Wotton-under-edge
 - GL12 8BT
-canned_responses: true
 email: socialvisits.leyhill@hmps.gsi.gov.uk
 enabled: true
 phone: 01454 264211

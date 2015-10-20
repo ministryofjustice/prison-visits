@@ -4,7 +4,6 @@ nomis_id: SWI
 address:
 - 200 Oystermouth Road
 - SA1 3SR
-canned_responses: true
 email: socialvisits.swansea@hmps.gsi.gov.uk
 enabled: true
 phone: 01792 48 5322

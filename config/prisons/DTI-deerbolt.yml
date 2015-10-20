@@ -4,7 +4,6 @@ nomis_id: DTI
 address:
 - Bowes Road
 - DL12 9BG
-canned_responses: true
 email: socialvisits.deerbolt@hmps.gsi.gov.uk
 enabled: true
 phone: 01833 633349

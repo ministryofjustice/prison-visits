@@ -4,7 +4,6 @@ nomis_id: NWI
 address:
 - Knox Road
 - 'NR1 4LU '
-canned_responses: true
 email: socialvisits.norwich@hmps.gsi.gov.uk
 enabled: true
 finder_slug: norwich

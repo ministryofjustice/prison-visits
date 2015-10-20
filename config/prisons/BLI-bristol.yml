@@ -5,7 +5,6 @@ address:
 - 19 Cambridge Road
 - Bristol
 - BS7 8PS
-canned_responses: true
 email: socialvisits.bristol@hmps.gsi.gov.uk
 enabled: true
 phone: 0117 372 3213

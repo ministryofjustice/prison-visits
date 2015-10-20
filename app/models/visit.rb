@@ -20,7 +20,7 @@ class Visit
 
   delegate :prison, :prison_name, :prison_name=,
     to: :prisoner, allow_nil: true
-  delegate :prison_email, :prison_canned_responses, :prison_nomis_id,
+  delegate :prison_email, :prison_nomis_id,
     to: :prisoner
   delegate :adult_age, to: :prison
 

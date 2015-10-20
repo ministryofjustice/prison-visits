@@ -4,7 +4,6 @@ nomis_id: SLI
 address:
 - Brabazon Road
 - ME12 4AX
-canned_responses: true
 email: socialvisits.swaleside@hmps.gsi.gov.uk
 enabled: true
 phone: 0300 060 6604

@@ -5,7 +5,6 @@
 
 = form_for @confirmation, url: confirmation_path, html: { class: 'js-SubmitOnce' } do |f|
   = hidden_field_tag :state, params[:state]
-  = hidden_field_tag 'confirmation[canned_response]', true
 
   - if f.object.errors.any?
     #error-summary.validation-summary.group(role="alert" tabindex="-1" aria-labelledby="error-heading")

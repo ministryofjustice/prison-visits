@@ -4,7 +4,6 @@ nomis_id: WCI
 address:
 - Romsey Road
 - SO22 5DF
-canned_responses: true
 email: socialvisits.winchester@hmps.gsi.gov.uk
 enabled: true
 finder_slug: winchester

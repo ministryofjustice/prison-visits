@@ -4,7 +4,6 @@ nomis_id: CLI
 address:
 - Shaftesbury Road
 - GU24 9EX
-canned_responses: true
 email: socialvisits.coldingley@hmps.gsi.gov.uk
 enabled: true
 phone: 01483 344418

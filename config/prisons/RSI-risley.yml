@@ -4,7 +4,6 @@ nomis_id: RSI
 address:
 - Warrington Road
 - WA3 6BP
-canned_responses: true
 email: socialvisits.risley@hmps.gsi.gov.uk
 enabled: true
 phone: 01925 733284

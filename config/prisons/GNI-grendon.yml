@@ -4,7 +4,6 @@ nomis_id: GNI
 address:
 - Grendon Underwood
 - HP18 0TL
-canned_responses: true
 email: socialvisits.grendon@hmps.gsi.gov.uk
 enabled: true
 phone: ''

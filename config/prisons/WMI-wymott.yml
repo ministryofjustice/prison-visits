@@ -4,7 +4,6 @@ nomis_id: WMI
 address:
 - Ulnes Walton Lane
 - PR26 8LW
-canned_responses: true
 email: socialvisits.wymott@hmps.gsi.gov.uk
 enabled: true
 phone: 01772 442234

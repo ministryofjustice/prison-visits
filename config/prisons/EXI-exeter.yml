@@ -4,7 +4,6 @@ nomis_id: EXI
 address:
 - New North Road
 - EX4 4EX
-canned_responses: true
 email: socialvisits.exeter@hmps.gsi.gov.uk
 enabled: true
 phone: 01392 41 5833

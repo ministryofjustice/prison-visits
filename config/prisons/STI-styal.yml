@@ -4,7 +4,6 @@ nomis_id: STI
 address:
 - WILMSLOW
 - 'SK9 4HR '
-canned_responses: true
 email: socialvisits.styal@hmps.gsi.gov.uk
 enabled: true
 phone: 01625553195

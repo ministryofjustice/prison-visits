@@ -4,7 +4,6 @@ nomis_id: WII
 address:
 - Hollesley
 - 'IP12 3JW '
-canned_responses: true
 email: socialvisits.warrenhill@hmps.gsi.gov.uk
 enabled: true
 phone: 020 8588 4002

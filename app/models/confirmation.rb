@@ -12,7 +12,6 @@ class Confirmation
   attribute :unlisted_visitors, Array[String]
   attribute :visitor_not_listed, Boolean
   attribute :visitor_banned, Boolean
-  attribute :canned_response, Boolean
   attribute :closed_visit, Boolean
 
   NO_VOS_LEFT = 'no_vos_left'
@@ -58,7 +57,7 @@ private
   end
 
   def validate_reference
-    if SLOTS_RESPONSES.include?(outcome) && vo_number.blank? && canned_response
+    if SLOTS_RESPONSES.include?(outcome) && vo_number.blank?
       errors.add(:vo_number, 'you must supply a reference number')
     end
   end

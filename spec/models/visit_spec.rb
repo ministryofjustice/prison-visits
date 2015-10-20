@@ -21,7 +21,6 @@ RSpec.describe Visit do
     it 'exposes some prison attributes via the prisoner' do
       expect(sample_visit.prison_name).to eq('Rochester')
       expect(sample_visit.prison_nomis_id).to eq('RCI')
-      expect(sample_visit.prison_canned_responses).to be_truthy
       expect(sample_visit.prison_email).to eq('pvb.RCI@maildrop.dsd.io')
     end
   end

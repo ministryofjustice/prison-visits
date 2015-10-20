@@ -26,23 +26,23 @@ RSpec.shared_context "shared conditions for visitor mailer" do
   end
 
   let :confirmation_canned_response do
-    Confirmation.new(canned_response: true, outcome: 'slot_0', vo_number: '5551234')
+    Confirmation.new(outcome: 'slot_0', vo_number: '5551234')
   end
 
   let :confirmation_canned_response_remand do
-    Confirmation.new(canned_response: true, outcome: 'slot_0', vo_number: 'none')
+    Confirmation.new(outcome: 'slot_0', vo_number: 'none')
   end
 
   let :confirmation_unlisted_visitors do
-    Confirmation.new(canned_response: true, vo_number: '5551234', outcome: 'slot_0', visitor_not_listed: true, unlisted_visitors: ['Joan;Harris'])
+    Confirmation.new(vo_number: '5551234', outcome: 'slot_0', visitor_not_listed: true, unlisted_visitors: ['Joan;Harris'])
   end
 
   let :confirmation_banned_visitors do
-    Confirmation.new(canned_response: true, vo_number: '5551234', outcome: 'slot_0', visitor_banned: true, banned_visitors: ['Joan;Harris'])
+    Confirmation.new(vo_number: '5551234', outcome: 'slot_0', visitor_banned: true, banned_visitors: ['Joan;Harris'])
   end
 
   let :confirmation_closed_visit do
-    Confirmation.new(canned_response: true, vo_number: '5551234', outcome: 'slot_0', closed_visit: true)
+    Confirmation.new(vo_number: '5551234', outcome: 'slot_0', closed_visit: true)
   end
 
   let :confirmation_no_slot_available do

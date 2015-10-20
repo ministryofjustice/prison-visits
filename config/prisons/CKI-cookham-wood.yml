@@ -4,7 +4,6 @@ nomis_id: CKI
 address:
 - Sir Evelyn Road
 - ME1 3LU
-canned_responses: true
 email: socialvisits.cookhamwood@hmps.gsi.gov.uk
 enabled: true
 phone: 01634 202557

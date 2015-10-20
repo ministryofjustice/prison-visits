@@ -18,7 +18,6 @@ RSpec.shared_examples "prison slots and data" do
   let(:basic_attributes) do
     { "name" =>              "Basic Prison",
       "nomis_id" =>          "PPP",
-      "canned_responses" =>  true,
       "enabled" =>           true,
       "phone" =>             "01634 803100",
       "email" =>             "pvb.rochester@maildrop.dsd.io",

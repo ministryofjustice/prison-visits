@@ -126,14 +126,6 @@ When the Prison Finder link doesn't not simply match the prison name in lower ca
 finder_slug: sheppey-cluster-standford-hill
 ```
 
-### Canned responses
-
-The visit request processing form has been updated and can be enabled per prison.
-
-```yaml
-canned_responses: true
-```
-
 ### Adult age
 
 Visit requests are limited to a maximum of 3 "adults" (18 years old and over, by default). The adult age can be reduced to restrict the amount of visitors over that age.

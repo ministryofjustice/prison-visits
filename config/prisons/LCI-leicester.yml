@@ -4,7 +4,6 @@ nomis_id: LCI
 address:
 - 116 Welford Road
 - LE2 7AJ
-canned_responses: true
 email: socialvisitsleiceste@hmps.gsi.gov.uk
 enabled: true
 phone: 0116 228 3128

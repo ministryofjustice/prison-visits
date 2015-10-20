@@ -4,7 +4,6 @@ nomis_id: LTI
 address:
 - Perry
 - PE28 0SR
-canned_responses: true
 email: socialvisits.littlehey@hmps.gsi.gov.uk
 enabled: true
 lead_days: 2

@@ -4,7 +4,6 @@ nomis_id: NMI
 address:
 - Perry Road
 - 'NG5 3AG '
-canned_responses: true
 email: socialvisits.nottingham@hmps.gsi.gov.uk
 enabled: true
 phone: 0115 962 8980

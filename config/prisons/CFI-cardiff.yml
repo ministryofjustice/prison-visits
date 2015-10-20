@@ -6,7 +6,6 @@ address:
 - Cardiff
 - CF24 0UG
 booking_window: 14
-canned_responses: true
 email: socialvisits.cardiff@hmps.gsi.gov.uk
 enabled: true
 phone: 029 20923327

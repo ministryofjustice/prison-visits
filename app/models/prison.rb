@@ -12,7 +12,6 @@ class Prison
   attribute :booking_window, Integer,
     default: DEFAULT_BOOKING_WINDOW,
     lazy: true
-  attribute :canned_responses, Boolean
   attribute :email, String
   attribute :enabled, Boolean
   attribute :finder_slug, String

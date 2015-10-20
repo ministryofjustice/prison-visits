@@ -4,7 +4,6 @@ nomis_id: SPI
 address:
 - Grendon Underwood
 - HP18 0TL
-canned_responses: true
 email: socialvisits.springhill@hmps.gsi.gov.uk
 enabled: true
 phone: 

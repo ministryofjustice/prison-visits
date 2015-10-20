@@ -4,7 +4,6 @@ nomis_id: HOI
 address:
 - Sutton Lane
 - SM2 5PJ
-canned_responses: true
 email: socialvisits.highdown@hmps.gsi.gov.uk
 enabled: true
 phone: 020 7147 6570
