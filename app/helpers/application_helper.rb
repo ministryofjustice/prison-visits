@@ -1,31 +1,26 @@
 module ApplicationHelper
+  def time_from_string(obj)
+    Time.strptime(obj, '%H%M')
+  end
+
   def display_start_time(times)
     format_time_str(times.split('-')[0])
   end
 
-  def display_time_slot(times, glue = ' to ')
-    from, to = times.split('-')
-    [format_time_str(from).strip, format_time_str(to).strip].join(glue)
-  end
-
-  def display_slot_and_duration(times, glue = ', ')
+  def display_slot_and_duration(times, glue = ' for ')
     from, to = times.split('-')
     [
-      format_time_str(from).strip,
-      (time_from_str(to)-time_from_str(from)).duration
+      display_start_time(times),
+      (time_from_string(to) - time_from_string(from)).duration
     ].join(glue)
   end
 
   def format_time_str(time)
-    time_from_str(time).strftime("%l:%M%P").strip
+    I18n.l(time_from_string(time), format: :twelve_hour)
   end
 
   def format_time_str_24(time)
-    time_from_str(time).strftime("%H:%M").strip
-  end
-
-  def time_from_str(str)
-    Time.strptime(str, '%H%M')
+    I18n.l(time_from_string(time), format: :twentyfour_hour)
   end
 
   def page_title(header, glue=' - ')

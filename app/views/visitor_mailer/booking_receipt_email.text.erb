@@ -19,7 +19,7 @@ You have requested a visit to <%= @visit.prison_name %> for <%= @visit.visitors.
 
 <% @visit.slots.each_with_index do |slot, index| %>
 <% if slot.date.present? %>
-<% if index == 0 %>First choice: <% else %>Alternative <%= index %>:<% end %> <%= format_date_of_visit(slot.date) %>, <%= display_time_slot(slot.times) %>
+<% if index == 0 %>First choice: <% else %>Alternative <%= index %>:<% end %> <%= format_date_of_visit(slot.date) %>, <%= display_slot_and_duration(slot.times) %>
 <% end %>
 <% end %>
 Prisoner: <%= @visit.prisoner.first_name %> <%= @visit.prisoner.last_initial %>.

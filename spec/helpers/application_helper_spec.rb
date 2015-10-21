@@ -15,16 +15,9 @@ RSpec.describe ApplicationHelper do
     expect(helper.display_start_time('0945')).to eq("9:45am")
   end
 
-  it "displays a long time" do
-    expect(helper.display_time_slot("1400-1600")).to eq("2:00pm to 4:00pm")
-    expect(helper.display_time_slot("0945-1145")).to eq("9:45am to 11:45am")
-    expect(helper.display_time_slot("1100-1200", "-")).to eq("11:00am-12:00pm")
-  end
-
   it "displays a slot and duration" do
-    expect(helper.display_slot_and_duration("0945-1145")).to eq("9:45am, 2 hrs")
-    expect(helper.display_slot_and_duration("1430-1600")).to eq("2:30pm, 1 hr 30 mins")
-    expect(helper.display_slot_and_duration("1100-1200", " for ")).to eq("11:00am for 1 hr")
+    expect(helper.display_slot_and_duration("0945-1145")).to eq("9:45am for 2 hrs")
+    expect(helper.display_slot_and_duration("1430-1600")).to eq("2:30pm for 1 hr 30 mins")
   end
 
   it "formats a time from a string" do
@@ -40,7 +33,7 @@ RSpec.describe ApplicationHelper do
   end
 
   it "creates a time from a string" do
-    expect(helper.time_from_str("1545")).to eq(DateTime.now.change({ hour: 15, min: 45, sec: 0 }))
+    expect(helper.time_from_string("1545")).to eq(DateTime.now.change({ hour: 15, min: 45, sec: 0 }))
   end
 
   it "displays a prefix and suffix around a variable when it exists" do

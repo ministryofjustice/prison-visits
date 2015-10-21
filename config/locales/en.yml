@@ -7,6 +7,10 @@ en:
       day: Day
       month: Month
       year: Year
+  time:
+    formats:
+      twelve_hour: "%-l:%M%P"   # 1:30pm
+      twenty_four_hour: "%H:%M" # 13:30
   activemodel:
     attributes:
       feedback:

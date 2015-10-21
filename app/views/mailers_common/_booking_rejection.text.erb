@@ -7,7 +7,7 @@ You have tried to book a visit but the prisoner you want to visit has not got an
 We’re sorry but none of the dates and times you chose to visit <%= @visit.prisoner.first_name %> <%= initial ? @visit.prisoner.last_initial : @visit.prisoner.last_name %> at <%= @visit.prison_name %> were available.
 <% @visit.slots.each_with_index do |slot, index| %>
 <% if slot.date.present? %>
-<%= index + 1%>. <%= format_date_of_visit(slot.date) %>, <%= display_time_slot(slot.times) %>
+<%= index + 1%>. <%= format_date_of_visit(slot.date) %>, <%= display_slot_and_duration(slot.times) %>
 <% end %>
 <% end %>
 
