@@ -26,9 +26,9 @@
           %strong
             = format_date_of_visit(slot.date)
             from
-            = format_time_str_24 slot.times.split('-')[0]
+            = format_time_24hr slot.times.split('-')[0]
             \-
-            = format_time_str_24 slot.times.split('-')[1]
+            = format_time_24hr slot.times.split('-')[1]
 
     .panel-indent{ :id => 'vo_number_field' }
       =field_container(f, :vo_number, id: 'vo_number') do

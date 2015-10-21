@@ -12,9 +12,9 @@
   First choice:
   %strong
     = Date.parse(@visit.slots.first.date).strftime('%A, %d/%m/%Y at ')
-    = format_time_str_24 @visit.slots.first.times.split('-')[0]
+    = format_time_24hr @visit.slots.first.times.split('-')[0]
     \-
-    = format_time_str_24 @visit.slots.first.times.split('-')[1]
+    = format_time_24hr @visit.slots.first.times.split('-')[1]
   - if @visit.slots.length > 1
     - @visit.slots.each_with_index do |slot, index|
       - unless index == 0
@@ -23,9 +23,9 @@
           Alternative #{index}:
           %strong
             = Date.parse(slot.date).strftime('%A, %d/%m/%Y at ')
-            = format_time_str_24 slot.times.split('-')[0]
+            = format_time_24hr slot.times.split('-')[0]
             \-
-            = format_time_str_24 slot.times.split('-')[1]
+            = format_time_24hr slot.times.split('-')[1]
 
 - @visit.visitors.each_with_index do |visitor, index|
   %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }

@@ -1,28 +1,4 @@
 module ApplicationHelper
-  def time_from_string(obj)
-    Time.strptime(obj, '%H%M')
-  end
-
-  def display_start_time(times)
-    format_time_str(times.split('-')[0])
-  end
-
-  def display_slot_and_duration(times, glue = ' for ')
-    from, to = times.split('-')
-    [
-      display_start_time(times),
-      (time_from_string(to) - time_from_string(from)).duration
-    ].join(glue)
-  end
-
-  def format_time_str(time)
-    I18n.l(time_from_string(time), format: :twelve_hour)
-  end
-
-  def format_time_str_24(time)
-    I18n.l(time_from_string(time), format: :twentyfour_hour)
-  end
-
   def page_title(header, glue=' - ')
     page_title = [Rails.configuration.app_title]
     page_title.unshift(header) if header.present?

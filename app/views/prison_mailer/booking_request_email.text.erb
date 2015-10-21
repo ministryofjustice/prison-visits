@@ -3,14 +3,14 @@ Number:<%= @visit.prisoner.number %>
 Date of birth:<%= @visit.prisoner.date_of_birth.strftime("%e %B %Y") %>
 
 First choice:
-<%= Date.parse(@visit.slots.first.date).strftime('%A, %d/%m/%Y at ') %><%= format_time_str_24 @visit.slots.first.times.split('-')[0] %> - <%= format_time_str_24 @visit.slots.first.times.split('-')[1] %>
+<%= Date.parse(@visit.slots.first.date).strftime('%A, %d/%m/%Y at ') %><%= format_time_24hr @visit.slots.first.times.split('-')[0] %> - <%= format_time_24hr @visit.slots.first.times.split('-')[1] %>
 
 <% if @visit.slots.length > 1 %>
 <% @visit.slots.each_with_index do |slot, index| %>
 <% unless index == 0 %>
 <% if slot.date.present? %>
 Alternative <%= index %>:
-<%= Date.parse(slot.date).strftime('%A, %d/%m/%Y at ') %><%= format_time_str_24 slot.times.split('-')[0] %> - <%= format_time_str_24 slot.times.split('-')[1] %>
+<%= Date.parse(slot.date).strftime('%A, %d/%m/%Y at ') %><%= format_time_24hr slot.times.split('-')[0] %> - <%= format_time_24hr slot.times.split('-')[1] %>
 <% end %>
 <% end %>
 <% end %>

@@ -8,7 +8,6 @@ class PrisonMailer < ActionMailer::Base
   after_action :do_not_send_to_prison, if: :smoke_test?
 
   add_template_helper(DateHelper)
-  # needs to be removed after refactoring time
   add_template_helper(ApplicationHelper)
   add_template_helper(VisitHelper)
 
