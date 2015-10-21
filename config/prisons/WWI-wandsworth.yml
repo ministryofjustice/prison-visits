@@ -8,6 +8,7 @@ address:
 canned_responses: true
 email: socialvisits.wandsworth@hmps.gsi.gov.uk
 enabled: true
+estate: Wandsworth
 phone: 0208 588 4002
 slots:
   mon:

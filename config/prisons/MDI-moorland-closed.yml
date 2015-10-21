@@ -7,6 +7,7 @@ address:
 canned_responses: true
 email: socialvisits.moorlandclosed@hmps.gsi.gov.uk
 enabled: true
+estate: Moorland Closed
 finder_slug: moorland
 lead_days: 1
 phone: 01302523289

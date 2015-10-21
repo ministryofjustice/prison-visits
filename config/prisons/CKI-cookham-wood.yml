@@ -7,6 +7,7 @@ address:
 canned_responses: true
 email: socialvisits.cookhamwood@hmps.gsi.gov.uk
 enabled: true
+estate: Cookham Wood
 phone: 01634 202557
 slot_anomalies:
   2014-12-24:

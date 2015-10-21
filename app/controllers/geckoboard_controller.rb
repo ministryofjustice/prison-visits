@@ -30,7 +30,7 @@ class GeckoboardController < ApplicationController
   def leaderboard_report
     LeaderboardReport.new(
       0.95,
-      ApplicationHelper.instance_method(:prison_name_for_id)
+      ApplicationHelper.instance_method(:prison_estate_name_for_id)
     )
   end
 end

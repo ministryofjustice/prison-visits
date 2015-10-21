@@ -31,6 +31,7 @@ RSpec.shared_examples "prison slots and data" do
 
   let(:advanced_attributes) do
     { "name" =>            'Advanced Prison',
+      "estate" =>          'Advanced',
       "nomis_id" =>        'APP',
       "lead_days" =>       4,
       "booking_window" =>  14,

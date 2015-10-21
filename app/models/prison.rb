@@ -15,6 +15,7 @@ class Prison
   attribute :canned_responses, Boolean
   attribute :email, String
   attribute :enabled, Boolean
+  attribute :estate, String
   attribute :finder_slug, String
   attribute :lead_days, Integer,
     default: DEFAULT_LEAD_DAYS,

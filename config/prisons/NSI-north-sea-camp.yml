@@ -7,6 +7,7 @@ address:
 canned_responses: true
 email: socialvisits.northseacamp@hmps.gsi.gov.uk
 enabled: true
+estate: North Sea Camp
 phone: 01205 769 368
 slots:
   sat:

@@ -108,6 +108,10 @@ RSpec.describe Prison, type: :model do
       it { expect(subject.enabled?).to be_truthy }
     end
 
+    describe '#estate' do
+      it { expect(subject.estate).to eq 'Advanced' }
+    end
+
     describe '#unbookable_dates' do
       context 'when a prison has unbookable dates' do
         let(:expected_dates) { Set.new [Date.new(2015, 7, 29), Date.new(2015, 12, 25)] }

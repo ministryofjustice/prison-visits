@@ -7,6 +7,7 @@ address:
 canned_responses: true
 email: lincolnsocialvisits@hmps.gsi.gov.uk
 enabled: true
+estate: Lincoln
 phone: 01522 663172
 slots:
   sat:

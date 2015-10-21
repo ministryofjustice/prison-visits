@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe ApplicationHelper do
-  describe '#prison_name_for_id' do
+  describe '#prison_estate_name_for_id' do
     it 'returns a prison name for a nomis id' do
-      expect(helper.prison_name_for_id('RCI')).to eq('Rochester')
+      expect(helper.prison_estate_name_for_id('RCI')).to eq('Rochester')
     end
 
     it 'returns nil for a bad nomis id' do
-      expect(helper.prison_name_for_id('Bad Id')).to be_nil
+      expect(helper.prison_estate_name_for_id('Bad Id')).to be_nil
     end
   end
 

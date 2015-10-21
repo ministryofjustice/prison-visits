@@ -55,9 +55,9 @@ module ApplicationHelper
     end
   end
 
-  def prison_name_for_id(nomis_id)
+  def prison_estate_name_for_id(nomis_id)
     prison = Prison.find_by_nomis_id(nomis_id)
-    return prison.name if prison && prison.enabled?
+    return prison.estate if prison && prison.enabled?
   end
 
   def markdown(source)

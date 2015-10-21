@@ -8,6 +8,7 @@ adult_age: 10
 canned_responses: true
 email: socialvisits.haverigg@hmps.gsi.gov.uk
 enabled: true
+estate: Haverigg
 phone: 01229713016
 slots:
   fri:

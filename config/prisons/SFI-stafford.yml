@@ -8,6 +8,7 @@ address:
 canned_responses: true
 email: visitsbooking.westmidlands@noms.gsi.gov.uk
 enabled: true
+estate: Stafford
 phone: 0300 060 6505
 slot_anomalies:
   2015-10-13:
