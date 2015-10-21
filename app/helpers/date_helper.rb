@@ -1,12 +1,4 @@
 module DateHelper
-  def date_from_string_or_date(obj)
-    obj.class == String ? Date.parse(obj) : obj
-  end
-
-  def time_from_string(obj)
-    Time.strptime(obj, '%H%M')
-  end
-
   def format_date_of_birth(date)
     I18n.l(date_from_string_or_date(date), format: :date_of_birth)
   end
@@ -33,5 +25,19 @@ module DateHelper
       display_start_time(times),
       (time_from_string(to) - time_from_string(from)).duration
     ].join(glue)
+  end
+
+  private
+
+  def date_from_string_or_date(obj)
+    if obj.is_a?(String)
+      Date.parse(obj)
+    else
+      obj
+    end
+  end
+
+  def time_from_string(obj)
+    Time.strptime(obj, '%H%M')
   end
 end
