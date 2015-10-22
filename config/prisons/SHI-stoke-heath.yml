@@ -9,6 +9,7 @@ adult_age: 10
 canned_responses: true
 email: visitsbooking.westmidlands@noms.gsi.gov.uk
 enabled: true
+estate: Stoke Heath
 phone: 0300 060 6506
 slots:
   mon:

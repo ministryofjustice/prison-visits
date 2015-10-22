@@ -17,7 +17,7 @@ class MetricsController < ApplicationController
       format.csv do
         render text: CSVFormatter.new(
           @nomis_ids,
-          ApplicationHelper.instance_method(:prison_name_for_id)
+          ApplicationHelper.instance_method(:prison_estate_name_for_id)
         ).generate(@dataset)
       end
     end
@@ -64,7 +64,7 @@ class MetricsController < ApplicationController
       VisitMetricsEntry.deferred,
       year,
       @start_of_year,
-      ApplicationHelper.instance_method(:prison_name_for_id)).
+      ApplicationHelper.instance_method(:prison_estate_name_for_id)).
     refresh
     @nomis_ids = Prison.nomis_ids
 

@@ -8,6 +8,7 @@ address:
 canned_responses: true
 email: socialvisits.kirkham@hmps.gsi.gov.uk
 enabled: true
+estate: Kirkham
 phone: 
 slots:
   fri:

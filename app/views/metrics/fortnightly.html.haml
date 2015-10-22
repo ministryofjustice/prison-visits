@@ -4,7 +4,7 @@
 
 %h1
   Fortnightly performance indicators for
-  = prison_name_for_id(@nomis_id)
+  = prison_estate_name_for_id(@nomis_id)
   = link_to('(All time)', prison_metrics_all_time_path(@nomis_id))
   = link_to('Performance over time', prison_metrics_fortnightly_performance_path(@nomis_id))
 %h2

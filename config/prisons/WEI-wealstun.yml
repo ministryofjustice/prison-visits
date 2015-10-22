@@ -7,6 +7,7 @@ address:
 canned_responses: true
 email: socialvisits.wealstun@hmps.gsi.gov.uk
 enabled: true
+estate: Wealstun
 phone: 01937 444599
 slots:
   mon:

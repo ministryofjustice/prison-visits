@@ -7,6 +7,7 @@ address:
 canned_responses: true
 email: socialvisits.lownewton@hmps.gsi.gov.uk
 enabled: true
+estate: Low Newton
 phone: 0191 376 4147
 slots:
   fri:

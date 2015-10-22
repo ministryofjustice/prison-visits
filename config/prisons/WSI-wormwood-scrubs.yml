@@ -7,6 +7,7 @@ address:
 canned_responses: true
 email: socialvisits.wormwoodscrubs@hmps.gsi.gov.uk
 enabled: true
+estate: Wormwood Scrubs
 phone: 020 8588 3564
 slots:
   mon:

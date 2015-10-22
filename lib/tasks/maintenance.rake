@@ -39,6 +39,34 @@ namespace :maintenance do
     end
   end
 
+  # The estate is the larger organizaiton to which a 'prison' belongs.
+  # So 'wincheseter - remand only' and 'winchester - conviceted only'
+  # belong to the estate 'winchester'.  This is naive helper task used to
+  # quickly add an 'estate' key and value to a prison yaml record.  It does
+  # not try to interpret the estate name.  You will need to check that is
+  # correct now that the run is complete.
+  task :add_estate_to_prison do
+    Dir["config/prisons/*.yml"].each do |filename|
+      YAML.load_file(filename).tap do |p|
+        next unless p.key?('estate') && p['estate'].blank?
+
+        # Preserve the name-and-nomis_id top ordering.
+        nn = { 'name' => p.delete('name'),
+               'nomis_id' => p.delete('nomis_id') }
+
+        puts "Processing #{nn['name']} adding estate name."
+
+        p['estate'] = nn['name']
+
+        nn = nn.merge(Hash[p.sort])
+
+        output_file =
+          "config/prisons/#{nn['nomis_id']}-#{nn['name'].parameterize}.yml"
+        YAML.dump(nn, File.open(output_file, 'w'))
+      end
+    end
+  end
+
   task :update_bank_holidays do
     sh(
       'curl',

@@ -7,6 +7,7 @@ address:
 canned_responses: true
 email: socvisdartmoor@hmps.gsi.gov.uk
 enabled: true
+estate: Dartmoor
 lead_days: 4
 phone: 01822 322022
 slots:

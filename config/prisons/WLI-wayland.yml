@@ -7,6 +7,7 @@ address:
 canned_responses: true
 email: socialvisits.wayland@hmps.gsi.gov.uk
 enabled: true
+estate: Wayland
 phone: 001953 804152
 slots:
   tue:

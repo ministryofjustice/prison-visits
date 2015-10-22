@@ -7,6 +7,7 @@ address:
 canned_responses: true
 email: socialvisits.whatton@hmps.gsi.gov.uk
 enabled: true
+estate: Whatton
 phone: 01949 803564
 slots:
   fri:
