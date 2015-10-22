@@ -4,7 +4,6 @@ nomis_id: LNI
 address:
 - Brasside
 - DH1 5YA
-canned_responses: true
 email: socialvisits.lownewton@hmps.gsi.gov.uk
 enabled: true
 estate: Low Newton

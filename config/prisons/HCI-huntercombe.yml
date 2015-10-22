@@ -4,7 +4,6 @@ nomis_id: HCI
 address:
 - Huntercombe Place
 - 'RG9 5SB '
-canned_responses: true
 email: socialvisits.huntercombe@hmps.gsi.gov.uk
 enabled: true
 estate: Huntercombe

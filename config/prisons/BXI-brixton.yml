@@ -4,7 +4,6 @@ nomis_id: BXI
 address:
 - Jebb Avenue
 - SW2 5XF
-canned_responses: true
 email: socialvisits.brixton@hmps.gsi.gov.uk
 enabled: true
 estate: Brixton

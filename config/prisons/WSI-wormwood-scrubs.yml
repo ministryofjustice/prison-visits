@@ -4,7 +4,6 @@ nomis_id: WSI
 address:
 - Du Cane Road
 - W12 0AE
-canned_responses: true
 email: socialvisits.wormwoodscrubs@hmps.gsi.gov.uk
 enabled: true
 estate: Wormwood Scrubs

@@ -4,7 +4,6 @@ nomis_id: NHI
 address:
 - Dial Wood
 - WF4 4XX
-canned_responses: true
 email: socialvisits.newhall@hmps.gsi.gov.uk
 enabled: true
 estate: New Hall

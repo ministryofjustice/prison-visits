@@ -4,7 +4,6 @@ nomis_id: MDI
 address:
 - Bawtry Road
 - DN7 6BW
-canned_responses: true
 email: socialvisits.moorlandclosed@hmps.gsi.gov.uk
 enabled: true
 estate: Moorland Closed

@@ -81,30 +81,14 @@ RSpec.describe Confirmation do
           subject.outcome = 'no_vos_left'
         end
 
-        it 'is valid when vo_number is present and canned_response is true' do
+        it 'is valid when vo_number is present' do
           subject.vo_number = '1234abcd12'
-          subject.canned_response = true
           subject.valid?
           expect(subject.errors[:vo_number]).to be_blank
         end
 
-        it 'is valid when vo_number is present and canned_response is false' do
-          subject.vo_number = '1234abcd12'
-          subject.canned_response = false
-          subject.valid?
-          expect(subject.errors[:vo_number]).to be_blank
-        end
-
-        it 'is valid when vo_number is blank and canned_response is true' do
+        it 'is valid when vo_number is blank' do
           subject.vo_number = ''
-          subject.canned_response = true
-          subject.valid?
-          expect(subject.errors[:vo_number]).to be_blank
-        end
-
-        it 'is valid when vo_number is blank and canned_response is false' do
-          subject.vo_number = ''
-          subject.canned_response = false
           subject.valid?
           expect(subject.errors[:vo_number]).to be_blank
         end
@@ -115,33 +99,17 @@ RSpec.describe Confirmation do
           subject.outcome = 'slot_0'
         end
 
-        it 'is valid when vo_number is present and canned_response is true' do
+        it 'is valid when vo_number is present' do
           subject.vo_number = '1234abcd12'
-          subject.canned_response = true
           subject.valid?
           expect(subject.errors[:vo_number]).to be_blank
         end
 
-        it 'is valid when vo_number is present and canned_response is false' do
-          subject.vo_number = '1234abcd12'
-          subject.canned_response = false
-          subject.valid?
-          expect(subject.errors[:vo_number]).to be_blank
-        end
-
-        it 'is invalid when vo_number is blank and canned_response is true' do
+        it 'is invalid when vo_number is blank' do
           subject.vo_number = ''
-          subject.canned_response = true
           subject.valid?
           expect(subject.errors[:vo_number]).
             to include('you must supply a reference number')
-        end
-
-        it 'is valid when vo_number is blank and canned_response is false' do
-          subject.vo_number = ''
-          subject.canned_response = false
-          subject.valid?
-          expect(subject.errors[:vo_number]).to be_blank
         end
       end
     end

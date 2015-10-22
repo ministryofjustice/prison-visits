@@ -4,7 +4,6 @@ nomis_id: HHI
 address:
 - Holme House Road
 - S18 2QU
-canned_responses: true
 email: socialvisits.holmehouse@hmps.gsi.gov.uk
 enabled: true
 estate: Holme House

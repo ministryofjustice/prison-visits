@@ -4,7 +4,6 @@ nomis_id: EHI
 address:
 - Church Road
 - 'ME12 4AA '
-canned_responses: true
 email: socialvisits.standfordhill@hmps.gsi.gov.uk
 enabled: true
 estate: Standford Hill

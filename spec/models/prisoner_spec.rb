@@ -78,8 +78,4 @@ RSpec.describe Prisoner do
   it 'returns the nomis_id of the prison holding the prisoner' do
     expect(prisoner.prison_nomis_id).to eq('RCI')
   end
-
-  it 'returns the canned responses status of the prison holding the prisoner' do
-    expect(prisoner.prison_canned_responses).to be_truthy
-  end
 end

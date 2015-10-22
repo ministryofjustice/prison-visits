@@ -4,7 +4,6 @@ nomis_id: KTI
 address:
 - Parkbourn
 - 'L31 1HX '
-canned_responses: true
 email: socialvisits.kennet@hmps.gsi.gov.uk
 enabled: true
 estate: Kennet

@@ -4,7 +4,6 @@ nomis_id: PNI
 address:
 - 2 Ribbleton Lane
 - 'PR1 5AB '
-canned_responses: true
 email: socialvisits.preston@hmps.gsi.gov.uk
 enabled: true
 estate: Preston

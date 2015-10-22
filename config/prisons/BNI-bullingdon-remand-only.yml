@@ -4,7 +4,6 @@ nomis_id: BNI
 address:
 - Bicester
 - OX25 1PZ
-canned_responses: true
 email: socialvisits.bullingdon@hmps.gsi.gov.uk
 enabled: true
 estate: Bullingdon

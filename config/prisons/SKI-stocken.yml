@@ -4,7 +4,6 @@ nomis_id: SKI
 address:
 - Stocken Hall Road
 - LE15 7RD
-canned_responses: true
 email: socialvisits.stocken@hmps.gsi.gov.uk
 enabled: true
 estate: Stocken

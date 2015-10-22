@@ -7,7 +7,6 @@ address:
 - London
 - SE28 0EB
 booking_window: 21
-canned_responses: true
 email: belmarsh.visits@hmps.gsi.gov.uk
 enabled: true
 estate: Belmarsh

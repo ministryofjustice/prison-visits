@@ -5,7 +5,6 @@ address:
 - St. Loyes Street
 - MK40 1HG
 booking_window: 14
-canned_responses: true
 email: socialvisits.bedford@hmps.gsi.gov.uk
 enabled: true
 estate: Bedford

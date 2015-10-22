@@ -4,7 +4,6 @@ nomis_id: LFI
 address:
 - Stone Row Head
 - LA1 3QZ
-canned_responses: true
 email: lancasterfarmsdomesticvisitsbooking@hmps.gsi.gov.uk
 enabled: true
 estate: Lancaster Farms

@@ -4,7 +4,6 @@ nomis_id: BCI
 address:
 - Buckley Road
 - OL12 9DP
-canned_responses: true
 email: socialvisits.buckleyhall@hmps.gsi.gov.uk
 enabled: true
 estate: Buckley Hall

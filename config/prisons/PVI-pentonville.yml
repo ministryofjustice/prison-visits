@@ -4,7 +4,6 @@ nomis_id: PVI
 address:
 - Caledonian Road
 - N7 8TT
-canned_responses: true
 email: socialvisits.pentonville@hmps.gsi.gov.uk
 enabled: true
 estate: Pentonville

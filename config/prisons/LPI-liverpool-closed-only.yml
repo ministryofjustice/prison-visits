@@ -4,7 +4,6 @@ nomis_id: LPI
 address:
 - 68 Hornby Road
 - L9 3DF
-canned_responses: true
 email: socialvisits.liverpool@hmps.gsi.gov.uk
 enabled: true
 estate: Liverpool

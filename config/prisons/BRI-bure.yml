@@ -4,7 +4,6 @@ nomis_id: BRI
 address:
 - Jaguar Drive
 - NR10 5GB
-canned_responses: true
 email: socialvisits.bure@hmps.gsi.gov.uk
 enabled: true
 estate: Bure

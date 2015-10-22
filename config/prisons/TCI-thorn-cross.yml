@@ -4,7 +4,6 @@ nomis_id: TCI
 address:
 - Arley Road
 - NWA4 4RL
-canned_responses: true
 email: socialvisits.thorncross@hmps.gsi.gov.uk
 enabled: true
 estate: Thorn Cross

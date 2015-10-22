@@ -4,7 +4,6 @@ nomis_id: GMI
 address:
 - SHAFTESBURY
 - 'SP7 0AH '
-canned_responses: true
 email: socialvisitsguysmarsh@hmps.gsi.gov.uk
 enabled: true
 estate: Guys Marsh

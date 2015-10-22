@@ -4,7 +4,6 @@ nomis_id: AGI
 address:
 - Askham Richard
 - YO23 3FT
-canned_responses: true
 email: socialvisits.askhamgrange@hmps.gsi.gov.uk
 enabled: true
 estate: Askham Grange

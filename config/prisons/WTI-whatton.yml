@@ -4,7 +4,6 @@ nomis_id: WTI
 address:
 - New Lane
 - 'NG13 9FQ '
-canned_responses: true
 email: socialvisits.whatton@hmps.gsi.gov.uk
 enabled: true
 estate: Whatton

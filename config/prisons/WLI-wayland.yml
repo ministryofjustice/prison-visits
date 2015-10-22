@@ -4,7 +4,6 @@ nomis_id: WLI
 address:
 - Griston
 - IP25 6RL
-canned_responses: true
 email: socialvisits.wayland@hmps.gsi.gov.uk
 enabled: true
 estate: Wayland

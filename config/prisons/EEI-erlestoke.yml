@@ -4,7 +4,6 @@ nomis_id: EEI
 address:
 - DEVIZES
 - SN10 5TU
-canned_responses: true
 email: eecmbookavisit@hmps.gsi.gov.uk
 enabled: true
 estate: Erlestoke

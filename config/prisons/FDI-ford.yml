@@ -4,7 +4,6 @@ nomis_id: FDI
 address:
 - Arundel
 - BN18 0BX
-canned_responses: true
 email: socialvisits.ford@hmps.gsi.gov.uk
 enabled: true
 estate: Ford

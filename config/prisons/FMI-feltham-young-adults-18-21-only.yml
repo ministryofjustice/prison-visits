@@ -4,7 +4,6 @@ nomis_id: FMI
 address:
 - Bedfont Road
 - TW13 4ND
-canned_responses: true
 email: socialvisits.feltham@hmps.gsi.gov.uk
 enabled: true
 estate: Feltham

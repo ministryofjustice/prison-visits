@@ -4,7 +4,6 @@ nomis_id: DAI
 address:
 - Princetown
 - PL20 6RR
-canned_responses: true
 email: socvisdartmoor@hmps.gsi.gov.uk
 enabled: true
 estate: Dartmoor

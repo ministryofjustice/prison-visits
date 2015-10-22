@@ -13,7 +13,7 @@ class Prisoner
 
   validate :prison_in_service
 
-  delegate :email, :canned_responses, :nomis_id, to: :prison, prefix: :prison
+  delegate :email, :nomis_id, to: :prison, prefix: :prison
 
   def prison
     Prison.find(prison_name)

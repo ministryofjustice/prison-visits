@@ -4,7 +4,6 @@ nomis_id: WOI
 address:
 - Everthorpe
 - HU15 2JZ
-canned_responses: true
 email: socialvisits.everthorpe@hmps.gsi.gov.uk
 enabled: true
 estate: Wolds

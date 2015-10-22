@@ -4,7 +4,6 @@ nomis_id: NSI
 address:
 - Freiston
 - PE22 0QX
-canned_responses: true
 email: socialvisits.northseacamp@hmps.gsi.gov.uk
 enabled: true
 estate: North Sea Camp

@@ -24,7 +24,7 @@
     Visitor #{index + 1}:
     %strong #{first_name(visitor)} #{initial ? last_initial(visitor) : last_name(visitor)}
 
-- if @confirmation.canned_response && @confirmation.vo_number != 'none'
+- if @confirmation.vo_number != 'none'
 
   %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } Your reference number is: #{@confirmation.vo_number}
 
