@@ -15,14 +15,14 @@ module DateHelper
     I18n.l(time_from_string(time), format: :twenty_four_hour)
   end
 
-  def display_start_time(times)
+  def format_start_time(times)
     format_time_12hr(times.split('-')[0])
   end
 
-  def display_slot_and_duration(times, glue = ' for ')
+  def format_slot_and_duration(times, glue = ' for ')
     from, to = times.split('-')
     [
-      display_start_time(times),
+      format_start_time(times),
       (time_from_string(to) - time_from_string(from)).duration
     ].join(glue)
   end

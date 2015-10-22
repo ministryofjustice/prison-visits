@@ -35,16 +35,16 @@ RSpec.describe DateHelper do
     end
   end
 
-  describe '.display_start_time' do
+  describe '.format_start_time' do
     it 'formats a start time from a 24hr time string' do
-      expect(helper.display_start_time('0945-1145')).to eq('9:45am')
+      expect(helper.format_start_time('0945-1145')).to eq('9:45am')
     end
   end
 
-  describe '.display_slot_and_duration' do
+  describe '.format_slot_and_duration' do
     it 'displays a slot and duration' do
-      expect(helper.display_slot_and_duration('0945-1145')).to eq('9:45am for 2 hrs')
-      expect(helper.display_slot_and_duration('1430-1600')).to eq('2:30pm for 1 hr 30 mins')
+      expect(helper.format_slot_and_duration('0945-1145')).to eq('9:45am for 2 hrs')
+      expect(helper.format_slot_and_duration('1430-1600')).to eq('2:30pm for 1 hr 30 mins')
     end
   end
 end

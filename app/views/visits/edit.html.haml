@@ -43,7 +43,7 @@
   %p First choice:
   %p
     %strong= format_date_of_visit visit.slots.first.date
-    = display_slot_and_duration visit.slots.first.times
+    = format_slot_and_duration visit.slots.first.times
 
   - if visit.slots[1].date.present?
     %p.alt Alternatives:
@@ -52,7 +52,7 @@
         - if slot.date.present?
           %li
             %strong= format_date_of_visit slot.date
-            = display_slot_and_duration slot.times
+            = format_slot_and_duration slot.times
 
   %p.edit-link= link_to 'Change visit details', edit_slots_path
 
