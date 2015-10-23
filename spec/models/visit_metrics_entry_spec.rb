@@ -1,20 +1,42 @@
 require 'rails_helper'
 
 RSpec.describe VisitMetricsEntry do
-  it "requires mandatory fields" do
-    expect(subject).not_to be_valid
+  subject{ described_class.new(nomis_id: 'RCI', requested_at: Time.now, visit_id: 1234) }
 
-    subject.visit_id = "LOL"
-    expect(subject).not_to be_valid
+  it { expect(subject).to be_valid }
 
-    subject.nomis_id = "RCI"
-    expect(subject).not_to be_valid
+  describe '#outcome' do
+    let(:valid_outcomes) { %w[pending confirmed rejected request_cancelled visit_cancelled] }
 
-    subject.requested_at = Time.now
-    expect(subject).not_to be_valid
+    it 'starts in pending' do
+      expect(subject.outcome).to eq 'pending'
+    end
 
-    subject.outcome = 'pending'
-    subject.kind = 'deferred'
-    expect(subject).to be_valid
+    it 'accepts all valid outcomes' do
+      valid_outcomes.each do |outcome|
+        subject.outcome = outcome
+        expect(subject).to be_valid
+      end
+    end
+
+    it 'is not vaild if outcome is invalid' do
+      subject.outcome = 'lost'
+      expect(subject).not_to be_valid
+    end
+  end
+
+  describe '#nomis_id' do
+    before { subject.nomis_id = nil }
+    it { expect(subject).not_to be_valid }
+  end
+
+  describe '#visit_id' do
+    before { subject.visit_id = nil }
+    it { expect(subject).not_to be_valid }
+  end
+
+  describe '#requested_at' do
+    before { subject.requested_at = nil }
+    it { expect(subject).not_to be_valid }
   end
 end
