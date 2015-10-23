@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20150429100538) do
     t.string   "reason"
     t.integer  "processing_time"
     t.integer  "end_to_end_time"
-    t.string   "kind"
+    t.string   "kind",            default: "deferred"
   end
 
   add_index "visit_metrics_entries", ["nomis_id"], name: "index_visit_metrics_entries_on_nomis_id", using: :btree
