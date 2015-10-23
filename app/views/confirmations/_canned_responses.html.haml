@@ -23,12 +23,7 @@
           = radio_button_tag 'confirmation[outcome]', "slot_#{index}", f.object.outcome == "slot_#{index}", { :class => 'js-Conditional',  :data => { :'conditional-el' => 'vo_number_field,not_listed_confirmed,banned_confirmed', :'conditional-alt' => 'not_listed_rejected,banned_rejected', :'conditional-val' => 'slot_0,slot_1,slot_2' } }
           = succeed ':' do
             = index == 0 ? "First choice" : "Alternative #{index}"
-          %strong
-            = format_date_of_visit(slot.date)
-            from
-            = format_time_24hr slot.times.split('-')[0]
-            \-
-            = format_time_24hr slot.times.split('-')[1]
+          %strong= date_and_times_of_slot(slot)
 
     .panel-indent{ :id => 'vo_number_field' }
       =field_container(f, :vo_number, id: 'vo_number') do

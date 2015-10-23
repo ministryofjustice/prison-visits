@@ -15,22 +15,17 @@ module DateHelper
     I18n.l(time_from_string(time), format: :twenty_four_hour)
   end
 
-  def format_start_time(times)
-    format_time_12hr(times.split('-')[0])
-  end
-
-  def format_slot_and_duration(times, glue = ' for ')
-    from, to = times.split('-')
-    [
-      format_start_time(times),
-      (time_from_string(to) - time_from_string(from)).duration
-    ].join(glue)
-  end
-
   def date_and_duration_of_slot(slot)
     [
       format_date_of_visit(slot.date),
       format_slot_and_duration(slot.times)
+    ].join(' ')
+  end
+
+  def date_and_times_of_slot(slot)
+    [
+      format_date_of_visit(slot.date),
+      stat_and_end_time(slot.times)
     ].join(' ')
   end
 
@@ -46,5 +41,24 @@ module DateHelper
 
   def time_from_string(obj)
     Time.strptime(obj, '%H%M')
+  end
+
+  def format_start_time(times)
+    format_time_12hr(times.split('-').first)
+  end
+
+  def format_slot_and_duration(times, glue = ' for ')
+    from, to = times.split('-')
+    [
+      format_start_time(times),
+      (time_from_string(to) - time_from_string(from)).duration
+    ].join(glue)
+  end
+
+  def stat_and_end_time(times)
+    [
+      format_time_24hr(times.split('-').first),
+      format_time_24hr(times.split('-').last)
+    ].join(' - ')
   end
 end
