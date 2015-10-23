@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20150429100538) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "visit_metrics_entries", force: true do |t|
+  create_table "visit_metrics_entries", force: :cascade do |t|
     t.string   "visit_id"
     t.string   "nomis_id"
     t.datetime "requested_at"
