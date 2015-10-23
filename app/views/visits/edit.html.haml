@@ -40,10 +40,9 @@
   - if visit.slots.dup.delete_if{|s|s.date.blank?}.size < 3
     %p You can choose up to 2 alternative dates if your first choice isn’t available.
 
-  %p First choice:
   %p
-    %strong= format_date_of_visit visit.slots.first.date
-    = format_slot_and_duration visit.slots.first.times
+    First choice:
+    %strong= date_and_duration_of_slot(visit.slots.first)
 
   - if visit.slots[1].date.present?
     %p.alt Alternatives:
@@ -51,8 +50,7 @@
       - visit.slots[1..-1].each do |slot|
         - if slot.date.present?
           %li
-            %strong= format_date_of_visit slot.date
-            = format_slot_and_duration slot.times
+            %strong= date_and_duration_of_slot(slot)
 
   %p.edit-link= link_to 'Change visit details', edit_slots_path
 

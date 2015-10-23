@@ -27,6 +27,13 @@ module DateHelper
     ].join(glue)
   end
 
+  def date_and_duration_of_slot(slot)
+    [
+      format_date_of_visit(slot.date),
+      format_slot_and_duration(slot.times)
+    ].join(' ')
+  end
+
   private
 
   def date_from_string_or_date(obj)

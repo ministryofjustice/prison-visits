@@ -6,7 +6,7 @@
 
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } Your visit to #{@visit.prison_name} is now successfully confirmed.
 
-%h2{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' } #{format_date_of_visit(@slot.date)} #{format_slot_and_duration(@slot.times)}
+%h2{ style: 'margin:1em 0;font: bold 24px Helvetica, Arial, sans-serif' } #{date_and_duration_of_slot(@slot)}
 
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } Please arrive 45 minutes before your visit starts.
 
