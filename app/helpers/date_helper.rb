@@ -3,9 +3,12 @@ module DateHelper
     I18n.l(date_from_string_or_date(date), format: :date_of_birth)
   end
 
-  def format_date_of_visit(date)
+  def format_date(date)
     I18n.l(date_from_string_or_date(date), format: :date_of_visit)
   end
+
+  alias_method :format_date_of_visit, :format_date
+  alias_method :format_date_of_reply, :format_date
 
   def format_time_12hr(time)
     I18n.l(time_from_string(time), format: :twelve_hour)
@@ -17,15 +20,15 @@ module DateHelper
 
   def date_and_duration_of_slot(slot)
     [
-      format_date_of_visit(slot.date),
+      format_date(slot.date),
       format_slot_and_duration(slot.times)
     ].join(' ')
   end
 
   def date_and_times_of_slot(slot)
     [
-      format_date_of_visit(slot.date),
-      stat_and_end_time(slot.times)
+      format_date(slot.date),
+      start_and_end_time(slot.times)
     ].join(' ')
   end
 
@@ -55,7 +58,7 @@ module DateHelper
     ].join(glue)
   end
 
-  def stat_and_end_time(times)
+  def start_and_end_time(times)
     [
       format_time_24hr(times.split('-').first),
       format_time_24hr(times.split('-').last)

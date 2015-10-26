@@ -61,7 +61,7 @@ module VisitHelper
 
   def when_to_expect_reply
     schedule = PrisonSchedule.new(prison)
-    format_date_of_visit(schedule.confirmation_email_date)
+    format_date_of_reply(schedule.confirmation_email_date)
   end
 
   def prison_specific_id_requirements(prison)

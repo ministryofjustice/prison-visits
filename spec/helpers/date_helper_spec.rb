@@ -10,12 +10,12 @@ RSpec.describe DateHelper do
     end
   end
 
-  describe '.format_date_of_visit' do
+  describe '.format_date' do
     it 'formats a day from a string' do
-      expect(helper.format_date_of_visit('2014-07-24')).to eq('Thursday 24 July')
+      expect(helper.format_date('2014-07-24')).to eq('Thursday 24 July')
     end
     it 'formats a day from a date' do
-      expect(helper.format_date_of_visit(Date.parse('2014-07-24'))).to eq('Thursday 24 July')
+      expect(helper.format_date(Date.parse('2014-07-24'))).to eq('Thursday 24 July')
     end
   end
 
