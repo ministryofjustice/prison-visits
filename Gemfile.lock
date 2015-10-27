@@ -281,6 +281,8 @@ GEM
       json (~> 1.0)
       redis (~> 3.2, >= 3.2.1)
       redis-namespace (~> 1.5, >= 1.5.2)
+    sidekiq-monitor-stats (0.0.1)
+      sidekiq
     simplecov (0.7.1)
       multi_json (~> 1.0)
       simplecov-html (~> 0.7.1)
@@ -377,6 +379,7 @@ DEPENDENCIES
   sendgrid_toolkit
   sentry-raven
   sidekiq
+  sidekiq-monitor-stats
   simplecov (~> 0.7.1)
   simplecov-rcov
   sinatra

@@ -23,6 +23,7 @@ gem 'curb'
 gem 'string_scrubber', '>= 0.2.0'
 gem 'virtus'
 gem 'sinatra'
+gem 'sidekiq-monitor-stats'
 
 group :test do
   gem 'codeclimate-test-reporter'
