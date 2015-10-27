@@ -19,17 +19,11 @@ module DateHelper
   end
 
   def date_and_duration_of_slot(slot)
-    [
-      format_date(slot.date),
-      format_slot_and_duration(slot.times)
-    ].join(' ')
+    "#{format_date(slot.date)} #{slot_and_duration(slot.times)}"
   end
 
   def date_and_times_of_slot(slot)
-    [
-      format_date(slot.date),
-      start_and_end_time(slot.times)
-    ].join(' ')
+    "#{format_date(slot.date)} #{start_and_end_time(slot.times)}"
   end
 
   private
@@ -46,22 +40,18 @@ module DateHelper
     Time.strptime(obj, '%H%M')
   end
 
-  def format_start_time(times)
-    format_time_12hr(times.split('-').first)
-  end
+  def slot_and_duration(times)
+    from, to = split_times(times)
+    duration = (time_from_string(to) - time_from_string(from)).duration
 
-  def format_slot_and_duration(times, glue = ' for ')
-    from, to = times.split('-')
-    [
-      format_start_time(times),
-      (time_from_string(to) - time_from_string(from)).duration
-    ].join(glue)
+    "#{format_time_12hr(from)} for #{duration}"
   end
 
   def start_and_end_time(times)
-    [
-      format_time_24hr(times.split('-').first),
-      format_time_24hr(times.split('-').last)
-    ].join(' - ')
+    split_times(times).map(&method(:format_time_24hr)).join(' - ')
+  end
+
+  def split_times(times)
+    times.split('-')
   end
 end
