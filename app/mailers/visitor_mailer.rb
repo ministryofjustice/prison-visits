@@ -4,7 +4,9 @@ class VisitorMailer < ActionMailer::Base
   include Autoresponder
   include Addresses
   include EnsureQuotedPrintable
+  include DateHelper
 
+  add_template_helper(DateHelper)
   add_template_helper(ApplicationHelper)
   add_template_helper(VisitHelper)
 
@@ -25,7 +27,9 @@ class VisitorMailer < ActionMailer::Base
       from: sender,
       reply_to: prison_mailbox_email,
       to: recipient,
-      subject: default_i18n_subject(confirmation_date: format_date(slot_date))
+      subject: default_i18n_subject(
+        confirmation_date: format_date_of_visit(slot_date)
+      )
     )
   end
 
@@ -37,7 +41,9 @@ class VisitorMailer < ActionMailer::Base
       from: sender,
       reply_to: prison_mailbox_email,
       to: recipient,
-      subject: default_i18n_subject(rejection_date: format_date(first_date))
+      subject: default_i18n_subject(
+        rejection_date: format_date_of_visit(first_date)
+      )
     )
   end
 
@@ -51,7 +57,9 @@ class VisitorMailer < ActionMailer::Base
       from: sender,
       reply_to: prison_mailbox_email,
       to: recipient,
-      subject: default_i18n_subject(receipt_date: format_date(first_date))
+      subject: default_i18n_subject(
+        receipt_date: format_date_of_visit(first_date)
+      )
     )
   end
 
@@ -64,14 +72,10 @@ class VisitorMailer < ActionMailer::Base
   end
 
   def first_date
-    Date.parse(@visit.slots.first.date)
+    @visit.slots.first.date
   end
 
   def slot_date
-    Date.parse(@slot.date)
-  end
-
-  def format_date(date)
-    I18n.l(date, format: :long)
+    @slot.date
   end
 end

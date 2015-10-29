@@ -87,7 +87,7 @@
               - @schedule.available_visitation_dates.each do |date|
                 - slots_for_day(date).each do |slot|
                   - value = [date.strftime('%Y-%m-%d'), slot.join('-')].join('-')
-                  %option{ value: value, selected: ('selected' if value == current_slots[index]) }= date.strftime('%A, %e %B - ') + Time.strptime(slot[0].to_s, '%H%M').strftime('%l:%M%P')
+                  %option{ value: value, selected: ('selected' if value == current_slots[index]) }= format_date_of_visit(date) + Time.strptime(slot[0].to_s, '%H%M').strftime('%l:%M%P')
 
     .actions
       .primary-actions

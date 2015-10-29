@@ -83,7 +83,7 @@ RSpec.describe VisitController, type: :controller do
     it "cancels a confirmed visit request" do
       expect(controller.metrics_logger).to receive(:visit_status).with(sample_visit.visit_id).and_return('confirmed')
       post :update_status, id: sample_visit.visit_id, state: encrypted_visit, cancel: true
-      expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(['CANCELLED: Jimmy Harris on Sunday 7 July 2013'])
+      expect(ActionMailer::Base.deliveries.map(&:subject)).to eq(['CANCELLED: Jimmy Harris on Sunday 7 July'])
     end
 
     after :each do

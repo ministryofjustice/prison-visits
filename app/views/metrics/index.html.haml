@@ -28,9 +28,9 @@
 - if @start_date
   %h1
     From
-    = format_date(@start_date)
+    = format_date_of_visit(@start_date)
     to
-    = format_date(@end_date)
+    = format_date_of_visit(@end_date)
   %h3
     = link_to('View this data for all time', range: 'all')
     = link_to('Download this view as CSV', format: :csv, range: '')

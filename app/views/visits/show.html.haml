@@ -27,9 +27,7 @@
                   First choice:
                 - else
                   Alternative #{index}:
-                %strong= format_day slot.date
-                \ -
-                = display_slot_and_duration slot.times
+                %strong= date_and_duration_of_slot(slot)
 
 .Grid
   .Grid-1-3

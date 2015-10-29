@@ -1,12 +1,16 @@
 en:
   date:
     formats:
-      default: "%d/%m/%Y"
-      long: "%A %-d %B %Y"
+      date_of_birth: "%-d %B %Y" # 24 July 2014
+      date_of_visit: "%A %-d %B" # Thursday 24 July
     fields:
       day: Day
       month: Month
       year: Year
+  time:
+    formats:
+      twelve_hour: "%-l:%M%P"   # 1:30pm
+      twenty_four_hour: "%H:%M" # 13:30
   activemodel:
     attributes:
       feedback:

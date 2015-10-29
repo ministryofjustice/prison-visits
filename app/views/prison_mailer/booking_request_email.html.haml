@@ -6,26 +6,19 @@
   %strong #{@visit.prisoner.number}
   %br
   Date of birth:
-  %strong #{@visit.prisoner.date_of_birth.strftime("%e %B %Y")}
+  %strong #{format_date_of_birth(@visit.prisoner.date_of_birth)}
 
 %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
   First choice:
-  %strong
-    = Date.parse(@visit.slots.first.date).strftime('%A, %d/%m/%Y at ')
-    = format_time_str_24 @visit.slots.first.times.split('-')[0]
-    \-
-    = format_time_str_24 @visit.slots.first.times.split('-')[1]
+  %strong= date_and_times_of_slot(@visit.slots.first)
+
   - if @visit.slots.length > 1
     - @visit.slots.each_with_index do |slot, index|
       - unless index == 0
         - if slot.date.present?
           %br
           Alternative #{index}:
-          %strong
-            = Date.parse(slot.date).strftime('%A, %d/%m/%Y at ')
-            = format_time_str_24 slot.times.split('-')[0]
-            \-
-            = format_time_str_24 slot.times.split('-')[1]
+          %strong= date_and_times_of_slot(slot)
 
 - @visit.visitors.each_with_index do |visitor, index|
   %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' }
@@ -36,7 +29,7 @@
     %strong #{visitor.age}
     %br
     Date of birth:
-    %strong #{visitor.date_of_birth.strftime("%d/%m/%Y")}
+    %strong #{format_date_of_birth(visitor.date_of_birth)}
     - if visitor.email
       %br
       Email:

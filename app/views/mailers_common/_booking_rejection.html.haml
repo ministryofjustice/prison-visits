@@ -16,7 +16,7 @@
       - if slot.date.present?
         - unless index == 0
           %br
-        #{index + 1}. #{Date.parse(slot.date).strftime("%A %e %B")}, #{display_time_slot(slot.times)}
+        #{index + 1}. #{date_and_duration_of_slot(slot)}
 
   %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } Please visit #{link_to('www.gov.uk/prison-visits', 'http://www.gov.uk/prison-visits')} to choose some alternative dates.
 
@@ -32,11 +32,11 @@
 
   - if @confirmation.no_pvo
 
-    %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } However, you can book a weekday visit with visiting allowance valid until #{Date.parse(@confirmation.renew_pvo).strftime("%A %e %B")}. The visit must be taken before the allowance expires.
+    %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } However, you can book a weekday visit with visiting allowance valid until #{format_date_of_visit(@confirmation.renew_pvo)}. The visit must be taken before the allowance expires.
 
   - if @confirmation.no_vo
 
-    %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } #{@visit.prisoner.first_name} #{initial ? @visit.prisoner.last_initial : @visit.prisoner.last_name} will have their full visiting allowance (VO) renewed on #{Date.parse(@confirmation.renew_vo).strftime("%A %e %B")}.
+    %p{ style: 'margin:1em 0;font: 16px Helvetica, Arial, sans-serif' } #{@visit.prisoner.first_name} #{initial ? @visit.prisoner.last_initial : @visit.prisoner.last_name} will have their full visiting allowance (VO) renewed on #{format_date_of_visit(@confirmation.renew_vo)}.
 
 - when Confirmation::PRISONER_INCORRECT
 

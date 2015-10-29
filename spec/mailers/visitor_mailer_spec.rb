@@ -121,7 +121,7 @@ RSpec.describe VisitorMailer do
 
     it "sends out an e-mail with a reference number" do
       email = subject.booking_confirmation_email(sample_visit, confirmation_canned_response, token)
-      expect(email.subject).to eq("Visit confirmed: your visit for Sunday 7 July 2013 has been confirmed")
+      expect(email.subject).to eq("Visit confirmed: your visit for Sunday 7 July has been confirmed")
 
       expect(email[:from]).to eq(noreply_address)
       expect(email[:reply_to]).to eq(prison_address)
@@ -139,7 +139,7 @@ RSpec.describe VisitorMailer do
 
     it "sends out an e-mail with no reference number for remand prisoners" do
       email = subject.booking_confirmation_email(sample_visit, confirmation_canned_response_remand, token)
-      expect(email.subject).to eq("Visit confirmed: your visit for Sunday 7 July 2013 has been confirmed")
+      expect(email.subject).to eq("Visit confirmed: your visit for Sunday 7 July has been confirmed")
 
       expect(email[:from]).to eq(noreply_address)
       expect(email[:reply_to]).to eq(prison_address)
@@ -156,7 +156,7 @@ RSpec.describe VisitorMailer do
 
     it "sends out an e-mail with the list of visitors not on the approved visitor list" do
       email = subject.booking_confirmation_email(sample_visit, confirmation_unlisted_visitors, token)
-      expect(email.subject).to eq("Visit confirmed: your visit for Sunday 7 July 2013 has been confirmed")
+      expect(email.subject).to eq("Visit confirmed: your visit for Sunday 7 July has been confirmed")
 
       expect(email[:from]).to eq(noreply_address)
       expect(email[:reply_to]).to eq(prison_address)
@@ -174,7 +174,7 @@ RSpec.describe VisitorMailer do
 
     it "sends out an e-mail with the list of banned visitors" do
       email = subject.booking_confirmation_email(sample_visit, confirmation_banned_visitors, token)
-      expect(email.subject).to eq("Visit confirmed: your visit for Sunday 7 July 2013 has been confirmed")
+      expect(email.subject).to eq("Visit confirmed: your visit for Sunday 7 July has been confirmed")
 
       expect(email[:from]).to eq(noreply_address)
       expect(email[:reply_to]).to eq(prison_address)
@@ -192,7 +192,7 @@ RSpec.describe VisitorMailer do
 
     it "sends out an e-mail notifying visitors that it is a closed visit" do
       email = subject.booking_confirmation_email(sample_visit, confirmation_closed_visit, token)
-      expect(email.subject).to eq("Visit confirmed: your visit for Sunday 7 July 2013 has been confirmed")
+      expect(email.subject).to eq("Visit confirmed: your visit for Sunday 7 July has been confirmed")
 
       expect(email[:from]).to eq(noreply_address)
       expect(email[:reply_to]).to eq(prison_address)
@@ -220,7 +220,7 @@ RSpec.describe VisitorMailer do
 
     it "because of a slot not being available" do
       email = subject.booking_rejection_email(sample_visit, confirmation_no_slot_available)
-      expect(email.subject).to eq("Visit cannot take place: your visit for Sunday 7 July 2013 could not be booked")
+      expect(email.subject).to eq("Visit cannot take place: your visit for Sunday 7 July could not be booked")
 
       expect(email[:from]).to eq(noreply_address)
       expect(email[:reply_to]).to eq(prison_address)
@@ -236,7 +236,7 @@ RSpec.describe VisitorMailer do
 
     it "because of a visitor not being on a contact list (legacy)" do
       email = subject.booking_rejection_email(sample_visit, confirmation_not_on_contact_list)
-      expect(email.subject).to eq("Visit cannot take place: your visit for Sunday 7 July 2013 could not be booked")
+      expect(email.subject).to eq("Visit cannot take place: your visit for Sunday 7 July could not be booked")
 
       expect(email[:from]).to eq(noreply_address)
       expect(email[:reply_to]).to eq(prison_address)
@@ -252,7 +252,7 @@ RSpec.describe VisitorMailer do
 
     it "because the prisoner details are incorrect" do
       email = subject.booking_rejection_email(sample_visit, rejection_prisoner_incorrect)
-      expect(email.subject).to eq("Visit cannot take place: your visit for Sunday 7 July 2013 could not be booked")
+      expect(email.subject).to eq("Visit cannot take place: your visit for Sunday 7 July could not be booked")
 
       expect(email[:from]).to eq(noreply_address)
       expect(email[:reply_to]).to eq(prison_address)
@@ -269,7 +269,7 @@ RSpec.describe VisitorMailer do
 
     it "because the prisoner is not at the prison" do
       email = subject.booking_rejection_email(sample_visit, rejection_prisoner_not_present)
-      expect(email.subject).to eq("Visit cannot take place: your visit for Sunday 7 July 2013 could not be booked")
+      expect(email.subject).to eq("Visit cannot take place: your visit for Sunday 7 July could not be booked")
 
       expect(email[:from]).to eq(noreply_address)
       expect(email[:reply_to]).to eq(prison_address)
@@ -286,7 +286,7 @@ RSpec.describe VisitorMailer do
 
     it "because the prisoner has no allowance" do
       email = subject.booking_rejection_email(sample_visit, rejection_prisoner_no_allowance)
-      expect(email.subject).to eq("Visit cannot take place: your visit for Sunday 7 July 2013 could not be booked")
+      expect(email.subject).to eq("Visit cannot take place: your visit for Sunday 7 July could not be booked")
 
       expect(email[:from]).to eq(noreply_address)
       expect(email[:reply_to]).to eq(prison_address)
@@ -303,7 +303,7 @@ RSpec.describe VisitorMailer do
 
     it "because the prisoner has no allowance and a VO renewal date is specified" do
       email = subject.booking_rejection_email(sample_visit, rejection_prisoner_no_allowance_vo_renew)
-      expect(email.subject).to eq("Visit cannot take place: your visit for Sunday 7 July 2013 could not be booked")
+      expect(email.subject).to eq("Visit cannot take place: your visit for Sunday 7 July could not be booked")
 
       expect(email[:from]).to eq(noreply_address)
       expect(email[:reply_to]).to eq(prison_address)
@@ -321,7 +321,7 @@ RSpec.describe VisitorMailer do
 
     it "because the prisoner has no allowance and a PVO renewal date is specified" do
       email = subject.booking_rejection_email(sample_visit, rejection_prisoner_no_allowance_pvo_renew)
-      expect(email.subject).to eq("Visit cannot take place: your visit for Sunday 7 July 2013 could not be booked")
+      expect(email.subject).to eq("Visit cannot take place: your visit for Sunday 7 July could not be booked")
 
       expect(email[:from]).to eq(noreply_address)
       expect(email[:reply_to]).to eq(prison_address)
@@ -340,7 +340,7 @@ RSpec.describe VisitorMailer do
 
     it "because a visitor is not on the list (canned response)" do
       email = subject.booking_rejection_email(sample_visit, rejection_visitor_not_listed)
-      expect(email.subject).to eq("Visit cannot take place: your visit for Sunday 7 July 2013 could not be booked")
+      expect(email.subject).to eq("Visit cannot take place: your visit for Sunday 7 July could not be booked")
 
       expect(email[:from]).to eq(noreply_address)
       expect(email[:reply_to]).to eq(prison_address)
@@ -357,7 +357,7 @@ RSpec.describe VisitorMailer do
 
     it "because a visitor is banned" do
       email = subject.booking_rejection_email(sample_visit, rejection_visitor_banned)
-      expect(email.subject).to eq("Visit cannot take place: your visit for Sunday 7 July 2013 could not be booked")
+      expect(email.subject).to eq("Visit cannot take place: your visit for Sunday 7 July could not be booked")
 
       expect(email[:from]).to eq(noreply_address)
       expect(email[:reply_to]).to eq(prison_address)
@@ -389,7 +389,7 @@ RSpec.describe VisitorMailer do
 
     it "with a date in the subject" do
       email = subject.booking_receipt_email(sample_visit, "token")
-      expect(email.subject).to eq("Not booked yet: we've received your visit request for Sunday 7 July 2013")
+      expect(email.subject).to eq("Not booked yet: we've received your visit request for Sunday 7 July")
       expect(email[:from]).to eq(noreply_address)
       expect(email[:reply_to]).to eq(prison_address)
       expect(email[:to]).to eq(visitor_address)

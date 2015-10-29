@@ -31,10 +31,7 @@ module SmokeTest
     alias_method :first_slot_date_prison_format, :first_slot_date
 
     def first_slot_date_visitor_format
-      # TODO: Refactor to use the I18n call.  It was refusing to work when
-      # Evangelos and I tested it - couldn't find the translation, even though
-      # the exception was showing the correct key in en.yml.
-      Date.parse(first_slot_date).strftime('%A %-d %B %Y')
+      Date.parse(first_slot_date).strftime('%A %-d %B')
     end
 
     class Prisoner < SimpleDelegator

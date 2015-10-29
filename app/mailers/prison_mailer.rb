@@ -3,9 +3,11 @@ class PrisonMailer < ActionMailer::Base
   include Autoresponder
   include Addresses
   include EnsureQuotedPrintable
+  include DateHelper
 
   after_action :do_not_send_to_prison, if: :smoke_test?
 
+  add_template_helper(DateHelper)
   add_template_helper(ApplicationHelper)
   add_template_helper(VisitHelper)
 
@@ -34,7 +36,7 @@ class PrisonMailer < ActionMailer::Base
       to: recipient,
       subject: default_i18n_subject(
         full_name: @visit.prisoner.full_name,
-        request_date: formatted_first_slot_date
+        request_date: format_date_of_visit(first_date)
       )
     )
   end
@@ -78,7 +80,7 @@ class PrisonMailer < ActionMailer::Base
       to: recipient,
       subject: default_i18n_subject(
         full_name: @visit.prisoner.full_name,
-        receipt_date: formatted_first_slot_date
+        receipt_date: format_date_of_visit(first_date)
       )
     )
   end
@@ -108,7 +110,7 @@ class PrisonMailer < ActionMailer::Base
     visit.visitors.first.email
   end
 
-  def formatted_first_slot_date
-    I18n.l(Date.parse(@visit.slots.first.date), format: :long)
+  def first_date
+    @visit.slots.first.date
   end
 end
