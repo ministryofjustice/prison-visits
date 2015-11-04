@@ -1,5 +1,4 @@
 module MailerPreviewCommon
-  # rubocop:disable Metrics/LineLength
   def sample_visit
     Visit.new.tap do |v|
       v.visit_id = "ABC"

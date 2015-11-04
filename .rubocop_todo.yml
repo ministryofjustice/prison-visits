@@ -15,13 +15,6 @@ Metrics/AbcSize:
 Metrics/ClassLength:
   Max: 116
 
-# Offense count: 26
-# Configuration parameters: CountComments.
-Metrics/MethodLength:
-  Exclude:
-    - 'spec/support/features_helper.rb'
-    - 'test/mailers/previews/mailer_preview_common.rb'
-
 # Offense count: 4
 RSpec/DescribeClass:
   Exclude:
