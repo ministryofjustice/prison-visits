@@ -10,6 +10,7 @@ class RagStatusReport
     @this_period ||= query(Time.zone.today.year, this_fortnight, @percentile)
   end
 
+  # rubocop:disable Metrics/MethodLength
   def query(year, fortnight, percentile)
     @rag_count ||= rag_count(VisitMetricsEntry.find_by_sql(['
       WITH ranked_times AS (
