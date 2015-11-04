@@ -3,6 +3,7 @@ class GoogleAnalyticsAdapter
     @visit = visit
   end
 
+  # rubocop:disable Metrics/MethodLength
   def to_json
     {
       prison_name: prison_name,
