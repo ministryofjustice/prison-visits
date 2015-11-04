@@ -5,6 +5,7 @@ class FortnightlyPerformanceReport
     @year = year
   end
 
+  # rubocop:disable Metrics/MethodLength
   def performance(percentile)
     @model.find_by_sql ["
 WITH percentiles AS (

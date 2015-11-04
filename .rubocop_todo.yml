@@ -19,7 +19,6 @@ Metrics/ClassLength:
 # Configuration parameters: CountComments.
 Metrics/MethodLength:
   Exclude:
-    - 'app/reports/fortnightly_performance_report.rb'
     - 'app/reports/leaderboard_report.rb'
     - 'app/reports/rag_status_report.rb'
     - 'app/reports/weekly_confirmations_report.rb'
