@@ -22,29 +22,13 @@ class VisitorMailer < ActionMailer::Base
     @slot = visit.slots[confirmation.slot.to_i]
     @confirmation = confirmation
     @token = token
-
-    mail(
-      from: sender,
-      reply_to: prison_mailbox_email,
-      to: recipient,
-      subject: default_i18n_subject(
-        confirmation_date: format_date_of_visit(slot_date)
-      )
-    )
+    mail_booking_confirmation_email
   end
 
   def booking_rejection_email(visit, confirmation)
     @visit = visit
     @confirmation = confirmation
-
-    mail(
-      from: sender,
-      reply_to: prison_mailbox_email,
-      to: recipient,
-      subject: default_i18n_subject(
-        rejection_date: format_date_of_visit(first_date)
-      )
-    )
+    mail_booking_rejection_email
   end
 
   def booking_receipt_email(visit, token)
@@ -52,15 +36,7 @@ class VisitorMailer < ActionMailer::Base
     @token = token
 
     SpamAndBounceResets.new(@visit.visitors.first).perform_resets
-
-    mail(
-      from: sender,
-      reply_to: prison_mailbox_email,
-      to: recipient,
-      subject: default_i18n_subject(
-        receipt_date: format_date_of_visit(first_date)
-      )
-    )
+    mail_booking_receipt_email
   end
 
   def sender
@@ -77,5 +53,40 @@ class VisitorMailer < ActionMailer::Base
 
   def slot_date
     @slot.date
+  end
+
+  private
+
+  def mail_booking_confirmation_email
+    mail(
+      from: sender,
+      reply_to: prison_mailbox_email,
+      to: recipient,
+      subject: default_i18n_subject(
+        confirmation_date: format_date_of_visit(slot_date)
+      )
+    )
+  end
+
+  def mail_booking_rejection_email
+    mail(
+      from: sender,
+      reply_to: prison_mailbox_email,
+      to: recipient,
+      subject: default_i18n_subject(
+        rejection_date: format_date_of_visit(first_date)
+      )
+    )
+  end
+
+  def mail_booking_receipt_email
+    mail(
+      from: sender,
+      reply_to: prison_mailbox_email,
+      to: recipient,
+      subject: default_i18n_subject(
+        receipt_date: format_date_of_visit(first_date)
+      )
+    )
   end
 end

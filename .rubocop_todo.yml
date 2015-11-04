@@ -19,7 +19,6 @@ Metrics/ClassLength:
 # Configuration parameters: CountComments.
 Metrics/MethodLength:
   Exclude:
-    - 'app/mailers/visitor_mailer.rb'
     - 'app/models/parsed_email.rb'
     - 'app/reports/fortnightly_performance_report.rb'
     - 'app/reports/leaderboard_report.rb'
