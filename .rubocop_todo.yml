@@ -19,7 +19,6 @@ Metrics/ClassLength:
 # Configuration parameters: CountComments.
 Metrics/MethodLength:
   Exclude:
-    - 'app/services/calculated_metrics.rb'
     - 'app/services/csv_formatter.rb'
     - 'app/services/detailed_metrics.rb'
     - 'app/services/google_analytics_adapter.rb'
