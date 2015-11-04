@@ -13,17 +13,18 @@ module TrimParams
 
   def strip_whitespace(obj)
     case obj
-    when Hash
-      obj.inject(obj.class.new) { |h, (k, v)|
-        h[k] = strip_whitespace(v)
-        h
-      }
-    when Array
-      obj.map { |v| strip_whitespace(v) }
-    when String
-      obj.strip
+    when Hash   then trim_hash(obj)
+    when Array  then obj.map { |v| strip_whitespace(v) }
+    when String then obj.strip
     else
       obj
     end
+  end
+
+  def trim_hash(obj)
+    obj.inject(obj.class.new) { |h, (k, v)|
+      h[k] = strip_whitespace(v)
+      h
+    }
   end
 end

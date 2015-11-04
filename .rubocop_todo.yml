@@ -14,7 +14,6 @@ Metrics/AbcSize:
 # Configuration parameters: CountComments.
 Metrics/MethodLength:
   Exclude:
-    - 'app/controllers/concerns/trim_params.rb'
     - 'app/controllers/confirmations_controller.rb'
     - 'app/controllers/metrics_controller.rb'
     - 'app/controllers/slots_controller.rb'
