@@ -29,18 +29,10 @@ class PrisonMailer < ActionMailer::Base
     @visit = visit
     user = visit.visitors.find(&:email).email
     @token = token
-
-    mail(
-      from: sender,
-      reply_to: user,
-      to: recipient,
-      subject: default_i18n_subject(
-        full_name: @visit.prisoner.full_name,
-        request_date: format_date_of_visit(first_date)
-      )
-    )
+    booking_request(user)
   end
 
+  # rubocop:disable Metrics/MethodLength
   def booking_receipt_email(visit, confirmation)
     @visit = visit
     @confirmation = confirmation
@@ -94,6 +86,18 @@ class PrisonMailer < ActionMailer::Base
   end
 
   private
+
+  def booking_request(user)
+    mail(
+      from: sender,
+      reply_to: user,
+      to: recipient,
+      subject: default_i18n_subject(
+        full_name: @visit.prisoner.full_name,
+        request_date: format_date_of_visit(first_date)
+      )
+    )
+  end
 
   def do_not_send_to_prison
     message.to = visitors_email_address
