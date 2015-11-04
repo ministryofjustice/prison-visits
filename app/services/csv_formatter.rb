@@ -11,6 +11,7 @@ class CSVFormatter
     @prison_labeling_function = prison_labeling_function.bind(self)
   end
 
+  # rubocop:disable Metrics/MethodLength
   def generate(dataset)
     CSV.generate(headers: true) do |csv|
       csv << HEADER
