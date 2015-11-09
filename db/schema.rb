@@ -11,22 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150429100538) do
+ActiveRecord::Schema.define(version: 20150401151513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "visit_metrics_entries", force: true do |t|
+  create_table "visit_metrics_entries", force: :cascade do |t|
     t.string   "visit_id"
     t.string   "nomis_id"
     t.datetime "requested_at"
     t.datetime "opened_at"
     t.datetime "processed_at"
-    t.string   "outcome"
+    t.string   "outcome",         default: "pending"
     t.string   "reason"
     t.integer  "processing_time"
     t.integer  "end_to_end_time"
-    t.string   "kind"
+    t.string   "kind",            default: "deferred"
   end
 
   add_index "visit_metrics_entries", ["nomis_id"], name: "index_visit_metrics_entries_on_nomis_id", using: :btree

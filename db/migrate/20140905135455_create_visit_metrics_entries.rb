@@ -6,7 +6,7 @@ class CreateVisitMetricsEntries < ActiveRecord::Migration
       t.timestamp :requested_at
       t.timestamp :opened_at
       t.timestamp :processed_at
-      t.string :outcome
+      t.string :outcome, default: 'pending'
       t.string :reason
     end
 
