@@ -4,6 +4,7 @@ if LogStasher.enabled
     if visit
       fields[:visit_id] = visit.visit_id
       fields[:prison] = visit.prison_name
+      fields[:nomis_id] = visit.prison_nomis_id
     end
   end
 end
