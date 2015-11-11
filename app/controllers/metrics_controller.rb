@@ -3,14 +3,7 @@ class MetricsController < ApplicationController
   before_action :nomis_ids, only: [:index, :weekly]
 
   def index
-    if params[:range] == 'all'
-      @dataset = CalculatedMetrics.new(VisitMetricsEntry.deferred, 3.days)
-    else
-      @start_date, @end_date = fortnightly_range.first, fortnightly_range.last
-      @dataset = CalculatedMetrics.new(
-        VisitMetricsEntry.deferred, 3.days, fortnightly_range
-      )
-    end
+    check_params_range
 
     respond_to do |format|
       format.html
@@ -57,15 +50,9 @@ class MetricsController < ApplicationController
   end
 
   def weekly
-    year = year_param
     # First monday of the year, most of the time.
-    @start_of_year = Date.new(year, 1, 1) - Date.new(year, 1, 1).wday + 1
-    @dataset = WeeklyConfirmationsReport.new(
-      VisitMetricsEntry.deferred,
-      year,
-      @start_of_year,
-      ApplicationHelper.instance_method(:prison_estate_name_for_id)).
-    refresh
+    @start_of_year = start_of_year
+    @dataset = dataset(@start_of_year)
 
     respond_to do |format|
       format.html
@@ -89,5 +76,31 @@ class MetricsController < ApplicationController
 
   def year_param
     (params[:year] || Time.now.year).to_i
+  end
+
+  private
+
+  def check_params_range
+    if params[:range] == 'all'
+      @dataset = CalculatedMetrics.new(VisitMetricsEntry.deferred, 3.days)
+    else
+      @start_date, @end_date = fortnightly_range.first, fortnightly_range.last
+      @dataset = CalculatedMetrics.new(
+        VisitMetricsEntry.deferred, 3.days, fortnightly_range
+      )
+    end
+  end
+
+  def start_of_year
+    Date.commercial(year_param)
+  end
+
+  def dataset(start_of_year)
+    WeeklyConfirmationsReport.new(
+      VisitMetricsEntry.deferred,
+      year_param,
+      start_of_year,
+      ApplicationHelper.instance_method(:prison_estate_name_for_id)
+    ).refresh
   end
 end

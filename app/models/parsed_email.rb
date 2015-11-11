@@ -21,12 +21,16 @@ class ParsedEmail
       hash[field].force_encoding(encoding).encode!('UTF-8') if encoding
     end
 
-    new({
-          to: Mail::Address.new(hash[:to]),
-          from: Mail::Address.new(hash[:from]),
-          subject: hash[:subject],
-          text: hash[:text]
-        })
+    new new_parse(hash)
+  end
+
+  def self.new_parse(hash)
+    {
+      to: Mail::Address.new(hash[:to]),
+      from: Mail::Address.new(hash[:from]),
+      subject: hash[:subject],
+      text: hash[:text]
+    }
   end
 
   def source

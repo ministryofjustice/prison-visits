@@ -3,6 +3,10 @@ class Numeric
     secs  = self.to_int
     mins  = secs / 60
     hours = mins / 60
+    set_duration(hours, mins)
+  end
+
+  def set_duration(hours, mins)
     duration = []
 
     if hours > 0

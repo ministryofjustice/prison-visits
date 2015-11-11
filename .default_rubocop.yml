@@ -53,12 +53,14 @@ Metrics/LineLength:
   Max: 80
   Exclude:
     - 'spec/**/*'
+    - 'test/**/*'
 
 # Don't worry about long methods in specs.
 Metrics/MethodLength:
   Max: 10
   Exclude:
     - 'spec/**/*'
+    - 'test/**/*'
 
 # Enforce single quotes everywhere except in specs (because there's a lot of
 # human text with apostrophes in spec names, and using double quotes for all

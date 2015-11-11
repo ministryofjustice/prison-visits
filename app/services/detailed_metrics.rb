@@ -25,6 +25,10 @@ class DetailedMetrics
       column
     end
 
+    scoped_model
+  end
+
+  def scoped_model(column)
     @scoped_model.
       group("EXTRACT(dow FROM #{quote(column)})::integer").
       group("EXTRACT(hour FROM #{quote(column)})::integer").

@@ -14,6 +14,7 @@ class SlotsController < ApplicationController
     3
   end
 
+  # rubocop:disable Metrics/MethodLength
   def update
     visit.slots = []
     slot_params.each_with_index do |slot_hash, i|

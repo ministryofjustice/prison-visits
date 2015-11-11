@@ -16,6 +16,7 @@ class LeaderboardReport
     @prev_period ||= query(Time.zone.today.year, prev_fortnight, @percentile)
   end
 
+  # rubocop:disable Metrics/MethodLength
   def query(year, fortnight, percentile)
     VisitMetricsEntry.find_by_sql(['
 WITH ranked_times AS (
@@ -42,9 +43,8 @@ GROUP BY nomis_id
         value: row.end_to_end_time / (3600.0 * 24)
       }
       rank = prev_period[nomis_id].try(:rank)
-      if rank
-        record[:previous_rank] = rank
-      end
+      rank ? record[:previous_rank] = rank : false
+
       acc << record
     end
   end

@@ -3,6 +3,7 @@ module MetricsHelper
   SECONDS_PER_HOUR = 60 * 60
   SECONDS_PER_MINUTE = 60
 
+  # rubocop:disable Metrics/MethodLength
   def display_interval(seconds)
     return unless seconds
 

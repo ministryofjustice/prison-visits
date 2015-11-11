@@ -23,6 +23,7 @@ class CalculatedMetrics
     end
   end
 
+  # rubocop:disable Metrics/MethodLength
   def refresh
     @total_visits = scope.group(:nomis_id).count
     @waiting_visits = scope.group(:nomis_id).where(processed_at: nil).count

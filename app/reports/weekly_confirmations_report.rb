@@ -18,6 +18,7 @@ class WeeklyConfirmationsReport
     @dataset[nomis_id]
   end
 
+  # rubocop:disable Metrics/MethodLength
   def refresh
     @min_week = 55
     @max_week = 0
