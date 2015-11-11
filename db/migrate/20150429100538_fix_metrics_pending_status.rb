@@ -1,5 +1,9 @@
 class FixMetricsPendingStatus < ActiveRecord::Migration
-  def change
-    VisitMetricsEntry.where(outcome: nil).update_all(outcome: :pending)
+  def up
+    execute <<-SQL
+      UPDATE visit_metrics_entries
+      SET outcome = 'pending'
+      WHERE outcome IS NULL
+    SQL
   end
 end
