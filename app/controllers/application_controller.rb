@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include Visit::IntegrityChecker
+
   helper_method :visit
   before_action :add_extra_sentry_metadata
   protect_from_forgery with: :exception
@@ -65,16 +67,6 @@ class ApplicationController < ActionController::Base
 
   def metrics_logger
     METRICS_LOGGER
-  end
-
-  def ensure_visit_integrity
-    unless visit && visit.prisoner && visit.prison_name.present?
-      flash[:notice] = I18n.t(
-        :ensure_visit_integrity,
-        scope: 'controllers.shared'
-      )
-      redirect_to edit_prisoner_details_path
-    end
   end
 
   def pad_execution_time(execution_time)

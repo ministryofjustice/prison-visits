@@ -33,6 +33,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'capybara'
   gem 'rspec_junit_formatter'
+  gem 'phantomjs', require: 'phantomjs/poltergeist'
   gem 'poltergeist'
   gem 'chromedriver-helper'
   gem 'database_cleaner'

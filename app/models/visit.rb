@@ -40,4 +40,24 @@ class Visit
   def same_visit?(other)
     other.visit_id == self.visit_id
   end
+
+  def prisoner?
+    prisoner.present?
+  end
+
+  def prisoner_number?
+    prisoner? && prisoner.number.present?
+  end
+
+  def prison_name?
+    prisoner? && prisoner.prison_name.present?
+  end
+
+  def prison?
+    prisoner && prison.present?
+  end
+
+  def prison_slots?
+    prison? && prison.slots.present?
+  end
 end
