@@ -1,0 +1,25 @@
+---
+name: Hatfield Lakes
+nomis_id: HDI
+address:
+- Thorne Road
+- DN7 6El
+email: socialvisitshatfield@hmps.gsi.gov.uk
+enabled: true
+estate: Hatfield Open
+finder_slug: hatfield
+phone: 01405 746611
+slot_anomalies:
+  2015-12-22:
+  - 1400-1600
+slots:
+  fri:
+  - 1400-1600
+  sat:
+  - 1400-1600
+  sun:
+  - 1400-1600
+unbookable:
+- 2015-12-24
+- 2015-12-26
+- 2015-12-31
