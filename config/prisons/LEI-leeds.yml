@@ -8,6 +8,12 @@ email: socialvisits.leeds@hmps.gsi.gov.uk
 enabled: true
 estate: Leeds
 phone: 0113 203 2995
+slot_anomalies:
+  2015-12-28:
+  - 0900-1000
+  - 1030-1130
+  - 1400-1500
+  - 1530-1630
 slots:
   fri:
   - 1030-1130
@@ -44,3 +50,6 @@ unbookable:
 - 2014-12-26
 - 2015-01-01
 - 2015-04-03
+- 2015-12-25
+- 2015-12-26
+- 2016-01-01
