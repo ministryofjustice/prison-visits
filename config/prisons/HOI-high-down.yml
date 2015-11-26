@@ -8,6 +8,11 @@ email: socialvisits.highdown@hmps.gsi.gov.uk
 enabled: true
 estate: High Down
 phone: 020 7147 6570
+slot_anomalies:
+  2015-12-21:
+  - 1400-1600
+  2015-12-28:
+  - 1400-1600
 slots:
   sat:
   - 1400-1600
@@ -25,3 +30,4 @@ unbookable:
 - 2015-11-18
 - 2015-12-09
 - 2015-12-16
+- 2015-12-26
