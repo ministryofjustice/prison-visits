@@ -2,7 +2,7 @@ class Prison
   include Virtus.model
 
   DEFAULT_ADULT_AGE =       18
-  DEFAULT_BOOKING_WINDOW =  28
+  DEFAULT_BOOKING_WINDOW =  ENV.fetch('OVERRIDE_BOOKING_WINDOW', 28).to_i
   DEFAULT_LEAD_DAYS =       3
 
   attribute :address

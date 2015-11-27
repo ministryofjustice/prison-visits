@@ -324,3 +324,9 @@ Source: `config/environments/development.rb` and `config/environments`.
 - `SMOKE_TEST_EMAIL_DOMAIN`
 - `SMOKE_TEST_EMAIL_PASSWORD`
 - `SMOKE_TEST_EMAIL_HOST`
+
+### Override booking window
+
+This is used to test after 28 days in advance. It is optional.
+
+- `OVERRIDE_BOOKING_WINDOW`
