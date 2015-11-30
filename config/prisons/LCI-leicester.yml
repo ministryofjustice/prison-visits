@@ -8,13 +8,7 @@ email: socialvisitsleiceste@hmps.gsi.gov.uk
 enabled: true
 estate: Leicester
 phone: 0116 228 3128
-slot_anomalies:
-  2014-12-24:
-  - 0900-1100
-  - 1415-1615
-  2014-12-31:
-  - 0900-1100
-  - 1415-1615
+slot_anomalies: {}
 slots:
   mon:
   - 1415-1615
@@ -28,8 +22,4 @@ slots:
   - 1415-1615
   sun:
   - 1415-1615
-unbookable:
-- 2014-12-25
-- 2014-12-26
-- 2014-12-31
-- 2015-01-01
+unbookable: []
