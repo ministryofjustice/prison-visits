@@ -20,18 +20,48 @@ RSpec.describe "Prison data" do
   context "enabled prisons" do
     let(:enabled) { Prison.enabled }
 
+    it "currently number between 95 and 105" do
+      expect(enabled.count).to be_within(5).of(100)
+    end
+
     it "each has a nomis_id" do
       expect(enabled.any?{ |p| p.nomis_id.blank? }).to be_falsey
     end
 
-    it "each unbookable date for each prison should be a valid date" do
-      unbookable = enabled.map(&:unbookable).flatten
-      expect(unbookable.map(&:class).all?{ |p| p == Date }).to be_truthy
-    end
+    context 'unbookable dates' do
+      specify "are all valid dates" do
+        unbookable = enabled.flat_map(&:unbookable)
+        expect(unbookable).to all(be_a(Date))
+      end
 
-    it "each unbookable date for each prison should be a unique" do
-      enabled.each do |prison|
-        expect(prison.unbookable.size).to eq(prison.unbookable.uniq.size)
+      specify "are all unique" do
+        enabled.each do |prison|
+          expect(prison.unbookable.size).to eq(prison.unbookable.uniq.size)
+        end
+      end
+
+      context 'do not conflict with anomalous dates' do
+        describe 'and breaks the spec run if there are conflicts' do
+          subject { Prison.find('Rochester') }
+          before do
+            allow(subject).to receive(:slot_anomalies).
+              and_return(Time.zone.today => [])
+            allow(subject).to receive(:unbookable).
+              and_return([Time.zone.today, Time.zone.tomorrow])
+          end
+
+          specify do
+            expect(subject.anomalous_dates & subject.unbookable_dates).
+              not_to be_empty
+          end
+        end
+
+        specify 'for any enabled prison in the live data set' do
+          enabled.each do |prison|
+            expect(prison.anomalous_dates & prison.unbookable_dates).
+              to be_empty, "Conflict with dates for #{prison.name}"
+          end
+        end
       end
     end
 
