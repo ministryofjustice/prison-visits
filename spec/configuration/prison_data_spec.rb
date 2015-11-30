@@ -20,8 +20,8 @@ RSpec.describe "Prison data" do
   context "enabled prisons" do
     let(:enabled) { Prison.enabled }
 
-    it "currently number between 95 and 105" do
-      expect(enabled.count).to be_within(5).of(100)
+    it "currently number at least 95" do
+      expect(enabled.count).to be >= 95
     end
 
     it "each has a nomis_id" do
