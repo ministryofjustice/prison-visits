@@ -30,8 +30,6 @@ en:
               inclusion: 'must be a valid date'
             phone:
               too_short: 'must include area code'
-      messages:
-        four_digit_year: 'year must be four digits'
         visit:
           attributes:
             slots:
@@ -40,6 +38,8 @@ en:
             visitors:
               at_least_one_adult: "There must be at least one adult visitor"
               max_3_adults: 'You can book a maximum of 3 visitors over the age of %{adult_age} on this visit'
+      messages:
+        four_digit_year: 'year must be four digits'
   email_checker:
     errors:
       unparseable: "is not a valid address"
