@@ -9,6 +9,9 @@ enabled: true
 estate: Hindley
 finder_slug: hindley
 phone: 01942 663492
+slot_anomalies:
+  2015-12-28:
+  - 1400-1600
 slots:
   mon:
   - 1400-1600

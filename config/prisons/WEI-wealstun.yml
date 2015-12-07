@@ -8,6 +8,10 @@ email: socialvisits.wealstun@hmps.gsi.gov.uk
 enabled: true
 estate: Wealstun
 phone: 01937 444599
+slot_anomalies:
+  2015-12-28:
+  - 0930-1130
+  - 1330-1530
 slots:
   mon:
   - 0930-1130

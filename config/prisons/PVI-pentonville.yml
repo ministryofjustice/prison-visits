@@ -8,6 +8,10 @@ email: socialvisits.pentonville@hmps.gsi.gov.uk
 enabled: true
 estate: Pentonville
 phone: 020 70237251
+slot_anomalies:
+  2015-12-28:
+  - 0915-1115
+  - 1400-1600
 slots:
   mon:
   - 0915-1115

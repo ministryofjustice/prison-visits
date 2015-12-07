@@ -11,6 +11,9 @@ email: visitsbooking.westmidlands@noms.gsi.gov.uk
 enabled: true
 estate: Hewell
 phone: 0300 060 6503
+slot_anomalies:
+  2015-12-28:
+  - 1400-1630
 slots:
   mon:
   - 1400-1630

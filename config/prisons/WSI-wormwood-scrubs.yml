@@ -8,6 +8,9 @@ email: visitsbooking.westmidlands@noms.gsi.gov.uk
 enabled: true
 estate: Wormwood Scrubs
 phone: 020 8588 3564
+slot_anomalies:
+  2015-12-28:
+  - 1345-1545
 slots:
   mon:
   - 1345-1545

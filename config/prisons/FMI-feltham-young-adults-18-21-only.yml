@@ -9,6 +9,10 @@ enabled: true
 estate: Feltham
 finder_slug: feltham
 phone: 0208 844 5400
+slot_anomalies:
+  2015-12-28:
+  - 1330-1500
+  - 1500-1630
 slots:
   mon:
   - 1330-1500

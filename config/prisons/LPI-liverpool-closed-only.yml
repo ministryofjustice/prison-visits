@@ -9,6 +9,9 @@ enabled: true
 estate: Liverpool
 finder_slug: liverpool
 phone: 0151 530 4050
+slot_anomalies:
+  2015-12-28:
+  - 1025-1125
 slots:
   mon:
   - 1025-1125
