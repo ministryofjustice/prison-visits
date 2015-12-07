@@ -9,6 +9,9 @@ enabled: true
 estate: Winchester
 finder_slug: winchester
 phone: 0845 223 5514
+slot_anomalies:
+  2015-12-28:
+  - 1400-1600
 slots:
   fri:
   - 1400-1600
