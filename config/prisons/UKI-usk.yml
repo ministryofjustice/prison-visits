@@ -9,6 +9,9 @@ enabled: true
 estate: Usk
 finder_slug: usk-prescoed-usk
 phone: 01291 671730
+slot_anomalies:
+  2015-12-28:
+  - 1700-1900
 slots:
   mon:
   - 1700-1900
