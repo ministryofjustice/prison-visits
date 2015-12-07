@@ -16,7 +16,7 @@ Please visit www.gov.uk/prison-visits to choose some alternative dates.
 We’re sorry, but the prisoner you want to visit has not got any visiting allowance left for the dates you’ve chosen.
 <% if @confirmation.no_pvo %>
 
-However, you can book a weekday visit with visiting allowance valid until <%= format_date_of_visit(@confirmation.renew_pvo) %>. The visit must be taken before the allowance expires.
+However, you can book a weekday visit with visiting allowance valid until <%= format_date_of_visit(@confirmation.renew_pvo) %>. The visit must be booked before the allowance expires.
 <% end %>
 <% if @confirmation.no_vo %>
 
