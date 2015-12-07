@@ -8,6 +8,9 @@ email: socialvisits.swaleside@hmps.gsi.gov.uk
 enabled: true
 estate: Swaleside
 phone: 0300 060 6604
+slot_anomalies:
+  2015-12-28:
+  - 1400-1600
 slots:
   mon:
   - 1400-1600
