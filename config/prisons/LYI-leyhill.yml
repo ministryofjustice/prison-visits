@@ -8,6 +8,10 @@ email: socialvisits.leyhill@hmps.gsi.gov.uk
 enabled: true
 estate: Leyhill
 phone: 01454 264211
+slot_anomalies:
+  2015-12-27:
+  - 0930-1130
+  - 1330-1530
 slots:
   tue:
   - 1330-1530
