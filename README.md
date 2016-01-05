@@ -98,15 +98,6 @@ unbookable:
 
 **Note** unbookable dates must be listed in chronological order.
 
-**Note** If an enabled prison does not have any unbookable dates, please
-make sure you represent this in the yaml as:
-
-```yaml
-unbookable: []
-```
-
-If you od not, the specs will fail.
-
 ### Response times
 
 Set the amount of full working days which booking staff have to respond to each request. The default is 3 days.
