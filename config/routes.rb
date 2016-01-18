@@ -2,6 +2,16 @@ PrisonVisits2::Application.routes.draw do
   # rubocop:disable Metrics/LineLength
   get 'ping' => 'ping#index'
 
+  # Enable proxying to the new application if url configured
+  new_app_url = Rails.application.config.new_app_url
+  if new_app_url
+    new_app = NewAppProxy.new(url: new_app_url, read_timeout: 5)
+
+    %w[/en /cy].each do |prefix|
+      match "#{prefix}/*all", to: new_app, via: :all
+    end
+  end
+
   resource :feedback
 
   resources :frontend_events, only: [:create]

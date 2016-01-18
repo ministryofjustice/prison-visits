@@ -37,6 +37,7 @@ module PrisonVisits2
     config.trusted_users_access_key = ENV['TRUSTED_USERS_ACCESS_KEY']
     config.permitted_ips_for_confirmations =
       (ENV['PRISON_ESTATE_IPS'] || '').split(',')
+    config.new_app_url = ENV['NEW_APP_URL']
 
     config.autoload_paths += %w(lib app/mailers/concerns)
 
