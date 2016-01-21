@@ -330,3 +330,9 @@ Source: `config/environments/development.rb` and `config/environments`.
 This is used to test after 28 days in advance. It is optional.
 
 - `OVERRIDE_BOOKING_WINDOW`
+
+### Redirecting traffic to the new app
+
+Supports redirecting a proportion of new booking requests to the new prison visits application. Should be a value between 0 (no requests redirected) and 1 (all requests redirected).
+
+- `NEW_APP_PROBABILITY`
