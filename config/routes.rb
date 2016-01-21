@@ -69,7 +69,10 @@ PrisonVisits2::Application.routes.draw do
   get "/healthcheck.json", controller: 'healthcheck', action: 'index'
 
   # Legacy URLs
-  get "/prisoner-details", to: redirect("/prisoner")
+
+  # This is route used by the gov.uk start page
+  get "/prisoner-details", to: 'start_page#show'
+
   get "/deferred/confirmation/new" => "confirmations#new"
 
   get "/", to: redirect(ENV.fetch("GOVUK_START_PAGE", "/prisoner"))
