@@ -44,5 +44,6 @@ module PrisonVisits2
       'assets', 'moj.slot-picker', 'dist', 'stylesheets')
     config.middleware.delete 'ActiveRecord::QueryCache'
     config.session_expire_after = 20.minutes
+    config.new_app_probability = ENV.fetch('NEW_APP_PROBABILITY', 0).to_f
   end
 end
