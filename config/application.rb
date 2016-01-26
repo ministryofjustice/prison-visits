@@ -24,6 +24,7 @@ module PrisonVisits2
       application-ie8.css
       back-office.css
       *.png
+      favicon.ico
     )
     config.prison_data_source = \
       File.join(Rails.root, 'config', 'prison_data.yml')
