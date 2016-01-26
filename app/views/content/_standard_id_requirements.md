@@ -2,6 +2,7 @@ Please make sure you bring ID with you. This can be ONE of the following:
 
 * passport, including foreign passports, and expired passports where the photograph is still recognisable
 * identity card (including European identity cards)
+* biometric residence permit
 * driving licence
 * benefits book
 * senior citizen's public transport photo pass issued by a local authority
