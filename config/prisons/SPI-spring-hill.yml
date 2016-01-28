@@ -9,6 +9,8 @@ enabled: true
 estate: Spring Hill
 phone: 
 slots:
+  fri:
+  - 1345-1600
   sat:
   - 1345-1600
   sun:
