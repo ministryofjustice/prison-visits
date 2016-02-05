@@ -1,5 +1,25 @@
 ---
 name: Garth
 nomis_id: GHI
-enabled: false
+enabled: true
 estate: Garth
+address:
+- Ulnes Walton
+- Leyland
+- Preston
+- PR26 8NE
+booking_window: 28
+email: Socialvisits.garth@hmps.gsi.gov.uk
+lead_days: 3
+phone: 01772 443300
+slots:
+  wed:
+  - 1400-1600
+  thu:
+  - 1400-1600
+  fri:
+  - 1400-1600
+  sat:
+  - 1400-1600
+  sun:
+  - 1400-1600
