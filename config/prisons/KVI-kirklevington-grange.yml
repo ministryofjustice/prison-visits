@@ -1,6 +1,20 @@
 ---
 name: Kirklevington Grange
 nomis_id: KVI
-enabled: false
+enabled: true
 estate: Kirklevington Grange
-reason: coming_soon
+address:
+- Yarm
+- Cleveland
+- TS15 9PA
+email: socialvisits.kirklevingtongrange@hmps.gsi.gov.uk
+phone: 01642 792629
+slots:
+  wed:
+  - 1345-1545
+  fri:
+  - 1345-1545
+  sat:
+  - 1345-1545
+  sun:
+  - 1345-1545
