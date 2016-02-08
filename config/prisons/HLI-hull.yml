@@ -3,7 +3,7 @@ name: Hull
 nomis_id: HLI
 address:
 - Hedon Road
-- HU9 5LS
+- 'HU9 5LS'
 email: socialvisits.hull@hmps.gsi.gov.uk
 enabled: true
 estate: Hull
