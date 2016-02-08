@@ -3,16 +3,15 @@ name: East Sutton Park
 nomis_id: ESI
 address:
 - Sutton Valence
+- Maidstone
+- Kent
 - ME17 3DF
 email: socialvisits.eastsuttonpark@hmps.gsi.gov.uk
-enabled: false
+enabled: true
 estate: East Sutton Park
-phone: ''
-reason: coming_soon
+phone: 01622 845010
 slots:
   sat:
   - 1330-1530
   sun:
   - 1330-1530
-unbookable:
-- 2014-12-25
