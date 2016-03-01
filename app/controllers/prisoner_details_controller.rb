@@ -5,7 +5,14 @@ class PrisonerDetailsController < ApplicationController
 
   before_action :logstasher_add_visit_id_from_session, only: :update
 
+  # rubocop:disable Metrics/MethodLength
   def edit
+    # Permanently redirect to the new app if we've got to probability 1
+    new_app_probability = Rails.configuration.new_app_probability
+    if new_app_probability == 1
+      redirect_to '/en/request', status: :moved_permanently
+    end
+
     session[:visit] ||= new_session
     logstasher_add_visit_id(visit.visit_id)
     response.set_cookie(
@@ -17,6 +24,7 @@ class PrisonerDetailsController < ApplicationController
       path: '/'
     )
   end
+  # rubocop:enable Metrics/MethodLength
 
   def update
     if (visit.prisoner = Prisoner.new(prisoner_params)).valid?
