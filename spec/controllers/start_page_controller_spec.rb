@@ -6,6 +6,10 @@ RSpec.describe StartPageController, type: :controller do
       Rails.configuration.new_app_probability = 0.2
     end
 
+    after :each do
+      Rails.configuration.new_app_probability = 0
+    end
+
     it 'stores a random threshold in the user\'s session' do
       get :show
       expect(session[:app_choice_threshold]).to be_in(0..1)
