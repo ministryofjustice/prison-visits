@@ -1,3 +1,5 @@
+**NOTE: This codebase is no longer in use. It has been replaced ([why](https://github.com/ministryofjustice/prison-visits/issues/353)) by a database backed application ([ministryofjustice/prison-visits-2](https://github.com/ministryofjustice/prison-visits-2)) and decoupled public booking interface ([ministryofjustice/prison-visits-public](https://github.com/ministryofjustice/prison-visits-public)).**
+
 # Visit someone in prison
 
 [![Circle CI](https://circleci.com/gh/ministryofjustice/prison-visits.svg?style=svg)](https://circleci.com/gh/ministryofjustice/prison-visits)
